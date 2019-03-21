@@ -2,7 +2,7 @@
   "name": "webapp-mp",
   "version": "1.0.0",
   "private": true,
-  "description": "美萍",
+  "description": "美拼",
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
