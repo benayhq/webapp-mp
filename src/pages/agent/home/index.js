@@ -75,62 +75,62 @@ export default class Index extends Component {
 
            <View className="mp-user__ordernav">
               <View className="mp-user__ordernav-tuan">
-                  <View className="mp-user__ordernav-icon">2</View>
+                  <View className="mp-user__ordernav-icon mp-icon mp-icon-waittuan"></View>
                   <View className="mp-user__ordernav-text">待成团</View>
               </View>
+
               <View className="mp-user__ordernav-customer">
-                  <View className="mp-user__ordernav-icon">2</View>
+                  <View className="mp-user__ordernav-icon mp-icon mp-icon-consumption"></View> 
                   <View className="mp-user__ordernav-text">待消费</View>  
               </View>
               <View className="mp-user__ordernav-comment">
-                  <View className="mp-user__ordernav-icon">2</View>
+                  <View className="mp-user__ordernav-icon mp-icon mp-icon-comment"></View> 
                   <View className="mp-user__ordernav-text">待评价
-</View> 
+              </View> 
               </View>
-              <View className="mp-user__ordernav-refund">
-                 <View className="mp-user__ordernav-icon">2</View>
+               <View className="mp-user__ordernav-refund">
+                 <View className="mp-user__ordernav-icon mp-icon mp-icon-refund"></View> 
                   <View className="mp-user__ordernav-text">退款
-</View> 
+               </View> 
               </View>
            </View>
         </View>
 
         <View className="mp-user__controlpanel">
           <View className="mp-user__controlpanel-active">
-              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-active"></View> 
               <View className="mp-user__controlpanel-text">我的活动
 </View>
           </View>
           <View className="mp-user__controlpanel-product">
-              <View className="mp-user__controlpanel-icon">2</View>
-              <View className="mp-user__controlpanel-text">往期产品
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-product"></View>
+              <View className="mp-user__controlpanel-text">往期产品 
 </View>
           </View>
           <View className="mp-user__controlpanel-customer">
-              <View className="mp-user__controlpanel-icon">2</View>
-              <View className="mp-user__controlpanel-text">我的客户
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-customer"></View>
+              <View className="mp-user__controlpanel-text">我的客户 
 </View>
           </View>
 
           <View className="mp-user__controlpanel-account"> 
-              <View className="mp-user__controlpanel-icon">
-                 <Text className="">1</Text>
-              </View>
-              <View className="mp-user__controlpanel-text">历史账单
+                 <View className="mp-user__controlpanel-icon mp-icon mp-icon-account"></View>
+                 <View className="mp-user__controlpanel-text">历史账单
 </View>
           </View>
+
           <View className="mp-user__controlpanel-invite">
-              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-invite"></View> 
               <View className="mp-user__controlpanel-text">邀请好友
 </View>
           </View>
           <View className="mp-user__controlpanel-close">
-              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-close"></View>
               <View className="mp-user__controlpanel-text">手动核销
 </View>
           </View>
           <View className="mp-user__controlpanel-appoint">
-              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-icon mp-icon mp-icon-appoint"></View> 
               <View className="mp-user__controlpanel-text">预约日程
 
 </View>

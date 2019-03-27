@@ -170,6 +170,7 @@
             background:rgba(125,214,208,1);
             border-radius:6px;
             text-align: center;
+            line-height: 60px;
 
             >Text{
                 height:26px;
@@ -185,7 +186,7 @@
 
     &__order{
         margin: 19px;
-        height:227px;
+        margin-bottom: 0px;
         background:rgba(255,255,255,1);
         border-radius:8px;
         border:1px solid rgba(255,255,255,1); 
@@ -227,8 +228,8 @@
         }
 
         &-icon{
-            height:81px;
-            line-height: 81px;
+            padding-top: 23px;
+            padding-bottom:5px;
         }
 
         &-text{
@@ -263,10 +264,11 @@
         flex-direction: row;
         text-align: center;
         flex-wrap:wrap;
+        padding-top: 40px;
 
         &-icon{
-            height:81px;
-            line-height: 81px;
+            padding-top: 0px;
+            padding-bottom:5px;
         }
 
         &-text{
