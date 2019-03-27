@@ -13,7 +13,7 @@ const config = {
     babel: {
       sourceMap: true,
       presets: [
-        ['env', {
+        ['env',{
           modules: false
         }]
       ],

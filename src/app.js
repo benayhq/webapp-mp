@@ -10,10 +10,10 @@ import './app.scss'
 // }
 
 class App extends Component {
-
+  
   config = {
     pages: [
-      'pages/index/index'
+      'pages/agent/home/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -22,7 +22,7 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-
+  
   componentDidMount () {}
 
   componentDidShow () {}
