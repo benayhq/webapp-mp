@@ -22,7 +22,6 @@ export default class Index extends Component {
   render () {
     return (
       <View className='mp-user'>
-
         <View className="mp-user__info">
             <View className="mp-user__info-avatar">
                 <Text className="mp-icon mp-icon-avatar"></Text>
@@ -96,11 +95,51 @@ export default class Index extends Component {
            </View>
         </View>
 
-        <View>
+        <View className="mp-user__controlpanel">
+          <View className="mp-user__controlpanel-active">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">我的活动
+</View>
+          </View>
+          <View className="mp-user__controlpanel-product">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">往期产品
+</View>
+          </View>
+          <View className="mp-user__controlpanel-customer">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">我的客户
+</View>
+          </View>
 
+          <View className="mp-user__controlpanel-account"> 
+              <View className="mp-user__controlpanel-icon">
+                 <Text className="">1</Text>
+              </View>
+              <View className="mp-user__controlpanel-text">历史账单
+</View>
+          </View>
+          <View className="mp-user__controlpanel-invite">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">邀请好友
+</View>
+          </View>
+          <View className="mp-user__controlpanel-close">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">手动核销
+</View>
+          </View>
+          <View className="mp-user__controlpanel-appoint">
+              <View className="mp-user__controlpanel-icon">2</View>
+              <View className="mp-user__controlpanel-text">预约日程
 
+</View>
+          </View>
         </View>
         
+        <View className="mp-user-changeuser"> 
+          切换为用户
+        </View>
       </View>
     )
   }
