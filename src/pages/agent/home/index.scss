@@ -1,14 +1,22 @@
-.mp-user{
-    background:rgba(245,245,249,1);
-    height: 1450px;
+@import '../../../style/base.scss';
 
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    background:$userHomeBgColor;
+    height: 1450px;
+    
     /* elements */
     &__info{
         width:750px;
         height:169px;
-        background:rgba(125,214,208,1);
+        background:$bgColor;
         opacity:0.7;
-        border:1px solid rgba(125,214,208,1);
+        border:1px solid $borderColor;
 
         &-avatar{
             float: left;
@@ -33,7 +41,7 @@
             font-size:36px;
             font-family:PingFangSC-Regular;
             font-weight:400;
-            color:rgba(255,255,255,1);
+            color:$panelBgColor;
             line-height:50px;
             padding-top: 31px;
         }
@@ -43,7 +51,7 @@
             height:33px;
             background:rgba(255,255,255,0.6);
             border-radius:18px;
-            border:1px solid rgba(255,255,255,1);
+            border:1px solid $panelBgColor;
             font-size:24px;
             font-family:PingFangSC-Regular;
             font-weight:400;
@@ -62,7 +70,7 @@
             font-size:24px;
             font-family:PingFangSC-Regular;
             font-weight:400;
-            color:rgba(255,255,255,1);
+            color:$panelBgColor;
             line-height:33px;
         }
     }
@@ -74,7 +82,7 @@
             font-size:48px;
             font-family:PingFangSC-Regular;
             font-weight:400;
-            color:rgba(255,255,255,1);
+            color:$panelBgColor;
             line-height:67px;
             padding: 25px 0px 24px 0px;
         }
@@ -87,7 +95,7 @@
             font-size:24px;
             font-family:PingFangSC-Regular;
             font-weight:400;
-            color:rgba(255,255,255,1);
+            color:$panelBgColor;
             line-height:33px;
         }
     }
@@ -95,8 +103,8 @@
     &__income{
         width:750px;
         height:169px;
-        background:rgba(255,255,255,1);
-        border:1px solid rgba(255,255,255,1);
+        background:$panelBgColor;
+        border:1px solid $panelBgColor;
         display: flex;
         flex-direction: row;
 
@@ -142,9 +150,9 @@
     &__publish{
         margin: 19px;
         height:96px;
-        background:rgba(255,255,255,1);
+        background:$panelBgColor;
         border-radius:8px;
-        border:1px solid rgba(255,255,255,1);
+        border:1px solid $panelBgColor;
 
         &-introduce{
             position: relative;
@@ -177,7 +185,7 @@
                 font-size:26px;
                 font-family:PingFangSC-Regular;
                 font-weight:400;
-                color:rgba(255,255,255,1);
+                color:$panelBgColor;
                 line-height:26px;
                 text-align: center;
             }
@@ -187,9 +195,9 @@
     &__order{
         margin: 19px;
         margin-bottom: 0px;
-        background:rgba(255,255,255,1);
+        background:$panelBgColor;
         border-radius:8px;
-        border:1px solid rgba(255,255,255,1); 
+        border:1px solid $panelBgColor; 
 
         &-title{
             font-size:32px;
@@ -217,7 +225,7 @@
 
     &__ordernav{
         height:148px;
-        background:rgba(255,255,255,1);
+        background:$panelBgColor;
         display: flex;
         flex-direction: row;
         text-align: center;
@@ -257,9 +265,9 @@
     &__controlpanel{
         margin: 19px;
         height:270px;
-        background:rgba(255,255,255,1);
+        background:$panelBgColor;
         border-radius:8px;
-        border:1px solid rgba(255,255,255,1);
+        border:1px solid $panelBgColor;
         display: flex;
         flex-direction: row;
         text-align: center;
@@ -281,31 +289,31 @@
         }
         
         &-active{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-product{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-customer{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-account{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-invite{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-close{
-            width: 177px;
+            @include panelBlockWidth;
         }
 
         &-appoint{
-            width: 177px;
+            @include panelBlockWidth;
         }
     }
 
