@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 import '../../../style/icon.scss';
+import { AtButton } from 'taro-ui'
 
 export default class Index extends Component {
 
@@ -18,6 +19,12 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  onClick = (e) =>{
+    Taro.navigateTo({
+      url: '/pages/active/publish/index'
+    })
+  }
 
   render () {
     return (
@@ -63,7 +70,7 @@ export default class Index extends Component {
         <View className="mp-user__publish">
             <View className="mp-user__publish-introduce">让客户来为您拓展客户</View>
             <View className="mp-user__publish-action">
-               <Text>发布活动</Text>
+               <AtButton onClick={this.onClick} type='primary' size='small'>发布活动</AtButton>
             </View>
         </View>
 

@@ -99,7 +99,7 @@ $panelBgColor:rgba(255,255,255,1);
             line-height:33px;
         }
     }
-    
+
     &__income{
         width:750px;
         height:169px;
@@ -175,20 +175,9 @@ $panelBgColor:rgba(255,255,255,1);
             float:right;
             width:140px;
             height:60px;
-            background:rgba(125,214,208,1);
             border-radius:6px;
             text-align: center;
             line-height: 60px;
-
-            >Text{
-                height:26px;
-                font-size:26px;
-                font-family:PingFangSC-Regular;
-                font-weight:400;
-                color:$panelBgColor;
-                line-height:26px;
-                text-align: center;
-            }
         }
     }
 

@@ -1,0 +1,68 @@
+@import '../../../style/layout.scss';
+@import '../../../style/icon.scss';
+@import '../../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+.mp-active{
+    background:$userHomeBgColor;
+
+    .item{
+        @include flex(row);
+        line-height: 90px;
+        height: 90px;
+        background: $panelBgColor;
+
+        > text{
+            padding-left: 16px;
+        }
+
+        > input{
+            line-height: 90px;
+            height: 90px;
+            padding-left: 14px;
+        }
+
+        &:after{
+            content: " ";
+            box-sizing: border-box;
+            height: 0;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .mp-publish{
+            font-family: "iconfont" !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position:absolute;
+            right:36px;
+        }
+    }
+
+    .uploadImage{
+        height: 366px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 auto;
+        text-align: center;
+        line-height: 366px;
+        border-bottom: 1px solid #ddd;
+        background: $panelBgColor;
+    }
+
+    .product{
+        height: 747px;
+        width: 100%;    
+        margin-top: 25px;
+        background: $panelBgColor;
+    }
+
+    .publish{
+        width: 100%;
+        margin-top: 80px;
+        height: 126px;
+        background: $panelBgColor;
+    }
+}

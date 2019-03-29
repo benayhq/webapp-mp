@@ -11,10 +11,10 @@ import './app.scss'
 // }
 
 class App extends Component {
-  
   config = {
     pages: [
-      'pages/agent/home/index'
+      'pages/agent/home/index',
+      'pages/active/publish/index',
     ],
     window: {
       backgroundTextStyle: 'light',

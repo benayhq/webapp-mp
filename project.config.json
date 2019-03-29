@@ -11,5 +11,32 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "新增活动",
+					"pathName": "pages/active/publish/index",
+					"scene": null
+				}
+			]
+		}
+	}
 }
