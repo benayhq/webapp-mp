@@ -1,6 +1,6 @@
 @import "./layout.scss";
 
-@mixin btn($size:14px,$color:#fff,$bgcolor:#F04752,$padding:5px,$radius:5px){
+@mixin btn($size:14px,$color:#fff,$bgcolor:#7DD6D0,$padding:5px,$radius:5px){
     padding: $padding;
     background-color: $bgcolor;
     border-radius: $radius;
