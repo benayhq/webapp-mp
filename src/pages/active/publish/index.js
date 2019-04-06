@@ -2,6 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Picker, PickerView, PickerViewColumn  } from '@tarojs/components'
 import './index.scss'
 import { AtImagePicker } from 'taro-ui'
+import ProductList from './productlist/index';
+
 
 export default class Index extends Component {
   constructor(){
@@ -80,11 +82,17 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
       url:'/pages/active/share/index'
     })
   }
-
+  
   onDateEndChange = e => {
     this.setState({
       dateSel: e.detail.value
     });
+  }
+
+  createProduct(){
+    Taro.navigateTo({
+      url:'/pages/product/index'
+    })
   }
 
   config = {
@@ -128,7 +136,7 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
                 </View>
             </Picker>
         </View>
-
+{/* 
         <View className="item">
             <Picker mode='multiSelector' range={this.state.selector} 
             onChange={this.handlePickerChange}
@@ -138,7 +146,7 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
                     <Text className="time"> {this.state.selectorChecked} </Text>  
                   </View>
             </Picker>
-        </View>
+        </View> */}
 
         <AtImagePicker
           className="uploadImage"
@@ -146,39 +154,7 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
            onChange={this.onChange.bind(this)}
         />
 
-        <View className="product">
-            <View>
-                <Text>活动产品</Text>
-                <Text>选择我的产品</Text>
-            </View>
-            <View className="list">
-                <View className="list-top">
-                     <View>
-                       <View className="mp-icon mp-icon-delete"></View>
-                     </View>
-                     <View>
-                        <image
-                          style="width:92px; height:95px;margin-top:14px;"
-                          mode="scaleToFill"
-                          src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"
-                        ></image>
-                     </View>
-                     <View>
-                        <View className="product-item margin20">[玻尿酸瘦脸针] 瑞典进口 可打嘟嘟唇微笑 </View>
-                        <View className="product-item font"> ￥3000 </View>
-                        <View className="product-item textfont"> 预定金: <Text className="amount">200</Text> </View>
-                     </View>
-                </View>
-                <View className="list-bottom">
-                       <Text>活动价</Text>
-                      <input  placeholder="请输入活动优惠价" />
-                </View>
-            </View>
-            <View className="create-item">
-                <Text className="mp-icon mp-icon-add margin"></Text>
-                <Text>新增产品</Text>
-            </View>
-        </View>
+        <ProductList/>
 
         <View className="publish">
             <View onClick={this.onPublish}>立即发布</View>

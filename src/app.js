@@ -15,7 +15,8 @@ class App extends Component {
     pages: [
       'pages/agent/home/index',
       'pages/active/publish/index',
-      'pages/active/share/index'
+      'pages/active/share/index',
+      'pages/product/index',
     ],
     window: {
       backgroundTextStyle: 'light',

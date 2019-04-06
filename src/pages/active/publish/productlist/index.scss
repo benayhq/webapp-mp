@@ -1,0 +1,75 @@
+@import './../../../../style/layout.scss';
+@import './../../../../style/icon.scss';
+
+$pageBgColor:#ffffff;
+
+@mixin lineHight {
+    line-height: 90px;
+    height: 90px;
+}
+
+.mp-publish-product{
+    background: $pageBgColor;
+    padding-bottom:10px;
+
+    .publish-item{
+        border-bottom: 1px solid #ddd;
+        background: $pageBgColor;
+
+        >Text:nth-child(1){
+            @include lineHight;
+            padding-left: 30px;
+        }
+
+        >Text:nth-child(2){
+            float:right;
+            color:#7DD6D0;
+            line-height:58rpx;
+            height:48rpx;
+            padding-top:16rpx;
+            padding-right:30rpx;
+        }
+    }
+
+    .publish-active{
+        @include flex(row);
+        border-bottom: 1px solid #ddd ;
+        background:$pageBgColor;
+
+        >Text:nth-child(1){
+            @include lineHight;
+            padding-left: 30px;
+        }
+
+        >input{
+            @include lineHight;
+            padding-left: 80px;
+            width: 60%;
+        }
+        
+        .margin{
+            padding-top: 20px;
+        }
+    }
+
+    .pulbish-create{
+        line-height: 90px;
+        height: 90px;
+        background: $pageBgColor;
+        border: 1px solid #7DD6D0 ;
+        color: #7DD6D0;
+        margin: 20px;
+        text-align: center;
+        border-radius: 10px;
+
+        >Text:nth-child(1){
+            padding-right: 30px;
+        }
+
+        >Text:nth-child(2){
+            width: 80%;
+            height: 90px;
+            margin-bottom: 20px;
+        }
+    }
+}

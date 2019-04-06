@@ -1,0 +1,19 @@
+.cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 140px 0 150px;
+    background: red;
+}
+  
+.cart-empty__img {
+    width: 260px;
+    height: 260px;
+}
+
+.cart-empty__txt {
+    margin-top: -8px;
+    font-size: 28px;
+    line-height: 28px;
+}
