@@ -75,7 +75,7 @@ export default class Index extends Component{
                               item.isShow
                               ?
                               <View className="mask">
-                                  <Text className="mp-icon mp-icon-checkedItem"></Text>
+                                  <Text className="mp-icon mp-icon-checkeditem"></Text>
                               </View>
                               :
                               ''
