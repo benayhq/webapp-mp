@@ -11,9 +11,9 @@ export default class Index extends Component {
       files:[{
         url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
       },{
-        url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
+url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
       },{
-        url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
+url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
       }],
       selector: [['请选择', '美国', '中国', '巴西', '日本'], ['请选择', '美国', '中国', '巴西', '日本       ']],
       selectorChecked: '请选择',
@@ -22,7 +22,6 @@ export default class Index extends Component {
       dateStart: '2018-04-21',
       dateSel: '2018-04-22'
     };
-    
     this.init();
   }
 
@@ -35,6 +34,7 @@ export default class Index extends Component {
     for(var i =1; i<15; i++){
       groups.push(i);
     }
+    
     this.setState({
       groupItem: groups
     });
@@ -72,6 +72,12 @@ export default class Index extends Component {
   onDateStartChange = e =>{
     this.setState({
       dateStart:e.detail.value
+    })
+  }
+
+  onPublish(e){
+    Taro.navigateTo({
+      url:'/pages/active/share/index'
     })
   }
 
@@ -175,7 +181,7 @@ export default class Index extends Component {
         </View>
 
         <View className="publish">
-            <View>立即发布</View>
+            <View onClick={this.onPublish}>立即发布</View>
         </View>
 
       </View>

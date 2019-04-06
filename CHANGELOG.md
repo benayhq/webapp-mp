@@ -4,6 +4,7 @@
 * 引入 taro-ui 框架.  by shawn 2019年03月29日
 * 新增 taro 路由功能.
 * 新增活动页面.
+* 新增广告预览页面.
 
 ### Bug Fixes
 * 
@@ -15,4 +16,6 @@
 * taro 框架设计的原理.
 * 字体库如何搭建.iconfont.
 
-
+### new 
+* css flex 知识 属性 : https://www.cnblogs.com/ghfjj/p/6529733.html
+* 
