@@ -15,3 +15,11 @@
 @mixin list($direction:column){
     @include flex($direction);
 }
+
+@mixin panel($margin:18px,$height:356px){
+    background: #ffffff;
+    height: $height;
+    margin: $margin;
+    border-radius: 8px;
+    border:1px solid #ddd;
+}

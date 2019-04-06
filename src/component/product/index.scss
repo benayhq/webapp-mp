@@ -50,11 +50,15 @@
             .product-item{
                 width: 447px;
                 text-align: left;
+                overflow-wrap: normal;
+                word-wrap:break-word; 
                 padding-left: 38px;
             }
 
             .margin20{
                 margin-top: 20px;
+                overflow-wrap: normal;
+                word-break: break-word;
             }
 
             .font{

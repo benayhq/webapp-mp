@@ -39,7 +39,7 @@ export default class ProductItem extends Component{
                         ></image>
                      </View>
                      <View>
-                        <View className="product-item margin20">[玻尿酸瘦脸针] 瑞典进口 可打嘟嘟唇微笑 </View>
+                        <View className="product-item margin20">[玻尿酸瘦脸针] 瑞典进口 </View>
                         <View className="product-item font"> ￥3000 </View>
                         <View className="product-item textfont"> 预定金: <Text className="amount">200</Text> </View>
                      </View>

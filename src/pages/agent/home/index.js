@@ -20,9 +20,9 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
-  onClick = (e) =>{
+  jumpUrl = (url) =>{
     Taro.navigateTo({
-      url: '/pages/active/publish/index'
+      url: url
     })
   }
 
@@ -70,32 +70,32 @@ export default class Index extends Component {
         <View className="mp-user__publish">
             <View className="mp-user__publish-introduce">让客户来为您拓展客户</View>
             <View className="mp-user__publish-action">
-               <AtButton onClick={this.onClick} type='primary' size='small'>发布活动</AtButton>
+               <AtButton onClick={this.jumpUrl.bind(this,'/pages/active/publish/index')} type='primary' size='small'>发布活动</AtButton>
             </View>
         </View>
 
         <View className="mp-user__order"> 
            <View className="mp-user__order-title">
               <Text>客户订单</Text>
-              <Text className="mp-user__order-queryall">查看全部订单</Text>
+              <Text className="mp-user__order-queryall" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>查看全部订单</Text>
            </View>
 
            <View className="mp-user__ordernav">
-              <View className="mp-user__ordernav-tuan">
+              <View className="mp-user__ordernav-tuan" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>
                   <View className="mp-user__ordernav-icon mp-icon mp-icon-waittuan"></View>
-                  <View className="mp-user__ordernav-text">待成团</View>
+                  <View className="mp-user__ordernav-text" >待成团</View>
               </View>
 
-              <View className="mp-user__ordernav-customer">
+              <View className="mp-user__ordernav-customer" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>
                   <View className="mp-user__ordernav-icon mp-icon mp-icon-consumption"></View> 
-                  <View className="mp-user__ordernav-text">待消费</View>  
+                  <View className="mp-user__ordernav-text" >待消费</View>  
               </View>
-              <View className="mp-user__ordernav-comment">
+              <View className="mp-user__ordernav-comment" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>
                   <View className="mp-user__ordernav-icon mp-icon mp-icon-comment"></View> 
                   <View className="mp-user__ordernav-text">待评价
               </View> 
               </View>
-               <View className="mp-user__ordernav-refund">
+               <View className="mp-user__ordernav-refund" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>
                  <View className="mp-user__ordernav-icon mp-icon mp-icon-refund"></View> 
                   <View className="mp-user__ordernav-text">退款
                </View> 

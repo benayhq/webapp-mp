@@ -136,17 +136,6 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
                 </View>
             </Picker>
         </View>
-{/* 
-        <View className="item">
-            <Picker mode='multiSelector' range={this.state.selector} 
-            onChange={this.handlePickerChange}
-            onColumnChange={this.handlePickerColumnChange.bind(this)}>
-                  <View className='picker'>
-                    <Text className="mp-publish mp-icon-arrow" ></Text> <Text>活动地点</Text> 
-                    <Text className="time"> {this.state.selectorChecked} </Text>  
-                  </View>
-            </Picker>
-        </View> */}
 
         <AtImagePicker
           className="uploadImage"
