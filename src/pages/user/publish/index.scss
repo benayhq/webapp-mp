@@ -1,0 +1,45 @@
+
+@import '../../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+
+    &__publish{
+        margin: 19px;
+        height:96px;
+        background:$panelBgColor;
+        border-radius:8px;
+        border:1px solid $panelBgColor;
+
+        &-introduce{
+            position: relative;
+            left: 47px;
+            top: 30px;
+            width:383px;
+            height:40px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(0,0,0,1);
+            line-height:40px;
+            -webkit-text-stroke:1px rgba(0,0,0,1);
+        }
+
+        &-action{
+            position:relative;
+            right:32px;
+            top:-21px;
+            float:right;
+            width:140px;
+            height:60px;
+            border-radius:6px;
+            text-align: center;
+            line-height: 60px;
+        }
+    }
+}

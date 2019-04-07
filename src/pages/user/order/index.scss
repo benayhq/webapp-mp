@@ -1,0 +1,85 @@
+@import '../../../style/base.scss';
+@import '../../../style/icon.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    background:$userHomeBgColor;
+    height: 1450px;
+
+    &__order{
+        margin: 19px;
+        margin-bottom: 0px;
+        background:$panelBgColor;
+        border-radius:8px;
+        border:1px solid $panelBgColor; 
+    
+        &-title{
+            font-size:32px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(60,60,60,1);
+            line-height:45px;
+            padding-left: 20px;
+            height: 76px;
+            line-height: 76px;
+        }
+    
+        &-queryall{
+            float: right;
+            width:156px;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(145,145,145,1);
+            line-height:33px;
+            padding-top:25px;
+        }
+    }
+    
+    &__ordernav{
+        height:148px;
+        background:$panelBgColor;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        border-top:1px solid rgba(221,221,221,1);
+    
+        &-tuan{
+            flex: 1;
+        }
+    
+        &-icon{
+            padding-top: 23px;
+            padding-bottom:5px;
+        }
+        
+        &-text{
+            height:44px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(145,145,145,1);
+            line-height:40px;
+        }
+    
+        &-customer{
+            flex: 1;
+        }
+    
+        &-comment{
+            flex: 1;
+        }
+    
+        &-refund{
+            flex: 1;
+        }
+    }
+
+}
+

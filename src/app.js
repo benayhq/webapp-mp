@@ -13,7 +13,7 @@ import './app.scss'
 class App extends Component {
   config = {
     pages: [
-      'pages/agent/home/index',
+      'pages/user/agent/index',
       'pages/active/publish/index',
       'pages/active/share/index',
       'pages/product/index',

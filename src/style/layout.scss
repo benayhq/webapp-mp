@@ -6,10 +6,3 @@
     flex-wrap: wrap;
 }
 
-@mixin panel($margin:18px){
-    background: #ffffff;
-    height: 356px;
-    margin: $margin;
-    border-radius: 8px;
-    border:1px solid #ddd;
-}

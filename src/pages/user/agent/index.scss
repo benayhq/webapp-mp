@@ -1,0 +1,150 @@
+@import '../../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    background:$userHomeBgColor;
+    height: 1450px;
+
+    &__user{
+        &-username{
+            width:252px;
+            height:50px;
+            font-size:36px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:50px;
+            padding-top: 31px;
+        }
+
+        &-level{
+            width:149px;
+            height:33px;
+            background:rgba(255,255,255,0.6);
+            border-radius:18px;
+            border:1px solid $panelBgColor;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(255,192,105,1);
+            line-height: 33px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        &-level-up{
+            position: relative;
+            top:-33rpx;
+            left:161rpx;
+            width:96px;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:33px;
+        }
+    }
+
+    &__money{
+        &-amount{
+            width:250px;
+            height:67px;
+            font-size:48px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:67px;
+            padding: 25px 0px 24px 0px;
+        }
+
+        &-order{
+            position: relative;
+            top:-20rpx;
+            left:131rpx;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:33px;
+        }
+    }
+
+    &__controlpanel{
+        margin: 19px;
+        height:270px;
+        background:$panelBgColor;
+        border-radius:8px;
+        border:1px solid $panelBgColor;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        flex-wrap:wrap;
+        padding-top: 40px;
+
+        &-icon{
+            padding-top: 0px;
+            padding-bottom:5px;
+        }
+
+        &-text{
+            height:44px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(145,145,145,1);
+            line-height:40px;
+        }
+        
+        &-active{
+            @include panelBlockWidth;
+        }
+
+        &-product{
+            @include panelBlockWidth;
+        }
+
+        &-customer{
+            @include panelBlockWidth;
+        }
+
+        &-account{
+            @include panelBlockWidth;
+        }
+
+        &-invite{
+            @include panelBlockWidth;
+        }
+
+        &-close{
+            @include panelBlockWidth;
+        }
+
+        &-appoint{
+            @include panelBlockWidth;
+        }
+    }
+
+    /* modifiers */
+    &-changeuser{
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 108px;
+        border: 1px solid #E8E8E8;
+        width: 544px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        font-size:36px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(125,214,208,1);
+    }
+}

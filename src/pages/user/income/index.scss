@@ -1,0 +1,56 @@
+@import '../../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    &__income{
+        width:750px;
+        height:169px;
+        background:$panelBgColor;
+        border:1px solid $panelBgColor;
+        display: flex;
+        flex-direction: row;
+
+        &-left{
+            flex: 1;
+            height: 60px;
+            text-align: center;
+        }
+
+        &-text{
+            height:67px;
+            font-size:48px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(125,214,208,1);
+            line-height:67px;
+            padding-top: 23px;
+        }
+
+        &-text-desc{
+            height:40px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(145,145,145,1);
+            line-height:40px;
+            padding-top: 13px;
+        }
+
+        &-middle{
+            flex: 1;
+            height: 60px;
+            text-align: center;
+        }
+
+        &-right{
+            flex: 1;
+            height: 60px;
+            text-align: center;
+        }
+    }
+}
