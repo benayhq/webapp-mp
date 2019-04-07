@@ -7,22 +7,24 @@ import InCome from './income';
 import Publish from './publish';
 import Info from './info';
 import Panel from './panel';
-import Event from './../utils/event';
 import ChangeUser from './switch';
-let myEvent = new Event();
+import store from './../../store/';
 
 export default class Index extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      email:"火星黑洞"
-    }
-
-    myEvent.on("changeUser",()=>{
-        console.log("changeUser");
-    });
+    this.state = store.getState();
+    this.handleStoreChange = this.handleStoreChange.bind(this);
+    store.subscribe(this.handleStoreChange)
   }
+
+
+  handleStoreChange(){
+    console.log("store.getState()",store.getState());
+    this.setState(store.getState());
+  }
+
 
   config = {
     navigationBarTitleText: '个人中心'
