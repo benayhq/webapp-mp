@@ -1,0 +1,12 @@
+@import '../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    background:$userHomeBgColor;
+    height: 1450px;
+}

@@ -1,0 +1,29 @@
+@import '../../../style/base.scss';
+
+$panelBgColor:rgba(255,255,255,1);
+
+@mixin panelBlockWidth{
+    width: 177.5px;
+}
+
+.mp-user{
+    background:$userHomeBgColor;
+    height: 1450px;
+
+    /* modifiers */
+    &-changeuser{
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 108px;
+        border: 1px solid #E8E8E8;
+        width: 544px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        font-size:36px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(125,214,208,1);
+    }
+}
