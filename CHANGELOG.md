@@ -8,6 +8,7 @@
 * 新增订单列表.   by shawn 2019年04月06日
 * 引入 redux.
 * 重构个人中心. by shawn 2019年04月08日
+* 新增个人信息修改UI. by shawn 2019年04月08日
 
 ### Bug Fixes
 * 

@@ -5,7 +5,7 @@ export default class Agent{
             userName:'Shawn',
             level:'一级代理商',
             levelText:'提升等级',
-            amount: 10000.00
+            amount: '100000.00'
         }
     }
 
