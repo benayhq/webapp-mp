@@ -25,7 +25,6 @@ export default class OrderList extends Component{
         const tabList = [{ title: '全部' }, { title: '待付款' }, { title: '待成团' }, { title: '待消费' }, { title: '待评价' }]
 
         return (
-          
             <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={this.state.current} index={0} >
                 <View>

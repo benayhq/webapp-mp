@@ -13,6 +13,7 @@ import './app.scss'
 class App extends Component {
   config = {
     pages: [
+      'pages/order/detail/index',
       'pages/user/index',
       'pages/user/info/edit',
       'pages/active/publish/index',

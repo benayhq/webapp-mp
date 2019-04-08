@@ -9,7 +9,7 @@ import ChangeUser from './switch';
 import Creator from './common/create';
 import store from './../../store';
 import './index.scss';
-import '../../style/icon.scss';
+
 
 export default class Index extends Component {
 
@@ -59,14 +59,13 @@ export default class Index extends Component {
   }
 
   render () {
-    
     const {isAgent} = this.state;
 
     return (
       <View className='mp-user'>
 
         <Info user={this.state.user}/>
-
+        
        { isAgent && <InCome/>  }  
 
        { isAgent &&  <Publish/>  }  

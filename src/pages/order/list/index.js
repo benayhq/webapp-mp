@@ -2,20 +2,26 @@ import {Component} from '@tarojs/taro';
 import './index.scss';
 import ProductItem from './../../../component/product';
 import { AtButton } from 'taro-ui';
+import jump from './../../utils/jump';
+import Title from '../title';
 
 export default class OrderItem extends Component{
+
     constructor(){
         super(...arguments);
+        this.state = {
+            OrderState:'待付款'
+        }
+    }
+    
+    jumpUrl(url){
+        jump({url:url});
     }
 
     render(){
         return (
-            <View className="mp-order-list">
-                <View className="order-title">
-                    <Text>医美管家 vivi</Text>
-                    <Text className="mp-icon mp-icon-arrow-balck"></Text>
-                    <Text>待付款</Text>
-                </View> 
+            <View className="mp-order-list" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index')}>
+                <Title OrderState={this.state.OrderState}/>
                 <ProductItem/>
                 <View className="order-action">
                     <View  className="action">
