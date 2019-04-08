@@ -4,7 +4,7 @@ import './index.scss';
 
 export default class Info extends Component{
     
-    constructor(){
+    constructor(props){
         super(...arguments);
     }
 
@@ -16,17 +16,18 @@ export default class Info extends Component{
                     </View>
 
                     <View className="mp-user__info-message">
-                        <View className="mp-user__user-username">Shawn</View>
+                        <View className="mp-user__user-username">{this.props.user.userName}</View>
                         <View className="mp-user__user-level">
-                                信用等级2
+                                {this.props.user.level}
                         </View>
-                        <View className="mp-user__user-level-up">提升等级</View>
+                        <View className="mp-user__user-level-up"> {this.props.user.levelText}</View>
                     </View>
-
-                    <View className="mp-user__info-money">
+                    {
+                        this.props.user.amount && <View className="mp-user__info-money">
                         <View className="mp-user__money-amount">100000.00</View>
                         <View className="mp-user__money-order">已结定金</View>
                     </View>
+                    }
             </View>
         )
     }

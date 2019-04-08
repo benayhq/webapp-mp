@@ -1,33 +1,55 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import './index.scss'
-import '../../style/icon.scss';
 import UserOrder from './order';
 import InCome from './income';
 import Publish from './publish';
 import Info from './info';
 import Panel from './panel';
 import ChangeUser from './switch';
-import store from './../../store/';
+import Creator from './common/create';
+import store from './../../store';
+import './index.scss';
+import '../../style/icon.scss';
 
 export default class Index extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-    this.handleStoreChange = this.handleStoreChange.bind(this);
-    store.subscribe(this.handleStoreChange)
-  }
-
-
-  handleStoreChange(){
-    console.log("store.getState()",store.getState());
-    this.setState(store.getState());
-  }
-
-
   config = {
     navigationBarTitleText: '个人中心'
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAgent:true,
+      list:[],
+      orders:[],
+      user:{}
+    }
+    this.init();
+  }
+
+  init(){
+    this.initPanelList();
+    this.initState();
+  }
+
+  handleChangeState(){
+      this.initPanelList();
+  }
+
+  initState(){
+      this.handleChangeState = this.handleChangeState.bind(this);
+      store.subscribe(this.handleChangeState);
+  }
+
+  initPanelList(){
+      let creatorInstance = new Creator();
+      this.setState({
+          isAgent:store.getState().isAgent,
+          list:creatorInstance.factory(store.getState().isAgent).getPanelList(),
+          orders:creatorInstance.factory(store.getState().isAgent).getList(),
+          user:creatorInstance.factory(store.getState().isAgent).getUserInfo()
+      })
   }
 
   jumpUrl = (url) =>{
@@ -37,20 +59,24 @@ export default class Index extends Component {
   }
 
   render () {
+    
+    const {isAgent} = this.state;
+
     return (
       <View className='mp-user'>
 
-        <Info/>
+        <Info user={this.state.user}/>
 
-        <InCome/>
+       { isAgent && <InCome/>  }  
 
-        <Publish/>
+       { isAgent &&  <Publish/>  }  
+      
+        <UserOrder list={this.state.orders}/>
 
-        <UserOrder/>
-
-        <Panel/>
+        <Panel list={this.state.list}/>
 
         <ChangeUser/>
+
       </View>
     )
   }

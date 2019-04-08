@@ -5,31 +5,34 @@ import store from './../../../store/';
 import {getChangeUserAction} from './../../../store/actionCreators';
 
 export default class ChangeUser extends Component{
-    
+
     constructor(props){
         super(...arguments);
-        this.state = store.getState();
+        this.state = {
+            isAgent:false,
+            showUserText:'切换为咨询师'
+        };
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
         store.subscribe(this.handleStoreChange)
-        console.log(store.getState());
     }
 
     handleChangeState(){
         const action = getChangeUserAction(!this.state.isAgent);
         store.dispatch(action);
-        console.log("handleChangeState");
     }
 
     handleStoreChange(){
-        this.setState(store.getState());
-        console.log("store change");
+        this.setState({
+            isAgent:store.getState().isAgent,
+            showUserText: store.getState().isAgent ? '切换为用户' :'切换为咨询师'
+        });
     }
 
     render(){
         return (
           <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
-                切换为用户 {this.state.isAgent}
+                {this.state.showUserText} 
           </View>
         )
     }
