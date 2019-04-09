@@ -1,0 +1,53 @@
+@import './../../../style/index.scss';
+
+
+.product{
+    width:749px;
+    height:466px;
+    margin-top: 18px;
+    background:rgba(255,255,255,1);
+    border:2px solid rgba(255,255,255,1);
+
+    .appoint{
+        height: 79px;
+        line-height: 79px;
+        border-bottom:0.5px solid rgba(221,221,221,1);
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+
+
+        >text:nth-child(1){
+            margin-left: 20px;
+        }
+
+        >text:nth-child(2){
+            float:right;
+            margin-right: 20px;
+            .amount{
+                color: #EB2F96;
+            }
+        }
+    }
+
+    .service{
+        @include flex(row);
+        margin-top: 10px;
+        height: 60px;
+        line-height: 60px;
+
+        .margin8{
+            margin-right: 8px;
+        }
+        .wechat{
+            flex: 1;
+            text-align: center;
+            border-right:0.5px solid #ddd;
+        }
+        .tel{
+            flex: 1;
+            text-align: center;
+        }
+    }
+}

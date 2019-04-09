@@ -1,0 +1,27 @@
+.customer{
+    width:749px;
+    height:160px;
+    background: #ffffff;
+    margin-top: 18px;
+    border:1px solid rgba(255,255,255,1);
+
+    >text:nth-child(1){
+        float:left;
+        margin-top:25rpx;
+        margin-left:13rpx;
+    }
+
+    >view {
+        margin-top: 27px;
+        margin-left: 72px;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:45px;
+
+        .tel{
+            margin-top: 20px;
+        }
+    }
+}

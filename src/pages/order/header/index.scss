@@ -1,0 +1,45 @@
+@import './../../../style/index.scss';
+
+    .tips{
+        width:750px;
+        height:197px;
+        background:rgba(125,214,208,1);
+        opacity:0.7;
+        border:1px solid rgba(125,214,208,1);
+
+        >text:nth-child(1){
+            position: relative;
+            top: 41px;
+            left: 35px;
+            width:180px;
+            height:50px;
+            font-size:36px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            line-height:50px;
+        }
+
+        >text:nth-child(2){
+            position: relative;
+            top: 108px;
+            left: -145px;
+            width:312px;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            line-height:33px;
+        }
+
+        >text:nth-child(3){
+            float: right;
+            color: #ffffff;
+            top: 20px;
+            width:80px;
+            height:80px;
+            margin-top: 51px;
+            margin-right: 60px;
+        }
+    }

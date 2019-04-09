@@ -11,7 +11,51 @@ export default class OrderList extends Component{
     constructor(){
         super(...arguments);
         this.state = {
-            current:0
+            current:0,
+            list:[{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '待付款',
+                products:[
+                    {}
+                ]
+            },{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '待成团',
+                products:[
+                    {}
+                ]
+            },{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '待消费',
+                products:[
+                    {}
+                ]
+            },{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '待评价',
+                products:[
+                    {}
+                ]
+            },{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '已取消',
+                products:[
+                    {}
+                ]
+            },{
+                orderId:'0011',
+                agentName: '医美管家 vivi',
+                orderStatus: '拼团失败',
+                products:[
+                    {}
+                ]
+            }
+        ]
         }
     }
 
@@ -28,7 +72,7 @@ export default class OrderList extends Component{
             <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={this.state.current} index={0} >
                 <View>
-                        <OrderItem/>
+                        <OrderItem list={this.state.list}/>
                 </View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={1}>

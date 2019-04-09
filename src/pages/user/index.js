@@ -60,7 +60,7 @@ export default class Index extends Component {
 
   render () {
     const {isAgent} = this.state;
-
+    
     return (
       <View className='mp-user'>
 
