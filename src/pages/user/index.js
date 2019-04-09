@@ -10,8 +10,7 @@ import Creator from './common/create';
 import store from './../../store';
 import './index.scss';
 
-
-export default class Index extends Component {
+export default class Index extends Component{
 
   config = {
     navigationBarTitleText: '个人中心'

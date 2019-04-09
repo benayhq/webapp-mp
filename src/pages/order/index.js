@@ -11,7 +11,6 @@ export default class OrderList extends Component{
 
     constructor(){
         super(...arguments);
-        let order = new Order();
 
         this.state = {
             current:0,

@@ -1,6 +1,6 @@
 import {Component} from '@tarojs/taro';
 import './index.scss';
-import ProductItem from './../../../component/product';
+import ProductItem from '../../../components/product';
 import { AtButton } from 'taro-ui';
 import jump from './../../utils/jump';
 import Title from '../title';

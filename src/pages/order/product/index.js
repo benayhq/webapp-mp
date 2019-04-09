@@ -1,7 +1,7 @@
 import {Component} from '@tarojs/taro';
 import {View} from '@tarojs/components';
 import Title from '../title';
-import ProductItem from './../../../component/product';
+import ProductItem from '../../../components/product';
 import './index.scss';
 
 export default class OrderProduct extends Component{

@@ -17,7 +17,7 @@ export default class Order{
                     },
                     toolBar:[{
                         text:'取消订单',
-                        event:'this.handleCancelOrder.bind(this)'
+                        event:'Cancel'
                     },{
                         text:'立即支付',
                         event:'Pay'
