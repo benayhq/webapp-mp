@@ -42,6 +42,7 @@
 }
 
 .info{
+    
     >view{
         margin-left: 49px;
         line-height: 70px;
@@ -56,5 +57,11 @@
         position: relative;
         color: #7DD6D0;
         margin-left: 20px;
+        padding: 0 7px 0 7px;
+        font-size:22px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        border-radius: 5px;
+        border: 1px solid #7DD6D0;
     }
 }

@@ -23,8 +23,8 @@ export default class OrderItem extends Component{
             <View>
                 {
                     this.props.list.map(item=>(
-                        <View className="mp-order-list" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index')}>
-                        <Title OrderState={item.orderStatus}/>
+                        <View className="mp-order-list">
+                        <Title OrderState={item.orderStatus}  agentName={item.agentName}/>
                         <ProductItem/>
                         <View className="order-action">
                             <View className="action">

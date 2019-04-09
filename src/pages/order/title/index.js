@@ -9,14 +9,16 @@ export default class Title extends Component {
     }
 
     jumpUrl(url){
-        jump({url:url});
+        jump({url:url + `?status=${this.props.OrderState}`});
     }
 
     render(){
         return (
-            <View className="order-title">
-                <Text>医美管家 vivi</Text>
-                <Text className="mp-icon mp-icon-arrow-balck" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index')}></Text>
+            <View className="order-title" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index')}>
+                <Text>{
+                    this.props.agentName
+                }</Text>
+                <Text className="mp-icon mp-icon-arrow-balck" ></Text>
                 {
                     this.props.OrderState && <Text>{this.props.OrderState}</Text>
                 }

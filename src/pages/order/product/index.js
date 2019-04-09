@@ -12,7 +12,7 @@ export default class OrderProduct extends Component{
     render(){
         return (
             <View className="product">
-            <Title/>
+            <Title agentName={this.props.order.agentName}/>
             <ProductItem/>
             <View className="appoint">
                 <Text>预约时间: 2019年04月08日</Text>

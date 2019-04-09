@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import './index.scss';
 import OrderItem from './list';
+import Order from './common/order';
 
 export default class OrderList extends Component{
     config = {
@@ -10,6 +11,8 @@ export default class OrderList extends Component{
 
     constructor(){
         super(...arguments);
+        let order = new Order();
+
         this.state = {
             current:0,
             list:[{
@@ -72,13 +75,12 @@ export default class OrderList extends Component{
             <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={this.state.current} index={0} >
                 <View>
-                        <OrderItem list={this.state.list}/>
+                    <OrderItem list={this.state.list}/>
                 </View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={1}>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={2}>
-
               </AtTabsPane>
             </AtTabs>
           )

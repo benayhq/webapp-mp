@@ -12,7 +12,7 @@ export default class Footer extends Component{
     render(){
         return (
             <View className="footer">
-                <Code/>
+                {this.props.qrCode && <Code/>}  
                 <Info/>
             </View>
         )

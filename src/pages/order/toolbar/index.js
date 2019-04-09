@@ -7,15 +7,42 @@ export default class ToolBar extends Component{
     constructor(){
         super(...arguments);
     }
-
+    
     render(){
-        return (
-            <View className="toolbar">
-            <AtButton type='primary' size='small'>退款申请</AtButton> 
-            <Text className="margin40"></Text>
-            <AtButton type='primary' size='small'>我要评价</AtButton>
-            <Text className="margin40"></Text>
-        </View>
-        )
+        const {toolBar} = this.props;
+        
+        if(toolBar == null){
+            return (<View></View>);
+        }
+
+        if(toolBar[0] && toolBar[1]){
+            return (
+                <View className="toolbar">
+                      <AtButton onClick={toolBar[0].event} type='primary' size='small'>{toolBar[0].text}</AtButton> 
+                      <Text className="margin40"></Text>
+                      <AtButton onClick={toolBar[1].event} type='primary' size='small'>{toolBar[1].text}</AtButton> 
+                      <Text className="margin40"></Text>
+                </View>
+            )
+        }
+        
+        if(toolBar[0]){
+            return (
+                <View className="toolbar">
+                      <AtButton onClick={toolBar[0].event} type='primary' size='small'>{toolBar[0].text}</AtButton> 
+                      <Text className="margin40"></Text>
+                </View>
+            )
+        }
+
+        if(toolBar[1]){
+            return (
+                <View className="toolbar">
+                      <AtButton onClick={toolBar[1].event} type='primary' size='small'>{toolBar[1].text}</AtButton> 
+                      <Text className="margin40"></Text>
+                </View>
+            )
+        }
+
     }
 }

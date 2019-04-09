@@ -8,12 +8,16 @@ export default class Header extends Component{
     }
 
     render(){
+        
+        const {title,tip,icon} = this.props.content;
+
         return (
             <View className="tips">
-                <Text>订单已完成</Text>
-                <Text>与咨询师沟通确认后进行消费</Text>
-                <Text className="mp-icon mp-icon-order-detail success"></Text>
+                <Text>{title}</Text>
+                <Text>{tip}</Text>
+                <Text className={icon}></Text>
              </View>
         )
     }
 }
+
