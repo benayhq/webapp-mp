@@ -6,6 +6,7 @@ import OrderProduct from './../product';
 import Footer from './../footer';
 import Header from './../header';
 import Customer from './../customer';
+import ToolBar from './../toolbar';
 
 export default class OrderDetail extends Component{
     constructor(){
@@ -29,6 +30,7 @@ export default class OrderDetail extends Component{
 
                 <Footer/>
 
+                <ToolBar/>
             </View>
         )
 
