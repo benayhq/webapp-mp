@@ -1,59 +1,85 @@
-@import './../../style/index.scss';
-
 .mp-modal{
     position: fixed;
     top: 0px;
-    bottom: 0px;
+    left: 0px;
     width: 100%;
-    height: 10000px;
-    background: black;
-    opacity: 0.5;
+    height: 100%;
+    visibility: hidden;
 
-    &-close{
-        display: none;
+    &__overlay,
+    &__container {
+      opacity: 0;
+      transition: opacity 200ms ease-in;
     }
 
-    &__wrapper{
+    &__overlay{
         position: absolute;
-        top:250px;
-        left: 25%;
-        width: 50%;
-        height: 300px;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: #000000, $alpha: 0.3);
+    }
+
+    &__container{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        border-radius: 12px;
+        transform: translate(-50%,-50%);
         background: #ffffff;
-        border-radius: 9px;
     }
 
     &__title{
-        width: 100%;
-        height: 90px;
         line-height: 90px;
+        height: 90px;
+        width: 100%;
+        border-bottom:1px solid #ddd;
         text-align: center;
-        border-bottom: 1px solid #ddd;
     }
 
     &__content{
+        height: 228px;
         width: 100%;
-        height: 140px;
-        line-height: 170px;   
         text-align: center;
-        border-bottom: 1px solid #ddd;
+        line-height: 228px;
     }
 
-    &__footer{
-        @include flex(row);
-        .cancel{
-            flex: 1;
-            text-align: center;
-            line-height: 70px;
-            height: 70px;
-            border-right: 1px solid #ddd;
+
+    &__action{
+        display: flex;
+        border-top: 1px solid #ddd;
+
+        &>button{
+            flex: auto;
+            border-radius: 0px;
+            border: 0px;
+            height: 80px;
+            background: transparent;
+
+            &::after{
+                border: 0px;
+                width: initial;
+                height: initial;
+            }
+
+            &:not(:first-child){
+                border-left: 1px solid #ddd;
+            }
+
+            &:last-child{
+                color: rgba(125,214,208,1);
+            }
         }
-        .confrim{
-            flex: 1;
-            text-align: center;
-            line-height: 70px;
-            height: 70px;   
+    }
+
+    &--active{
+        visibility: visible;
+
+        .mp-modal__overlay,
+        .mp-modal__container{
+            opacity: 1;
         }
     }
 }
-

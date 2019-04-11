@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import ProductItem from '../../component/product/index';
+import ProductItem from '../../components/product/index';
 import './index.scss';
 
 export default class Index extends Component{

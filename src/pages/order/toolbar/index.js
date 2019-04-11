@@ -9,11 +9,12 @@ export default class ToolBar extends Component{
         super(...arguments);
         this.state = {
             modal:{
-                isOpened:false,
+                isOpened:true,
                 title:'标题',
                 content:'内容',
                 cancelText:'取消',
                 confirmText:'确认',
+                closeOnClickOverlay:false
             }
         }
     }
@@ -24,28 +25,47 @@ export default class ToolBar extends Component{
             case "Cancel":
             self.setState({
                 modal:{
-                    isOpened:true
+                    isOpened:true,
+                    title:'标题',
+                    content:'内容',
+                    cancelText:'取消',
+                    confirmText:'确认',
+                    closeOnClickOverlay:true
                 }
-            },function(){
-                console.log('this.state.modal.isOpened',this.state.modal.isOpened);
             })
             break;
         }
     }
 
-    onClose(){
-        console.log('onClose');
+    onClose(e){
+        console.log('onClose parent',e);
     }
 
     onConfirm(){
+        console.log('callback onConfirm');
+        this.onCancel();
+    }
+
+    toggleVisible = () => {
         console.log('onConfirm');
+    }
+
+    onCancel(){
+        this.setState({
+            modal:{
+                isOpened:false
+            }
+        })
+        console.log('onCancel');
     }
     
     render(){
         const {toolBar} = this.props;
+        console.log("toolBart",toolBar);
 
         if(toolBar == null){
-            return (<View></View>);
+            return (<View>
+            </View>);
         }
 
         if(toolBar[0] && toolBar[1]){
@@ -55,14 +75,17 @@ export default class ToolBar extends Component{
                       <Text className="margin40"></Text>
                       <AtButton onClick={toolBar[1].event} type='primary' size='small'>{toolBar[1].text}</AtButton> 
                       <Text className="margin40"></Text>
-                      <Modal 
+                      <Modal
                         title={this.modal.title} 
                         content={this.modal.content} 
                         isOpened={this.modal.isOpened}
                         cancelText={this.modal.cancelText}
                         confirmText={this.modal.confirmText}
-                        onClose={this.onClose.bind(this)}
-                        onConfirm={this.onConfirm.bind(this)}/>
+                        closeOnClickOverlay={this.modal.closeOnClickOverlay}
+                        onClose={this.onClose}
+                        onConfirm={this.onConfirm}
+                        onCancel={this.onCancel}
+                        />
                 </View>
             )
         }

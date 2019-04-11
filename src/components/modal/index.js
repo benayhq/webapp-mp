@@ -1,54 +1,98 @@
-import {Component} from '@tarojs/taro';
-import {View} from '@tarojs/components';
-import _isFunction from 'lodash/isFunction';
-import './index.scss';
+import Taro, { Component } from '@tarojs/taro'
+import { View, Button } from '@tarojs/components'
+import _isFunction from 'lodash/isFunction'
+import classNames from 'classnames'
+import './index.scss'
+import PropTypes from 'prop-types'
 
-export default class Modal extends Component{
-
-    constructor(){
-        super(...arguments);
-        const {isOpened} = this.props;
-
-        this.state = {
-            rootClass: isOpened ? 'mp-modal' : 'mp-modal-close'
-        };
+export default class Modal extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      _isOpened:this.props.isOpened
     }
+  }
 
-    handleClose(){
-        this.setState({
-            rootClass:'mp-modal-close'
-        });
+  componentWillReceiveProps(nextProps){
+    const {_isOpened} = this.state;
 
-        if(_isFunction(this.props.onClose)){
-            this.props.onClose();
-        }
+    if(_isOpened != nextProps.isOpened){
+      this.setState({
+        _isOpened:nextProps.isOpened
+      });
     }
+  }
 
-    handleCancelClick(){
-        if(_isFunction(this.props.onCancel())){
-            console.log('handleCancelClick');
-        }
+  onClose = (e) =>{
+    if(this.props.closeOnClickOverlay){
+      this.onCancel();
     }
+  }
 
-    handleConfrimClick(){
-        if(_isFunction(this.props.onConfirm())){
-            console.log('handleConfrimClick');
-        }
+  onCancel = (e) =>{
+    this.setState({
+      _isOpened:false
+    },
+    this.props.onCancel())
+  }
+
+  onConfirm = (e) =>{
+    if(_isFunction(this.props.onConfirm)){
+      this.props.onConfirm();
     }
+  }
 
-    render(){
+  render () {
+    const {_isOpened} = this.state;
+    const {content,title,cancelText,confirmText} = this.props;
 
-        return (
-            <View className={this.state.rootClass} onClick={this.handleClose.bind(this)}>
-                <View className="mp-modal__wrapper">
-                    <View className="mp-modal__title">{this.props.title}</View>
-                    <View className="mp-modal__content">{this.props.content}</View>
-                    <View className="mp-modal__footer">
-                        <View className="cancel" onClick={this.handleCancelClick.bind(this)}>{this.props.cancelText}</View>
-                        <View className="confrim" onClick={this.handleConfrimClick.bind(this)}>{this.props.confirmText}</View>
-                    </View>
-                </View>
+    const rootClass = classNames('mp-modal',{
+      'mp-modal--active':_isOpened
+    });
+
+    const isRenderAction = title || content;
+
+    return (
+      <View className={rootClass}>
+            <View className="mp-modal__overlay" onClick={this.onClose}> </View>
+            <View className="mp-modal__container">
+               {
+                 title && <View className="mp-modal__title">{title}</View>
+               }
+               {
+                 content && <View className="mp-modal__content">{content}</View>
+               }
+             {
+               isRenderAction && (
+                  <View  className="mp-modal__footer">
+                                  <View className="mp-modal__action">
+                                  {
+                                    cancelText && <Button onClick={this.onCancel}>{cancelText}</Button>
+                                  }
+                                  {
+                                    confirmText && <Button onClick={this.onConfirm}>{confirmText}</Button>
+                                  }
+                                </View>
+                                </View>
+               )
+             } 
             </View>
-        )
-    }
+      </View>
+    )
+  }
 }
+
+Modal.defaultProps = {
+  closeOnClickOverlay:true
+}
+
+Modal.propTypes = {
+  title:PropTypes.string,
+  isOpened:PropTypes.bool,
+  onClose:PropTypes.func,
+  onCancel:PropTypes.func,
+  onConfirm:PropTypes.func,
+  cancelText:PropTypes.string,
+  confirmText:PropTypes.string
+}
+
