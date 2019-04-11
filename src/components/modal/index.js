@@ -50,7 +50,7 @@ export default class Modal extends Component {
       'mp-modal--active':_isOpened
     });
 
-    const isRenderAction = title || content;
+    const isRenderFooter = cancelText || confirmText;
 
     return (
       <View className={rootClass}>
@@ -62,20 +62,20 @@ export default class Modal extends Component {
                {
                  content && <View className="mp-modal__content">{content}</View>
                }
-             {
-               isRenderAction && (
-                  <View  className="mp-modal__footer">
-                                  <View className="mp-modal__action">
-                                  {
-                                    cancelText && <Button onClick={this.onCancel}>{cancelText}</Button>
-                                  }
-                                  {
-                                    confirmText && <Button onClick={this.onConfirm}>{confirmText}</Button>
-                                  }
-                                </View>
-                                </View>
-               )
-             } 
+               {
+                isRenderFooter && (
+                    <View  className="mp-modal__footer">
+                                    <View className="mp-modal__action">
+                                    {
+                                      cancelText && <Button onClick={this.onCancel}>{cancelText}</Button>
+                                    }
+                                    {
+                                      confirmText && <Button onClick={this.onConfirm}>{confirmText}</Button>
+                                    }
+                                  </View>
+                                  </View>
+                )
+               } 
             </View>
       </View>
     )

@@ -10,8 +10,8 @@
 * 重构个人中心. by shawn 2019年04月08日
 * 新增个人信息修改UI. by shawn 2019年04月08日
 * 新增订单详情. 
-* 重构订单详情.
-* 添加弹窗组件.
+* 重构订单详情. 
+* 添加弹窗组件. 
 
 ### Bug Fixes
 * 
@@ -23,12 +23,16 @@
 * taro 框架设计的原理.
 * 字体库如何搭建.iconfont.
 
+### 参考文献
+* https://segmentfault.com/a/1190000009611839?utm_source=tag-newest
+
 ### new 
 * css flex 知识 属性 : https://www.cnblogs.com/ghfjj/p/6529733.html
 * taro 映入 redux
 * reducer 能达到之前的数据和当前的信息做一些处理,返回新的state.
 
 ```
+
 1、如何创建 store.
 2、如何创建 reducer.
 3、redux 流程图.
@@ -42,4 +46,5 @@ redux 核心api.
 store.dispatch.
 store.getState
 store.subscribe
+
 ```

@@ -12,8 +12,8 @@ export default class Customer extends Component{
             <View className="customer">
                 <Text className="mp-icon mp-icon-order-group card"></Text>
                 <View>
-                    <View>客户: 徐天宇</View>
-                    <View className="tel">电话: 13545667770 </View>
+                    <View>客户: 张*** </View>
+                    <View className="tel">电话: 135******* </View>
                 </View>
             </View>
         )

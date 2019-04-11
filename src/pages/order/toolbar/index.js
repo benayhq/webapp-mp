@@ -9,7 +9,7 @@ export default class ToolBar extends Component{
         super(...arguments);
         this.state = {
             modal:{
-                isOpened:true,
+                isOpened:false,
                 title:'标题',
                 content:'内容',
                 cancelText:'取消',
