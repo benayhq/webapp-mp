@@ -1,0 +1,1 @@
+export const INIT_TODO = 'INIT_TODO';

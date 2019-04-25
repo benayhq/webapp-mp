@@ -16,11 +16,9 @@ export default class Info extends Component{
     render(){
         return (
             <View className="mp-user__info" onClick={this.jumpUrl.bind(this,'/pages/user/info/edit')}>
-
                     <View className="mp-user__info-avatar">
                         <Text className="mp-icon mp-icon-avatar"></Text>
                     </View>
-
                     <View className="mp-user__info-message">
                         <View className="mp-user__user-username">{this.props.user.userName}</View>
                         <View className="mp-user__user-level">
@@ -28,7 +26,6 @@ export default class Info extends Component{
                         </View>
                         <View className="mp-user__user-level-up"> {this.props.user.levelText}</View>
                     </View>
-
                     {
                         this.props.user.amount && 
                         <View className="mp-user__info-money">
@@ -36,7 +33,6 @@ export default class Info extends Component{
                             <View className="mp-user__money-order">已结定金</View>
                         </View>
                     }
-
             </View>
         )
     }

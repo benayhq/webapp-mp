@@ -12,7 +12,7 @@ export default class Modal extends Component {
       _isOpened:this.props.isOpened
     }
   }
-
+  
   componentWillReceiveProps(nextProps){
     const {_isOpened} = this.state;
 

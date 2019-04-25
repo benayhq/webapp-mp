@@ -52,6 +52,13 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@babel/runtime@^7.4.3":
+  version "7.4.3"
+  resolved "http://r.cnpmjs.org/@babel/runtime/download/@babel/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
+  integrity sha1-eYiORSA0IjrZYJGHoK0f4NKtS9w=
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "http://r.cnpmjs.org/@babel/template/download/@babel/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -128,22 +135,22 @@
   dependencies:
     uglify-js "^3.3.24"
 
-"@tarojs/redux-h5@^1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/redux-h5/download/@tarojs/redux-h5-1.2.23.tgz#dac834ead5f3ff2c4ace170adb5a2fc702fd99f3"
-  integrity sha1-2sg06tXz/yxKzhcK21ovxwL9mfM=
+"@tarojs/redux-h5@^1.2.26":
+  version "1.2.26"
+  resolved "http://r.cnpmjs.org/@tarojs/redux-h5/download/@tarojs/redux-h5-1.2.26.tgz#9ad221ba75c76c6f05855c7fab9f3df8a54dda78"
+  integrity sha1-mtIhunXHbG8FhVx/q589+KVN2ng=
   dependencies:
     hoist-non-react-statics "^2.5.0"
     invariant "^2.2.4"
     loose-envify "^1.1.0"
     prop-types "^15.6.1"
 
-"@tarojs/redux@^1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/redux/download/@tarojs/redux-1.2.23.tgz#f887b33f621c5fe74bfc3a1b49ee04012f25784f"
-  integrity sha1-+IezP2IcX+dL/DobSe4EAS8leE8=
+"@tarojs/redux@^1.2.26":
+  version "1.2.26"
+  resolved "http://r.cnpmjs.org/@tarojs/redux/download/@tarojs/redux-1.2.26.tgz#4635de8609394fe30e0f50be4688b012c036758d"
+  integrity sha1-RjXehgk5T+MOD1C+RoiwEsA2dY0=
   dependencies:
-    "@tarojs/utils" "1.2.23"
+    "@tarojs/utils" "1.2.26"
 
 "@tarojs/router@1.2.20":
   version "1.2.20"
@@ -217,10 +224,10 @@
   resolved "http://r.cnpmjs.org/@tarojs/utils/download/@tarojs/utils-1.2.20.tgz#7af8274b724f719ee52538b16411faf2c52d22e5"
   integrity sha1-evgnS3JPcZ7lJTixZBH68sUtIuU=
 
-"@tarojs/utils@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/utils/download/@tarojs/utils-1.2.23.tgz#dd89f6894358718021252e2873eeef84920f4359"
-  integrity sha1-3Yn2iUNYcYAhJS4oc+7vhJIPQ1k=
+"@tarojs/utils@1.2.26":
+  version "1.2.26"
+  resolved "http://r.cnpmjs.org/@tarojs/utils/download/@tarojs/utils-1.2.26.tgz#de60d2e3cbc941259ca0672009c993628188975b"
+  integrity sha1-3mDS48vJQSWcoGcgCcmTYoGIl1s=
 
 "@tarojs/webpack-runner@1.2.20":
   version "1.2.20"
@@ -3491,6 +3498,13 @@ hoist-non-react-statics@^2.5.0:
   resolved "http://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha1-xZA89AnA39kI84jmGdhrnBF0y0c=
 
+hoist-non-react-statics@^3.3.0:
+  version "3.3.0"
+  resolved "http://r.cnpmjs.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  integrity sha1-sJF48BIhhPuVrPUl2q7LTY9FlYs=
+  dependencies:
+    react-is "^16.7.0"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://r.cnpmjs.org/home-or-tmp/download/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -5768,10 +5782,47 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-dom@^16.8.6:
+  version "16.8.6"
+  resolved "http://r.cnpmjs.org/react-dom/download/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
+  integrity sha1-cdYwP2MeiwCX9WFl72CPBR/24Q8=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.6"
+
+react-is@^16.7.0, react-is@^16.8.6:
+  version "16.8.6"
+  resolved "http://r.cnpmjs.org/react-is/download/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
+  integrity sha1-W7weLSkUHJ+9/tRWND/ivEMKahY=
+
 react-is@^16.8.1:
   version "16.8.4"
   resolved "http://r.cnpmjs.org/react-is/download/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha1-kPM2pow6KaCWo9ZIq4DofsYUgqI=
+
+react-redux@^7.0.2:
+  version "7.0.2"
+  resolved "http://r.cnpmjs.org/react-redux/download/react-redux-7.0.2.tgz#34b280a3482aaf60e7d4a504b1295165cbe6b86a"
+  integrity sha1-NLKAo0gqr2Dn1KUEsSlRZcvmuGo=
+  dependencies:
+    "@babel/runtime" "^7.4.3"
+    hoist-non-react-statics "^3.3.0"
+    invariant "^2.2.4"
+    loose-envify "^1.4.0"
+    prop-types "^15.7.2"
+    react-is "^16.8.6"
+
+react@^16.8.6:
+  version "16.8.6"
+  resolved "http://r.cnpmjs.org/react/download/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
+  integrity sha1-rWw6lhT9Ok6e9REX9U2IjaAfK74=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.6"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -5875,6 +5926,11 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "http://r.cnpmjs.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "http://r.cnpmjs.org/regenerator-runtime/download/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha1-MuWcmm+5saSv8JtJMMotRHc0NEc=
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
@@ -6208,6 +6264,14 @@ sax@^1.2.4:
   version "1.2.4"
   resolved "http://r.cnpmjs.org/sax/download/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
+
+scheduler@^0.13.6:
+  version "0.13.6"
+  resolved "http://r.cnpmjs.org/scheduler/download/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
+  integrity sha1-RmpOwzJGezGpG5v3TlNHBy5M2Ik=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 schema-utils@^0.4.0, schema-utils@^0.4.3, schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.7"

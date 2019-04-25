@@ -7,11 +7,9 @@ import Info from './info';
 import Panel from './panel';
 import ChangeUser from './switch';
 import Creator from './common/create';
-import store from './../../store';
 import './index.scss';
 
-export default class Index extends Component{
-
+ class Index extends Component{
   config = {
     navigationBarTitleText: '个人中心'
   }
@@ -21,8 +19,7 @@ export default class Index extends Component{
     this.state = {
       isAgent:true,
       list:[],
-      orders:[],
-      user:{}
+      orders:[]
     }
     this.init();
   }
@@ -38,16 +35,15 @@ export default class Index extends Component{
 
   initState(){
       this.handleChangeState = this.handleChangeState.bind(this);
-      store.subscribe(this.handleChangeState);
   }
 
   initPanelList(){
       let creatorInstance = new Creator();
       this.setState({
-          isAgent:store.getState().isAgent,
-          list:creatorInstance.factory(store.getState().isAgent).getPanelList(),
-          orders:creatorInstance.factory(store.getState().isAgent).getList(),
-          user:creatorInstance.factory(store.getState().isAgent).getUserInfo()
+          isAgent:true,
+          list:creatorInstance.factory(true).getPanelList(),
+          orders:creatorInstance.factory(true).getList(),
+          user:creatorInstance.factory(true).getUserInfo()
       })
   }
 
@@ -56,26 +52,22 @@ export default class Index extends Component{
       url: url
     })
   }
-
+  
   render () {
+
     const {isAgent} = this.state;
     
     return (
       <View className='mp-user'>
-
         <Info user={this.state.user}/>
-        
-       { isAgent && <InCome/>  }  
-
-       { isAgent &&  <Publish/>  }  
-      
+       { isAgent && <InCome/> }  
+       { isAgent &&  <Publish/> }  
         <UserOrder list={this.state.orders}/>
-
         <Panel list={this.state.list}/>
-
         <ChangeUser/>
-
       </View>
     )
   }
 }
+
+export default Index;
