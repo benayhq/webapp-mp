@@ -32,7 +32,7 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-  
+
   componentDidMount () {}
 
   componentDidShow () {}

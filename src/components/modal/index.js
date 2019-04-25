@@ -12,7 +12,7 @@ export default class Modal extends Component {
       _isOpened:this.props.isOpened
     }
   }
-  
+
   componentWillReceiveProps(nextProps){
     const {_isOpened} = this.state;
 
@@ -22,7 +22,7 @@ export default class Modal extends Component {
       });
     }
   }
-
+  
   onClose = (e) =>{
     if(this.props.closeOnClickOverlay){
       this.onCancel();

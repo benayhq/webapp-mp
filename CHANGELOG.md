@@ -15,4 +15,7 @@
 * 新增redux 数据管理框架. 
 
 ### Bug Fixes
-* 
+* 测试.
+
+### 后台Api. 
+* https://lovemeipin.com:8444/meipin/swagger-ui.html#/wx-controller
