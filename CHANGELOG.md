@@ -15,7 +15,8 @@
 * 新增redux 数据管理框架.
 
 ### Bug Fixes
-* 测试.
+* taro 不支持 axios.
+* taro 不支持 redux-saga.
 
 ### 后台Api. 
 * https://lovemeipin.com:8444/meipin/swagger-ui.html#/wx-controller
