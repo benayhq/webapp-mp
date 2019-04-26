@@ -1,11 +1,17 @@
+import {WECHAT_LOGIN} from './../constants/user';
+
 const defaultState = {
-    userName:''
+    code:'shawn'
 };
 
 const userReducer = (state = defaultState,action) => {
     switch(action.type) {
-        case 'INIT_INFO':
-            return state;
+        case WECHAT_LOGIN:
+            return [
+                ...state,{
+                    code:action.code
+                }
+            ];
         default:
             return state;
     }

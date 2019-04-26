@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/order/detail/index",
+    "pages/user/index",
+    "pages/user/user-login/index",
+    "pages/user/info/edit",
+    "pages/active/publish/index",
+    "pages/active/share/index",
+    "pages/product/index",
+    "pages/order/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,0 +1,25 @@
+<block>
+    <view class="{{rootClass}}">
+        <view class="mp-modal__overlay" bindtap="onClose"></view>
+        <view class="mp-modal__container">
+            <block wx:if="{{title}}">
+                <view class="mp-modal__title">{{title}}</view>
+            </block>
+            <block wx:if="{{content}}">
+                <view class="mp-modal__content">{{content}}</view>
+            </block>
+            <block wx:if="{{isRenderFooter}}">
+                <view class="mp-modal__footer">
+                    <view class="mp-modal__action">
+                        <block wx:if="{{cancelText}}">
+                            <button bindtap="onCancel">{{cancelText}}</button>
+                        </block>
+                        <block wx:if="{{confirmText}}">
+                            <button bindtap="onConfirm">{{confirmText}}</button>
+                        </block>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</block>

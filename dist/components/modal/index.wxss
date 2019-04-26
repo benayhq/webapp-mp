@@ -1,0 +1,69 @@
+
+.mp-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden; }
+  .mp-modal__overlay, .mp-modal__container {
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in;
+    -o-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in; }
+  .mp-modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); }
+  .mp-modal__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500rpx;
+    border-radius: 12rpx;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background: #ffffff; }
+  .mp-modal__title {
+    line-height: 90rpx;
+    height: 90rpx;
+    width: 100%;
+    border-bottom: 1rpx solid #ddd;
+    text-align: center; }
+  .mp-modal__content {
+    height: 228rpx;
+    width: 100%;
+    text-align: center;
+    line-height: 228rpx; }
+  .mp-modal__action {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border-top: 1rpx solid #ddd; }
+    .mp-modal__action > button {
+      -webkit-box-flex: 1;
+      -webkit-flex: auto;
+          -ms-flex: auto;
+              flex: auto;
+      border-radius: 0;
+      border: 0;
+      height: 80rpx;
+      background: transparent; }
+      .mp-modal__action > button::after {
+        border: 0;
+        width: initial;
+        height: initial; }
+      .mp-modal__action > button:not(:first-child) {
+        border-left: 1rpx solid #ddd; }
+      .mp-modal__action > button:last-child {
+        color: #7dd6d0; }
+  .mp-modal--active {
+    visibility: visible; }
+    .mp-modal--active .mp-modal__overlay,
+    .mp-modal--active .mp-modal__container {
+      opacity: 1; }

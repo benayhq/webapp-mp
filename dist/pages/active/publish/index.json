@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "at-image-picker": "../../../npm/taro-ui/dist/weapp/components/image-picker/index",
+    "product-list": "./productlist/index"
+  },
+  "navigationBarTitleText": "新增活动"
+}

@@ -1,0 +1,17 @@
+<block>
+    <view class="mp-user__info" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/user/user-login/index">
+        <view class="mp-user__info-avatar"><text class="mp-icon mp-icon-avatar"></text>
+        </view>
+        <view class="mp-user__info-message">
+            <view class="mp-user__user-username">{{user.userName}}</view>
+            <view class="mp-user__user-level">{{user.level}}</view>
+            <view class="mp-user__user-level-up">{{user.levelText}}</view>
+        </view>
+        <block wx:if="{{user.amount}}">
+            <view class="mp-user__info-money">
+                <view class="mp-user__money-amount">{{user.amount}}</view>
+                <view class="mp-user__money-order">已结定金</view>
+            </view>
+        </block>
+    </view>
+</block>

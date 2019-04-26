@@ -27,6 +27,7 @@ export default class ButtonItem extends Component {
   }
 
   render () {
+    
     const {
       compStyle, textStyle, openType, loading, disabled, text,
       onClick, onGetUserInfo

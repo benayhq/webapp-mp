@@ -1,0 +1,14 @@
+<block>
+    <view class="mp-user">
+        <info user="{{user}}" __triggerObserer="{{ _triggerObserer }}"></info>
+        <block wx:if="{{isAgent}}">
+            <in-come __triggerObserer="{{ _triggerObserer }}"></in-come>
+        </block>
+        <block wx:if="{{isAgent}}">
+            <publish __triggerObserer="{{ _triggerObserer }}"></publish>
+        </block>
+        <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>
+        <panel list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></panel>
+        <change-user __triggerObserer="{{ _triggerObserer }}"></change-user>
+    </view>
+</block>

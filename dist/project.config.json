@@ -1,0 +1,85 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "webapp-mp",
+  "description": "美萍",
+  "appid": "wx26c38a162659f252",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "autoAudits": false
+  },
+  "compileType": "miniprogram",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "current": 6,
+      "list": [
+        {
+          "id": -1,
+          "name": "新增活动",
+          "pathName": "pages/active/publish/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "广告预览",
+          "pathName": "pages/active/share/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的产品",
+          "pathName": "pages/product/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的订单",
+          "pathName": "pages/order/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人信息",
+          "pathName": "pages/user/info/edit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单详情",
+          "pathName": "pages/order/detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人中心",
+          "pathName": "pages/user/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

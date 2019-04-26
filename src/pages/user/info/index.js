@@ -15,7 +15,7 @@ export default class Info extends Component{
 
     render(){
         return (
-            <View className="mp-user__info" onClick={this.jumpUrl.bind(this,'/pages/user/info/edit')}>
+            <View className="mp-user__info" onClick={this.jumpUrl.bind(this,'/pages/user/user-login/index')}>
                     <View className="mp-user__info-avatar">
                         <Text className="mp-icon mp-icon-avatar"></Text>
                     </View>

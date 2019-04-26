@@ -1,0 +1,10 @@
+<block>
+    <view class="mp-order-detail">
+        <header content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></header>
+        <customer __triggerObserer="{{ _triggerObserer }}"></customer>
+        <assemble content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></assemble>
+        <order-product order="{{order}}" __triggerObserer="{{ _triggerObserer }}" content="{{content}}"></order-product>
+        <footer qrCode="{{content.qrCode}}" __triggerObserer="{{ _triggerObserer }}"></footer>
+        <tool-bar toolBar="{{content.toolBar}}" __triggerObserer="{{ _triggerObserer }}"></tool-bar>
+    </view>
+</block>

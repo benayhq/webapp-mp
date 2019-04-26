@@ -1,0 +1,30 @@
+<block>
+    <view class="mp-active">
+        <view class="item"><text>活动名称</text>
+            <input placeholder="请输入活动名称" __triggerObserer="{{ _triggerObserer }}" />
+        </view>
+        <view class="item">
+            <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
+                <view class="picker"><text class="mp-publish mp-icon-arrow"></text><text>成团人数</text><text class="time">{{groupItemChecked}}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="item">
+            <picker mode="date" bindchange="onDateStartChange">
+                <view class="picker"><text class="mp-publish mp-icon-arrow"></text><text>开始时间</text><text class="time">{{dateStart}}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="item">
+            <picker mode="date" bindchange="onDateEndChange">
+                <view class="picker"><text class="mp-publish mp-icon-arrow"></text><text>结束时间</text><text class="time">{{dateSel}}</text>
+                </view>
+            </picker>
+        </view>
+        <at-image-picker className="uploadImage" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="onChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+        <product-list __triggerObserer="{{ _triggerObserer }}"></product-list>
+        <view class="publish">
+            <view bindtap="onPublish">立即发布</view>
+        </view>
+    </view>
+</block>

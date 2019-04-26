@@ -1,0 +1,8 @@
+<block>
+    <view class="footer">
+        <block wx:if="{{qrCode}}">
+            <code __triggerObserer="{{ _triggerObserer }}"></code>
+        </block>
+        <info __triggerObserer="{{ _triggerObserer }}"></info>
+    </view>
+</block>

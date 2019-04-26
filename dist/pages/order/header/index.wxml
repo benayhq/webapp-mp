@@ -1,0 +1,4 @@
+<block>
+    <view class="tips"><text>{{title}}</text><text>{{tip}}</text><text class="{{icon}}"></text>
+    </view>
+</block>

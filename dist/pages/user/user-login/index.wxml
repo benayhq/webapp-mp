@@ -1,0 +1,9 @@
+<block>
+    <view>
+        <view class="user-login__logo">美 拼</view>
+        <view class="user-login__auth">
+            <button bindtap="WeChatLogin">微信授权登录</button>
+            <button>手机快捷登录</button>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,21 @@
+<block>
+    <view>
+        <view class="product">
+            <view></view>
+            <view class="list">
+                <view class="list-top">
+                    <view></view>
+                    <view>
+                        <image style="width:92px; height:95px;margin-top:14px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                    </view>
+                    <view>
+                        <view class="product-item margin20">[玻尿酸瘦脸针] 瑞典进口</view>
+                        <view class="product-item font">￥3000</view>
+                        <view class="product-item textfont">预定金: <text class="amount">200</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

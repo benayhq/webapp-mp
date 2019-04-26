@@ -1,0 +1,5 @@
+<block>
+    <view>
+        <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
+    </view>
+</block>

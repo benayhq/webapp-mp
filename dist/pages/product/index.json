@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "product-item": "../../components/product/index"
+  },
+  "navigationBarTitleText": "我的产品"
+}

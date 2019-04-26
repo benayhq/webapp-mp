@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "info": "./info/index",
+    "in-come": "./income/index",
+    "publish": "./publish/index",
+    "user-order": "./order/index",
+    "panel": "./panel/index",
+    "change-user": "./switch/index"
+  },
+  "navigationBarTitleText": "个人中心"
+}

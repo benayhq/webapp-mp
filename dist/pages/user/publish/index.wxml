@@ -1,0 +1,8 @@
+<block>
+    <view class="mp-user__publish">
+        <view class="mp-user__publish-introduce">让客户来为您拓展客户</view>
+        <view class="mp-user__publish-action">
+            <at-button bindonclick="jump" __triggerObserer="{{ _triggerObserer }}" type="primary" size="small" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="/pages/active/publish/index">发布活动</at-button>
+        </view>
+    </view>
+</block>

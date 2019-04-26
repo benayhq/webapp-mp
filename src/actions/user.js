@@ -1,7 +1,13 @@
-import {INIT_TODO} from './../constants/user';
+import {WECHAT_LOGIN} from './../constants/user';
 
-export const initUser = () => {
-    return {
-        type: INIT_TODO
+export const initWeChat = (value) => ({
+    type:WECHAT_LOGIN,
+    code:value
+});
+
+export const WeChatLogin = (value) =>{
+    return (dispatch) => {
+        const action = initWeChat(value);
+        dispatch(action);
     }
 }

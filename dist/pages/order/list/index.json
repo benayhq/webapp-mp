@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "title": "../title/index",
+    "product-item": "../../../components/product/index",
+    "at-button": "../../../npm/taro-ui/dist/weapp/components/button/index"
+  }
+}

@@ -1,0 +1,12 @@
+<block>
+    <view class="ping"><text class="mp-icon mp-icon-order-card"></text>
+        <view>
+            <view class="text">{{assemble.text}}</view>
+            <view class="group">
+                <view class="person">1</view>
+                <view class="person">2</view>
+                <view class="person">3</view>
+            </view>
+        </view>
+    </view>
+</block>

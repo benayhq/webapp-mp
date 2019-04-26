@@ -1,0 +1,52 @@
+
+.mp-user__income {
+  width: 750rpx;
+  height: 169rpx;
+  background: white;
+  border: 1rpx solid white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+  .mp-user__income-left {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 60rpx;
+    text-align: center; }
+  .mp-user__income-text {
+    height: 67rpx;
+    font-size: 48rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #7dd6d0;
+    line-height: 67rpx;
+    padding-top: 23rpx; }
+  .mp-user__income-text-desc {
+    height: 40rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #919191;
+    line-height: 40rpx;
+    padding-top: 13rpx; }
+  .mp-user__income-middle {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 60rpx;
+    text-align: center; }
+  .mp-user__income-right {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 60rpx;
+    text-align: center; }

@@ -1,0 +1,36 @@
+.user-login{
+    
+    &__logo{
+        text-align: center;
+        line-height: 490px;
+        height: 490px;
+    }
+
+    &__auth{
+
+        & > button{
+            background-color: transparent;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            width: 85%;
+            height: 90px;
+            line-height: 90px;
+            border: 1px solid rgba(125,214,208,1);
+
+            &::after {
+                border-radius: 0;
+                width: initial;
+                height: initial;
+            }
+      
+            &:nth-child(1){
+                background: rgba(125,214,208,1);
+                color: #ffffff;
+            }
+
+            &:nth-child(2){
+                color: rgba(125,214,208,1);
+            }
+        }
+    }
+}

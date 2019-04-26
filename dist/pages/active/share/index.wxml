@@ -1,0 +1,20 @@
+<block>
+    <view class="mp-advert">
+        <view class="banner">
+            <view class="img">
+                <image src="{{imgSrc}}" __triggerObserer="{{ _triggerObserer }}"></image>
+            </view>
+        </view>
+        <view class="thumbnail-wrapper">
+            <view class="thumbnail">
+                <view bindtap="onClick" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item}}">
+                    <image wx:key="index" __triggerObserer="{{ _triggerObserer }}" src="{{item.url}}"></image>
+                    <block wx:if="{{item.isShow}}">
+                        <view class="mask"><text class="mp-icon mp-icon-checkeditem"></text>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,40 @@
+<block>
+    <view>
+        <view class="mp-order-list" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx">
+            <title OrderState="{{item.orderStatus}}" __triggerObserer="{{ _triggerObserer }}" agentName="{{item.agentName}}"></title>
+            <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
+            <view class="order-action">
+                <view class="action">
+                    <block wx:if="{{item.orderStatus == '待付款'}}">
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">支付订单</at-button>
+                    </block>
+                    <block wx:if="{{item.orderStatus == '待成团'}}">
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">邀请好友</at-button>
+                    </block>
+                    <block wx:if="{{item.orderStatus == '待消费'}}">
+                        <view>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">退款申请</at-button><text class="margin8"></text>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">立即核销</at-button>
+                        </view>
+                    </block>
+                    <block wx:if="{{item.orderStatus == '待评价'}}">
+                        <view>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">退款申请</at-button><text class="margin8"></text>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">我要评价</at-button>
+                        </view>
+                    </block>
+                    <block wx:if="{{item.orderStatus == '已取消'}}">
+                        <view>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">重新购买</at-button>
+                        </view>
+                    </block>
+                    <block wx:if="{{item.orderStatus == '拼团失败'}}">
+                        <view>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">重新购买</at-button>
+                        </view>
+                    </block>
+                </view><text></text>
+            </view>
+        </view>
+    </view>
+</block>

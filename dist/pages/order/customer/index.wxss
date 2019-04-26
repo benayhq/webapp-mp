@@ -1,0 +1,215 @@
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 1110655 */
+  src: url("//at.alicdn.com/t/font_1110655_30knqslb42t.eot");
+  src: url("//at.alicdn.com/t/font_1110655_30knqslb42t.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.svg#iconfont") format("svg"); }
+
+.mp-icon {
+  font-family: "iconfont" !important;
+  font-size: 16rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mp-icon-avatar:before {
+  font-size: 96rpx;
+  content: "\e6b0"; }
+
+.mp-icon-account:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e685"; }
+
+.mp-icon-waittuan:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61e"; }
+
+.mp-icon-consumption:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e610"; }
+
+.mp-icon-comment:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61b"; }
+
+.mp-icon-refund:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e64c"; }
+
+.mp-icon-active:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e600"; }
+
+.mp-icon-product:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61d"; }
+
+.mp-icon-customer:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e632"; }
+
+.mp-icon-invite:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e682"; }
+
+.mp-icon-close:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e66d"; }
+
+.mp-icon-appoint:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e621"; }
+
+.mp-icon-arrow:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow-balck:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
+.mp-icon-delete:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #d81e06;
+  content: "\e605"; }
+
+.mp-icon-add:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e616"; }
+
+.mp-icon-success:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e631"; }
+
+.mp-icon-checkeditem:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e679"; }
+
+.mp-icon-trash:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e636"; }
+
+.mp-icon-plus:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e602"; }
+
+.mp-icon-people:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e622"; }
+
+.mp-icon-collect:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e613"; }
+
+.mp-icon-coupon:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+.mp-icon-service:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e614"; }
+
+.mp-icon-footer:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e87e"; }
+
+.mp-icon-about:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e655"; }
+
+.mp-icon-order-detail:before {
+  font-size: 96rpx;
+  content: "\e618"; }
+
+.mp-icon-order-waitpay:before {
+  font-size: 96rpx;
+  content: "\e61e"; }
+
+.mp-icon-order-group:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e850"; }
+
+.mp-icon-order-card:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e623"; }
+
+.mp-icon-wechat:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #84D945;
+  content: "\e603"; }
+
+.mp-icon-tel:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e633"; }
+
+.mp-icon-pay:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+.customer {
+  width: 749rpx;
+  height: 160rpx;
+  background: #ffffff;
+  margin-top: 18rpx;
+  border: 1rpx solid white; }
+  .customer > text:nth-child(1) {
+    float: left;
+    margin-top: 25rpx;
+    margin-left: 13rpx; }
+  .customer > view {
+    margin-top: 27rpx;
+    margin-left: 72rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #3c3c3c;
+    line-height: 45rpx; }
+    .customer > view .tel {
+      margin-top: 20rpx; }

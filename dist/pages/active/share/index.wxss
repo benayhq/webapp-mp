@@ -1,0 +1,249 @@
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 1110655 */
+  src: url("//at.alicdn.com/t/font_1110655_30knqslb42t.eot");
+  src: url("//at.alicdn.com/t/font_1110655_30knqslb42t.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_30knqslb42t.svg#iconfont") format("svg"); }
+
+.mp-icon {
+  font-family: "iconfont" !important;
+  font-size: 16rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mp-icon-avatar:before {
+  font-size: 96rpx;
+  content: "\e6b0"; }
+
+.mp-icon-account:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e685"; }
+
+.mp-icon-waittuan:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61e"; }
+
+.mp-icon-consumption:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e610"; }
+
+.mp-icon-comment:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61b"; }
+
+.mp-icon-refund:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e64c"; }
+
+.mp-icon-active:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e600"; }
+
+.mp-icon-product:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61d"; }
+
+.mp-icon-customer:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e632"; }
+
+.mp-icon-invite:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e682"; }
+
+.mp-icon-close:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e66d"; }
+
+.mp-icon-appoint:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e621"; }
+
+.mp-icon-arrow:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow-balck:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
+.mp-icon-delete:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #d81e06;
+  content: "\e605"; }
+
+.mp-icon-add:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e616"; }
+
+.mp-icon-success:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e631"; }
+
+.mp-icon-checkeditem:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e679"; }
+
+.mp-icon-trash:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e636"; }
+
+.mp-icon-plus:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e602"; }
+
+.mp-icon-people:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e622"; }
+
+.mp-icon-collect:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e613"; }
+
+.mp-icon-coupon:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+.mp-icon-service:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e614"; }
+
+.mp-icon-footer:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e87e"; }
+
+.mp-icon-about:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e655"; }
+
+.mp-icon-order-detail:before {
+  font-size: 96rpx;
+  content: "\e618"; }
+
+.mp-icon-order-waitpay:before {
+  font-size: 96rpx;
+  content: "\e61e"; }
+
+.mp-icon-order-group:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e850"; }
+
+.mp-icon-order-card:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e623"; }
+
+.mp-icon-wechat:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #84D945;
+  content: "\e603"; }
+
+.mp-icon-tel:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e633"; }
+
+.mp-icon-pay:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+page {
+  margin: 0;
+  height: 100%; }
+
+.mp-advert {
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+  .mp-advert .banner {
+    padding: 40rpx;
+    background: #f5f5f9;
+    height: 100%; }
+    .mp-advert .banner .img {
+      background: #ffffff;
+      height: 80%; }
+      .mp-advert .banner .img > image {
+        width: 100%;
+        height: 100%;
+        border-radius: 10rpx; }
+  .mp-advert .thumbnail-wrapper {
+    position: fixed;
+    bottom: 0;
+    height: 167rpx;
+    width: 100%;
+    overflow-x: scroll;
+    background: #ffffff; }
+    .mp-advert .thumbnail-wrapper .thumbnail {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; }
+      .mp-advert .thumbnail-wrapper .thumbnail > View, .mp-advert .thumbnail-wrapper .thumbnail image {
+        margin-top: 13rpx;
+        margin-left: 15rpx;
+        margin-right: 15rpx;
+        width: 120rpx;
+        height: 120rpx;
+        -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+                flex-shrink: 0;
+        border-radius: 20rpx; }
+      .mp-advert .thumbnail-wrapper .thumbnail > View, .mp-advert .thumbnail-wrapper .thumbnail image:nth-child(1) {
+        margin-left: 10rpx; }
+      .mp-advert .thumbnail-wrapper .thumbnail .mask {
+        position: relative;
+        top: -132rpx;
+        left: 11rpx;
+        width: 120rpx;
+        height: 120rpx;
+        opacity: .5;
+        background: #000;
+        border-radius: 20rpx;
+        text-align: center;
+        line-height: 120rpx; }

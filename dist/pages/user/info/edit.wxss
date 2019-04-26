@@ -1,0 +1,11 @@
+
+.mp-edit-user .qrCode .label {
+  position: relative;
+  left: 30rpx;
+  top: 50rpx;
+  font-size: 32rpx; }
+
+.mp-edit-user .uploadPicker {
+  position: relative;
+  left: 490rpx;
+  top: -20rpx; }
