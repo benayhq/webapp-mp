@@ -9,7 +9,7 @@ export const initWeChat = (value) => ({
 });
 
 export const WeChatLogin = payload => createAction({
-    url:API_CHECK_LOGIN,
-    type:WECHATLOGIIN,
-    payload
-});
+        url:API_CHECK_LOGIN,
+        type:WECHATLOGIIN,
+        payload
+ });

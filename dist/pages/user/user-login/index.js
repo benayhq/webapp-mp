@@ -46,7 +46,7 @@ var UserLogin = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserLogin.__proto__ || Object.getPrototypeOf(UserLogin)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["WeChatLogin"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserLogin.__proto__ || Object.getPrototypeOf(UserLogin)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.config = {
       navigationBarTitleText: '登录 美拼'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -59,7 +59,26 @@ var UserLogin = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "WeChatLogin",
     value: function WeChatLogin() {
-      this.props.WeChatLogin('xxxx');
+      wx.login({
+        success: function success(res) {
+          console.log('res.code', res.code);
+          if (res.code) {
+            // 发起网络请求
+            wx.request({
+              method: 'POST',
+              url: 'https://lovemeipin.com/meipin/wx/v1/wxuser/wxLogin',
+              data: {
+                code: res.code
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded' // 默认值
+              }
+            });
+          } else {
+            console.log('登录失败！' + res.errMsg);
+          }
+        }
+      });
     }
   }, {
     key: "_createData",
@@ -74,12 +93,7 @@ var UserLogin = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return UserLogin;
-}(_index.Component), _class2.properties = {
-  "WeChatLogin": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["WeChatLogin"], _temp2)) || _class);
+}(_index.Component), _class2.properties = {}, _class2.$$events = ["WeChatLogin"], _temp2)) || _class);
 exports.default = UserLogin;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(UserLogin, true));

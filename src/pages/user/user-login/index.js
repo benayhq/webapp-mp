@@ -6,13 +6,31 @@ import './index.scss';
 
 @connect(state=>state.user,actions)
 class UserLogin extends Component{
-
     config = {
         navigationBarTitleText: '登录 美拼'
     }
-    
+
     WeChatLogin(){
-        this.props.WeChatLogin('xxxx');
+        wx.login({
+            success(res) {
+                console.log('res.code',res.code);
+              if (res.code) {
+                // 发起网络请求
+                wx.request({
+                  method:'POST',
+                  url: 'https://lovemeipin.com/meipin/wx/v1/wxuser/wxLogin',
+                  data: {
+                    code: res.code
+                  },
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded' // 默认值
+                  }
+                })
+              } else {
+                console.log('登录失败！' + res.errMsg)
+              }
+            }
+        });
     }
 
     render(){
