@@ -22,7 +22,7 @@ function createAction(options) {
       cb = options.cb,
       type = options.type;
 
-
+  console.log('dispatch', type);
   return function (dispatch) {
     return (0, _request2.default)(_extends({ url: url, payload: payload, method: method }, fetchOptions)).then(function (res) {
       dispatch({ type: type, payload: cb ? cb(res) : res });

@@ -8,12 +8,15 @@ import Panel from './panel';
 import ChangeUser from './switch';
 import Creator from './common/create';
 import './index.scss';
+import * as actions from './../../actions/user';
+import {connect} from '@tarojs/redux';
 
- class Index extends Component{
+@connect(state=>state.user,actions)
+class Index extends Component{
   config = {
     navigationBarTitleText: '个人中心'
   }
-
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +30,9 @@ import './index.scss';
   init(){
     this.initPanelList();
     this.initState();
+    this.autoLogin();
   }
-
+  
   handleChangeState(){
       this.initPanelList();
   }
@@ -47,6 +51,21 @@ import './index.scss';
       })
   }
 
+  autoLogin(){
+      var currentObj = this ;
+      wx.login({
+          success(res) {
+              console.log('res.code',res.code);
+              var payload = {
+                  code:res.code
+              };
+              currentObj.props.WeChatLogin(payload).then((res)=>{
+                   console.log('currentObj.props.WeChatLogin(payload)',res);
+              });
+          }
+      });
+  }
+  
   jumpUrl = (url) =>{
     Taro.navigateTo({
       url: url

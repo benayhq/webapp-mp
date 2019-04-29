@@ -2,7 +2,11 @@ import {Component} from '@tarojs/taro';
 import {View} from "@tarojs/components";
 import './index.scss';
 import jump from './../../utils/jump';
+import * as actions from './../../../actions/user';
+import {connect} from '@tarojs/redux';
+import {WECHAT_LOGIN} from './../../../constants/user';
 
+@connect(state=>state.user,actions)
 export default class Info extends Component{
     
     constructor(props){
@@ -10,12 +14,32 @@ export default class Info extends Component{
     }
 
     jumpUrl(url){
+        // todo: 验证用户是否登录了?.
         jump({url:url});
     }
 
+    WeChatLogin(){
+
+        var currentObj = this ;
+
+        wx.login({
+            success(res) {
+                console.log('res.code',res.code);
+                var payload = {
+                    code:res.code
+                };
+                currentObj.props.WeChatLogin(payload).then((res)=>{
+                     console.log('currentObj.props.WeChatLogin(payload)',res);
+                });
+            }
+        });
+    }
+
+    // this.jumpUrl.bind(this,'/pages/user/user-login/index')
+
     render(){
         return (
-            <View className="mp-user__info" onClick={this.jumpUrl.bind(this,'/pages/user/user-login/index')}>
+            <View className="mp-user__info" onClick={this.WeChatLogin}>
                     <View className="mp-user__info-avatar">
                         <Text className="mp-icon mp-icon-avatar"></Text>
                     </View>

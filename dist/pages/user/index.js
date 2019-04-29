@@ -8,7 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -18,6 +18,14 @@ var _create = require("./common/create.js");
 
 var _create2 = _interopRequireDefault(_create);
 
+var _user = require("../../actions/user.js");
+
+var actions = _interopRequireWildcard(_user);
+
+var _index3 = require("../../npm/@tarojs/redux/index.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,7 +34,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = (_temp2 = _class = function (_BaseComponent) {
+var Index = (_dec = (0, _index3.connect)(function (state) {
+  return state.user;
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -65,6 +75,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
     value: function init() {
       this.initPanelList();
       this.initState();
+      this.autoLogin();
     }
   }, {
     key: "handleChangeState",
@@ -88,6 +99,22 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       });
     }
   }, {
+    key: "autoLogin",
+    value: function autoLogin() {
+      var currentObj = this;
+      wx.login({
+        success: function success(res) {
+          console.log('res.code', res.code);
+          var payload = {
+            code: res.code
+          };
+          currentObj.props.WeChatLogin(payload).then(function (res) {
+            console.log('currentObj.props.WeChatLogin(payload)', res);
+          });
+        }
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -104,7 +131,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Index;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class2.properties = {}, _class2.$$events = [], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

@@ -1,5 +1,5 @@
 <block>
-    <view class="mp-user__info" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/user/user-login/index">
+    <view class="mp-user__info" bindtap="WeChatLogin">
         <view class="mp-user__info-avatar"><text class="mp-icon mp-icon-avatar"></text>
         </view>
         <view class="mp-user__info-message">

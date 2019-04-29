@@ -10,6 +10,8 @@ var _index = require("./npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
+require("./npm/@tarojs/async-await/index.js");
+
 var _index3 = require("./npm/@tarojs/redux/index.js");
 
 var _index4 = require("./store/index.js");
@@ -29,7 +31,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
-
 var store = (0, _index5.default)();
 
 (0, _index3.setStore)(store);
@@ -61,7 +62,9 @@ var _App = function (_BaseComponent) {
 
   _createClass(_App, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      console.log('componentDidMount');
+    }
   }, {
     key: "componentDidShow",
     value: function componentDidShow() {}
