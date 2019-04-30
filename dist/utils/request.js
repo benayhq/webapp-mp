@@ -65,18 +65,20 @@ exports.default = function () {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
+                        console.log('options', res);
+
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context.next = 3;
+                          _context.next = 4;
                           break;
                         }
 
-                        _context.next = 3;
+                        _context.next = 4;
                         return updateStorage(res.data);
 
-                      case 3:
+                      case 4:
                         return _context.abrupt("return", res.data);
 
-                      case 4:
+                      case 5:
                       case "end":
                         return _context.stop();
                     }

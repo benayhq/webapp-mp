@@ -68,6 +68,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         list: [],
         orders: []
       };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       this.init();
     }
   }, {

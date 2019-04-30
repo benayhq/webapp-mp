@@ -24,13 +24,15 @@ export default async function fetch(options){
     if(method === 'POST'){
         header['content-type'] =  contentType ? contentType : 'application/json';
     }
-
+    
     return Taro.request({
         url,
         method,
         data:payload,
         header:header
     }).then(async(res)=>{
+    console.log('options',res);
+
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);
         }
