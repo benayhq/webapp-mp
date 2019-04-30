@@ -18,13 +18,13 @@ function updateStorage(data={}){
 }
 
 export default async function fetch(options){
-    const {url,payload,method = 'GET' ,showToast=true } = options;
+    const {url,payload,method = 'GET' ,showToast=true,contentType } = options;
     const header = {};
 
     if(method === 'POST'){
-        header['content-type'] = 'application/json';
+        header['content-type'] =  contentType ? contentType : 'application/json';
     }
-    
+
     return Taro.request({
         url,
         method,
@@ -37,20 +37,19 @@ export default async function fetch(options){
         return res.data;
     }).catch((err)=>{
         console.log('err',err);
-        
         const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效':'请求异常';
+
         if(showToast){
             Taro.showToast({
                 title:err.err.errorMsg || defaultMsg,
                 icon:'none'
             })
         }
+
         if(err.code === CODE_AUTH_EXPIRED){
             console.log('CODE_AUTH_EXPIRED');
-            // Taro.navigateTo({
-            //     url:'/pages/user-login/user-login'
-            // })
         }
+
         return Promise.reject({ message: defaultMsg, ...err})
     });
 }

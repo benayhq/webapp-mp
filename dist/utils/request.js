@@ -40,18 +40,18 @@ exports.default = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(options) {
     var _this = this;
 
-    var url, payload, _options$method, method, _options$showToast, showToast, header;
+    var url, payload, _options$method, method, _options$showToast, showToast, contentType, header;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            url = options.url, payload = options.payload, _options$method = options.method, method = _options$method === undefined ? 'GET' : _options$method, _options$showToast = options.showToast, showToast = _options$showToast === undefined ? true : _options$showToast;
+            url = options.url, payload = options.payload, _options$method = options.method, method = _options$method === undefined ? 'GET' : _options$method, _options$showToast = options.showToast, showToast = _options$showToast === undefined ? true : _options$showToast, contentType = options.contentType;
             header = {};
 
 
             if (method === 'POST') {
-              header['content-type'] = 'application/json';
+              header['content-type'] = contentType ? contentType : 'application/json';
             }
 
             return _context2.abrupt("return", _index2.default.request({
@@ -89,20 +89,19 @@ exports.default = function () {
               };
             }()).catch(function (err) {
               console.log('err', err);
-
               var defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
+
               if (showToast) {
                 _index2.default.showToast({
                   title: err.err.errorMsg || defaultMsg,
                   icon: 'none'
                 });
               }
+
               if (err.code === CODE_AUTH_EXPIRED) {
                 console.log('CODE_AUTH_EXPIRED');
-                // Taro.navigateTo({
-                //     url:'/pages/user-login/user-login'
-                // })
               }
+
               return Promise.reject(_extends({ message: defaultMsg }, err));
             }));
 

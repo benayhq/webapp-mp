@@ -1,13 +1,13 @@
-import {Component} from '@tarojs/taro';
-import {View} from "@tarojs/components";
+import Taro,{Component} from '@tarojs/taro';
+import {View,Button,Text} from "@tarojs/components";
 import './index.scss';
 import jump from './../../utils/jump';
 import * as actions from './../../../actions/user';
 import {connect} from '@tarojs/redux';
-import {WECHAT_LOGIN} from './../../../constants/user';
 
 @connect(state=>state.user,actions)
 export default class Info extends Component{
+
     
     constructor(props){
         super(...arguments);
@@ -18,28 +18,28 @@ export default class Info extends Component{
         jump({url:url});
     }
 
-    WeChatLogin(){
-
-        var currentObj = this ;
-
-        wx.login({
-            success(res) {
-                console.log('res.code',res.code);
-                var payload = {
-                    code:res.code
-                };
-                currentObj.props.WeChatLogin(payload).then((res)=>{
-                     console.log('currentObj.props.WeChatLogin(payload)',res);
-                });
+    onGetUserInfo(){
+        
+        Taro.getUserInfo().then((res) => {
+            console.log('res',res);
+            const { errMsg, userInfo } = res
+            if (errMsg === 'getUserInfo:ok') {
+              Taro.showToast({
+                title: `微信昵称: ${userInfo.nickName}，请使用邮箱登录`,
+                icon: 'none'
+              })
+            } else {
+              Taro.showToast({
+                title: '授权失败',
+                icon: 'none'
+              })
             }
         });
     }
 
-    // this.jumpUrl.bind(this,'/pages/user/user-login/index')
-
     render(){
         return (
-            <View className="mp-user__info" onClick={this.WeChatLogin}>
+            <View className="mp-user__info" >
                     <View className="mp-user__info-avatar">
                         <Text className="mp-icon mp-icon-avatar"></Text>
                     </View>
@@ -57,6 +57,8 @@ export default class Info extends Component{
                             <View className="mp-user__money-order">已结定金</View>
                         </View>
                     }
+                    <Button  className="mp-user__update" openType="getUserInfo" lang="zh_CN" 
+            onGetUserInfo={this.onGetUserInfo} type='primary'> 更新资料 </Button>
             </View>
         )
     }

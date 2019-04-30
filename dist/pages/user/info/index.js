@@ -12,6 +12,8 @@ var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
 var _jump = require("../../utils/jump.js");
 
 var _jump2 = _interopRequireDefault(_jump);
@@ -20,7 +22,7 @@ var _user = require("../../../actions/user.js");
 
 var actions = _interopRequireWildcard(_user);
 
-var _index2 = require("../../../npm/@tarojs/redux/index.js");
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -32,7 +34,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Info = (_dec = (0, _index2.connect)(function (state) {
+var Info = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Info, _BaseComponent);
@@ -63,26 +65,27 @@ var Info = (_dec = (0, _index2.connect)(function (state) {
       (0, _jump2.default)({ url: url });
     }
   }, {
-    key: "WeChatLogin",
-    value: function WeChatLogin() {
+    key: "onGetUserInfo",
+    value: function onGetUserInfo() {
 
-      var currentObj = this;
+      _index2.default.getUserInfo().then(function (res) {
+        console.log('res', res);
+        var errMsg = res.errMsg,
+            userInfo = res.userInfo;
 
-      wx.login({
-        success: function success(res) {
-          console.log('res.code', res.code);
-          var payload = {
-            code: res.code
-          };
-          currentObj.props.WeChatLogin(payload).then(function (res) {
-            console.log('currentObj.props.WeChatLogin(payload)', res);
+        if (errMsg === 'getUserInfo:ok') {
+          _index2.default.showToast({
+            title: "\u5FAE\u4FE1\u6635\u79F0: " + userInfo.nickName + "\uFF0C\u8BF7\u4F7F\u7528\u90AE\u7BB1\u767B\u5F55",
+            icon: 'none'
+          });
+        } else {
+          _index2.default.showToast({
+            title: '授权失败',
+            icon: 'none'
           });
         }
       });
     }
-
-    // this.jumpUrl.bind(this,'/pages/user/user-login/index')
-
   }, {
     key: "_createData",
     value: function _createData() {
@@ -101,7 +104,7 @@ var Info = (_dec = (0, _index2.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["WeChatLogin"], _temp2)) || _class);
+}, _class2.$$events = ["onGetUserInfo"], _temp2)) || _class);
 exports.default = Info;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Info));

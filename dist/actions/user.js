@@ -23,6 +23,7 @@ var WeChatLogin = exports.WeChatLogin = function WeChatLogin(payload) {
     type: _user.WECHAT_LOGIN,
     url: _api.API_USER_LOGIN,
     method: 'POST',
+    contentType: 'application/x-www-form-urlencoded',
     payload: payload
   });
 };

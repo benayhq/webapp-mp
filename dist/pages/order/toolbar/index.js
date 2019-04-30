@@ -117,8 +117,8 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       return this.__state;
     }
   }, {
-    key: "funPrivateDJobL",
-    value: function funPrivateDJobL() {
+    key: "funPrivateNwrlZ",
+    value: function funPrivateNwrlZ() {
       this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
@@ -137,7 +137,7 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleOrderClick", "funPrivateDJobL", "onClose", "onConfirm", "onCancel"], _temp2);
+}, _class.$$events = ["handleOrderClick", "funPrivateNwrlZ", "onClose", "onConfirm", "onCancel"], _temp2);
 exports.default = ToolBar;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));

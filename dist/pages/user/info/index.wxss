@@ -210,6 +210,21 @@
       float: left; }
     .mp-user__info-money {
       float: right; }
+  .mp-user__update {
+    width: 180rpx;
+    height: 52rpx;
+    background: #7dd6d0 !important;
+    line-height: 52rpx;
+    text-align: center;
+    position: absolute;
+    top: 31rpx;
+    left: 259rpx;
+    font-size: 28rpx; }
+    .mp-user__update:after {
+      border: 0;
+      border-radius: 0;
+      width: initial;
+      height: initial; }
   .mp-user__user-username {
     width: 252rpx;
     height: 50rpx;

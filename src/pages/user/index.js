@@ -65,7 +65,7 @@ class Index extends Component{
           }
       });
   }
-  
+
   jumpUrl = (url) =>{
     Taro.navigateTo({
       url: url
@@ -73,7 +73,6 @@ class Index extends Component{
   }
   
   render () {
-
     const {isAgent} = this.state;
     
     return (
