@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "product-item": "../../components/product/index"
+    "check-box": "../../components/checkbox/index"
   },
-  "navigationBarTitleText": "我的产品"
+  "navigationBarTitleText": "选择往期产品"
 }

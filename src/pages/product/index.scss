@@ -1,0 +1,43 @@
+@import './../../style/index.scss';
+
+
+$component: '.mp-product';
+
+page {
+    cursor:default;
+    -webkit-user-select:none;
+    user-select:none;
+    width:100%;
+    overflow-x:hidden;
+    background:rgba(245,245,249,1);
+    margin-top: 18px;
+}
+#{$component} {
+
+    &__save{
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        background: $color-bg;
+        height:110px;
+        line-height: 110px;
+        padding: 30px;
+
+        &>View{
+            padding:5rpx;
+            background-color:#7DD6D0;
+            border-radius:5px;
+            border:1px solid #7DD6D0;
+            font-size:36px;
+            color:#fff;
+            text-align:center;
+            line-height:80px;
+            display:inline-block;
+            height:80px;
+            width:91%;
+            text-align:center;
+        }
+    }
+
+
+}

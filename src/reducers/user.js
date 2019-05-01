@@ -1,11 +1,11 @@
 import {WECHAT_LOGIN} from './../constants/user';
 
-const INITIAL_STATE = {
+const INITIAL_STATE ={
     userInfo:{}
-};
+}
 
-const userReducer = (state = INITIAL_STATE,action) => {
-    switch(action.type) {
+const userReducer = function(state = INITIAL_STATE,action){
+    switch(action.type){
         case WECHAT_LOGIN:
             return {
                 ...state,
@@ -13,7 +13,7 @@ const userReducer = (state = INITIAL_STATE,action) => {
                     ...action.payload,
                     login:true
                 }
-            }
+            };
         default:
             return state;
     }

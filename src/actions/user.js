@@ -10,7 +10,9 @@ export const initWeChat = (value) => ({
 export const WeChatLogin = payload => createAction({
         type: WECHAT_LOGIN,
         url: API_USER_LOGIN,
-        method: 'POST',
-        contentType:'application/x-www-form-urlencoded',
+        fetchOptions:{
+            method: 'POST',
+            contentType: 'application/x-www-form-urlencoded',
+        },
         payload
  });

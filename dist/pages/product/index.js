@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -8,11 +8,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _dec, _class, _class2, _temp2;
 
-var _index = require('../../npm/@tarojs/taro-weapp/index.js');
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require("../../npm/@tarojs/redux/index.js");
+
+var _product = require("../../actions/product.js");
+
+var actions = _interopRequireWildcard(_product);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,7 +30,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = (_temp2 = _class = function (_BaseComponent) {
+var Index = (_dec = (0, _index3.connect)(function (state) {
+  return state.productList;
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -36,45 +46,116 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.config = {
-      navigationBarTitleText: '我的产品'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["checkboxOption", "checkedList", "GetProdcutList"], _this.config = {
+      navigationBarTitleText: '选择往期产品'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
-    key: '_constructor',
+    key: "_constructor",
     value: function _constructor() {
-      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), '_constructor', this).apply(this, arguments);
+      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).apply(this, arguments);
+      this.state = {
+        checkedList: ['list2']
+      };
+
+      this.checkboxOption = [{
+        value: 'list1',
+        label: 'iPhone X',
+        data: {
+          price: 3000,
+          marketPrice: 3000,
+          prePrice: 200,
+          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
+          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
+        },
+        disabled: false
+      }, {
+        value: 'list2',
+        label: 'HUAWEI P20',
+        data: {
+          price: 3000,
+          marketPrice: 3000,
+          prePrice: 200,
+          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
+          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
+        },
+        disabled: false
+      }, {
+        value: 'list3',
+        label: 'OPPO Find X',
+        data: {
+          price: 3000,
+          marketPrice: 3000,
+          prePrice: 200,
+          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
+          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
+        },
+        disabled: false
+      }, {
+        value: 'list4',
+        label: 'vivo NEX',
+        data: {
+          price: 3000,
+          marketPrice: 3000,
+          prePrice: 200,
+          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
+          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
+        },
+        disabled: false
+      }];
     }
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {}
+    key: "handleChange",
+    value: function handleChange(value) {
+      console.log('value', value);
+      this.setState({
+        checkedList: value
+      });
+    }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.init();
+    }
   }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {}
+    key: "init",
+    value: function init() {
+      this.initProductList();
+    }
   }, {
-    key: 'componentDidShow',
-    value: function componentDidShow() {}
+    key: "initProductList",
+    value: function initProductList() {
+      var payload = {
+        id: '222'
+      };
+      this.props.GetProdcutList(payload).then(function (res) {
+        console.log("res", res);
+      });
+      console.log("initProductList");
+    }
   }, {
-    key: 'componentDidHide',
-    value: function componentDidHide() {}
-  }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
-      ;
-      Object.assign(this.__state, {});
+      var checkboxOption = this.checkboxOption;
+
+      Object.assign(this.__state, {
+        checkboxOption: checkboxOption
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class2.properties = {
+  "GetProdcutList": {
+    "type": null,
+    "value": null
+  }
+}, _class2.$$events = ["handleChange"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

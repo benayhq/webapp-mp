@@ -24,7 +24,7 @@ class App extends Component {
       'pages/active/publish/index',
       'pages/active/share/index',
       'pages/product/index',
-      'pages/order/index',
+      'pages/order/index'
     ],
     window:{
       backgroundTextStyle: 'light',
@@ -33,7 +33,7 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-
+  
   componentDidMount () {
     console.log('componentDidMount');
   }

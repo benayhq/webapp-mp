@@ -16,14 +16,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function createAction(options) {
   var url = options.url,
+      type = options.type,
       payload = options.payload,
       method = options.method,
       fetchOptions = options.fetchOptions,
       cb = options.cb,
-      type = options.type,
       contentType = options.contentType;
 
-  console.log('dispatch', type);
+
   return function (dispatch) {
     return (0, _request2.default)(_extends({ url: url, payload: payload, method: method, contentType: contentType }, fetchOptions)).then(function (res) {
       dispatch({ type: type, payload: cb ? cb(res) : res });

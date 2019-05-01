@@ -40,20 +40,18 @@ exports.default = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(options) {
     var _this = this;
 
-    var url, payload, _options$method, method, _options$showToast, showToast, contentType, header;
+    var url, payload, _options$method, method, contentType, header;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            url = options.url, payload = options.payload, _options$method = options.method, method = _options$method === undefined ? 'GET' : _options$method, _options$showToast = options.showToast, showToast = _options$showToast === undefined ? true : _options$showToast, contentType = options.contentType;
+            url = options.url, payload = options.payload, _options$method = options.method, method = _options$method === undefined ? 'GET' : _options$method, contentType = options.contentType;
             header = {};
-
 
             if (method === 'POST') {
               header['content-type'] = contentType ? contentType : 'application/json';
             }
-
             return _context2.abrupt("return", _index2.default.request({
               url: url,
               method: method,
@@ -65,20 +63,18 @@ exports.default = function () {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
-                        console.log('options', res);
-
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context.next = 4;
+                          _context.next = 3;
                           break;
                         }
 
-                        _context.next = 4;
+                        _context.next = 3;
                         return updateStorage(res.data);
 
-                      case 4:
+                      case 3:
                         return _context.abrupt("return", res.data);
 
-                      case 5:
+                      case 4:
                       case "end":
                         return _context.stop();
                     }
@@ -90,20 +86,7 @@ exports.default = function () {
                 return _ref2.apply(this, arguments);
               };
             }()).catch(function (err) {
-              console.log('err', err);
               var defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
-
-              if (showToast) {
-                _index2.default.showToast({
-                  title: err.err.errorMsg || defaultMsg,
-                  icon: 'none'
-                });
-              }
-
-              if (err.code === CODE_AUTH_EXPIRED) {
-                console.log('CODE_AUTH_EXPIRED');
-              }
-
               return Promise.reject(_extends({ message: defaultMsg }, err));
             }));
 

@@ -1,0 +1,1 @@
+export const PRODUCT_OWNER = 'PRODUCT_OWNER';

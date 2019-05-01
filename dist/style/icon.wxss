@@ -1,5 +1,4 @@
 
-@charset "UTF-8";
 @font-face {
   font-family: 'iconfont';
   /* project id 1110655 */
@@ -199,50 +198,3 @@
   font-weight: 100;
   color: #7DD6D0;
   content: "\e626"; }
-
-/* 
- Text Color
-*/
-/* z-index*/
-/* Color */
-/* Text Color */
-/* Color Palette*/
-/* 背景色 */
-/* Font */
-/* Line Height */
-/* 水平间距 */
-/* 垂直间距 */
-/* Checkbox */
-/* Border Radius */
-page {
-  cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
-  width: 100%;
-  overflow-x: hidden;
-  background: #f5f5f9;
-  margin-top: 18rpx; }
-
-.mp-product__save {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #FFF;
-  height: 110rpx;
-  line-height: 110rpx;
-  padding: 30rpx; }
-  .mp-product__save > View {
-    padding: 5rpx;
-    background-color: #7DD6D0;
-    border-radius: 5rpx;
-    border: 1rpx solid #7DD6D0;
-    font-size: 36rpx;
-    color: #fff;
-    text-align: center;
-    line-height: 80rpx;
-    display: inline-block;
-    height: 80rpx;
-    width: 91%;
-    text-align: center; }

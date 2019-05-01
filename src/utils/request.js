@@ -18,40 +18,23 @@ function updateStorage(data={}){
 }
 
 export default async function fetch(options){
-    const {url,payload,method = 'GET' ,showToast=true,contentType } = options;
-    const header = {};
-
+    const {url,payload,method='GET',contentType} = options;
+    const header ={};
     if(method === 'POST'){
-        header['content-type'] =  contentType ? contentType : 'application/json';
+        header['content-type'] = contentType ? contentType : 'application/json';
     }
-    
     return Taro.request({
         url,
         method,
         data:payload,
         header:header
     }).then(async(res)=>{
-    console.log('options',res);
-
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);
         }
         return res.data;
     }).catch((err)=>{
-        console.log('err',err);
-        const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效':'请求异常';
-
-        if(showToast){
-            Taro.showToast({
-                title:err.err.errorMsg || defaultMsg,
-                icon:'none'
-            })
-        }
-
-        if(err.code === CODE_AUTH_EXPIRED){
-            console.log('CODE_AUTH_EXPIRED');
-        }
-
-        return Promise.reject({ message: defaultMsg, ...err})
-    });
+        const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
+        return Promise.reject({message:defaultMsg,...err}); 
+    })
 }

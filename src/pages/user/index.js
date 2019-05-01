@@ -13,10 +13,11 @@ import {connect} from '@tarojs/redux';
 
 @connect(state=>state.user,actions)
 class Index extends Component{
+
   config = {
     navigationBarTitleText: '个人中心'
   }
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -88,6 +89,7 @@ class Index extends Component{
         <ChangeUser/>
       </View>
     )
+
   }
 }
 

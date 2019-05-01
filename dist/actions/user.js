@@ -22,8 +22,10 @@ var WeChatLogin = exports.WeChatLogin = function WeChatLogin(payload) {
   return (0, _redux.createAction)({
     type: _user.WECHAT_LOGIN,
     url: _api.API_USER_LOGIN,
-    method: 'POST',
-    contentType: 'application/x-www-form-urlencoded',
+    fetchOptions: {
+      method: 'POST',
+      contentType: 'application/x-www-form-urlencoded'
+    },
     payload: payload
   });
 };
