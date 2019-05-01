@@ -91,7 +91,7 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
 
   createProduct(){
     Taro.navigateTo({
-      url:'/pages/product/index'
+      url:'/pages/product/add'
     })
   }
 

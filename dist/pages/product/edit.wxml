@@ -1,0 +1,14 @@
+<block>
+    <view class="mp-edit-product">
+        <at-form __triggerObserer="{{ _triggerObserer }}">
+            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="分类" type="text" placeholder="请选择产品类型" value="{{value1}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value2" __triggerObserer="{{ _triggerObserer }}" title="名称" type="number" placeholder="产品名称品牌规格信息" value="{{value2}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value3" __triggerObserer="{{ _triggerObserer }}" title="价格" type="text" placeholder="请输入产品原价" value="{{value3}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value4" __triggerObserer="{{ _triggerObserer }}" title="活动价" type="text" placeholder="请输入产品活动价格" value="{{value3}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-image-picker files="{{files}}" __triggerObserer="{{ _triggerObserer }}" bindonchange="onChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+            <at-input name="value3" __triggerObserer="{{ _triggerObserer }}" title="预定金" type="text" placeholder="请输入预定金" value="{{value3}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+        </at-form>
+        <view class="mp-edit-product__warn-tips">温馨提醒：</view>
+        <view class="mp-edit-product__warn-info">预定金优先由平台代为收取,客户当面核销后转入您的微信余额。</view>
+    </view>
+</block>

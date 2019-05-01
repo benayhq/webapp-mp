@@ -24,6 +24,8 @@ class App extends Component {
       'pages/active/publish/index',
       'pages/active/share/index',
       'pages/product/index',
+      'pages/product/add',
+      'pages/product/edit',
       'pages/order/index'
     ],
     window:{

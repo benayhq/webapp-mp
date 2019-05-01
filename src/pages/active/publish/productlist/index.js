@@ -7,8 +7,14 @@ export default class ProductList extends Component{
 
     createProduct(){
         Taro.navigateTo({
-          url:'/pages/product/index'
+          url:'/pages/product/add'
         })
+    }
+
+    selectProduct(){
+        Taro.navigateTo({
+            url:'/pages/product/index'
+          })
     }
 
     render(){
@@ -16,7 +22,7 @@ export default class ProductList extends Component{
             <View className="mp-publish-product">
                     <View className="publish-item">
                         <Text>活动产品</Text>
-                        <Text onClick={this.createProduct}>选择我的产品</Text>
+                        <Text onClick={this.selectProduct}>选择我的产品</Text>
                     </View>
 
                     <ProductItem/>

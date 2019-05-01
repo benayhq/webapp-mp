@@ -10,5 +10,4 @@ export function createAction(options){
                     return res;
         });
     }
-    
 }

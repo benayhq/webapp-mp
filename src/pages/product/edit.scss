@@ -1,0 +1,34 @@
+@import './../../style/index.scss';
+
+page{
+    width:100%;
+    overflow-x:hidden;
+    background:rgba(245,245,249,1);
+}
+
+$component:'.mp-edit-product';
+
+#{$component}{
+
+    &__warn-tips{
+        width:100%;
+        height:44px;
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:33px;
+        margin: 30px 30px 0px 30px;
+    }
+
+    &__warn-info{
+        width:100%;
+        height:44px;
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:33px;
+        margin: 0px 30px 30px 30px;
+    }
+}

@@ -133,7 +133,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
     key: "createProduct",
     value: function createProduct() {
       _index2.default.navigateTo({
-        url: '/pages/product/index'
+        url: '/pages/product/add'
       });
     }
   }, {

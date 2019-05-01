@@ -6,11 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _class, _temp2;
 
-var _index = require("../../../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -22,41 +20,54 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ProductList = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(ProductList, _BaseComponent);
+var EditProduct = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(EditProduct, _BaseComponent);
 
-  function ProductList() {
+  function EditProduct() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, ProductList);
+    _classCallCheck(this, EditProduct);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["files", "value1", "value2", "value3"], _this.config = {
+      navigationBarTitleText: '编辑产品'
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(ProductList, [{
+  _createClass(EditProduct, [{
     key: "_constructor",
-    value: function _constructor(props) {
-      _get(ProductList.prototype.__proto__ || Object.getPrototypeOf(ProductList.prototype), "_constructor", this).call(this, props);
+    value: function _constructor() {
+      this.state = {
+        files: [{
+          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
+        }, {
+          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
+        }, {
+          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
+        }]
+      };
     }
   }, {
-    key: "createProduct",
-    value: function createProduct() {
-      _index2.default.navigateTo({
-        url: '/pages/product/add'
+    key: "onChange",
+    value: function onChange(files) {
+      this.setState({
+        files: files
       });
     }
   }, {
-    key: "selectProduct",
-    value: function selectProduct() {
-      _index2.default.navigateTo({
-        url: '/pages/product/index'
-      });
+    key: "onFail",
+    value: function onFail(mes) {
+      console.log(mes);
+    }
+  }, {
+    key: "onImageClick",
+    value: function onImageClick(index, file) {
+      console.log(index, file);
     }
   }, {
     key: "_createData",
@@ -70,8 +81,8 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
     }
   }]);
 
-  return ProductList;
-}(_index.Component), _class.properties = {}, _class.$$events = ["selectProduct", "createProduct"], _temp2);
-exports.default = ProductList;
+  return EditProduct;
+}(_index.Component), _class.properties = {}, _class.$$events = ["handleChange", "onChange"], _temp2);
+exports.default = EditProduct;
 
-Component(require('../../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));
+Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(EditProduct, true));

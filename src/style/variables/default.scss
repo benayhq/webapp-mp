@@ -9,13 +9,20 @@ $z-index-modal: 1000 !default;
 
 /* Color */
 $color-brand: #7DD6D0 !default;
-$color-white: rgb(39, 10, 10) !default;
+$color-white: #FFF !default;
+$color-error: #FF4949 !default;
 
 /* Text Color */
 $color-text-base:#333 !default; // 文字的基本色
 
 /* Color Palette*/
+$color-grey-0: #333 !default;
+$color-grey-1: #666 !default;
 $color-grey-2: #999 !default;
+$color-grey-3: #CCC !default;
+$color-grey-4: #E5E5E5 !default;
+$color-grey-5: #F0F0F0 !default;
+$color-grey-6: #F7F7F7 !default;
 
 /* 背景色 */
 $color-bg:#FFF !default;
@@ -53,6 +60,13 @@ $mp-checkbox-icon-color-checked:$color-white;
 $mp-checkbox-title-color:$color-text-base;
 $mp-checkbox-title-font-size:$font-size-lg !default;
 $mp-checkobx-desc-color:$color-grey-2 !default;
+
+/* Button */
+$mp-button-height:92px !default;
+$mp-button-color:$color-brand !default;
+$mp-button-bg: $mp-button-color !default;
+$mp-button-font-color: $color-white !default;
+$mp-button-bg-danger:$color-error !default;
 
 /* Border Radius */
 $border-radius-sm:2px * $hd !default;

@@ -1,6 +1,6 @@
 <block>
     <view class="mp-publish-product">
-        <view class="publish-item"><text>活动产品</text><text bindtap="createProduct">选择我的产品</text>
+        <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
         </view>
         <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
         <view class="publish-active"><text>活动价</text>
