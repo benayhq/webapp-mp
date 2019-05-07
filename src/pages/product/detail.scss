@@ -1,0 +1,373 @@
+@import './../../style/index.scss';
+
+page{
+    width:100%;
+    background:rgba(245,245,249,1);
+}
+
+$component:'.mp-activedetail';
+
+#{$component}{
+    .mp-swiper{
+        height:350px;
+    }
+
+    &__user{
+        line-height: 80px;
+        height:80px;
+        background:rgba(253,249,246,1);
+        border:1px solid rgba(253,249,246,1);
+    }
+
+    &__user > text{
+        &:nth-child(1){
+            color: $color-grey-3;
+            font-size:$font-size-lg;
+        }
+
+        &:nth-child(2){
+            color: $color-brand;
+        }
+
+        &:nth-child(3){
+            color: $color-grey-3;
+            font-size: $font-size-lg;
+        }
+
+        &:nth-child(4){
+            color: $color-error;
+        }
+
+        &:nth-child(5){
+            color: $color-grey-3;
+            font-size: $font-size-lg;
+        }
+    }
+
+
+    &__price{
+        height:220px;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+        padding: 8px;
+    }
+
+    &__title{
+        color: $color-brand;
+        font-size: $font-size-xxl;
+        padding-left: 22px;
+    }
+
+    &__subtitle{
+        color: $color-grey-2;
+        text-decoration: line-through;
+        margin-left: 30px;
+    }
+
+    &__desc{
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(0,0,0,1);
+        line-height:45px;
+    }
+
+    &__address{
+        color: $color-grey-2;
+        font-size: $font-size-base;
+        float:left;
+        padding: 10px;
+    }
+
+    &__tel{
+        color: $color-grey-2;
+        font-size: $font-size-base;
+        float:right;
+        padding: 10px;
+    }
+
+    &__service{
+        margin: 14px 0 0 0;
+        height: 80px;
+        line-height: 80px;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        &>view {
+            width: 100%;
+            height:80px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(60,60,60,1);
+            line-height: 80px;
+            text-align:left;
+            padding-left:26px;
+        }
+    }
+
+    &__consultation{
+        margin: 14px 0 0 0;
+        height: 80px;
+        line-height: 80px;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+
+        &>text {
+            // width:132px;
+            height:30px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(60,60,60,1);
+            line-height:33px;
+            line-height: 30px;
+            padding: 0px 0px 0px 27px;
+        }
+    }
+
+    &__person{
+        margin: 14px 0 0 0;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+        padding: 20px;
+    }
+
+    &__header{
+        float: left;
+        width: 130px;
+        height: 140px;
+        background: red;
+        margin-top: 6px;
+    }
+
+    &__content{
+      padding-left: 178px;
+
+      &>View:nth-child(2){
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:50px;
+        height: 50px;
+      }
+
+      &>View:nth-child(3){
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:50px;
+        height: 50px;
+      }
+    }
+
+    &__join{
+        margin: 14px 0 0 0;
+        height: 287px;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+    }
+
+    &__first{
+        line-height: 87px;
+        height: 87px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    &__second{
+        line-height: 98px;
+        height: 98px;
+        border-bottom: 1px solid #ddd; 
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__joinperson{
+        height:30px;
+        line-height:30px;
+        width:300px;
+        text-align:center;
+        margin-top: 9px;
+    }
+
+    &__joinaction{
+        text-align: right;
+    }
+
+    &__time{
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:40px;
+    }
+
+    &__counter{
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:40px;
+    }
+
+    &__title{
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:45px;
+    }
+
+    &__all{
+        color: #7DD6D0;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(125,214,208,1);
+        line-height:45px;
+        float: right;
+        padding-right: 45px;
+        padding-top: 25px;
+    }
+
+    &__comment{
+        margin:14px 0 80px 0;
+        width:100%;
+        height:728px;
+        background:white;
+        border:1px solid white;
+        
+        &>View:not(:last-child):not(:first-child){
+           padding-left: 80px;
+        }
+    }
+
+    &__comment-title{
+        height: 84px;
+        line-height: 84px;
+        text-align: left;
+        font-size:32px;
+        padding-left: 45px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        border-bottom: 1px solid #ddd; 
+    }
+
+    &__comment-content{
+        height: 568px;
+        border-bottom: 1px solid #ddd; 
+    }
+
+    &__comment-username{
+        height: 45px;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:45px;
+    }
+
+    &__comment-tag{
+        height: 45px;
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:45px;
+    }
+
+    &__comment-desc{
+        height: 45px;
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(158,167,180,1);
+        line-height:45px;
+    }
+
+    &__comment-description{
+        height: 45px;
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:45px;
+        white-space:normal;
+    }
+
+    &__comment-time{
+        height: 45px;
+        font-size:24px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        line-height:45px;
+    }
+
+    &__query-all-comment{
+        text-align: center;
+        line-height: 80px;
+        height: 80px;
+        color: $color-brand;
+        font-size: 34px;
+        margin-top:-68px;
+    }
+
+    &__footer{
+        margin: 14px 0 0 0;
+        width: 100%;
+        height: 95px;
+        background:rgba(255,255,255,1);
+        border:1px solid rgba(255,255,255,1);
+        position: fixed;
+        bottom: 0px;
+        display: flex;
+        flex-direction: row;
+        z-index: 10001;
+    }
+    
+    &__orderpay_footer{
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        padding: 8px 30px 0px 24px;
+    }
+
+    &__orderpay_face_footer{
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(145,145,145,1);
+        padding: 2px 30px 0px 24px;
+    }
+
+    &__zixun_footer{
+        line-height: 95px;
+        height: 95px;
+        padding-left: 185px;
+    }
+
+    &__action__footer{
+        flex: 1;
+        height:97px;
+        background:rgba(125,214,208,1);
+        border:1px solid rgba(125,214,208,1);
+        line-height: 97px;
+        float: right;
+        text-align: center;
+        color: #FFFFFF;
+    }
+}
+
+
+
+
+

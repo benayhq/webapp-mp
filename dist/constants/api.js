@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 var DEVHOST = exports.DEVHOST = 'https://lovemeipin.com:8444/meipin';
 // yapi  
-var MOCHOST = exports.MOCHOST = 'http://yapi.demo.qunar.com/mock/65279';
+var MOOCHOST = exports.MOOCHOST = 'http://yapi.demo.qunar.com/mock/65279';
 
-var DevEnv = exports.DevEnv = false;
+var DevEnv = exports.DevEnv = true;
 
-var HOST = exports.HOST = MOCHOST;
+var HOST = exports.HOST = DEVHOST;
 
 var API_USER_LOGIN = exports.API_USER_LOGIN = HOST + '/wx/v1/wxuser/wxLogin';
 

@@ -213,6 +213,7 @@
 /* 水平间距 */
 /* 垂直间距 */
 /* Checkbox */
+/* Button */
 /* Border Radius */
 .customer {
   width: 749rpx;

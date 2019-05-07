@@ -1,10 +1,10 @@
 export const DEVHOST = 'https://lovemeipin.com:8444/meipin';
 // yapi  
-export const MOCHOST = 'http://yapi.demo.qunar.com/mock/65279';
+export const MOOCHOST = 'http://yapi.demo.qunar.com/mock/65279';
 
-export const DevEnv = false;
+export const DevEnv = true;
 
-export const HOST = DevEnv ? DEVHOST : MOCHOST;
+export const HOST = DevEnv ? DEVHOST : MOOCHOST;
 
 export const API_USER_LOGIN = `${HOST}/wx/v1/wxuser/wxLogin`;
 

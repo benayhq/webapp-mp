@@ -213,6 +213,7 @@
 /* 水平间距 */
 /* 垂直间距 */
 /* Checkbox */
+/* Button */
 /* Border Radius */
 .mp-checkbox__option-cnt {
   display: -webkit-box;
@@ -302,6 +303,6 @@
   border-radius: 8rpx;
   margin: 18rpx; }
   .mp-checkbox__option--selected .mp-checkbox__icon-cnt {
-    color: #270a0a;
+    color: #FFF;
     border: none;
     background-color: #7DD6D0; }

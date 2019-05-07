@@ -69,14 +69,14 @@ class Index extends Component{
           }
       });
   }
-
+  
   jumpUrl = (url) =>{
     Taro.navigateTo({
       url: url
     })
   }
   
-  render () {
+  render(){
     const {isAgent} = this.state;
 
     return (
@@ -89,7 +89,7 @@ class Index extends Component{
         <ChangeUser/>
       </View>
     )
-
+    
   }
 }
 

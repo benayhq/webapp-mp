@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -100,6 +100,14 @@
 					"id": -1,
 					"name": "编辑",
 					"pathName": "pages/product/edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "产品详情",
+					"pathName": "pages/product/detail",
+					"query": "",
 					"scene": null
 				}
 			]

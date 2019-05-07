@@ -23,6 +23,7 @@ export default async function fetch(options){
     if(method === 'POST'){
         header['content-type'] = contentType ? contentType : 'application/json';
     }
+    
     return Taro.request({
         url,
         method,

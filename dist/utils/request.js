@@ -52,6 +52,7 @@ exports.default = function () {
             if (method === 'POST') {
               header['content-type'] = contentType ? contentType : 'application/json';
             }
+
             return _context2.abrupt("return", _index2.default.request({
               url: url,
               method: method,

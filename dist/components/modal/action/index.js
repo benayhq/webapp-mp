@@ -12,85 +12,49 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require("../../../npm/prop-types/index.js");
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = require("../../../npm/classnames/index.js");
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _component = require("../../../common/component");
+
+var _component2 = _interopRequireDefault(_component);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ToolBar = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(ToolBar, _BaseComponent);
+var AtModalAction = (_temp2 = _class = function (_AtComponent) {
+  _inherits(AtModalAction, _AtComponent);
 
-  function ToolBar() {
+  function AtModalAction() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, ToolBar);
+    _classCallCheck(this, AtModalAction);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "modal", "__fn_onClick"], _this.toggleVisible = function () {
-      console.log('onConfirm');
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModalAction.__proto__ || Object.getPrototypeOf(AtModalAction)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "isSimple", "className", "children"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(ToolBar, [{
+  _createClass(AtModalAction, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(ToolBar.prototype.__proto__ || Object.getPrototypeOf(ToolBar.prototype), "_constructor", this).apply(this, arguments);
-      this.state = {
-        modal: {
-          isOpened: false,
-          title: '标题',
-          content: '内容',
-          cancelText: '取消',
-          confirmText: '确认',
-          closeOnClickOverlay: false
-        }
-      };
-    }
-  }, {
-    key: "handleOrderClick",
-    value: function handleOrderClick(event) {
-      var self = this;
-      switch (event) {
-        case "Cancel":
-          self.setState({
-            modal: {
-              isOpened: true,
-              title: '标题',
-              content: '内容',
-              cancelText: '取消',
-              confirmText: '确认',
-              closeOnClickOverlay: true
-            }
-          });
-          break;
-      }
-    }
-  }, {
-    key: "onClose",
-    value: function onClose(e) {
-      console.log('onClose parent', e);
-    }
-  }, {
-    key: "onConfirm",
-    value: function onConfirm() {
-      console.log('callback onConfirm');
-      this.onCancel();
-    }
-  }, {
-    key: "onCancel",
-    value: function onCancel() {
-      this.setState({
-        modal: {
-          isOpened: false
-        }
-      });
-      console.log('onCancel');
+    value: function _constructor(props) {
+      _get(AtModalAction.prototype.__proto__ || Object.getPrototypeOf(AtModalAction.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "_createData",
@@ -98,46 +62,39 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
-      var modal = this.modal;
-      var toolBar = this.__props.toolBar;
+      ;
 
-      console.log("toolBart", toolBar);
-
-      if (toolBar == null) {}
-
-      if (toolBar[0] && toolBar[1]) {}
-
-      if (toolBar[0]) {}
-
-      if (toolBar[1]) {}
+      var rootClass = (0, _index6.default)('at-modal__footer', {
+        'at-modal__footer--simple': this.__props.isSimple
+      }, this.__props.className);
 
       Object.assign(this.__state, {
-        toolBar: toolBar
+        rootClass: rootClass
       });
       return this.__state;
     }
-  }, {
-    key: "funPrivateHzALs",
-    value: function funPrivateHzALs() {
-      this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
-    }
   }]);
 
-  return ToolBar;
-}(_index.Component), _class.properties = {
-  "toolBar": {
+  return AtModalAction;
+}(_component2.default), _class.properties = {
+  "isSimple": {
     "type": null,
     "value": null
   },
-  "toolBar.event": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
+  "className": {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleOrderClick", "funPrivateHzALs", "onClose", "onConfirm", "onCancel"], _temp2);
-exports.default = ToolBar;
+}, _class.$$events = [], _temp2);
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));
+
+AtModalAction.defaultProps = {
+  isSimple: false
+};
+
+AtModalAction.propTypes = {
+  isSimple: _index4.default.bool
+};
+exports.default = AtModalAction;
+
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(AtModalAction));

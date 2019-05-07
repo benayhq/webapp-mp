@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text,Button } from '@tarojs/components'
 import {connect} from '@tarojs/redux';
 import {AtButton} from 'taro-ui'
+import './add.scss';
 
 @connect(state=>state.product,null)
 class CreateProduct extends Component{
@@ -9,7 +10,7 @@ class CreateProduct extends Component{
     config = {
         navigationBarTitleText: '新增产品'
     }
-
+    
     constructor(){
         this.state = {
             productList:[

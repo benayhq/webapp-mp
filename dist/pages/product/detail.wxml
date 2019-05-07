@@ -1,0 +1,87 @@
+<block>
+    <view class="mp-activedetail">
+        <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
+            <swiper-item>
+                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            </swiper-item>
+        </swiper>
+        <view class="mp-activedetail__user"><text>好友 </text><text>爱吐槽的徐教授 </text><text>发起的拼团,还差 </text><text>1 </text><text>人成团</text>
+        </view>
+        <view class="mp-activedetail__price">
+            <view style="height:35px;line-height:35px;"><text class="mp-activedetail__title">￥2000</text><text class="mp-activedetail__subtitle">￥3000</text>
+            </view>
+            <view class="mp-activedetail__desc">【玻t尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑唇 塑造心形脸</view>
+            <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：140074</text>
+            </view>
+        </view>
+        <view class="mp-activedetail__service">
+            <view>服务承诺</view>
+            <view>正品保证 ·</view>
+            <view>预付款可退 ·</view>
+            <view>预付款可退</view>
+        </view>
+        <view class="mp-activedetail__consultation"><text>咨询产品</text><text>艾美玻尿酸 0.8ml 2支</text>
+        </view>
+        <view class="mp-activedetail__person">
+            <view class="mp-activedetail__header">
+                <image style="width:80px;height:80px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            </view>
+            <view class="mp-activedetail__content">
+                <view>医美管家 vivi</view>
+                <view>5.0分（2000人评）| ￥29999</view>
+                <view>服务区域：上海市 黄浦区</view>
+            </view>
+        </view>
+        <view class="mp-activedetail__join">
+            <view class="mp-activedetail__first"><text class="mp-activedetail__title">14人在拼单，可直接参与</text><text class="mp-activedetail__all">查看全部</text>
+            </view>
+            <view class="mp-activedetail__second">
+                <image style="width:20px;height:20px;padding:13px 10px 0 10px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text>氧气9000532</text>
+                <view class="mp-activedetail__joinperson">
+                    <view class="mp-activedetail__counter">还差 1 人拼成</view>
+                    <view class="mp-activedetail__time">剩余20:50:14</view>
+                </view>
+                <view class="mp-activedetail__joinaction">
+                    <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">去拼团</at-button>
+                </view>
+            </view>
+        </view>
+        <view class="mp-activedetail__comment">
+            <view class="mp-activedetail__comment-title">评价 (7890)</view>
+            <view class="mp-activedetail__comment-content">
+                <view class="mp-activedetail__comment-username">氧气9000532</view>
+                <view class="mp-activedetail__comment-tag"><text>环境：5.0</text><text>专业度：5.0</text><text>服务：5.0</text><text>效果：5.0</text>
+                </view>
+                <view class="mp-activedetail__comment-desc">【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸</view>
+                <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
+                    <view class="mp-activedetail__comment-time">2018年03月15日</view>
+                    <view>
+                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                    </view>
+                </view>
+            </view>
+            <image style="width:30px;height:30px;position:relative;left:5px;top:-262px;z-index:1000;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            <view class="mp-activedetail__query-all-comment">查看全部评论</view>
+        </view>
+        <view class="mp-activedetail__consultation"></view>
+        <view class="mp-activedetail__footer">
+            <view>
+                <view class="mp-activedetail__orderpay_footer">预定金: <text style="color:rgba(235,47,150,1);">￥200</text>
+                </view>
+                <view class="mp-activedetail__orderpay_face_footer">当面付: ￥1200</view>
+            </view>
+            <view class="mp-activedetail__zixun_footer">
+                <view class="mp-icon mp-icon-telphone" style="padding-right:20px;"></view>
+            </view>
+            <view class="mp-activedetail__action__footer">拼团预约</view>
+        </view>
+    </view>
+</block>
