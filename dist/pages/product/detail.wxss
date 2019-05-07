@@ -518,7 +518,7 @@ page {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  z-index: 10001; }
+  z-index: 1000; }
 
 .mp-activedetail__orderpay_footer {
   font-size: 32rpx;

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index"
+    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index",
+    "modal": "../../components/modal/index"
   },
   "navigationBarTitleText": "活动详情"
 }

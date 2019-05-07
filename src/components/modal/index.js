@@ -12,7 +12,7 @@ export default class Modal extends Component {
       _isOpened:this.props.isOpened
     }
   }
-  
+
   componentWillReceiveProps(nextProps){
     const {_isOpened} = this.state;
 
@@ -44,18 +44,36 @@ export default class Modal extends Component {
 
   render () {
     const {_isOpened} = this.state;
-    const {content,title,cancelText,confirmText} = this.props;
+    const {content,title,cancelText,confirmText,popup, animationType} = this.props;
 
     const rootClass = classNames('mp-modal',{
       'mp-modal--active':_isOpened
     });
 
+    let isPopUp = false;
+
+    if (popup) {
+      isPopUp = true
+      // eslint-disable-next-line no-unused-expressions
+      animationType === 'slide-up' ? 'slide-up' : 'slide-down'
+    }
+
+    const popUpClass = classNames(
+      {
+        'mp-modal__container': !isPopUp,
+        'mp-modal__popup': isPopUp,
+        [`mp-modal__popup-${animationType}`]: isPopUp && animationType
+      }
+    );
+
+    console.log('popUpClass',popUpClass);
+    
     const isRenderFooter = cancelText || confirmText;
 
     return (
       <View className={rootClass}>
             <View className="mp-modal__overlay" onClick={this.onClose}> </View>
-            <View className="mp-modal__container">
+            <View className={popUpClass}>
                {
                  title && <View className="mp-modal__title">{title}</View>
                }

@@ -2,15 +2,32 @@ import Taro,{Component} from '@tarojs/taro';
 import {View,Text,Swiper, SwiperItem} from '@tarojs/components';
 import './detail.scss';
 import { AtButton } from 'taro-ui';
-import Modal from './../../components/modal/';
+import Modal from './../../components/modal';
 
 class Detail extends Component{
+
+    constructor(){
+        super(...arguments);
+
+        this.state = {
+            isOpened:false
+        }
+    }
+
+    openDialog(){
+        this.setState({
+            isOpened:true
+        })
+    }
 
     config = {
         navigationBarTitleText: '活动详情'
     }
 
     render(){
+
+        const {isOpened} = this.state;
+
         return (
             <View className='mp-activedetail'>
                 <Swiper
@@ -160,7 +177,7 @@ class Detail extends Component{
                         </View>
                     </View>
                     <image
-                            style="width:30px;height:30px;position:relative;left:5px;top:-262px;z-index:1000;"
+                            style="width:30px;height:30px;position:relative;left:5px;top:-262px;"
                             mode="scaleToFill"
                             src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
                      </image>
@@ -181,12 +198,21 @@ class Detail extends Component{
                         <View className="mp-activedetail__orderpay_face_footer">当面付: ￥1200 </View>
                     </View>
                     <View className="mp-activedetail__zixun_footer">
-                        <View className="mp-icon mp-icon-telphone" style="padding-right:20px;"></View> 
+                        <View className="mp-icon mp-icon-telphone" onClick={this.openDialog.bind(this)} style="padding-right:20px;"></View> 
                     </View>
                     <View className="mp-activedetail__action__footer">
                         拼团预约
                     </View>
                 </View>
+               
+                <Modal
+                   popup
+                   animationType='slide-up'
+                   isOpened={isOpened}
+                   content="测试"
+                   cancelText='取消'
+                   confirmText='确认'
+                   />
             </View>
         )
     }

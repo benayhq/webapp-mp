@@ -28,6 +28,8 @@ var _index6 = _interopRequireDefault(_index5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -48,7 +50,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "title", "content", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel"], _this.onClose = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "popUpClass", "title", "content", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "popup", "animationType"], _this.onClose = function (e) {
       if (_this.props.closeOnClickOverlay) {
         _this.onCancel();
       }
@@ -96,17 +98,35 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
           content = _props.content,
           title = _props.title,
           cancelText = _props.cancelText,
-          confirmText = _props.confirmText;
+          confirmText = _props.confirmText,
+          popup = _props.popup,
+          animationType = _props.animationType;
 
 
       var rootClass = (0, _index4.default)('mp-modal', {
         'mp-modal--active': _isOpened
       });
 
+      var isPopUp = false;
+
+      if (popup) {
+        isPopUp = true;
+        // eslint-disable-next-line no-unused-expressions
+        animationType === 'slide-up' ? 'slide-up' : 'slide-down';
+      }
+
+      var popUpClass = (0, _index4.default)(_defineProperty({
+        'mp-modal__container': !isPopUp,
+        'mp-modal__popup': isPopUp
+      }, "mp-modal__popup-" + animationType, isPopUp && animationType));
+
+      console.log('popUpClass', popUpClass);
+
       var isRenderFooter = cancelText || confirmText;
 
       Object.assign(this.__state, {
         rootClass: rootClass,
+        popUpClass: popUpClass,
         title: title,
         content: content,
         isRenderFooter: isRenderFooter,
@@ -152,6 +172,14 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
     "value": null
   },
   "confirmText": {
+    "type": null,
+    "value": null
+  },
+  "popup": {
+    "type": null,
+    "value": null
+  },
+  "animationType": {
     "type": null,
     "value": null
   }

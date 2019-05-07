@@ -68,7 +68,7 @@
                     </view>
                 </view>
             </view>
-            <image style="width:30px;height:30px;position:relative;left:5px;top:-262px;z-index:1000;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            <image style="width:30px;height:30px;position:relative;left:5px;top:-262px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
             <view class="mp-activedetail__query-all-comment">查看全部评论</view>
         </view>
         <view class="mp-activedetail__consultation"></view>
@@ -79,9 +79,10 @@
                 <view class="mp-activedetail__orderpay_face_footer">当面付: ￥1200</view>
             </view>
             <view class="mp-activedetail__zixun_footer">
-                <view class="mp-icon mp-icon-telphone" style="padding-right:20px;"></view>
+                <view class="mp-icon mp-icon-telphone" bindtap="openDialog" style="padding-right:20px;" data-e-tap-so="this"></view>
             </view>
             <view class="mp-activedetail__action__footer">拼团预约</view>
         </view>
+        <modal popup="{{true}}" __triggerObserer="{{ _triggerObserer }}" animationType="slide-up" isOpened="{{isOpened}}" content="测试" cancelText="取消" confirmText="确认"></modal>
     </view>
 </block>
