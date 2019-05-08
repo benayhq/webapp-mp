@@ -6,7 +6,7 @@ import './index.scss'
 import PropTypes from 'prop-types'
 
 export default class Modal extends Component {
-  constructor (props) {
+  constructor (props){
     super(props);
     this.state = {
       _isOpened:this.props.isOpened
@@ -23,7 +23,7 @@ export default class Modal extends Component {
     }
   }
   
-  onClose = (e) =>{
+  onClose = (e) => {
     if(this.props.closeOnClickOverlay){
       this.onCancel();
     }
@@ -44,11 +44,12 @@ export default class Modal extends Component {
 
   render () {
     const {_isOpened} = this.state;
-    const {content,title,cancelText,confirmText,popup, animationType} = this.props;
+    const {content,title,cancelText,confirmText,popup, animationType, height} = this.props;
 
     const rootClass = classNames('mp-modal',{
       'mp-modal--active':_isOpened
     });
+
 
     let isPopUp = false;
 
@@ -58,6 +59,8 @@ export default class Modal extends Component {
       animationType === 'slide-up' ? 'slide-up' : 'slide-down'
     }
 
+    let contentHeight = `height:${height}px`;
+
     const popUpClass = classNames(
       {
         'mp-modal__container': !isPopUp,
@@ -66,8 +69,6 @@ export default class Modal extends Component {
       }
     );
 
-    console.log('popUpClass',popUpClass);
-    
     const isRenderFooter = cancelText || confirmText;
 
     return (
@@ -75,25 +76,25 @@ export default class Modal extends Component {
             <View className="mp-modal__overlay" onClick={this.onClose}> </View>
             <View className={popUpClass}>
                {
-                 title && <View className="mp-modal__title">{title}</View>
+                  title && <View className="mp-modal__title">{title}</View>
                }
+               <View className="mp-modal__content" style={contentHeight}>
+                  { this.props.children }
+               </View>
                {
-                 content && <View className="mp-modal__content">{content}</View>
+                  isRenderFooter && (
+                      <View  className="mp-modal__footer">
+                          <View className="mp-modal__action">
+                              {
+                                cancelText && <Button onClick={this.onCancel}>{cancelText}</Button>
+                              }
+                              {
+                                confirmText && <Button onClick={this.onConfirm}>{confirmText}</Button>
+                              }
+                          </View>
+                     </View>
+                  )
                }
-               {
-                isRenderFooter && (
-                    <View  className="mp-modal__footer">
-                                    <View className="mp-modal__action">
-                                    {
-                                      cancelText && <Button onClick={this.onCancel}>{cancelText}</Button>
-                                    }
-                                    {
-                                      confirmText && <Button onClick={this.onConfirm}>{confirmText}</Button>
-                                    }
-                                  </View>
-                                  </View>
-                )
-               } 
             </View>
       </View>
     )
@@ -101,7 +102,8 @@ export default class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  closeOnClickOverlay:true
+  closeOnClickOverlay:true,
+  height:228
 }
 
 Modal.propTypes = {

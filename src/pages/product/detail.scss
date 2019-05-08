@@ -217,6 +217,14 @@ $component:'.mp-activedetail';
     }
 
     &__title{
+        font-size:48px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:$color-brand;
+        line-height:45px;
+    }
+
+    &__etitle{
         font-size:32px;
         font-family:PingFangSC-Regular;
         font-weight:400;
@@ -364,6 +372,10 @@ $component:'.mp-activedetail';
         float: right;
         text-align: center;
         color: #FFFFFF;
+    }
+
+    &__contacttel{
+        
     }
 }
 

@@ -45,7 +45,6 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
     key: "_constructor",
     value: function _constructor() {
       _get(Detail.prototype.__proto__ || Object.getPrototypeOf(Detail.prototype), "_constructor", this).apply(this, arguments);
-
       this.state = {
         isOpened: false
       };
@@ -55,6 +54,22 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
     value: function openDialog() {
       this.setState({
         isOpened: true
+      });
+    }
+  }, {
+    key: "renderContactTemplate",
+    value: function renderContactTemplate() {
+      return React.createElement(
+        "div",
+        null,
+        "\u6D4B\u8BD5\u6A21\u677F"
+      );
+    }
+  }, {
+    key: "close",
+    value: function close() {
+      this.setState({
+        isOpened: false
       });
     }
   }, {
@@ -74,7 +89,7 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Detail;
-}(_index.Component), _class.properties = {}, _class.$$events = ["openDialog"], _temp2);
+}(_index.Component), _class.properties = {}, _class.$$events = ["openDialog", "close"], _temp2);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

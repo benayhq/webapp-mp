@@ -40,7 +40,6 @@ class CreateProduct extends Component{
                 }
             ]
         }
-
         this.handleEditProduct = this.handleEditProduct.bind(this);
     }
 
@@ -53,6 +52,7 @@ class CreateProduct extends Component{
 
     render(){
         const {productList} = this.state;
+
         return (
             <View className="mp-own-product">
                 {

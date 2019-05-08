@@ -70,7 +70,6 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
           desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
         }]
       };
-
       this.handleEditProduct = this.handleEditProduct.bind(this);
     }
   }, {
@@ -90,6 +89,7 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
       ;
 
       var productList = this.__state.productList;
+
 
       Object.assign(this.__state, {});
       return this.__state;

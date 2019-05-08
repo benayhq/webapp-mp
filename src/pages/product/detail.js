@@ -8,7 +8,6 @@ class Detail extends Component{
 
     constructor(){
         super(...arguments);
-
         this.state = {
             isOpened:false
         }
@@ -19,14 +18,28 @@ class Detail extends Component{
             isOpened:true
         })
     }
+    
+    renderContactTemplate(){
+        return (
+            <div>
+                测试模板
+            </div>
+        )
+    }
+
+    close(){
+        this.setState({
+            isOpened:false
+        })
+    }
 
     config = {
         navigationBarTitleText: '活动详情'
     }
 
     render(){
-
-        const {isOpened} = this.state;
+        
+        const { isOpened } = this.state;
 
         return (
             <View className='mp-activedetail'>
@@ -113,13 +126,11 @@ class Detail extends Component{
                     </View>
                 </View>
 
-
                 <View className="mp-activedetail__join">
                     <View className="mp-activedetail__first">
-                        <Text className="mp-activedetail__title">14人在拼单，可直接参与</Text>
+                        <Text className="mp-activedetail__etitle">14人在拼单，可直接参与</Text>
                         <Text className="mp-activedetail__all"> 查看全部</Text>
                     </View>
-
                     <View className="mp-activedetail__second"> 
                         <image
                             style="width:20px;height:20px;padding:13px 10px 0 10px;"
@@ -148,13 +159,14 @@ class Detail extends Component{
                                 <Text>效果：5.0</Text>
                             </View>
                             <View className="mp-activedetail__comment-desc">
-                            【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
+                               【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
                             </View>
+
                             <View className="mp-activedetail__comment-description">
-                            打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
-                            打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
+                                打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
+                                打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
                             <View className="mp-activedetail__comment-time">
-                            2018年03月15日
+                                2018年03月15日
                             </View>
 
                             <View> 
@@ -187,7 +199,6 @@ class Detail extends Component{
                 </View>
 
                 <View className="mp-activedetail__consultation">
-              
                 </View>
 
                 <View className="mp-activedetail__footer">
@@ -204,15 +215,27 @@ class Detail extends Component{
                         拼团预约
                     </View>
                 </View>
-               
+
                 <Modal
                    popup
                    animationType='slide-up'
                    isOpened={isOpened}
-                   content="测试"
-                   cancelText='取消'
-                   confirmText='确认'
-                   />
+                   height='458'>
+                        <Text style="position:absolute; left:10px; top:-30px;color:#3C3C3C;">联系电话</Text>
+                        <Text style="position:absolute; left:10px; top:0px; color:#108EE9;">18317052202</Text>
+                        <View style="position:absolute;border-bottom:1px solid #ddd; width:500px;top:85px;left:10px;"></View>
+                        <Text style="position:absolute; left:10px; top:60px;color:#3C3C3C;">联系微信</Text>
+                        <Text style="position:absolute; left:10px; top:90px;color:#108EE9;">18317052202</Text>
+                        <Text style="position:absolute;border-bottom:1px solid #ddd; width:500px;top:175px;left:10px;"></Text>
+                        <image
+                            style="width:150px;height:150px;position:absolute;top:240px;left:130px;"
+                            mode="scaleToFill"
+                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                        </image>
+                        <Text style="width:150px;height:150px;position:absolute;top:146px;left:-11px;color:#3C3C3C;">二维码名片</Text>
+                        <Text style="width:150px;height:150px;position:absolute;top:146px;right:10px;color:#BFBFBF;">长按识别二维码</Text>
+                        <Text style="width:100px;height:50px;position:absolute;top:370px;left:155px;" onClick={this.close.bind(this)}> 关 闭 </Text>
+                </Modal>
             </View>
         )
     }

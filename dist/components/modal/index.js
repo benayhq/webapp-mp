@@ -50,7 +50,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "popUpClass", "title", "content", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "popup", "animationType"], _this.onClose = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "popUpClass", "title", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "content", "popup", "animationType", "height", "children"], _this.onClose = function (e) {
       if (_this.props.closeOnClickOverlay) {
         _this.onCancel();
       }
@@ -100,7 +100,8 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
           cancelText = _props.cancelText,
           confirmText = _props.confirmText,
           popup = _props.popup,
-          animationType = _props.animationType;
+          animationType = _props.animationType,
+          height = _props.height;
 
 
       var rootClass = (0, _index4.default)('mp-modal', {
@@ -115,20 +116,21 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
         animationType === 'slide-up' ? 'slide-up' : 'slide-down';
       }
 
+      var contentHeight = "height:" + height + "px";
+
       var popUpClass = (0, _index4.default)(_defineProperty({
         'mp-modal__container': !isPopUp,
         'mp-modal__popup': isPopUp
       }, "mp-modal__popup-" + animationType, isPopUp && animationType));
 
-      console.log('popUpClass', popUpClass);
-
       var isRenderFooter = cancelText || confirmText;
 
+      var anonymousState__temp = (0, _index.internal_inline_style)(contentHeight);
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         rootClass: rootClass,
         popUpClass: popUpClass,
         title: title,
-        content: content,
         isRenderFooter: isRenderFooter,
         cancelText: cancelText,
         confirmText: confirmText
@@ -182,12 +184,17 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
   "animationType": {
     "type": null,
     "value": null
+  },
+  "height": {
+    "type": null,
+    "value": null
   }
 }, _class.$$events = ["onClose", "onCancel", "onConfirm"], _temp2);
 
 
 Modal.defaultProps = {
-  closeOnClickOverlay: true
+  closeOnClickOverlay: true,
+  height: 228
 };
 
 Modal.propTypes = {

@@ -411,6 +411,13 @@ page {
   line-height: 40rpx; }
 
 .mp-activedetail__title {
+  font-size: 48rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #7DD6D0;
+  line-height: 45rpx; }
+
+.mp-activedetail__etitle {
   font-size: 32rpx;
   font-family: PingFangSC-Regular;
   font-weight: 400;
