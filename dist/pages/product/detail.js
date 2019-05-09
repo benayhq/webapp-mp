@@ -38,12 +38,12 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "bContact", "bSpec", "isOpened", "categoryDialog", "visible"], _this.toggleVisible = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "bContact", "bSpec", "showOrderDialog", "isOpened", "categoryDialog", "visible"], _this.config = {
+      navigationBarTitleText: '活动详情'
+    }, _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.config = {
-      navigationBarTitleText: '活动详情'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -56,7 +56,8 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
         categoryDialog: false,
         visible: true,
         bSpec: true,
-        bContact: false
+        bContact: false,
+        showOrderDialog: false
       };
     }
   }, {
@@ -65,7 +66,8 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
       this.setState({
         visible: true,
         bContact: true,
-        bSpec: false
+        bSpec: false,
+        showOrderDialog: false
       });
     }
   }, {
@@ -74,7 +76,8 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
       this.setState({
         visible: true,
         bSpec: true,
-        bContact: false
+        bContact: false,
+        showOrderDialog: false
       });
     }
   }, {
@@ -82,6 +85,13 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
     value: function close() {
       this.setState({
         isOpened: false
+      });
+    }
+  }, {
+    key: "showMpDialog",
+    value: function showMpDialog() {
+      this.setState({
+        showOrderDialog: true
       });
     }
   }, {
@@ -97,7 +107,8 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
       var _state = this.__state,
           isOpened = _state.isOpened,
           bSpec = _state.bSpec,
-          bContact = _state.bContact;
+          bContact = _state.bContact,
+          showOrderDialog = _state.showOrderDialog;
 
 
       var popupStyle = { transform: "translateY(" + _index2.default.pxTransform(-100) + ")" };
@@ -111,7 +122,7 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Detail;
-}(_index.Component), _class.properties = {}, _class.$$events = ["openDialog", "openCategoryDialog", "toggleVisible"], _temp2);
+}(_index.Component), _class.properties = {}, _class.$$events = ["showMpDialog", "openDialog", "openCategoryDialog", "toggleVisible"], _temp2);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

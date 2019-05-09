@@ -62,6 +62,8 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       if ((0, _isFunction3.default)(_this.props.onConfirm)) {
         _this.__triggerPropsFn("onConfirm", [null].concat([]));
       }
+    }, _this.handleTouchMove = function (e) {
+      e.stopPropagation();
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -189,7 +191,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["onClose", "onCancel", "onConfirm"], _temp2);
+}, _class.$$events = ["handleTouchMove", "onClose", "onCancel", "onConfirm"], _temp2);
 
 
 Modal.defaultProps = {

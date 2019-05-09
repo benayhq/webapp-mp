@@ -1,0 +1,14 @@
+<block>
+    <view class="mp-tuan">
+        <view class="mp-tuan__second">
+            <image style="width:20px;height:20px;padding:13px 10px 0 10px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text class="mp-tuan__username">氧气9000532</text>
+            <view class="mp-tuan__joinperson">
+                <view class="mp-tuan__counter">还差 1 人拼成</view>
+                <view class="mp-tuan__time">剩余20:50:14</view>
+            </view>
+            <view class="mp-tuan__joinaction">
+                <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="showMpDialog" __fn_onClick="{{true}}" data-e-onclick-so="this">去拼团</at-button>
+            </view>
+        </view>
+    </view>
+</block>

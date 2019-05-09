@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
+import { View, Button,ScrollView } from '@tarojs/components'
 import _isFunction from 'lodash/isFunction'
 import classNames from 'classnames'
 import './index.scss'
@@ -42,6 +42,10 @@ export default class Modal extends Component {
     }
   }
 
+  handleTouchMove = (e) =>{
+    e.stopPropagation()
+  }
+
   render () {
     const {_isOpened} = this.state;
     const {content,title,cancelText,confirmText,popup, animationType, height} = this.props;
@@ -72,14 +76,19 @@ export default class Modal extends Component {
     const isRenderFooter = cancelText || confirmText;
 
     return (
-      <View className={rootClass}>
+      <View className={rootClass} onTouchMove={this.handleTouchMove}>
+
             <View className="mp-modal__overlay" onClick={this.onClose}> </View>
             <View className={popUpClass}>
                {
                   title && <View className="mp-modal__title">{title}</View>
                }
+               <Text className="mp-icon mp-icon-closemodal" style="position:absolute;top:-11px;right:-9px;"  onClick={this.onClose}></Text>
                <View className="mp-modal__content" style={contentHeight}>
+                <ScrollView
+                  scrollY>
                   { this.props.children }
+                </ScrollView>
                </View>
                {
                   isRenderFooter && (

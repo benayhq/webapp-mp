@@ -226,82 +226,45 @@
 /* Checkbox */
 /* Button */
 /* Border Radius */
-.mp-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
-  z-index: 1000; }
-  .mp-modal__overlay, .mp-modal__container {
-    opacity: 0;
-    -webkit-transition: opacity 200ms ease-in;
-    -o-transition: opacity 200ms ease-in;
-    transition: opacity 200ms ease-in; }
-  .mp-modal__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); }
-  .mp-modal__container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500rpx;
-    border-radius: 12rpx;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    background: #ffffff; }
-  .mp-modal__popup {
-    position: absolute;
-    width: 100%;
-    background: #fff; }
-    .mp-modal__popup-slide-down {
-      top: 0; }
-    .mp-modal__popup-slide-up {
-      position: absolute;
-      width: 100%;
-      bottom: 0; }
-  .mp-modal__title {
-    line-height: 90rpx;
-    height: 90rpx;
-    width: 100%;
-    border-bottom: 1rpx solid #ddd;
-    text-align: center; }
-  .mp-modal__content {
-    height: 228rpx;
-    width: 100%;
-    text-align: center;
-    line-height: 228rpx; }
-  .mp-modal__action {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    border-top: 1rpx solid #ddd; }
-    .mp-modal__action > button {
-      -webkit-box-flex: 1;
-      -webkit-flex: auto;
-          -ms-flex: auto;
-              flex: auto;
-      border-radius: 0;
-      border: 0;
-      height: 80rpx;
-      background: transparent; }
-      .mp-modal__action > button::after {
-        border: 0;
-        width: initial;
-        height: initial; }
-      .mp-modal__action > button:not(:first-child) {
-        border-left: 1rpx solid #ddd; }
-      .mp-modal__action > button:last-child {
-        color: #7dd6d0; }
-  .mp-modal--active {
-    visibility: visible; }
-    .mp-modal--active .mp-modal__overlay,
-    .mp-modal--active .mp-modal__container {
-      opacity: 1; }
+.mp-tuan__second {
+  line-height: 98rpx;
+  height: 98rpx;
+  border-bottom: 1rpx solid #ddd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+
+.mp-tuan__joinperson {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 300rpx;
+  text-align: center;
+  margin-top: 9rpx; }
+
+.mp-tuan__joinaction {
+  text-align: right;
+  margin-right: 22rpx; }
+
+.mp-tuan__username {
+  width: 30rpx;
+  height: 30rpx; }
+
+.mp-tuan__time {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #919191;
+  line-height: 40rpx; }
+
+.mp-tuan__counter {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #3c3c3c;
+  line-height: 40rpx; }

@@ -40,7 +40,7 @@
                 </view>
             </view>
             <view class="mp-activedetail__join">
-                <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">14人在拼单，可直接参与</text><text class="mp-activedetail__all">查看全部</text>
+                <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">14人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this">查看全部</text>
                 </view>
                 <view class="mp-activedetail__second">
                     <image style="width:20px;height:20px;padding:13px 10px 0 10px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text>氧气9000532</text>
@@ -49,7 +49,7 @@
                         <view class="mp-activedetail__time">剩余20:50:14</view>
                     </view>
                     <view class="mp-activedetail__joinaction">
-                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">去拼团</at-button>
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="showMpDialog" __fn_onClick="{{true}}" data-e-onclick-so="this">去拼团</at-button>
                     </view>
                 </view>
             </view>
@@ -93,5 +93,8 @@
                 <spec __triggerObserer="{{ _triggerObserer }}"></spec>
             </block>
         </popup>
+        <modal isOpened="{{showOrderDialog}}" __triggerObserer="{{ _triggerObserer }}">
+            <tuan-list __triggerObserer="{{ _triggerObserer }}"></tuan-list>
+        </modal>
     </view>
 </block>

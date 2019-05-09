@@ -3,7 +3,9 @@
     "at-button": "../../npm/taro-ui/dist/weapp/components/button/index",
     "popup": "../../components/popup/index",
     "contact": "./contact/index",
-    "spec": "./spec/index"
+    "spec": "./spec/index",
+    "modal": "../../components/modal/index",
+    "tuan-list": "./tuan/index"
   },
   "navigationBarTitleText": "活动详情"
 }

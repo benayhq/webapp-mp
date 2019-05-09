@@ -7,8 +7,14 @@ import {Popup} from './../../components/popup/index';
 import Spec from './spec/index';
 import Contact from './contact/index';
 import {getWindowHeight} from './../../utils/style';
+import TuanList from './tuan/index';
 
 class Detail extends Component{
+
+    config = {
+        navigationBarTitleText: '活动详情'
+    }
+
     constructor(){
         super(...arguments);
         this.state = {
@@ -16,7 +22,8 @@ class Detail extends Component{
             categoryDialog: false,
             visible: true,
             bSpec: true,
-            bContact: false
+            bContact: false,
+            showOrderDialog:false
         }
     }
 
@@ -25,6 +32,7 @@ class Detail extends Component{
             visible: true,
             bContact: true,
             bSpec:false,
+            showOrderDialog:false
         })
     }
 
@@ -32,7 +40,8 @@ class Detail extends Component{
         this.setState({
             visible: true,
             bSpec:true,
-            bContact: false
+            bContact: false,
+            showOrderDialog:false
         })
     }
 
@@ -48,14 +57,16 @@ class Detail extends Component{
         })
     }
 
-    config = {
-        navigationBarTitleText: '活动详情'
+    showMpDialog(){
+        this.setState({
+            showOrderDialog:true
+        })
     }
 
     render(){
         const height = getWindowHeight(false);
         
-        const { isOpened,bSpec,bContact } = this.state;
+        const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
 
         const popupStyle = process.env.TARO_ENV === 'rn' ?
         { transform: [{ translateY: Taro.pxTransform(-100) }] } :
@@ -152,7 +163,7 @@ class Detail extends Component{
                     <View className="mp-activedetail__join">
                         <View className="mp-activedetail__first">
                             <Text className="mp-activedetail__etitle">14人在拼单，可直接参与</Text>
-                            <Text className="mp-activedetail__all"> 查看全部</Text>
+                            <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 查看全部</Text>
                         </View>
                         <View className="mp-activedetail__second"> 
                             <image
@@ -166,11 +177,11 @@ class Detail extends Component{
                                 <View className="mp-activedetail__time">剩余20:50:14</View>
                             </View>
                             <View className="mp-activedetail__joinaction">
-                                <AtButton type='primary' size='small'>去拼团</AtButton>
+                                <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >去拼团</AtButton>
                             </View>
                         </View>
                     </View>
-            
+
                     <View className="mp-activedetail__comment">
                         <View className="mp-activedetail__comment-title">评价 (7890)</View>
                         <View className="mp-activedetail__comment-content">
@@ -243,8 +254,7 @@ class Detail extends Component{
               
                 <Popup 
                  visible={this.state.visible}
-                 onClose={this.toggleVisible}
-                 >
+                 onClose={this.toggleVisible}>
                       {
                           bContact && <Contact/>
                       }
@@ -252,6 +262,11 @@ class Detail extends Component{
                           bSpec && <Spec/>
                       }
                 </Popup>
+
+                <Modal isOpened={showOrderDialog}>
+                     <TuanList/>
+                </Modal>
+
             </View>
         )
     }
