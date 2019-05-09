@@ -23,6 +23,7 @@ $component:'.mp-activedetail';
         &:nth-child(1){
             color: $color-grey-3;
             font-size:$font-size-lg;
+            margin-left: 14px;
         }
 
         &:nth-child(2){
@@ -141,7 +142,6 @@ $component:'.mp-activedetail';
         float: left;
         width: 130px;
         height: 140px;
-        background: red;
         margin-top: 6px;
     }
 
@@ -230,6 +230,7 @@ $component:'.mp-activedetail';
         font-weight:400;
         color:rgba(60,60,60,1);
         line-height:45px;
+        margin-left: 14px;
     }
 
     &__all{
@@ -240,7 +241,7 @@ $component:'.mp-activedetail';
         color:rgba(125,214,208,1);
         line-height:45px;
         float: right;
-        padding-right: 45px;
+        padding-right: 27px;
         padding-top: 25px;
     }
 

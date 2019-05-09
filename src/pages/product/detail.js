@@ -141,7 +141,7 @@ class Detail extends Component{
                     <View className="mp-activedetail__person">
                         <View className="mp-activedetail__header">
                                 <image
-                                style="width:80px;height:80px;"
+                                style="width:80px;height:74px;"
                                 mode="scaleToFill"
                                 src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
                                 ></image>
@@ -163,7 +163,10 @@ class Detail extends Component{
                     <View className="mp-activedetail__join">
                         <View className="mp-activedetail__first">
                             <Text className="mp-activedetail__etitle">14人在拼单，可直接参与</Text>
-                            <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 查看全部</Text>
+                            <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 
+                                查看全部
+                                <Text className="mp-icon mp-icon-arrow1"></Text>
+                            </Text>
                         </View>
                         <View className="mp-activedetail__second"> 
                             <image
@@ -183,7 +186,12 @@ class Detail extends Component{
                     </View>
 
                     <View className="mp-activedetail__comment">
-                        <View className="mp-activedetail__comment-title">评价 (7890)</View>
+                        <View className="mp-activedetail__comment-title">
+                            <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>
+                            
+                            <Text  style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</Text>
+                                
+                                </View>
                         <View className="mp-activedetail__comment-content">
                                 <View className="mp-activedetail__comment-username">氧气9000532</View>
                                 <View className="mp-activedetail__comment-tag">
@@ -223,12 +231,13 @@ class Detail extends Component{
                             </View>
                         </View>
                         <image
-                                style="width:30px;height:30px;position:relative;left:5px;top:-262px;"
+                                style="width:30px;height:30px;position:relative;left:5px;top:-310px;border-radius:24px;"
                                 mode="scaleToFill"
                                 src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
                         </image>
                         <View className="mp-activedetail__query-all-comment">
                             查看全部评论
+                            <Text className="mp-icon mp-icon-arrow1"></Text>
                         </View>
                     </View>
 

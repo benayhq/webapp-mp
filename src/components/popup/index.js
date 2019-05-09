@@ -12,7 +12,7 @@ export default class Popup extends Component {
   }
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       isShow: props.visible
     }
@@ -27,7 +27,7 @@ export default class Popup extends Component {
       })
     }
   }
-
+  
   handleClose = () => {
     this.props.onClose()
   }

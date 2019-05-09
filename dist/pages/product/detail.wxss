@@ -3,8 +3,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1110655 */
-  src: url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.eot");
-  src: url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_0t1ui8w0natq.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.eot");
+  src: url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_ztkjw5227i8.svg#iconfont") format("svg"); }
 
 .mp-icon {
   font-family: "iconfont" !important;
@@ -74,6 +74,12 @@
 
 .mp-icon-arrow:before {
   font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow1:before {
+  font-size: 30rpx;
   font-weight: 100;
   color: #7DD6D0;
   content: "\e637"; }
@@ -206,6 +212,11 @@
   color: #7DD6D0;
   content: "\e652"; }
 
+.mp-icon-closemodal:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e7be"; }
+
 /* 
  Text Color
 */
@@ -236,7 +247,8 @@ page {
 
 .mp-activedetail__user > text:nth-child(1) {
   color: #CCC;
-  font-size: 32rpx; }
+  font-size: 32rpx;
+  margin-left: 14rpx; }
 
 .mp-activedetail__user > text:nth-child(2) {
   color: #7DD6D0; }
@@ -341,7 +353,6 @@ page {
   float: left;
   width: 130rpx;
   height: 140rpx;
-  background: red;
   margin-top: 6rpx; }
 
 .mp-activedetail__content {
@@ -422,7 +433,8 @@ page {
   font-family: PingFangSC-Regular;
   font-weight: 400;
   color: #3c3c3c;
-  line-height: 45rpx; }
+  line-height: 45rpx;
+  margin-left: 14rpx; }
 
 .mp-activedetail__all {
   color: #7DD6D0;
@@ -432,7 +444,7 @@ page {
   color: #7dd6d0;
   line-height: 45rpx;
   float: right;
-  padding-right: 45rpx;
+  padding-right: 27rpx;
   padding-top: 25rpx; }
 
 .mp-activedetail__comment {
