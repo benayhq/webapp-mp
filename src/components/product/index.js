@@ -43,6 +43,7 @@ export default class ProductItem extends Component{
                         <View className="product-item font"> ￥3000 </View>
                         <View className="product-item textfont"> 预定金: <Text className="amount">200</Text> </View>
                      </View>
+                     
                 </View>
             </View>
         </View>

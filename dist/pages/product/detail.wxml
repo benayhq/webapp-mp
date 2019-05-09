@@ -1,91 +1,97 @@
 <block>
     <view class="mp-activedetail">
-        <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
-            <swiper-item>
-                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-            </swiper-item>
-            <swiper-item>
-                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-            </swiper-item>
-            <swiper-item>
-                <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-            </swiper-item>
-        </swiper>
-        <view class="mp-activedetail__user"><text>好友 </text><text>爱吐槽的徐教授 </text><text>发起的拼团,还差 </text><text>1 </text><text>人成团</text>
-        </view>
-        <view class="mp-activedetail__price">
-            <view style="height:35px;line-height:35px;"><text class="mp-activedetail__title">￥2000</text><text class="mp-activedetail__subtitle">￥3000</text>
+        <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
+            <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
+                <swiper-item>
+                    <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                </swiper-item>
+                <swiper-item>
+                    <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                </swiper-item>
+                <swiper-item>
+                    <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                </swiper-item>
+            </swiper>
+            <view class="mp-activedetail__user"><text>好友 </text><text>爱吐槽的徐教授 </text><text>发起的拼团,还差 </text><text>1 </text><text>人成团</text>
             </view>
-            <view class="mp-activedetail__desc">【玻t尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑唇 塑造心形脸</view>
-            <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：140074</text>
-            </view>
-        </view>
-        <view class="mp-activedetail__service">
-            <view>服务承诺</view>
-            <view>正品保证 ·</view>
-            <view>预付款可退 ·</view>
-            <view>预付款可退</view>
-        </view>
-        <view class="mp-activedetail__consultation"><text>咨询产品</text><text>艾美玻尿酸 0.8ml 2支</text>
-        </view>
-        <view class="mp-activedetail__person">
-            <view class="mp-activedetail__header">
-                <image style="width:80px;height:80px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-            </view>
-            <view class="mp-activedetail__content">
-                <view>医美管家 vivi</view>
-                <view>5.0分（2000人评）| ￥29999</view>
-                <view>服务区域：上海市 黄浦区</view>
-            </view>
-        </view>
-        <view class="mp-activedetail__join">
-            <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">14人在拼单，可直接参与</text><text class="mp-activedetail__all">查看全部</text>
-            </view>
-            <view class="mp-activedetail__second">
-                <image style="width:20px;height:20px;padding:13px 10px 0 10px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text>氧气9000532</text>
-                <view class="mp-activedetail__joinperson">
-                    <view class="mp-activedetail__counter">还差 1 人拼成</view>
-                    <view class="mp-activedetail__time">剩余20:50:14</view>
+            <view class="mp-activedetail__price">
+                <view style="height:35px;line-height:35px;"><text class="mp-activedetail__title">￥2000</text><text class="mp-activedetail__subtitle">￥3000</text>
                 </view>
-                <view class="mp-activedetail__joinaction">
-                    <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">去拼团</at-button>
+                <view class="mp-activedetail__desc">【玻t尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑唇 塑造心形脸</view>
+                <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：140074</text>
                 </view>
             </view>
-        </view>
-        <view class="mp-activedetail__comment">
-            <view class="mp-activedetail__comment-title">评价 (7890)</view>
-            <view class="mp-activedetail__comment-content">
-                <view class="mp-activedetail__comment-username">氧气9000532</view>
-                <view class="mp-activedetail__comment-tag"><text>环境：5.0</text><text>专业度：5.0</text><text>服务：5.0</text><text>效果：5.0</text>
+            <view class="mp-activedetail__service">
+                <view>服务承诺</view>
+                <view>正品保证 ·</view>
+                <view>预付款可退 ·</view>
+                <view>预付款可退</view>
+            </view>
+            <view class="mp-activedetail__consultation"><text>咨询产品</text><text>艾美玻尿酸 0.8ml 2支</text>
+            </view>
+            <view class="mp-activedetail__person">
+                <view class="mp-activedetail__header">
+                    <image style="width:80px;height:80px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
                 </view>
-                <view class="mp-activedetail__comment-desc">【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸</view>
-                <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
-                    <view class="mp-activedetail__comment-time">2018年03月15日</view>
-                    <view>
-                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-                        <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                <view class="mp-activedetail__content">
+                    <view>医美管家 vivi</view>
+                    <view>5.0分（2000人评）| ￥29999</view>
+                    <view>服务区域：上海市 黄浦区</view>
+                </view>
+            </view>
+            <view class="mp-activedetail__join">
+                <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">14人在拼单，可直接参与</text><text class="mp-activedetail__all">查看全部</text>
+                </view>
+                <view class="mp-activedetail__second">
+                    <image style="width:20px;height:20px;padding:13px 10px 0 10px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text>氧气9000532</text>
+                    <view class="mp-activedetail__joinperson">
+                        <view class="mp-activedetail__counter">还差 1 人拼成</view>
+                        <view class="mp-activedetail__time">剩余20:50:14</view>
+                    </view>
+                    <view class="mp-activedetail__joinaction">
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">去拼团</at-button>
                     </view>
                 </view>
             </view>
-            <image style="width:30px;height:30px;position:relative;left:5px;top:-262px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-            <view class="mp-activedetail__query-all-comment">查看全部评论</view>
-        </view>
-        <view class="mp-activedetail__consultation"></view>
-        <view class="mp-activedetail__footer">
-            <view>
-                <view class="mp-activedetail__orderpay_footer">预定金: <text style="color:rgba(235,47,150,1);">￥200</text>
+            <view class="mp-activedetail__comment">
+                <view class="mp-activedetail__comment-title">评价 (7890)</view>
+                <view class="mp-activedetail__comment-content">
+                    <view class="mp-activedetail__comment-username">氧气9000532</view>
+                    <view class="mp-activedetail__comment-tag"><text>环境：5.0</text><text>专业度：5.0</text><text>服务：5.0</text><text>效果：5.0</text>
+                    </view>
+                    <view class="mp-activedetail__comment-desc">【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸</view>
+                    <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
+                        <view class="mp-activedetail__comment-time">2018年03月15日</view>
+                        <view>
+                            <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                            <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                            <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                        </view>
+                    </view>
                 </view>
-                <view class="mp-activedetail__orderpay_face_footer">当面付: ￥1200</view>
+                <image style="width:30px;height:30px;position:relative;left:5px;top:-262px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                <view class="mp-activedetail__query-all-comment">查看全部评论</view>
             </view>
-            <view class="mp-activedetail__zixun_footer">
-                <view class="mp-icon mp-icon-telphone" bindtap="openDialog" style="padding-right:20px;" data-e-tap-so="this"></view>
+            <view class="mp-activedetail__consultation"></view>
+            <view class="mp-activedetail__footer">
+                <view>
+                    <view class="mp-activedetail__orderpay_footer">预定金: <text style="color:rgba(235,47,150,1);">￥200</text>
+                    </view>
+                    <view class="mp-activedetail__orderpay_face_footer">当面付: ￥1200</view>
+                </view>
+                <view class="mp-activedetail__zixun_footer">
+                    <view class="mp-icon mp-icon-telphone" bindtap="openDialog" style="padding-right:20px;" data-e-tap-so="this"></view>
+                </view>
+                <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">拼团预约</view>
             </view>
-            <view class="mp-activedetail__action__footer">拼团预约</view>
-        </view>
-        <modal popup="{{true}}" __triggerObserer="{{ _triggerObserer }}" animationType="slide-up" isOpened="{{isOpened}}" height="458"><text style="position:absolute; left:10px; top:-30px;color:#3C3C3C;">联系电话</text><text style="position:absolute; left:10px; top:0px; color:#108EE9;">18317052202</text>
-            <view style="position:absolute;border-bottom:1px solid #ddd; width:500px;top:85px;left:10px;"></view><text style="position:absolute; left:10px; top:60px;color:#3C3C3C;">联系微信</text><text style="position:absolute; left:10px; top:90px;color:#108EE9;">18317052202</text><text style="position:absolute;border-bottom:1px solid #ddd; width:500px;top:175px;left:10px;"></text>
-            <image style="width:150px;height:150px;position:absolute;top:240px;left:130px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image><text style="width:150px;height:150px;position:absolute;top:146px;left:-11px;color:#3C3C3C;">二维码名片</text><text style="width:150px;height:150px;position:absolute;top:146px;right:10px;color:#BFBFBF;">长按识别二维码</text><text style="width:100px;height:50px;position:absolute;top:370px;left:155px;" bindtap="close" data-e-tap-so="this">关 闭 </text>
-        </modal>
+        </scroll-view>
+        <popup visible="{{visible}}" __triggerObserer="{{ _triggerObserer }}" bindonclose="toggleVisible" __fn_onClose="{{true}}">
+            <block wx:if="{{bContact}}">
+                <contact __triggerObserer="{{ _triggerObserer }}"></contact>
+            </block>
+            <block wx:if="{{bSpec}}">
+                <spec __triggerObserer="{{ _triggerObserer }}"></spec>
+            </block>
+        </popup>
     </view>
 </block>

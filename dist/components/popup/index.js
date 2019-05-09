@@ -10,7 +10,15 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require("../../npm/classnames/index.js");
+
+var _index4 = _interopRequireDefault(_index3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18,79 +26,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ToolBar = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(ToolBar, _BaseComponent);
+var closeIcon = "/components/popup/assets/close.png";
 
-  function ToolBar() {
+var Popup = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Popup, _BaseComponent);
+
+  function Popup() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, ToolBar);
+    _classCallCheck(this, Popup);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "modal", "__fn_onClick"], _this.toggleVisible = function () {
-      console.log('onConfirm');
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Popup.__proto__ || Object.getPrototypeOf(Popup)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "closeIcon", "isShow", "compStyle", "__fn_onClick", "visible", "children"], _this.handleClose = function () {
+      _this.__triggerPropsFn("onClose", [null].concat([]));
+    }, _this.handleTouchMove = function (e) {
+      e.stopPropagation();
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(ToolBar, [{
+  _createClass(Popup, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(ToolBar.prototype.__proto__ || Object.getPrototypeOf(ToolBar.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(Popup.prototype.__proto__ || Object.getPrototypeOf(Popup.prototype), "_constructor", this).call(this, props);
       this.state = {
-        modal: {
-          isOpened: false,
-          title: '标题',
-          content: '内容',
-          cancelText: '取消',
-          confirmText: '确认',
-          closeOnClickOverlay: false
-        }
+        isShow: props.visible
       };
     }
   }, {
-    key: "handleOrderClick",
-    value: function handleOrderClick(event) {
-      var self = this;
-      switch (event) {
-        case "Cancel":
-          self.setState({
-            modal: {
-              isOpened: true,
-              title: '标题',
-              content: '内容',
-              cancelText: '取消',
-              confirmText: '确认',
-              closeOnClickOverlay: true
-            }
-          });
-          break;
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var visible = nextProps.visible;
+      var isShow = this.state.isShow;
+
+      if (visible !== isShow) {
+        this.setState({
+          isShow: visible
+        });
       }
-    }
-  }, {
-    key: "onClose",
-    value: function onClose(e) {
-      console.log('onClose parent', e);
-    }
-  }, {
-    key: "onConfirm",
-    value: function onConfirm() {
-      console.log('callback onConfirm');
-      this.onCancel();
-    }
-  }, {
-    key: "onCancel",
-    value: function onCancel() {
-      this.setState({
-        modal: {
-          isOpened: false
-        }
-      });
-      console.log('onCancel');
     }
   }, {
     key: "_createData",
@@ -98,46 +75,60 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
-      var modal = this.modal;
-      var toolBar = this.__props.toolBar;
+      ;
 
-      console.log("toolBart", toolBar);
+      var _props = this.__props,
+          onClose = _props.onClose,
+          compStyle = _props.compStyle;
+      var isShow = this.__state.isShow;
 
-      if (toolBar == null) {}
+      console.log('onClose', onClose);
 
-      if (toolBar[0] && toolBar[1]) {}
-
-      if (toolBar[0]) {}
-
-      if (toolBar[1]) {}
-
+      var anonymousState__temp = (0, _index4.default)('comp-popup', isShow && 'comp-popup--visible');
+      var anonymousState__temp2 = (0, _index.internal_inline_style)(compStyle);
+      var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: _index2.default.pxTransform(750) });
       Object.assign(this.__state, {
-        toolBar: toolBar
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        anonymousState__temp3: anonymousState__temp3,
+        closeIcon: closeIcon
       });
       return this.__state;
     }
   }, {
-    key: "funPrivatefiWlH",
-    value: function funPrivatefiWlH() {
-      this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
+    key: "funPrivateCcjFl",
+    value: function funPrivateCcjFl() {
+      this.__triggerPropsFn("onClose", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
 
-  return ToolBar;
+  return Popup;
 }(_index.Component), _class.properties = {
-  "toolBar": {
+  "__fn_onClose": {
     "type": null,
     "value": null
   },
-  "toolBar.event": {
+  "onClose": {
+    "type": null,
+    "value": null
+  },
+  "compStyle": {
     "type": null,
     "value": null
   },
   "__fn_onClick": {
     "type": null,
     "value": null
+  },
+  "visible": {
+    "type": null,
+    "value": null
   }
-}, _class.$$events = ["handleOrderClick", "funPrivatefiWlH", "onClose", "onConfirm", "onCancel"], _temp2);
-exports.default = ToolBar;
+}, _class.$$events = ["handleTouchMove", "funPrivateCcjFl"], _class.defaultProps = {
+  visible: false,
+  compStyle: '',
+  onClose: function onClose() {}
+}, _temp2);
+exports.default = Popup;
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));
+Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Popup));

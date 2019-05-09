@@ -10,11 +10,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require("../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
-
-var _style = require("../../utils/style.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,65 +22,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Detail = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(Detail, _BaseComponent);
+var Contact = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Contact, _BaseComponent);
 
-  function Detail() {
+  function Contact() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Detail);
+    _classCallCheck(this, Contact);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "bContact", "bSpec", "isOpened", "categoryDialog", "visible"], _this.toggleVisible = function () {
-      _this.setState({
-        visible: !_this.state.visible
-      });
-    }, _this.config = {
-      navigationBarTitleText: '活动详情'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Contact.__proto__ || Object.getPrototypeOf(Contact)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Detail, [{
+  _createClass(Contact, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(Detail.prototype.__proto__ || Object.getPrototypeOf(Detail.prototype), "_constructor", this).apply(this, arguments);
-      this.state = {
-        isOpened: false,
-        categoryDialog: false,
-        visible: true,
-        bSpec: true,
-        bContact: false
-      };
-    }
-  }, {
-    key: "openDialog",
-    value: function openDialog() {
-      this.setState({
-        visible: true,
-        bContact: true,
-        bSpec: false
-      });
-    }
-  }, {
-    key: "openCategoryDialog",
-    value: function openCategoryDialog() {
-      this.setState({
-        visible: true,
-        bSpec: true,
-        bContact: false
-      });
-    }
-  }, {
-    key: "close",
-    value: function close() {
-      this.setState({
-        isOpened: false
-      });
+    value: function _constructor(props) {
+      _get(Contact.prototype.__proto__ || Object.getPrototypeOf(Contact.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "_createData",
@@ -91,27 +51,13 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-
-      var height = (0, _style.getWindowHeight)(false);
-
-      var _state = this.__state,
-          isOpened = _state.isOpened,
-          bSpec = _state.bSpec,
-          bContact = _state.bContact;
-
-
-      var popupStyle = { transform: "translateY(" + _index2.default.pxTransform(-100) + ")" };
-
-      var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
-  return Detail;
-}(_index.Component), _class.properties = {}, _class.$$events = ["openDialog", "openCategoryDialog", "toggleVisible"], _temp2);
-exports.default = Detail;
+  return Contact;
+}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+exports.default = Contact;
 
-Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Contact));

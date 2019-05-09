@@ -12,85 +12,52 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require("../../../npm/classnames/index.js");
+
+var _index4 = _interopRequireDefault(_index3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ToolBar = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(ToolBar, _BaseComponent);
+var Spec = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Spec, _BaseComponent);
 
-  function ToolBar() {
+  function Spec() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, ToolBar);
+    _classCallCheck(this, Spec);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "modal", "__fn_onClick"], _this.toggleVisible = function () {
-      console.log('onConfirm');
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryClass", "isChange"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(ToolBar, [{
+  _createClass(Spec, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(ToolBar.prototype.__proto__ || Object.getPrototypeOf(ToolBar.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(Spec.prototype.__proto__ || Object.getPrototypeOf(Spec.prototype), "_constructor", this).call(this, props);
       this.state = {
-        modal: {
-          isOpened: false,
-          title: '标题',
-          content: '内容',
-          cancelText: '取消',
-          confirmText: '确认',
-          closeOnClickOverlay: false
-        }
+        prefix: '.mp-spec',
+        isChange: false
       };
     }
   }, {
-    key: "handleOrderClick",
-    value: function handleOrderClick(event) {
-      var self = this;
-      switch (event) {
-        case "Cancel":
-          self.setState({
-            modal: {
-              isOpened: true,
-              title: '标题',
-              content: '内容',
-              cancelText: '取消',
-              confirmText: '确认',
-              closeOnClickOverlay: true
-            }
-          });
-          break;
-      }
-    }
-  }, {
-    key: "onClose",
-    value: function onClose(e) {
-      console.log('onClose parent', e);
-    }
-  }, {
-    key: "onConfirm",
-    value: function onConfirm() {
-      console.log('callback onConfirm');
-      this.onCancel();
-    }
-  }, {
-    key: "onCancel",
-    value: function onCancel() {
+    key: "handleChangeCategory",
+    value: function handleChangeCategory() {
       this.setState({
-        modal: {
-          isOpened: false
-        }
+        isChange: !this.state.isChange
       });
-      console.log('onCancel');
     }
   }, {
     key: "_createData",
@@ -98,46 +65,31 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
-      var modal = this.modal;
-      var toolBar = this.__props.toolBar;
+      ;
 
-      console.log("toolBart", toolBar);
+      var _state = this.__state,
+          prefix = _state.prefix,
+          isChange = _state.isChange;
 
-      if (toolBar == null) {}
 
-      if (toolBar[0] && toolBar[1]) {}
-
-      if (toolBar[0]) {}
-
-      if (toolBar[1]) {}
+      var categoryClass = (0, _index4.default)({
+        'mp-spec__category': true,
+        'mp-spec__category-green': isChange
+      });
 
       Object.assign(this.__state, {
-        toolBar: toolBar
+        categoryClass: categoryClass
       });
       return this.__state;
     }
-  }, {
-    key: "funPrivatefiWlH",
-    value: function funPrivatefiWlH() {
-      this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
-    }
   }]);
 
-  return ToolBar;
-}(_index.Component), _class.properties = {
-  "toolBar": {
-    "type": null,
-    "value": null
-  },
-  "toolBar.event": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleOrderClick", "funPrivatefiWlH", "onClose", "onConfirm", "onCancel"], _temp2);
-exports.default = ToolBar;
+  return Spec;
+}(_index.Component), _class.properties = {}, _class.$$events = ["handleChangeCategory"], _class.defaultProps = {
+  data: {},
+  selected: {},
+  onSelect: function onSelect() {}
+}, _temp2);
+exports.default = Spec;
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Spec));

@@ -91,12 +91,15 @@ class Index extends Component{
   }
 
   render () {
+
+
     return (
       <View className="mp-product">
                 <CheckBox
                   options={this.checkboxOption}
                   selectedList={this.state.checkedList}
                   onChange={this.handleChange.bind(this)}
+
                 />
                 <View className="mp-product__save">
                    <View>保  存</View>

@@ -1,0 +1,19 @@
+<block>
+    <view>
+        <view class="{{prefix + '__img'}}">
+            <image style="height:100px;width:100px;margin:0 auto;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            <view class="{{prefix + '__desc'}}">
+                <view>玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑唇 塑造心形脸</view>
+                <view><text class="{{prefix + '__order-price'}}">￥3000</text><text class="{{prefix + '__order-marketprice'}}">￥3000</text>
+                </view>
+                <view><text class="{{prefix + '__order-money'}}">定金：￥200</text>
+                </view>
+            </view>
+        </view>
+        <view class="{{prefix + '__title'}}">品牌与说明</view>
+        <view>
+            <view bindtap="handleChangeCategory" class="{{categoryClass}}" data-e-tap-so="this">瑞兰2号 2支</view>
+        </view>
+        <view class="{{prefix + '__bottom'}}">确 定</view>
+    </view>
+</block>
