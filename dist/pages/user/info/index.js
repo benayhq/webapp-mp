@@ -18,11 +18,11 @@ var _jump = require("../../utils/jump.js");
 
 var _jump2 = _interopRequireDefault(_jump);
 
-var _user = require("../../../actions/user.js");
-
-var actions = _interopRequireWildcard(_user);
-
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
+
+var _index4 = require("../store/index.js");
+
+var actions = _interopRequireWildcard(_index4);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -50,34 +50,57 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Info.__proto__ || Object.getPrototypeOf(Info)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["user"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Info.__proto__ || Object.getPrototypeOf(Info)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "userName", "isAgent"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Info, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Info.prototype.__proto__ || Object.getPrototypeOf(Info.prototype), "_constructor", this).apply(this, arguments);
+      this.state = {
+        avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
+        userName: ''
+      };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+
+      var that = this;
+      _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
+        console.log('res.data.avatarUrl', res.data.avatarUrl);
+        that.setState({
+          avatarUrl: res.data.avatarUrl,
+          userName: res.data.nickName
+        });
+      });
     }
   }, {
     key: "jumpUrl",
     value: function jumpUrl(url) {
-      // todo: 验证用户是否登录了?.
       (0, _jump2.default)({ url: url });
     }
   }, {
     key: "onGetUserInfo",
     value: function onGetUserInfo() {
+      var _this2 = this;
 
-      _index2.default.getUserInfo().then(function (res) {
-        console.log('res', res);
-        var errMsg = res.errMsg,
-            userInfo = res.userInfo;
+      var currentObj = this;
 
+      _index2.default.getUserInfo().then(function (response) {
+        var errMsg = response.errMsg,
+            userInfo = response.userInfo;
+
+
+        currentObj.setState({
+          userinfo: response.rawData
+        }, function () {
+          console.log('this.state', _this2.state.userinfo);
+        });
         if (errMsg === 'getUserInfo:ok') {
-          _index2.default.showToast({
-            title: "\u5FAE\u4FE1\u6635\u79F0: " + userInfo.nickName + "\uFF0C\u8BF7\u4F7F\u7528\u90AE\u7BB1\u767B\u5F55",
-            icon: 'none'
-          });
+          var payload = {
+            id: 39
+          };
         } else {
           _index2.default.showToast({
             title: '授权失败',
@@ -93,6 +116,12 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var _state = this.__state,
+          avatarUrl = _state.avatarUrl,
+          userName = _state.userName;
+
+
       Object.assign(this.__state, {});
       return this.__state;
     }
@@ -100,11 +129,11 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
 
   return Info;
 }(_index.Component), _class2.properties = {
-  "user": {
+  "isAgent": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["onGetUserInfo"], _temp2)) || _class);
+}, _class2.$$events = [], _temp2)) || _class);
 exports.default = Info;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Info));

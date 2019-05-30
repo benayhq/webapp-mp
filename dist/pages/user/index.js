@@ -18,9 +18,9 @@ var _create = require("./common/create.js");
 
 var _create2 = _interopRequireDefault(_create);
 
-var _user = require("../../actions/user.js");
+var _actionCreators = require("./store/actionCreators.js");
 
-var actions = _interopRequireWildcard(_user);
+var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
@@ -50,7 +50,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isAgent", "list", "orders", "user"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isAgent", "list", "orders", "showUserText", "user", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -64,43 +64,43 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
       this.state = {
-        isAgent: true,
+        isAgent: false,
         list: [],
-        orders: []
+        orders: [],
+        showUserText: '切换为咨询师'
       };
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
       this.init();
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
     key: "init",
     value: function init() {
-      this.initPanelList();
       this.initState();
       this.autoLogin();
-    }
-  }, {
-    key: "handleChangeState",
-    value: function handleChangeState() {
-      this.initPanelList();
+      this.bindEvent();
     }
   }, {
     key: "initState",
     value: function initState() {
-      this.handleChangeState = this.handleChangeState.bind(this);
+      this.initPanelList();
     }
   }, {
     key: "initPanelList",
-    value: function initPanelList() {
+    value: function initPanelList(isAgent) {
       var creatorInstance = new _create2.default();
       this.setState({
-        isAgent: true,
-        list: creatorInstance.factory(true).getPanelList(),
-        orders: creatorInstance.factory(true).getList(),
-        user: creatorInstance.factory(true).getUserInfo()
+        isAgent: isAgent,
+        list: creatorInstance.factory(isAgent).getPanelList(),
+        orders: creatorInstance.factory(isAgent).getList(),
+        user: creatorInstance.factory(isAgent).getUserInfo()
       });
+    }
+  }, {
+    key: "bindEvent",
+    value: function bindEvent() {
+      this.handleChangeState = this.handleChangeState.bind(this);
     }
   }, {
     key: "autoLogin",
@@ -108,14 +108,25 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var currentObj = this;
       wx.login({
         success: function success(res) {
-          console.log('res.code', res.code);
           var payload = {
             code: res.code
           };
           currentObj.props.WeChatLogin(payload).then(function (res) {
-            console.log('currentObj.props.WeChatLogin(payload)', res);
+            _index2.default.setStorage({ key: 'userinfo', data: res.content });
           });
         }
+      });
+    }
+  }, {
+    key: "handleChangeState",
+    value: function handleChangeState() {
+      this.props.ChangeToAgent({});
+      var isAgent = this.state.isAgent;
+
+      this.initPanelList(isAgent);
+      this.setState({
+        isAgent: !isAgent,
+        showUserText: !isAgent ? '切换为用户' : '切换为咨询师'
       });
     }
   }, {
@@ -135,7 +146,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {}, _class2.$$events = [], _temp2)) || _class);
+}(_index.Component), _class2.properties = {
+  "ChangeToAgent": {
+    "type": null,
+    "value": null
+  }
+}, _class2.$$events = ["handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

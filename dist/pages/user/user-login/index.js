@@ -16,7 +16,7 @@ var _index2 = _interopRequireDefault(_index);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
-var _user = require("../../../actions/user.js");
+var _user = require("./../../../actions/user");
 
 var actions = _interopRequireWildcard(_user);
 

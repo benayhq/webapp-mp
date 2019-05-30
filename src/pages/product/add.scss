@@ -8,8 +8,8 @@ page{
     background:rgba(245,245,249,1);
 }
 
-#{$component} {
-
+#{$component}{
+    
     &__item{
         width: 96%;
         margin: 18px;
@@ -18,14 +18,14 @@ page{
         border-radius: $border-radius-md;
     }
 
-    &__product{
+    &__product {
         display: flex;
         width: 100%;
         height: 209px;
         border-bottom: 1px solid #ddd;
     }
 
-    &__title{
+    &__title {
         font-size:$font-size-lg;
         font-family:PingFangSC-Regular;
         font-weight:400;
@@ -34,7 +34,7 @@ page{
         display: inline-block;
     }
 
-    &__action{
+    &__action {
         width: 100%;
         line-height: 97px;
         height: 97px;

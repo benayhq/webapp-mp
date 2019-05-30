@@ -190,44 +190,45 @@ class Detail extends Component{
                             <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>
                             
                             <Text  style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</Text>
-                                
                                 </View>
                         <View className="mp-activedetail__comment-content">
+
                                 <View className="mp-activedetail__comment-username">氧气9000532</View>
+
                                 <View className="mp-activedetail__comment-tag">
                                     <Text>环境：5.0</Text>
                                     <Text>专业度：5.0</Text>
                                     <Text>服务：5.0</Text>
                                     <Text>效果：5.0</Text>
                                 </View>
+
                                 <View className="mp-activedetail__comment-desc">
-                                【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
+                                    【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
                                 </View>
 
                                 <View className="mp-activedetail__comment-description">
-                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
-                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
-                                <View className="mp-activedetail__comment-time">
-                                    2018年03月15日
-                                </View>
+                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
+                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
 
-                                <View> 
-                                    <image
-                                        style="width:80px;height:80px;padding-right:20px;"
-                                        mode="scaleToFill"
-                                        src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                    </image>
-                                    <image
-                                        style="width:80px;height:80px;padding-right:20px;"
-                                        mode="scaleToFill"
-                                        src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                    </image>
-                                    <image
-                                    style="width:80px;height:80px;padding-right:20px;"
-                                        mode="scaleToFill"
-                                        src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                    </image>
-                                </View>
+                                    <View className="mp-activedetail__comment-time">
+                                        2018年03月15日
+                                    </View>
+
+                                    <View>
+                                        <image style="width:80px;height:80px;padding-right:20px;"
+                                            mode="scaleToFill"
+                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                        </image>
+                                        <image style="width:80px;height:80px;padding-right:20px;"
+                                            mode="scaleToFill"
+                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                        </image>
+                                        <image style="width:80px;height:80px;padding-right:20px;"
+                                            mode="scaleToFill"
+                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                        </image>
+                                    </View>
+
                             </View>
                         </View>
                         <image

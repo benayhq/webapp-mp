@@ -1,7 +1,10 @@
 import Taro,{Component} from '@tarojs/taro';
 import {View} from '@tarojs/components';
 import './index.scss';
+import {connect} from '@tarojs/redux';
+import * as actions from '../store/actionCreators';
 
+@connect(state=>state.user,actions)
 export default class ChangeUser extends Component{
     constructor(props){
         super(...arguments);
@@ -9,23 +12,32 @@ export default class ChangeUser extends Component{
             isAgent:false,
             showUserText:'切换为咨询师'
         };
+        this.bindEvent();
+        this.init();
+    }
+
+    init(){
+        console.log('ChangeUser props',this.props.userInfo);
+        const {role} =this.props.userInfo;
+        this.setState({
+            isAgent:role === "CUSTOMER"? false : true,
+            showUserText:role === "CUSTOMER"? '切换为咨询师' : '切换为用户'
+        })
+    }
+
+    bindEvent(){
         this.handleChangeState = this.handleChangeState.bind(this);
-        this.handleStoreChange = this.handleStoreChange.bind(this);
-        // store.subscribe(this.handleStoreChange)
     }
 
     handleChangeState(){
-        // const action = getChangeUserAction(!this.state.isAgent);
-        // store.dispatch(action);
+        this.props.ChangeToAgent({});
+        const {role} =this.props.userInfo;
+        this.setState({
+            isAgent:role === "CUSTOMER"? false : true,
+            showUserText:role === "CUSTOMER"? '切换为咨询师' : '切换为用户'
+        })
     }
-
-    handleStoreChange(){
-        // this.setState({
-        //     isAgent:1,
-        //     showUserText: store.getState().isAgent ? '切换为用户' :'切换为咨询师'
-        // });
-    }
-
+  
     render(){
         return (
           <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 

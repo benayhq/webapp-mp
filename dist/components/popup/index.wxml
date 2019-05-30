@@ -1,11 +1,11 @@
 <block>
     <view class="{{anonymousState__temp}}" catchtouchmove="handleTouchMove" style="{{anonymousState__temp2}}">
-        <view class="comp-popup__mask" bindtap="funPrivateSAXHX"></view>
+        <view class="comp-popup__mask" bindtap="funPrivateMOsfZ"></view>
         <view class="comp-popup__wrapper">
             <scroll-view scroll-y="{{true}}" class="comp-popup__content" style="{{anonymousState__temp3}}">
                 <slot></slot>
             </scroll-view>
-            <view class="comp-popup__close" bindtap="funPrivateSAXHX">
+            <view class="comp-popup__close" bindtap="funPrivateMOsfZ">
                 <image class="comp-popup__close-img" src="{{closeIcon}}"></image>
             </view>
         </view>

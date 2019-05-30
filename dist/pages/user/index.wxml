@@ -1,6 +1,6 @@
 <block>
     <view class="mp-user">
-        <info user="{{user}}" __triggerObserer="{{ _triggerObserer }}"></info>
+        <info user="{{user}}" __triggerObserer="{{ _triggerObserer }}" isAgent="{{isAgent}}"></info>
         <block wx:if="{{isAgent}}">
             <in-come __triggerObserer="{{ _triggerObserer }}"></in-come>
         </block>
@@ -9,6 +9,6 @@
         </block>
         <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>
         <panel list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></panel>
-        <change-user __triggerObserer="{{ _triggerObserer }}"></change-user>
+        <view class="mp-user-changeuser" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
     </view>
 </block>

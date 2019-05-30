@@ -4,8 +4,7 @@
     "in-come": "./income/index",
     "publish": "./publish/index",
     "user-order": "./order/index",
-    "panel": "./panel/index",
-    "change-user": "./switch/index"
+    "panel": "./panel/index"
   },
   "navigationBarTitleText": "个人中心"
 }

@@ -5,7 +5,7 @@ import {AtButton,AtInput,AtForm,AtImagePicker} from 'taro-ui';
 import './edit.scss';
 
 class EditProduct extends Component{
-
+  
     config = {
         navigationBarTitleText: '编辑产品'
     }

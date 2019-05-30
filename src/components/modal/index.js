@@ -35,7 +35,7 @@ export default class Modal extends Component {
     },
     this.props.onCancel())
   }
-
+  
   onConfirm = (e) =>{
     if(_isFunction(this.props.onConfirm)){
       this.props.onConfirm();

@@ -19,9 +19,9 @@
     * https://cnodejs.org/topic/5a77c54e5e20f00d1427ff11.
 
 * UML 类图设计
-    *  
     * 
-    
+    *
+
 * 参考文献:
     第一步：把 UI 划分出组件层级.
     第二步：用 React 创建一个静态版本.

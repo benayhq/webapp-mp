@@ -13,15 +13,17 @@ var _index2 = _interopRequireDefault(_index);
 
 var _reduxLogger = require("../npm/redux-logger/dist/redux-logger.js");
 
-var _index3 = require("../reducers/index.js");
-
-var _index4 = _interopRequireDefault(_index3);
+var _index3 = require("../pages/user/store/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var middlewares = [_index2.default, (0, _reduxLogger.createLogger)()];
 
+var reducer = (0, _redux.combineReducers)({
+  user: _index3.reducer
+});
+
 function configStore() {
-  var store = (0, _redux.createStore)(_index4.default, _redux.applyMiddleware.apply(undefined, middlewares));
+  var store = (0, _redux.createStore)(reducer, _redux.applyMiddleware.apply(undefined, middlewares));
   return store;
 }

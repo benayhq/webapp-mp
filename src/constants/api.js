@@ -8,9 +8,14 @@ export const HOST = DevEnv ? DEVHOST : MOOCHOST;
 
 export const API_USER_LOGIN = `${HOST}/wx/v1/wxuser/wxLogin`;
 
+export const API_USER_INFO = `${HOST}/api/v1/user/update`;
+
+export const API_USER_AGENT = `${HOST}//api/v1/user/changeToAgent`;
+
 // product
 export const API_PRODUCT_OWNER = `${HOST}/api/v1/product/owner`;
 
 export const API_PORDUCT_CREATE = `${HOST}/api/v1/product/create`;
 
 export const API_PRODUCT_UPDATE = `${HOST}/api/v1/product/update`;
+

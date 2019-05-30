@@ -6,19 +6,20 @@ import jump from './../../utils/jump';
 import Title from '../title';
 
 export default class OrderItem extends Component{
-
+    
     constructor(props){
         super(...arguments);
         this.state = {
             OrderState:'待付款'
         }
     }
-    
+
     jumpUrl(url){
         jump({url:url});
     }
 
     render(){
+
         return (
             <View>
                 {

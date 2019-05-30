@@ -61,7 +61,7 @@
                     <view class="mp-activedetail__comment-tag"><text>环境：5.0</text><text>专业度：5.0</text><text>服务：5.0</text><text>效果：5.0</text>
                     </view>
                     <view class="mp-activedetail__comment-desc">【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸</view>
-                    <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价
+                    <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
                         <view class="mp-activedetail__comment-time">2018年03月15日</view>
                         <view>
                             <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>

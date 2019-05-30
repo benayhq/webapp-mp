@@ -13,6 +13,10 @@ var HOST = exports.HOST = DEVHOST;
 
 var API_USER_LOGIN = exports.API_USER_LOGIN = HOST + '/wx/v1/wxuser/wxLogin';
 
+var API_USER_INFO = exports.API_USER_INFO = HOST + '/api/v1/user/update';
+
+var API_USER_AGENT = exports.API_USER_AGENT = HOST + '//api/v1/user/changeToAgent';
+
 // product
 var API_PRODUCT_OWNER = exports.API_PRODUCT_OWNER = HOST + '/api/v1/product/owner';
 

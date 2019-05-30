@@ -17,13 +17,19 @@ function updateStorage(data={}){
         })
 }
 
+async function getSessionId(){
+    const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data.sessionId}).catch(() => '')
+    return result;
+}
+
 export default async function fetch(options){
     const {url,payload,method='GET',contentType} = options;
+    const sessionId = await getSessionId();
     const header ={};
     if(method === 'POST'){
         header['content-type'] = contentType ? contentType : 'application/json';
+        header['Authorization'] = sessionId;
     }
-    
     return Taro.request({
         url,
         method,

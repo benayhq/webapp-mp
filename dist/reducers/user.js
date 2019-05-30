@@ -23,6 +23,10 @@ var userReducer = function userReducer() {
           login: true
         })
       });
+    case _user.USER_INFO:
+      return _extends({}, state, {
+        userInfo: _extends({}, action.payload)
+      });
     default:
       return state;
   }

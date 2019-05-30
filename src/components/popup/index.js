@@ -18,7 +18,7 @@ export default class Popup extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextProps){
     const { visible } = nextProps
     const { isShow } = this.state
     if (visible !== isShow) {
@@ -27,13 +27,13 @@ export default class Popup extends Component {
       })
     }
   }
-  
+
   handleClose = () => {
     this.props.onClose()
   }
 
-  handleTouchMove = e => {
-    e.stopPropagation()
+  handleTouchMove = e =>{
+    e.stopPropagation();
   }
 
   render () {

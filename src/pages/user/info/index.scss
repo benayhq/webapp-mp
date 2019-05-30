@@ -102,12 +102,14 @@ $panelBgColor:rgba(255,255,255,1);
             color:$panelBgColor;
             line-height:67px;
             padding: 25px 0px 24px 0px;
+            text-align: right;
+            margin-right: 20px;
         }
 
         &-order{
             position: relative;
             top:-20rpx;
-            left:131rpx;
+            left:151rpx;
             height:33px;
             font-size:24px;
             font-family:PingFangSC-Regular;

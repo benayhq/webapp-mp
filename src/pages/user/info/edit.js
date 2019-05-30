@@ -79,7 +79,7 @@ export default class Edit extends Component{
                         value={this.state.value1}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <AtInput
+                    <AtInput 
                         name='value1'
                         title='地址'
                         type='text'
@@ -90,7 +90,6 @@ export default class Edit extends Component{
                     <View className="qrCode">
                         <Text className="label">二维码</Text>
                     </View>
-                    
                     <AtImagePicker
                             className="uploadPicker"
                             files={this.state.files}
