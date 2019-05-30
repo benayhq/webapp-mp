@@ -1,8 +1,7 @@
 {
   "usingComponents": {
-    "info": "./info/index",
     "in-come": "./income/index",
-    "publish": "./publish/index",
+    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index",
     "user-order": "./order/index",
     "panel": "./panel/index"
   },

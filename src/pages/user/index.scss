@@ -27,4 +27,150 @@ $panelBgColor:rgba(255,255,255,1);
             font-weight:400;
             color:rgba(125,214,208,1);
         }
+
+          /* elements */
+    &__info{
+        width:750px;
+        height:169px;
+        background:$bgColor;
+        opacity:0.7;
+        border:1px solid $borderColor;
+
+        &-avatar{
+            float: left;
+            padding: 35px 0 0 35px;
+        }
+
+        &-message{
+            padding-left: 9px;
+            height: 80px;
+            float: left;
+        }
+
+        &-money{
+            float: right;
+        }
+    }
+
+    &__update{
+        width:180px;
+        height:52px;
+        background:#7dd6d0 !important;
+        line-height:52px;
+        text-align:center;
+        position:absolute;
+        top:31px;
+        left:259px;
+        font-size:28px;
+
+        &:after {
+            border: 0;
+            border-radius: 0;
+            width: initial;
+            height: initial;
+        }
+    }
+
+    &__user{
+        &-username{
+            width:252px;
+            height:50px;
+            font-size:36px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:50px;
+            padding-top: 31px;
+        }
+
+        &-level{
+            width:149px;
+            height:33px;
+            background:rgba(255,255,255,0.6);
+            border-radius:18px;
+            border:1px solid $panelBgColor;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(255,192,105,1);
+            line-height: 33px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        &-level-up{
+            position: relative;
+            top:-33rpx;
+            left:161rpx;
+            width:96px;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:33px;
+        }
+    }
+
+    &__money{
+        &-amount{
+            width:250px;
+            height:67px;
+            font-size:48px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:67px;
+            padding: 25px 0px 24px 0px;
+            text-align: right;
+            margin-right: 20px;
+        }
+
+        &-order{
+            position: relative;
+            top:-20rpx;
+            left:151rpx;
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:$panelBgColor;
+            line-height:33px;
+        }
+    }
+
+    &__publish{
+        margin: 19px;
+        height:96px;
+        background:$panelBgColor;
+        border-radius:8px;
+        border:1px solid $panelBgColor;
+
+        &-introduce{
+            position: relative;
+            left: 47px;
+            top: 30px;
+            width:383px;
+            height:40px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(0,0,0,1);
+            line-height:40px;
+            -webkit-text-stroke:1px rgba(0,0,0,1);
+        }
+
+        &-action{
+            position:relative;
+            right:32px;
+            top:-21px;
+            float:right;
+            width:140px;
+            height:60px;
+            border-radius:6px;
+            text-align: center;
+            line-height: 60px;
+        }
+    }
+
 }

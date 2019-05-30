@@ -15,8 +15,8 @@ export default class Info extends Component{
         };
     }
 
-    componentDidMount(){
 
+    componentDidMount(){
         var that = this;
         Taro.getStorage({key:'authinfo'}).then(res=>{
             console.log('res.data.avatarUrl',res.data.avatarUrl);
@@ -31,34 +31,8 @@ export default class Info extends Component{
         jump({url:url});
     }
 
-    onGetUserInfo(){
-        var currentObj = this;
-        
-        Taro.getUserInfo().then((response) => {
-            const { errMsg, userInfo } = response;
-
-            currentObj.setState({
-                userinfo:response.rawData
-            },()=>{
-                console.log('this.state',this.state.userinfo);
-            });
-            if (errMsg === 'getUserInfo:ok') {
-                var payload = {
-                    id:39
-                };
-            } else {
-              Taro.showToast({
-                title: '授权失败',
-                icon: 'none'
-              })
-            }
-        });
-    }
-
     render(){
-
         const {avatarUrl,userName} = this.state;
-
         return (
             <View className="mp-user__info" >
                     <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
@@ -66,7 +40,7 @@ export default class Info extends Component{
                         </image>
                     <View className="mp-user__info-message">
                         <View className="mp-user__user-username">{userName}</View>
-                        <View className="mp-user__user-level">
+                        <View className="mp-user__user-level" onClick={this.test}>
                               ddd
                         </View>
                         <View className="mp-user__user-level-up"> </View>

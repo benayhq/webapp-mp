@@ -65,7 +65,6 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-
       var that = this;
       _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
         console.log('res.data.avatarUrl', res.data.avatarUrl);
@@ -81,35 +80,6 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
       (0, _jump2.default)({ url: url });
     }
   }, {
-    key: "onGetUserInfo",
-    value: function onGetUserInfo() {
-      var _this2 = this;
-
-      var currentObj = this;
-
-      _index2.default.getUserInfo().then(function (response) {
-        var errMsg = response.errMsg,
-            userInfo = response.userInfo;
-
-
-        currentObj.setState({
-          userinfo: response.rawData
-        }, function () {
-          console.log('this.state', _this2.state.userinfo);
-        });
-        if (errMsg === 'getUserInfo:ok') {
-          var payload = {
-            id: 39
-          };
-        } else {
-          _index2.default.showToast({
-            title: '授权失败',
-            icon: 'none'
-          });
-        }
-      });
-    }
-  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -120,7 +90,6 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
       var _state = this.__state,
           avatarUrl = _state.avatarUrl,
           userName = _state.userName;
-
 
       Object.assign(this.__state, {});
       return this.__state;
@@ -133,7 +102,7 @@ var Info = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = [], _temp2)) || _class);
+}, _class2.$$events = ["test"], _temp2)) || _class);
 exports.default = Info;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Info));

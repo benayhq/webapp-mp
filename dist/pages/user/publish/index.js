@@ -36,6 +36,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var Event = require("../../../utils/event.js");
+console.log('event', Event.getEventInstance());
+
 var Publish = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -99,10 +102,11 @@ var Publish = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return this.getAuthInfo();
+                Event.getEventInstance().emit("name", "keliu");
+                console.log(' Event.getEventInstance()', Event.getEventInstance());
+                return _context2.abrupt("return");
 
-              case 2:
+              case 5:
                 authInfo = _context2.sent;
 
                 _index2.default.getUserInfo().then(function (res) {
@@ -111,6 +115,7 @@ var Publish = (_dec = (0, _index3.connect)(function (state) {
 
                   if (errMsg === 'getUserInfo:ok') {
                     _index2.default.setStorage({ key: 'authinfo', data: userInfo });
+
                     var payload = {
                       id: authInfo.id,
                       nickname: userInfo.nickName,
@@ -129,7 +134,7 @@ var Publish = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 4:
+              case 7:
               case "end":
                 return _context2.stop();
             }

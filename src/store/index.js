@@ -4,8 +4,7 @@ import {createLogger} from 'redux-logger';
 import {reducer as userReducer} from './../pages/user/store';
 
 const middlewares = [
-  thunkMiddleWare,
-  createLogger()
+  thunkMiddleWare
 ];
 
 const reducer = combineReducers({
@@ -14,5 +13,8 @@ const reducer = combineReducers({
 
 export default function configStore(){
   const store  = createStore(reducer,applyMiddleware(...middlewares));
+  store.subscribe(()=>{
+    console.log('subscribe',store.getState());
+  })
   return store;
 }

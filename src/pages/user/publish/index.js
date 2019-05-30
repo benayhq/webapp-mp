@@ -5,6 +5,8 @@ import './index.scss';
 import jump from '../../utils/jump';
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
+var Event = require('./../../../utils/event');
+console.log('event',Event.getEventInstance());
 
 @connect(state=>state.user,actions)
 export default class Publish extends Component{
@@ -15,11 +17,16 @@ export default class Publish extends Component{
     }
 
     async jump(){
+        Event.getEventInstance().emit("name","keliu")
+        console.log(' Event.getEventInstance()',Event.getEventInstance());
+        return;
         const authInfo = await this.getAuthInfo();
         Taro.getUserInfo().then((res) => {
             const { errMsg, userInfo } = res;
             if (errMsg === 'getUserInfo:ok') {
               Taro.setStorage({key:'authinfo',data:userInfo});
+
+     
               let payload = {
                 id:authInfo.id,
                 nickname:userInfo.nickName,

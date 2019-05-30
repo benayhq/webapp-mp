@@ -24,9 +24,15 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
+var _jump = require("../utils/jump.js");
+
+var _jump2 = _interopRequireDefault(_jump);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -50,12 +56,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isAgent", "list", "orders", "showUserText", "user", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "isAgent", "userName", "list", "orders", "showUserText", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
+    }, _this.changeValue = function () {
+      console.log('changeValue');
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -67,13 +75,24 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         isAgent: false,
         list: [],
         orders: [],
-        showUserText: '切换为咨询师'
+        userName: '',
+        showUserText: '切换为咨询师',
+        avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
       this.init();
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var that = this;
+      _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
+        console.log('res.data.avatarUrl', res.data.avatarUrl);
+        that.setState({
+          avatarUrl: res.data.avatarUrl,
+          userName: res.data.nickName
+        });
+      });
+    }
   }, {
     key: "init",
     value: function init() {
@@ -103,6 +122,34 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.handleChangeState = this.handleChangeState.bind(this);
     }
   }, {
+    key: "getAuthInfo",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
+                  return res.data;
+                });
+                return _context.abrupt("return", result);
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthInfo() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getAuthInfo;
+    }()
+  }, {
     key: "autoLogin",
     value: function autoLogin() {
       var currentObj = this;
@@ -117,6 +164,68 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }
       });
     }
+  }, {
+    key: "handleAuthClick",
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
+
+        var authInfo, that;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.getAuthInfo();
+
+              case 2:
+                authInfo = _context2.sent;
+                that = this;
+
+                _index2.default.getUserInfo().then(function (res) {
+                  var errMsg = res.errMsg,
+                      userInfo = res.userInfo;
+
+                  if (errMsg === 'getUserInfo:ok') {
+                    _index2.default.setStorage({ key: 'authinfo', data: userInfo });
+
+                    var payload = {
+                      id: authInfo.id,
+                      nickname: userInfo.nickName,
+                      name: userInfo.nickName
+                    };
+                    _this2.setState({
+                      avatarUrl: userInfo.avatarUrl,
+                      userName: userInfo.nickName
+                    });
+
+                    _this2.props.UpdateUserInfo(payload).then(function (res) {
+                      if (res.result === "success") {
+                        (0, _jump2.default)({ url: '/pages/active/publish/index' });
+                      }
+                    });
+                  } else {
+                    _index2.default.showToast({
+                      title: '授权失败',
+                      icon: 'none'
+                    });
+                  }
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleAuthClick() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return handleAuthClick;
+    }()
   }, {
     key: "handleChangeState",
     value: function handleChangeState() {
@@ -137,7 +246,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var isAgent = this.__state.isAgent;
+      var _state = this.__state,
+          isAgent = _state.isAgent,
+          avatarUrl = _state.avatarUrl,
+          userName = _state.userName;
 
 
       Object.assign(this.__state, {});
@@ -147,11 +259,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
+  "UpdateUserInfo": {
+    "type": null,
+    "value": null
+  },
   "ChangeToAgent": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleChangeState"], _temp2)) || _class);
+}, _class2.$$events = ["handleAuthClick", "handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
