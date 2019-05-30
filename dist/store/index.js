@@ -23,8 +23,5 @@ var reducer = (0, _redux.combineReducers)({
 
 function configStore() {
   var store = (0, _redux.createStore)(reducer, _redux.applyMiddleware.apply(undefined, middlewares));
-  store.subscribe(function () {
-    console.log('subscribe', store.getState());
-  });
   return store;
 }

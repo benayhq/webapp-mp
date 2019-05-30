@@ -91,7 +91,6 @@ class Index extends Component{
   async handleAuthClick(){
     const authInfo = await this.getAuthInfo();
 
-    var that = this;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {

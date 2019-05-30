@@ -170,7 +170,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var _this2 = this;
 
-        var authInfo, that;
+        var authInfo;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -180,7 +180,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
                 authInfo = _context2.sent;
-                that = this;
+
 
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
@@ -212,7 +212,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 5:
+              case 4:
               case "end":
                 return _context2.stop();
             }

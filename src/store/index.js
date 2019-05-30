@@ -13,8 +13,5 @@ const reducer = combineReducers({
 
 export default function configStore(){
   const store  = createStore(reducer,applyMiddleware(...middlewares));
-  store.subscribe(()=>{
-    console.log('subscribe',store.getState());
-  })
   return store;
 }
