@@ -16,12 +16,6 @@ var _index2 = _interopRequireDefault(_index);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
-var _product = require("../../actions/product.js");
-
-var actions = _interopRequireWildcard(_product);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32,7 +26,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.productList;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, null), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -121,7 +115,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "init",
     value: function init() {
-      this.initProductList();
+      // this.initProductList();
     }
   }, {
     key: "initProductList",

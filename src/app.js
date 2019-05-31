@@ -19,7 +19,6 @@ class App extends Component {
     pages: [
       'pages/order/detail/index',
       'pages/user/index',
-      'pages/user/user-login/index',
       'pages/user/info/edit',
       'pages/active/publish/index',
       'pages/active/share/index',

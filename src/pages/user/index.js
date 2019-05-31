@@ -15,7 +15,7 @@ import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
 class Index extends Component{
-  
+
   config = {
     navigationBarTitleText: '个人中心'
   }
@@ -87,7 +87,7 @@ class Index extends Component{
           }
       });
   }
-
+  
   async handleAuthClick(){
     const authInfo = await this.getAuthInfo();
 

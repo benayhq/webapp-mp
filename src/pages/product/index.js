@@ -1,12 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import {connect} from '@tarojs/redux';
-import * as actions from './../../actions/product';
 import './index.scss';
 import { AtCheckbox,AtButton } from 'taro-ui'
 import CheckBox from './../../components/checkbox';
 
-@connect(state=>state.productList,actions)
+@connect(state=>state.productList,null)
 class Index extends Component{
   config = {
     navigationBarTitleText: '选择往期产品'
@@ -77,7 +76,7 @@ class Index extends Component{
   }
 
   init(){
-    this.initProductList();
+    // this.initProductList();
   }
 
   initProductList(){
@@ -91,8 +90,6 @@ class Index extends Component{
   }
 
   render () {
-
-
     return (
       <View className="mp-product">
                 <CheckBox

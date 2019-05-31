@@ -8,13 +8,25 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
+
+var _actionCreators = require("../store/actionCreators.js");
+
+var actions = _interopRequireWildcard(_actionCreators);
+
+var _storage = require("../../../utils/storage.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -22,7 +34,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = (_temp2 = _class = function (_BaseComponent) {
+var Index = (_dec = (0, _index3.connect)(function (state) {
+  return state.user;
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -36,7 +50,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "dateStart", "dateSel"], _this.onDateStartChange = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "dateStart", "dateSel", "value", "dispatchPublishProduct"], _this.onDateStartChange = function (e) {
       _this.setState({
         dateStart: e.detail.value
       });
@@ -67,7 +81,8 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
         groupItemChecked: '请选择',
         groupItem: [],
         dateStart: '2018-04-21',
-        dateSel: '2018-04-22'
+        dateSel: '2018-04-22',
+        value: ''
       };
       this.init();
     }
@@ -124,10 +139,58 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "onPublish",
-    value: function onPublish(e) {
-      _index2.default.navigateTo({
-        url: '/pages/active/share/index'
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+        var result, payload;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return (0, _storage.getAuthInfo)();
+
+              case 2:
+                result = _context.sent;
+                payload = {
+                  "advance": 0,
+                  "discountPrice": 0,
+                  "id": 0,
+                  "location": "string",
+                  "name": "string",
+                  "price": 0,
+                  "projectId": 0,
+                  "projectLevel": 0,
+                  "projectName": "string",
+                  "userId": result.id
+                };
+
+                this.props.dispatchPublishProduct(payload).then(function (res) {
+                  console.log('res', res);
+                });
+                return _context.abrupt("return");
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onPublish(_x) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return onPublish;
+    }()
+  }, {
+    key: "handleChange",
+    value: function handleChange(value) {
+      this.setState({
+        value: value
       });
+      // 在小程序中，如果想改变 value 的值，需要 `return value` 从而改变输入框的当前值
+      return value;
     }
   }, {
     key: "createProduct",
@@ -149,7 +212,12 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Index;
-}(_index.Component), _class.properties = {}, _class.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "onChange", "onPublish"], _temp2);
+}(_index.Component), _class2.properties = {
+  "dispatchPublishProduct": {
+    "type": null,
+    "value": null
+  }
+}, _class2.$$events = ["handleChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "onChange", "onPublish"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

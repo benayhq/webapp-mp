@@ -1,3 +1,0 @@
-<block>
-    <view class="mp-user-changeuser" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
-</block>

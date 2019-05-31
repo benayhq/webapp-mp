@@ -18,4 +18,3 @@ export const API_PRODUCT_OWNER = `${HOST}/api/v1/product/owner`;
 export const API_PORDUCT_CREATE = `${HOST}/api/v1/product/create`;
 
 export const API_PRODUCT_UPDATE = `${HOST}/api/v1/product/update`;
-

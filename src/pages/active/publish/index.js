@@ -1,10 +1,13 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Picker, PickerView, PickerViewColumn  } from '@tarojs/components'
 import './index.scss'
-import { AtImagePicker } from 'taro-ui'
+import { AtImagePicker,AtInput,AtForm } from 'taro-ui'
 import ProductList from './productlist/index';
+import {connect} from '@tarojs/redux';
+import * as actions from '../store/actionCreators';
+import {getAuthInfo} from './../../../utils/storage';
 
-
+@connect(state=>state.user,actions)
 export default class Index extends Component {
   constructor(){
     super(...arguments)
@@ -22,7 +25,8 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
       groupItemChecked:'请选择',
       groupItem:[],
       dateStart: '2018-04-21',
-      dateSel: '2018-04-22'
+      dateSel: '2018-04-22',
+      value: ''
     };
     this.init();
   }
@@ -70,19 +74,43 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
   handlePickerColumnChange(e){
     console.log('e',e);
   }
-
   onDateStartChange = e =>{
     this.setState({
       dateStart:e.detail.value
     })
   }
 
-  onPublish(e){
+  async onPublish(e){
+    const result = await getAuthInfo();
+    var payload =  {
+      "advance": 0,
+      "discountPrice": 0,
+      "id": 0,
+      "location": "string",
+      "name": "string",
+      "price": 0,
+      "projectId": 0,
+      "projectLevel": 0,
+      "projectName": "string",
+      "userId": result.id
+    };
+    this.props.dispatchPublishProduct(payload).then((res)=>{
+      console.log('res',res);
+    })
+    return;
     Taro.navigateTo({
       url:'/pages/active/share/index'
     })
   }
-  
+
+  handleChange (value) {
+    this.setState({
+      value
+    })
+    // 在小程序中，如果想改变 value 的值，需要 `return value` 从而改变输入框的当前值
+    return value
+  }
+
   onDateEndChange = e => {
     this.setState({
       dateSel: e.detail.value
@@ -103,11 +131,26 @@ url:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
 
     return (
       <View className="mp-active">
-
+      {/* <AtForm>
+        <AtInput
+          clear
+          border={false}
+          title='活动名称'
+          placeholder='请输入活动名称'
+          type='text'
+          value={this.state.value}
+          onChange={this.handleChange.bind(this)}
+          error={false}
+          autoFocus={true}
+        />
+      </AtForm> */}
         <View className="item">
             <Text>活动名称</Text>
-            <input  placeholder="请输入活动名称" />
-        </View>
+            <AtInput border={false} 
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+            placeholder="请输入活动名称" />
+        </View> 
 
         <View className="item">
             <Picker mode='selector' range={this.state.groupItem} 

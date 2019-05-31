@@ -1,8 +1,0 @@
-<block>
-    <view class="mp-user__publish">
-        <view class="mp-user__publish-introduce">让客户来为您拓展客户</view>
-        <view class="mp-user__publish-action">
-            <at-button text="微信登录" __triggerObserer="{{ _triggerObserer }}" openType="getUserInfo" bindongetuserinfo="jump" type="primary" size="small" __fn_onGetUserInfo="{{true}}">发布活动</at-button>
-        </view>
-    </view>
-</block>

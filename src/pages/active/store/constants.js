@@ -1,0 +1,1 @@
+export const PRODUCT_PUBLISH_INFO = 'user/PUBLISHPRODUCT';

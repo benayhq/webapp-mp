@@ -16,12 +16,6 @@ var _index2 = _interopRequireDefault(_index);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
-var _user = require("./../../../actions/user");
-
-var actions = _interopRequireWildcard(_user);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
