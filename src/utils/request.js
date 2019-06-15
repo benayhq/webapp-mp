@@ -23,12 +23,13 @@ async function getSessionId(){
 }
 
 export default async function fetch(options){
+
     const {url,payload,method='GET',contentType} = options;
     const sessionId = await getSessionId();
     const header ={};
+    header['Authorization'] = sessionId;
     if(method === 'POST'){
         header['content-type'] = contentType ? contentType : 'application/json';
-        header['Authorization'] = sessionId;
     }
     return Taro.request({
         url,

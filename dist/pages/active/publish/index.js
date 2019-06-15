@@ -34,6 +34,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var productIds = [];
+var uploadImage = require('./../../../utils/uploadFile.js');
+var util = require('../../../utils/util.js');
+
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -50,13 +54,24 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "dateStart", "dateSel", "value", "dispatchPublishProduct"], _this.onDateStartChange = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchQueryProductInfo", "dispatchUploadFile", "dispatchCreateActive"], _this.handleUploadLoader = function () {
+
+      var payload = {
+        documentType: 'PRODUCT',
+        fileName: 'name'
+      };
+
+      _this.props.dispatchUploadFile(payload).then(function (res) {
+        console.log('res', res);
+      });
+      return;
+    }, _this.onDateStartChange = function (e) {
       _this.setState({
         dateStart: e.detail.value
       });
     }, _this.onDateEndChange = function (e) {
       _this.setState({
-        dateSel: e.detail.value
+        dateEnd: e.detail.value
       });
     }, _this.config = {
       navigationBarTitleText: '新增活动'
@@ -67,24 +82,62 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor() {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).apply(this, arguments);
-
       this.state = {
-        files: [{
-          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
-        }, {
-          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
-        }, {
-          url: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'
-        }],
+        files: [],
         selector: [['请选择', '美国', '中国', '巴西', '日本'], ['请选择', '美国', '中国', '巴西', '日本       ']],
         selectorChecked: '请选择',
         groupItemChecked: '请选择',
         groupItem: [],
-        dateStart: '2018-04-21',
-        dateSel: '2018-04-22',
-        value: ''
+        dateStart: '请选择',
+        dateEnd: '请选择',
+        products: [],
+        activeName: '',
+        weChatNumber: '',
+        isOpened: false,
+        location: []
       };
       this.init();
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      var productList = [];
+
+      console.log('this.$router.params.ids', this.$router.params.ids);
+      if (this.$router.params.ids != undefined) {
+        productIds = this.$router.params.ids.split(',');
+      }
+
+      if (productIds.length > 0) {
+
+        productIds.map(function (item, index) {
+          console.log('item', item);
+          var payload = {
+            productId: item
+          };
+          _this2.props.dispatchQueryProductInfo(payload).then(function (res) {
+            if (res.result === "success") {
+              console.log('res.content', res.content);
+
+              productList.push(res.content);
+
+              _this2.setState({
+                products: productList
+              });
+            }
+          });
+        });
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // const result = await getAuthInfo();
+      // this.setState({
+      //   weChatNumber:result.wechatId
+      // })
     }
   }, {
     key: "init",
@@ -98,16 +151,73 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       for (var i = 1; i < 15; i++) {
         groups.push(i);
       }
-
       this.setState({
         groupItem: groups
       });
     }
   }, {
-    key: "onChange",
-    value: function onChange(files) {
-      this.setState({
-        files: files
+    key: "HandlePickerChange",
+    value: function HandlePickerChange(files) {
+      console.log('files', files);
+
+      if (files.length > 0) {
+        // this.handleUploadLoader(files);
+      }
+    }
+  }, {
+    key: "choose",
+    value: function choose() {
+
+      var that = this;
+      wx.chooseImage({
+        count: 1, // 默认最多一次选择9张图
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function success(res) {
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths;
+          var nowTime = util.formatTime(new Date());
+
+          //支持多图上传
+
+          var _loop = function _loop() {
+            //显示消息提示框
+            wx.showLoading({
+              title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
+              mask: true
+            });
+
+            var file = res.tempFilePaths[i];
+
+            payload = {
+              documentType: 'ACTIVITY',
+              fileName: 'ACTIVITY.png'
+            };
+
+
+            that.props.dispatchUploadConfig(payload).then(function (response) {
+              console.log('dispatchUploadConfig', response.content.location);
+              //上传图片
+              //图片路径可自行修改
+              uploadImage(file, response.content.location, function (result) {
+                that.setState({
+                  location: [result]
+                });
+                console.log("======上传成功图片地址为：", result);
+                wx.hideLoading();
+              }, function (result) {
+                console.log("======上传失败======", result);
+                wx.hideLoading();
+              });
+            });
+          };
+
+          for (var i = 0; i < res.tempFilePaths.length; i++) {
+            var payload;
+
+            _loop();
+          }
+        }
       });
     }
   }, {
@@ -120,7 +230,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handlePickerChange",
     value: function handlePickerChange(e) {
       var selectedValue = this.state.selector[0][e.detail.value[0]] + " / " + this.state.selector[0][e.detail.value[1]];
-
       this.setState({
         selectorChecked: selectedValue
       });
@@ -129,7 +238,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handlePickerSelectGroupChange",
     value: function handlePickerSelectGroupChange(e) {
       this.setState({
-        groupItemChecked: e.detail.value
+        groupItemChecked: parseInt(e.detail.value) + 1
       });
     }
   }, {
@@ -138,38 +247,122 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       console.log('e', e);
     }
   }, {
+    key: "handleToUpload",
+    value: function handleToUpload() {
+      console.log('handleToUpload');
+    }
+  }, {
+    key: "handleAlert",
+    value: function handleAlert(type, message) {
+      _index2.default.atMessage({
+        'message': message,
+        'type': type
+      });
+    }
+  }, {
     key: "onPublish",
     value: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-        var result, payload;
+        var _this3 = this;
+
+        var _state, activeName, groupItemChecked, dateStart, dateEnd, location, weChatNumber, fileArray, result, payload;
+
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return (0, _storage.getAuthInfo)();
+                _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, location = _state.location, weChatNumber = _state.weChatNumber;
 
-              case 2:
-                result = _context.sent;
-                payload = {
-                  "advance": 0,
-                  "discountPrice": 0,
-                  "id": 0,
-                  "location": "string",
-                  "name": "string",
-                  "price": 0,
-                  "projectId": 0,
-                  "projectLevel": 0,
-                  "projectName": "string",
-                  "userId": result.id
-                };
+                if (!(activeName === '')) {
+                  _context.next = 4;
+                  break;
+                }
 
-                this.props.dispatchPublishProduct(payload).then(function (res) {
-                  console.log('res', res);
-                });
+                this.handleAlert('error', '请填写活动名称');
+                return _context.abrupt("return");
+
+              case 4:
+                if (!(groupItemChecked === '请选择')) {
+                  _context.next = 7;
+                  break;
+                }
+
+                this.handleAlert('error', '请选择成团人数');
                 return _context.abrupt("return");
 
               case 7:
+                if (!(dateStart == '请选择')) {
+                  _context.next = 10;
+                  break;
+                }
+
+                this.handleAlert('error', '请选择开始时间');
+                return _context.abrupt("return");
+
+              case 10:
+                if (!(dateEnd == '请选择')) {
+                  _context.next = 13;
+                  break;
+                }
+
+                this.handleAlert('error', '请选择结束时间');
+                return _context.abrupt("return");
+
+              case 13:
+                if (!(location.length <= 0)) {
+                  _context.next = 16;
+                  break;
+                }
+
+                this.handleAlert('error', '请选择上传主图');
+                return _context.abrupt("return");
+
+              case 16:
+                fileArray = [];
+                _context.next = 19;
+                return (0, _storage.getAuthInfo)();
+
+              case 19:
+                result = _context.sent;
+                payload = {
+                  "areaCode": "string",
+                  "docLocations": this.state.location,
+                  "endD": dateEnd,
+                  "id": 0,
+                  "name": activeName,
+                  "people": groupItemChecked,
+                  "productIds": productIds,
+                  "startD": dateStart,
+                  "userId": result.id,
+                  "wechatId": weChatNumber
+                };
+
+                if (!(result.wechatId === 0 || result.wechatId === null)) {
+                  _context.next = 24;
+                  break;
+                }
+
+                this.setState({
+                  isOpened: true
+                });
+                return _context.abrupt("return");
+
+              case 24:
+
+                console.log('payload', payload);
+
+                this.props.dispatchCreateActive(payload).then(function (res) {
+                  console.log('res', res);
+                  if (res && res.result === "success") {
+                    _index2.default.navigateTo({
+                      url: '/pages/active/share/index'
+                    });
+                  } else {
+                    _this3.handleAlert('error', '发布活动失败');
+                  }
+                });
+
+              case 26:
               case "end":
                 return _context.stop();
             }
@@ -184,13 +377,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return onPublish;
     }()
   }, {
-    key: "handleChange",
-    value: function handleChange(value) {
+    key: "handleActiveChange",
+    value: function handleActiveChange(activeName) {
       this.setState({
-        value: value
+        activeName: activeName
       });
-      // 在小程序中，如果想改变 value 的值，需要 `return value` 从而改变输入框的当前值
-      return value;
+      return activeName;
     }
   }, {
     key: "createProduct",
@@ -200,12 +392,44 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleWeChatChange",
+    value: function handleWeChatChange(weChatNumber) {
+      this.setState({
+        weChatNumber: weChatNumber
+      });
+      return weChatNumber;
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel() {
+      this.setState({
+        isOpened: false
+      });
+    }
+  }, {
+    key: "handleConfirm",
+    value: function handleConfirm() {
+      this.setState({
+        isOpened: false
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var _state2 = this.__state,
+          activeName = _state2.activeName,
+          dateEnd = _state2.dateEnd,
+          dateStart = _state2.dateStart,
+          products = _state2.products,
+          weChatNumber = _state2.weChatNumber,
+          isOpened = _state2.isOpened;
+
+
       Object.assign(this.__state, {});
       return this.__state;
     }
@@ -213,11 +437,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
-  "dispatchPublishProduct": {
+  "dispatchQueryProductInfo": {
+    "type": null,
+    "value": null
+  },
+  "dispatchUploadFile": {
+    "type": null,
+    "value": null
+  },
+  "dispatchCreateActive": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "onChange", "onPublish"], _temp2)) || _class);
+}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "choose", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

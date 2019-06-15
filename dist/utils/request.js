@@ -81,9 +81,9 @@ exports.default = function () {
             sessionId = _context3.sent;
             header = {};
 
+            header['Authorization'] = sessionId;
             if (method === 'POST') {
               header['content-type'] = contentType ? contentType : 'application/json';
-              header['Authorization'] = sessionId;
             }
             return _context3.abrupt("return", _index2.default.request({
               url: url,
@@ -123,7 +123,7 @@ exports.default = function () {
               return Promise.reject(_extends({ message: defaultMsg }, err));
             }));
 
-          case 7:
+          case 8:
           case "end":
             return _context3.stop();
         }

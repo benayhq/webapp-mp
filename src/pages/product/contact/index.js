@@ -19,7 +19,6 @@ export default class Contact extends Component{
                     <View className="mp-contact__phone">
                         18317052202
                     </View>
-
                     <View className="mp-contact__labeltel">
                         联系微信
                     </View>
@@ -27,7 +26,7 @@ export default class Contact extends Component{
                     <View className="mp-contact__phone">
                         18317052202
                     </View>
-
+                    
                      <View>
                         <Text className="mp-contact__qrCode">二维码名片</Text>
                         <Text className="mp-contact__touchQrCode">长按识别二维码</Text>

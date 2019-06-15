@@ -1700,6 +1700,11 @@ caller-path@^0.1.0:
   dependencies:
     callsites "^0.2.0"
 
+callsite@latest:
+  version "1.0.0"
+  resolved "http://r.cnpmjs.org/callsite/download/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
+  integrity sha1-KAOY5dZkvXQDi28JBRU+borxvCA=
+
 callsites@^0.2.0:
   version "0.2.0"
   resolved "http://r.cnpmjs.org/callsites/download/callsites-0.2.0.tgz#afab96262910a7f33c19a5775825c69f34e350ca"
@@ -1994,6 +1999,13 @@ concat-stream@^1.5.0, concat-stream@^1.6.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+config.js@^0.1.0:
+  version "0.1.0"
+  resolved "http://r.cnpmjs.org/config.js/download/config.js-0.1.0.tgz#b8c1080ba26f309835a4796e20b3624be760bc0d"
+  integrity sha1-uMEIC6JvMJg1pHluILNiS+dgvA0=
+  dependencies:
+    callsite latest
+
 connect-history-api-fallback@^1.3.0:
   version "1.6.0"
   resolved "http://r.cnpmjs.org/connect-history-api-fallback/download/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
@@ -2165,6 +2177,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto.js@^1.2.1:
+  version "1.2.1"
+  resolved "http://r.cnpmjs.org/crypto.js/download/crypto.js-1.2.1.tgz#6e6ea7c066a3a38627a812ccd16c9dc309aa08f0"
+  integrity sha1-bm6nwGajo4YnqBLM0WydwwmqCPA=
 
 css-loader@1.0.0:
   version "1.0.0"
@@ -6229,6 +6246,13 @@ rx-lite@*, rx-lite@^4.0.8:
   resolved "http://r.cnpmjs.org/rx-lite/download/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
   integrity sha1-Cx4Rr4vESDbwSmQH6S2kJGe3lEQ=
 
+rxjs@^6.5.2:
+  version "6.5.2"
+  resolved "http://r.cnpmjs.org/rxjs/download/rxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
+  integrity sha1-LjXOgVzUbYTQKiCftOWSHgUdvsc=
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "http://r.cnpmjs.org/safe-buffer/download/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
@@ -6422,6 +6446,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+sha1.js@^0.1.1:
+  version "0.1.1"
+  resolved "http://r.cnpmjs.org/sha1.js/download/sha1.js-0.1.1.tgz#863fff0f11eaa4c6911faec18ebd2cb2cdd5a57c"
+  integrity sha1-hj//DxHqpMaRH67Bjr0sss3VpXw=
 
 shallow-clone@^1.0.0:
   version "1.0.0"

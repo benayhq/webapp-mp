@@ -11,23 +11,17 @@ export default class ProductItem extends Component{
       super(...arguments);
   }
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-  
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   render () {
+    console.log('product Item',this.props.products);
     return (
       <View>
         <View className="product">
             <View>
             </View>
-            <View className="list">
+
+            {
+              this.props.products.map(item=>(
+                <View className="list">
                 <View className="list-top">
                      <View>
                      </View>
@@ -35,16 +29,18 @@ export default class ProductItem extends Component{
                         <image
                           style="width:92px; height:95px;margin-top:14px;"
                           mode="scaleToFill"
-                          src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"
+                          src={item.location}
                         ></image>
                      </View>
                      <View>
-                        <View className="product-item margin20">[玻尿酸瘦脸针] 瑞典进口 </View>
-                        <View className="product-item font"> ￥3000 </View>
+                        <View className="product-item margin20"> {item.name} </View>
+                        <View className="product-item font"> {item.price} </View>
                         <View className="product-item textfont"> 预定金: <Text className="amount">200</Text> </View>
                      </View>
-                </View>
-            </View>
+                  </View>
+               </View>
+              ))
+            }
         </View>
       </View>
     )

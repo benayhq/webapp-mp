@@ -107,6 +107,8 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
             data = _option$$original.data;
 
 
+        console.log('data.location', data.imgUrl);
+
         var optionCls = (0, _index4.default)('mp-checkbox__option', {
           'mp-checkbox__option--selected': !selectedList.includes(value)
         });

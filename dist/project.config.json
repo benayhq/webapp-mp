@@ -31,7 +31,7 @@
       "list": []
     },
     "miniprogram": {
-      "current": 10,
+      "current": 17,
       "list": [
         {
           "id": -1,
@@ -108,6 +108,54 @@
           "name": "产品详情",
           "pathName": "pages/product/detail",
           "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布活动",
+          "pathName": "pages/active/publish/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "新增产品",
+          "pathName": "pages/product/edit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 13,
+          "name": "产品详情",
+          "pathName": "pages/product/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择往期产品",
+          "pathName": "pages/product/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提交订单",
+          "pathName": "pages/order/submit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "活动详情",
+          "pathName": "pages/product/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发起订单",
+          "pathName": "pages/order/submit/index",
           "scene": null
         }
       ]

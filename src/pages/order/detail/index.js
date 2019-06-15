@@ -33,7 +33,7 @@ export default class OrderDetail extends Component{
         let message = order.getStatuInfo({status:this.$router.params.status});
         this.setState({
             content:message
-        })
+        });
         console.log("orderStatus",message);
     }
     

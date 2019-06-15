@@ -1,8 +1,11 @@
 {
   "usingComponents": {
+    "at-message": "../../npm/taro-ui/dist/weapp/components/message/index",
+    "at-toast": "../../npm/taro-ui/dist/weapp/components/toast/index",
     "at-form": "../../npm/taro-ui/dist/weapp/components/form/index",
     "at-input": "../../npm/taro-ui/dist/weapp/components/input/index",
-    "at-image-picker": "../../npm/taro-ui/dist/weapp/components/image-picker/index"
+    "at-image-picker": "../../npm/taro-ui/dist/weapp/components/image-picker/index",
+    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index"
   },
-  "navigationBarTitleText": "编辑产品"
+  "navigationBarTitleText": "新增产品"
 }

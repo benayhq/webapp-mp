@@ -11,7 +11,7 @@
                         </view>
                     </block>
                     <view class="mp-checkbox__title">
-                        <view><text style="margin-left:10px;display:block;">{{option.data.desc}}</text>
+                        <view><text style="margin-left:10px;display:block;">{{option.data.location}}{{option.data.desc}}</text>
                             <view><text class="mp-checkbox__price">￥{{option.data.price}}</text><text class="mp-checkbox__marketprice">{{option.data.marketPrice}}</text>
                             </view>
                             <view class="mp-checkbox__preprice">预定金:{{option.data.prePrice}}</view>

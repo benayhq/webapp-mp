@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "at-message": "../../../npm/taro-ui/dist/weapp/components/message/index"
+  },
+  "navigationBarTitleText": "发起订单"
+}

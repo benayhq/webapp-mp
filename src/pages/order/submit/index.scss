@@ -1,0 +1,129 @@
+@import './../../../style/index.scss';
+
+
+.submit-order{
+
+    &_customer{
+        display:flex;
+        flex-direction: row;
+
+        &-info{
+            width: 85%;
+            height: 162px;
+            padding-left: 40px;
+            color: #3C3C3C;
+
+            &>View:nth-child(1){
+                height: 81px;
+                line-height: 81px;
+            }
+
+            &>View:nth-child(2){
+                height: 81px;
+            }
+        }
+
+        &-arrow{
+            width: 15%;
+            height: 162px;
+            background: gainsboro;
+        }
+    }
+
+    &_product{
+        &-title{
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            text-align: left;
+            padding-left: 40px;
+        }
+        
+        &-content{
+            height:216px;
+            width: 100%;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: row;
+
+            &>View:nth-child(1){
+                width: 35%;
+            }
+
+            &>View:nth-child(2){
+                width: 65%;
+            }
+
+            &-img{
+                height: 200px;
+                width: 100%;
+            }
+
+            &-product{
+                &>View:nth-child(1){
+                    color:rgba(0,0,0,1);
+                    font-size:28px;
+                    font-family:PingFangSC-Regular;
+                    font-weight:400;
+                }
+                &>View:nth-child(2){
+                    font-size:24px;
+                    font-family:PingFangSC-Regular;
+                    font-weight:400;
+                    line-height: 78px;
+                    height: 78px;
+                    color:rgba(187,187,187,1)
+                }
+                &>View:nth-child(3){
+                    font-family:PingFangSC-Regular;
+                    font-weight:400;
+                    color:rgba(125,214,208,1);
+                }
+            }
+        }
+
+        &-appoint{
+            width: 100%;
+            height: 90px;
+            line-height: 90px;
+            display: flex;
+            flex-direction: row;
+            // background: red;
+            
+            &>View:nth-child(1){
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    &_footer{
+        position:fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+        display: flex;
+        flex-direction: row;
+
+        &>View:nth-child(1){
+            text-align: center;
+            width: 75%;
+            color: #919191;
+        }
+        &>View:nth-child(2){
+            text-align: center;
+            width: 25%;
+            background: #7DD6D0;
+            color: #FFFFFF;
+        }
+    }
+
+    &_white-space{
+        background: #F7F7F7;
+        width: 100%;
+        height: 16px;
+        line-height: 16px;
+
+    }
+}

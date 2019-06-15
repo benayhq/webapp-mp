@@ -39,6 +39,8 @@ export default class CheckBox extends Component{
                     options.map((option,idx) => {
                         const { value,disabled,label,data} = option;
 
+                        console.log('data.location',data.imgUrl);
+
                         const optionCls = classNames('mp-checkbox__option',{
                             'mp-checkbox__option--selected':!selectedList.includes(value)
                         });
@@ -61,7 +63,7 @@ export default class CheckBox extends Component{
                                    }
                                    <View className='mp-checkbox__title'>
                                         <View>
-                                            <Text style='margin-left:10px;display:block;'>{data.desc}</Text>
+                                            <Text style='margin-left:10px;display:block;'>{data.location}{data.desc}</Text>
                                             <View>
                                                 <Text className='mp-checkbox__price'> ￥{data.price} </Text>
                                                 <Text className='mp-checkbox__marketprice'> {data.marketPrice} </Text>

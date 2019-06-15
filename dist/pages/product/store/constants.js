@@ -1,0 +1,14 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ACTION_PRODUCT_LIST = exports.ACTION_PRODUCT_LIST = 'product/ACTION_PRODUCT_LIST';
+
+var ACTION_PRODUCT_CREATE = exports.ACTION_PRODUCT_CREATE = 'product/ACTION_PRODUCT_CREATE';
+
+var ACTION_UPLOAD_CONFIG = exports.ACTION_UPLOAD_CONFIG = 'action/ACTION_UPLOAD_CONFIG';
+
+var ACTION_UPLOAD_DOWN = exports.ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN';
+
+var ACTIVE_INFO_ACTION = exports.ACTIVE_INFO_ACTION = 'action/ACTIVE_INFO_ACTION';

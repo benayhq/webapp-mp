@@ -8,22 +8,24 @@ import Spec from './spec/index';
 import Contact from './contact/index';
 import {getWindowHeight} from './../../utils/style';
 import TuanList from './tuan/index';
+import {connect} from '@tarojs/redux';
+import * as actions from './store/actionCreators';
 
-class Detail extends Component{
-
+@connect(state=>state.user,actions)
+export default class Detail extends Component{
     config = {
         navigationBarTitleText: '活动详情'
     }
-
     constructor(){
         super(...arguments);
         this.state = {
             isOpened: false,
             categoryDialog: false,
-            visible: true,
+            visible: false,
             bSpec: true,
             bContact: false,
-            showOrderDialog:false
+            showOrderDialog:false,
+            data:{}
         }
     }
 
@@ -63,11 +65,23 @@ class Detail extends Component{
         })
     }
 
-    render(){
-        const height = getWindowHeight(false);
-        
-        const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
+    componentDidMount(){
+        var payload ={
+            activityId:17
+        };
 
+        this.props.dispatchActiveInfo(payload).then(res=>{
+            console.log('res.content',res.content);
+            this.setState({
+                data:res.content
+            })
+        })
+    }
+
+    render(){
+        const {data} = this.state;
+        const height = getWindowHeight(false);
+        const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
         const popupStyle = process.env.TARO_ENV === 'rn' ?
         { transform: [{ translateY: Taro.pxTransform(-100) }] } :
         { transform: `translateY(${Taro.pxTransform(-100)})` }
@@ -76,56 +90,43 @@ class Detail extends Component{
             <View className='mp-activedetail'>
                 <ScrollView
                  scrollY
-                 style={{ height }}
-                 >
+                 style={{ height }}>
                     <Swiper
                         className='mp-swiper'
                         indicatorColor='#999'
                         indicatorActiveColor='#333'
                         indicatorDots
                         autoplay>
-                        <SwiperItem>
-                            <image
-                            className='demo-text-1'
-                            mode="scaleToFill"
-                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
-                            ></image>
-                        </SwiperItem>
-                        <SwiperItem>
-                        <image
-                            className='demo-text-1'
-                            mode="scaleToFill"
-                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
-                            ></image>
-                        </SwiperItem>
-                        <SwiperItem>
-                        <image
-                            className='demo-text-1'
-                            mode="scaleToFill"
-                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
-                            ></image>
-                        </SwiperItem>
+                            {
+                                data.docInfo.map(item=>(
+                                    <SwiperItem>
+                                        <image
+                                        className='demo-text-1'
+                                        mode="scaleToFill"
+                                        src={item.location}
+                                        ></image>
+                                    </SwiperItem>
+                                ))
+                            }
                     </Swiper>
                     <View className="mp-activedetail__user">
                         <Text>好友 </Text>
-                        <Text> 爱吐槽的徐教授 </Text>
+                        <Text> {data.nickname} </Text>
                         <Text> 发起的拼团,还差 </Text>
-                        <Text> 1 </Text>
+                        <Text> {data.remainPeople} </Text>
                         <Text>人成团</Text>
                     </View>
-
                     <View className="mp-activedetail__price">
                         <View style="height:35px;line-height:35px;">
                             <Text className="mp-activedetail__title">￥2000</Text>
                             <Text className="mp-activedetail__subtitle">￥3000</Text>
                         </View>
-                        <View className="mp-activedetail__desc">【玻t尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑唇 塑造心形脸</View>
+                        <View className="mp-activedetail__desc">{data.activityName}</View>
                         <View>
                             <Text className="mp-activedetail__address">上海市</Text>
                             <Text className="mp-activedetail__tel">已咨询：140074</Text>
                         </View>
                     </View>
-
                     <View className="mp-activedetail__service">
                         <View>服务承诺</View>
                         <View>正品保证 ·</View>
@@ -146,7 +147,6 @@ class Detail extends Component{
                                 src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
                                 ></image>
                         </View>
-
                         <View className="mp-activedetail__content">
                             <View>
                             医美管家 vivi
@@ -180,7 +180,7 @@ class Detail extends Component{
                                 <View className="mp-activedetail__time">剩余20:50:14</View>
                             </View>
                             <View className="mp-activedetail__joinaction">
-                                <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >去拼团</AtButton>
+                                <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >立即购买</AtButton>
                             </View>
                         </View>
                     </View>
@@ -201,19 +201,15 @@ class Detail extends Component{
                                     <Text>服务：5.0</Text>
                                     <Text>效果：5.0</Text>
                                 </View>
-
                                 <View className="mp-activedetail__comment-desc">
                                     【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
                                 </View>
-
                                 <View className="mp-activedetail__comment-description">
                                     打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
                                     打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-
                                     <View className="mp-activedetail__comment-time">
                                         2018年03月15日
                                     </View>
-
                                     <View>
                                         <image style="width:80px;height:80px;padding-right:20px;"
                                             mode="scaleToFill"
@@ -228,7 +224,6 @@ class Detail extends Component{
                                             src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
                                         </image>
                                     </View>
-
                             </View>
                         </View>
                         <image
@@ -248,20 +243,19 @@ class Detail extends Component{
                     <View className="mp-activedetail__footer">
                         <View>
                             <View className="mp-activedetail__orderpay_footer">预定金: 
-                                <Text style="color:rgba(235,47,150,1);">￥200</Text>
+                                <Text style="color:rgba(235,47,150,1);">￥{data.advance}</Text>
                             </View>
-                            <View className="mp-activedetail__orderpay_face_footer">当面付: ￥1200 </View>
+                            <View className="mp-activedetail__orderpay_face_footer">当面付: ￥{data.cashAdvance} </View>
                         </View>
                         <View className="mp-activedetail__zixun_footer">
                             <View className="mp-icon mp-icon-telphone" onClick={this.openDialog.bind(this)} style="padding-right:20px;"></View> 
                         </View>
                         <View className="mp-activedetail__action__footer" onClick={this.openCategoryDialog.bind(this)}>
-                            拼团预约
+                            立即购买
                         </View>
                     </View>
-
                 </ScrollView>
-              
+
                 <Popup 
                  visible={this.state.visible}
                  onClose={this.toggleVisible}>
@@ -269,7 +263,7 @@ class Detail extends Component{
                           bContact && <Contact/>
                       }
                       {
-                          bSpec && <Spec/>
+                          bSpec && <Spec activityName={data.activityName} products={data.activityProducts}/>
                       }
                 </Popup>
 
@@ -281,5 +275,3 @@ class Detail extends Component{
         )
     }
 }
-
-export default Detail;

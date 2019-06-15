@@ -1,11 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import {connect} from '@tarojs/redux';
+import { View } from '@tarojs/components'
 import './index.scss';
-import { AtCheckbox,AtButton } from 'taro-ui'
 import CheckBox from './../../components/checkbox';
+import * as actions from './store/actionCreators';
+import {getAuthInfo} from './../../utils/storage';
+import {connect} from '@tarojs/redux';
 
-@connect(state=>state.productList,null)
+@connect(state=>state.product,actions)
 class Index extends Component{
   config = {
     navigationBarTitleText: '选择往期产品'
@@ -14,54 +15,10 @@ class Index extends Component{
   constructor(){
       super(...arguments);
       this.state = {
-        checkedList: ['list2']
+        checkedList: [],
+        productList:[],
+        newFilterList:[]
       };
-
-      this.checkboxOption = [{
-          value: 'list1',
-          label: 'iPhone X',
-          data:{
-            price:3000,
-            marketPrice:3000,
-            prePrice:200,
-            imgUrl:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-            desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-          },
-          disabled: false
-        },{
-          value: 'list2',
-          label: 'HUAWEI P20',
-          data:{
-            price:3000,
-            marketPrice:3000,
-            prePrice:200,
-            imgUrl:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-            desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-          },
-          disabled: false
-        },{
-          value: 'list3',
-          label: 'OPPO Find X',
-          data:{
-            price:3000,
-            marketPrice:3000,
-            prePrice:200,
-            imgUrl:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-            desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-          },
-          disabled: false
-        },{
-          value: 'list4',
-          label: 'vivo NEX',
-          data:{
-            price:3000,
-            marketPrice:3000,
-            prePrice:200,
-            imgUrl:'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-            desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-          },
-          disabled: false
-      }];
   }
 
   handleChange (value) {
@@ -76,30 +33,101 @@ class Index extends Component{
   }
 
   init(){
-    // this.initProductList();
+    this.initProductList();
+    this.getImgUrl("");
   }
 
-  initProductList(){
+  async getImgUrl(location){
     var payload = {
-      id:'222'
+      location:location
     };
-    this.props.GetProdcutList(payload).then((res)=>{
-        console.log("res",res);
+    const result = await this.props.dispatchDownLoadUrl(payload);
+    return result.content;
+  }
+
+  async initProductList(){
+
+    var that = this;
+    var payload = {
+      pageNo:0,
+      pageSize:10
+    };
+
+    var responseList = [];
+    const resultProductList = await this.props.dispatchProductList(payload);
+
+    resultProductList.content.map((item)=>{
+      // dev/product/1/PRODUCT_1559989778724.png'
+      this.getImgUrl(item.location)
+      .then(response=>{
+        responseList.push({
+            value: item.id,
+            label: item.projectName,
+            data:{
+              price:item.price,
+              marketPrice:item.discountPrice,
+              prePrice:item.advance,
+              imgUrl:response,
+              desc: item.name,
+            },
+            disabled: false
+        });
+        if(responseList.length === resultProductList.content.length){
+          that.setState({
+            newFilterList:responseList
+          })
+        }
+      });
     });
-    console.log("initProductList",);
+
+    console.log('productList222eeee',this.state.newFilterList);
+    return;
+
+
+    // .then((res)=>{
+    //   if(res && res.result === "success"){
+    //     res.content.map((item,index)=>{
+    //       response.push({
+    //         value: item.id,
+    //         label: item.projectName,
+    //         data:{
+    //           price:item.price,
+    //           marketPrice:item.discountPrice,
+    //           prePrice:item.advance,
+    //           imgUrl:item.location,
+    //           desc: item.name,
+    //         },
+    //         disabled: false
+    //       });
+    //     }) 
+    //   }
+    //   console.log('response',response);
+    // });
+
+    // this.setState({
+    //   productList:response
+    // })
+  }
+  
+  handleSaveItem(){
+    console.log('checkedList',);
+    var params = this.state.checkedList;
+    Taro.navigateTo({
+            url:'/pages/active/publish/index?ids='+params.join(',')
+    })
   }
 
   render () {
+    const {newFilterList} = this.state;
     return (
       <View className="mp-product">
                 <CheckBox
-                  options={this.checkboxOption}
+                  options={newFilterList}
                   selectedList={this.state.checkedList}
                   onChange={this.handleChange.bind(this)}
-
                 />
                 <View className="mp-product__save">
-                   <View>保  存</View>
+                   <View onClick={this.handleSaveItem}>保  存</View>
                 </View>
       </View>
     )

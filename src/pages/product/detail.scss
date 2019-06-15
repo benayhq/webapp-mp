@@ -339,7 +339,7 @@ $component:'.mp-activedetail';
         bottom: 0px;
         display: flex;
         flex-direction: row;
-        z-index: 1000;
+        z-index: 0;
     }
     
     &__orderpay_footer{

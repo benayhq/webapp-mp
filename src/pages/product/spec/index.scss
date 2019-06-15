@@ -4,17 +4,15 @@ $component:'.mp-spec';
 
 #{$component} {
     &__img{
-        margin: 50px 21px 0 21px;
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
+        padding-top: 60px;
     }
-
     &__desc {
         float: right;
         width: 73%;
         height: 100px;
     }
-
     &__order-money{
         font-size:28px;
         font-family:PingFangSC-Regular;
@@ -25,7 +23,6 @@ $component:'.mp-spec';
         position:relative;
         top:-16px;
     }
-
     &__order-price{
         color: $color-brand;
     }
@@ -42,7 +39,6 @@ $component:'.mp-spec';
     }
 
     &__category{
-        width: 190px;
         height: 60px;
         background: #E8E8E8;
         color: #000000;
@@ -53,10 +49,12 @@ $component:'.mp-spec';
         margin-left: 21px;
         text-align: center;
         margin-top: 28px;
+        display: block;
+        float: left;
     }
 
     &__category-green{
-        width: 190px;
+        float: left;
         height: 60px;
         background: $color-brand;
         color: #ffffff;
@@ -78,5 +76,9 @@ $component:'.mp-spec';
         position: absolute;
         bottom: 0px;
         text-align: center;
+        z-index: 1000;
     }
 }
+
+
+    

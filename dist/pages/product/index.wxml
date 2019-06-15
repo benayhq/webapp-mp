@@ -1,8 +1,8 @@
 <block>
     <view class="mp-product">
-        <check-box options="{{checkboxOption}}" __triggerObserer="{{ _triggerObserer }}" selectedList="{{checkedList}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></check-box>
+        <check-box options="{{newFilterList}}" __triggerObserer="{{ _triggerObserer }}" selectedList="{{checkedList}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></check-box>
         <view class="mp-product__save">
-            <view>保 存</view>
+            <view bindtap="handleSaveItem">保 存</view>
         </view>
     </view>
 </block>

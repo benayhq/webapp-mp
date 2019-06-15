@@ -1,7 +1,8 @@
 <block>
     <view class="mp-active">
+        <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
         <view class="item"><text>活动名称</text>
-            <at-input border="{{false}}" __triggerObserer="{{ _triggerObserer }}" value="{{value}}" bindonchange="handleChange" placeholder="请输入活动名称" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input border="{{false}}" __triggerObserer="{{ _triggerObserer }}" value="{{activeName}}" bindonchange="handleActiveChange" placeholder="请输入活动名称" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
         </view>
         <view class="item">
             <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
@@ -17,14 +18,25 @@
         </view>
         <view class="item">
             <picker mode="date" bindchange="onDateEndChange">
-                <view class="picker"><text class="mp-publish mp-icon-arrow"></text><text>结束时间</text><text class="time">{{dateSel}}</text>
+                <view class="picker"><text class="mp-publish mp-icon-arrow"></text><text>结束时间</text><text class="time">{{dateEnd}}</text>
                 </view>
             </picker>
         </view>
-        <at-image-picker className="uploadImage" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="onChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
-        <product-list __triggerObserer="{{ _triggerObserer }}"></product-list>
+        <at-image-picker className="uploadImage" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="HandlePickerChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="choose" __fn_onClick="{{true}}">上传图片</at-button>
+        <product-list products="{{products}}" __triggerObserer="{{ _triggerObserer }}"></product-list>
         <view class="publish">
             <view bindtap="onPublish">立即发布</view>
         </view>
+        <at-modal isOpened="{{isOpened}}" __triggerObserer="{{ _triggerObserer }}">
+            <at-modal-header __triggerObserer="{{ _triggerObserer }}">完善信息</at-modal-header>
+            <at-modal-content __triggerObserer="{{ _triggerObserer }}">
+                <at-input placeholder="请输入微信号" __triggerObserer="{{ _triggerObserer }}" bindonchange="handleWeChatChange" value="{{weChatNumber}}" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            </at-modal-content>
+            <at-modal-action __triggerObserer="{{ _triggerObserer }}">
+                <button bindtap="handleCancel">取消</button>
+                <button bindtap="handleConfirm">确定</button>
+            </at-modal-action>
+        </at-modal>
     </view>
 </block>

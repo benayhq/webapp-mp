@@ -26,7 +26,8 @@ class App extends Component {
       'pages/product/add',
       'pages/product/edit',
       'pages/order/index',
-      'pages/product/detail'
+      'pages/product/detail',
+      'pages/order/submit/index'
     ],
     window:{
       backgroundTextStyle: 'light',

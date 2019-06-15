@@ -47,14 +47,14 @@ export default class Edit extends Component{
                         value={this.state.value1}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <AtInput
-                        name='value1'
-                        title='姓名'
-                        type='text'
-                        placeholder='(选填)'
-                        value={this.state.value1}
-                        onChange={this.handleChange.bind(this)}
-                    />
+                        <AtInput
+                            name='value1'
+                            title='姓名'
+                            type='text'
+                            placeholder='(选填)'
+                            value={this.state.value1}
+                            onChange={this.handleChange.bind(this)}
+                        />
                       <AtInput
                         name='value6'
                         title='手机号码'

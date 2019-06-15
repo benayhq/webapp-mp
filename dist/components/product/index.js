@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -10,7 +10,7 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require('../../npm/@tarojs/taro-weapp/index.js');
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -36,45 +36,37 @@ var ProductItem = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["products"], _this.config = {
       navigationBarTitleText: '测试'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProductItem, [{
-    key: '_constructor',
+    key: "_constructor",
     value: function _constructor() {
-      _get(ProductItem.prototype.__proto__ || Object.getPrototypeOf(ProductItem.prototype), '_constructor', this).apply(this, arguments);
+      _get(ProductItem.prototype.__proto__ || Object.getPrototypeOf(ProductItem.prototype), "_constructor", this).apply(this, arguments);
     }
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {}
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {}
-  }, {
-    key: 'componentDidShow',
-    value: function componentDidShow() {}
-  }, {
-    key: 'componentDidHide',
-    value: function componentDidHide() {}
-  }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      console.log('product Item', this.__props.products);
       Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return ProductItem;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class.properties = {
+  "products": {
+    "type": null,
+    "value": null
+  }
+}, _class.$$events = [], _temp2);
 exports.default = ProductItem;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductItem));

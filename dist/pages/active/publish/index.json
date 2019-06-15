@@ -1,8 +1,14 @@
 {
   "usingComponents": {
+    "at-message": "../../../npm/taro-ui/dist/weapp/components/message/index",
     "at-input": "../../../npm/taro-ui/dist/weapp/components/input/index",
     "at-image-picker": "../../../npm/taro-ui/dist/weapp/components/image-picker/index",
-    "product-list": "./productlist/index"
+    "at-button": "../../../npm/taro-ui/dist/weapp/components/button/index",
+    "product-list": "./productlist/index",
+    "at-modal": "../../../npm/taro-ui/dist/weapp/components/modal/index",
+    "at-modal-header": "../../../npm/taro-ui/dist/weapp/components/modal/header/index",
+    "at-modal-content": "../../../npm/taro-ui/dist/weapp/components/modal/content/index",
+    "at-modal-action": "../../../npm/taro-ui/dist/weapp/components/modal/action/index"
   },
   "navigationBarTitleText": "新增活动"
 }

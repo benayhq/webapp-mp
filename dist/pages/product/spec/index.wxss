@@ -233,9 +233,9 @@
 /* Button */
 /* Border Radius */
 .mp-spec__img {
-  margin: 50rpx 21rpx 0 21rpx;
   border-bottom: 1rpx solid #ddd;
-  padding-bottom: 20rpx; }
+  padding-bottom: 20rpx;
+  padding-top: 60rpx; }
 
 .mp-spec__desc {
   float: right;
@@ -265,7 +265,6 @@
   color: #333; }
 
 .mp-spec__category {
-  width: 190rpx;
   height: 60rpx;
   background: #E8E8E8;
   color: #000000;
@@ -275,10 +274,12 @@
   line-height: 60rpx;
   margin-left: 21rpx;
   text-align: center;
-  margin-top: 28rpx; }
+  margin-top: 28rpx;
+  display: block;
+  float: left; }
 
 .mp-spec__category-green {
-  width: 190rpx;
+  float: left;
   height: 60rpx;
   background: #7DD6D0;
   color: #ffffff;
@@ -298,4 +299,5 @@
   line-height: 89rpx;
   position: absolute;
   bottom: 0;
-  text-align: center; }
+  text-align: center;
+  z-index: 1000; }

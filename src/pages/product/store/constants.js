@@ -1,0 +1,9 @@
+export const ACTION_PRODUCT_LIST='product/ACTION_PRODUCT_LIST';
+
+export const ACTION_PRODUCT_CREATE = 'product/ACTION_PRODUCT_CREATE';
+
+export const ACTION_UPLOAD_CONFIG = 'action/ACTION_UPLOAD_CONFIG';
+
+export const ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN';
+
+export const ACTIVE_INFO_ACTION = 'action/ACTIVE_INFO_ACTION';
