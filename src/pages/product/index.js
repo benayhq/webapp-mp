@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+
 import './index.scss';
 import CheckBox from './../../components/checkbox';
 import * as actions from './store/actionCreators';

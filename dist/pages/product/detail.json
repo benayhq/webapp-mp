@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index",
     "popup": "../../components/popup/index",
     "contact": "./contact/index",
     "spec": "./spec/index",

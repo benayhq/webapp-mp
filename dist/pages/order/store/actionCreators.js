@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -44,7 +44,7 @@ var dispatchCreateReseverOrder = exports.dispatchCreateReseverOrder = function d
   });
 };
 
-var dispatchDownLoadUrl = exports.dispatchDownLoadUrl = function dispatchDownLoadUrl(payload) {
+var dispatchCreateOrderDownLoadUrl = exports.dispatchCreateOrderDownLoadUrl = function dispatchCreateOrderDownLoadUrl(payload) {
   return (0, _redux.createAction)({
     type: _constants.ORDER_ACTION_UPLOAD_DOWN,
     url: _api.API_UPLOAD_FILE,

@@ -268,12 +268,11 @@ page {
   height: 220rpx;
   background: white;
   border: 1rpx solid white;
-  padding: 8rpx; }
+  padding: 10rpx; }
 
 .mp-activedetail__title {
   color: #7DD6D0;
-  font-size: 40rpx;
-  padding-left: 22rpx; }
+  font-size: 40rpx; }
 
 .mp-activedetail__subtitle {
   color: #999;
@@ -285,7 +284,9 @@ page {
   font-family: PingFangSC-Regular;
   font-weight: 400;
   color: black;
-  line-height: 45rpx; }
+  line-height: 90rpx;
+  height: 90rpx;
+  padding: 10rpx; }
 
 .mp-activedetail__address {
   color: #999;
@@ -354,6 +355,10 @@ page {
   width: 130rpx;
   height: 140rpx;
   margin-top: 6rpx; }
+  .mp-activedetail__header > image {
+    border-radius: 100rpx;
+    width: 140rpx;
+    height: 140rpx; }
 
 .mp-activedetail__content {
   padding-left: 178rpx; }
@@ -395,7 +400,37 @@ page {
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
-          flex-direction: row; }
+          flex-direction: row;
+  margin: 0 auto;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .mp-activedetail__second > View:nth-child(1) {
+    width: 15%; }
+    .mp-activedetail__second > View:nth-child(1) > image {
+      margin-top: 18rpx;
+      width: 60rpx;
+      height: 60rpx;
+      line-height: 60rpx;
+      border-radius: 304rpx;
+      margin-left: 10rpx; }
+  .mp-activedetail__second > View:nth-child(2) {
+    width: 20%; }
+  .mp-activedetail__second > View:nth-child(3) {
+    width: 35%; }
+  .mp-activedetail__second > View:nth-child(4) {
+    width: 30%; }
+  .mp-activedetail__second__buyAction {
+    margin: 10rpx;
+    color: #FFFFFF;
+    height: 78rpx;
+    line-height: 78rpx;
+    text-align: center;
+    border-radius: 5rpx;
+    background: #7dd6d0;
+    border-radius: 4rpx;
+    border: 1rpx solid #7dd6d0; }
 
 .mp-activedetail__joinperson {
   height: 30rpx;
@@ -403,9 +438,6 @@ page {
   width: 300rpx;
   text-align: center;
   margin-top: 9rpx; }
-
-.mp-activedetail__joinaction {
-  text-align: right; }
 
 .mp-activedetail__time {
   font-size: 28rpx;
@@ -450,11 +482,8 @@ page {
 .mp-activedetail__comment {
   margin: 14rpx 0 80rpx 0;
   width: 100%;
-  height: 728rpx;
   background: white;
   border: 1rpx solid white; }
-  .mp-activedetail__comment > View:not(:last-child):not(:first-child) {
-    padding-left: 80rpx; }
 
 .mp-activedetail__comment-title {
   height: 84rpx;
@@ -469,7 +498,27 @@ page {
 
 .mp-activedetail__comment-content {
   height: 568rpx;
-  border-bottom: 1rpx solid #ddd; }
+  border-bottom: 1rpx solid #ddd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+  .mp-activedetail__comment-content-left {
+    width: 10%; }
+    .mp-activedetail__comment-content-left > image {
+      width: 60rpx;
+      height: 60rpx;
+      border-radius: 100rpx;
+      margin-top: 10rpx;
+      margin-left: 10rpx; }
+  .mp-activedetail__comment-content-right {
+    width: 90%;
+    margin: 10rpx; }
 
 .mp-activedetail__comment-username {
   height: 45rpx;
@@ -514,11 +563,10 @@ page {
 
 .mp-activedetail__query-all-comment {
   text-align: center;
-  line-height: 80rpx;
-  height: 80rpx;
+  line-height: 100rpx;
+  height: 100rpx;
   color: #7DD6D0;
-  font-size: 34rpx;
-  margin-top: -68rpx; }
+  font-size: 34rpx; }
 
 .mp-activedetail__footer {
   margin: 14rpx 0 0 0;

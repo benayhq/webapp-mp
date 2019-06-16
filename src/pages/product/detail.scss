@@ -8,6 +8,9 @@ page{
 $component:'.mp-activedetail';
 
 #{$component}{
+
+
+
     .mp-swiper{
         height:350px;
     }
@@ -45,18 +48,16 @@ $component:'.mp-activedetail';
         }
     }
 
-
     &__price{
         height:220px;
         background:rgba(255,255,255,1);
         border:1px solid rgba(255,255,255,1);
-        padding: 8px;
+        padding: 10px;
     }
 
     &__title{
         color: $color-brand;
         font-size: $font-size-xxl;
-        padding-left: 22px;
     }
 
     &__subtitle{
@@ -70,7 +71,9 @@ $component:'.mp-activedetail';
         font-family:PingFangSC-Regular;
         font-weight:400;
         color:rgba(0,0,0,1);
-        line-height:45px;
+        line-height:90px;
+        height: 90px;
+        padding: 10px;
     }
 
     &__address{
@@ -143,10 +146,16 @@ $component:'.mp-activedetail';
         width: 130px;
         height: 140px;
         margin-top: 6px;
+        &>image{
+          border-radius: 100px;
+          width:140px;
+          height:140px;
+        }
     }
 
     &__content{
       padding-left: 178px;
+
 
       &>View:nth-child(2){
         font-size:24px;
@@ -186,6 +195,44 @@ $component:'.mp-activedetail';
         border-bottom: 1px solid #ddd; 
         display: flex;
         flex-direction: row;
+        margin: 0 auto;
+        justify-content: center;
+
+        &>View:nth-child(1){
+            width: 15%;
+            &>image{
+                margin-top: 18px;
+                width:60px;
+                height:60px;
+                line-height: 60px;
+                border-radius:304px;
+                margin-left: 10px;
+            }
+        }
+
+        &>View:nth-child(2){
+            width: 20%;
+        }
+
+        &>View:nth-child(3){
+            width: 35%;
+        }
+
+        &>View:nth-child(4){
+            width: 30%;
+        }
+
+        &__buyAction{
+            margin: 10px;
+            color: #FFFFFF;
+            height: 78px;
+            line-height: 78px;
+            text-align: center;
+            border-radius: 5px;
+            background:rgba(125,214,208,1);
+            border-radius:4px;
+            border:1px solid rgba(125,214,208,1);
+        }
     }
 
     &__joinperson{
@@ -196,9 +243,6 @@ $component:'.mp-activedetail';
         margin-top: 9px;
     }
 
-    &__joinaction{
-        text-align: right;
-    }
 
     &__time{
         font-size:28px;
@@ -248,13 +292,9 @@ $component:'.mp-activedetail';
     &__comment{
         margin:14px 0 80px 0;
         width:100%;
-        height:728px;
         background:white;
         border:1px solid white;
-        
-        &>View:not(:last-child):not(:first-child){
-           padding-left: 80px;
-        }
+
     }
 
     &__comment-title{
@@ -272,6 +312,24 @@ $component:'.mp-activedetail';
     &__comment-content{
         height: 568px;
         border-bottom: 1px solid #ddd; 
+        display: flex;
+        flex-direction: row;
+
+        &-left{
+            width: 10%;
+            &>image{
+                width:60px;
+                height:60px;
+                border-radius:100px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+        }
+
+        &-right{
+            width: 90%;
+            margin: 10px;
+        }
     }
 
     &__comment-username{
@@ -322,11 +380,10 @@ $component:'.mp-activedetail';
 
     &__query-all-comment{
         text-align: center;
-        line-height: 80px;
-        height: 80px;
+        line-height: 100px;
+        height: 100px;
         color: $color-brand;
         font-size: 34px;
-        margin-top:-68px;
     }
 
     &__footer{

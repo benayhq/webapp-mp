@@ -16,6 +16,7 @@ export default class Detail extends Component{
     config = {
         navigationBarTitleText: '活动详情'
     }
+    
     constructor(){
         super(...arguments);
         this.state = {
@@ -117,7 +118,7 @@ export default class Detail extends Component{
                         <Text>人成团</Text>
                     </View>
                     <View className="mp-activedetail__price">
-                        <View style="height:35px;line-height:35px;">
+                        <View>
                             <Text className="mp-activedetail__title">￥2000</Text>
                             <Text className="mp-activedetail__subtitle">￥3000</Text>
                         </View>
@@ -142,7 +143,6 @@ export default class Detail extends Component{
                     <View className="mp-activedetail__person">
                         <View className="mp-activedetail__header">
                                 <image
-                                style="width:80px;height:74px;"
                                 mode="scaleToFill"
                                 src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
                                 ></image>
@@ -169,18 +169,22 @@ export default class Detail extends Component{
                             </Text>
                         </View>
                         <View className="mp-activedetail__second"> 
-                            <image
-                                style="width:20px;height:20px;padding:13px 10px 0 10px;"
-                                mode="scaleToFill"
-                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                            </image>
-                            <Text>氧气9000532</Text>
+                            <View>
+                                <image
+                                    className="mp-activedetail__second-image"
+                                    mode="scaleToFill"
+                                    src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                </image>
+                            </View>
+                            <View>氧气</View>
                             <View className="mp-activedetail__joinperson">
                                 <View className="mp-activedetail__counter">还差 1 人拼成</View>
                                 <View className="mp-activedetail__time">剩余20:50:14</View>
                             </View>
-                            <View className="mp-activedetail__joinaction">
-                                <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >立即购买</AtButton>
+                            <View>
+                                <View className="mp-activedetail__second__buyAction" onClick={this.showMpDialog.bind(this)}>
+                                     立即购买
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -188,49 +192,51 @@ export default class Detail extends Component{
                     <View className="mp-activedetail__comment">
                         <View className="mp-activedetail__comment-title">
                             <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>
-                            
-                            <Text  style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</Text>
-                                </View>
+                            <Text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</Text>
+                        </View>
                         <View className="mp-activedetail__comment-content">
-
+                            <View className="mp-activedetail__comment-content-left">
+                                    <image
+                                        
+                                            mode="scaleToFill"
+                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                    </image>
+                            </View>
+                            <View className="mp-activedetail__comment-content-right">
                                 <View className="mp-activedetail__comment-username">氧气9000532</View>
-
-                                <View className="mp-activedetail__comment-tag">
-                                    <Text>环境：5.0</Text>
-                                    <Text>专业度：5.0</Text>
-                                    <Text>服务：5.0</Text>
-                                    <Text>效果：5.0</Text>
-                                </View>
-                                <View className="mp-activedetail__comment-desc">
-                                    【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
-                                </View>
-                                <View className="mp-activedetail__comment-description">
-                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-                                    打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-                                    <View className="mp-activedetail__comment-time">
-                                        2018年03月15日
+                                    <View className="mp-activedetail__comment-tag">
+                                        <Text>环境：5.0</Text>
+                                        <Text>专业度：5.0</Text>
+                                        <Text>服务：5.0</Text>
+                                        <Text>效果：5.0</Text>
                                     </View>
-                                    <View>
-                                        <image style="width:80px;height:80px;padding-right:20px;"
-                                            mode="scaleToFill"
-                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                        </image>
-                                        <image style="width:80px;height:80px;padding-right:20px;"
-                                            mode="scaleToFill"
-                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                        </image>
-                                        <image style="width:80px;height:80px;padding-right:20px;"
-                                            mode="scaleToFill"
-                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                        </image>
+                                    <View className="mp-activedetail__comment-desc">
+                                        【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
                                     </View>
+                                    <View className="mp-activedetail__comment-description">
+                                        打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
+                                        打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
+                                        <View className="mp-activedetail__comment-time">
+                                            2018年03月15日
+                                        </View>
+                                        <View>
+                                            <image style="width:80px;height:80px;padding-right:20px;"
+                                                mode="scaleToFill"
+                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                            </image>
+                                            <image style="width:80px;height:80px;padding-right:20px;"
+                                                mode="scaleToFill"
+                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                            </image>
+                                            <image style="width:80px;height:80px;padding-right:20px;"
+                                                mode="scaleToFill"
+                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                                            </image>
+                                        </View>
+                                </View>
                             </View>
                         </View>
-                        <image
-                                style="width:30px;height:30px;position:relative;left:5px;top:-310px;border-radius:24px;"
-                                mode="scaleToFill"
-                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                        </image>
+                     
                         <View className="mp-activedetail__query-all-comment">
                             查看全部评论
                             <Text className="mp-icon mp-icon-arrow1"></Text>

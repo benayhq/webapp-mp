@@ -30,7 +30,7 @@ export const dispatchCreateReseverOrder = payload => createAction({
     payload
 });
 
-export const dispatchDownLoadUrl = payload =>createAction({
+export const dispatchCreateOrderDownLoadUrl = payload =>createAction({
     type: ORDER_ACTION_UPLOAD_DOWN,
     url: API_UPLOAD_FILE,
     fetchOptions:{
