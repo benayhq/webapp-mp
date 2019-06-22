@@ -5,7 +5,25 @@
                 <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </view>
         </at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{1}}"></at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{2}}"></at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{1}}">
+            <view>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+            </view>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{2}}">
+            <view>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+            </view>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{3}}">
+            <view>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+            </view>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{4}}">
+            <view>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+            </view>
+        </at-tabs-pane>
     </at-tabs>
 </block>

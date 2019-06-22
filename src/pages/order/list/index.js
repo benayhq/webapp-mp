@@ -29,17 +29,16 @@ export default class OrderItem extends Component{
         return result.content;
     }
 
-    jumpUrl(url){
+    jumpUrl(orderId){
+        console.log('orderId',orderId);
         Taro.navigateTo({
-            url:'/pages/order/comment/index'
-        })
-        // console.log('url',url);
+            url:'/pages/order/comment/index?orderId='+orderId
+        });
     }
-
-
 
     componentWillReceiveProps(props){
         var cacheList = [];
+
         props.list.map((item,key)=>{
             this.getImgUrl(item.activityProductLocation).then((response)=>{
                 cacheList.push({
@@ -48,9 +47,9 @@ export default class OrderItem extends Component{
                     activityName:item.activityName,
                     activityProductName:item.activityProductName,
                     productDiscountPrice:item.productDiscountPrice,
-                    imgUrl:response
+                    imgUrl:response,
+                    number:item.number
                 });
-
                 if(props.list.length === cacheList.length){
                     this.setState({
                         OrderList:cacheList
@@ -61,10 +60,13 @@ export default class OrderItem extends Component{
     }
 
     componentDidMount(){
+
     }
    
     render(){
         const {ProductImg,OrderList} = this.state;
+
+        console.log('OrderList',this.props.list);
 
         return (
             <View>
@@ -90,15 +92,11 @@ export default class OrderItem extends Component{
                         <View className="order-action">
                             <View className="action">
                             {
-                                item.status == "UNPAY" || item.status == "PAY_FAILED" && <AtButton type='primary' size='small'>支付订单</AtButton>
+                                item.status == "UNPAY" && (<AtButton type='primary' size='small'>支付订单</AtButton>)
                             }
-                            {/* {
-                                item.status == "待成团" && <AtButton type='primary' size='small'>邀请好友</AtButton>
-                            } */}
                             {
                                 item.status == "PAID" && <View>
-                                    {/* <AtButton type='primary' size='small'>退款申请</AtButton>  */}
-                                    <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,'/pages/order/comment')}>我要评价</AtButton>
+                                    <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.number)}>我要评价</AtButton>
                                     <Text className="margin8"></Text>
                                     <AtButton type='primary' size='small'>立即核销</AtButton>
                                 </View>

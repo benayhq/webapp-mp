@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -59,6 +59,28 @@ var dispatchOrderList = exports.dispatchOrderList = function dispatchOrderList(p
   return (0, _redux.createAction)({
     type: _constants.ORDER_LIST,
     url: _api.API_ORDER_LIST,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchUploadConfig = exports.dispatchUploadConfig = function dispatchUploadConfig(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_UPLOAD_CONFIG,
+    url: _api.API_UPLOAD_CONFIG,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchCreateComment = exports.dispatchCreateComment = function dispatchCreateComment(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.CREATE_COMMENT_IMAGE,
+    url: _api.API_PUBLISH_COMMENT,
     fetchOptions: {
       method: 'POST'
     },

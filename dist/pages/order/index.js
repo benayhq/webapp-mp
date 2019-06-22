@@ -108,16 +108,22 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.getAllOrderList('');
+    }
+  }, {
+    key: "getAllOrderList",
+    value: function getAllOrderList(statusVo) {
       var _this2 = this;
 
       var payload = {
-        status: []
+        statusVo: statusVo
       };
       this.props.dispatchOrderList(payload).then(function (response) {
         console.log('response', response);
         _this2.setState({
           list: response.content
         });
+        _this2.forceUpdate();
       });
     }
   }, {
@@ -126,6 +132,23 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         current: value
       });
+      switch (value) {
+        case 0:
+          this.getAllOrderList('');
+          break;
+        case 1:
+          this.getAllOrderList('UNPAY');
+          break;
+        case 2:
+          this.getAllOrderList('BATING');
+          break;
+        case 3:
+          this.getAllOrderList('CONSUMPTION');
+          break;
+        case 4:
+          this.getAllOrderList('COMMENTING');
+          break;
+      }
     }
   }, {
     key: "_createData",
@@ -135,7 +158,13 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var tabList = [{ title: '全部' }, { title: '待付款' }, { title: '待成团' }, { title: '待消费' }, { title: '待评价' }];
+      var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
+      var _state = this.__state,
+          list = _state.list,
+          current = _state.current;
+
+
+      console.log('response list', list);
 
       Object.assign(this.__state, {
         tabList: tabList

@@ -167,7 +167,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "choose",
     value: function choose() {
-
       var that = this;
       wx.chooseImage({
         count: 1, // 默认最多一次选择9张图

@@ -96,11 +96,11 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
     }()
   }, {
     key: "jumpUrl",
-    value: function jumpUrl(url) {
+    value: function jumpUrl(orderId) {
+      console.log('orderId', orderId);
       _index2.default.navigateTo({
-        url: '/pages/order/comment/index'
+        url: '/pages/order/comment/index?orderId=' + orderId
       });
-      // console.log('url',url);
     }
   }, {
     key: "componentWillReceiveProps",
@@ -108,6 +108,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var _this2 = this;
 
       var cacheList = [];
+
       props.list.map(function (item, key) {
         _this2.getImgUrl(item.activityProductLocation).then(function (response) {
           cacheList.push({
@@ -116,9 +117,9 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
             activityName: item.activityName,
             activityProductName: item.activityProductName,
             productDiscountPrice: item.productDiscountPrice,
-            imgUrl: response
+            imgUrl: response,
+            number: item.number
           });
-
           if (props.list.length === cacheList.length) {
             _this2.setState({
               OrderList: cacheList
@@ -142,6 +143,8 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
           ProductImg = _state.ProductImg,
           OrderList = _state.OrderList;
 
+
+      console.log('OrderList', this.__props.list);
 
       Object.assign(this.__state, {});
       return this.__state;

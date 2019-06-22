@@ -29,3 +29,6 @@ export const API_UPLOAD_FILE = `${HOST}/api/v1/document/download/url`;
 
 // 获取oss
 export const API_UPLOAD_CONFIG = `${HOST}/api/v1/document/upload/config`;
+
+// 发表评论
+export const API_PUBLISH_COMMENT = `${HOST}/api/v1/comment/create`;

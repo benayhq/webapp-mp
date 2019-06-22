@@ -49,4 +49,3 @@ export const dispatchUploadConfig = payload => createAction({
     },
     payload
 });
-

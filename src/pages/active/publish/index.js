@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Picker, PickerView, PickerViewColumn,AtButton  } from '@tarojs/components'
-import './index.scss'
 import { AtImagePicker,AtInput,AtMessage,AtModal,
    AtModalHeader, AtModalContent, AtModalAction, AtToast } from 'taro-ui'
 import ProductList from './productlist/index';
@@ -10,6 +9,7 @@ import {getAuthInfo} from './../../../utils/storage';
 var productIds = [];
 var uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
+import './index.scss'
 
 @connect(state=>state.user,actions)
 export default class Index extends Component {
@@ -93,52 +93,51 @@ export default class Index extends Component {
   }
 
   choose(){
-
     var that = this;
     wx.chooseImage({
-      count: 1, // 默认最多一次选择9张图
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res){
-         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-         var tempFilePaths = res.tempFilePaths;
-         var nowTime = util.formatTime(new Date());
+        count: 1, // 默认最多一次选择9张图
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res){
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths;
+          var nowTime = util.formatTime(new Date());
 
-         //支持多图上传
-         for (var i = 0; i < res.tempFilePaths.length; i++) {
-            //显示消息提示框
-            wx.showLoading({
-               title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
-               mask: true
-            });
+          //支持多图上传
+          for (var i = 0; i < res.tempFilePaths.length; i++) {
+              //显示消息提示框
+              wx.showLoading({
+                title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
+                mask: true
+              });
 
-            let file = res.tempFilePaths[i];
+              let file = res.tempFilePaths[i];
 
-            var payload ={
-              documentType:'ACTIVITY',
-              fileName:'ACTIVITY.png'
-            };
+              var payload ={
+                documentType:'ACTIVITY',
+                fileName:'ACTIVITY.png'
+              };
 
-            that.props.dispatchUploadConfig(payload).then((response)=>{
-              console.log('dispatchUploadConfig',response.content.location);
-                //上传图片
-                //图片路径可自行修改
-                uploadImage(file, response.content.location,
-                  function (result) {
-                    that.setState({
-                      location:[result]
-                    });
-                    console.log("======上传成功图片地址为：", result);
-                    wx.hideLoading();
-                  }, function (result) {
-                    console.log("======上传失败======", result);
-                    wx.hideLoading()
-                  }
-                )
-            });
-         }
-      }
-   })
+              that.props.dispatchUploadConfig(payload).then((response)=>{
+                console.log('dispatchUploadConfig',response.content.location);
+                  //上传图片
+                  //图片路径可自行修改
+                  uploadImage(file, response.content.location,
+                    function (result) {
+                      that.setState({
+                        location:[result]
+                      });
+                      console.log("======上传成功图片地址为：", result);
+                      wx.hideLoading();
+                    }, function (result) {
+                      console.log("======上传失败======", result);
+                      wx.hideLoading()
+                    }
+                  )
+              });
+          }
+        }
+    })
   }
 
   handleUploadLoader = () =>{

@@ -34,3 +34,6 @@ var API_UPLOAD_FILE = exports.API_UPLOAD_FILE = HOST + '/api/v1/document/downloa
 
 // 获取oss
 var API_UPLOAD_CONFIG = exports.API_UPLOAD_CONFIG = HOST + '/api/v1/document/upload/config';
+
+// 发表评论
+var API_PUBLISH_COMMENT = exports.API_PUBLISH_COMMENT = HOST + '/api/v1/comment/create';

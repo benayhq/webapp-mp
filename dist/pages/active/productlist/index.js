@@ -12,9 +12,7 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
-var _jump = require("../../utils/jump.js");
-
-var _jump2 = _interopRequireDefault(_jump);
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,47 +22,41 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Title = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(Title, _BaseComponent);
+var ProductList = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(ProductList, _BaseComponent);
 
-  function Title() {
+  function ProductList() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Title);
+    _classCallCheck(this, ProductList);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp2", "OrderState", "agentName"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["products"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Title, [{
+  _createClass(ProductList, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(Title.prototype.__proto__ || Object.getPrototypeOf(Title.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(ProductList.prototype.__proto__ || Object.getPrototypeOf(ProductList.prototype), "_constructor", this).call(this, props);
     }
   }, {
-    key: "jumpUrl",
-    value: function jumpUrl(url) {
-      (0, _jump2.default)({ url: url + ("?status=" + this.props.OrderState) });
+    key: "createProduct",
+    value: function createProduct() {
+      _index2.default.navigateTo({
+        url: '/pages/product/edit'
+      });
     }
   }, {
-    key: "getOrderTextByStatus",
-    value: function getOrderTextByStatus(OrderState) {
-      var showOrderText = "";
-      if (OrderState === "UNPAY") {
-        showOrderText = "待付款";
-      } else if (OrderState === "BATING") {
-        showOrderText = "待成团";
-      } else if (OrderState === "CONSUMPTION") {
-        showOrderText = "待消费";
-      } else if (OrderState === "COMMENTING") {
-        showOrderText = "待评价";
-      }
-      return showOrderText;
+    key: "selectProduct",
+    value: function selectProduct() {
+      _index2.default.navigateTo({
+        url: '/pages/product/index'
+      });
     }
   }, {
     key: "_createData",
@@ -73,25 +65,18 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      var anonymousState__temp2 = this.getOrderTextByStatus(this.__props.OrderState);
-      Object.assign(this.__state, {
-        anonymousState__temp2: anonymousState__temp2
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
-  return Title;
+  return ProductList;
 }(_index.Component), _class.properties = {
-  "OrderState": {
-    "type": null,
-    "value": null
-  },
-  "agentName": {
+  "products": {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["jumpUrl"], _temp2);
-exports.default = Title;
+}, _class.$$events = ["selectProduct", "createProduct"], _temp2);
+exports.default = ProductList;
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Title));
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));

@@ -14,17 +14,12 @@
             </view>
             <view class="order-action">
                 <view class="action">
-                    <block>
-                        <block wx:if="{{item.status == 'UNPAY'}}">{{item.status == "UNPAY"}}</block>
-                        <block wx:else>
-                            <block wx:if="{{item.status == 'PAY_FAILED'}}">
-                                <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">支付订单</at-button>
-                            </block>
-                        </block>
+                    <block wx:if="{{item.status == 'UNPAY'}}">
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">支付订单</at-button>
                     </block>
                     <block wx:if="{{item.status == 'PAID'}}">
                         <view>
-                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="jumpUrl" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="/pages/order/comment">我要评价</at-button><text class="margin8"></text>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="jumpUrl" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.number}}">我要评价</at-button><text class="margin8"></text>
                             <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">立即核销</at-button>
                         </view>
                     </block>
