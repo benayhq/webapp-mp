@@ -1,0 +1,29 @@
+<block>
+    <view class="mp-order-comment">
+        <view class="product">333</view>
+        <view class="serve">
+            <view class="environ"><text>环境:</text>
+                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{envValue}}" bindonchange="handleEnvChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-rate>
+            </view>
+            <view class="environ"><text>服务:</text>
+                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{serveValue}}" bindonchange="handleServeChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-rate>
+            </view>
+            <view class="environ"><text class="profession">专业:</text>
+                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{profValue}}" bindonchange="handleProfChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-rate>
+            </view>
+            <view class="environ"><text>效果:</text>
+                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{effectValue}}" bindonchange="handleEffectChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-rate>
+            </view>
+        </view>
+        <view class="space"></view>
+        <view class="comment">
+            <at-textarea value="{{commentValue}}" __triggerObserer="{{ _triggerObserer }}" bindonchange="handleChange" maxLength="{{500}}" placeholder="发表你的想法..." __fn_onChange="{{true}}" data-e-onchange-so="this"></at-textarea>
+        </view>
+        <view class="upload-map">
+            <at-image-picker files="{{files}}" __triggerObserer="{{ _triggerObserer }}" bindonchange="onChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+        </view>
+        <view class="submit">
+            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}">发表评论</at-button>
+        </view>
+    </view>
+</block>

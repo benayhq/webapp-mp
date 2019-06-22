@@ -36,7 +36,7 @@ var Contact = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Contact.__proto__ || Object.getPrototypeOf(Contact)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Contact.__proto__ || Object.getPrototypeOf(Contact)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["weChatQrCode", "cellphone", "weChatId"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Contact, [{
@@ -51,13 +51,36 @@ var Contact = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      Object.assign(this.__state, {});
+
+      var _props = this.__props,
+          cellphone = _props.cellphone,
+          weChatId = _props.weChatId,
+          weChatQrCode = _props.weChatQrCode;
+
+      Object.assign(this.__state, {
+        weChatQrCode: weChatQrCode,
+        cellphone: cellphone,
+        weChatId: weChatId
+      });
       return this.__state;
     }
   }]);
 
   return Contact;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class.properties = {
+  "cellphone": {
+    "type": null,
+    "value": null
+  },
+  "weChatId": {
+    "type": null,
+    "value": null
+  },
+  "weChatQrCode": {
+    "type": null,
+    "value": null
+  }
+}, _class.$$events = [], _temp2);
 exports.default = Contact;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Contact));

@@ -2,17 +2,17 @@
     <view class="mp-activedetail">
         <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
             <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
-                <swiper-item wx:for="{{data.docInfo}}" wx:for-item="item" wx:for-index="_anonIdx">
-                    <image className="demo-text-1" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{item.location}}"></image>
+                <swiper-item wx:for="{{bannerList}}" wx:for-item="item" wx:for-index="_anonIdx">
+                    <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{item}}"></image>
                 </swiper-item>
             </swiper>
             <view class="mp-activedetail__user"><text>好友 </text><text>{{data.nickname}}</text><text>发起的拼团,还差 </text><text>{{data.remainPeople}}</text><text>人成团</text>
             </view>
             <view class="mp-activedetail__price">
-                <view><text class="mp-activedetail__title">￥2000</text><text class="mp-activedetail__subtitle">￥3000</text>
+                <view><text class="mp-activedetail__title">￥{{data.displayPrice}}</text><text class="mp-activedetail__subtitle">￥{{data.displayDiscountPrice}}</text>
                 </view>
                 <view class="mp-activedetail__desc">{{data.activityName}}</view>
-                <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：140074</text>
+                <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：{{data.consultPeople}}</text>
                 </view>
             </view>
             <view class="mp-activedetail__service">
@@ -25,55 +25,61 @@
             </view>
             <view class="mp-activedetail__person">
                 <view class="mp-activedetail__header">
-                    <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                    <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{data.profileUrl}}"></image>
                 </view>
                 <view class="mp-activedetail__content">
-                    <view>医美管家 vivi</view>
-                    <view>5.0分（2000人评）| ￥29999</view>
+                    <view>{{data.username}}</view>
+                    <view>{{data.commentScore}}分（{{data.commentPeople}}人评）</view>
                     <view>服务区域：上海市 黄浦区</view>
                 </view>
             </view>
-            <view class="mp-activedetail__join">
-                <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">14人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this">查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
-                </view>
-                <view class="mp-activedetail__second">
-                    <view>
-                        <image className="mp-activedetail__second-image" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            <block wx:if="{{data.batchPeople > 0}}">
+                <view class="mp-activedetail__join">
+                    <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this">查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
                     </view>
-                    <view>氧气</view>
-                    <view class="mp-activedetail__joinperson">
-                        <view class="mp-activedetail__counter">还差 1 人拼成</view>
-                        <view class="mp-activedetail__time">剩余20:50:14</view>
-                    </view>
-                    <view>
-                        <view class="mp-activedetail__second__buyAction" bindtap="showMpDialog" data-e-tap-so="this">立即购买</view>
-                    </view>
-                </view>
-            </view>
-            <view class="mp-activedetail__comment">
-                <view class="mp-activedetail__comment-title"><text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></text><text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</text>
-                </view>
-                <view class="mp-activedetail__comment-content">
-                    <view class="mp-activedetail__comment-content-left">
-                        <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-                    </view>
-                    <view class="mp-activedetail__comment-content-right">
-                        <view class="mp-activedetail__comment-username">氧气9000532</view>
-                        <view class="mp-activedetail__comment-tag"><text>环境：5.0</text><text>专业度：5.0</text><text>服务：5.0</text><text>效果：5.0</text>
-                        </view>
-                        <view class="mp-activedetail__comment-desc">【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸</view>
-                        <view class="mp-activedetail__comment-description">打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-                            <view class="mp-activedetail__comment-time">2018年03月15日</view>
+                    <block wx:if="{{data.activityBatchVos}}">
+                        <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx2">
                             <view>
-                                <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-                                <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
-                                <image style="width:80px;height:80px;padding-right:20px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+                                <image className="mp-activedetail__second-image" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{batch.profileUrl}}"></image>
+                            </view>
+                            <view>{{batch.publishName}}</view>
+                            <view class="mp-activedetail__joinperson">
+                                <view class="mp-activedetail__counter">还差 {{batch.remainPeople}}人拼成</view>
+                                <view class="mp-activedetail__time">剩余20:50:14</view>
+                            </view>
+                            <view>
+                                <view class="mp-activedetail__second__buyAction" bindtap="showMpDialog" data-e-tap-so="this">立即购买</view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </block>
+            <view class="mp-activedetail__comment">
+                <view class="mp-activedetail__comment-title"><text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></text><text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 ({{data.commentPeople === null ? 0 : data.commentPeople}})</text>
+                </view>
+                <block wx:if="{{data.commentVo}}">
+                    <view class="mp-activedetail__comment-content">
+                        <view class="mp-activedetail__comment-content-left">
+                            <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{data.commentVo.profileUrl}}"></image>
+                        </view>
+                        <view class="mp-activedetail__comment-content-right">
+                            <view class="mp-activedetail__comment-username">{{data.commentVo.name}}</view>
+                            <view class="mp-activedetail__comment-tag"><text>环境：{{data.commentVo.environmentStar + '.0'}}</text><text>专业度：{{data.commentVo.professionStar + '.0'}}</text><text>服务：{{data.commentVo.serviceStar + '.0'}}</text><text>效果：{{data.commentVo.effectStar + '.0'}}</text>
+                            </view>
+                            <view class="mp-activedetail__comment-description">{{data.commentVo.message}}
+                                <view>
+                                    <block wx:if="{{commentList}}">
+                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx3"></image>
+                                    </block>
+                                </view>
                             </view>
                         </view>
                     </view>
-                </view>
-                <view class="mp-activedetail__query-all-comment">查看全部评论<text class="mp-icon mp-icon-arrow1"></text>
-                </view>
+                </block>
+                <block wx:if="{{data.commentVo}}">
+                    <view class="mp-activedetail__query-all-comment">查看全部评论<text class="mp-icon mp-icon-arrow1"></text>
+                    </view>
+                </block>
             </view>
             <view class="mp-activedetail__consultation"></view>
             <view class="mp-activedetail__footer">
@@ -90,7 +96,7 @@
         </scroll-view>
         <popup visible="{{visible}}" __triggerObserer="{{ _triggerObserer }}" bindonclose="toggleVisible" __fn_onClose="{{true}}">
             <block wx:if="{{bContact}}">
-                <contact __triggerObserer="{{ _triggerObserer }}"></contact>
+                <contact cellphone="{{data.cellphone}}" __triggerObserer="{{ _triggerObserer }}" weChatId="{{data.weChatId}}" weChatQrCode="{{data.weChatQrCode}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
                 <spec activityName="{{data.activityName}}" __triggerObserer="{{ _triggerObserer }}" products="{{data.activityProducts}}"></spec>

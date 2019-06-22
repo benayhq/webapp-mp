@@ -52,7 +52,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "dispatchCreateOrder", "dispatchQueryProductInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "dispatchCreateOrder", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -140,7 +140,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
                   location: location
                 };
                 _context.next = 3;
-                return this.props.dispatchDownLoadUrl(payload);
+                return this.props.dispatchCreateOrderDownLoadUrl(payload);
 
               case 3:
                 result = _context.sent;
@@ -190,7 +190,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
-  "dispatchDownLoadUrl": {
+  "dispatchCreateOrderDownLoadUrl": {
     "type": null,
     "value": null
   }

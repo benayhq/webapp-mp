@@ -38,7 +38,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderState", "agentName"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "OrderState", "agentName"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Title, [{
@@ -52,13 +52,44 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       (0, _jump2.default)({ url: url + ("?status=" + this.props.OrderState) });
     }
   }, {
+    key: "getOrderTextByStatus",
+    value: function getOrderTextByStatus(OrderState) {
+
+      var showOrderText = "";
+
+      if (OrderState === "UNPAY") {
+        showOrderText = "未支付";
+      } else if (OrderState === "CANCEL") {
+        showOrderText = "支付取消";
+      } else if (OrderState === "PAID") {
+        showOrderText = "支付完成(待核销)";
+      } else if (OrderState === "PAY_FAILED") {
+        showOrderText = "支付失败";
+      } else if (OrderState === "REFUND_APPLIED") {
+        showOrderText = "向代理发起退款申请";
+      } else if (OrderState === "REFUNDING") {
+        showOrderText = "退款已发起/代理通过退款申请";
+      } else if (OrderState === "REFUNDED") {
+        showOrderText = "退款完成";
+      } else if (OrderState === "REFUND_FAILED") {
+        showOrderText = "退款失败";
+      } else if (OrderState === "VERIFIED") {
+        showOrderText = "已核销";
+      }
+
+      return showOrderText;
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      Object.assign(this.__state, {});
+      var anonymousState__temp = this.__props.OrderState ? this.getOrderTextByStatus(this.__props.OrderState) : null;
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp
+      });
       return this.__state;
     }
   }]);

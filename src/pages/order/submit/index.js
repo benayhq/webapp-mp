@@ -76,7 +76,7 @@ export default class SubmitOrder extends Component{
         var payload = {
           location:location
         };
-        const result = await this.props.dispatchDownLoadUrl(payload);
+        const result = await this.props.dispatchCreateOrderDownLoadUrl(payload);
         return result.content;
     }
 
@@ -123,9 +123,10 @@ export default class SubmitOrder extends Component{
                 </View>
 
                 <View className="submit-order_footer">
-                    <View>共 1 件，预定金： <Text>￥{product.price} </Text> </View>
+                    <View>共 1 件，预定金： <Text>￥{product.advance} </Text> </View>
                     <View onClick={this.handleSubmitOrder.bind(this)}>提交订单</View>
                 </View>
+                
             </View>
         )
     }

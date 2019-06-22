@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -50,6 +50,17 @@ var dispatchCreateOrderDownLoadUrl = exports.dispatchCreateOrderDownLoadUrl = fu
     url: _api.API_UPLOAD_FILE,
     fetchOptions: {
       method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchOrderList = exports.dispatchOrderList = function dispatchOrderList(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ORDER_LIST,
+    url: _api.API_ORDER_LIST,
+    fetchOptions: {
+      method: 'POST'
     },
     payload: payload
   });

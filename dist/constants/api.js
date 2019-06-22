@@ -27,6 +27,7 @@ var API_ACTIVE_CLOSE = exports.API_ACTIVE_CLOSE = HOST + '/api/v1/activity/close
 // 创建订单
 var API_CREATE_ORDER = exports.API_CREATE_ORDER = HOST + '/api/v1/batch/create';
 var API_CREATE_RESEVER_ORDER = exports.API_CREATE_RESEVER_ORDER = HOST + '/api/v1/batch/reserve';
+var API_ORDER_LIST = exports.API_ORDER_LIST = HOST + '/api/v1/reservation/myReservation'; // 获取订单列表.
 
 // 上传图片
 var API_UPLOAD_FILE = exports.API_UPLOAD_FILE = HOST + '/api/v1/document/download/url';

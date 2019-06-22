@@ -22,7 +22,6 @@ exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments[1];
 
-  console.log('action.type', action);
   switch (action.type) {
     case contants.UPDATE_USER_INFO:
       return _extends({}, state, { updateUser: action.payload.content });

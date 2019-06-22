@@ -162,10 +162,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 });
 
-                console.log('productList222eeee', this.state.newFilterList);
                 return _context2.abrupt("return");
 
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }

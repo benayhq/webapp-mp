@@ -9,10 +9,8 @@ $component:'.mp-activedetail';
 
 #{$component}{
 
-
-
     .mp-swiper{
-        height:350px;
+        height:500px;
     }
     
     &__user{
@@ -54,7 +52,7 @@ $component:'.mp-activedetail';
         border:1px solid rgba(255,255,255,1);
         padding: 10px;
     }
-
+    
     &__title{
         color: $color-brand;
         font-size: $font-size-xxl;

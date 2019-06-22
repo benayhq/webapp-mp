@@ -31,7 +31,7 @@
       "list": []
     },
     "miniprogram": {
-      "current": 17,
+      "current": 18,
       "list": [
         {
           "id": -1,
@@ -156,6 +156,13 @@
           "id": -1,
           "name": "发起订单",
           "pathName": "pages/order/submit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "P2P",
+          "pathName": "pages/p2p/index",
           "scene": null
         }
       ]

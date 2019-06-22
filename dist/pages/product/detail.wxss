@@ -237,7 +237,7 @@ page {
   background: #f5f5f9; }
 
 .mp-activedetail .mp-swiper {
-  height: 350rpx; }
+  height: 500rpx; }
 
 .mp-activedetail__user {
   line-height: 80rpx;

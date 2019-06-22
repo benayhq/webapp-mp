@@ -1,13 +1,13 @@
 <block>
     <view class="mp-contact">
         <view class="mp-contact__labeltel">联系电话</view>
-        <view class="mp-contact__phone">18317052202</view>
+        <view class="mp-contact__phone">{{cellphone && cellphone}}</view>
         <view class="mp-contact__labeltel">联系微信</view>
-        <view class="mp-contact__phone">18317052202</view>
+        <view class="mp-contact__phone">{{weChatId && weChatId}}</view>
         <view><text class="mp-contact__qrCode">二维码名片</text><text class="mp-contact__touchQrCode">长按识别二维码</text>
         </view>
         <view class="mp-contact__qrbg">
-            <image style="height:120px;width:120px;margin:0 auto;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="https://storage.360buyimg.com/mtd/home/111543234387022.jpg"></image>
+            <image style="height:200px;width:200px;margin:0 auto;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{weChatQrCode}}"></image>
         </view>
     </view>
 </block>

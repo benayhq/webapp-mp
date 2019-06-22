@@ -252,3 +252,48 @@
     padding-right: 25rpx; }
   .mp-order-list .margin8 {
     margin-left: 32rpx; }
+  .mp-order-list .product {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%; }
+    .mp-order-list .product .left {
+      width: 30%;
+      height: 220rpx; }
+    .mp-order-list .product .right {
+      width: 70%;
+      height: 220rpx;
+      margin-left: 20rpx; }
+      .mp-order-list .product .right > view:nth-child(1) {
+        width: 100%;
+        padding-left: 15rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: black; }
+      .mp-order-list .product .right > view:nth-child(2) {
+        width: 100%;
+        padding-left: 15rpx;
+        font-size: 24rpx;
+        height: 40rpx;
+        line-height: 40rpx;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: #bbbbbb;
+        line-height: 33rpx; }
+      .mp-order-list .product .right > view:nth-child(3) {
+        font-size: 36rpx;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: #7dd6d0;
+        line-height: 50rpx;
+        height: 50rpx;
+        padding-left: 15rpx; }

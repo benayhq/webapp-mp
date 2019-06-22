@@ -38,8 +38,7 @@ export default class Popup extends Component {
 
   render () {
     const { onClose, compStyle } = this.props
-    const { isShow } = this.state
-    console.log('onClose', onClose);
+    const { isShow } = this.state;
 
     return (
       <View

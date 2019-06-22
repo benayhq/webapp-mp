@@ -1,0 +1,5 @@
+<block>
+    <view class="mp-user__controlpanel">
+        <web-view src="https://lovemeipin.com:8445/h5tuiguang/mff?ref=hd_11021801"></web-view>
+    </view>
+</block>

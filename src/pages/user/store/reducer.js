@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 export default (state = defaultState,action) => {
-    console.log('action.type',action);
     switch(action.type){
         case contants.UPDATE_USER_INFO:
             return {...state,updateUser:action.payload.content}

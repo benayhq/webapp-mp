@@ -82,7 +82,6 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
           compStyle = _props.compStyle;
       var isShow = this.__state.isShow;
 
-      console.log('onClose', onClose);
 
       var anonymousState__temp = (0, _index4.default)('comp-popup', isShow && 'comp-popup--visible');
       var anonymousState__temp2 = (0, _index.internal_inline_style)(compStyle);
@@ -96,8 +95,8 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       return this.__state;
     }
   }, {
-    key: "funPrivateqWoJE",
-    value: function funPrivateqWoJE() {
+    key: "funPrivateHvxXy",
+    value: function funPrivateHvxXy() {
       this.__triggerPropsFn("onClose", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
@@ -124,7 +123,7 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleTouchMove", "funPrivateqWoJE"], _class.defaultProps = {
+}, _class.$$events = ["handleTouchMove", "funPrivateHvxXy"], _class.defaultProps = {
   visible: false,
   compStyle: '',
   onClose: function onClose() {}

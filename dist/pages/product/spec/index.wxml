@@ -19,5 +19,6 @@
             </view>
         </block>
         <view class="{{prefix + '__bottom'}}" bindtap="handleSubmitOrder" data-e-tap-so="this">拼 团</view>
+        <at-toast isOpened="{{isOpended}}" __triggerObserer="{{ _triggerObserer }}" text="{{text}}" duration="{{1000}}"></at-toast>
     </view>
 </block>

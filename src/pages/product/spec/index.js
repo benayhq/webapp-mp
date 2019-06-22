@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
 import jump from '../../utils/jump';
+import { AtToast } from "taro-ui"
 
 @connect(state=>state.user,actions)
 export default class Spec extends Component{
@@ -28,11 +29,14 @@ export default class Spec extends Component{
                 productPrice:'',
                 productAdvance:''
             },
-            productItems:[]
+            productItems:[],
+            text:'请选择品类',
+            isOpended:false
         };
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps,props){
+        
         this.getImgUrl(nextProps.products[0].productDocumentLocation).then(res=>{
             this.setState({
                 categoryItem:{
@@ -78,7 +82,8 @@ export default class Spec extends Component{
 
     handleChangeCategory(product){
        this.setState({
-            productId:product.productId
+            productId:product.productId,
+            isOpended:false
        });
 
        var newProducts = this.state.productItems.map(item=>{
@@ -110,21 +115,20 @@ export default class Spec extends Component{
     }
 
     handleSubmitOrder(e){
-        console.log('e',e);
         const {productId} = this.state;
+        if(productId === 0){
+            this.setState({
+                isOpended:true
+            })
+            return;
+        }
         console.log('productId',productId);
-        console.log('activityName',this.props.activityName);
+        console.log('this.props.activityName',this.props.activityName);
         jump({url:'/pages/order/submit/index?productId='+productId+'&activityName='+this.props.activityName});
     }
 
     render(){
-        const {prefix,isChange,categoryItem,productItems} = this.state;
-        console.log('this.props',this.props);
-
-        const categoryClass = classNames({
-            'mp-spec__category':true,
-            'mp-spec__category-green':isChange
-        })
+        const {prefix,isChange,categoryItem,productItems,icon,text} = this.state;
 
         return (
             <View>
@@ -163,6 +167,8 @@ export default class Spec extends Component{
                 <View className={prefix + '__bottom'} onClick={this.handleSubmitOrder.bind(this)}>
                     拼 团
                 </View>
+
+                <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast>
             </View>
         )
     }

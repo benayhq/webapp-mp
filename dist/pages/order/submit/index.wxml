@@ -24,7 +24,7 @@
             </view>
         </view>
         <view class="submit-order_footer">
-            <view>共 1 件，预定金： <text>￥{{product.price}}</text>
+            <view>共 1 件，预定金： <text>￥{{product.advance}}</text>
             </view>
             <view bindtap="handleSubmitOrder" data-e-tap-so="this">提交订单</view>
         </view>

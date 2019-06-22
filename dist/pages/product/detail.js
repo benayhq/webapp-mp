@@ -26,6 +26,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -48,7 +50,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bContact", "bSpec", "showOrderDialog", "isOpened", "categoryDialog", "visible", "dispatchActiveInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "isOpened", "categoryDialog", "visible", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -68,7 +70,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         bSpec: true,
         bContact: false,
         showOrderDialog: false,
-        data: {}
+        data: {},
+        commentList: [],
+        bannerList: []
       };
     }
   }, {
@@ -84,6 +88,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "openCategoryDialog",
     value: function openCategoryDialog() {
+
       this.setState({
         visible: true,
         bSpec: true,
@@ -111,16 +116,81 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var _this2 = this;
 
       var payload = {
-        activityId: 17
+        activityId: 18
       };
-
       this.props.dispatchActiveInfo(payload).then(function (res) {
         console.log('res.content', res.content);
         _this2.setState({
           data: res.content
         });
+
+        var commentItemList = [];
+
+        //  获取评论图片.
+        if (res.content && res.content.commentVo && res.content.commentVo.location.length > 0) {
+          res.content.commentVo.location.map(function (item) {
+            _this2.getImgUrl(item).then(function (responseItem) {
+              console.log('responseItem getImgUrl', responseItem);
+              commentItemList.push(responseItem);
+            }).then(function () {
+              _this2.setState({
+                commentList: commentItemList
+              });
+            });
+          });
+        }
+
+        var bannerItemList = [];
+
+        // 获取banner 图片.
+        if (res.content && res.content.docInfo && res.content.docInfo.length > 0) {
+          res.content.docInfo.map(function (item) {
+            _this2.getImgUrl(item.location).then(function (response) {
+              console.log('response getImgUrl', response);
+              bannerItemList.push(response);
+            }).then(function () {
+              _this2.setState({
+                bannerList: bannerItemList
+              });
+            });
+          });
+        }
+        // bannerList
       });
     }
+  }, {
+    key: "getImgUrl",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payload = {
+                  location: location
+                };
+                _context.next = 3;
+                return this.props.dispatchDownLoadUrl(payload);
+
+              case 3:
+                result = _context.sent;
+                return _context.abrupt("return", result.content);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getImgUrl(_x) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getImgUrl;
+    }()
   }, {
     key: "_createData",
     value: function _createData() {
@@ -129,16 +199,18 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var data = this.__state.data;
+      var _state = this.__state,
+          data = _state.data,
+          commentList = _state.commentList,
+          bannerList = _state.bannerList;
 
       var height = (0, _style.getWindowHeight)(false);
-      var _state = this.__state,
-          isOpened = _state.isOpened,
-          bSpec = _state.bSpec,
-          bContact = _state.bContact,
-          showOrderDialog = _state.showOrderDialog;
+      var _state2 = this.__state,
+          isOpened = _state2.isOpened,
+          bSpec = _state2.bSpec,
+          bContact = _state2.bContact,
+          showOrderDialog = _state2.showOrderDialog;
 
-      var popupStyle = { transform: "translateY(" + _index2.default.pxTransform(-100) + ")" };
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
       Object.assign(this.__state, {
@@ -151,6 +223,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   return Detail;
 }(_index.Component), _class2.properties = {
   "dispatchActiveInfo": {
+    "type": null,
+    "value": null
+  },
+  "dispatchDownLoadUrl": {
     "type": null,
     "value": null
   }

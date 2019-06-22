@@ -27,7 +27,9 @@ class App extends Component {
       'pages/product/edit',
       'pages/order/index',
       'pages/product/detail',
-      'pages/order/submit/index'
+      'pages/order/submit/index',
+      'pages/p2p/index',
+      'pages/order/comment/index'
     ],
     window:{
       backgroundTextStyle: 'light',

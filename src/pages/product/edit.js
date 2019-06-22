@@ -153,7 +153,7 @@ class EditProduct extends Component{
         }
       });
     }
-
+    
     handleProductChange(productName){
       this.setState({
         productName

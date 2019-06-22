@@ -1,0 +1,33 @@
+
+.mp-order-comment .product {
+  margin: 10rpx;
+  height: 160rpx;
+  width: 100%;
+  border-bottom: 0.5rpx solid #ddd; }
+
+.mp-order-comment .serve {
+  height: 260rpx;
+  width: 100%; }
+  .mp-order-comment .serve .environ {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-size: 30rpx;
+    height: 70rpx; }
+    .mp-order-comment .serve .environ > text {
+      padding-right: 40rpx;
+      padding-left: 20rpx; }
+
+.mp-order-comment .space {
+  height: 24rpx;
+  width: 100%;
+  background: #F5F5F9; }
+
+.mp-order-comment .submit {
+  margin: 45rpx; }

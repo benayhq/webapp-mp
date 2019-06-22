@@ -15,7 +15,6 @@ export default class Info extends Component{
         };
     }
 
-
     componentDidMount(){
         var that = this;
         Taro.getStorage({key:'authinfo'}).then(res=>{

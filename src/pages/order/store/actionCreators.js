@@ -1,6 +1,7 @@
 import {createAction} from './../../../utils/redux';
-import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD_DOWN} from './constants';
-import {API_PRODUCT_INFO,API_CREATE_ORDER,API_CREATE_RESEVER_ORDER,API_UPLOAD_FILE
+import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD_DOWN, ORDER_LIST
+} from './constants';
+import {API_PRODUCT_INFO,API_CREATE_ORDER,API_CREATE_RESEVER_ORDER,API_UPLOAD_FILE,API_ORDER_LIST
 } from './../../../constants/api';
 
 export const dispatchQueryProductInfo = payload => createAction({
@@ -38,4 +39,13 @@ export const dispatchCreateOrderDownLoadUrl = payload =>createAction({
     },
     payload
 });
+
+export const dispatchOrderList = payload => createAction({
+    type:ORDER_LIST,
+    url:API_ORDER_LIST,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload 
+})
 

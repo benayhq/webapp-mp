@@ -19,10 +19,10 @@ export const API_ACTIVE_INFO = `${HOST}/api/v1/activity/info`;
 export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
 export const API_ACTIVE_CLOSE = `${HOST}/api/v1/activity/close`;
 
-
 // 创建订单
 export const API_CREATE_ORDER = `${HOST}/api/v1/batch/create`;
 export const API_CREATE_RESEVER_ORDER = `${HOST}/api/v1/batch/reserve`;
+export const API_ORDER_LIST = `${HOST}/api/v1/reservation/myReservation`; // 获取订单列表.
 
 // 上传图片
 export const API_UPLOAD_FILE = `${HOST}/api/v1/document/download/url`;

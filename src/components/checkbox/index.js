@@ -39,7 +39,6 @@ export default class CheckBox extends Component{
                     options.map((option,idx) => {
                         const { value,disabled,label,data} = option;
 
-                        console.log('data.location',data.imgUrl);
 
                         const optionCls = classNames('mp-checkbox__option',{
                             'mp-checkbox__option--selected':!selectedList.includes(value)

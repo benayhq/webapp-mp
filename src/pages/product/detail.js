@@ -26,7 +26,9 @@ export default class Detail extends Component{
             bSpec: true,
             bContact: false,
             showOrderDialog:false,
-            data:{}
+            data:{},
+            commentList:[],
+            bannerList:[]
         }
     }
 
@@ -40,12 +42,14 @@ export default class Detail extends Component{
     }
 
     openCategoryDialog(){
+
         this.setState({
             visible: true,
             bSpec:true,
             bContact: false,
             showOrderDialog:false
-        })
+        });
+
     }
 
     toggleVisible = () =>{
@@ -68,25 +72,62 @@ export default class Detail extends Component{
 
     componentDidMount(){
         var payload ={
-            activityId:17
+            activityId:18
         };
-
         this.props.dispatchActiveInfo(payload).then(res=>{
             console.log('res.content',res.content);
             this.setState({
                 data:res.content
-            })
+            });
+
+            var commentItemList =[];
+
+            //  获取评论图片.
+            if(res.content && res.content.commentVo && res.content.commentVo.location.length>0){
+                res.content.commentVo.location.map((item)=>{
+                    this.getImgUrl(item).then((responseItem)=>{
+                        console.log('responseItem getImgUrl',responseItem);
+                        commentItemList.push(responseItem);
+                    }).then(()=>{
+                        this.setState({
+                            commentList:commentItemList
+                        })
+                    })
+                })
+            }
+
+            var bannerItemList =[];
+            
+            // 获取banner 图片.
+            if(res.content &&  res.content.docInfo && res.content.docInfo.length > 0){
+                res.content.docInfo.map((item)=>{
+                    this.getImgUrl(item.location).then((response)=>{
+                        console.log('response getImgUrl',response);
+                        bannerItemList.push(response);
+                    }).then(()=>{
+                        this.setState({
+                            bannerList:bannerItemList
+                        })
+                    })
+                })
+            }
+            // bannerList
         })
     }
 
+    async getImgUrl(location){
+        var payload = {
+          location:location
+        };
+        const result = await this.props.dispatchDownLoadUrl(payload);
+        return result.content;
+    }
+
     render(){
-        const {data} = this.state;
+        const {data,commentList,bannerList} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
-        const popupStyle = process.env.TARO_ENV === 'rn' ?
-        { transform: [{ translateY: Taro.pxTransform(-100) }] } :
-        { transform: `translateY(${Taro.pxTransform(-100)})` }
-
+        
         return (
             <View className='mp-activedetail'>
                 <ScrollView
@@ -99,17 +140,17 @@ export default class Detail extends Component{
                         indicatorDots
                         autoplay>
                             {
-                                data.docInfo.map(item=>(
+                                bannerList.map(item=>(
                                     <SwiperItem>
                                         <image
-                                        className='demo-text-1'
                                         mode="scaleToFill"
-                                        src={item.location}
+                                        src={item}
                                         ></image>
                                     </SwiperItem>
                                 ))
                             }
                     </Swiper>
+
                     <View className="mp-activedetail__user">
                         <Text>好友 </Text>
                         <Text> {data.nickname} </Text>
@@ -117,17 +158,19 @@ export default class Detail extends Component{
                         <Text> {data.remainPeople} </Text>
                         <Text>人成团</Text>
                     </View>
+
                     <View className="mp-activedetail__price">
                         <View>
-                            <Text className="mp-activedetail__title">￥2000</Text>
-                            <Text className="mp-activedetail__subtitle">￥3000</Text>
+                            <Text className="mp-activedetail__title">￥{data.displayPrice}</Text>
+                            <Text className="mp-activedetail__subtitle">￥{data.displayDiscountPrice}</Text>
                         </View>
                         <View className="mp-activedetail__desc">{data.activityName}</View>
                         <View>
                             <Text className="mp-activedetail__address">上海市</Text>
-                            <Text className="mp-activedetail__tel">已咨询：140074</Text>
+                            <Text className="mp-activedetail__tel">已咨询：{data.consultPeople}</Text>
                         </View>
                     </View>
+
                     <View className="mp-activedetail__service">
                         <View>服务承诺</View>
                         <View>正品保证 ·</View>
@@ -144,108 +187,117 @@ export default class Detail extends Component{
                         <View className="mp-activedetail__header">
                                 <image
                                 mode="scaleToFill"
-                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}
+                                src={data.profileUrl}
                                 ></image>
                         </View>
                         <View className="mp-activedetail__content">
                             <View>
-                            医美管家 vivi
+                             {data.username}
                             </View>
                             <View>
-                            5.0分（2000人评）| ￥29999
+                             {data.commentScore}分（{data.commentPeople}人评）
                             </View>
                             <View>
                             服务区域：上海市 黄浦区
                             </View>
                         </View>
                     </View>
-
-                    <View className="mp-activedetail__join">
-                        <View className="mp-activedetail__first">
-                            <Text className="mp-activedetail__etitle">14人在拼单，可直接参与</Text>
-                            <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 
-                                查看全部
-                                <Text className="mp-icon mp-icon-arrow1"></Text>
-                            </Text>
-                        </View>
-                        <View className="mp-activedetail__second"> 
-                            <View>
-                                <image
-                                    className="mp-activedetail__second-image"
-                                    mode="scaleToFill"
-                                    src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                </image>
-                            </View>
-                            <View>氧气</View>
-                            <View className="mp-activedetail__joinperson">
-                                <View className="mp-activedetail__counter">还差 1 人拼成</View>
-                                <View className="mp-activedetail__time">剩余20:50:14</View>
-                            </View>
-                            <View>
-                                <View className="mp-activedetail__second__buyAction" onClick={this.showMpDialog.bind(this)}>
-                                     立即购买
+                    {
+                        data.batchPeople > 0 && (
+                            <View className="mp-activedetail__join">
+                                <View className="mp-activedetail__first">
+                                    <Text className="mp-activedetail__etitle">{data.batchPeople}人在拼单，可直接参与</Text>
+                                    <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 
+                                        查看全部
+                                        <Text className="mp-icon mp-icon-arrow1"></Text>
+                                    </Text>
                                 </View>
+                                {
+                                    data.activityBatchVos && data.activityBatchVos.map(batch=>(
+                                        <View className="mp-activedetail__second"> 
+                                            <View>
+                                                <image
+                                                    className="mp-activedetail__second-image"
+                                                    mode="scaleToFill"
+                                                    src={batch.profileUrl}>
+                                                </image>
+                                            </View>
+                                            <View>{batch.publishName}</View>
+                                            <View className="mp-activedetail__joinperson">
+                                                <View className="mp-activedetail__counter">还差 {batch.remainPeople} 人拼成</View>
+                                                <View className="mp-activedetail__time">剩余20:50:14</View>
+                                            </View>
+                                            <View>
+                                                <View className="mp-activedetail__second__buyAction" onClick={this.showMpDialog.bind(this)}>
+                                                    立即购买
+                                                </View>
+                                            </View>
+                                        </View>
+                                    ))
+                                }
                             </View>
-                        </View>
-                    </View>
-
+                        )
+                    }
+                    
                     <View className="mp-activedetail__comment">
                         <View className="mp-activedetail__comment-title">
                             <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>
-                            <Text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 (7890)</Text>
+                            <Text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 ({data.commentPeople === null ? 0 : data.commentPeople})</Text>
                         </View>
-                        <View className="mp-activedetail__comment-content">
-                            <View className="mp-activedetail__comment-content-left">
-                                    <image
-                                        
-                                            mode="scaleToFill"
-                                            src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                    </image>
-                            </View>
-                            <View className="mp-activedetail__comment-content-right">
-                                <View className="mp-activedetail__comment-username">氧气9000532</View>
-                                    <View className="mp-activedetail__comment-tag">
-                                        <Text>环境：5.0</Text>
-                                        <Text>专业度：5.0</Text>
-                                        <Text>服务：5.0</Text>
-                                        <Text>效果：5.0</Text>
-                                    </View>
-                                    <View className="mp-activedetail__comment-desc">
-                                        【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
-                                    </View>
-                                    <View className="mp-activedetail__comment-description">
-                                        打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-                                        打完了拍照，医生服务态度好，下次还回去打针的，服务态度好，非常专业，效果之后会继续来评价.
-                                        <View className="mp-activedetail__comment-time">
-                                            2018年03月15日
-                                        </View>
-                                        <View>
-                                            <image style="width:80px;height:80px;padding-right:20px;"
-                                                mode="scaleToFill"
-                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                            </image>
-                                            <image style="width:80px;height:80px;padding-right:20px;"
-                                                mode="scaleToFill"
-                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                            </image>
-                                            <image style="width:80px;height:80px;padding-right:20px;"
-                                                mode="scaleToFill"
-                                                src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
-                                            </image>
-                                        </View>
-                                </View>
-                            </View>
-                        </View>
-                     
-                        <View className="mp-activedetail__query-all-comment">
-                            查看全部评论
-                            <Text className="mp-icon mp-icon-arrow1"></Text>
-                        </View>
-                    </View>
 
+                        {
+                                data.commentVo && (
+                                    <View className="mp-activedetail__comment-content">
+                                    <View className="mp-activedetail__comment-content-left">
+                                            <image
+                                                    mode="scaleToFill"
+                                                    src={data.commentVo.profileUrl}>
+                                            </image>
+                                    </View>
+                                   
+                                    <View className="mp-activedetail__comment-content-right">
+                                        <View className="mp-activedetail__comment-username">{data.commentVo.name}</View>
+                                            <View className="mp-activedetail__comment-tag">
+                                                <Text> 环境：{`${data.commentVo.environmentStar}.0`}  </Text>
+                                                <Text> 专业度：{`${data.commentVo.professionStar}.0`} </Text>
+                                                <Text> 服务：{`${data.commentVo.serviceStar}.0`} </Text>
+                                                <Text> 效果：{`${data.commentVo.effectStar}.0`} </Text>
+                                            </View>
+                                            {/* <View className="mp-activedetail__comment-desc">
+                                                【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
+                                            </View> */}
+                                            <View className="mp-activedetail__comment-description">
+                                               {data.commentVo.message}
+                                                {/* <View className="mp-activedetail__comment-time">
+                                                    2018年03月15日
+                                                </View> */}
+                                                <View>
+                                                    {
+                                                        commentList && commentList.map(comment=>(
+                                                             <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;"
+                                                                mode="scaleToFill"
+                                                                src={comment}>
+                                                            </image>
+                                                        ))
+                                                    }
+                                                </View>
+                                        </View>
+                                    </View>
+                                </View>
+                                )
+                        }
+                        {
+                             data.commentVo && (
+                                    <View className="mp-activedetail__query-all-comment">
+                                        查看全部评论
+                                        <Text className="mp-icon mp-icon-arrow1"></Text>
+                                    </View>
+                             )
+                        }
+                    </View>
                     <View className="mp-activedetail__consultation">
                     </View>
-
+                    
                     <View className="mp-activedetail__footer">
                         <View>
                             <View className="mp-activedetail__orderpay_footer">预定金: 
@@ -266,7 +318,7 @@ export default class Detail extends Component{
                  visible={this.state.visible}
                  onClose={this.toggleVisible}>
                       {
-                          bContact && <Contact/>
+                          bContact && <Contact cellphone={data.cellphone} weChatId={data.weChatId} weChatQrCode={data.weChatQrCode}/>
                       }
                       {
                           bSpec && <Spec activityName={data.activityName} products={data.activityProducts}/>

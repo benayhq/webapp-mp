@@ -81,7 +81,6 @@ class Index extends Component{
       });
     });
 
-    console.log('productList222eeee',this.state.newFilterList);
     return;
 
 

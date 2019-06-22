@@ -1,9 +1,18 @@
-import {Component} from '@tarojs/taro';
+import Taro,{Component} from '@tarojs/taro';
 import {View,Picker} from '@tarojs/components';
-import { AtInput, AtForm ,AtImagePicker} from 'taro-ui';
+import { AtInput, AtForm ,AtImagePicker,AtButton,AtMessage} from 'taro-ui';
 import './edit.scss';
+import * as actions from '../store/actionCreators';
+import {connect} from '@tarojs/redux';
+import _ from 'lodash';
 
-export default class Edit extends Component{
+@connect(state=>state.user,actions)
+ class Edit extends Component{
+
+    config = {
+        navigationBarTitleText: '个人信息'
+    }
+
     constructor(){
         super(...arguments);
         this.state = {
@@ -11,8 +20,14 @@ export default class Edit extends Component{
             selectorChecked: '美国',
             timeSel: '12:01',
             dateSel: '2018-04-22',
-            files: [
-             ]
+            files: [],
+            nickName:'',
+            userName:'',
+            cellPhone:'',
+            weixin:'',
+            serviceAddress:'',
+            address:'',
+            qrCode:''
         };
     }
 
@@ -31,29 +46,76 @@ export default class Edit extends Component{
     }
 
 
-    config = {
-        navigationBarTitleText: '个人信息'
+    async getAuthInfo(){
+        const result = await Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
+        return result;
+    }
+
+    handleAlert = (type,message) => {
+        Taro.atMessage({
+          'message': message,
+          'type': type
+        });
+    }
+
+    handleNickNameChange(nickName){
+        this.setState({
+            nickName:nickName
+        });
+        return nickName;
+    }
+
+    handleSaveUserInfo = () =>{
+        const {nickName} = this.state;
+
+        if(_.isEmpty(nickName)){
+            this.handleAlert('error','呢称不能为空');
+        }
+
+        return;
+
+        this.getAuthInfo().then(userinfo=>{
+            console.log('res',userinfo);
+            var payload = {
+                nickname:'eee',
+                openId:'eee',
+                wechatId:'eee',
+                cellphone:'e',
+                address:'eee',
+                wechatQrcode:'eee',
+                address:'eee',
+                id:userinfo.id
+            };
+            this.props.UpdateUserInfo(payload).then(res=>{
+                console.log('response',res);
+            });
+        });
+        return;
+        console.log('handleSaveUserInfo');
     }
 
     render(){
+        const {nickName} = this.state;
+
         return (
             <View className="mp-edit-user">
+                    <AtMessage/>
                 <AtForm>
                     <AtInput
                         name='value1'
                         title='呢称'
                         type='text'
                         placeholder='Shawn'
-                        value={this.state.value1}
-                        onChange={this.handleChange.bind(this)}
+                        value={nickName}
+                        onChange={this.handleNickNameChange.bind(this)}
                     />
                         <AtInput
                             name='value1'
                             title='姓名'
                             type='text'
                             placeholder='(选填)'
-                            value={this.state.value1}
-                            onChange={this.handleChange.bind(this)}
+                            value={userName}
+                            onChange={this.handleUserNameChange.bind(this)}
                         />
                       <AtInput
                         name='value6'
@@ -95,8 +157,12 @@ export default class Edit extends Component{
                             files={this.state.files}
                             onChange={this.onChange.bind(this)}
                     />
+                    <AtButton type='primary' onClick={this.handleSaveUserInfo.bind(this)}>保存</AtButton>
                 </AtForm>
             </View>
         );
     }
 }
+
+
+export default Edit;

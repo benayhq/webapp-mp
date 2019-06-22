@@ -9,22 +9,21 @@ export default class Contact extends Component{
 
     render(){
 
-     
-
+        const { cellphone,weChatId,weChatQrCode} = this.props;
         return (<View className="mp-contact">
                     <View className="mp-contact__labeltel">
                         联系电话
                     </View>
 
                     <View className="mp-contact__phone">
-                        18317052202
+                        {cellphone && cellphone}
                     </View>
                     <View className="mp-contact__labeltel">
                         联系微信
                     </View>
 
                     <View className="mp-contact__phone">
-                        18317052202
+                        {weChatId && weChatId}
                     </View>
                     
                      <View>
@@ -34,9 +33,9 @@ export default class Contact extends Component{
 
                      <View className="mp-contact__qrbg">
                         <image
-                        style="height:120px;width:120px;margin:0 auto;"
+                        style="height:200px;width:200px;margin:0 auto;"
                         mode="scaleToFill"
-                        src={'https://storage.360buyimg.com/mtd/home/111543234387022.jpg'}>
+                        src={weChatQrCode}>
                         </image>
                      </View>
     </View>)

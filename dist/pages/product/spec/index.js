@@ -14,11 +14,7 @@ var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _index3 = require("../../../npm/classnames/index.js");
-
-var _index4 = _interopRequireDefault(_index3);
-
-var _index5 = require("../../../npm/@tarojs/redux/index.js");
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
 var _actionCreators = require("../store/actionCreators.js");
 
@@ -40,7 +36,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Spec = (_dec = (0, _index5.connect)(function (state) {
+var Spec = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Spec, _BaseComponent);
@@ -56,7 +52,7 @@ var Spec = (_dec = (0, _index5.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryItem", "productItems", "isChange", "productId", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryItem", "productItems", "isOpended", "text", "isChange", "productId", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
@@ -78,12 +74,14 @@ var Spec = (_dec = (0, _index5.connect)(function (state) {
           productPrice: '',
           productAdvance: ''
         },
-        productItems: []
+        productItems: [],
+        text: '请选择品类',
+        isOpended: false
       };
     }
   }, {
     key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
+    value: function componentWillReceiveProps(nextProps, props) {
       var _this2 = this;
 
       this.getImgUrl(nextProps.products[0].productDocumentLocation).then(function (res) {
@@ -159,7 +157,8 @@ var Spec = (_dec = (0, _index5.connect)(function (state) {
       var _this3 = this;
 
       this.setState({
-        productId: product.productId
+        productId: product.productId,
+        isOpended: false
       });
 
       var newProducts = this.state.productItems.map(function (item) {
@@ -186,11 +185,16 @@ var Spec = (_dec = (0, _index5.connect)(function (state) {
   }, {
     key: "handleSubmitOrder",
     value: function handleSubmitOrder(e) {
-      console.log('e', e);
       var productId = this.state.productId;
 
+      if (productId === 0) {
+        this.setState({
+          isOpended: true
+        });
+        return;
+      }
       console.log('productId', productId);
-      console.log('activityName', this.props.activityName);
+      console.log('this.props.activityName', this.props.activityName);
       (0, _jump2.default)({ url: '/pages/order/submit/index?productId=' + productId + '&activityName=' + this.props.activityName });
     }
   }, {
@@ -205,14 +209,10 @@ var Spec = (_dec = (0, _index5.connect)(function (state) {
           prefix = _state.prefix,
           isChange = _state.isChange,
           categoryItem = _state.categoryItem,
-          productItems = _state.productItems;
+          productItems = _state.productItems,
+          icon = _state.icon,
+          text = _state.text;
 
-      console.log('this.props', this.__props);
-
-      var categoryClass = (0, _index4.default)({
-        'mp-spec__category': true,
-        'mp-spec__category-green': isChange
-      });
 
       Object.assign(this.__state, {});
       return this.__state;
