@@ -1,9 +1,10 @@
 <block>
     <view class="product">
-        <title agentName="{{order.agentName}}" __triggerObserer="{{ _triggerObserer }}"></title>
+        <title AgentName="{{content.agentName}}" __triggerObserer="{{ _triggerObserer }}"></title>
         <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
-        <view class="appoint"><text>预约时间: 2019年04月08日</text><text>预定金: <text class="amount">￥200</text></text>
+        <view class="appoint"><text>预约时间: {{anonymousState__temp}}</text><text>预定金: <text class="amount">￥{{content.productAdvance}}</text></text>
         </view>
+        <view></view>
         <view class="service">
             <view class="wechat"><text class="mp-icon mp-icon-wechat margin8"></text><text>微信联系</text>
             </view>

@@ -8,7 +8,11 @@ import Header from './../header';
 import Customer from './../customer';
 import ToolBar from './../toolbar';
 import Order from './../common/order';
+import * as actions from '../store/actionCreators';
+import {connect} from '@tarojs/redux';
+import _ from 'lodash';
 
+@connect(state=>state,actions)
 export default class OrderDetail extends Component{
     constructor(){
         super(...arguments);
@@ -24,24 +28,24 @@ export default class OrderDetail extends Component{
         navigationBarTitleText: '订单详情'
     }
 
+    // this.$router.params.orderId
     componentDidMount() {
-        console.log(this.$router.params.status);
         this.$router.params.status = '待付款';
-        // todo: 根据id 获取订单信息.
-        // mock 数据了.
-        let order = new Order();
-        let message = order.getStatuInfo({status:this.$router.params.status});
-        this.setState({
-            content:message
+        var payload = {
+            id:3
+        };
+        this.props.dispatchOrderDetail(payload).then((response)=>{
+            console.log('response22',response.content);
+            this.setState({
+                content:response.content
+            });
         });
-        console.log("orderStatus",message);
     }
-    
     render(){
         return (
             <View className="mp-order-detail">
                 <Header content={this.state.content}/>
-                <Customer/>
+                {/* <Customer/> */}
                 <Assemble content={this.state.content}/>
                 <OrderProduct order={this.state.order} content={this.state.content}/>
                 <Footer qrCode={this.state.content.qrCode}/>

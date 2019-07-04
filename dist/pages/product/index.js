@@ -140,7 +140,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
 
                 resultProductList.content.map(function (item) {
-                  // dev/product/1/PRODUCT_1559989778724.png'
                   _this2.getImgUrl(item.location).then(function (response) {
                     responseList.push({
                       value: item.id,
@@ -162,9 +161,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 });
 
-                return _context2.abrupt("return");
-
-              case 8:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -181,8 +178,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleSaveItem",
     value: function handleSaveItem() {
-      console.log('checkedList');
       var params = this.state.checkedList;
+      // this.props.dispatchSelectProduct(this.state.checkedList);
       _index2.default.navigateTo({
         url: '/pages/active/publish/index?ids=' + params.join(',')
       });

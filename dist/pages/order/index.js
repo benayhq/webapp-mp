@@ -59,50 +59,6 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       this.state = {
         current: 0,
         list: []
-        //     list:[{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待付款',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待成团',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待消费',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待评价',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '已取消',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '拼团失败',
-        //         products:[
-        //             {}
-        //         ]
-        //     }
-        //  ]
       };
     }
   }, {
@@ -163,8 +119,6 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           list = _state.list,
           current = _state.current;
 
-
-      console.log('response list', list);
 
       Object.assign(this.__state, {
         tabList: tabList

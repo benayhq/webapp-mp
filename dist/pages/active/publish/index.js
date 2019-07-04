@@ -37,9 +37,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var productIds = [];
 var uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
+var imgArraySrc = [];
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
-  return state.user;
+  return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
@@ -54,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchQueryProductInfo", "dispatchUploadFile", "dispatchCreateActive"], _this.handleUploadLoader = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "dispatchUploadConfig", "dispatchUploadFile", "dispatchCreateActive"], _this.handleUploadLoader = function () {
 
       var payload = {
         documentType: 'PRODUCT',
@@ -99,11 +100,46 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.init();
     }
   }, {
+    key: "getImgUrl",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payload = {
+                  location: location
+                };
+                _context.next = 3;
+                return this.props.dispatchDownLoadUrl(payload);
+
+              case 3:
+                result = _context.sent;
+                return _context.abrupt("return", result.content);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getImgUrl(_x) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getImgUrl;
+    }()
+  }, {
     key: "componentWillMount",
     value: function componentWillMount() {
       var _this2 = this;
 
       var productList = [];
+
+      console.log('this.props', this.props);
 
       console.log('this.$router.params.ids', this.$router.params.ids);
       if (this.$router.params.ids != undefined) {
@@ -111,7 +147,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       }
 
       if (productIds.length > 0) {
-
         productIds.map(function (item, index) {
           console.log('item', item);
           var payload = {
@@ -119,13 +154,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           };
           _this2.props.dispatchQueryProductInfo(payload).then(function (res) {
             if (res.result === "success") {
-              console.log('res.content', res.content);
 
-              productList.push(res.content);
+              _this2.getImgUrl(res.content.location).then(function (response) {
+                res.content.location = response;
+                productList.push(res.content);
+                _this2.setState({
+                  products: productList
+                });
 
-              _this2.setState({
-                products: productList
+                console.log('res.contenteee', res.content);
               });
+
+              // location
             }
           });
         });
@@ -133,12 +173,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      // const result = await getAuthInfo();
-      // this.setState({
-      //   weChatNumber:result.wechatId
-      // })
-    }
+    value: function componentDidMount() {}
   }, {
     key: "init",
     value: function init() {
@@ -158,10 +193,48 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "HandlePickerChange",
     value: function HandlePickerChange(files) {
-      console.log('files', files);
+      var _this3 = this;
 
-      if (files.length > 0) {
-        // this.handleUploadLoader(files);
+      this.setState({
+        files: files
+      });
+      var that = this;
+      var tempFilePaths = files;
+      var nowTime = util.formatTime(new Date());
+      //支持多图上传
+
+      var _loop = function _loop() {
+        //显示消息提示框
+        wx.showLoading({
+          title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
+          mask: true
+        });
+
+        var file = tempFilePaths[i].url;
+
+        payload = {
+          documentType: 'ACTIVITY',
+          fileName: 'ACTIVITY.png'
+        };
+
+
+        _this3.props.dispatchUploadConfig(payload).then(function (response) {
+          uploadImage(file, response.content.location, function (result) {
+            imgArraySrc.push(result);
+            console.log("======上传成功图片地址为：", result);
+            wx.hideLoading();
+          }, function (result) {
+            imgArraySrc = [];
+            console.log("======上传失败======", result);
+            wx.hideLoading();
+          });
+        });
+      };
+
+      for (var i = 0; i < tempFilePaths.length; i++) {
+        var payload;
+
+        _loop();
       }
     }
   }, {
@@ -179,7 +252,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
           //支持多图上传
 
-          var _loop = function _loop() {
+          var _loop2 = function _loop2() {
             //显示消息提示框
             wx.showLoading({
               title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
@@ -214,7 +287,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           for (var i = 0; i < res.tempFilePaths.length; i++) {
             var payload;
 
-            _loop();
+            _loop2();
           }
         }
       });
@@ -261,68 +334,68 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "onPublish",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-        var _this3 = this;
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+        var _this4 = this;
 
         var _state, activeName, groupItemChecked, dateStart, dateEnd, location, weChatNumber, fileArray, result, payload;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, location = _state.location, weChatNumber = _state.weChatNumber;
 
                 if (!(activeName === '')) {
-                  _context.next = 4;
+                  _context2.next = 4;
                   break;
                 }
 
                 this.handleAlert('error', '请填写活动名称');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 4:
                 if (!(groupItemChecked === '请选择')) {
-                  _context.next = 7;
+                  _context2.next = 7;
                   break;
                 }
 
                 this.handleAlert('error', '请选择成团人数');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 7:
                 if (!(dateStart == '请选择')) {
-                  _context.next = 10;
+                  _context2.next = 10;
                   break;
                 }
 
                 this.handleAlert('error', '请选择开始时间');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 10:
                 if (!(dateEnd == '请选择')) {
-                  _context.next = 13;
+                  _context2.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '请选择结束时间');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 13:
                 if (!(location.length <= 0)) {
-                  _context.next = 16;
+                  _context2.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请选择上传主图');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 16:
                 fileArray = [];
-                _context.next = 19;
+                _context2.next = 19;
                 return (0, _storage.getAuthInfo)();
 
               case 19:
-                result = _context.sent;
+                result = _context2.sent;
                 payload = {
                   "areaCode": "string",
                   "docLocations": this.state.location,
@@ -337,14 +410,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 };
 
                 if (!(result.wechatId === 0 || result.wechatId === null)) {
-                  _context.next = 24;
+                  _context2.next = 24;
                   break;
                 }
 
                 this.setState({
                   isOpened: true
                 });
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 24:
 
@@ -357,20 +430,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       url: '/pages/active/share/index'
                     });
                   } else {
-                    _this3.handleAlert('error', '发布活动失败');
+                    _this4.handleAlert('error', '发布活动失败');
                   }
                 });
 
               case 26:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
-      function onPublish(_x) {
-        return _ref2.apply(this, arguments);
+      function onPublish(_x2) {
+        return _ref3.apply(this, arguments);
       }
 
       return onPublish;
@@ -436,7 +509,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
+  "dispatchDownLoadUrl": {
+    "type": null,
+    "value": null
+  },
   "dispatchQueryProductInfo": {
+    "type": null,
+    "value": null
+  },
+  "dispatchUploadConfig": {
     "type": null,
     "value": null
   },
@@ -448,7 +529,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "choose", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
+}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

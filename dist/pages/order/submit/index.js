@@ -124,8 +124,6 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           });
         });
       });
-      console.log('productList', this.props);
-      // console.log('this.$router.params.productId componentDidMount',this.$router.params.productId);
     }
   }, {
     key: "getImgUrl",
@@ -172,6 +170,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           product = _state2.product,
           activityName = _state2.activityName,
           imgUrl = _state2.imgUrl;
+
 
       Object.assign(this.__state, {
         activityName: activityName

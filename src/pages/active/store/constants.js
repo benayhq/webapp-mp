@@ -12,3 +12,5 @@ export const ACTIVE_CLOSE_ACTION = 'action/ACTIVE_CLOSE_ACTION';
 // 上传图片
 export const UPLOAD_FILE_IMAGE = 'UPLOAD_FILE_IMAGE';
 export const ACTION_UPLOAD_CONFIG = 'action/ACTION_UPLOAD_CONFIG';
+export const ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN';
+

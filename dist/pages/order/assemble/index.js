@@ -32,7 +32,7 @@ var Assemble = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Assemble.__proto__ || Object.getPrototypeOf(Assemble)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["assemble", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Assemble.__proto__ || Object.getPrototypeOf(Assemble)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Assemble, [{
@@ -47,13 +47,7 @@ var Assemble = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-
-      var assemble = this.__props.content.assemble;
-
-
-      Object.assign(this.__state, {
-        assemble: assemble
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);

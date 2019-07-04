@@ -1,9 +1,12 @@
 import {createAction} from './../../../utils/redux';
-import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD_DOWN, ORDER_LIST
-    ,ACTION_UPLOAD_CONFIG,CREATE_COMMENT_IMAGE
+import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD_DOWN,
+    ORDER_LIST
+    ,ACTION_UPLOAD_CONFIG
+    ,CREATE_COMMENT_IMAGE
+    ,ACTION_ORDER_DETAIL
 } from './constants';
 import {API_PRODUCT_INFO,API_CREATE_ORDER,API_CREATE_RESEVER_ORDER,API_UPLOAD_FILE,API_ORDER_LIST
-    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT
+    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT,API_ORDER_DETAIL
 } from './../../../constants/api';
 
 export const dispatchQueryProductInfo = payload => createAction({
@@ -65,6 +68,15 @@ export const dispatchCreateComment = payload =>  createAction({
     url: API_PUBLISH_COMMENT,
     fetchOptions:{
         method:'POST'
+    },
+    payload
+});
+
+export const dispatchOrderDetail = payload =>  createAction({
+    type: ACTION_ORDER_DETAIL,
+    url: API_ORDER_DETAIL,
+    fetchOptions:{
+       method:'GET'
     },
     payload
 });

@@ -37,3 +37,9 @@ var API_UPLOAD_CONFIG = exports.API_UPLOAD_CONFIG = HOST + '/api/v1/document/upl
 
 // 发表评论
 var API_PUBLISH_COMMENT = exports.API_PUBLISH_COMMENT = HOST + '/api/v1/comment/create';
+
+// 获取订单详情
+var API_ORDER_DETAIL = exports.API_ORDER_DETAIL = HOST + '/api/v1/reservation/info';
+
+// 获取分类
+var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/v1/project/all';

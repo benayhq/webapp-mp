@@ -10,6 +10,7 @@ $panelBgColor:rgba(255,255,255,1);
     
     .item{
         @include flex(row);
+        
         line-height: 90px;
         height: 90px;
         background: $panelBgColor;

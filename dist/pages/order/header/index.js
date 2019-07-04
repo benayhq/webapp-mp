@@ -32,7 +32,7 @@ var Header = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["icon", "title", "tip", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Header, [{
@@ -47,18 +47,7 @@ var Header = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-
-      var _props$content = this.__props.content,
-          title = _props$content.title,
-          tip = _props$content.tip,
-          icon = _props$content.icon;
-
-
-      Object.assign(this.__state, {
-        icon: icon,
-        title: title,
-        tip: tip
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);

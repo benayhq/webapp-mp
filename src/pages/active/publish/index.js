@@ -9,12 +9,13 @@ import {getAuthInfo} from './../../../utils/storage';
 var productIds = [];
 var uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
+var imgArraySrc = [];
 import './index.scss'
 
-@connect(state=>state.user,actions)
+@connect(state=>state,actions)
 export default class Index extends Component {
   constructor(){
-    super(...arguments)
+    super(...arguments);
     this.state = {
       files:[],
       selector: [['请选择', '美国', '中国', '巴西', '日本'], ['请选择', '美国', '中国', '巴西', '日本       ']],
@@ -32,8 +33,19 @@ export default class Index extends Component {
     this.init();
   }
 
+
+  async getImgUrl(location){
+    var payload = {
+      location:location
+    };
+    const result = await this.props.dispatchDownLoadUrl(payload);
+    return result.content;
+  }
+
   componentWillMount () {
     var productList = [];
+
+    console.log('this.props',this.props);
 
     console.log('this.$router.params.ids',this.$router.params.ids);
     if(this.$router.params.ids != undefined){
@@ -41,7 +53,6 @@ export default class Index extends Component {
     }
       
     if(productIds.length>0){
-
         productIds.map((item,index)=>{
           console.log('item',item);
           var payload = {
@@ -49,13 +60,21 @@ export default class Index extends Component {
           };
           this.props.dispatchQueryProductInfo(payload).then((res)=>{
             if(res.result === "success"){
-              console.log('res.content',res.content);
 
-              productList.push(res.content);
+              this.getImgUrl(res.content.location)
+              .then(response=>{
+                  res.content.location = response;
+                  productList.push(res.content);
+                  this.setState({
+                    products:productList
+                  });
 
-              this.setState({
-                products:productList
-              })
+                  console.log('res.contenteee',res.content);
+              });
+
+              // location
+
+            
             }
           })
         });
@@ -64,10 +83,7 @@ export default class Index extends Component {
   }
 
   componentDidMount(){
-    // const result = await getAuthInfo();
-    // this.setState({
-    //   weChatNumber:result.wechatId
-    // })
+
   }
 
   init(){
@@ -84,12 +100,44 @@ export default class Index extends Component {
     });
   }
 
+
+
   HandlePickerChange (files){
-    console.log('files',files);
-    
-    if(files.length > 0){
-      // this.handleUploadLoader(files);
-    }
+      this.setState({
+        files
+      });
+      var that = this;
+      var tempFilePaths = files;
+      var nowTime = util.formatTime(new Date());
+        //支持多图上传
+        for (var i = 0; i < tempFilePaths.length; i++) {
+            //显示消息提示框
+            wx.showLoading({
+              title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
+              mask: true
+            });
+
+            let file = tempFilePaths[i].url;
+
+            var payload ={
+              documentType:'ACTIVITY',
+              fileName:'ACTIVITY.png'
+            };
+
+            this.props.dispatchUploadConfig(payload).then((response)=>{
+                uploadImage(file, response.content.location,
+                  function (result) {
+                    imgArraySrc.push(result);
+                    console.log("======上传成功图片地址为：", result);
+                    wx.hideLoading();
+                  }, function (result) {
+                    imgArraySrc = [];
+                    console.log("======上传失败======", result);
+                    wx.hideLoading()
+                  }
+                )
+            });
+      }
   }
 
   choose(){
@@ -302,6 +350,9 @@ export default class Index extends Component {
     return (
       <View className="mp-active">
         <AtMessage/>
+
+
+
         <View className="item">
             <Text>活动名称</Text>
             <AtInput border={false} 
@@ -344,14 +395,14 @@ export default class Index extends Component {
            onChange={this.HandlePickerChange.bind(this)}
         />
 
-       <AtButton type='primary' onClick={this.choose}>上传图片</AtButton>
-
-       
         <ProductList products={products}/>
 
+       
         <View className="publish">
             <View onClick={this.onPublish}>立即发布</View>
         </View>
+
+
 
       <AtModal isOpened={isOpened}>
         <AtModalHeader>完善信息</AtModalHeader>

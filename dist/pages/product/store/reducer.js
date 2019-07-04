@@ -10,13 +10,15 @@ var _constants = require("./constants.js");
 
 var defaultState = {
   productList: [],
-  createProduct: {}
+  createProduct: {},
+  selectedProduct: []
 };
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments[1];
 
+  console.log('action', action.payload);
   switch (action.type) {
     case _constants.ACTION_PRODUCT_LIST:
       return _extends({}, state, {
@@ -25,6 +27,10 @@ exports.default = function () {
     case _constants.ACTION_PRODUCT_CREATE:
       return _extends({}, state, {
         createProduct: action.value
+      });
+    case _constants.ACTION_SELECT_PRODUCT:
+      return _extends({}, state, {
+        selectedProduct: action.payload
       });
     default:
       return state;

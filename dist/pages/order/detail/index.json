@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "header": "../header/index",
-    "customer": "../customer/index",
     "assemble": "../assemble/index",
     "order-product": "../product/index",
     "footer": "../footer/index",

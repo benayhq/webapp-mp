@@ -112,6 +112,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       props.list.map(function (item, key) {
         _this2.getImgUrl(item.activityProductLocation).then(function (response) {
           cacheList.push({
+            id: item.id,
             status: item.status,
             customerName: item.customerName,
             activityName: item.activityName,
@@ -143,9 +144,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
           ProductImg = _state.ProductImg,
           OrderList = _state.OrderList;
 
-
       console.log('OrderList', this.__props.list);
-
       Object.assign(this.__state, {});
       return this.__state;
     }

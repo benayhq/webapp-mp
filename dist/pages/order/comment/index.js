@@ -234,19 +234,16 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
         return;
       }
 
-      console.log('this.$router.params.ids', imgArraySrc);
-
       var payload = {
-        CommentRequestVo: {
-          docLocations: imgArraySrc,
-          effectStar: effectValue,
-          environmentStar: envValue,
-          professionStar: profValue,
-          reservationId: this.$router.params.orderId,
-          serviceStar: serveValue,
-          message: commentValue
-        }
+        docLocations: imgArraySrc,
+        effectStar: effectValue,
+        environmentStar: envValue,
+        professionStar: profValue,
+        reservationId: this.$router.params.orderId,
+        serviceStar: serveValue,
+        message: commentValue
       };
+
       imgArraySrc = [];
 
       this.props.dispatchCreateComment(payload).then(function (response) {

@@ -1,7 +1,7 @@
 <block>
     <view>
         <view class="mp-order-list" wx:for="{{OrderList}}" wx:for-item="item" wx:for-index="_anonIdx">
-            <title OrderState="{{item.status}}" __triggerObserer="{{ _triggerObserer }}" agentName="{{item.customerName}}"></title>
+            <title OrderId="{{item.id}}" __triggerObserer="{{ _triggerObserer }}" OrderState="{{item.status}}" AgentName="{{item.customerName}}"></title>
             <view class="product">
                 <view class="left">
                     <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{item.imgUrl}}"></image>

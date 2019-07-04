@@ -19,50 +19,6 @@ export default class OrderList extends Component{
         this.state = {
             current:0,
             list:[]
-        //     list:[{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待付款',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待成团',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待消费',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '待评价',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '已取消',
-        //         products:[
-        //             {}
-        //         ]
-        //     },{
-        //         orderId:'0011',
-        //         agentName: '医美管家 vivi',
-        //         orderStatus: '拼团失败',
-        //         products:[
-        //             {}
-        //         ]
-        //     }
-        //  ]
         }
     }
 
@@ -109,8 +65,6 @@ export default class OrderList extends Component{
     render(){
         const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
         const {list,current} = this.state;
-        
-        console.log('response list',list);
         
         return (
             <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>

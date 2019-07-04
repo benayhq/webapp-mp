@@ -38,7 +38,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp2", "OrderState", "agentName"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp2", "OrderId", "AgentName", "OrderState"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Title, [{
@@ -48,8 +48,9 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "jumpUrl",
-    value: function jumpUrl(url) {
-      (0, _jump2.default)({ url: url + ("?status=" + this.props.OrderState) });
+    value: function jumpUrl(url, OrderId) {
+      console.log('this.props.number', OrderId);
+      (0, _jump2.default)({ url: url + ("?orderId=" + OrderId) });
     }
   }, {
     key: "getOrderTextByStatus",
@@ -73,9 +74,17 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var _props = this.__props,
+          OrderId = _props.OrderId,
+          AgentName = _props.AgentName,
+          OrderState = _props.OrderState;
+
+      console.log("this.props className", this.__props);
       var anonymousState__temp2 = this.getOrderTextByStatus(this.__props.OrderState);
       Object.assign(this.__state, {
-        anonymousState__temp2: anonymousState__temp2
+        anonymousState__temp2: anonymousState__temp2,
+        OrderId: OrderId
       });
       return this.__state;
     }
@@ -83,11 +92,15 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
 
   return Title;
 }(_index.Component), _class.properties = {
-  "OrderState": {
+  "OrderId": {
     "type": null,
     "value": null
   },
-  "agentName": {
+  "AgentName": {
+    "type": null,
+    "value": null
+  },
+  "OrderState": {
     "type": null,
     "value": null
   }

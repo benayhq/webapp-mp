@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -64,4 +64,21 @@ var dispatchActiveInfo = exports.dispatchActiveInfo = function dispatchActiveInf
     },
     payload: payload
   });
+};
+
+var dispatchCategoryList = exports.dispatchCategoryList = function dispatchCategoryList(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_PRODUCT_CATEOGRY,
+    url: _api.API_PRODUCT_CATEGORY,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchSelectProduct = exports.dispatchSelectProduct = function dispatchSelectProduct(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_SELECT_PRODUCT, value: payload });
+  };
 };

@@ -23,7 +23,6 @@
             </picker>
         </view>
         <at-image-picker className="uploadImage" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="HandlePickerChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
-        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="choose" __fn_onClick="{{true}}">上传图片</at-button>
         <product-list products="{{products}}" __triggerObserer="{{ _triggerObserer }}"></product-list>
         <view class="publish">
             <view bindtap="onPublish">立即发布</view>

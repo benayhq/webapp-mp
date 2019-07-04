@@ -68,8 +68,6 @@ export default class SubmitOrder extends Component{
                 })
             })
         });
-        console.log('productList',this.props);
-        // console.log('this.$router.params.productId componentDidMount',this.$router.params.productId);
     }
 
     async getImgUrl(location){
@@ -89,6 +87,7 @@ export default class SubmitOrder extends Component{
     render(){
 
         const {product,activityName,imgUrl} = this.state;
+        
         return (
             <View className="submit-order">
                  <AtMessage/>

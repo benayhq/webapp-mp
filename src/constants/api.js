@@ -32,3 +32,9 @@ export const API_UPLOAD_CONFIG = `${HOST}/api/v1/document/upload/config`;
 
 // 发表评论
 export const API_PUBLISH_COMMENT = `${HOST}/api/v1/comment/create`;
+
+// 获取订单详情
+export const API_ORDER_DETAIL = `${HOST}/api/v1/reservation/info`;
+
+// 获取分类
+export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;

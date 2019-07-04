@@ -1,4 +1,4 @@
 <block>
-    <view class="tips"><text>{{title}}</text><text>{{tip}}</text><text class="{{icon}}"></text>
+    <view class="tips"><text>{{content && content.displayStatusDes}}</text><text></text><text class="mp-icon mp-icon-order-waitpay success"></text>
     </view>
 </block>

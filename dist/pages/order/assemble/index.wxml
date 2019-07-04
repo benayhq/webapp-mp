@@ -1,11 +1,11 @@
 <block>
     <view class="ping"><text class="mp-icon mp-icon-order-card"></text>
         <view>
-            <view class="text">{{assemble.text}}</view>
+            <view class="text"></view>
             <view class="group">
-                <view class="person">1</view>
-                <view class="person">2</view>
-                <view class="person">3</view>
+                <block wx:if="{{content.batchUsers}}">
+                    <image style="height:50px;width:50px;border-radius:100px;" __triggerObserer="{{ _triggerObserer }}" src="{{item.profileUrl}}" wx:for="{{content.batchUsers}}" wx:for-item="item" wx:for-index="key"></image>
+                </block>
             </view>
         </view>
     </view>

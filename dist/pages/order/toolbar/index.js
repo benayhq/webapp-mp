@@ -32,7 +32,7 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "modal", "__fn_onClick"], _this.toggleVisible = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "undefined", "modal", "__fn_onClick"], _this.toggleVisible = function () {
       console.log('onConfirm');
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -90,7 +90,6 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
           isOpened: false
         }
       });
-      console.log('onCancel');
     }
   }, {
     key: "_createData",
@@ -101,24 +100,23 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       var modal = this.modal;
       var toolBar = this.__props.toolBar;
 
-      console.log("toolBart", toolBar);
 
-      if (toolBar == null) {}
+      if (toolBar == null || toolBar == undefined) {}
 
-      if (toolBar[0] && toolBar[1]) {}
+      if (toolBar && toolBar[0] && toolBar[1]) {}
 
-      if (toolBar[0]) {}
+      if (toolBar && toolBar[0]) {}
 
-      if (toolBar[1]) {}
-
+      if (toolBar && toolBar[1]) {}
       Object.assign(this.__state, {
-        toolBar: toolBar
+        toolBar: toolBar,
+        undefined: undefined
       });
       return this.__state;
     }
   }, {
-    key: "funPrivateoKjtC",
-    value: function funPrivateoKjtC() {
+    key: "funPrivateEjUIE",
+    value: function funPrivateEjUIE() {
       this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
@@ -137,7 +135,7 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleOrderClick", "funPrivateoKjtC", "onClose", "onConfirm", "onCancel"], _temp2);
+}, _class.$$events = ["handleOrderClick", "funPrivateEjUIE", "onClose", "onConfirm", "onCancel"], _temp2);
 exports.default = ToolBar;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));

@@ -8,18 +8,23 @@ export default class Assemble extends Component{
     }
 
     render(){
-        const {assemble} = this.props.content;
 
         return (
             <View className="ping">
                 <Text className="mp-icon mp-icon-order-card"></Text>
                 <View>
-                    <View className="text">{assemble.text}</View>
+                    <View className="text"></View>
                     <View className="group">
-                        <View className="person">1</View>
-                        <View className="person">2</View>
-                        <View className="person">3</View>
-                    </View>
+                        {
+                           this.props.content.batchUsers && this.props.content.batchUsers.map((item,key)=>{
+                                return (
+                                    <image style="height:50px;width:50px;border-radius:100px;"
+                                    src={item.profileUrl}>
+                                    </image>
+                                )
+                            })
+                        }
+                   </View>
                 </View>
             </View>
         )

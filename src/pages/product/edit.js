@@ -7,10 +7,11 @@ import * as actions from './store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
 var uploadImage = require('./../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
+var imgArraySrc = [];
 
 @connect(state=>state.product,actions)
 class EditProduct extends Component{
-  
+
     config = {
         navigationBarTitleText: '新增产品'
     }
@@ -20,9 +21,9 @@ class EditProduct extends Component{
            files: [],
            selector: ['美国', '中国', '巴西', '日本'],
            selectorChecked: '美国',
-           multiSelector: [['饭', '粥', '粉'], ['猪肉', '牛肉']],
+           multiSelector: [],
            selectorValue: 0,
-           mulitSelectorValues: [0, 0],
+           mulitSelectorValues: [0, 0, 0],
            productName:'',
            productPrice:'',
            activePrice:'',
@@ -33,7 +34,46 @@ class EditProduct extends Component{
            duration:2000,
            location:''
         };
-    }
+
+        this.initCategory();
+   }
+
+   initCategory(){
+    var payload ={
+    };
+
+    var that = this;
+    this.props.dispatchCategoryList(payload).then((response)=>{
+
+      var list = response.content;
+      var firstList = [],secondList = [],thirdList = [];
+
+      list.map((category,index)=>{
+        firstList.push(category.name);
+
+        if(category.son && category.son.length > 0){
+          category.son.map((categoryChild,index)=>{
+            secondList.push(categoryChild.name);
+
+            if(categoryChild.son && categoryChild.son.length > 0){
+
+                categoryChild.son.map((child,index)=>{
+                  thirdList.push(child.name);
+                })
+
+            }
+          });
+        }
+      });
+
+      this.setState({
+        multiSelector:[firstList,secondList,thirdList]
+      });
+      console.log('response',response);
+    });
+
+  
+   }
 
    handleAlert = (type,message) => {
       Taro.atMessage({
@@ -42,50 +82,42 @@ class EditProduct extends Component{
       });
    }
 
-   handleChooseImage = () =>{
+   handleChooseImage = (files) =>{
+      this.setState({
+          files
+      });
       var that = this;
+      var tempFilePaths = files;
+      var nowTime = util.formatTime(new Date());
+        //支持多图上传
+        for (var i = 0; i < tempFilePaths.length; i++) {
+            //显示消息提示框
+            wx.showLoading({
+              title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
+              mask: true
+            });
 
-      wx.chooseImage({
-        count: 1, // 默认最多一次选择9张图
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res){
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths;
-          var nowTime = util.formatTime(new Date());
+            let file = tempFilePaths[i].url;
 
-          //支持多图上传
-          for (var i = 0; i < res.tempFilePaths.length; i++) {
-              //显示消息提示框
-              wx.showLoading({
-                title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
-                mask: true
-              });
+            var payload ={
+              documentType:'ACTIVITY',
+              fileName:'ACTIVITY.png'
+            };
 
-              let file = res.tempFilePaths[i];
-
-              var payload ={
-                documentType:'PRODUCT',
-                fileName:'PRODUCT.png'
-              };
-              
-              that.props.dispatchUploadConfig(payload).then((response)=>{
-                    uploadImage(file,response.content.location,
-                      function (result) {
-                          that.setState({
-                            location:result
-                          });
-                          console.log("======上传成功图片地址为：", result);
-                          wx.hideLoading();
-                      },function (result){
-                          console.log("======上传失败======", result);
-                          wx.hideLoading()
-                      }
-                    );
-              });
-          }
-        }
-    })
+            this.props.dispatchUploadConfig(payload).then((response)=>{
+                uploadImage(file, response.content.location,
+                  function (result) {
+                    imgArraySrc.push(result);
+                    console.log("======上传成功图片地址为：", result);
+                    wx.hideLoading();
+                  }, function (result) {
+                    imgArraySrc = [];
+                    console.log("======上传失败======", result);
+                    wx.hideLoading()
+                  }
+                )
+            });
+      }
    }
 
    async handleSaveProduct(){
@@ -95,18 +127,24 @@ class EditProduct extends Component{
         this.handleAlert('error','名称不能为空');
         return;
       }
+
       if(productPrice === ''){
         this.handleAlert('error','价格不能为空');
         return;
       }
+
       if(activePrice === ''){
         this.handleAlert('error','活动价不能为空');
         return;
       }
-      if(location === ''){
+
+      console.log('imgArraySrc',imgArraySrc);
+
+      if(imgArraySrc.length === 0){
         this.handleAlert('error','请上传产品图片');
         return;
       }
+
       if(preAmount === ''){
         this.handleAlert('error','请输入预定金');
         return;
@@ -115,14 +153,13 @@ class EditProduct extends Component{
       const result = await getAuthInfo();
 
       console.log('files',files);
-      console.log('mulitSelectorValues[0]',1);
 
       var payload = {
         "advance": preAmount,
         "agentId": result.id,
         "discountPrice": activePrice,
         "id": 0,
-        "location": location,
+        "location": imgArraySrc[0],
         "name": productName,
         "price": productPrice,
         "projectId": 1,
@@ -130,7 +167,6 @@ class EditProduct extends Component{
         "projectName": productName,
         "status": "string"
       };
-
       console.log('payload',payload);
 
       this.props.dispatchCreateProduct(payload).then((res)=>{
@@ -188,12 +224,6 @@ class EditProduct extends Component{
       })
       return preAmount;
     }
-
-    onChange (files) {
-        this.setState({
-          files
-        })
-    }
     
     onFail (mes) {
         console.log(mes)
@@ -204,7 +234,6 @@ class EditProduct extends Component{
     }
 
     render(){
-
         const {productName,productPrice,activePrice,preAmount,
           files,toastText,isOpened,status,duration} = this.state;
 
@@ -225,13 +254,13 @@ class EditProduct extends Component{
                     <Picker mode='multiSelector' range={multiSelector} value={mulitSelectorValues} onChange={this.handleMulitChange}>
                       <View className='demo-list-item'>
                         <View className='demo-list-item__label'>分类</View>
-                        <View className='demo-list-item__value'>{`${multiSelector[0][mulitSelectorValues[0]]} & ${multiSelector[1][mulitSelectorValues[1]]}`}</View>
+                        <View className='demo-list-item__value'>{  multiSelector[0][mulitSelectorValues[0]] &&  `${multiSelector[0][mulitSelectorValues[0]]} & ${multiSelector[1][mulitSelectorValues[1]]} & ${multiSelector[2][mulitSelectorValues[2]]}`}</View>
                       </View>
                     </Picker>
                   </View>
                 </View>
               </View>
-
+              
               <AtInput
                     name='productName'
                     title='名称'
@@ -259,7 +288,7 @@ class EditProduct extends Component{
                 />
                  <AtImagePicker
                     files={files}
-                    onChange={this.onChange.bind(this)}
+                    onChange={this.handleChooseImage.bind(this)}
                 />
                   <AtInput
                     name='preAmount'
@@ -269,7 +298,6 @@ class EditProduct extends Component{
                     value={preAmount}
                     onChange={this.handlePreAmountChange.bind(this)}
                 />
-                <AtButton type='primary' onClick={this.handleChooseImage.bind(this)}>上传图片</AtButton>
                 </AtForm>
 
                 <View className="mp-edit-product__warn-tips">
@@ -284,5 +312,6 @@ class EditProduct extends Component{
             </View>
         )
     }
+
 }
 export default EditProduct;

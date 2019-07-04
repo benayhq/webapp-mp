@@ -4,8 +4,7 @@
     "at-toast": "../../npm/taro-ui/dist/weapp/components/toast/index",
     "at-form": "../../npm/taro-ui/dist/weapp/components/form/index",
     "at-input": "../../npm/taro-ui/dist/weapp/components/input/index",
-    "at-image-picker": "../../npm/taro-ui/dist/weapp/components/image-picker/index",
-    "at-button": "../../npm/taro-ui/dist/weapp/components/button/index"
+    "at-image-picker": "../../npm/taro-ui/dist/weapp/components/image-picker/index"
   },
   "navigationBarTitleText": "新增产品"
 }

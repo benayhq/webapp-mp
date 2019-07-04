@@ -1,11 +1,13 @@
-import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE} from './constants';
+import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,ACTION_SELECT_PRODUCT} from './constants';
 
 const defaultState = {
     productList:[],
-    createProduct:{}
+    createProduct:{},
+    selectedProduct:[]
 };
 
 export default (state = defaultState,action) => {
+    console.log('action',action.payload);
     switch(action.type){
         case ACTION_PRODUCT_LIST:
             return {
@@ -16,6 +18,11 @@ export default (state = defaultState,action) => {
             return {
                 ...state,
                 createProduct:action.value
+            }
+        case ACTION_SELECT_PRODUCT:
+            return {
+                ...state,
+                selectedProduct:action.payload
             }
         default:
             return state;

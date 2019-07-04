@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import './index.scss';
 import { AtButton } from 'taro-ui';
 import Modal from './../../../components/modal/';
+import _ from 'lodash';
 
 export default class ToolBar extends Component{
     constructor(){
@@ -56,19 +57,17 @@ export default class ToolBar extends Component{
                 isOpened:false
             }
         })
-        console.log('onCancel');
     }
     
     render(){
         const {toolBar} = this.props;
-        console.log("toolBart",toolBar);
 
-        if(toolBar == null){
+        if(toolBar == null || toolBar == undefined){
             return (<View>
             </View>);
         }
 
-        if(toolBar[0] && toolBar[1]){
+        if(toolBar && toolBar[0] && toolBar[1]){
             return (
                 <View className="toolbar">
                       <AtButton onClick={this.handleOrderClick.bind(this,toolBar[0].event)} type='primary' size='small'>{toolBar[0].text}</AtButton> 
@@ -90,23 +89,26 @@ export default class ToolBar extends Component{
             )
         }
         
-        if(toolBar[0]){
+        if(toolBar && toolBar[0]){
             return (
                 <View className="toolbar">
-                      <AtButton onClick={toolBar[0].event} type='primary' size='small'>{toolBar[0].text}</AtButton> 
-                      <Text className="margin40"></Text>
+                     {
+                         toolBar && <AtButton onClick={toolBar[0].event} type='primary' size='small'>{toolBar[0].text}</AtButton> 
+                     }  
+                     <Text className="margin40"></Text>
                 </View>
             )
         }
 
-        if(toolBar[1]){
+        if(toolBar && toolBar[1]){
             return (
                 <View className="toolbar">
-                      <AtButton onClick={toolBar[1].event} type='primary' size='small'>{toolBar[1].text}</AtButton> 
+                        {
+                            toolBar &&  <AtButton onClick={toolBar[1].event} type='primary' size='small'>{toolBar[1].text}</AtButton> 
+                        }
                       <Text className="margin40"></Text>
                 </View>
             )
         }
-
     }
 }

@@ -42,6 +42,7 @@ export default class OrderItem extends Component{
         props.list.map((item,key)=>{
             this.getImgUrl(item.activityProductLocation).then((response)=>{
                 cacheList.push({
+                    id:item.id,
                     status:item.status,
                     customerName:item.customerName,
                     activityName:item.activityName,
@@ -65,15 +66,13 @@ export default class OrderItem extends Component{
    
     render(){
         const {ProductImg,OrderList} = this.state;
-
         console.log('OrderList',this.props.list);
-
         return (
             <View>
                 {
                     OrderList.map(item=>(
                         <View className="mp-order-list">
-                        <Title OrderState={item.status}  agentName={item.customerName}/>
+                        <Title OrderId={item.id} OrderState={item.status}  AgentName={item.customerName}/>
                         <View className="product">
                             <View className="left">
                                 <image style="height:100%;width:100%;margin:0 auto;padding:5px;"

@@ -4,21 +4,36 @@ import Title from '../title';
 import ProductItem from '../../../components/product';
 import './index.scss';
 
+function getLocalTime(timestamp) {
+    var d = new Date(timestamp);
+    var date = (d.getFullYear()) + "-" +
+            (d.getMonth() + 1) + "-" +
+            (d.getDate()) + " " +
+            (d.getHours()) + ":" +
+            (d.getMinutes()) + ":" +
+            (d.getSeconds());
+    return date;
+}
+
 export default class OrderProduct extends Component{
     constructor(){
         super();
     }
-
+    
     render(){
+        console.log('this.props.content',this.props.content);
         return (
                 <View className="product">
-                <Title agentName={this.props.order.agentName}/>
+                <Title AgentName={this.props.content.agentName}/>
                 <ProductItem/>
                 <View className="appoint">
-                    <Text>预约时间: 2019年04月08日</Text>
+                    <Text>预约时间: {getLocalTime(this.props.content.createdD)}</Text>
                     <Text>预定金: 
-                        <Text className="amount">￥200</Text>
+                        <Text className="amount">￥{this.props.content.productAdvance}</Text>
                     </Text>
+                </View>
+                <View>
+
                 </View>
                 <View className="service">
                     <View className="wechat">

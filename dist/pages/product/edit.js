@@ -34,6 +34,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var uploadImage = require('./../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
+var imgArraySrc = [];
 
 var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   return state.product;
@@ -51,63 +52,55 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "dispatchCreateProduct"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "dispatchCategoryList", "dispatchUploadConfig", "dispatchCreateProduct"], _this.config = {
       navigationBarTitleText: '新增产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
         'type': type
       });
-    }, _this.handleChooseImage = function () {
-      var that = _this;
-
-      wx.chooseImage({
-        count: 1, // 默认最多一次选择9张图
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function success(res) {
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths;
-          var nowTime = util.formatTime(new Date());
-
-          //支持多图上传
-
-          var _loop = function _loop() {
-            //显示消息提示框
-            wx.showLoading({
-              title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
-              mask: true
-            });
-
-            var file = res.tempFilePaths[i];
-
-            payload = {
-              documentType: 'PRODUCT',
-              fileName: 'PRODUCT.png'
-            };
-
-
-            that.props.dispatchUploadConfig(payload).then(function (response) {
-              uploadImage(file, response.content.location, function (result) {
-                that.setState({
-                  location: result
-                });
-                console.log("======上传成功图片地址为：", result);
-                wx.hideLoading();
-              }, function (result) {
-                console.log("======上传失败======", result);
-                wx.hideLoading();
-              });
-            });
-          };
-
-          for (var i = 0; i < res.tempFilePaths.length; i++) {
-            var payload;
-
-            _loop();
-          }
-        }
+    }, _this.handleChooseImage = function (files) {
+      _this.setState({
+        files: files
       });
+      var that = _this;
+      var tempFilePaths = files;
+      var nowTime = util.formatTime(new Date());
+      //支持多图上传
+
+      var _loop = function _loop() {
+        //显示消息提示框
+        wx.showLoading({
+          title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
+          mask: true
+        });
+
+        var file = tempFilePaths[i].url;
+
+        payload = {
+          documentType: 'ACTIVITY',
+          fileName: 'ACTIVITY.png'
+        };
+
+
+        _this.props.dispatchUploadConfig(payload).then(function (response) {
+          uploadImage(file, response.content.location, function (result) {
+            imgArraySrc.push(result);
+            console.log("======上传成功图片地址为：", result);
+            wx.hideLoading();
+          }, function (result) {
+            imgArraySrc = [];
+            console.log("======上传失败======", result);
+            wx.hideLoading();
+          });
+        });
+      };
+
+      for (var i = 0; i < tempFilePaths.length; i++) {
+        var payload;
+
+        _loop();
+      }
     }, _this.handleMulitChange = function (e) {
       _this.setState({
         mulitSelectorValues: e.detail.value,
@@ -123,9 +116,9 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         files: [],
         selector: ['美国', '中国', '巴西', '日本'],
         selectorChecked: '美国',
-        multiSelector: [['饭', '粥', '粉'], ['猪肉', '牛肉']],
+        multiSelector: [],
         selectorValue: 0,
-        mulitSelectorValues: [0, 0],
+        mulitSelectorValues: [0, 0, 0],
         productName: '',
         productPrice: '',
         activePrice: '',
@@ -136,12 +129,52 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         duration: 2000,
         location: ''
       };
+
+      this.initCategory();
+    }
+  }, {
+    key: "initCategory",
+    value: function initCategory() {
+      var _this2 = this;
+
+      var payload = {};
+
+      var that = this;
+      this.props.dispatchCategoryList(payload).then(function (response) {
+
+        var list = response.content;
+        var firstList = [],
+            secondList = [],
+            thirdList = [];
+
+        list.map(function (category, index) {
+          firstList.push(category.name);
+
+          if (category.son && category.son.length > 0) {
+            category.son.map(function (categoryChild, index) {
+              secondList.push(categoryChild.name);
+
+              if (categoryChild.son && categoryChild.son.length > 0) {
+
+                categoryChild.son.map(function (child, index) {
+                  thirdList.push(child.name);
+                });
+              }
+            });
+          }
+        });
+
+        _this2.setState({
+          multiSelector: [firstList, secondList, thirdList]
+        });
+        console.log('response', response);
+      });
     }
   }, {
     key: "handleSaveProduct",
     value: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var _this2 = this;
+        var _this3 = this;
 
         var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, result, payload;
 
@@ -178,40 +211,42 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 return _context.abrupt("return");
 
               case 10:
-                if (!(location === '')) {
-                  _context.next = 13;
+
+                console.log('imgArraySrc', imgArraySrc);
+
+                if (!(imgArraySrc.length === 0)) {
+                  _context.next = 14;
                   break;
                 }
 
                 this.handleAlert('error', '请上传产品图片');
                 return _context.abrupt("return");
 
-              case 13:
+              case 14:
                 if (!(preAmount === '')) {
-                  _context.next = 16;
+                  _context.next = 17;
                   break;
                 }
 
                 this.handleAlert('error', '请输入预定金');
                 return _context.abrupt("return");
 
-              case 16:
-                _context.next = 18;
+              case 17:
+                _context.next = 19;
                 return (0, _storage.getAuthInfo)();
 
-              case 18:
+              case 19:
                 result = _context.sent;
 
 
                 console.log('files', files);
-                console.log('mulitSelectorValues[0]', 1);
 
                 payload = {
                   "advance": preAmount,
                   "agentId": result.id,
                   "discountPrice": activePrice,
                   "id": 0,
-                  "location": location,
+                  "location": imgArraySrc[0],
                   "name": productName,
                   "price": productPrice,
                   "projectId": 1,
@@ -220,12 +255,11 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "status": "string"
                 };
 
-
                 console.log('payload', payload);
 
                 this.props.dispatchCreateProduct(payload).then(function (res) {
                   if (res.result === 'success') {
-                    _this2.setState({
+                    _this3.setState({
                       isOpened: true,
                       toastText: '添加成功',
                       status: 'success'
@@ -234,7 +268,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                     //   url:'/pages/product/index'
                     // })
                   } else {
-                    _this2.setState({
+                    _this3.setState({
                       isOpened: true,
                       toastText: res.error,
                       status: 'error'
@@ -289,13 +323,6 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       return preAmount;
     }
   }, {
-    key: "onChange",
-    value: function onChange(files) {
-      this.setState({
-        files: files
-      });
-    }
-  }, {
     key: "onFail",
     value: function onFail(mes) {
       console.log(mes);
@@ -332,11 +359,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
   return EditProduct;
 }(_index.Component), _class2.properties = {
+  "dispatchCategoryList": {
+    "type": null,
+    "value": null
+  },
+  "dispatchUploadConfig": {
+    "type": null,
+    "value": null
+  },
   "dispatchCreateProduct": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleMulitChange", "handleProductChange", "handlePriceChange", "handleActivePriceChange", "onChange", "handlePreAmountChange", "handleChooseImage", "handleSaveProduct"], _temp2)) || _class);
+}, _class2.$$events = ["handleMulitChange", "handleProductChange", "handlePriceChange", "handleActivePriceChange", "handleChooseImage", "handlePreAmountChange", "handleSaveProduct"], _temp2)) || _class);
 exports.default = EditProduct;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(EditProduct, true));

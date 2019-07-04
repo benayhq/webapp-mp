@@ -21,7 +21,7 @@
             </view>
         </view>
         <view class="publish-active"><text>活动价</text>
-            <input placeholder="请输入活动优惠价" __triggerObserer="{{ _triggerObserer }}" /><text class="mp-icon mp-icon-trash margin"></text>
+            <input placeholder="请输入活动优惠价" __triggerObserer="{{ _triggerObserer }}" />
         </view>
         <view class="pulbish-create"><text class="mp-icon mp-icon-plus"></text><text bindtap="createProduct">新增产品</text>
         </view>

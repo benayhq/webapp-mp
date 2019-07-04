@@ -7,3 +7,4 @@ export const ORDER_LIST = 'order/ORDER_LIST';
 export const UPLOAD_FILE_IMAGE = 'UPLOAD_FILE_IMAGE';
 export const ACTION_UPLOAD_CONFIG = 'action/ACTION_UPLOAD_CONFIG';
 export const CREATE_COMMENT_IMAGE = 'action/CREATE_COMMENT_IMAGE';
+export const ACTION_ORDER_DETAIL = 'action/ACTION_ORDER_DETAIL';

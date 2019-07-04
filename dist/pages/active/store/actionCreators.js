@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.dispatchPublishProduct = undefined;
+exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -59,6 +59,17 @@ var dispatchUploadConfig = exports.dispatchUploadConfig = function dispatchUploa
   return (0, _redux.createAction)({
     type: _constants.ACTION_UPLOAD_CONFIG,
     url: _api.API_UPLOAD_CONFIG,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchDownLoadUrl = exports.dispatchDownLoadUrl = function dispatchDownLoadUrl(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_UPLOAD_DOWN,
+    url: _api.API_UPLOAD_FILE,
     fetchOptions: {
       method: 'GET'
     },

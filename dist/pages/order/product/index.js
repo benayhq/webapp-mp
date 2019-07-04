@@ -18,6 +18,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function getLocalTime(timestamp) {
+  var d = new Date(timestamp);
+  var date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+  return date;
+}
+
 var OrderProduct = (_temp2 = _class = function (_BaseComponent) {
   _inherits(OrderProduct, _BaseComponent);
 
@@ -32,7 +38,7 @@ var OrderProduct = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["order"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderProduct, [{
@@ -47,14 +53,19 @@ var OrderProduct = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      Object.assign(this.__state, {});
+
+      console.log('this.props.content', this.__props.content);
+      var anonymousState__temp = getLocalTime(this.__props.content.createdD);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp
+      });
       return this.__state;
     }
   }]);
 
   return OrderProduct;
 }(_index.Component), _class.properties = {
-  "order": {
+  "content": {
     "type": null,
     "value": null
   }

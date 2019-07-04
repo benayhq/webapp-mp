@@ -55,7 +55,7 @@ export default class ProductList extends Component{
                     <View className="publish-active">
                           <Text>活动价</Text>
                           <input  placeholder="请输入活动优惠价" />
-                          <Text className="mp-icon mp-icon-trash margin"></Text>
+                          {/* <Text className="mp-icon mp-icon-trash margin"></Text> */}
                     </View>
 
                     <View className="pulbish-create">

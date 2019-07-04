@@ -43,7 +43,7 @@ export default class Comment extends Taro.Component{
 
          var that = this;
          var tempFilePaths = files;
-          var nowTime = util.formatTime(new Date());
+         var nowTime = util.formatTime(new Date());
           //支持多图上传
           for (var i = 0; i < tempFilePaths.length; i++) {
               //显示消息提示框
@@ -71,7 +71,7 @@ export default class Comment extends Taro.Component{
                     }
                   )
               });
-          }
+         }
     }
 
     onFail (mes) {
@@ -139,10 +139,7 @@ export default class Comment extends Taro.Component{
           return;
         }
 
-        console.log('this.$router.params.ids',imgArraySrc);
-
         var payload = {
-          CommentRequestVo:{
             docLocations:imgArraySrc,
             effectStar:effectValue,
             environmentStar:envValue,
@@ -150,8 +147,8 @@ export default class Comment extends Taro.Component{
             reservationId:this.$router.params.orderId,
             serviceStar:serveValue,
             message:commentValue
-          }
         };
+        
         imgArraySrc = [];
      
         this.props.dispatchCreateComment(payload).then((response)=>{

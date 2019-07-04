@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-
 import './index.scss';
 import CheckBox from './../../components/checkbox';
 import * as actions from './store/actionCreators';
@@ -58,7 +57,6 @@ class Index extends Component{
     const resultProductList = await this.props.dispatchProductList(payload);
 
     resultProductList.content.map((item)=>{
-      // dev/product/1/PRODUCT_1559989778724.png'
       this.getImgUrl(item.location)
       .then(response=>{
         responseList.push({
@@ -80,38 +78,11 @@ class Index extends Component{
         }
       });
     });
-
-    return;
-
-
-    // .then((res)=>{
-    //   if(res && res.result === "success"){
-    //     res.content.map((item,index)=>{
-    //       response.push({
-    //         value: item.id,
-    //         label: item.projectName,
-    //         data:{
-    //           price:item.price,
-    //           marketPrice:item.discountPrice,
-    //           prePrice:item.advance,
-    //           imgUrl:item.location,
-    //           desc: item.name,
-    //         },
-    //         disabled: false
-    //       });
-    //     }) 
-    //   }
-    //   console.log('response',response);
-    // });
-
-    // this.setState({
-    //   productList:response
-    // })
   }
   
   handleSaveItem(){
-    console.log('checkedList',);
     var params = this.state.checkedList;
+    // this.props.dispatchSelectProduct(this.state.checkedList);
     Taro.navigateTo({
             url:'/pages/active/publish/index?ids='+params.join(',')
     })

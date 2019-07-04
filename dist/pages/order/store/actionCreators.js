@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchOrderDetail = exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -83,6 +83,17 @@ var dispatchCreateComment = exports.dispatchCreateComment = function dispatchCre
     url: _api.API_PUBLISH_COMMENT,
     fetchOptions: {
       method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchOrderDetail = exports.dispatchOrderDetail = function dispatchOrderDetail(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_ORDER_DETAIL,
+    url: _api.API_ORDER_DETAIL,
+    fetchOptions: {
+      method: 'GET'
     },
     payload: payload
   });
