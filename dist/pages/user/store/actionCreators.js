@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -40,6 +40,17 @@ var ChangeToAgent = exports.ChangeToAgent = function ChangeToAgent(payload) {
     url: _api.API_USER_AGENT,
     fetchOptions: {
       method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchUploadConfig = exports.dispatchUploadConfig = function dispatchUploadConfig(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_UPLOAD_CONFIG,
+    url: _api.API_UPLOAD_CONFIG,
+    fetchOptions: {
+      method: 'GET'
     },
     payload: payload
   });

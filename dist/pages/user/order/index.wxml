@@ -3,7 +3,7 @@
         <view class="mp-user__order-title"><text>客户订单</text><text class="mp-user__order-queryall" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/order/index">查看全部订单</text>
         </view>
         <view class="mp-user__ordernav">
-            <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx" data-e-tap-so="this" data-e-tap-a-a="/pages/order/index">
+            <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?index=' + index}}">
                 <view class="{{item.icon}}"></view>
                 <view class="mp-user__ordernav-text">{{item.text}}</view>
             </view>

@@ -7,5 +7,10 @@
 
 .mp-edit-user .uploadPicker {
   position: relative;
-  left: 490rpx;
+  left: 190rpx;
   top: -20rpx; }
+
+.mp-edit-user .user-submit {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto; }

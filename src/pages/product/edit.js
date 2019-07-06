@@ -50,17 +50,14 @@ class EditProduct extends Component{
 
       list.map((category,index)=>{
         firstList.push(category.name);
-
+        
         if(category.son && category.son.length > 0){
           category.son.map((categoryChild,index)=>{
             secondList.push(categoryChild.name);
-
             if(categoryChild.son && categoryChild.son.length > 0){
-
                 categoryChild.son.map((child,index)=>{
                   thirdList.push(child.name);
                 })
-
             }
           });
         }
@@ -71,7 +68,6 @@ class EditProduct extends Component{
       });
       console.log('response',response);
     });
-
   
    }
 
@@ -137,8 +133,6 @@ class EditProduct extends Component{
         this.handleAlert('error','活动价不能为空');
         return;
       }
-
-      console.log('imgArraySrc',imgArraySrc);
 
       if(imgArraySrc.length === 0){
         this.handleAlert('error','请上传产品图片');

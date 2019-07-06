@@ -91,6 +91,7 @@ class Index extends Component{
   async handleAuthClick(){
     const authInfo = await this.getAuthInfo();
 
+
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
@@ -141,8 +142,9 @@ class Index extends Component{
   }
 
   render(){
-    const {isAgent,avatarUrl,userName} = this.state;
 
+    const {isAgent,avatarUrl,userName} = this.state;
+    
     return (
       <View className='mp-user'>
         <View className="mp-user__info" >

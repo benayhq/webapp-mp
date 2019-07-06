@@ -2,7 +2,7 @@
     <view class="mp-advert">
         <view class="banner">
             <view class="img">
-                <image src="{{imgSrc}}" __triggerObserer="{{ _triggerObserer }}"></image>
+                <image style="width:100px;height:100px;" __triggerObserer="{{ _triggerObserer }}" src="{{qrCode}}"></image>
             </view>
         </view>
         <view class="thumbnail-wrapper">

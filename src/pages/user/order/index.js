@@ -21,8 +21,8 @@ export default class UserOrder extends Component{
 
                 <View className="mp-user__ordernav">
                     {
-                        this.props.list.map(item=>(
-                          <View className="mp-user__ordernav-tuan" onClick={this.jumpUrl.bind(this,'/pages/order/index')}>
+                        this.props.list.map((item,index)=>(
+                          <View className="mp-user__ordernav-tuan" onClick={this.jumpUrl.bind(this,`/pages/order/index?index=${index}`)}>
                             <View className={item.icon}></View>
                             <View className="mp-user__ordernav-text" >{item.text}</View>
                            </View>

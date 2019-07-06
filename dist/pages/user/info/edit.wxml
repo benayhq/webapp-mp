@@ -4,14 +4,16 @@
         <at-form __triggerObserer="{{ _triggerObserer }}">
             <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="呢称" type="text" placeholder="Shawn" value="{{nickName}}" bindonchange="handleNickNameChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
             <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="姓名" type="text" placeholder="(选填)" value="{{userName}}" bindonchange="handleUserNameChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
-            <at-input name="value6" __triggerObserer="{{ _triggerObserer }}" title="手机号码" type="phone" placeholder="请输入常用手机号" value="{{value6}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
-            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="微信" type="text" placeholder="客户通过微信与您联系" value="{{value1}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
-            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="服务地址" type="text" placeholder="服务地址" value="{{value1}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
-            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="地址" type="text" placeholder="(选填)" value="{{value1}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value6" __triggerObserer="{{ _triggerObserer }}" title="手机号码" type="phone" placeholder="请输入常用手机号" value="{{cellPhone}}" bindonchange="handleMobileChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="微信" type="text" placeholder="客户通过微信与您联系" value="{{weixin}}" bindonchange="handleWeChatChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="服务地址" type="text" placeholder="服务地址" value="{{serviceAddress}}" bindonchange="handleServiceAddressChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            <at-input name="value1" __triggerObserer="{{ _triggerObserer }}" title="地址" type="text" placeholder="(选填)" value="{{address}}" bindonchange="handleAddressChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
             <view class="qrCode"><text class="label">二维码</text>
             </view>
-            <at-image-picker className="uploadPicker" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="onChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
-            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="handleSaveUserInfo" __fn_onClick="{{true}}" data-e-onclick-so="this">保存</at-button>
+            <at-image-picker className="uploadPicker" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="handleUploadChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+            <view class="user-submit">
+                <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="handleSaveUserInfo" __fn_onClick="{{true}}" data-e-onclick-so="this">保存</at-button>
+            </view>
         </at-form>
     </view>
 </block>

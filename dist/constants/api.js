@@ -43,3 +43,6 @@ var API_ORDER_DETAIL = exports.API_ORDER_DETAIL = HOST + '/api/v1/reservation/in
 
 // 获取分类
 var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/v1/project/all';
+
+// 获取分享
+var API_QRCODE = exports.API_QRCODE = HOST + '/api/v1/wx/getwxacodeunlimit';

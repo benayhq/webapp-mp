@@ -17,10 +17,9 @@ const composeEnhancers =
       thunkMiddleWare
     ];
 
-if (process.env.NODE_ENV === 'development') {
-      middlewares.push(require('redux-logger').createLogger())
-}
-
+// if (process.env.NODE_ENV === 'development') {
+//       middlewares.push(require('redux-logger').createLogger())
+// }
 
 
 const enhancer = composeEnhancers(

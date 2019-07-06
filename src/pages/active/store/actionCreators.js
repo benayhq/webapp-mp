@@ -1,14 +1,27 @@
 import {createAction} from './../../../utils/redux';
 import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE_IMAGE,
     ACTION_UPLOAD_CONFIG,
-    ACTION_UPLOAD_DOWN
+    ACTION_UPLOAD_DOWN,
+    UPDATE_USER_INFO,
+    ACTION_QRCODE
     } from './constants';
-import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,API_UPLOAD_CONFIG
-} from './../../../constants/api';
+import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
+    API_UPLOAD_CONFIG,
+    API_USER_INFO,
+    API_QRCODE} from './../../../constants/api';
 
 export const dispatchPublishProduct = payload => createAction({
     type:PRODUCT_PUBLISH_INFO,
     url:API_PORDUCT_CREATE,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
+
+export const UpdateUserInfo = payload => createAction({
+    type:UPDATE_USER_INFO,
+    url:API_USER_INFO,
     fetchOptions:{
         method:'POST'
     },
@@ -59,3 +72,13 @@ export const dispatchDownLoadUrl = payload =>createAction({
     },
     payload
 });
+
+export const dispatchQueryQrCode = payload =>createAction({
+    type: ACTION_QRCODE,
+    url: API_QRCODE,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
+

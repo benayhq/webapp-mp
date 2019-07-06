@@ -153,9 +153,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           if (category.son && category.son.length > 0) {
             category.son.map(function (categoryChild, index) {
               secondList.push(categoryChild.name);
-
               if (categoryChild.son && categoryChild.son.length > 0) {
-
                 categoryChild.son.map(function (child, index) {
                   thirdList.push(child.name);
                 });
@@ -211,31 +209,28 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 return _context.abrupt("return");
 
               case 10:
-
-                console.log('imgArraySrc', imgArraySrc);
-
                 if (!(imgArraySrc.length === 0)) {
-                  _context.next = 14;
+                  _context.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '请上传产品图片');
                 return _context.abrupt("return");
 
-              case 14:
+              case 13:
                 if (!(preAmount === '')) {
-                  _context.next = 17;
+                  _context.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请输入预定金');
                 return _context.abrupt("return");
 
-              case 17:
-                _context.next = 19;
+              case 16:
+                _context.next = 18;
                 return (0, _storage.getAuthInfo)();
 
-              case 19:
+              case 18:
                 result = _context.sent;
 
 
@@ -276,7 +271,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 24:
+              case 23:
               case "end":
                 return _context.stop();
             }

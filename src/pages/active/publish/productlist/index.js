@@ -51,7 +51,6 @@ export default class ProductList extends Component{
                                 }
                         </View>
                     </View>
-
                     <View className="publish-active">
                           <Text>活动价</Text>
                           <input  placeholder="请输入活动优惠价" />

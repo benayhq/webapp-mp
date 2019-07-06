@@ -239,9 +239,14 @@ export default class Index extends Component {
       'type': type
     });
   }
-
+  
   async onPublish(e){
     const {activeName,groupItemChecked,dateStart,dateEnd,location,weChatNumber} = this.state;
+    
+    Taro.navigateTo({
+      url:`/pages/active/share/index?activeName=${activeName}`
+    })
+    return;
 
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')
@@ -259,14 +264,13 @@ export default class Index extends Component {
       this.handleAlert('error','请选择结束时间')
       return;
     }
-    if(location.length <= 0){
+    if(imgArraySrc.length <= 0){
       this.handleAlert('error','请选择上传主图')
       return;
     }
-
-    var fileArray = [];
-    
     const result = await getAuthInfo();
+
+    console.log('weChatNumber',weChatNumber);
 
     let payload =  {
       "areaCode": "string",
@@ -288,8 +292,6 @@ export default class Index extends Component {
       return;
     }
 
-    console.log('payload',payload);
-
     this.props.dispatchCreateActive(payload).then((res)=>{
       console.log('res',res);
       if(res && res.result === "success"){
@@ -297,6 +299,9 @@ export default class Index extends Component {
           url:'/pages/active/share/index'
         })
       }else{
+        this.setState({
+          isOpened:true
+        });
         this.handleAlert('error','发布活动失败');
       }
     })
@@ -324,7 +329,7 @@ export default class Index extends Component {
   handleWeChatChange(weChatNumber){
     this.setState({
       weChatNumber
-    })
+    });
     return weChatNumber
   }
 
@@ -334,10 +339,29 @@ export default class Index extends Component {
     })
   }
 
+  async getAuthInfo(){
+    const result = await Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
+    return result;
+  }
+
   handleConfirm(){
     this.setState({
       isOpened:false
-    })
+    });
+
+    this.getAuthInfo().then(userinfo=>{
+      console.log('userinfo',userinfo);
+      var payload = {
+          openId:userinfo.openId,
+          wechatId:this.weChatNumber,
+          id:userinfo.id
+      };
+
+      // console.log('this.props',this.props);
+      this.props.UpdateUserInfo(payload).then(res=>{
+          console.log('response',res);
+      });
+    });
   }
 
   config = {
@@ -350,8 +374,6 @@ export default class Index extends Component {
     return (
       <View className="mp-active">
         <AtMessage/>
-
-
 
         <View className="item">
             <Text>活动名称</Text>
@@ -397,23 +419,20 @@ export default class Index extends Component {
 
         <ProductList products={products}/>
 
-       
         <View className="publish">
             <View onClick={this.onPublish}>立即发布</View>
         </View>
 
-
-
-      <AtModal isOpened={isOpened}>
-        <AtModalHeader>完善信息</AtModalHeader>
-        <AtModalContent>
-            <AtInput  placeholder='请输入微信号'   onChange={this.handleWeChatChange.bind(this)} value={weChatNumber}/>
-        </AtModalContent>
-        <AtModalAction> 
-          <Button onClick={this.handleCancel}>取消</Button> 
-          <Button onClick={this.handleConfirm}>确定</Button>
-        </AtModalAction>
-      </AtModal>
+        <AtModal isOpened={isOpened}>
+          <AtModalHeader>完善信息</AtModalHeader>
+          <AtModalContent>
+              <AtInput  placeholder='请输入微信号'   onChange={this.handleWeChatChange.bind(this)} value={weChatNumber}/>
+          </AtModalContent>
+          <AtModalAction> 
+            <Button onClick={this.handleCancel}>取消</Button> 
+            <Button onClick={this.handleConfirm}>确定</Button>
+          </AtModalAction>
+        </AtModal>
 
       </View>
     )

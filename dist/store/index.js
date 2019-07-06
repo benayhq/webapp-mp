@@ -28,9 +28,10 @@ var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(wi
 
 var middlewares = [_index2.default];
 
-{
-  middlewares.push(require("../npm/redux-logger/dist/redux-logger.js").createLogger());
-}
+// if (process.env.NODE_ENV === 'development') {
+//       middlewares.push(require('redux-logger').createLogger())
+// }
+
 
 var enhancer = composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)
 // other store enhancers if any

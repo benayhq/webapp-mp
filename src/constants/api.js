@@ -38,3 +38,6 @@ export const API_ORDER_DETAIL = `${HOST}/api/v1/reservation/info`;
 
 // 获取分类
 export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;
+
+// 获取分享
+export const API_QRCODE = `${HOST}/api/v1/wx/getwxacodeunlimit`;

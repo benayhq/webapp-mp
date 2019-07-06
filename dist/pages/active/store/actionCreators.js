@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.dispatchPublishProduct = undefined;
+exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -15,6 +15,17 @@ var dispatchPublishProduct = exports.dispatchPublishProduct = function dispatchP
   return (0, _redux.createAction)({
     type: _constants.PRODUCT_PUBLISH_INFO,
     url: _api.API_PORDUCT_CREATE,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.UPDATE_USER_INFO,
+    url: _api.API_USER_INFO,
     fetchOptions: {
       method: 'POST'
     },
@@ -72,6 +83,17 @@ var dispatchDownLoadUrl = exports.dispatchDownLoadUrl = function dispatchDownLoa
     url: _api.API_UPLOAD_FILE,
     fetchOptions: {
       method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchQueryQrCode = exports.dispatchQueryQrCode = function dispatchQueryQrCode(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_QRCODE,
+    url: _api.API_QRCODE,
+    fetchOptions: {
+      method: 'POST'
     },
     payload: payload
   });

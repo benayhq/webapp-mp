@@ -30,13 +30,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var imgArraySrc = [];
+var util = require('../../../utils/util.js');
+var uploadImage = require('./../../../utils/uploadFile.js');
 
 var Edit = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
@@ -54,7 +56,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nickName", "userName", "selector", "selectorChecked", "timeSel", "dateSel", "files", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "value6", "value1", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "selector", "selectorChecked", "timeSel", "dateSel", "files", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -62,33 +64,51 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         'type': type
       });
     }, _this.handleSaveUserInfo = function () {
-      var nickName = _this.state.nickName;
+      var _this$state = _this.state,
+          nickName = _this$state.nickName,
+          cellPhone = _this$state.cellPhone,
+          weixin = _this$state.weixin,
+          serviceAddress = _this$state.serviceAddress,
+          address = _this$state.address;
 
 
       if (_lodash2.default.isEmpty(nickName)) {
         _this.handleAlert('error', '呢称不能为空');
       }
 
-      return;
+      if (_lodash2.default.isEmpty(cellPhone)) {
+        _this.handleAlert('error', '手机号不能为空');
+      }
 
+      if (_lodash2.default.isEmpty(weixin)) {
+        _this.handleAlert('error', '微信号不能为空');
+      }
+
+      if (_lodash2.default.isEmpty(serviceAddress)) {
+        _this.handleAlert('error', '服务地址不能为空');
+      }
+
+      if (imgArraySrc.length === 0) {
+        _this.handleAlert('error', '请上传图片');
+      }
       _this.getAuthInfo().then(function (userinfo) {
-        var _payload;
+        // console.log('res',userinfo);
 
-        console.log('res', userinfo);
-        var payload = (_payload = {
-          nickname: 'eee',
-          openId: 'eee',
-          wechatId: 'eee',
-          cellphone: 'e',
-          address: 'eee',
-          wechatQrcode: 'eee'
-        }, _defineProperty(_payload, "address", 'eee'), _defineProperty(_payload, "id", userinfo.id), _payload);
+        var payload = {
+          nickname: nickName,
+          openId: userinfo.openId,
+          wechatId: weixin,
+          cellphone: cellPhone,
+          address: address,
+          wechatQrcode: imgArraySrc[0],
+          areaCode: 'eee',
+          id: userinfo.id
+        };
+
         _this.props.UpdateUserInfo(payload).then(function (res) {
           console.log('response', res);
         });
       });
-      return;
-      console.log('handleSaveUserInfo');
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -112,11 +132,52 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       };
     }
   }, {
-    key: "onChange",
-    value: function onChange(files) {
+    key: "handleUploadChange",
+    value: function handleUploadChange(files) {
+      var _this2 = this;
+
       this.setState({
         files: files
       });
+
+      var that = this;
+      var tempFilePaths = files;
+      var nowTime = util.formatTime(new Date());
+      //支持多图上传
+
+      var _loop = function _loop() {
+        //显示消息提示框
+        wx.showLoading({
+          title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
+          mask: true
+        });
+
+        var file = tempFilePaths[i].url;
+
+        payload = {
+          documentType: 'ACTIVITY',
+          fileName: 'ACTIVITY.png'
+        };
+
+
+        _this2.props.dispatchUploadConfig(payload).then(function (response) {
+          uploadImage(file, response.content.location, function (result) {
+            imgArraySrc.push(result);
+            console.log("======上传成功图片地址为：", result);
+            wx.hideLoading();
+          }, function (result) {
+            imgArraySrc = [];
+            console.log("======上传失败======", result);
+            wx.hideLoading();
+          });
+        });
+      };
+
+      for (var i = 0; i < tempFilePaths.length; i++) {
+        var payload;
+
+        _loop();
+      }
     }
   }, {
     key: "onFail",
@@ -169,6 +230,46 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       return nickName;
     }
   }, {
+    key: "handleUserNameChange",
+    value: function handleUserNameChange(userName) {
+      this.setState({
+        userName: userName
+      });
+      return userName;
+    }
+  }, {
+    key: "handleMobileChange",
+    value: function handleMobileChange(cellPhone) {
+      this.setState({
+        cellPhone: cellPhone
+      });
+      return cellPhone;
+    }
+  }, {
+    key: "handleWeChatChange",
+    value: function handleWeChatChange(weixin) {
+      this.setState({
+        weixin: weixin
+      });
+      return weixin;
+    }
+  }, {
+    key: "handleServiceAddressChange",
+    value: function handleServiceAddressChange(serviceAddress) {
+      this.setState({
+        serviceAddress: serviceAddress
+      });
+      return serviceAddress;
+    }
+  }, {
+    key: "handleAddressChange",
+    value: function handleAddressChange(address) {
+      this.setState({
+        address: address
+      });
+      return address;
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -176,7 +277,14 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var nickName = this.__state.nickName;
+      var _state = this.__state,
+          nickName = _state.nickName,
+          userName = _state.userName,
+          cellPhone = _state.cellPhone,
+          weixin = _state.weixin,
+          serviceAddress = _state.serviceAddress,
+          address = _state.address,
+          qrCode = _state.qrCode;
 
 
       Object.assign(this.__state, {});
@@ -186,11 +294,15 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
 
   return Edit;
 }(_index.Component), _class2.properties = {
+  "dispatchUploadConfig": {
+    "type": null,
+    "value": null
+  },
   "UpdateUserInfo": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleNickNameChange", "handleUserNameChange", "handleChange", "onChange", "handleSaveUserInfo"], _temp2)) || _class);
+}, _class2.$$events = ["handleNickNameChange", "handleUserNameChange", "handleMobileChange", "handleWeChatChange", "handleServiceAddressChange", "handleAddressChange", "handleUploadChange", "handleSaveUserInfo"], _temp2)) || _class);
 exports.default = Edit;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Edit, true));

@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "dispatchUploadConfig", "dispatchUploadFile", "dispatchCreateActive"], _this.handleUploadLoader = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "dispatchUploadConfig", "dispatchUploadFile", "dispatchCreateActive", "UpdateUserInfo"], _this.handleUploadLoader = function () {
 
       var payload = {
         documentType: 'PRODUCT',
@@ -337,7 +337,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
         var _this4 = this;
 
-        var _state, activeName, groupItemChecked, dateStart, dateEnd, location, weChatNumber, fileArray, result, payload;
+        var _state, activeName, groupItemChecked, dateStart, dateEnd, location, weChatNumber, result, payload;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -345,57 +345,58 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 0:
                 _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, location = _state.location, weChatNumber = _state.weChatNumber;
 
-                if (!(activeName === '')) {
-                  _context2.next = 4;
-                  break;
-                }
 
-                this.handleAlert('error', '请填写活动名称');
+                _index2.default.navigateTo({
+                  url: "/pages/active/share/index?activeName=" + activeName
+                });
                 return _context2.abrupt("return");
 
-              case 4:
+              case 6:
                 if (!(groupItemChecked === '请选择')) {
-                  _context2.next = 7;
+                  _context2.next = 9;
                   break;
                 }
 
                 this.handleAlert('error', '请选择成团人数');
                 return _context2.abrupt("return");
 
-              case 7:
+              case 9:
                 if (!(dateStart == '请选择')) {
-                  _context2.next = 10;
+                  _context2.next = 12;
                   break;
                 }
 
                 this.handleAlert('error', '请选择开始时间');
                 return _context2.abrupt("return");
 
-              case 10:
+              case 12:
                 if (!(dateEnd == '请选择')) {
-                  _context2.next = 13;
+                  _context2.next = 15;
                   break;
                 }
 
                 this.handleAlert('error', '请选择结束时间');
                 return _context2.abrupt("return");
 
-              case 13:
-                if (!(location.length <= 0)) {
-                  _context2.next = 16;
+              case 15:
+                if (!(imgArraySrc.length <= 0)) {
+                  _context2.next = 18;
                   break;
                 }
 
                 this.handleAlert('error', '请选择上传主图');
                 return _context2.abrupt("return");
 
-              case 16:
-                fileArray = [];
-                _context2.next = 19;
+              case 18:
+                _context2.next = 20;
                 return (0, _storage.getAuthInfo)();
 
-              case 19:
+              case 20:
                 result = _context2.sent;
+
+
+                console.log('weChatNumber', weChatNumber);
+
                 payload = {
                   "areaCode": "string",
                   "docLocations": this.state.location,
@@ -410,7 +411,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 };
 
                 if (!(result.wechatId === 0 || result.wechatId === null)) {
-                  _context2.next = 24;
+                  _context2.next = 26;
                   break;
                 }
 
@@ -419,9 +420,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 24:
-
-                console.log('payload', payload);
+              case 26:
 
                 this.props.dispatchCreateActive(payload).then(function (res) {
                   console.log('res', res);
@@ -430,11 +429,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       url: '/pages/active/share/index'
                     });
                   } else {
+                    _this4.setState({
+                      isOpened: true
+                    });
                     _this4.handleAlert('error', '发布活动失败');
                   }
                 });
 
-              case 26:
+              case 27:
               case "end":
                 return _context2.stop();
             }
@@ -479,10 +481,58 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "getAuthInfo",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
+                  return res.data;
+                });
+
+              case 2:
+                result = _context3.sent;
+                return _context3.abrupt("return", result);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getAuthInfo() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return getAuthInfo;
+    }()
+  }, {
     key: "handleConfirm",
     value: function handleConfirm() {
+      var _this5 = this;
+
       this.setState({
         isOpened: false
+      });
+
+      this.getAuthInfo().then(function (userinfo) {
+        console.log('userinfo', userinfo);
+        var payload = {
+          openId: userinfo.openId,
+          wechatId: _this5.weChatNumber,
+          id: userinfo.id
+        };
+
+        // console.log('this.props',this.props);
+        _this5.props.UpdateUserInfo(payload).then(function (res) {
+          console.log('response', res);
+        });
       });
     }
   }, {
@@ -526,6 +576,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "value": null
   },
   "dispatchCreateActive": {
+    "type": null,
+    "value": null
+  },
+  "UpdateUserInfo": {
     "type": null,
     "value": null
   }
