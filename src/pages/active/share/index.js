@@ -51,7 +51,7 @@ export default class Index extends Component{
       })
     });
   }
-  
+
   initImage(){
     var listImg = [
       'dev/common/share_thumbnail_01.png',
@@ -149,8 +149,8 @@ export default class Index extends Component{
     return (
       <View className="mp-advert">
          { advertIndex === 0  && <Advert data={data} qrCode={qrCode}/> }
-         {/* { advertIndex === 1 && <Advert01 data={data} qrCode={qrCode}/>} */}
-         {/* { advertIndex === 0 && <Advert02 data={data} qrCode={qrCode}/>} */}
+         { advertIndex === 1 && <Advert01 data={data} qrCode={qrCode}/>}
+         { advertIndex === 2 && <Advert02 data={data} qrCode={qrCode}/>}
           <View className="thumbnail-wrapper" >
               <View className="thumbnail">
               {

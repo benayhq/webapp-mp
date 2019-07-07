@@ -3,6 +3,12 @@
         <block wx:if="{{advertIndex === 0}}">
             <advert data="{{data}}" __triggerObserer="{{ _triggerObserer }}" qrCode="{{qrCode}}"></advert>
         </block>
+        <block wx:if="{{advertIndex === 1}}">
+            <advert-01 data="{{data}}" __triggerObserer="{{ _triggerObserer }}" qrCode="{{qrCode}}"></advert-01>
+        </block>
+        <block wx:if="{{advertIndex === 2}}">
+            <advert-02 data="{{data}}" __triggerObserer="{{ _triggerObserer }}" qrCode="{{qrCode}}"></advert-02>
+        </block>
         <view class="thumbnail-wrapper">
             <view class="thumbnail">
                 <view bindtap="handleChangeAdvert" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item}}" data-e-tap-a-b="{{index}}">

@@ -9,7 +9,7 @@ export default class Advert01 extends Component{
     render(){
         const data = this.props.data;
         const qrCode = this.props.qrCode;
-
+        
         return (
             <View className="warpper">
                 <View className="layer"></View>
