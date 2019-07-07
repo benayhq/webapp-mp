@@ -48,10 +48,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["qrCode", "imgList", "imgSrc", "mask", "dispatchQueryQrCode", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["advertIndex", "data", "qrCode", "imgList", "imgSrc", "mask", "bannerList", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
-    }, _this.onClick = function (e, item) {
-      var imgUrl = item.currentTarget.dataset.eTapAA.url;
+    }, _this.handleChangeAdvert = function (item, index, e) {
+      _this.handleChangeBg(index);
+      var imgUrl = e.currentTarget.dataset.eTapAA.url;
       _this.setState({
         imgSrc: imgUrl
       });
@@ -67,7 +68,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         imgSrc: 'http://invitecard-1253442168.image.myqcloud.com/sharecard_tmp/2019-4-5/1554468983_1a277fade9b09ff199d377880f04137f.jpg',
         imgList: [],
         mask: '',
-        qrCode: ""
+        qrCode: "",
+        bannerList: [],
+        data: {},
+        advertIndex: 0
       };
     }
   }, {
@@ -75,6 +79,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function init() {
       this.initSelectdImg();
       this.initImage();
+      this.initData();
     }
   }, {
     key: "initSelectdImg",
@@ -113,6 +118,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           _this3.setState({
             imgList: thumbNails
           });
+        });
+      });
+    }
+  }, {
+    key: "initData",
+    value: function initData() {
+      var _this4 = this;
+
+      var payload = {
+        batchId: 1
+        // activityId:null
+      };
+      this.props.dispatchAdvertQuery(payload).then(function (response) {
+        _this4.setState({
+          data: response.content
         });
       });
     }
@@ -169,15 +189,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "componentDidHide",
     value: function componentDidHide() {}
   }, {
+    key: "handleChangeBg",
+    value: function handleChangeBg(index) {
+      var that = this;
+      switch (index) {
+        case 0:
+          that.setState({
+            advertIndex: 0
+          });
+          return;
+        case 1:
+          that.setState({
+            advertIndex: 1
+          });
+          return;
+        default:
+          that.setState({
+            advertIndex: 0
+          });
+      }
+    }
+  }, {
     key: "showMask",
     value: function showMask(imgUrl) {
       this.state.imgList.map(function (item, index) {
         item.url === imgUrl ? item.isShow = true : item.isShow = false;
       });
     }
-
-    // dispatchQueryQrCode
-
   }, {
     key: "_createData",
     value: function _createData() {
@@ -187,9 +225,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       ;
 
       var _state = this.__state,
-          imgSrc = _state.imgSrc,
           imgList = _state.imgList,
-          mask = _state.mask,
+          data = _state.data,
           qrCode = _state.qrCode;
 
 
@@ -204,11 +241,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "dispatchAdvertQuery": {
+    "type": null,
+    "value": null
+  },
   "dispatchDownLoadUrl": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["onClick"], _temp2)) || _class);
+}, _class2.$$events = ["handleChangeAdvert"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

@@ -41,3 +41,6 @@ export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;
 
 // 获取分享
 export const API_QRCODE = `${HOST}/api/v1/wx/getwxacodeunlimit`;
+
+// 广告预览
+export const API_ADVERT_LIST =  `${HOST}/api/v1/activity/advert`;

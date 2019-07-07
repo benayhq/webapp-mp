@@ -22,3 +22,6 @@ var UPDATE_USER_INFO = exports.UPDATE_USER_INFO = 'user/UPDATE_USER_INFO';
 
 // 获取二维码
 var ACTION_QRCODE = exports.ACTION_QRCODE = 'action/ACTION_QRCODE';
+
+// 获取广告预览页面的数据
+var ACTION_ADVERT_DATA = exports.ACTION_ADVERT_DATA = 'action/ACTION_ADVERT_DATA';

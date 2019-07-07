@@ -13,6 +13,7 @@ export default class Publish extends Component{
       const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
        return result;
     }
+    
     async jump(){
         const authInfo = await this.getAuthInfo();
         Taro.getUserInfo().then((res) => {

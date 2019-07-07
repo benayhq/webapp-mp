@@ -10,13 +10,11 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require("../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
-var _index2 = _interopRequireDefault(_index);
+var _index2 = require("../../../npm/prop-types/index.js");
 
-var _index3 = require("../../npm/classnames/index.js");
-
-var _index4 = _interopRequireDefault(_index3);
+var _index3 = _interopRequireDefault(_index2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,48 +24,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var closeIcon = "/components/popup/assets/close.png";
+var Advert01 = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Advert01, _BaseComponent);
 
-var Popup = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(Popup, _BaseComponent);
-
-  function Popup() {
+  function Advert01() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Popup);
+    _classCallCheck(this, Advert01);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Popup.__proto__ || Object.getPrototypeOf(Popup)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "closeIcon", "isShow", "compStyle", "__fn_onClick", "visible", "children"], _this.handleClose = function () {
-      _this.__triggerPropsFn("onClose", [null].concat([]));
-    }, _this.handleTouchMove = function (e) {
-      e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Advert01.__proto__ || Object.getPrototypeOf(Advert01)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["data", "qrCode"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Popup, [{
+  _createClass(Advert01, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(Popup.prototype.__proto__ || Object.getPrototypeOf(Popup.prototype), "_constructor", this).call(this, props);
-      this.state = {
-        isShow: props.visible
-      };
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      var visible = nextProps.visible;
-      var isShow = this.state.isShow;
-
-      if (visible !== isShow) {
-        this.setState({
-          isShow: visible
-        });
-      }
+      _get(Advert01.prototype.__proto__ || Object.getPrototypeOf(Advert01.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "_createData",
@@ -77,57 +54,39 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       var __runloopRef = arguments[2];
       ;
 
-      var _props = this.__props,
-          onClose = _props.onClose,
-          compStyle = _props.compStyle;
-      var isShow = this.__state.isShow;
+      var data = this.__props.data;
+      var qrCode = this.__props.qrCode;
 
-
-      var anonymousState__temp = (0, _index4.default)('comp-popup', isShow && 'comp-popup--visible');
-      var anonymousState__temp2 = (0, _index.internal_inline_style)(compStyle);
-      var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: _index2.default.pxTransform(750) });
       Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp,
-        anonymousState__temp2: anonymousState__temp2,
-        anonymousState__temp3: anonymousState__temp3,
-        closeIcon: closeIcon
+        data: data,
+        qrCode: qrCode
       });
       return this.__state;
     }
-  }, {
-    key: "funPrivateOoOkb",
-    value: function funPrivateOoOkb() {
-      this.__triggerPropsFn("onClose", [].concat(Array.prototype.slice.call(arguments)));
-    }
   }]);
 
-  return Popup;
+  return Advert01;
 }(_index.Component), _class.properties = {
-  "__fn_onClose": {
+  "data": {
     "type": null,
     "value": null
   },
-  "onClose": {
-    "type": null,
-    "value": null
-  },
-  "compStyle": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "visible": {
+  "qrCode": {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleTouchMove", "funPrivateOoOkb"], _class.defaultProps = {
-  visible: false,
-  compStyle: '',
-  onClose: function onClose() {}
-}, _temp2);
-exports.default = Popup;
+}, _class.$$events = [], _temp2);
 
-Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Popup));
+
+Advert01.defaultProps = {
+  data: {},
+  qrCode: ''
+};
+
+Advert01.propTypes = {
+  data: _index3.default.object,
+  qrCode: _index3.default.string
+};
+exports.default = Advert01;
+
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Advert01));

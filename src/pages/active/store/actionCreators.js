@@ -3,12 +3,14 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_UPLOAD_CONFIG,
     ACTION_UPLOAD_DOWN,
     UPDATE_USER_INFO,
-    ACTION_QRCODE
+    ACTION_QRCODE,
+    ACTION_ADVERT_DATA
     } from './constants';
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
     API_UPLOAD_CONFIG,
     API_USER_INFO,
-    API_QRCODE} from './../../../constants/api';
+    API_QRCODE,
+    API_ADVERT_LIST} from './../../../constants/api';
 
 export const dispatchPublishProduct = payload => createAction({
     type:PRODUCT_PUBLISH_INFO,
@@ -81,4 +83,15 @@ export const dispatchQueryQrCode = payload =>createAction({
     },
     payload
 });
+
+export const dispatchAdvertQuery = payload => createAction({
+    type: ACTION_ADVERT_DATA,
+    url: API_ADVERT_LIST,
+    fetchOptions:{
+        method:'GET'
+    },
+    payload
+})
+
+
 

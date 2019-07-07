@@ -1,13 +1,11 @@
 <block>
     <view class="mp-advert">
-        <view class="banner">
-            <view class="img">
-                <image style="width:100px;height:100px;" __triggerObserer="{{ _triggerObserer }}" src="{{qrCode}}"></image>
-            </view>
-        </view>
+        <block wx:if="{{advertIndex === 0}}">
+            <advert data="{{data}}" __triggerObserer="{{ _triggerObserer }}" qrCode="{{qrCode}}"></advert>
+        </block>
         <view class="thumbnail-wrapper">
             <view class="thumbnail">
-                <view bindtap="onClick" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item}}">
+                <view bindtap="handleChangeAdvert" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item}}" data-e-tap-a-b="{{index}}">
                     <image wx:key="index" __triggerObserer="{{ _triggerObserer }}" src="{{item.url}}"></image>
                     <block wx:if="{{item.isShow}}">
                         <view class="mask"><text class="mp-icon mp-icon-checkeditem"></text>

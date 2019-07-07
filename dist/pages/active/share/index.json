@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "advert": "../advert/index"
+  },
   "navigationBarTitleText": "广告预览"
 }

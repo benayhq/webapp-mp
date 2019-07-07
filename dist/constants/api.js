@@ -46,3 +46,6 @@ var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/v1/project/al
 
 // 获取分享
 var API_QRCODE = exports.API_QRCODE = HOST + '/api/v1/wx/getwxacodeunlimit';
+
+// 广告预览
+var API_ADVERT_LIST = exports.API_ADVERT_LIST = HOST + '/api/v1/activity/advert';

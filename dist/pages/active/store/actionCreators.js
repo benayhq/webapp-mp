@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
+exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -94,6 +94,17 @@ var dispatchQueryQrCode = exports.dispatchQueryQrCode = function dispatchQueryQr
     url: _api.API_QRCODE,
     fetchOptions: {
       method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchAdvertQuery = exports.dispatchAdvertQuery = function dispatchAdvertQuery(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_ADVERT_DATA,
+    url: _api.API_ADVERT_LIST,
+    fetchOptions: {
+      method: 'GET'
     },
     payload: payload
   });

@@ -13,22 +13,7 @@ page{
     margin: 0px;
     padding: 0px;
 
-    .banner{
-        padding: 40px;
-        background:$appBgColor;
-        height: 100%;
-
-        .img{
-            background: #ffffff;
-            height: 80%;
-            
-            >image{
-                width: 100%;
-                height: 100%;
-                border-radius:10px;
-            }
-        }
-    }
+    
 
     .thumbnail-wrapper{
         position: fixed;

@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 export default (state = defaultState,action) => {
-    console.log('action',action.payload);
     switch(action.type){
         case ACTION_PRODUCT_LIST:
             return {

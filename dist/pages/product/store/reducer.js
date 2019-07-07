@@ -18,7 +18,6 @@ exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments[1];
 
-  console.log('action', action.payload);
   switch (action.type) {
     case _constants.ACTION_PRODUCT_LIST:
       return _extends({}, state, {

@@ -1,0 +1,6 @@
+<block>
+    <view class="warpper">
+        <view class="layer-top"></view>
+        <view class="layer-bottom"></view>
+    </view>
+</block>

@@ -5,7 +5,10 @@ import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
 import {API_QRCODE} from './../../../constants/api';
 import {getAuthInfo} from './../../../utils/storage';
-import { AtInput } from 'taro-ui'
+import { AtInput } from 'taro-ui';
+import Advert from './../advert';
+import Advert01 from './../advert/advert';
+import Advert02 from './../advert/advert02';
 
 @connect(state=>state,actions)
 export default class Index extends Component{
@@ -19,13 +22,17 @@ export default class Index extends Component{
           imgSrc:'http://invitecard-1253442168.image.myqcloud.com/sharecard_tmp/2019-4-5/1554468983_1a277fade9b09ff199d377880f04137f.jpg',
           imgList:[],
           mask:'',
-          qrCode:""
+          qrCode:"",
+          bannerList:[],
+          data:{},
+          advertIndex:0
       };
   }
 
   init(){
     this.initSelectdImg();
     this.initImage();
+    this.initData();
   }
 
   initSelectdImg(){
@@ -44,7 +51,7 @@ export default class Index extends Component{
       })
     });
   }
-
+  
   initImage(){
     var listImg = [
       'dev/common/share_thumbnail_01.png',
@@ -65,6 +72,18 @@ export default class Index extends Component{
         });
       });
     });
+  }
+
+  initData(){
+    var payload = {
+      batchId:1
+      // activityId:null
+    };
+    this.props.dispatchAdvertQuery(payload).then((response)=>{
+        this.setState({
+          data:response.content
+        });
+    })
   }
 
   async getImgUrl(location){
@@ -89,12 +108,33 @@ export default class Index extends Component{
 
   componentDidHide () { }
 
-  onClick = (e,item) => {
-      const imgUrl = item.currentTarget.dataset.eTapAA.url;
+  handleChangeAdvert = (item,index,e) => {
+      this.handleChangeBg(index);
+      const imgUrl = e.currentTarget.dataset.eTapAA.url;
       this.setState({
         imgSrc:imgUrl
       });
       this.showMask(imgUrl);
+  }
+
+  handleChangeBg(index){
+    var that = this;
+    switch(index){
+      case 0:
+        that.setState({
+          advertIndex:0
+        })
+        return;
+      case 1:
+        that.setState({
+          advertIndex:1
+         })
+        return;
+      default:
+        that.setState({
+          advertIndex:0
+        });
+      }
   }
 
   showMask(imgUrl){
@@ -103,24 +143,19 @@ export default class Index extends Component{
      });
   }
 
-  // dispatchQueryQrCode
-
   render () {
-    const {imgSrc,imgList,mask,qrCode} = this.state;
+    const {imgList,data,qrCode} = this.state;
 
     return (
       <View className="mp-advert">
-          <View className="banner">
-                <View className="img">
-                       <image style="width:100px;height:100px;" src={qrCode}></image>
-                </View>
-          </View>
-
+         { advertIndex === 0  && <Advert data={data} qrCode={qrCode}/> }
+         {/* { advertIndex === 1 && <Advert01 data={data} qrCode={qrCode}/>} */}
+         {/* { advertIndex === 0 && <Advert02 data={data} qrCode={qrCode}/>} */}
           <View className="thumbnail-wrapper" >
               <View className="thumbnail">
               {
                   imgList.map((item,index)=>(
-                      <View onClick={this.onClick.bind(this,item)}>
+                      <View onClick={this.handleChangeAdvert.bind(this,item,index)}>
                             <image key={index}  src={item.url}></image>
                             {
                               item.isShow
