@@ -15,7 +15,7 @@ export default class Index extends Component{
   config = {
     navigationBarTitleText: '广告预览'
   }
-
+  
   constructor(){
       super(...arguments);
       this.state = {
