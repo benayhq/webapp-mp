@@ -57,10 +57,7 @@ var Advert01 = (_temp2 = _class = function (_BaseComponent) {
       var data = this.__props.data;
       var qrCode = this.__props.qrCode;
 
-      Object.assign(this.__state, {
-        data: data,
-        qrCode: qrCode
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);

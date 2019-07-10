@@ -3,7 +3,6 @@ import { View } from '@tarojs/components'
 import './index.scss';
 import { AtButton } from 'taro-ui';
 import Modal from './../../../components/modal/';
-import _ from 'lodash';
 
 export default class ToolBar extends Component{
     constructor(){

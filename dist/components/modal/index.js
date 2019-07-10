@@ -14,10 +14,6 @@ var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _isFunction2 = require("../../npm/lodash/isFunction.js");
-
-var _isFunction3 = _interopRequireDefault(_isFunction2);
-
 var _index3 = require("../../npm/classnames/index.js");
 
 var _index4 = _interopRequireDefault(_index3);
@@ -50,7 +46,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "popUpClass", "title", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "content", "popup", "animationType", "height", "children"], _this.onClose = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "popUpClass", "title", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "__fn_onConfirm", "content", "popup", "animationType", "height", "children"], _this.onClose = function (e) {
       if (_this.props.closeOnClickOverlay) {
         _this.onCancel();
       }
@@ -59,9 +55,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
         _isOpened: false
       }, _this.__triggerPropsFn("onCancel", [null].concat([])));
     }, _this.onConfirm = function (e) {
-      if ((0, _isFunction3.default)(_this.props.onConfirm)) {
-        _this.__triggerPropsFn("onConfirm", [null].concat([]));
-      }
+      _this.__triggerPropsFn("onConfirm", [null].concat([]));
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
@@ -152,10 +146,6 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
     "value": null
   },
   "__fn_onCancel": {
-    "type": null,
-    "value": null
-  },
-  "onConfirm": {
     "type": null,
     "value": null
   },

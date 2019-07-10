@@ -1,25 +1,8 @@
 <block>
     <view class="warpper">
         <view class="layer"></view>
-        <view class="header">
-            <view>
-                <image style="width:45px;height:45px;margin-left:30px;border-radius: 100px;" __triggerObserer="{{ _triggerObserer }}" src="{{data.inviterProfileUrl}}"></image>
-            </view>
-            <view class="desc">
-                <view>{{data.inviterName}}</view>
-                <view>邀您参与拼团，仅剩{{data.remainPeople}}个名额</view>
-            </view>
-        </view>
-        <view class="title">{{data.acitivityName}}</view>
-        <view class="qrCode-Wrapper">
-            <view class="qrCode">
-                <image src="{{qrCode}}" __triggerObserer="{{ _triggerObserer }}"></image>
-            </view>
-            <view>
-                <view class="qrCode-detail">长按识别小程序码加入拼团</view>
-                <view class="qrCode-button">快速加入拼团</view>
-            </view>
-        </view>
+        <view class="title"></view>
+        <view class="qrCode-Wrapper"></view>
         <save-image __triggerObserer="{{ _triggerObserer }}"></save-image>
     </view>
 </block>

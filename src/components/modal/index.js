@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button,ScrollView } from '@tarojs/components'
-import _isFunction from 'lodash/isFunction'
 import classNames from 'classnames'
 import './index.scss'
 import PropTypes from 'prop-types'
@@ -37,9 +36,7 @@ export default class Modal extends Component {
   }
   
   onConfirm = (e) =>{
-    if(_isFunction(this.props.onConfirm)){
       this.props.onConfirm();
-    }
   }
 
   handleTouchMove = (e) =>{

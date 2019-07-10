@@ -1,8 +1,6 @@
 {
   "usingComponents": {
-    "advert": "../advert/index",
-    "advert-01": "../advert/advert",
-    "advert-02": "../advert/advert02"
+    "taro-canvas-drawer": "../../../npm/taro-plugin-canvas/dist/weapp/components/taro-plugin-canvas/index"
   },
   "navigationBarTitleText": "广告预览"
 }

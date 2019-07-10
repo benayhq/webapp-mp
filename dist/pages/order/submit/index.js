@@ -20,10 +20,6 @@ var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _lodash = require("../../../npm/lodash/lodash.js");
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -87,7 +83,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           activityProductId = _state.activityProductId,
           appointmentDate = _state.appointmentDate;
 
-      if (_lodash2.default.isEmpty(appointmentDate)) {
+      if (_.isEmpty(appointmentDate)) {
         this.handleAlert('error', '请选择预约时间!');
         return;
       }

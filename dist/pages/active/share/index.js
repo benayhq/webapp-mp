@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["advertIndex", "data", "qrCode", "imgList", "imgSrc", "mask", "bannerList", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "imgSrc", "mask", "qrCode", "bannerList", "data", "advertIndex", "config", "shareImage", "canvasStatus", "rssConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.handleChangeAdvert = function (item, index, e) {
       _this.handleChangeBg(index);
@@ -57,6 +57,61 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         imgSrc: imgUrl
       });
       _this.showMask(imgUrl);
+    }, _this.canvasDrawFunc = function () {
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.rssConfig;
+
+      _this.setState({
+        canvasStatus: true,
+        config: config
+      });
+      _index2.default.showLoading({
+        title: '绘制中...'
+      });
+    }, _this.onCreateSuccess = function (result) {
+      var tempFilePath = result.tempFilePath,
+          errMsg = result.errMsg;
+
+      _index2.default.hideLoading();
+      if (errMsg === 'canvasToTempFilePath:ok') {
+        _this.setState({
+          shareImage: tempFilePath,
+          // 重置 TaroCanvasDrawer 状态，方便下一次调用
+          canvasStatus: false,
+          config: null
+        });
+      } else {
+        // 重置 TaroCanvasDrawer 状态，方便下一次调用
+        _this.setState({
+          canvasStatus: false,
+          config: null
+        });
+        _index2.default.showToast({ icon: 'none', title: errMsg || '出现错误' });
+        console.log(errMsg);
+      }
+      // 预览
+      // Taro.previewImage({
+      //   current: tempFilePath,
+      //   urls: [tempFilePath]
+      // })
+    }, _this.onCreateFail = function (error) {
+      _index2.default.hideLoading();
+      // 重置 TaroCanvasDrawer 状态，方便下一次调用
+      _this.setState({
+        canvasStatus: false,
+        config: null
+      });
+      console.log(error);
+    }, _this.saveToAlbum = function () {
+      var res = _index2.default.saveImageToPhotosAlbum({
+        filePath: _this.state.shareImage
+      });
+      if (res.errMsg === 'saveImageToPhotosAlbum:ok') {
+        _index2.default.showToast({
+          title: '保存图片成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -71,7 +126,109 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         qrCode: "",
         bannerList: [],
         data: {},
-        advertIndex: 0
+        advertIndex: 0,
+        // 绘图配置文件
+        config: null,
+        // 绘制的图片
+        shareImage: null,
+        // TaroCanvasDrawer 组件状态
+        canvasStatus: false,
+        rssConfig: {
+          width: 750,
+          height: 950,
+          backgroundColor: '#fff',
+          debug: false,
+          blocks: [{
+            x: 0,
+            y: 0,
+            width: 750,
+            height: 750,
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderWidth: 0,
+            // borderColor: '#ccc',
+            backgroundColor: '#EFF3F5',
+            borderRadius: 0
+          }, {
+            x: 40,
+            y: 40,
+            width: 670,
+            height: 670,
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderWidth: 0,
+            // borderColor: '#ccc',
+            backgroundColor: '#fff',
+            borderRadius: 12
+          }],
+          texts: [{
+            x: 80,
+            y: 420,
+            text: '国产谍战 真人演出,《隐形守护者》凭什么成为Steam第一?',
+            fontSize: 32,
+            color: '#000',
+            opacity: 1,
+            baseLine: 'middle',
+            lineHeight: 48,
+            lineNum: 2,
+            textAlign: 'left',
+            width: 580,
+            zIndex: 999
+          }, {
+            x: 80,
+            y: 590,
+            text: '长按扫描二维码阅读完整内容',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }, {
+            x: 80,
+            y: 640,
+            text: '分享来自 「 RssFeed 」',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }],
+          images: [{
+            url: './../../image/share.jpg',
+            width: 750,
+            height: 900,
+            y: 0,
+            x: 0,
+            borderRadius: 12,
+            zIndex: 10
+            // borderRadius: 150,
+            // borderWidth: 10,
+            // borderColor: 'red',
+          }, {
+            url: 'https://pic.juncao.cc/cms/images/minapp.jpg',
+            width: 110,
+            height: 110,
+            y: 570,
+            x: 560,
+            borderRadius: 100,
+            borderWidth: 0,
+            zIndex: 10
+          }],
+          lines: [{
+            startY: 540,
+            startX: 80,
+            endX: 670,
+            endY: 541,
+            width: 1,
+            color: '#eee'
+          }]
+        }
       };
     }
   }, {
@@ -163,7 +320,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee, this);
       }));
 
-      function getImgUrl(_x) {
+      function getImgUrl(_x2) {
         return _ref2.apply(this, arguments);
       }
 
@@ -178,16 +335,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.init();
+      this.canvasDrawFunc();
     }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
-  }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {}
-  }, {
-    key: "componentDidHide",
-    value: function componentDidHide() {}
   }, {
     key: "handleChangeBg",
     value: function handleChangeBg(index) {
@@ -216,6 +365,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         item.url === imgUrl ? item.isShow = true : item.isShow = false;
       });
     }
+
+    // 调用绘画 => canvasStatus 置为true、同时设置config
+
+
+    // 绘制成功回调函数 （必须实现）=> 接收绘制结果、重置 TaroCanvasDrawer 状态
+
+
+    // 绘制失败回调函数 （必须实现）=> 接收绘制错误信息、重置 TaroCanvasDrawer 状态
+
+
+    // 保存图片至本地
+
   }, {
     key: "_createData",
     value: function _createData() {
@@ -249,7 +410,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleChangeAdvert"], _temp2)) || _class);
+}, _class2.$$events = ["onCreateSuccess", "onCreateFail", "canvasDrawFunc"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

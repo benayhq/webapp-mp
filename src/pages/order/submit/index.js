@@ -4,7 +4,6 @@ import './index.scss';
 import { AtInput,AtMessage} from 'taro-ui';
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
-import _ from 'lodash';
 
 @connect(state=>state.user,actions)
 export default class SubmitOrder extends Component{

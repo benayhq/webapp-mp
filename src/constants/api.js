@@ -44,3 +44,4 @@ export const API_QRCODE = `${HOST}/api/v1/wx/getwxacodeunlimit`;
 
 // 广告预览
 export const API_ADVERT_LIST =  `${HOST}/api/v1/activity/advert`;
+

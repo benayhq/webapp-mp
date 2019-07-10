@@ -10,7 +10,6 @@ import ToolBar from './../toolbar';
 import Order from './../common/order';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
-import _ from 'lodash';
 
 @connect(state=>state,actions)
 export default class OrderDetail extends Component{
@@ -23,7 +22,6 @@ export default class OrderDetail extends Component{
             content:{}
         };
     }
-
     config = {
         navigationBarTitleText: '订单详情'
     }

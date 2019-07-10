@@ -5,7 +5,6 @@ import OrderItem from './list';
 import Order from './common/order';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
-import _ from 'lodash';
 
 @connect(state=>state.user,actions)
 export default class OrderList extends Component{

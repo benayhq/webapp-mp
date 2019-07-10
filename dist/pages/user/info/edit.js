@@ -20,10 +20,6 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
-var _lodash = require("../../../npm/lodash/lodash.js");
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -72,19 +68,19 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _this$state.address;
 
 
-      if (_lodash2.default.isEmpty(nickName)) {
+      if (nickName === "") {
         _this.handleAlert('error', '呢称不能为空');
       }
 
-      if (_lodash2.default.isEmpty(cellPhone)) {
+      if (cellPhone === "") {
         _this.handleAlert('error', '手机号不能为空');
       }
 
-      if (_lodash2.default.isEmpty(weixin)) {
+      if (weixin === "") {
         _this.handleAlert('error', '微信号不能为空');
       }
 
-      if (_lodash2.default.isEmpty(serviceAddress)) {
+      if (serviceAddress === "") {
         _this.handleAlert('error', '服务地址不能为空');
       }
 

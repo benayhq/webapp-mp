@@ -13,7 +13,7 @@ export default class Advert01 extends Component{
         return (
             <View className="warpper">
                 <View className="layer"></View>
-                <View className="header">
+                {/* <View className="header">
                         <View>
                             <image style="width:45px;height:45px;margin-left:30px;border-radius: 100px;" src={data.inviterProfileUrl}></image>
                         </View>
@@ -21,23 +21,23 @@ export default class Advert01 extends Component{
                             <View>{data.inviterName}</View>
                             <View>邀您参与拼团，仅剩{data.remainPeople}个名额</View>
                         </View>
-                </View>
+                </View> */}
                 <View className="title">
-                    {data.acitivityName}
+                    {/* {data.acitivityName} */}
                 </View>
                 <View className="qrCode-Wrapper">
-                    <View className="qrCode">
+                    {/* <View className="qrCode">
                         <image  src={qrCode}></image>
-                    </View>
+                    </View> */}
 
-                    <View>
+                    {/* <View>
                         <View className="qrCode-detail">
                             长按识别小程序码加入拼团
                         </View>
                         <View className="qrCode-button">
                             快速加入拼团
                         </View>
-                    </View>
+                    </View> */}
                 </View>
                 <SaveImage/>
             </View>

@@ -1,0 +1,6 @@
+<block>
+    <block wx:if="{{pxWidth && pxHeight}}">
+        <canvas canvas-id="{{canvasId}}" style="{{'width:' + pxWidth + 'px; height:' + pxHeight + 'px;'}}" class="{{(debug ? 'debug' : 'pro') + ' canvas'}}"></canvas>
+    </block>
+    <view wx:else></view>
+</block>

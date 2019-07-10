@@ -4,10 +4,8 @@ import ProductItem from '../../../components/product';
 import { AtButton } from 'taro-ui';
 import jump from './../../utils/jump';
 import Title from '../title';
-
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
-import _ from 'lodash';
 
 @connect(state=>state.user,actions)
 export default class OrderItem extends Component{

@@ -4,7 +4,6 @@ import { AtInput, AtForm ,AtImagePicker,AtButton,AtMessage} from 'taro-ui';
 import './edit.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
-import _ from 'lodash';
 var imgArraySrc = [];
 var util = require('../../../utils/util.js');
 var uploadImage = require('./../../../utils/uploadFile.js');
@@ -14,7 +13,6 @@ var uploadImage = require('./../../../utils/uploadFile.js');
     config = {
         navigationBarTitleText: '个人信息'
     }
-
     constructor(){
         super(...arguments);
         this.state = {
@@ -139,19 +137,19 @@ var uploadImage = require('./../../../utils/uploadFile.js');
         const {nickName,cellPhone,weixin,serviceAddress
         ,address} = this.state;
 
-        if(_.isEmpty(nickName)){
+        if(nickName === ""){
             this.handleAlert('error','呢称不能为空');
         }
 
-        if(_.isEmpty(cellPhone)){
+        if(cellPhone===""){
             this.handleAlert('error','手机号不能为空');
         }
 
-        if(_.isEmpty(weixin)){
+        if(weixin===""){
             this.handleAlert('error','微信号不能为空');
         }
 
-        if(_.isEmpty(serviceAddress)){
+        if(serviceAddress===""){
             this.handleAlert('error','服务地址不能为空');
         }
 
