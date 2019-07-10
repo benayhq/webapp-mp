@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "imgSrc", "mask", "qrCode", "bannerList", "data", "advertIndex", "config", "shareImage", "canvasStatus", "rssConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgSrc", "imgList", "mask", "qrCode", "bannerList", "data", "advertIndex", "config", "shareImage", "canvasStatus", "bannerConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.handleChangeAdvert = function (item, index, e) {
       _this.handleChangeBg(index);
@@ -58,8 +58,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
       _this.showMask(imgUrl);
     }, _this.canvasDrawFunc = function () {
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.rssConfig;
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.bannerConfig;
 
+
+      console.log('config', _this.state.bannerConfig);
       _this.setState({
         canvasStatus: true,
         config: config
@@ -88,11 +90,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         _index2.default.showToast({ icon: 'none', title: errMsg || '出现错误' });
         console.log(errMsg);
       }
-      // 预览
-      // Taro.previewImage({
-      //   current: tempFilePath,
-      //   urls: [tempFilePath]
-      // })
     }, _this.onCreateFail = function (error) {
       _index2.default.hideLoading();
       // 重置 TaroCanvasDrawer 状态，方便下一次调用
@@ -130,106 +127,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         // 绘图配置文件
         config: null,
         // 绘制的图片
-        shareImage: null,
+        shareImage: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
         // TaroCanvasDrawer 组件状态
         canvasStatus: false,
-        rssConfig: {
-          width: 750,
-          height: 950,
-          backgroundColor: '#fff',
-          debug: false,
-          blocks: [{
-            x: 0,
-            y: 0,
-            width: 750,
-            height: 750,
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderWidth: 0,
-            // borderColor: '#ccc',
-            backgroundColor: '#EFF3F5',
-            borderRadius: 0
-          }, {
-            x: 40,
-            y: 40,
-            width: 670,
-            height: 670,
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderWidth: 0,
-            // borderColor: '#ccc',
-            backgroundColor: '#fff',
-            borderRadius: 12
-          }],
-          texts: [{
-            x: 80,
-            y: 420,
-            text: '国产谍战 真人演出,《隐形守护者》凭什么成为Steam第一?',
-            fontSize: 32,
-            color: '#000',
-            opacity: 1,
-            baseLine: 'middle',
-            lineHeight: 48,
-            lineNum: 2,
-            textAlign: 'left',
-            width: 580,
-            zIndex: 999
-          }, {
-            x: 80,
-            y: 590,
-            text: '长按扫描二维码阅读完整内容',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999
-          }, {
-            x: 80,
-            y: 640,
-            text: '分享来自 「 RssFeed 」',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999
-          }],
-          images: [{
-            url: './../../image/share.jpg',
-            width: 750,
-            height: 900,
-            y: 0,
-            x: 0,
-            borderRadius: 12,
-            zIndex: 10
-            // borderRadius: 150,
-            // borderWidth: 10,
-            // borderColor: 'red',
-          }, {
-            url: 'https://pic.juncao.cc/cms/images/minapp.jpg',
-            width: 110,
-            height: 110,
-            y: 570,
-            x: 560,
-            borderRadius: 100,
-            borderWidth: 0,
-            zIndex: 10
-          }],
-          lines: [{
-            startY: 540,
-            startX: 80,
-            endX: 670,
-            endY: 541,
-            width: 1,
-            color: '#eee'
-          }]
-        }
+        bannerConfig: {}
       };
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.initShareTemplate();
     }
   }, {
     key: "init",
@@ -285,12 +192,85 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var payload = {
         batchId: 1
-        // activityId:null
       };
       this.props.dispatchAdvertQuery(payload).then(function (response) {
         _this4.setState({
           data: response.content
         });
+      });
+    }
+  }, {
+    key: "initShareTemplate",
+    value: function initShareTemplate() {
+      this.setState({
+        bannerConfig: {
+          width: 750,
+          height: 1350,
+          backgroundColor: '#fff',
+          debug: false,
+          blocks: [{
+            x: 0,
+            y: 0,
+            width: 750,
+            height: 750,
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderWidth: 0,
+            // borderColor: '#ccc',
+            backgroundColor: '#EFF3F5',
+            borderRadius: 0
+          }],
+          texts: [{
+            x: 256,
+            y: 285,
+            text: '爱吐槽的徐教授',
+            fontSize: 32,
+            color: '#000',
+            opacity: 1,
+            baseLine: 'middle',
+            lineHeight: 48,
+            lineNum: 2,
+            textAlign: 'left',
+            width: 580,
+            zIndex: 999
+          }, {
+            x: 80,
+            y: 590,
+            text: '长按扫描二维码阅读完整内容',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }, {
+            x: 80,
+            y: 640,
+            text: '分享来自 「 RssFeed 」',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }],
+          images: [{
+            url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+            // width: 750,
+            // height: 900,
+            y: 0,
+            x: 0,
+            // // borderRadius: 12,
+            zIndex: 10
+            // borderRadius: 150,
+            // borderWidth: 10,
+            // borderColor: 'red',
+          }]
+        }
       });
     }
   }, {
@@ -327,15 +307,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      console.log(this.$router.params); // 输出 { id: 2, type: 'test' }
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.init();
-      this.canvasDrawFunc();
+      this.canvasDrawFunc(this.state.bannerConfig);
     }
   }, {
     key: "handleChangeBg",
@@ -410,7 +385,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["onCreateSuccess", "onCreateFail", "canvasDrawFunc"], _temp2)) || _class);
+}, _class2.$$events = ["onCreateSuccess", "onCreateFail"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

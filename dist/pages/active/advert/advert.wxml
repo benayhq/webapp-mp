@@ -1,8 +1,0 @@
-<block>
-    <view class="warpper">
-        <view class="layer"></view>
-        <view class="title"></view>
-        <view class="qrCode-Wrapper"></view>
-        <save-image __triggerObserer="{{ _triggerObserer }}"></save-image>
-    </view>
-</block>

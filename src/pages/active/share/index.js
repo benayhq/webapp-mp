@@ -31,118 +31,15 @@ export default class Index extends Component{
           // 绘图配置文件
           config: null,
           // 绘制的图片
-          shareImage: null,
+          shareImage: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
           // TaroCanvasDrawer 组件状态
           canvasStatus: false,
-          rssConfig: {
-            width: 750,
-            height: 950,
-            backgroundColor: '#fff',
-            debug: false,
-            blocks: [
-              {
-                x: 0,
-                y: 0,
-                width: 750,
-                height: 750,
-                paddingLeft: 0,
-                paddingRight: 0,
-                borderWidth: 0,
-                // borderColor: '#ccc',
-                backgroundColor: '#EFF3F5',
-                borderRadius: 0,
-              },
-              {
-                x: 40,
-                y: 40,
-                width: 670,
-                height: 670,
-                paddingLeft: 0,
-                paddingRight: 0,
-                borderWidth: 0,
-                // borderColor: '#ccc',
-                backgroundColor: '#fff',
-                borderRadius: 12,
-              }
-            ],
-            texts: [
-              {
-                x: 80,
-                y: 420,
-                text: '国产谍战 真人演出,《隐形守护者》凭什么成为Steam第一?',
-                fontSize: 32,
-                color: '#000',
-                opacity: 1,
-                baseLine: 'middle',
-                lineHeight: 48,
-                lineNum: 2,
-                textAlign: 'left',
-                width: 580,
-                zIndex: 999,
-              },
-              {
-                x: 80,
-                y: 590,
-                text: '长按扫描二维码阅读完整内容',
-                fontSize: 24,
-                color: '#666',
-                opacity: 1,
-                baseLine: 'middle',
-                textAlign: 'left',
-                lineHeight: 36,
-                lineNum: 1,
-                zIndex: 999,
-              },
-              {
-                x: 80,
-                y: 640,
-                text: '分享来自 「 RssFeed 」',
-                fontSize: 24,
-                color: '#666',
-                opacity: 1,
-                baseLine: 'middle',
-                textAlign: 'left',
-                lineHeight: 36,
-                lineNum: 1,
-                zIndex: 999,
-              }
-            ],
-            images: [
-              {
-                url: './../../image/share.jpg',
-                width: 750,
-                height: 900,
-                y: 0,
-                x: 0,
-                borderRadius: 12,
-                zIndex: 10,
-                // borderRadius: 150,
-                // borderWidth: 10,
-                // borderColor: 'red',
-              },
-              {
-                url: 'https://pic.juncao.cc/cms/images/minapp.jpg',
-                width: 110,
-                height: 110,
-                y: 570,
-                x: 560,
-                borderRadius: 100,
-                borderWidth: 0,
-                zIndex: 10,
-              },
-            ],
-            lines: [
-              {
-                startY: 540,
-                startX: 80,
-                endX: 670,
-                endY: 541,
-                width: 1,
-                color: '#eee',
-              }
-            ]
-          }
+          bannerConfig:{}
       };
+  }
+
+  componentWillMount(){
+    this.initShareTemplate();
   }
 
   init(){
@@ -193,13 +90,94 @@ export default class Index extends Component{
   initData(){
     var payload = {
       batchId:1
-      // activityId:null
     };
     this.props.dispatchAdvertQuery(payload).then((response)=>{
         this.setState({
           data:response.content
         });
-    })
+    });
+  }
+
+  initShareTemplate(){
+    this.setState({
+      bannerConfig:{
+        width: 750,
+        height: 1350,
+        backgroundColor: '#fff',
+        debug: false,
+        blocks:[
+          {
+            x: 0,
+            y: 0,
+            width: 750,
+            height: 750,
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderWidth: 0,
+            // borderColor: '#ccc',
+            backgroundColor: '#EFF3F5',
+            borderRadius: 0,
+          }
+        ],
+        texts: [
+          {
+            x: 256,
+            y: 285,
+            text: '爱吐槽的徐教授',
+            fontSize: 32,
+            color: '#000',
+            opacity: 1,
+            baseLine: 'middle',
+            lineHeight: 48,
+            lineNum: 2,
+            textAlign: 'left',
+            width: 580,
+            zIndex: 999,
+          },
+          {
+            x: 80,
+            y: 590,
+            text: '长按扫描二维码阅读完整内容',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999,
+          },
+          {
+            x: 80,
+            y: 640,
+            text: '分享来自 「 RssFeed 」',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999,
+          }
+        ],
+        images: [
+          {
+            url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+            // width: 750,
+            // height: 900,
+            y: 0,
+            x: 0,
+            // // borderRadius: 12,
+            zIndex: 10,
+            // borderRadius: 150,
+            // borderWidth: 10,
+            // borderColor: 'red',
+          }
+         
+        ]
+      }
+    });
   }
 
   async getImgUrl(location){
@@ -210,13 +188,9 @@ export default class Index extends Component{
     return result.content;
   }
 
-  componentWillMount () { 
-    console.log(this.$router.params) // 输出 { id: 2, type: 'test' }
-  }
-
   componentDidMount () { 
     this.init();
-    this.canvasDrawFunc();
+    this.canvasDrawFunc(this.state.bannerConfig);
   }
 
   handleChangeAdvert = (item,index,e) => {
@@ -255,7 +229,9 @@ export default class Index extends Component{
   }
 
   // 调用绘画 => canvasStatus 置为true、同时设置config
-  canvasDrawFunc = (config = this.state.rssConfig) => {
+  canvasDrawFunc = (config = this.state.bannerConfig) => {
+
+    console.log('config',this.state.bannerConfig);
     this.setState({
       canvasStatus: true,
       config: config,
@@ -275,21 +251,16 @@ export default class Index extends Component{
         // 重置 TaroCanvasDrawer 状态，方便下一次调用
         canvasStatus: false,
         config: null
-      })
+      });
     } else {
       // 重置 TaroCanvasDrawer 状态，方便下一次调用
       this.setState({
         canvasStatus: false,
         config: null
-      })
+      });
       Taro.showToast({ icon: 'none', title: errMsg || '出现错误' });
       console.log(errMsg);
     }
-    // 预览
-    // Taro.previewImage({
-    //   current: tempFilePath,
-    //   urls: [tempFilePath]
-    // })
   }
 
   // 绘制失败回调函数 （必须实现）=> 接收绘制错误信息、重置 TaroCanvasDrawer 状态
@@ -308,7 +279,7 @@ export default class Index extends Component{
     const res = Taro.saveImageToPhotosAlbum({
       filePath: this.state.shareImage,
     });
-    if (res.errMsg === 'saveImageToPhotosAlbum:ok') {
+    if (res.errMsg === 'saveImageToPhotosAlbum:ok'){
       Taro.showToast({
         title: '保存图片成功',
         icon: 'success',
@@ -316,7 +287,6 @@ export default class Index extends Component{
       });
     }
   }
-
 
   render () {
     const {imgList,data,qrCode} = this.state;
@@ -338,15 +308,15 @@ export default class Index extends Component{
               />
             )
           }
-          {/* { advertIndex === 0  && <Advert data={data} qrCode={qrCode}/> }  */}
+         {/* { advertIndex === 0  && <Advert data={data} qrCode={qrCode}/> }  */}
          {/* { advertIndex === 1 && <Advert01 data={data} qrCode={qrCode}/>} */}
          {/* { advertIndex === 2 && <Advert02 data={data} qrCode={qrCode}/>} */}
-          <View className="thumbnail-wrapper" >
+          {/* <View className="thumbnail-wrapper" >
               <View className="thumbnail">
               {
                   imgList.map((item,index)=>(
                     // <View onClick={this.handleChangeAdvert.bind(this,item,index)}>
-                      <View onClick={this.canvasDrawFunc.bind(this, this.state.rssConfig)}>
+                      <View onClick={this.canvasDrawFunc.bind(this, this.state.bannerConfig)}>
                             <image key={index}  src={item.url}></image>
                             {
                               item.isShow
@@ -361,7 +331,7 @@ export default class Index extends Component{
                   ))
               }
               </View>
-          </View>
+          </View> */}
       </View>
     )
   }
