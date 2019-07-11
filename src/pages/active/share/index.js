@@ -1,16 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text,Image,Button } from '@tarojs/components'
 import './index.scss'
+import TaroCanvasDrawer from './../../../components/taro-plugin-canvas'; // 拷贝文件到component的引入方式
 import {connect} from '@tarojs/redux';
-import { TaroCanvasDrawer  } from 'taro-plugin-canvas'; 
 import * as actions from '../store/actionCreators';
 import {API_QRCODE} from './../../../constants/api';
 import {getAuthInfo} from './../../../utils/storage';
-import { AtInput } from 'taro-ui';
-import Advert from './../advert';
-import Advert01 from './../advert/advert';
-import Advert02 from './../advert/advert02';
-import Simple from './../demo'
+import { base64src } from './../../../utils/base64src'; 
 
 @connect(state=>state,actions)
 export default class Index extends Component{
@@ -18,165 +14,244 @@ export default class Index extends Component{
     navigationBarTitleText: '广告预览'
   }
 
-  constructor(){
-      super(...arguments);
-      this.state = {
-          imgSrc:'http://invitecard-1253442168.image.myqcloud.com/sharecard_tmp/2019-4-5/1554468983_1a277fade9b09ff199d377880f04137f.jpg',
-          imgList:[],
-          mask:'',
-          qrCode:"",
-          bannerList:[],
-          data:{},
-          advertIndex:0,
-          // 绘图配置文件
-          config: null,
-          // 绘制的图片
-          shareImage: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
-          // TaroCanvasDrawer 组件状态
-          canvasStatus: false,
-          bannerConfig:{}
-      };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      config: null,
+      qrCode:'',
+      data:null,
+      shareImage: null,
+      canvasStatus: false,
+      bannerConfig:{},
+      imgList:[]
+    }
   }
 
   componentWillMount(){
-    this.initShareTemplate();
+    this.initCanvas();
   }
 
   init(){
-    this.initSelectdImg();
     this.initImage();
-    this.initData();
   }
 
-  initSelectdImg(){
+  getQrCode(payload){
+    return new Promise((resolve,reject)=>{
+      this.props.dispatchQueryQrCode(payload)
+      .then(
+        (result)=>{
+          resolve(result);
+        }
+      )
+      .catch(err=>{
+        console.log(err);
+        reject(err);
+      })
+    })
+  }
+
+  getBase64Src(base64){
+    return new Promise((resolve,reject)=>{
+      base64src('data:image/png;base64,'+base64,res=>{
+        console.log('getBase64Src',res);
+        resolve(res);
+      })
+    });
+  }
+
+  initCanvas(){
+
     var payload = {
       auto_color: true,
       is_hyaline: true,
       line_color: {"r":0,"g":0,"b":0},
       page: "pages/user/index",
       scene: "productId=10",
-      width: 100
+      width: 100,
+      height: 100
     };
 
-    this.props.dispatchQueryQrCode(payload).then((response)=>{
-      this.setState({
-        qrCode:'data:image/png;base64,'+response
-      })
-    });
-  }
-
-  initImage(){
-    var listImg = [
-      'dev/common/share_thumbnail_01.png',
-      'dev/common/share_thumbnail_02.png',
-      'dev/common/share_thumbnail_03.png',
-      'dev/common/share_thumbnail_04.png'
-      ],
-      thumbNails=[];
-
-    listImg.map((item,key)=>{
-      this.getImgUrl(item).then((imageItem)=>{
-        thumbNails.push({
-          'url':imageItem,
-          isShow: key === 0 ? true : false
-        });
-        this.setState({
-          imgList:thumbNails
+    var that = this;
+    this.getQrCode(payload).then(response=>{
+      this.getBase64Src(response).then((res)=>{
+        this.getActivityData().then(data=>{
+          var response = data.content;
+          this.setState({
+            bannerConfig: {
+              width: 750,
+              height: 750,
+              backgroundColor: '#fff',
+              debug: true,
+              images: [
+                {
+                  url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+                  width: that.getScreenW(),
+                  height: that.getScreenH(),
+                  y: 0,
+                  x: 0,
+                  borderRadius: 12,
+                  zIndex: 10,
+                },
+                {
+                  y: that.factorHeight(1500),
+                  x: that.factorWidth(560),
+                  url: res,
+                  width: 180,
+                  height:180,
+                  borderRadius: 100,
+                  borderWidth: 0,
+                  zIndex: 99,
+                },
+                {
+                  x: that.factorWidth(320),
+                  y: that.factorHeight(730),
+                  url: response.inviterProfileUrl,
+                  width:90,
+                  height:90,
+                  borderRadius: 90,
+                  zIndex: 999
+                }
+              ],
+              texts: [
+                {
+                  x: that.factorWidth(530),
+                  y: that.factorHeight(780),
+                  text: response.agentName,
+                  fontSize: 28,
+                  color: '#000',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  lineHeight: 48,
+                  lineNum: 2,
+                  textAlign: 'left',
+                  width: 580,
+                  zIndex: 999,
+                },
+                {
+                  x: that.factorWidth(530),
+                  y: that.factorHeight(850),
+                  text: '邀您参与拼团,仅剩1个名额',
+                  fontSize: 24,
+                  color: '#666',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  textAlign: 'left',
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999,
+                },
+                {
+                  x: that.factorWidth(330),
+                  y: that.factorHeight(1050),
+                  text: response.acitivityName,
+                  fontSize: 42,
+                  color: '#000',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  textAlign: 'left',
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999,
+                }
+                ,
+                {
+                  x: that.factorWidth(580),
+                  y: that.factorHeight(1250),
+                  text: 'vivi 医美咨询师',
+                  fontSize: 28,
+                  color: '#666',
+                  opacity: 1,
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999,
+                }
+                ,
+                {
+                  x: that.factorWidth(450),
+                  y: that.factorHeight(1400),
+                  text: '长按识别小程序码加入拼团',
+                  fontSize: 28,
+                  color: '#000',
+                  opacity: 1,
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999,
+                }
+              ]
+            }
+          })
         });
       });
     });
   }
 
-  initData(){
+  getActivityData(){
     var payload = {
       batchId:1
     };
-    this.props.dispatchAdvertQuery(payload).then((response)=>{
-        this.setState({
-          data:response.content
-        });
+    return new Promise((resolve,reject)=>{
+      this.props.dispatchAdvertQuery(payload)
+      .then(
+        (result)=>{
+          resolve(result);
+        }
+      )
+      .catch(err=>{
+        console.log(err);
+        reject(err);
+      })
     });
   }
 
-  initShareTemplate(){
-    this.setState({
-      bannerConfig:{
-        width: 750,
-        height: 1350,
-        backgroundColor: '#fff',
-        debug: false,
-        blocks:[
-          {
-            x: 0,
-            y: 0,
-            width: 750,
-            height: 750,
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderWidth: 0,
-            // borderColor: '#ccc',
-            backgroundColor: '#EFF3F5',
-            borderRadius: 0,
-          }
-        ],
-        texts: [
-          {
-            x: 256,
-            y: 285,
-            text: '爱吐槽的徐教授',
-            fontSize: 32,
-            color: '#000',
-            opacity: 1,
-            baseLine: 'middle',
-            lineHeight: 48,
-            lineNum: 2,
-            textAlign: 'left',
-            width: 580,
-            zIndex: 999,
-          },
-          {
-            x: 80,
-            y: 590,
-            text: '长按扫描二维码阅读完整内容',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999,
-          },
-          {
-            x: 80,
-            y: 640,
-            text: '分享来自 「 RssFeed 」',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999,
-          }
-        ],
-        images: [
-          {
-            url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
-            // width: 750,
-            // height: 900,
-            y: 0,
-            x: 0,
-            // // borderRadius: 12,
-            zIndex: 10,
-            // borderRadius: 150,
-            // borderWidth: 10,
-            // borderColor: 'red',
-          }
-         
-        ]
-      }
+  getScreenW(){
+    const sysInfo = Taro.getSystemInfoSync();
+    const screenWidth = sysInfo.screenWidth;
+    return screenWidth * 2;
+  }
+
+  getScreenH(){
+    const sysInfo = Taro.getSystemInfoSync();
+    const screenHeight = sysInfo.screenHeight;
+    return screenHeight * 2;
+  }
+
+  factorWidth(px){
+    const sysInfo = Taro.getSystemInfoSync();
+    const screenWidth = sysInfo.screenWidth;
+    return px * screenWidth / 750;
+  }
+
+  factorHeight(px){
+    const sysInfo = Taro.getSystemInfoSync();
+    const screenHeight = sysInfo.screenHeight;
+    return px * screenHeight / 1334;
+  }
+
+  componentDidMount(){
+    this.init();
+    setTimeout(() => {
+       this.canvasDrawFunc(this.state.bannerConfig);
+    }, 2000);
+  }
+
+  initImage(){
+    var listImg = [
+      'http://i2.tiimg.com/693434/9303c878fd23d918.png',
+      'http://i2.tiimg.com/693434/7e8ed643f74d44b5.png',
+      'http://i2.tiimg.com/693434/6e5b1cb48e6fd139.png',
+      'http://i2.tiimg.com/693434/aea0dccce4c6ee48.png'
+      ],
+      thumbNails=[];
+
+      listImg.map((item,key)=>{
+        thumbNails.push({
+          'url':item,
+          isShow: key === 0 ? true : false
+        });
+        this.setState({
+          imgList:thumbNails
+        });
     });
   }
 
@@ -188,50 +263,7 @@ export default class Index extends Component{
     return result.content;
   }
 
-  componentDidMount () { 
-    this.init();
-    this.canvasDrawFunc(this.state.bannerConfig);
-  }
-
-  handleChangeAdvert = (item,index,e) => {
-      this.handleChangeBg(index);
-      const imgUrl = e.currentTarget.dataset.eTapAA.url;
-      this.setState({
-        imgSrc:imgUrl
-      });
-      this.showMask(imgUrl);
-  }
-
-  handleChangeBg(index){
-    var that = this;
-    switch(index){
-      case 0:
-        that.setState({
-          advertIndex:0
-        })
-        return;
-      case 1:
-        that.setState({
-          advertIndex:1
-         })
-        return;
-      default:
-        that.setState({
-          advertIndex:0
-        });
-      }
-  }
-
-  showMask(imgUrl){
-     this.state.imgList.map((item,index)=>{
-        item.url === imgUrl ? item.isShow = true : item.isShow = false;
-     });
-  }
-
-  // 调用绘画 => canvasStatus 置为true、同时设置config
   canvasDrawFunc = (config = this.state.bannerConfig) => {
-
-    console.log('config',this.state.bannerConfig);
     this.setState({
       canvasStatus: true,
       config: config,
@@ -241,7 +273,13 @@ export default class Index extends Component{
     })
   }
 
-  // 绘制成功回调函数 （必须实现）=> 接收绘制结果、重置 TaroCanvasDrawer 状态
+  showMask(imgUrl){
+    this.state.imgList.map((item,index)=>{
+       item.url === imgUrl ? item.isShow = true : item.isShow = false;
+    });
+  }
+
+
   onCreateSuccess = (result) => {
     const { tempFilePath, errMsg } = result;
     Taro.hideLoading();
@@ -251,19 +289,23 @@ export default class Index extends Component{
         // 重置 TaroCanvasDrawer 状态，方便下一次调用
         canvasStatus: false,
         config: null
-      });
+      })
     } else {
       // 重置 TaroCanvasDrawer 状态，方便下一次调用
       this.setState({
         canvasStatus: false,
         config: null
-      });
+      })
       Taro.showToast({ icon: 'none', title: errMsg || '出现错误' });
       console.log(errMsg);
     }
+    // 预览
+    // Taro.previewImage({
+    //   current: tempFilePath,
+    //   urls: [tempFilePath]
+    // })
   }
 
-  // 绘制失败回调函数 （必须实现）=> 接收绘制错误信息、重置 TaroCanvasDrawer 状态
   onCreateFail = (error) => {
     Taro.hideLoading();
     // 重置 TaroCanvasDrawer 状态，方便下一次调用
@@ -279,7 +321,7 @@ export default class Index extends Component{
     const res = Taro.saveImageToPhotosAlbum({
       filePath: this.state.shareImage,
     });
-    if (res.errMsg === 'saveImageToPhotosAlbum:ok'){
+    if (res.errMsg === 'saveImageToPhotosAlbum:ok') {
       Taro.showToast({
         title: '保存图片成功',
         icon: 'success',
@@ -288,30 +330,29 @@ export default class Index extends Component{
     }
   }
 
-  render () {
-    const {imgList,data,qrCode} = this.state;
+  render() {
+
+    const {imgList,qrCode} = this.state;
 
     return (
       <View className="mp-advert">
           <Image
-            className="share-image"
+            className='shareImage'
             src={this.state.shareImage}
             mode='widthFix'
             lazy-load
           />
           {
-            this.state.canvasStatus && (
-              <TaroCanvasDrawer
-                config={this.state.config} // 绘制配置
-                onCreateSuccess={this.onCreateSuccess} // 绘制成功回调
-                onCreateFail={this.onCreateFail} // 绘制失败回调
-              />
+            // 由于部分限制，目前组件通过状态的方式来动态加载
+            this.state.canvasStatus &&
+            (<TaroCanvasDrawer
+              config={this.state.config} // 绘制配置
+              onCreateSuccess={this.onCreateSuccess} // 绘制成功回调
+              onCreateFail={this.onCreateFail} // 绘制失败回调
+            />
             )
           }
-         {/* { advertIndex === 0  && <Advert data={data} qrCode={qrCode}/> }  */}
-         {/* { advertIndex === 1 && <Advert01 data={data} qrCode={qrCode}/>} */}
-         {/* { advertIndex === 2 && <Advert02 data={data} qrCode={qrCode}/>} */}
-          {/* <View className="thumbnail-wrapper" >
+           <View className="thumbnail-wrapper" >
               <View className="thumbnail">
               {
                   imgList.map((item,index)=>(
@@ -331,7 +372,7 @@ export default class Index extends Component{
                   ))
               }
               </View>
-          </View> */}
+          </View>
       </View>
     )
   }

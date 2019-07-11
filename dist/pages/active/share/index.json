@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "taro-canvas-drawer": "../../../npm/taro-plugin-canvas/dist/weapp/components/taro-plugin-canvas/index"
+    "taro-canvas-drawer": "../../../components/taro-plugin-canvas/index"
   },
   "navigationBarTitleText": "广告预览"
 }

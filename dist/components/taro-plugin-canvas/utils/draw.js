@@ -1,3 +1,18 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports._drawRadiusRect = _drawRadiusRect;
+exports._getTextWidth = _getTextWidth;
+exports._drawSingleText = _drawSingleText;
+exports.drawText = drawText;
+exports.drawImage = drawImage;
+exports.drawLine = drawLine;
+exports.drawBlock = drawBlock;
 /**
   * @description 绘制圆角矩形
   * @param { object } drawData - 绘制数据
@@ -12,24 +27,26 @@
   * @param { function } drawOptions.toPx - toPx方法
   * @param { function } drawOptions.toRpx - toRpx方法
   */
-export function _drawRadiusRect(drawData, drawOptions) {
-  const { x, y, w, h, r } = drawData;
-  const {
-    ctx,
-    toPx,
-    // toRpx,
-  } = drawOptions;
-  const br = r / 2;
+function _drawRadiusRect(drawData, drawOptions) {
+  var x = drawData.x,
+      y = drawData.y,
+      w = drawData.w,
+      h = drawData.h,
+      r = drawData.r;
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx;
+
+  var br = r / 2;
   ctx.beginPath();
-  ctx.moveTo(toPx(x + br), toPx(y));    // 移动到左上角的点
+  ctx.moveTo(toPx(x + br), toPx(y)); // 移动到左上角的点
   ctx.lineTo(toPx(x + w - br), toPx(y));
-  ctx.arc(toPx(x + w - br), toPx(y + br), toPx(br), 2 * Math.PI * (3 / 4), 2 * Math.PI * (4 / 4))
+  ctx.arc(toPx(x + w - br), toPx(y + br), toPx(br), 2 * Math.PI * 0.75, 2 * Math.PI * 1);
   ctx.lineTo(toPx(x + w), toPx(y + h - br));
-  ctx.arc(toPx(x + w - br), toPx(y + h - br), toPx(br), 0, 2 * Math.PI * (1 / 4))
+  ctx.arc(toPx(x + w - br), toPx(y + h - br), toPx(br), 0, 2 * Math.PI * 0.25);
   ctx.lineTo(toPx(x + br), toPx(y + h));
-  ctx.arc(toPx(x + br), toPx(y + h - br), toPx(br), 2 * Math.PI * (1 / 4), 2 * Math.PI * (2 / 4))
+  ctx.arc(toPx(x + br), toPx(y + h - br), toPx(br), 2 * Math.PI * 0.25, 2 * Math.PI * 0.5);
   ctx.lineTo(toPx(x), toPx(y + br));
-  ctx.arc(toPx(x + br), toPx(y + br), toPx(br), 2 * Math.PI * (2 / 4), 2 * Math.PI * (3 / 4))
+  ctx.arc(toPx(x + br), toPx(y + br), toPx(br), 2 * Math.PI * 0.5, 2 * Math.PI * 0.75);
 }
 
 /**
@@ -41,23 +58,32 @@ export function _drawRadiusRect(drawData, drawOptions) {
  * @param { function } drawOptions.toPx - toPx方法
  * @param { function } drawOptions.toRpx - toRpx方法
  */
-export function _getTextWidth(text, drawOptions) {
-  const { ctx, toPx, toRpx } = drawOptions;
-  let texts = [];
+function _getTextWidth(text, drawOptions) {
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx,
+      toRpx = drawOptions.toRpx;
+
+  var texts = [];
   if (Object.prototype.toString.call(text) === '[object Object]') {
     texts.push(text);
   } else {
     texts = text;
   }
-  let width = 0;
+  var width = 0;
   // eslint-disable-next-line no-shadow
-  texts.forEach(({ fontSize, text, marginLeft = 0, marginRight = 0 }) => {
+  texts.forEach(function (_ref) {
+    var fontSize = _ref.fontSize,
+        text = _ref.text,
+        _ref$marginLeft = _ref.marginLeft,
+        marginLeft = _ref$marginLeft === undefined ? 0 : _ref$marginLeft,
+        _ref$marginRight = _ref.marginRight,
+        marginRight = _ref$marginRight === undefined ? 0 : _ref$marginRight;
+
     ctx.setFontSize(toPx(fontSize));
     width += ctx.measureText(text).width + marginLeft + marginRight;
-  })
+  });
   return toRpx(width);
 }
-
 
 /**
   * @description 渲染一段文字
@@ -83,70 +109,95 @@ export function _getTextWidth(text, drawOptions) {
   * @param { function } drawOptions.toPx - toPx方法
   * @param { function } drawOptions.toRpx - toRpx方法
   */
-  export function _drawSingleText(drawData, drawOptions) {
-    const { x, y, fontSize, color, baseLine, textAlign = 'left', text, opacity = 1, textDecoration = 'none',
-      width, lineNum = 1, lineHeight = 0, fontWeight = 'normal', fontStyle = 'normal', fontFamily = "sans-serif" } = drawData;
-    const { ctx, toPx, toRpx } = drawOptions;
-    ctx.save();
-    ctx.beginPath();
-    ctx.font = fontStyle + " " + fontWeight + " " + toPx(fontSize, true) + "px " + fontFamily
-    ctx.setGlobalAlpha(opacity);
-    // ctx.setFontSize(toPx(fontSize));
-    ctx.setFillStyle(color);
-    ctx.setTextBaseline(baseLine);
-    ctx.setTextAlign(textAlign);
-    let textWidth = toRpx(ctx.measureText(text).width);
-    const textArr = [];
-    if (textWidth > width) {
-      // 文本宽度 大于 渲染宽度
-      let fillText = '';
-      let line = 1;
-      for (let i = 0; i <= text.length - 1; i++) {  // 将文字转为数组，一行文字一个元素
-        fillText = fillText + text[i];
-        if (toRpx(ctx.measureText(fillText).width) >= width) {
-          if (line === lineNum) {
-            if (i !== text.length - 1) {
-              fillText = fillText.substring(0, fillText.length - 1) + '...';
-            }
+function _drawSingleText(drawData, drawOptions) {
+  var x = drawData.x,
+      y = drawData.y,
+      fontSize = drawData.fontSize,
+      color = drawData.color,
+      baseLine = drawData.baseLine,
+      _drawData$textAlign = drawData.textAlign,
+      textAlign = _drawData$textAlign === undefined ? 'left' : _drawData$textAlign,
+      text = drawData.text,
+      _drawData$opacity = drawData.opacity,
+      opacity = _drawData$opacity === undefined ? 1 : _drawData$opacity,
+      _drawData$textDecorat = drawData.textDecoration,
+      textDecoration = _drawData$textDecorat === undefined ? 'none' : _drawData$textDecorat,
+      width = drawData.width,
+      _drawData$lineNum = drawData.lineNum,
+      lineNum = _drawData$lineNum === undefined ? 1 : _drawData$lineNum,
+      _drawData$lineHeight = drawData.lineHeight,
+      lineHeight = _drawData$lineHeight === undefined ? 0 : _drawData$lineHeight,
+      _drawData$fontWeight = drawData.fontWeight,
+      fontWeight = _drawData$fontWeight === undefined ? 'normal' : _drawData$fontWeight,
+      _drawData$fontStyle = drawData.fontStyle,
+      fontStyle = _drawData$fontStyle === undefined ? 'normal' : _drawData$fontStyle,
+      _drawData$fontFamily = drawData.fontFamily,
+      fontFamily = _drawData$fontFamily === undefined ? "sans-serif" : _drawData$fontFamily;
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx,
+      toRpx = drawOptions.toRpx;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.font = fontStyle + " " + fontWeight + " " + toPx(fontSize, true) + "px " + fontFamily;
+  ctx.setGlobalAlpha(opacity);
+  // ctx.setFontSize(toPx(fontSize));
+  ctx.setFillStyle(color);
+  ctx.setTextBaseline(baseLine);
+  ctx.setTextAlign(textAlign);
+  var textWidth = toRpx(ctx.measureText(text).width);
+  var textArr = [];
+  if (textWidth > width) {
+    // 文本宽度 大于 渲染宽度
+    var fillText = '';
+    var line = 1;
+    for (var i = 0; i <= text.length - 1; i++) {
+      // 将文字转为数组，一行文字一个元素
+      fillText = fillText + text[i];
+      if (toRpx(ctx.measureText(fillText).width) >= width) {
+        if (line === lineNum) {
+          if (i !== text.length - 1) {
+            fillText = fillText.substring(0, fillText.length - 1) + '...';
           }
-          if (line <= lineNum) {
+        }
+        if (line <= lineNum) {
+          textArr.push(fillText);
+        }
+        fillText = '';
+        line++;
+      } else {
+        if (line <= lineNum) {
+          if (i === text.length - 1) {
             textArr.push(fillText);
-          }
-          fillText = '';
-          line++;
-        } else {
-          if (line <= lineNum) {
-            if (i === text.length - 1) {
-              textArr.push(fillText);
-            }
           }
         }
       }
-      textWidth = width;
-    } else {
-      textArr.push(text);
     }
-
-    textArr.forEach((item, index) => {
-      ctx.fillText(item, toPx(x), toPx(y + (lineHeight || fontSize) * index));
-    })
-    ctx.restore();
-    // textDecoration
-    if (textDecoration !== 'none') {
-      let lineY = y;
-      if (textDecoration === 'line-through') {
-        // 目前只支持贯穿线
-        lineY = y;
-      }
-      ctx.save();
-      ctx.moveTo(toPx(x), toPx(lineY));
-      ctx.lineTo(toPx(x) + toPx(textWidth), toPx(lineY));
-      ctx.setStrokeStyle(color);
-      ctx.stroke();
-      ctx.restore();
-    }
-    return textWidth;
+    textWidth = width;
+  } else {
+    textArr.push(text);
   }
+
+  textArr.forEach(function (item, index) {
+    ctx.fillText(item, toPx(x), toPx(y + (lineHeight || fontSize) * index));
+  });
+  ctx.restore();
+  // textDecoration
+  if (textDecoration !== 'none') {
+    var lineY = y;
+    if (textDecoration === 'line-through') {
+      // 目前只支持贯穿线
+      lineY = y;
+    }
+    ctx.save();
+    ctx.moveTo(toPx(x), toPx(lineY));
+    ctx.lineTo(toPx(x) + toPx(textWidth), toPx(lineY));
+    ctx.setStrokeStyle(color);
+    ctx.stroke();
+    ctx.restore();
+  }
+  return textWidth;
+}
 
 /**
  * 渲染文字
@@ -172,28 +223,20 @@ export function _getTextWidth(text, drawOptions) {
  * @param { function } drawOptions.toPx - toPx方法
  * @param { function } drawOptions.toRpx - toRpx方法
  */
-export function drawText(params, drawOptions) {
+function drawText(params, drawOptions) {
   // const { ctx, toPx, toRpx } = drawOptions;
-  const {
-    x,
-    y, text, baseLine,
-    // fontSize,
-    // color,
-    // textAlign,
-    // opacity = 1,
-    // width,
-    // lineNum,
-    // lineHeight
-  } = params;
+  var x = params.x,
+      y = params.y,
+      text = params.text,
+      baseLine = params.baseLine;
+
   if (Object.prototype.toString.call(text) === '[object Array]') {
-    let preText = { x, y, baseLine };
-    text.forEach(item => {
+    var preText = { x: x, y: y, baseLine: baseLine };
+    text.forEach(function (item) {
       preText.x += item.marginLeft || 0;
-      const textWidth = _drawSingleText(Object.assign(item, {
-        ...preText,
-      }), drawOptions);
+      var textWidth = _drawSingleText(Object.assign(item, _extends({}, preText)), drawOptions);
       preText.x += textWidth + (item.marginRight || 0); // 下一段字的 x 轴为上一段字 x + 上一段字宽度
-    })
+    });
   } else {
     _drawSingleText(params, drawOptions);
   }
@@ -218,14 +261,29 @@ export function drawText(params, drawOptions) {
  * @param { function } drawOptions.toPx - toPx方法
  * @param { function } drawOptions.toRpx - toRpx方法
  */
-export function drawImage(data, drawOptions) {
-  const { ctx, toPx } = drawOptions;
-  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor } = data;
-  console.log('imgPath',imgPath);
+function drawImage(data, drawOptions) {
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx;
+  var imgPath = data.imgPath,
+      x = data.x,
+      y = data.y,
+      w = data.w,
+      h = data.h,
+      sx = data.sx,
+      sy = data.sy,
+      sw = data.sw,
+      sh = data.sh,
+      _data$borderRadius = data.borderRadius,
+      borderRadius = _data$borderRadius === undefined ? 0 : _data$borderRadius,
+      _data$borderWidth = data.borderWidth,
+      borderWidth = _data$borderWidth === undefined ? 0 : _data$borderWidth,
+      borderColor = data.borderColor;
+
+  console.log('imgPath', imgPath);
   ctx.save();
   if (borderRadius > 0) {
-    let drawData = {
-      x, y, w, h,
+    var drawData = {
+      x: x, y: y, w: w, h: h,
       r: borderRadius
     };
     _drawRadiusRect(drawData, drawOptions);
@@ -258,9 +316,16 @@ export function drawImage(data, drawOptions) {
  * @param { function } drawOptions.toPx - toPx方法
  * @param { function } drawOptions.toRpx - toRpx方法
  */
-export function drawLine(drawData, drawOptions) {
-  const { startX, startY, endX, endY, color, width } = drawData;
-  const { ctx, toPx } = drawOptions;
+function drawLine(drawData, drawOptions) {
+  var startX = drawData.startX,
+      startY = drawData.startY,
+      endX = drawData.endX,
+      endY = drawData.endY,
+      color = drawData.color,
+      width = drawData.width;
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx;
+
   ctx.save();
   ctx.beginPath();
   ctx.setStrokeStyle(color);
@@ -292,22 +357,40 @@ export function drawLine(drawData, drawOptions) {
 * @param { function } drawOptions.toPx - toPx方法
 * @param { function } drawOptions.toRpx - toRpx方法
 */
-export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, paddingRight = 0, borderWidth, backgroundColor, borderColor, borderRadius = 0, opacity = 1 }, drawOptions) {
-  const { ctx, toPx, } = drawOptions;
+function drawBlock(_ref2, drawOptions) {
+  var text = _ref2.text,
+      _ref2$width = _ref2.width,
+      width = _ref2$width === undefined ? 0 : _ref2$width,
+      height = _ref2.height,
+      x = _ref2.x,
+      y = _ref2.y,
+      _ref2$paddingLeft = _ref2.paddingLeft,
+      paddingLeft = _ref2$paddingLeft === undefined ? 0 : _ref2$paddingLeft,
+      _ref2$paddingRight = _ref2.paddingRight,
+      paddingRight = _ref2$paddingRight === undefined ? 0 : _ref2$paddingRight,
+      borderWidth = _ref2.borderWidth,
+      backgroundColor = _ref2.backgroundColor,
+      borderColor = _ref2.borderColor,
+      _ref2$borderRadius = _ref2.borderRadius,
+      borderRadius = _ref2$borderRadius === undefined ? 0 : _ref2$borderRadius,
+      _ref2$opacity = _ref2.opacity,
+      opacity = _ref2$opacity === undefined ? 1 : _ref2$opacity;
+  var ctx = drawOptions.ctx,
+      toPx = drawOptions.toPx;
   // 判断是否块内有文字
-  let blockWidth = 0; // 块的宽度
-  let textX = 0;
-  let textY = 0;
+
+  var blockWidth = 0; // 块的宽度
+  var textX = 0;
+  var textY = 0;
   if (typeof text !== 'undefined') {
     // 如果有文字并且块的宽度小于文字宽度，块的宽度为 文字的宽度 + 内边距
-    const textWidth = _getTextWidth(typeof text.text === 'string' ? text : text.text, drawOptions);
+    var textWidth = _getTextWidth(typeof text.text === 'string' ? text : text.text, drawOptions);
     blockWidth = textWidth > width ? textWidth : width;
     blockWidth += paddingLeft + paddingLeft;
 
-    const {
-      textAlign = 'left',
-      // text: textCon,
-    } = text;
+    var _text$textAlign = text.textAlign,
+        textAlign = _text$textAlign === undefined ? 'left' : _text$textAlign;
+
     textY = height / 2 + y; // 文字的y轴坐标在块中线
     if (textAlign === 'left') {
       // 如果是右对齐，那x轴在块的最左边
@@ -328,8 +411,8 @@ export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, padd
     ctx.setFillStyle(backgroundColor);
     if (borderRadius > 0) {
       // 画圆角矩形
-      let drawData = {
-        x, y, w: blockWidth, h: height, r: borderRadius
+      var drawData = {
+        x: x, y: y, w: blockWidth, h: height, r: borderRadius
       };
       _drawRadiusRect(drawData, drawOptions);
       ctx.fill();
@@ -346,10 +429,10 @@ export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, padd
     ctx.setLineWidth(toPx(borderWidth));
     if (borderRadius > 0) {
       // 画圆角矩形边框
-      let drawData = {
-        x, y, w: blockWidth, h: height, r: borderRadius,
-      }
-      _drawRadiusRect(drawData, drawOptions);
+      var _drawData = {
+        x: x, y: y, w: blockWidth, h: height, r: borderRadius
+      };
+      _drawRadiusRect(_drawData, drawOptions);
       ctx.stroke();
     } else {
       ctx.strokeRect(toPx(x), toPx(y), toPx(blockWidth), toPx(height));
@@ -358,6 +441,6 @@ export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, padd
   }
 
   if (text) {
-    drawText(Object.assign(text, { x: textX, y: textY }), drawOptions)
+    drawText(Object.assign(text, { x: textX, y: textY }), drawOptions);
   }
 }

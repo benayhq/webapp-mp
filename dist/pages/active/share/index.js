@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _dec, _class, _class2, _temp2;
+// 拷贝文件到component的引入方式
+
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -19,6 +21,8 @@ var _index3 = require("../../../npm/@tarojs/redux/index.js");
 var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
+
+var _base64src = require("../../../utils/base64src.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -48,20 +52,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgSrc", "imgList", "mask", "qrCode", "bannerList", "data", "advertIndex", "config", "shareImage", "canvasStatus", "bannerConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
-    }, _this.handleChangeAdvert = function (item, index, e) {
-      _this.handleChangeBg(index);
-      var imgUrl = e.currentTarget.dataset.eTapAA.url;
-      _this.setState({
-        imgSrc: imgUrl
-      });
-      _this.showMask(imgUrl);
     }, _this.canvasDrawFunc = function () {
       var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.bannerConfig;
 
-
-      console.log('config', _this.state.bannerConfig);
       _this.setState({
         canvasStatus: true,
         config: config
@@ -90,6 +85,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         _index2.default.showToast({ icon: 'none', title: errMsg || '出现错误' });
         console.log(errMsg);
       }
+      // 预览
+      // Taro.previewImage({
+      //   current: tempFilePath,
+      //   urls: [tempFilePath]
+      // })
     }, _this.onCreateFail = function (error) {
       _index2.default.hideLoading();
       // 重置 TaroCanvasDrawer 状态，方便下一次调用
@@ -114,41 +114,57 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   _createClass(Index, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
+
       this.state = {
-        imgSrc: 'http://invitecard-1253442168.image.myqcloud.com/sharecard_tmp/2019-4-5/1554468983_1a277fade9b09ff199d377880f04137f.jpg',
-        imgList: [],
-        mask: '',
-        qrCode: "",
-        bannerList: [],
-        data: {},
-        advertIndex: 0,
-        // 绘图配置文件
         config: null,
-        // 绘制的图片
-        shareImage: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
-        // TaroCanvasDrawer 组件状态
+        qrCode: '',
+        data: null,
+        shareImage: null,
         canvasStatus: false,
-        bannerConfig: {}
+        bannerConfig: {},
+        imgList: []
       };
     }
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      this.initShareTemplate();
+      this.initCanvas();
     }
   }, {
     key: "init",
     value: function init() {
-      this.initSelectdImg();
       this.initImage();
-      this.initData();
     }
   }, {
-    key: "initSelectdImg",
-    value: function initSelectdImg() {
+    key: "getQrCode",
+    value: function getQrCode(payload) {
       var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this2.props.dispatchQueryQrCode(payload).then(function (result) {
+          resolve(result);
+        }).catch(function (err) {
+          console.log(err);
+          reject(err);
+        });
+      });
+    }
+  }, {
+    key: "getBase64Src",
+    value: function getBase64Src(base64) {
+      return new Promise(function (resolve, reject) {
+        (0, _base64src.base64src)('data:image/png;base64,' + base64, function (res) {
+          console.log('getBase64Src', res);
+          resolve(res);
+        });
+      });
+    }
+  }, {
+    key: "initCanvas",
+    value: function initCanvas() {
+      var _this3 = this;
 
       var payload = {
         auto_color: true,
@@ -156,121 +172,182 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         line_color: { "r": 0, "g": 0, "b": 0 },
         page: "pages/user/index",
         scene: "productId=10",
-        width: 100
+        width: 100,
+        height: 100
       };
 
-      this.props.dispatchQueryQrCode(payload).then(function (response) {
-        _this2.setState({
-          qrCode: 'data:image/png;base64,' + response
+      var that = this;
+      this.getQrCode(payload).then(function (response) {
+        _this3.getBase64Src(response).then(function (res) {
+          _this3.getActivityData().then(function (data) {
+            var response = data.content;
+            _this3.setState({
+              bannerConfig: {
+                width: 750,
+                height: 750,
+                backgroundColor: '#fff',
+                debug: true,
+                images: [{
+                  url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+                  width: that.getScreenW(),
+                  height: that.getScreenH(),
+                  y: 0,
+                  x: 0,
+                  borderRadius: 12,
+                  zIndex: 10
+                }, {
+                  y: that.factorHeight(1500),
+                  x: that.factorWidth(560),
+                  url: res,
+                  width: 180,
+                  height: 180,
+                  borderRadius: 100,
+                  borderWidth: 0,
+                  zIndex: 99
+                }, {
+                  x: that.factorWidth(320),
+                  y: that.factorHeight(730),
+                  url: response.inviterProfileUrl,
+                  width: 90,
+                  height: 90,
+                  borderRadius: 90,
+                  zIndex: 999
+                }],
+                texts: [{
+                  x: that.factorWidth(530),
+                  y: that.factorHeight(780),
+                  text: response.agentName,
+                  fontSize: 28,
+                  color: '#000',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  lineHeight: 48,
+                  lineNum: 2,
+                  textAlign: 'left',
+                  width: 580,
+                  zIndex: 999
+                }, {
+                  x: that.factorWidth(530),
+                  y: that.factorHeight(850),
+                  text: '邀您参与拼团,仅剩1个名额',
+                  fontSize: 24,
+                  color: '#666',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  textAlign: 'left',
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999
+                }, {
+                  x: that.factorWidth(330),
+                  y: that.factorHeight(1050),
+                  text: response.acitivityName,
+                  fontSize: 42,
+                  color: '#000',
+                  opacity: 1,
+                  baseLine: 'middle',
+                  textAlign: 'left',
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999
+                }, {
+                  x: that.factorWidth(580),
+                  y: that.factorHeight(1250),
+                  text: 'vivi 医美咨询师',
+                  fontSize: 28,
+                  color: '#666',
+                  opacity: 1,
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999
+                }, {
+                  x: that.factorWidth(450),
+                  y: that.factorHeight(1400),
+                  text: '长按识别小程序码加入拼团',
+                  fontSize: 28,
+                  color: '#000',
+                  opacity: 1,
+                  lineHeight: 36,
+                  lineNum: 1,
+                  zIndex: 999
+                }]
+              }
+            });
+          });
         });
       });
     }
   }, {
-    key: "initImage",
-    value: function initImage() {
-      var _this3 = this;
-
-      var listImg = ['dev/common/share_thumbnail_01.png', 'dev/common/share_thumbnail_02.png', 'dev/common/share_thumbnail_03.png', 'dev/common/share_thumbnail_04.png'],
-          thumbNails = [];
-
-      listImg.map(function (item, key) {
-        _this3.getImgUrl(item).then(function (imageItem) {
-          thumbNails.push({
-            'url': imageItem,
-            isShow: key === 0 ? true : false
-          });
-          _this3.setState({
-            imgList: thumbNails
-          });
-        });
-      });
-    }
-  }, {
-    key: "initData",
-    value: function initData() {
+    key: "getActivityData",
+    value: function getActivityData() {
       var _this4 = this;
 
       var payload = {
         batchId: 1
       };
-      this.props.dispatchAdvertQuery(payload).then(function (response) {
-        _this4.setState({
-          data: response.content
+      return new Promise(function (resolve, reject) {
+        _this4.props.dispatchAdvertQuery(payload).then(function (result) {
+          resolve(result);
+        }).catch(function (err) {
+          console.log(err);
+          reject(err);
         });
       });
     }
   }, {
-    key: "initShareTemplate",
-    value: function initShareTemplate() {
-      this.setState({
-        bannerConfig: {
-          width: 750,
-          height: 1350,
-          backgroundColor: '#fff',
-          debug: false,
-          blocks: [{
-            x: 0,
-            y: 0,
-            width: 750,
-            height: 750,
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderWidth: 0,
-            // borderColor: '#ccc',
-            backgroundColor: '#EFF3F5',
-            borderRadius: 0
-          }],
-          texts: [{
-            x: 256,
-            y: 285,
-            text: '爱吐槽的徐教授',
-            fontSize: 32,
-            color: '#000',
-            opacity: 1,
-            baseLine: 'middle',
-            lineHeight: 48,
-            lineNum: 2,
-            textAlign: 'left',
-            width: 580,
-            zIndex: 999
-          }, {
-            x: 80,
-            y: 590,
-            text: '长按扫描二维码阅读完整内容',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999
-          }, {
-            x: 80,
-            y: 640,
-            text: '分享来自 「 RssFeed 」',
-            fontSize: 24,
-            color: '#666',
-            opacity: 1,
-            baseLine: 'middle',
-            textAlign: 'left',
-            lineHeight: 36,
-            lineNum: 1,
-            zIndex: 999
-          }],
-          images: [{
-            url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
-            // width: 750,
-            // height: 900,
-            y: 0,
-            x: 0,
-            // // borderRadius: 12,
-            zIndex: 10
-            // borderRadius: 150,
-            // borderWidth: 10,
-            // borderColor: 'red',
-          }]
-        }
+    key: "getScreenW",
+    value: function getScreenW() {
+      var sysInfo = _index2.default.getSystemInfoSync();
+      var screenWidth = sysInfo.screenWidth;
+      return screenWidth * 2;
+    }
+  }, {
+    key: "getScreenH",
+    value: function getScreenH() {
+      var sysInfo = _index2.default.getSystemInfoSync();
+      var screenHeight = sysInfo.screenHeight;
+      return screenHeight * 2;
+    }
+  }, {
+    key: "factorWidth",
+    value: function factorWidth(px) {
+      var sysInfo = _index2.default.getSystemInfoSync();
+      var screenWidth = sysInfo.screenWidth;
+      return px * screenWidth / 750;
+    }
+  }, {
+    key: "factorHeight",
+    value: function factorHeight(px) {
+      var sysInfo = _index2.default.getSystemInfoSync();
+      var screenHeight = sysInfo.screenHeight;
+      return px * screenHeight / 1334;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this5 = this;
+
+      this.init();
+      setTimeout(function () {
+        _this5.canvasDrawFunc(_this5.state.bannerConfig);
+      }, 2000);
+    }
+  }, {
+    key: "initImage",
+    value: function initImage() {
+      var _this6 = this;
+
+      var listImg = ['http://i2.tiimg.com/693434/9303c878fd23d918.png', 'http://i2.tiimg.com/693434/7e8ed643f74d44b5.png', 'http://i2.tiimg.com/693434/6e5b1cb48e6fd139.png', 'http://i2.tiimg.com/693434/aea0dccce4c6ee48.png'],
+          thumbNails = [];
+
+      listImg.map(function (item, key) {
+        thumbNails.push({
+          'url': item,
+          isShow: key === 0 ? true : false
+        });
+        _this6.setState({
+          imgList: thumbNails
+        });
       });
     }
   }, {
@@ -307,48 +384,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.init();
-      this.canvasDrawFunc(this.state.bannerConfig);
-    }
-  }, {
-    key: "handleChangeBg",
-    value: function handleChangeBg(index) {
-      var that = this;
-      switch (index) {
-        case 0:
-          that.setState({
-            advertIndex: 0
-          });
-          return;
-        case 1:
-          that.setState({
-            advertIndex: 1
-          });
-          return;
-        default:
-          that.setState({
-            advertIndex: 0
-          });
-      }
-    }
-  }, {
     key: "showMask",
     value: function showMask(imgUrl) {
       this.state.imgList.map(function (item, index) {
         item.url === imgUrl ? item.isShow = true : item.isShow = false;
       });
     }
-
-    // 调用绘画 => canvasStatus 置为true、同时设置config
-
-
-    // 绘制成功回调函数 （必须实现）=> 接收绘制结果、重置 TaroCanvasDrawer 状态
-
-
-    // 绘制失败回调函数 （必须实现）=> 接收绘制错误信息、重置 TaroCanvasDrawer 状态
-
 
     // 保存图片至本地
 
@@ -362,7 +403,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var _state = this.__state,
           imgList = _state.imgList,
-          data = _state.data,
           qrCode = _state.qrCode;
 
 
@@ -385,7 +425,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["onCreateSuccess", "onCreateFail"], _temp2)) || _class);
+}, _class2.$$events = ["onCreateSuccess", "onCreateFail", "canvasDrawFunc"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

@@ -39,15 +39,15 @@ export default class CanvasDrawer extends Component {
     this.initCanvas(config.width, height, config.debug);
   }
 
-  componentDidMount() {
+  componentDidMount(){
     const sysInfo = Taro.getSystemInfoSync();
     const screenWidth = sysInfo.screenWidth;
     this.setState({
       factor: screenWidth / 750
-    })
+    });
     this.onCreate();
   }
-
+  
   componentWillUnmount() { }
 
   /**
@@ -277,7 +277,7 @@ export default class CanvasDrawer extends Component {
       return (
         <Canvas
           canvas-id={this.canvasId}
-          style={`width:${pxWidth}px; height:${pxHeight}px;`}
+          style={`width:${pxWidth*2}rpx; height:${pxHeight*2}rpx;`}
           className={`${debug ? 'debug' : 'pro'} canvas`}
         />
       );
