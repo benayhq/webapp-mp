@@ -698,7 +698,7 @@ export default class Index extends Component{
 
   componentDidMount(){
     this.init();
-    this.canvasDrawFunc(4);
+    this.canvasDrawFunc(1);
   }
 
   initImage(){

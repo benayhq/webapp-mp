@@ -741,7 +741,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.init();
-      this.canvasDrawFunc(4);
+      this.canvasDrawFunc(1);
     }
   }, {
     key: "initImage",
