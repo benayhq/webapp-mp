@@ -2,11 +2,11 @@
     <view class="mp-advert">
         <image class="shareImage" src="{{shareImage}}" mode="widthFix" lazy-load="{{true}}"></image>
         <block wx:if="{{canvasStatus}}">
-            <taro-canvas-drawer config="{{config}}" __triggerObserer="{{ _triggerObserer }}" bindoncreatesuccess="onCreateSuccess" bindoncreatefail="onCreateFail" __fn_onCreateSuccess="{{true}}" __fn_onCreateFail="{{true}}"></taro-canvas-drawer>
+            <taro-canvas-drawer config="{{bannerConfig}}" __triggerObserer="{{ _triggerObserer }}" bindoncreatesuccess="onCreateSuccess" bindoncreatefail="onCreateFail" __fn_onCreateSuccess="{{true}}" __fn_onCreateFail="{{true}}"></taro-canvas-drawer>
         </block>
         <view class="thumbnail-wrapper">
             <view class="thumbnail">
-                <view bindtap="canvasDrawFunc" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{bannerConfig}}">
+                <view bindtap="canvasDrawFunc" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item.id}}">
                     <image wx:key="index" __triggerObserer="{{ _triggerObserer }}" src="{{item.url}}"></image>
                     <block wx:if="{{item.isShow}}">
                         <view class="mask"><text class="mp-icon mp-icon-checkeditem"></text>
