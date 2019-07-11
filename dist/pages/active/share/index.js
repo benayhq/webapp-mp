@@ -130,7 +130,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      this.initCanvas();
+      this.renderCanvas(1);
     }
   }, {
     key: "init",
@@ -162,8 +162,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "initCanvas",
-    value: function initCanvas() {
+    key: "renderCanvas",
+    value: function renderCanvas(templateId) {
       var _this3 = this;
 
       var payload = {
@@ -176,105 +176,220 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         height: 100
       };
 
-      var that = this;
       this.getQrCode(payload).then(function (response) {
-        _this3.getBase64Src(response).then(function (res) {
+        _this3.getBase64Src(response).then(function (imgUrl) {
           _this3.getActivityData().then(function (data) {
-            var response = data.content;
+
+            var config = _this3.buildConfig(templateId, {
+              data: data.content,
+              img: imgUrl
+            });
+
             _this3.setState({
-              bannerConfig: {
-                width: 750,
-                height: 750,
-                backgroundColor: '#fff',
-                debug: true,
-                images: [{
-                  url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
-                  width: that.getScreenW(),
-                  height: that.getScreenH(),
-                  y: 0,
-                  x: 0,
-                  borderRadius: 12,
-                  zIndex: 10
-                }, {
-                  y: that.factorHeight(1500),
-                  x: that.factorWidth(560),
-                  url: res,
-                  width: 180,
-                  height: 180,
-                  borderRadius: 100,
-                  borderWidth: 0,
-                  zIndex: 99
-                }, {
-                  x: that.factorWidth(320),
-                  y: that.factorHeight(730),
-                  url: response.inviterProfileUrl,
-                  width: 90,
-                  height: 90,
-                  borderRadius: 90,
-                  zIndex: 999
-                }],
-                texts: [{
-                  x: that.factorWidth(530),
-                  y: that.factorHeight(780),
-                  text: response.agentName,
-                  fontSize: 28,
-                  color: '#000',
-                  opacity: 1,
-                  baseLine: 'middle',
-                  lineHeight: 48,
-                  lineNum: 2,
-                  textAlign: 'left',
-                  width: 580,
-                  zIndex: 999
-                }, {
-                  x: that.factorWidth(530),
-                  y: that.factorHeight(850),
-                  text: '邀您参与拼团,仅剩1个名额',
-                  fontSize: 24,
-                  color: '#666',
-                  opacity: 1,
-                  baseLine: 'middle',
-                  textAlign: 'left',
-                  lineHeight: 36,
-                  lineNum: 1,
-                  zIndex: 999
-                }, {
-                  x: that.factorWidth(330),
-                  y: that.factorHeight(1050),
-                  text: response.acitivityName,
-                  fontSize: 42,
-                  color: '#000',
-                  opacity: 1,
-                  baseLine: 'middle',
-                  textAlign: 'left',
-                  lineHeight: 36,
-                  lineNum: 1,
-                  zIndex: 999
-                }, {
-                  x: that.factorWidth(580),
-                  y: that.factorHeight(1250),
-                  text: 'vivi 医美咨询师',
-                  fontSize: 28,
-                  color: '#666',
-                  opacity: 1,
-                  lineHeight: 36,
-                  lineNum: 1,
-                  zIndex: 999
-                }, {
-                  x: that.factorWidth(450),
-                  y: that.factorHeight(1400),
-                  text: '长按识别小程序码加入拼团',
-                  fontSize: 28,
-                  color: '#000',
-                  opacity: 1,
-                  lineHeight: 36,
-                  lineNum: 1,
-                  zIndex: 999
-                }]
-              }
+              bannerConfig: config
             });
           });
         });
+      });
+    }
+  }, {
+    key: "buildConfig",
+    value: function buildConfig(templateId, configData) {
+      var response = configData.data,
+          imgUrl = configData.img;
+
+      // todo: 调用后台接口动态渲染模板.
+      switch (templateId) {
+        case 1:
+          return {
+            width: 750,
+            height: 750,
+            backgroundColor: '#fff',
+            debug: true,
+            images: [{
+              url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+              width: this.getScreenW(),
+              height: this.getScreenH(),
+              y: 0,
+              x: 0,
+              borderRadius: 12,
+              zIndex: 10
+            }, {
+              y: this.factorHeight(1500),
+              x: this.factorWidth(560),
+              url: imgUrl,
+              width: 180,
+              height: 180,
+              borderRadius: 100,
+              borderWidth: 0,
+              zIndex: 99
+            }, {
+              x: this.factorWidth(320),
+              y: this.factorHeight(730),
+              url: response.inviterProfileUrl,
+              width: 90,
+              height: 90,
+              borderRadius: 90,
+              zIndex: 999
+            }],
+            texts: [{
+              x: this.factorWidth(530),
+              y: this.factorHeight(780),
+              text: response.agentName,
+              fontSize: 28,
+              color: '#000',
+              opacity: 1,
+              baseLine: 'middle',
+              lineHeight: 48,
+              lineNum: 2,
+              textAlign: 'left',
+              width: 580,
+              zIndex: 999
+            }, {
+              x: this.factorWidth(530),
+              y: this.factorHeight(850),
+              text: '邀您参与拼团,仅剩1个名额',
+              fontSize: 24,
+              color: '#666',
+              opacity: 1,
+              baseLine: 'middle',
+              textAlign: 'left',
+              lineHeight: 36,
+              lineNum: 1,
+              zIndex: 999
+            }, {
+              x: this.factorWidth(330),
+              y: this.factorHeight(1050),
+              text: response.acitivityName,
+              fontSize: 42,
+              color: '#000',
+              opacity: 1,
+              baseLine: 'middle',
+              textAlign: 'left',
+              lineHeight: 36,
+              lineNum: 1,
+              zIndex: 999
+            }, {
+              x: this.factorWidth(580),
+              y: this.factorHeight(1250),
+              text: 'vivi 医美咨询师',
+              fontSize: 28,
+              color: '#666',
+              opacity: 1,
+              lineHeight: 36,
+              lineNum: 1,
+              zIndex: 999
+            }, {
+              x: this.factorWidth(450),
+              y: this.factorHeight(1400),
+              text: '长按识别小程序码加入拼团',
+              fontSize: 28,
+              color: '#000',
+              opacity: 1,
+              lineHeight: 36,
+              lineNum: 1,
+              zIndex: 999
+            }]
+          };
+        default:
+          return {};
+      }
+    }
+  }, {
+    key: "initFillData",
+    value: function initFillData(data) {
+      var response = data.data;
+      this.setState({
+        bannerConfig: {
+          width: 750,
+          height: 750,
+          backgroundColor: '#fff',
+          debug: true,
+          images: [{
+            url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+            width: this.getScreenW(),
+            height: this.getScreenH(),
+            y: 0,
+            x: 0,
+            borderRadius: 12,
+            zIndex: 10
+          }, {
+            y: this.factorHeight(1500),
+            x: this.factorWidth(560),
+            url: data.img,
+            width: 180,
+            height: 180,
+            borderRadius: 100,
+            borderWidth: 0,
+            zIndex: 99
+          }, {
+            x: this.factorWidth(320),
+            y: this.factorHeight(730),
+            url: response.inviterProfileUrl,
+            width: 90,
+            height: 90,
+            borderRadius: 90,
+            zIndex: 999
+          }],
+          texts: [{
+            x: this.factorWidth(530),
+            y: this.factorHeight(780),
+            text: response.agentName,
+            fontSize: 28,
+            color: '#000',
+            opacity: 1,
+            baseLine: 'middle',
+            lineHeight: 48,
+            lineNum: 2,
+            textAlign: 'left',
+            width: 580,
+            zIndex: 999
+          }, {
+            x: this.factorWidth(530),
+            y: this.factorHeight(850),
+            text: '邀您参与拼团,仅剩1个名额',
+            fontSize: 24,
+            color: '#666',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }, {
+            x: this.factorWidth(330),
+            y: this.factorHeight(1050),
+            text: response.acitivityName,
+            fontSize: 42,
+            color: '#000',
+            opacity: 1,
+            baseLine: 'middle',
+            textAlign: 'left',
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }, {
+            x: this.factorWidth(580),
+            y: this.factorHeight(1250),
+            text: 'vivi 医美咨询师',
+            fontSize: 28,
+            color: '#666',
+            opacity: 1,
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }, {
+            x: this.factorWidth(450),
+            y: this.factorHeight(1400),
+            text: '长按识别小程序码加入拼团',
+            fontSize: 28,
+            color: '#000',
+            opacity: 1,
+            lineHeight: 36,
+            lineNum: 1,
+            zIndex: 999
+          }]
+        }
       });
     }
   }, {
@@ -330,7 +445,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.init();
       setTimeout(function () {
         _this5.canvasDrawFunc(_this5.state.bannerConfig);
-      }, 2000);
+      }, 1000);
     }
   }, {
     key: "initImage",
