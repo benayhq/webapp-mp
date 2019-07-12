@@ -18,6 +18,8 @@ var _index4 = require("./store/index.js");
 
 var _index5 = _interopRequireDefault(_index4);
 
+require("./utils/jmessage-wxapplet-sdk-1.4.0.min.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25,6 +27,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -63,7 +67,7 @@ var _App = function (_BaseComponent) {
   _createClass(_App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('componentDidMount');
+      this.init();
     }
   }, {
     key: "componentDidShow",
@@ -74,6 +78,28 @@ var _App = function (_BaseComponent) {
   }, {
     key: "componentDidCatchError",
     value: function componentDidCatchError() {}
+  }, {
+    key: "init",
+    value: function init() {
+      this.initJMessage();
+    }
+  }, {
+    key: "initJMessage",
+    value: function initJMessage() {
+      var jim = new JMessage();
+      jim.init({
+        "appkey": "bb62a48cc54e300e2e58fa0b",
+        "random_str": "<random_str>",
+        "signature": "<signature>",
+        "timestamp": "<timestamp>"
+      }).onSuccess(function (data) {
+        console.log('data', data);
+        //TODO
+      }).onFail(function (data) {
+        console.log('data', data);
+        //TODO
+      });
+    }
 
     // 在 App 类中的 render() 函数没有实际作用
     // 请勿修改此函数

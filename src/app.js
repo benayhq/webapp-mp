@@ -6,6 +6,8 @@ import Index from './pages/index'
 import 'taro-ui/dist/style/index.scss'
 import './custom-theme.scss'
 import './app.scss';
+import './utils/jmessage-wxapplet-sdk-1.4.0.min.js';
+var JMessage=require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js')
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -40,7 +42,7 @@ class App extends Component {
   }
   
   componentDidMount () {
-    console.log('componentDidMount');
+    this.init();
   }
 
   componentDidShow () {}
@@ -48,6 +50,26 @@ class App extends Component {
   componentDidHide () {}
 
   componentDidCatchError () {}
+
+  init(){
+    this.initJMessage();
+  }
+
+  initJMessage(){
+    var jim = new JMessage();
+    jim.init({
+      "appkey"    : "bb62a48cc54e300e2e58fa0b",
+      "random_str": "<random_str>",
+      "signature" : "<signature>",
+      "timestamp" : "<timestamp>"
+    }).onSuccess(function(data) {
+      console.log('data',data);
+      //TODO
+    }).onFail(function(data) {
+      console.log('data',data);
+      //TODO
+    });
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

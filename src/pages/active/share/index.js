@@ -95,7 +95,7 @@ export default class Index extends Component{
       });
     });
   }
-
+  
   buildConfig(templateId,configData){
     var response = configData.data,imgUrl = configData.img;
     console.log('response',response);
