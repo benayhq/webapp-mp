@@ -28,6 +28,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var mtjwxsdk = require('./utils/mtj-wx-sdk.js');
+
 var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
 // 如果需要在 h5 环境中开启 React Devtools
