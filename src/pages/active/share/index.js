@@ -836,6 +836,9 @@ export default class Index extends Component{
               }
               </View>
           </View>
+          <View className="image-save" onClick={this.saveToAlbum}>
+                保存至相册
+          </View>
       </View>
     )
   }

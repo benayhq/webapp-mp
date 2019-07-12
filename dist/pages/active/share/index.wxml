@@ -15,5 +15,6 @@
                 </view>
             </view>
         </view>
+        <view class="image-save" bindtap="saveToAlbum">保存至相册</view>
     </view>
 </block>

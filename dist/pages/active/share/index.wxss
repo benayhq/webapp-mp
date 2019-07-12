@@ -265,3 +265,16 @@ page {
 
 .shareImage {
   width: 100% !important; }
+
+.image-save {
+  position: fixed;
+  right: -10rpx;
+  top: 40rpx;
+  line-height: 50rpx;
+  text-align: center;
+  width: 180rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  background: #ffffff;
+  font-size: 30rpx;
+  opacity: 0.8; }
