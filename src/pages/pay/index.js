@@ -11,7 +11,7 @@ export default class Pay extends Component{
     }
     handlePay(){
         var payload ={
-            id:2
+            id:3
         };
         this.props.dispatchPrePay(payload).then((response)=>{
             console.log(response);

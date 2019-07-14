@@ -58,7 +58,7 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
     key: "handlePay",
     value: function handlePay() {
       var payload = {
-        id: 2
+        id: 3
       };
       this.props.dispatchPrePay(payload).then(function (response) {
         console.log(response);
