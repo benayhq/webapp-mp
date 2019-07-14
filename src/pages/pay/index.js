@@ -15,7 +15,7 @@ export default class Pay extends Component{
             isOpended:false
         }
     }
-
+    
     handlePay(){
         var payload ={
             id:4
