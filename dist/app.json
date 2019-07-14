@@ -12,12 +12,14 @@
     "pages/product/detail",
     "pages/order/submit/index",
     "pages/p2p/index",
-    "pages/order/comment/index"
+    "pages/order/comment/index",
+    "pages/pay/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

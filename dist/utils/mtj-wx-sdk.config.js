@@ -9,13 +9,13 @@ module.exports = {
    * 从百度移动统计获取的AppKey
    * @type {string}
    */
-  appKey: '',
+  appKey: '5ca81971af',
 
   /**
    * 是否使用了插件
    * @type {boolean}
    */
-  hasPlugin: false,
+  hasPlugin: true,
 
   /**
    * 是否获取当前的地理位置和速度信息

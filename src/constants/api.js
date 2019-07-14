@@ -45,3 +45,9 @@ export const API_QRCODE = `${HOST}/api/v1/wx/getwxacodeunlimit`;
 // 广告预览
 export const API_ADVERT_LIST =  `${HOST}/api/v1/activity/advert`;
 
+// 获取极光授权信息.
+export const API_JPUSH_AUTH = `${HOST}/api/v1/im/auth-payload`;
+
+// 预支付订单.
+export const API_PRE_PAY = `${HOST}/api/v1/reservation/prepay`;
+

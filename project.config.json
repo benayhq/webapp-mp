@@ -15,6 +15,7 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.7.4",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -32,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -171,6 +172,13 @@
 					"id": -1,
 					"name": "发表评论",
 					"pathName": "pages/order/comment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付",
+					"pathName": "pages/pay/index",
 					"scene": null
 				}
 			]

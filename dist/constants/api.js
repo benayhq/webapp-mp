@@ -49,3 +49,9 @@ var API_QRCODE = exports.API_QRCODE = HOST + '/api/v1/wx/getwxacodeunlimit';
 
 // 广告预览
 var API_ADVERT_LIST = exports.API_ADVERT_LIST = HOST + '/api/v1/activity/advert';
+
+// 获取极光授权信息.
+var API_JPUSH_AUTH = exports.API_JPUSH_AUTH = HOST + '/api/v1/im/auth-payload';
+
+// 预支付订单.
+var API_PRE_PAY = exports.API_PRE_PAY = HOST + '/api/v1/reservation/prepay';

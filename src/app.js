@@ -7,14 +7,10 @@ import Index from './pages/index'
 import 'taro-ui/dist/style/index.scss'
 import './custom-theme.scss'
 import './app.scss';
-import './utils/jmessage-wxapplet-sdk-1.4.0.min.js';
-var JMessage=require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js')
+import fetch from './utils/request';
+import {API_JPUSH_AUTH} from './constants/api';
+var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
 const store = configStore();
 
 class App extends Component {
@@ -32,7 +28,8 @@ class App extends Component {
       'pages/product/detail',
       'pages/order/submit/index',
       'pages/p2p/index',
-      'pages/order/comment/index'
+      'pages/order/comment/index',
+      'pages/pay/index'
     ],
     window:{
       backgroundTextStyle: 'light',
@@ -41,28 +38,31 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-  
-  componentDidMount () {
-    this.init();
-  }
-
   componentDidShow () {}
 
   componentDidHide () {}
 
   componentDidCatchError () {}
 
-  init(){
-    this.initJMessage();
+  componentWillMount(){
+   
   }
 
-  initJMessage(){
-    var jim = new JMessage();
+  componentDidMount () {
+    this.init();
+  }
+  
+  init(){
+    var jim = new JMessage({
+      debug : true
+    });
+    console.log('jim',jim);
+  
     jim.init({
-      "appkey"    : "bb62a48cc54e300e2e58fa0b",
-      "random_str": "<random_str>",
-      "signature" : "<signature>",
-      "timestamp" : "<timestamp>"
+      appkey:"bb62a48cc54e300e2e58fa0b",
+      random_str:"b37b052d0e9b4aa8a16ebe5446f9fba9",
+      signature:"bf184eeb9722a637c313a36e9fea80bf",
+      timestamp:"1562947140309"
     }).onSuccess(function(data) {
       console.log('data',data);
       //TODO

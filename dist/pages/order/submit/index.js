@@ -83,7 +83,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           activityProductId = _state.activityProductId,
           appointmentDate = _state.appointmentDate;
 
-      if (_.isEmpty(appointmentDate)) {
+      if (appointmentDate == "" || appointmentDate === null) {
         this.handleAlert('error', '请选择预约时间!');
         return;
       }
@@ -103,6 +103,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var payload = {
         productId: this.$router.params.productId
       };
+
       this.setState({
         activityProductId: this.$router.params.productId,
         activityName: this.$router.params.activityName

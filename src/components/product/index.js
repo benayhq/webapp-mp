@@ -17,8 +17,8 @@ export default class ProductItem extends Component{
       <View>
         <View className="product">
             <View>
+              
             </View>
-
             {
               this.props.products.map(item=>(
                 <View className="list">

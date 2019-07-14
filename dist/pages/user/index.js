@@ -40,6 +40,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import JPush from '../../utils/jpush';
+var JMessage = require('./../../utils/jmessage-wxapplet-sdk-1.4.0.min.js');
+
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -150,6 +153,30 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getAuthInfo;
     }()
   }, {
+    key: "initMessage",
+    value: function initMessage() {
+
+      try {
+        var JIM = new JMessage({
+          debug: false
+        });
+        console.log('JIM', JIM);
+        JIM.init({
+          "appkey": "bb62a48cc54e300e2e58fa0b",
+          "random_str": "ed23053f70fe4f879c8611608260c834",
+          "signature": 'ff36d4b8ea6dbcc2d342aa500e93a195',
+          "timestamp": 1562934618063,
+          "flag": 1
+        }).onSuccess(function (data) {
+          console.log('success:' + JSON.stringify(data));
+        }).onFail(function (data) {
+          console.log('error:' + JSON.stringify(data));
+        });
+      } catch (e) {
+        console.log("exception", e);
+      }
+    }
+  }, {
     key: "autoLogin",
     value: function autoLogin() {
       var currentObj = this;
@@ -165,22 +192,45 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "handleAuthClick",
+    key: "getJpushAuthInfo",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var _this2 = this;
-
-        var authInfo;
+        var result;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return this.getAuthInfo();
+                result = _index2.default.getStorage({ key: 'jpushAuth' }).then(function (res) {
+                  return res.data;
+                }).catch(function () {
+                  return '';
+                });
+                return _context2.abrupt("return", result);
 
               case 2:
-                authInfo = _context2.sent;
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
 
+      function getJpushAuthInfo() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return getJpushAuthInfo;
+    }()
+  }, {
+    key: "handleAuthClick",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        var _this2 = this;
+
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
 
                 // wx.login({
                 //   success (res) {
@@ -199,6 +249,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 //   }
                 // })
 
+                // var jpushAuth = await this.getJpushAuthInfo();
+                // console.log('jpushAuth',jpushAuth);
+
                 // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
@@ -208,14 +261,45 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     _index2.default.setStorage({ key: 'authinfo', data: userInfo });
 
                     var payload = {
-                      id: authInfo.id,
+                      id: userInfo.id,
                       nickname: userInfo.nickName,
                       name: userInfo.nickName
                     };
+
                     _this2.setState({
                       avatarUrl: userInfo.avatarUrl,
                       userName: userInfo.nickName
                     });
+
+                    //  console.log(' JPush.getInstance();', JPush.getInstance());
+
+                    // JPush.getInstance().init({
+                    //   "appkey": jpushAuth.appkey,
+                    //   "random_str": jpushAuth.random_str,
+                    //   "signature": jpushAuth.signature,
+                    //   "timestamp": jpushAuth.timestamp
+                    // }).onSuccess(function(data) {
+                    //   console.log('data',data);
+
+                    // }).onFail(function(data) {
+                    //   //TODO
+                    //   console.log('data',data);
+                    // });
+
+                    //   JPush.getInstance().register({
+                    //     'username':userInfo.nickName,
+                    //     'password':'123456',
+                    //       'is_md5':false,
+                    //       'extras':false,
+                    //       'address': userInfo.province
+                    //     }).onSuccess(function(data) {
+                    //         //data.code 返回码
+                    //         //data.message 描述
+                    //         console.log('data',data);
+                    //       }).onFail(function(data) {
+                    //         // 同上
+                    //         console.log('data',data);
+                    //     });
 
                     _this2.props.UpdateUserInfo(payload).then(function (res) {
                       if (res.result === "success") {
@@ -230,16 +314,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 4:
+              case 1:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function handleAuthClick() {
-        return _ref3.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return handleAuthClick;

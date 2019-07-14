@@ -23,3 +23,6 @@
 ### 后台Api.
 * https://lovemeipin.com:8444/meipin/swagger-ui.html#/wx-controller
 * 
+
+### 极光推送.
+* add https://community.jiguang.cn/tags/jmessage.

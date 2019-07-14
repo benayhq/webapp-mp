@@ -12,6 +12,8 @@ import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
 import { AtButton } from 'taro-ui';
 import jump from '../utils/jump';
+// import JPush from '../../utils/jpush';
+var JMessage = require('./../../utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
 @connect(state=>state.user,actions)
 class Index extends Component{
@@ -74,6 +76,32 @@ class Index extends Component{
      return result;
   }
 
+
+  initMessage(){
+
+    try{
+      var JIM = new JMessage({
+        debug:false
+      });
+      console.log('JIM',JIM);
+      JIM.init({
+        "appkey":"bb62a48cc54e300e2e58fa0b",
+        "random_str":  "ed23053f70fe4f879c8611608260c834",
+        "signature":  'ff36d4b8ea6dbcc2d342aa500e93a195',
+        "timestamp":  1562934618063,
+        "flag": 1
+      }).onSuccess(function(data) {
+        console.log('success:' + JSON.stringify(data));
+      }).onFail(function(data) {
+      console.log('error:' + JSON.stringify(data))
+      });
+    }
+    catch(e){
+      console.log("exception",e)
+    }
+  
+  }
+
   autoLogin(){
       var currentObj = this;
       wx.login({
@@ -87,10 +115,14 @@ class Index extends Component{
           }
       });
   }
+
+  async getJpushAuthInfo(){
+    const result = Taro.getStorage({key:'jpushAuth'}).then(res => {return res.data}).catch(() => '')
+    return result;
+  }
   
   async handleAuthClick(){
-    const authInfo = await this.getAuthInfo();
-
+   
     // wx.login({
     //   success (res) {
     //     if (res.code) {
@@ -108,6 +140,9 @@ class Index extends Component{
     //   }
     // })
 
+    // var jpushAuth = await this.getJpushAuthInfo();
+    // console.log('jpushAuth',jpushAuth);
+
     // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
@@ -115,14 +150,45 @@ class Index extends Component{
           Taro.setStorage({key:'authinfo',data:userInfo});
 
           let payload = {
-            id:authInfo.id,
+            id:userInfo.id,
             nickname:userInfo.nickName,
             name:userInfo.nickName
           };
+
           this.setState({
             avatarUrl:userInfo.avatarUrl,
             userName:userInfo.nickName
-          })
+          });
+
+        //  console.log(' JPush.getInstance();', JPush.getInstance());
+
+        // JPush.getInstance().init({
+        //   "appkey": jpushAuth.appkey,
+        //   "random_str": jpushAuth.random_str,
+        //   "signature": jpushAuth.signature,
+        //   "timestamp": jpushAuth.timestamp
+        // }).onSuccess(function(data) {
+        //   console.log('data',data);
+         
+        // }).onFail(function(data) {
+        //   //TODO
+        //   console.log('data',data);
+        // });
+
+        //   JPush.getInstance().register({
+        //     'username':userInfo.nickName,
+        //     'password':'123456',
+        //       'is_md5':false,
+        //       'extras':false,
+        //       'address': userInfo.province
+        //     }).onSuccess(function(data) {
+        //         //data.code 返回码
+        //         //data.message 描述
+        //         console.log('data',data);
+        //       }).onFail(function(data) {
+        //         // 同上
+        //         console.log('data',data);
+        //     });
 
           this.props.UpdateUserInfo(payload).then((res)=>{
             if(res.result==="success"){
@@ -192,7 +258,7 @@ class Index extends Component{
                    text='微信登录'
                    openType='getUserInfo'
                    onGetUserInfo={this.handleAuthClick}
-                type='primary' size='small'>发布活动</AtButton>
+                type='primary' size='small'>发布活动1</AtButton>
                 </View>
             </View>
         }  

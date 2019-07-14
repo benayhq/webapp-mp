@@ -22,11 +22,12 @@ export default class SubmitOrder extends Component{
     }
 
     componentWillMount(){
+
     }
 
     handleSubmitOrder(){
         const {activityProductId,appointmentDate} = this.state;
-        if(_.isEmpty(appointmentDate)){
+        if(appointmentDate=="" || appointmentDate === null){
             this.handleAlert('error','请选择预约时间!');
             return;
         }
@@ -50,6 +51,7 @@ export default class SubmitOrder extends Component{
         var payload = {
             productId:this.$router.params.productId
         };
+
         this.setState({
             activityProductId:this.$router.params.productId,
             activityName:this.$router.params.activityName
@@ -67,6 +69,7 @@ export default class SubmitOrder extends Component{
                 })
             })
         });
+
     }
 
     async getImgUrl(location){

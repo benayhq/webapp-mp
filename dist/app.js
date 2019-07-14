@@ -18,8 +18,6 @@ var _index4 = require("./store/index.js");
 
 var _index5 = _interopRequireDefault(_index4);
 
-require("./utils/jmessage-wxapplet-sdk-1.4.0.min.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,13 +28,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var mtjwxsdk = require('./utils/mtj-wx-sdk.js');
 
+
 var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
 var store = (0, _index5.default)();
 
 (0, _index3.setStore)(store);
@@ -56,7 +50,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index'],
+      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index', 'pages/pay/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -67,11 +61,6 @@ var _App = function (_BaseComponent) {
   }
 
   _createClass(_App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.init();
-    }
-  }, {
     key: "componentDidShow",
     value: function componentDidShow() {}
   }, {
@@ -81,19 +70,26 @@ var _App = function (_BaseComponent) {
     key: "componentDidCatchError",
     value: function componentDidCatchError() {}
   }, {
-    key: "init",
-    value: function init() {
-      this.initJMessage();
+    key: "componentWillMount",
+    value: function componentWillMount() {}
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.init();
     }
   }, {
-    key: "initJMessage",
-    value: function initJMessage() {
-      var jim = new JMessage();
+    key: "init",
+    value: function init() {
+      var jim = new JMessage({
+        debug: true
+      });
+      console.log('jim', jim);
+
       jim.init({
-        "appkey": "bb62a48cc54e300e2e58fa0b",
-        "random_str": "<random_str>",
-        "signature": "<signature>",
-        "timestamp": "<timestamp>"
+        appkey: "bb62a48cc54e300e2e58fa0b",
+        random_str: "b37b052d0e9b4aa8a16ebe5446f9fba9",
+        signature: "bf184eeb9722a637c313a36e9fea80bf",
+        timestamp: "1562947140309"
       }).onSuccess(function (data) {
         console.log('data', data);
         //TODO
