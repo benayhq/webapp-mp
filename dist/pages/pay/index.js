@@ -20,6 +20,8 @@ var _actionCreators = require("./store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
+var _payment = require("../../utils/payment.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -46,23 +48,54 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pay.__proto__ || Object.getPrototypeOf(Pay)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["dispatchPrePay"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pay.__proto__ || Object.getPrototypeOf(Pay)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpended", "text", "dispatchPrePay"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Pay, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Pay.prototype.__proto__ || Object.getPrototypeOf(Pay.prototype), "_constructor", this).call(this, props);
+      this.state = {
+        text: '',
+        isOpended: false
+      };
     }
   }, {
     key: "handlePay",
     value: function handlePay() {
+      var _this2 = this;
+
       var payload = {
-        id: 3
+        id: 4
       };
       this.props.dispatchPrePay(payload).then(function (response) {
-        console.log(response);
+        (0, _payment.WeChatPay)(response.content, _this2.payNotice.bind(_this2));
       });
+    }
+  }, {
+    key: "payNotice",
+    value: function payNotice(type, response) {
+      var that = this;
+      switch (type) {
+        case "success":
+          that.setState({
+            isOpended: true,
+            text: '支付成功'
+          });
+          break;
+        case "fail":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+        case "complete":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+      }
     }
   }, {
     key: "_createData",
@@ -71,6 +104,12 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var _state = this.__state,
+          isOpended = _state.isOpended,
+          text = _state.text;
+
+
       Object.assign(this.__state, {});
       return this.__state;
     }

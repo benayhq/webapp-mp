@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "at-toast": "../../npm/taro-ui/dist/weapp/components/toast/index"
+  }
 }

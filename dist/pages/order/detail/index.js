@@ -44,8 +44,6 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["order", "content", "dispatchOrderDetail"], _this.config = {
       navigationBarTitleText: '订单详情'
-
-      // this.$router.params.orderId
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -66,9 +64,11 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       var _this2 = this;
 
       this.$router.params.status = '待付款';
+
       var payload = {
         id: 3
       };
+
       this.props.dispatchOrderDetail(payload).then(function (response) {
         console.log('response22', response.content);
         _this2.setState({

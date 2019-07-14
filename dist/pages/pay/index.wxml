@@ -1,4 +1,5 @@
 <block>
-    <view class="mp-pay"><text bindtap="handlePay" data-e-tap-so="this">支付</text>
+    <view class="mp-pay">
+        <at-toast isOpened="{{isOpended}}" __triggerObserer="{{ _triggerObserer }}" text="{{text}}" duration="{{1000}}"></at-toast><text bindtap="handlePay" data-e-tap-so="this">支付</text>
     </view>
 </block>

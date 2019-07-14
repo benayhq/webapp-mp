@@ -26,12 +26,14 @@ export default class OrderDetail extends Component{
         navigationBarTitleText: '订单详情'
     }
 
-    // this.$router.params.orderId
     componentDidMount() {
+
         this.$router.params.status = '待付款';
+        
         var payload = {
             id:3
         };
+
         this.props.dispatchOrderDetail(payload).then((response)=>{
             console.log('response22',response.content);
             this.setState({
@@ -39,6 +41,7 @@ export default class OrderDetail extends Component{
             });
         });
     }
+
     render(){
         return (
             <View className="mp-order-detail">
