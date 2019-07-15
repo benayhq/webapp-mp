@@ -74,9 +74,7 @@ var _App = function (_BaseComponent) {
     value: function componentWillMount() {}
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.init();
-    }
+    value: function componentDidMount() {}
   }, {
     key: "init",
     value: function init() {

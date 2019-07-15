@@ -21,13 +21,13 @@ export default class OrderProduct extends Component{
     }
     
     render(){
-        console.log('this.props.content',this.props.content);
+        
         return (
                 <View className="product">
                 <Title AgentName={this.props.content.agentName}/>
                 <ProductItem/>
                 <View className="appoint">
-                    <Text>预约时间: {getLocalTime(this.props.content.createdD)}</Text>
+                    <Text>预约时间: { this.props.content && getLocalTime(this.props.content.createdD)}</Text>
                     <Text>预定金: 
                         <Text className="amount">￥{this.props.content.productAdvance}</Text>
                     </Text>

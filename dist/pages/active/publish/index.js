@@ -40,7 +40,7 @@ var util = require('../../../utils/util.js');
 var imgArraySrc = [];
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
-  return state;
+  return state.active;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
@@ -55,7 +55,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "dispatchUploadConfig", "dispatchUploadFile", "dispatchCreateActive", "UpdateUserInfo"], _this.handleUploadLoader = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "activePrice", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "startTime", "endTime", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
+      navigationBarTitleText: '新增活动'
+    }, _this.handleUploadLoader = function () {
 
       var payload = {
         documentType: 'PRODUCT',
@@ -70,12 +72,17 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       _this.setState({
         dateStart: e.detail.value
       });
+      _this.props.dispatchStartTime(e.detail.value);
+    }, _this.onChangeActivePrice = function (val) {
+      _this.setState({
+        activePrice: val
+      });
+      _this.props.dispatchActivePrice(val);
     }, _this.onDateEndChange = function (e) {
       _this.setState({
         dateEnd: e.detail.value
       });
-    }, _this.config = {
-      navigationBarTitleText: '新增活动'
+      _this.props.dispatchEndTime(e.detail.value);
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -95,7 +102,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         activeName: '',
         weChatNumber: '',
         isOpened: false,
-        location: []
+        location: [],
+        activePrice: ''
       };
       this.init();
     }
@@ -138,10 +146,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _this2 = this;
 
       var productList = [];
-
-      console.log('this.props', this.props);
-
-      console.log('this.$router.params.ids', this.$router.params.ids);
+      // console.log('this.$router.params.ids',this.$router.params.ids);
       if (this.$router.params.ids != undefined) {
         productIds = this.$router.params.ids.split(',');
       }
@@ -161,11 +166,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 _this2.setState({
                   products: productList
                 });
-
-                console.log('res.contenteee', res.content);
               });
-
-              // location
             }
           });
         });
@@ -173,7 +174,40 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      if (this.props.groupCount !== '') {
+        this.setState({
+          groupItemChecked: this.props.groupCount
+        });
+      }
+
+      if (this.props.activeName !== '') {
+        this.setState({
+          activeName: this.props.activeName
+        });
+      }
+
+      if (this.props.startTime !== '') {
+        this.setState({
+          dateStart: this.props.startTime
+        });
+      }
+
+      if (this.props.endTime !== '') {
+        this.setState({
+          dateEnd: this.props.endTime
+        });
+      }
+
+      if (this.props.activePrice !== '') {
+        this.setState({
+          activePrice: this.props.activePrice
+        });
+      }
+
+      console.log('this.props', this.props);
+      console.log('this.props.active', this.props.activeName);
+    }
   }, {
     key: "init",
     value: function init() {
@@ -309,6 +343,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handlePickerSelectGroupChange",
     value: function handlePickerSelectGroupChange(e) {
+      this.props.dispatchGroupCount(parseInt(e.detail.value) + 1);
       this.setState({
         groupItemChecked: parseInt(e.detail.value) + 1
       });
@@ -345,58 +380,61 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 0:
                 _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, location = _state.location, weChatNumber = _state.weChatNumber;
 
+                // Taro.navigateTo({
+                //   url:`/pages/active/share/index?activeName=${activeName}`
+                // })
+                // return;
 
-                _index2.default.navigateTo({
-                  url: "/pages/active/share/index?activeName=" + activeName
-                });
+                if (!(activeName === '')) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                this.handleAlert('error', '请填写活动名称');
                 return _context2.abrupt("return");
 
-              case 6:
+              case 4:
                 if (!(groupItemChecked === '请选择')) {
-                  _context2.next = 9;
+                  _context2.next = 7;
                   break;
                 }
 
                 this.handleAlert('error', '请选择成团人数');
                 return _context2.abrupt("return");
 
-              case 9:
+              case 7:
                 if (!(dateStart == '请选择')) {
-                  _context2.next = 12;
+                  _context2.next = 10;
                   break;
                 }
 
                 this.handleAlert('error', '请选择开始时间');
                 return _context2.abrupt("return");
 
-              case 12:
+              case 10:
                 if (!(dateEnd == '请选择')) {
-                  _context2.next = 15;
+                  _context2.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '请选择结束时间');
                 return _context2.abrupt("return");
 
-              case 15:
+              case 13:
                 if (!(imgArraySrc.length <= 0)) {
-                  _context2.next = 18;
+                  _context2.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请选择上传主图');
                 return _context2.abrupt("return");
 
-              case 18:
-                _context2.next = 20;
+              case 16:
+                _context2.next = 18;
                 return (0, _storage.getAuthInfo)();
 
-              case 20:
+              case 18:
                 result = _context2.sent;
-
-
-                console.log('weChatNumber', weChatNumber);
-
                 payload = {
                   "areaCode": "string",
                   "docLocations": this.state.location,
@@ -411,7 +449,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 };
 
                 if (!(result.wechatId === 0 || result.wechatId === null)) {
-                  _context2.next = 26;
+                  _context2.next = 23;
                   break;
                 }
 
@@ -420,7 +458,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 26:
+              case 23:
 
                 this.props.dispatchCreateActive(payload).then(function (res) {
                   console.log('res', res);
@@ -436,7 +474,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 27:
+              case 24:
               case "end":
                 return _context2.stop();
             }
@@ -453,6 +491,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleActiveChange",
     value: function handleActiveChange(activeName) {
+      this.props.disptachActiveName(activeName);
       this.setState({
         activeName: activeName
       });
@@ -462,7 +501,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "createProduct",
     value: function createProduct() {
       _index2.default.navigateTo({
-        url: '/pages/product/add'
+        url: '/pages/product/edit'
       });
     }
   }, {
@@ -522,14 +561,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
 
       this.getAuthInfo().then(function (userinfo) {
-        console.log('userinfo', userinfo);
         var payload = {
           openId: userinfo.openId,
           wechatId: _this5.weChatNumber,
           id: userinfo.id
         };
 
-        // console.log('this.props',this.props);
         _this5.props.UpdateUserInfo(payload).then(function (res) {
           console.log('response', res);
         });
@@ -549,7 +586,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           dateStart = _state2.dateStart,
           products = _state2.products,
           weChatNumber = _state2.weChatNumber,
-          isOpened = _state2.isOpened;
+          isOpened = _state2.isOpened,
+          activePrice = _state2.activePrice;
 
 
       Object.assign(this.__state, {});
@@ -567,6 +605,26 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "groupCount": {
+    "type": null,
+    "value": null
+  },
+  "activeName": {
+    "type": null,
+    "value": null
+  },
+  "startTime": {
+    "type": null,
+    "value": null
+  },
+  "endTime": {
+    "type": null,
+    "value": null
+  },
+  "activePrice": {
+    "type": null,
+    "value": null
+  },
   "dispatchUploadConfig": {
     "type": null,
     "value": null
@@ -575,7 +633,27 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "dispatchGroupCount": {
+    "type": null,
+    "value": null
+  },
+  "dispatchStartTime": {
+    "type": null,
+    "value": null
+  },
+  "dispatchActivePrice": {
+    "type": null,
+    "value": null
+  },
   "dispatchCreateActive": {
+    "type": null,
+    "value": null
+  },
+  "disptachActiveName": {
+    "type": null,
+    "value": null
+  },
+  "dispatchEndTime": {
     "type": null,
     "value": null
   },
@@ -583,7 +661,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
+}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "onChangeActivePrice", "createProduct", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

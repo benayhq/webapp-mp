@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
+exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -108,4 +108,34 @@ var dispatchAdvertQuery = exports.dispatchAdvertQuery = function dispatchAdvertQ
     },
     payload: payload
   });
+};
+
+var disptachActiveName = exports.disptachActiveName = function disptachActiveName(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_ACTIVE_NAME, value: payload });
+  };
+};
+
+var dispatchGroupCount = exports.dispatchGroupCount = function dispatchGroupCount(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_GROUP_COUNT, value: payload });
+  };
+};
+
+var dispatchStartTime = exports.dispatchStartTime = function dispatchStartTime(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_START_TIME, value: payload });
+  };
+};
+
+var dispatchEndTime = exports.dispatchEndTime = function dispatchEndTime(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_END_TIME, value: payload });
+  };
+};
+
+var dispatchActivePrice = exports.dispatchActivePrice = function dispatchActivePrice(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_PRODUCT_PRICE, value: payload });
+  };
 };

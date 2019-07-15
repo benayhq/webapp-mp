@@ -1,5 +1,5 @@
 <block>
-    <view class="mp-publish-product">
+    <view>
         <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
         </view>
         <view>
@@ -19,11 +19,6 @@
                     </view>
                 </view>
             </view>
-        </view>
-        <view class="publish-active"><text>活动价</text>
-            <input placeholder="请输入活动优惠价" __triggerObserer="{{ _triggerObserer }}" />
-        </view>
-        <view class="pulbish-create"><text class="mp-icon mp-icon-plus"></text><text bindtap="createProduct">新增产品</text>
         </view>
     </view>
 </block>

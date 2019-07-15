@@ -65,9 +65,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.changeValue = function () {
-      console.log('changeValue');
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.changeValue = function () {}, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{

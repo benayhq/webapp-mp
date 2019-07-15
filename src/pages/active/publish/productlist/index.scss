@@ -8,28 +8,30 @@ $pageBgColor:#ffffff;
     height: 90px;
 }
 
+.publish-item{
+    border-bottom: 1px solid #ddd;
+    background: $pageBgColor;
+
+    >Text:nth-child(1){
+        @include lineHight;
+        padding-left: 30px;
+    }
+
+    >Text:nth-child(2){
+        float:right;
+        color:#7DD6D0;
+        line-height:58rpx;
+        height:48rpx;
+        padding-top:16rpx;
+        padding-right:30rpx;
+    }
+}
+
 .mp-publish-product{
     background: $pageBgColor;
     padding-bottom:10px;
 
-    .publish-item{
-        border-bottom: 1px solid #ddd;
-        background: $pageBgColor;
 
-        >Text:nth-child(1){
-            @include lineHight;
-            padding-left: 30px;
-        }
-
-        >Text:nth-child(2){
-            float:right;
-            color:#7DD6D0;
-            line-height:58rpx;
-            height:48rpx;
-            padding-top:16rpx;
-            padding-right:30rpx;
-        }
-    }
 
     .publish-active{
         @include flex(row);

@@ -221,7 +221,6 @@ class Index extends Component{
   }
 
   changeValue = () =>{
-     console.log('changeValue');
   }
 
   render(){
@@ -258,7 +257,7 @@ class Index extends Component{
                    text='微信登录'
                    openType='getUserInfo'
                    onGetUserInfo={this.handleAuthClick}
-                type='primary' size='small'>发布活动1</AtButton>
+                type='primary' size='small'>发布活动</AtButton>
                 </View>
             </View>
         }  

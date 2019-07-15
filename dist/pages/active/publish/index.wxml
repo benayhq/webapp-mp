@@ -23,7 +23,14 @@
             </picker>
         </view>
         <at-image-picker className="uploadImage" __triggerObserer="{{ _triggerObserer }}" files="{{files}}" bindonchange="HandlePickerChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
-        <product-list products="{{products}}" __triggerObserer="{{ _triggerObserer }}"></product-list>
+        <view class="mp-publish-product">
+            <product-list products="{{products}}" __triggerObserer="{{ _triggerObserer }}"></product-list>
+            <view class="publish-active"><text>活动价</text>
+                <at-input border="{{false}}" __triggerObserer="{{ _triggerObserer }}" value="{{activePrice}}" bindonchange="onChangeActivePrice" placeholder="请输入活动优惠价" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+            </view>
+            <view class="pulbish-create"><text class="mp-icon mp-icon-plus"></text><text bindtap="createProduct">新增产品</text>
+            </view>
+        </view>
         <view class="publish">
             <view bindtap="onPublish">立即发布</view>
         </view>

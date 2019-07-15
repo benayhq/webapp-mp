@@ -95,8 +95,8 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       return this.__state;
     }
   }, {
-    key: "funPrivatefWXvK",
-    value: function funPrivatefWXvK() {
+    key: "funPrivateExHzh",
+    value: function funPrivateExHzh() {
       this.__triggerPropsFn("onClose", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
@@ -123,7 +123,7 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleTouchMove", "funPrivatefWXvK"], _class.defaultProps = {
+}, _class.$$events = ["handleTouchMove", "funPrivateExHzh"], _class.defaultProps = {
   visible: false,
   compStyle: '',
   onClose: function onClose() {}

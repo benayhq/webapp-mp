@@ -20,6 +20,8 @@ var _index4 = require("../pages/product/store/index.js");
 
 var _index5 = require("../pages/order/store/index.js");
 
+var _index6 = require("../pages/active/store/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -40,7 +42,8 @@ var enhancer = composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewa
 var reducer = (0, _redux.combineReducers)({
   user: _index3.reducer,
   product: _index4.reducer,
-  order: _index5.reducer
+  order: _index5.reducer,
+  active: _index6.reducer
 });
 
 function configStore() {

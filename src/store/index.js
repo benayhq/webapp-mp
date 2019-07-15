@@ -4,6 +4,7 @@ import {createLogger} from 'redux-logger';
 import {reducer as userReducer} from './../pages/user/store';
 import {reducer as productReducer} from './../pages/product/store';
 import {reducer as orderReducer} from './../pages/order/store';
+import {reducer as activeReducer} from './../pages/active/store';
 
 
 const composeEnhancers =
@@ -27,11 +28,11 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 )
 
-
 const reducer = combineReducers({
   user:userReducer,
   product:productReducer,
-  order:orderReducer
+  order:orderReducer,
+  active:activeReducer
 });
 
 export default function configStore(){

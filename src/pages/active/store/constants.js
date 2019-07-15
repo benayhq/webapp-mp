@@ -21,4 +21,19 @@ export const ACTION_QRCODE = 'action/ACTION_QRCODE';
 // 获取广告预览页面的数据
 export const ACTION_ADVERT_DATA = 'action/ACTION_ADVERT_DATA';
 
+// 活动名称.
+export const ACTION_ACTIVE_NAME = 'action/ACTION_ACTIVE_NAME';
+
+// 成团人数.
+export const ACTION_GROUP_COUNT = 'action/ACTION_GROUP_COUNT';
+
+// 开始时间
+export const ACTION_START_TIME = 'action/ACTION_START_TIME';
+
+// 结束时间
+export const ACTION_END_TIME = 'action/ACTION_END_TIME';
+
+// 活动价
+export const ACTION_PRODUCT_PRICE = 'action/ACTION_PRODUCT_PRICE';
+
 

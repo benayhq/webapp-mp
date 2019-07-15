@@ -10,10 +10,16 @@ var productIds = [];
 var uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 var imgArraySrc = [];
-import './index.scss'
+import './index.scss';
+import './productlist/index.scss';
 
-@connect(state=>state,actions)
+@connect(state=>state.active,actions)
 export default class Index extends Component {
+
+  config = {
+    navigationBarTitleText: '新增活动'
+  }
+
   constructor(){
     super(...arguments);
     this.state = {
@@ -28,11 +34,11 @@ export default class Index extends Component {
       activeName: '',
       weChatNumber:'',
       isOpened:false,
-      location:[]
+      location:[],
+      activePrice:''
     };
     this.init();
   }
-
 
   async getImgUrl(location){
     var payload = {
@@ -44,10 +50,7 @@ export default class Index extends Component {
 
   componentWillMount () {
     var productList = [];
-
-    console.log('this.props',this.props);
-
-    console.log('this.$router.params.ids',this.$router.params.ids);
+    // console.log('this.$router.params.ids',this.$router.params.ids);
     if(this.$router.params.ids != undefined){
        productIds = this.$router.params.ids.split(',');
     }
@@ -68,22 +71,46 @@ export default class Index extends Component {
                   this.setState({
                     products:productList
                   });
-
-                  console.log('res.contenteee',res.content);
               });
-
-              // location
-
-            
             }
           })
         });
-
     }
   }
 
   componentDidMount(){
+    if(this.props.groupCount !== ''){
+      this.setState({
+        groupItemChecked:this.props.groupCount
+      });
+    }
 
+    if(this.props.activeName !== ''){
+      this.setState({
+        activeName:this.props.activeName
+      });
+    }
+
+    if(this.props.startTime !== ''){
+      this.setState({
+        dateStart:this.props.startTime
+      });
+    }
+
+    if(this.props.endTime !== ''){
+      this.setState({
+        dateEnd:this.props.endTime
+      });
+    }
+
+    if(this.props.activePrice !== ''){
+      this.setState({
+        activePrice:this.props.activePrice
+      });
+    }
+    
+    console.log('this.props',this.props);
+    console.log('this.props.active',this.props.activeName);
   }
 
   init(){
@@ -99,8 +126,6 @@ export default class Index extends Component {
       groupItem: groups
     });
   }
-
-
 
   HandlePickerChange (files){
       this.setState({
@@ -214,9 +239,10 @@ export default class Index extends Component {
   }
 
   handlePickerSelectGroupChange(e){
+    this.props.dispatchGroupCount(parseInt(e.detail.value)+1);
     this.setState({
       groupItemChecked:parseInt(e.detail.value)+1
-    })
+    });
   }
 
   handlePickerColumnChange(e){
@@ -230,7 +256,15 @@ export default class Index extends Component {
   onDateStartChange = e =>{
     this.setState({
       dateStart:e.detail.value
-    })
+    });
+    this.props.dispatchStartTime(e.detail.value);
+  }
+
+  onChangeActivePrice = val =>{
+    this.setState({
+      activePrice:val
+    });
+    this.props.dispatchActivePrice(val);
   }
 
   handleAlert(type,message){
@@ -243,10 +277,10 @@ export default class Index extends Component {
   async onPublish(e){
     const {activeName,groupItemChecked,dateStart,dateEnd,location,weChatNumber} = this.state;
     
-    Taro.navigateTo({
-      url:`/pages/active/share/index?activeName=${activeName}`
-    })
-    return;
+    // Taro.navigateTo({
+    //   url:`/pages/active/share/index?activeName=${activeName}`
+    // })
+    // return;
 
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')
@@ -269,8 +303,6 @@ export default class Index extends Component {
       return;
     }
     const result = await getAuthInfo();
-
-    console.log('weChatNumber',weChatNumber);
 
     let payload =  {
       "areaCode": "string",
@@ -308,21 +340,23 @@ export default class Index extends Component {
   }
 
   handleActiveChange(activeName){
+    this.props.disptachActiveName(activeName);
     this.setState({
       activeName
-    })
-    return activeName
+    });    
+    return activeName;
   }
 
   onDateEndChange = e => {
     this.setState({
       dateEnd: e.detail.value
     });
+    this.props.dispatchEndTime(e.detail.value);
   }
 
   createProduct(){
     Taro.navigateTo({
-      url:'/pages/product/add'
+      url:'/pages/product/edit'
     })
   }
 
@@ -350,26 +384,20 @@ export default class Index extends Component {
     });
 
     this.getAuthInfo().then(userinfo=>{
-      console.log('userinfo',userinfo);
       var payload = {
           openId:userinfo.openId,
           wechatId:this.weChatNumber,
           id:userinfo.id
       };
 
-      // console.log('this.props',this.props);
       this.props.UpdateUserInfo(payload).then(res=>{
           console.log('response',res);
       });
     });
   }
 
-  config = {
-    navigationBarTitleText: '新增活动'
-  }
-
   render () {
-    const {activeName,dateEnd,dateStart,products,weChatNumber,isOpened} = this.state;
+    const {activeName,dateEnd,dateStart,products,weChatNumber,isOpened,activePrice} = this.state;
 
     return (
       <View className="mp-active">
@@ -417,7 +445,28 @@ export default class Index extends Component {
            onChange={this.HandlePickerChange.bind(this)}
         />
 
-        <ProductList products={products}/>
+
+        <View className="mp-publish-product">
+                     <ProductList products={products}/>
+                     <View className="publish-active">
+                            <Text>活动价</Text>
+                            {/* <AtInput 
+                            onChange={this.onChangeActivePrice}  
+                            value={activePrice}
+                            placeholder="请输入活动优惠价" /> */}
+                              <AtInput border={false} 
+                                          value={activePrice}
+                                          onChange={this.onChangeActivePrice.bind(this)}
+                                          placeholder="请输入活动优惠价" />
+
+                            {/* <Text className="mp-icon mp-icon-trash margin"></Text> */}
+                      </View>
+
+                      <View className="pulbish-create">
+                      <Text className="mp-icon mp-icon-plus"></Text>
+                      <Text onClick={this.createProduct}>新增产品</Text>
+          </View>
+        </View>
 
         <View className="publish">
             <View onClick={this.onPublish}>立即发布</View>

@@ -25,3 +25,18 @@ var ACTION_QRCODE = exports.ACTION_QRCODE = 'action/ACTION_QRCODE';
 
 // 获取广告预览页面的数据
 var ACTION_ADVERT_DATA = exports.ACTION_ADVERT_DATA = 'action/ACTION_ADVERT_DATA';
+
+// 活动名称.
+var ACTION_ACTIVE_NAME = exports.ACTION_ACTIVE_NAME = 'action/ACTION_ACTIVE_NAME';
+
+// 成团人数.
+var ACTION_GROUP_COUNT = exports.ACTION_GROUP_COUNT = 'action/ACTION_GROUP_COUNT';
+
+// 开始时间
+var ACTION_START_TIME = exports.ACTION_START_TIME = 'action/ACTION_START_TIME';
+
+// 结束时间
+var ACTION_END_TIME = exports.ACTION_END_TIME = 'action/ACTION_END_TIME';
+
+// 活动价
+var ACTION_PRODUCT_PRICE = exports.ACTION_PRODUCT_PRICE = 'action/ACTION_PRODUCT_PRICE';

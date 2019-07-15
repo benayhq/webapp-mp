@@ -53,9 +53,7 @@ var OrderProduct = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-
-      console.log('this.props.content', this.__props.content);
-      var anonymousState__temp = getLocalTime(this.__props.content.createdD);
+      var anonymousState__temp = this.__props.content && getLocalTime(this.__props.content.createdD);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp
       });

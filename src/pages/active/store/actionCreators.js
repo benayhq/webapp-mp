@@ -4,7 +4,12 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_UPLOAD_DOWN,
     UPDATE_USER_INFO,
     ACTION_QRCODE,
-    ACTION_ADVERT_DATA
+    ACTION_ADVERT_DATA,
+    ACTION_ACTIVE_NAME,
+    ACTION_GROUP_COUNT,
+    ACTION_START_TIME,
+    ACTION_END_TIME,
+    ACTION_PRODUCT_PRICE
     } from './constants';
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
     API_UPLOAD_CONFIG,
@@ -91,7 +96,34 @@ export const dispatchAdvertQuery = payload => createAction({
         method:'GET'
     },
     payload
-})
+});
 
+export const disptachActiveName = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_ACTIVE_NAME,value:payload})
+    }
+}
 
+export const dispatchGroupCount = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_GROUP_COUNT,value:payload})
+    }
+}
 
+export const dispatchStartTime = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_START_TIME,value:payload})
+    }
+}
+
+export const dispatchEndTime = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_END_TIME,value:payload})
+    }
+}
+
+export const dispatchActivePrice = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_PRODUCT_PRICE,value:payload})
+    }
+}

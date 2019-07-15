@@ -76,7 +76,7 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["selectProduct", "createProduct"], _temp2);
+}, _class.$$events = ["selectProduct"], _temp2);
 exports.default = ProductList;
 
 Component(require('../../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));
