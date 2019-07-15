@@ -79,7 +79,7 @@ export default class Index extends Component{
         is_hyaline: true,
         line_color: {"r":0,"g":0,"b":0},
         page: "pages/product/detail",
-        scene: `activeId=10&refId=${userInfo.id}`,
+        scene: `activeId=${this.state.activeId}&refId=${userInfo.id}`,
         width: 100,
         height: 100
       };
