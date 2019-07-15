@@ -5,6 +5,7 @@ import CheckBox from './../../components/checkbox';
 import * as actions from './store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
 import {connect} from '@tarojs/redux';
+import { AtMessage } from "taro-ui"
 
 @connect(state=>state.product,actions)
 class Index extends Component{
@@ -81,15 +82,24 @@ class Index extends Component{
   
   handleSaveItem(){
     var params = this.state.checkedList;
-    Taro.navigateTo({
-            url:'/pages/active/publish/index?ids='+params.join(',')
-    })
+    if(params.length>0){
+      Taro.navigateTo({
+        url:'/pages/active/publish/index?ids='+params.join(',')
+      });
+    }
+    else{
+      Taro.atMessage({
+        'message': '请选择产品',
+        'type': 'warning',
+      })
+    }
   }
 
   render () {
     const {newFilterList} = this.state;
     return (
       <View className="mp-product">
+                <AtMessage/>
                 <CheckBox
                   options={newFilterList}
                   selectedList={this.state.checkedList}

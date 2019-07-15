@@ -179,9 +179,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleSaveItem",
     value: function handleSaveItem() {
       var params = this.state.checkedList;
-      _index2.default.navigateTo({
-        url: '/pages/active/publish/index?ids=' + params.join(',')
-      });
+      if (params.length > 0) {
+        _index2.default.navigateTo({
+          url: '/pages/active/publish/index?ids=' + params.join(',')
+        });
+      } else {
+        _index2.default.atMessage({
+          'message': '请选择产品',
+          'type': 'warning'
+        });
+      }
     }
   }, {
     key: "_createData",

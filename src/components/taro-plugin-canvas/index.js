@@ -114,6 +114,8 @@ export default class CanvasDrawer extends Component {
    */
   downloadResourceTransit = () => {
     const { config } = this.props;
+
+    console.log('config',config);
     return new Promise((resolve, reject) => {
       if (config.images && config.images.length > 0) {
         this.downloadResource(config.images || [])

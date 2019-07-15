@@ -2,6 +2,7 @@ import Taro,{Component} from '@tarojs/taro';
 import {View,Text} from '@tarojs/components';
 import classNames from 'classnames'
 import PropTypes from 'prop-types';
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
 import './index.scss';
 
 export default class CheckBox extends Component{
@@ -24,10 +25,25 @@ export default class CheckBox extends Component{
     }
 
     handleProductEdit(){
-        
+        Taro.navigateTo({
+            url:'/pages/product/edit'
+        });
     }
 
-    handleProductDelete(){
+    handleProductDelete(id,e){
+        // TODO:
+        console.log('id',id);
+    }
+
+    handleClose(){
+
+    }
+
+    handleCancel(){
+
+    }
+
+    handleConfirm(){
 
     }
 
@@ -81,11 +97,22 @@ export default class CheckBox extends Component{
 
                                    <View className="mp-checkbox__action">
                                       <Text className='mp-icon mp-icon-edit' onClick={this.handleProductEdit.bind(this)}></Text>
-                                      <Text className='mp-icon mp-icon-delete' onClick={this.handleProductDelete.bind(this)}></Text>
+                                      <Text className='mp-icon mp-icon-delete' onClick={this.handleProductDelete.bind(this,value)}></Text>
                                    </View>
                                 </View>
                               
                             </View>
+{/*                             
+                            <AtModal
+                            isOpened
+                            title='标题'
+                            cancelText='取消'
+                            confirmText='确认'
+                            onClose={ this.handleClose }
+                            onCancel={ this.handleCancel }
+                            onConfirm={ this.handleConfirm }
+                            content='是否删除?'
+                            /> */}
                         </View>
                     })
                 }

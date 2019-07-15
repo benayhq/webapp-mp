@@ -22,7 +22,6 @@ const composeEnhancers =
 //       middlewares.push(require('redux-logger').createLogger())
 // }
 
-
 const enhancer = composeEnhancers(
   applyMiddleware(...middlewares),
   // other store enhancers if any

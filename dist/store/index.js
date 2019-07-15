@@ -34,7 +34,6 @@ var middlewares = [_index2.default];
 //       middlewares.push(require('redux-logger').createLogger())
 // }
 
-
 var enhancer = composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)
 // other store enhancers if any
 );

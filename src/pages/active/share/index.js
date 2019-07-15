@@ -24,12 +24,16 @@ export default class Index extends Component{
       shareImage: null,
       canvasStatus: false,
       bannerConfig:{},
-      imgList:[]
+      imgList:[],
+      activeId:0
     }
-
   }
 
   componentWillMount(){
+    // console.log('this.$router.params',this.$router.params);
+    this.setState({
+      activeId:this.$router.params.activeId
+    })
   }
 
   init(){
@@ -60,40 +64,50 @@ export default class Index extends Component{
     });
   }
 
-  renderCanvas(templateId){
+  async getAuthInfo(){
+    const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
+     return result;
+  }
 
-    var payload = {
-      auto_color: true,
-      is_hyaline: true,
-      line_color: {"r":0,"g":0,"b":0},
-      page: "pages/user/index",
-      scene: "productId=10",
-      width: 100,
-      height: 100
-    };
+  async renderCanvas(templateId){
 
-    this.getQrCode(payload).then(response=>{
-      this.getBase64Src(response).then((imgUrl)=>{
-        this.getActivityData().then(data=>{
-          const config = this.buildConfig(templateId,{
-            data:data.content,
-            img:imgUrl
-          });
-          console.log('config',config);
-          Taro.showLoading({
-            title: '绘制中...'
-          });
-          this.setState({
-            bannerConfig:config
-          });
-          setTimeout(()=>{
-            this.setState({
-              canvasStatus: true
+      let userInfo = await getAuthInfo();
+
+      
+      var payload = {
+        auto_color: true,
+        is_hyaline: true,
+        line_color: {"r":0,"g":0,"b":0},
+        page: "pages/product/detail",
+        scene: `activeId=10&refId=${userInfo.id}`,
+        width: 100,
+        height: 100
+      };
+  
+      this.getQrCode(payload).then(response=>{
+         
+        this.getBase64Src(response).then((imgUrl)=>{
+          this.getActivityData().then(data=>{
+            const config = this.buildConfig(templateId,{
+              data:data.content,
+              img:imgUrl
             });
-          },1000);
+            console.log('config',config);
+            Taro.showLoading({
+              title: '绘制中...'
+            });
+            this.setState({
+              bannerConfig:config
+            });
+            setTimeout(()=>{
+              this.setState({
+                canvasStatus: true
+              });
+            },1000);
+          });
         });
       });
-    });
+
   }
   
   buildConfig(templateId,configData){
@@ -656,7 +670,7 @@ export default class Index extends Component{
 
   getActivityData(){
     var payload = {
-      batchId:1
+      activityId:this.state.activityId
     };
     return new Promise((resolve,reject)=>{
       this.props.dispatchAdvertQuery(payload)
@@ -819,7 +833,6 @@ export default class Index extends Component{
               <View className="thumbnail">
               {
                   imgList.map((item,index)=>(
-                    // <View onClick={this.handleChangeAdvert.bind(this,item,index)}>
                       <View onClick={this.canvasDrawFunc.bind(this,item.id)}>
                             <image key={index}  src={item.url}></image>
                             {

@@ -79,10 +79,26 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "handleProductEdit",
-    value: function handleProductEdit() {}
+    value: function handleProductEdit() {
+      _index2.default.navigateTo({
+        url: '/pages/product/edit'
+      });
+    }
   }, {
     key: "handleProductDelete",
-    value: function handleProductDelete() {}
+    value: function handleProductDelete(id, e) {
+      // TODO:
+      console.log('id', id);
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose() {}
+  }, {
+    key: "handleCancel",
+    value: function handleCancel() {}
+  }, {
+    key: "handleConfirm",
+    value: function handleConfirm() {}
   }, {
     key: "_createData",
     value: function _createData() {

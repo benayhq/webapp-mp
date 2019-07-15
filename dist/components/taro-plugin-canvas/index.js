@@ -84,6 +84,8 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
     }, _this.downloadResourceTransit = function () {
       var config = _this.props.config;
 
+
+      console.log('config', config);
       return new Promise(function (resolve, reject) {
         if (config.images && config.images.length > 0) {
           _this.downloadResource(config.images || []).then(function () {

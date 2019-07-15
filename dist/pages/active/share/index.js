@@ -22,6 +22,8 @@ var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
+var _storage = require("../../../utils/storage.js");
+
 var _base64src = require("../../../utils/base64src.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -52,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.renderCanvas(id);
@@ -117,12 +119,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         shareImage: null,
         canvasStatus: false,
         bannerConfig: {},
-        imgList: []
+        imgList: [],
+        activeId: 0
       };
     }
   }, {
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+      // console.log('this.$router.params',this.$router.params);
+      this.setState({
+        activeId: this.$router.params.activeId
+      });
+    }
   }, {
     key: "init",
     value: function init() {
@@ -153,43 +161,98 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "getAuthInfo",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
+                  return res.data;
+                });
+                return _context.abrupt("return", result);
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthInfo() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getAuthInfo;
+    }()
+  }, {
     key: "renderCanvas",
-    value: function renderCanvas(templateId) {
-      var _this3 = this;
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(templateId) {
+        var _this3 = this;
 
-      var payload = {
-        auto_color: true,
-        is_hyaline: true,
-        line_color: { "r": 0, "g": 0, "b": 0 },
-        page: "pages/user/index",
-        scene: "productId=10",
-        width: 100,
-        height: 100
-      };
+        var userInfo, payload;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return (0, _storage.getAuthInfo)();
 
-      this.getQrCode(payload).then(function (response) {
-        _this3.getBase64Src(response).then(function (imgUrl) {
-          _this3.getActivityData().then(function (data) {
-            var config = _this3.buildConfig(templateId, {
-              data: data.content,
-              img: imgUrl
-            });
-            console.log('config', config);
-            _index2.default.showLoading({
-              title: '绘制中...'
-            });
-            _this3.setState({
-              bannerConfig: config
-            });
-            setTimeout(function () {
-              _this3.setState({
-                canvasStatus: true
-              });
-            }, 1000);
-          });
-        });
-      });
-    }
+              case 2:
+                userInfo = _context2.sent;
+                payload = {
+                  auto_color: true,
+                  is_hyaline: true,
+                  line_color: { "r": 0, "g": 0, "b": 0 },
+                  page: "pages/product/detail",
+                  scene: "activeId=10&refId=" + userInfo.id,
+                  width: 100,
+                  height: 100
+                };
+
+
+                this.getQrCode(payload).then(function (response) {
+
+                  _this3.getBase64Src(response).then(function (imgUrl) {
+                    _this3.getActivityData().then(function (data) {
+                      var config = _this3.buildConfig(templateId, {
+                        data: data.content,
+                        img: imgUrl
+                      });
+                      console.log('config', config);
+                      _index2.default.showLoading({
+                        title: '绘制中...'
+                      });
+                      _this3.setState({
+                        bannerConfig: config
+                      });
+                      setTimeout(function () {
+                        _this3.setState({
+                          canvasStatus: true
+                        });
+                      }, 1000);
+                    });
+                  });
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function renderCanvas(_x) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return renderCanvas;
+    }()
   }, {
     key: "buildConfig",
     value: function buildConfig(templateId, configData) {
@@ -698,7 +761,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _this4 = this;
 
       var payload = {
-        batchId: 1
+        activityId: this.state.activityId
       };
       return new Promise(function (resolve, reject) {
         _this4.props.dispatchAdvertQuery(payload).then(function (result) {
@@ -767,32 +830,32 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getImgUrl",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context.next = 3;
+                _context3.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context.sent;
-                return _context.abrupt("return", result.content);
+                result = _context3.sent;
+                return _context3.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee, this);
+        }, _callee3, this);
       }));
 
-      function getImgUrl(_x) {
-        return _ref2.apply(this, arguments);
+      function getImgUrl(_x2) {
+        return _ref4.apply(this, arguments);
       }
 
       return getImgUrl;

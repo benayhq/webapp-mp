@@ -348,11 +348,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 0:
                 _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
 
-                // Taro.navigateTo({
-                //   url:`/pages/active/share/index?activeName=${activeName}`
-                // })
-                // return;
-
                 if (!(activeName === '')) {
                   _context2.next = 4;
                   break;
@@ -429,10 +424,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 23:
 
                 this.props.dispatchCreateActive(payload).then(function (res) {
-                  console.log('res', res);
-                  if (res && res.result === "success") {
+                  if (res && res.result === "success" && res.content != null) {
                     _index2.default.navigateTo({
-                      url: '/pages/active/share/index'
+                      url: "/pages/active/share/index?activeId=" + res.content
                     });
                   } else {
                     _this4.handleAlert('error', res.error);

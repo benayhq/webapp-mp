@@ -251,11 +251,6 @@ export default class Index extends Component {
   
   async onPublish(e){
     const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
-    
-    // Taro.navigateTo({
-    //   url:`/pages/active/share/index?activeName=${activeName}`
-    // })
-    // return;
 
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')
@@ -300,10 +295,9 @@ export default class Index extends Component {
     }
 
     this.props.dispatchCreateActive(payload).then((res)=>{
-      console.log('res',res);
-      if(res && res.result === "success"){
+      if(res && res.result === "success" && res.content !=null){
         Taro.navigateTo({
-          url:'/pages/active/share/index'
+          url:`/pages/active/share/index?activeId=${res.content}`
         })
       }else{
         this.handleAlert('error',res.error);
@@ -315,7 +309,7 @@ export default class Index extends Component {
     this.props.disptachActiveName(activeName);
     this.setState({
       activeName
-    });    
+    });
     return activeName;
   }
 
@@ -416,7 +410,6 @@ export default class Index extends Component {
            files={this.state.files}
            onChange={this.HandlePickerChange.bind(this)}
         />
-
 
         <View className="mp-publish-product">
                      <ProductList products={products}/>
