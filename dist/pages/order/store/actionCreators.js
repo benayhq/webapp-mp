@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchOrderDetail = exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchPrePay = exports.dispatchOrderDetail = exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -96,5 +96,15 @@ var dispatchOrderDetail = exports.dispatchOrderDetail = function dispatchOrderDe
       method: 'GET'
     },
     payload: payload
+  });
+};
+
+var dispatchPrePay = exports.dispatchPrePay = function dispatchPrePay(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.PAY_PRE,
+    url: _api.API_PRE_PAY + ("?id=" + payload.id),
+    fetchOptions: {
+      method: 'POST'
+    }
   });
 };

@@ -4,6 +4,7 @@ import './index.scss';
 import { AtInput,AtMessage} from 'taro-ui';
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
+import {WeChatPay} from './../../../utils/payment';
 
 @connect(state=>state.user,actions)
 export default class SubmitOrder extends Component{
@@ -17,7 +18,9 @@ export default class SubmitOrder extends Component{
             imgUrl:'',
             appointmentDate:'',
             activityProductId:'',
-            product:{}
+            product:{},
+            text:'',
+            isOpended:false
         };
     }
 
@@ -27,17 +30,68 @@ export default class SubmitOrder extends Component{
 
     handleSubmitOrder(){
         const {activityProductId,appointmentDate} = this.state;
+
         if(appointmentDate=="" || appointmentDate === null){
             this.handleAlert('error','请选择预约时间!');
             return;
-        }
+        };
+
+        var that = this;
+
         var payload ={
             activityProductId:activityProductId,
             appointmentDate:appointmentDate
         };
+
         this.props.dispatchCreateOrder(payload).then((response)=>{
-            console.log(response);
+            if(response.content &&response.content!=null){
+                // 微信支付.
+                that.handlePay(response.content);
+            }
+            else{
+                that.handleAlert('error',response.error);
+            }
         })
+    }
+
+    handlePay(orderId){
+        var payload ={
+            id:orderId
+        };
+        this.props.dispatchPrePay(payload).then((response)=>{
+            console.log('response',response);
+            
+            if(response.content && response.content!=null){
+                WeChatPay(response.content,this.payNotice.bind(this));
+            }
+            else{
+                this.handleAlert('error',response.error);
+            }
+        });
+    }
+
+    payNotice(type,response){
+        var that = this;
+        switch(type){
+            case "success":
+                that.setState({
+                    isOpended:true,
+                    text:'支付成功'
+                });
+                break;
+            case "fail":
+                that.setState({
+                    isOpended:true,
+                    text:'支付失败'
+                });
+                break;
+            case "complete":
+                that.setState({
+                    isOpended:true,
+                    text:'支付失败'
+                });
+                break;
+        }
     }
 
     handleAlert = (type,message) => {
@@ -88,11 +142,12 @@ export default class SubmitOrder extends Component{
 
     render(){
 
-        const {product,activityName,imgUrl} = this.state;
+        const {product,activityName,imgUrl,isOpended,text} = this.state;
         
         return (
             <View className="submit-order">
                  <AtMessage/>
+                 <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast>
 
                 <View className="submit-order_white-space"></View>
                 <View className="submit-order_product">

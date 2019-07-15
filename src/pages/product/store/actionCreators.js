@@ -64,9 +64,5 @@ export const dispatchSelectProduct = (payload)=>{
      }
 }
 
-export const dispatchSaveImg = (payload) => {
-    return (dispatch) => {
-        dispatch({type:ACTION_SAVE_UPLOADIMG,value:payload})
-    }
-}
+
 

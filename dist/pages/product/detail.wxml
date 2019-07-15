@@ -30,7 +30,7 @@
                 <view class="mp-activedetail__content">
                     <view>{{data.username}}</view>
                     <view>{{data.commentScore}}分（{{data.commentPeople}}人评）</view>
-                    <view>服务区域：上海市 黄浦区</view>
+                    <view>服务区域：上海市 黄浦区 {{activeId}}</view>
                 </view>
             </view>
             <block wx:if="{{data.batchPeople > 0}}">

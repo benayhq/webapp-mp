@@ -255,9 +255,9 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                       toastText: '添加成功',
                       status: 'success'
                     });
-                    // Taro.navigateTo({
-                    //   url:'/pages/product/index'
-                    // })
+                    _index2.default.navigateTo({
+                      url: '/pages/product/index'
+                    });
                   } else {
                     _this3.setState({
                       isOpened: true,

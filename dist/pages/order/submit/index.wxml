@@ -1,6 +1,7 @@
 <block>
     <view class="submit-order">
         <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
+        <at-toast isOpened="{{isOpended}}" __triggerObserer="{{ _triggerObserer }}" text="{{text}}" duration="{{1000}}"></at-toast>
         <view class="submit-order_white-space"></view>
         <view class="submit-order_product">
             <view class="submit-order_product-content">

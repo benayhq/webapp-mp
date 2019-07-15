@@ -28,8 +28,22 @@ export default class Detail extends Component{
             showOrderDialog:false,
             data:{},
             commentList:[],
-            bannerList:[]
+            bannerList:[],
+            activeId:''
         }
+    }
+
+    componentWillMount(){
+      
+
+        let scene = this.$router.params.scene;
+        if (scene) {
+          scene = decodeURIComponent(scene);
+        }
+        console.log('scene',scene);
+        this.setState({
+            activeId:333
+           });
     }
 
     openDialog(){
@@ -72,7 +86,7 @@ export default class Detail extends Component{
 
     componentDidMount(){
         var payload ={
-            activityId:18
+            activityId:35
         };
         this.props.dispatchActiveInfo(payload).then(res=>{
             console.log('res.content',res.content);
@@ -97,7 +111,7 @@ export default class Detail extends Component{
             }
 
             var bannerItemList =[];
-            
+
             // 获取banner 图片.
             if(res.content &&  res.content.docInfo && res.content.docInfo.length > 0){
                 res.content.docInfo.map((item)=>{
@@ -124,7 +138,7 @@ export default class Detail extends Component{
     }
 
     render(){
-        const {data,commentList,bannerList} = this.state;
+        const {data,commentList,bannerList,activeId} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
         
@@ -177,7 +191,6 @@ export default class Detail extends Component{
                         <View>预付款可退 ·</View>
                         <View>预付款可退</View>
                     </View>
-
                     <View className="mp-activedetail__consultation">
                         <Text>咨询产品</Text>
                         <Text>艾美玻尿酸 0.8ml 2支</Text>
@@ -198,7 +211,7 @@ export default class Detail extends Component{
                              {data.commentScore}分（{data.commentPeople}人评）
                             </View>
                             <View>
-                            服务区域：上海市 黄浦区
+                            服务区域：上海市 黄浦区  {activeId}
                             </View>
                         </View>
                     </View>

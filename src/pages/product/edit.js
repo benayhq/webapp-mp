@@ -168,9 +168,9 @@ class EditProduct extends Component{
             toastText:'添加成功',
             status: 'success'
           });
-          // Taro.navigateTo({
-          //   url:'/pages/product/index'
-          // })
+          Taro.navigateTo({
+            url:'/pages/product/index'
+          })
         }
         else{
           this.setState({
@@ -256,24 +256,24 @@ class EditProduct extends Component{
               <AtInput
                     name='productName'
                     title='名称'
-                    type='number'
+                    type='text'
                     placeholder='产品名称品牌规格信息'
                     value={productName}
                     onChange={this.handleProductChange.bind(this)}
               />
 
               <AtInput
-                    name='value3'
+                    name='productPrice'
                     title='价格'
-                    type='text'
+                    type='number'
                     placeholder='请输入产品原价'
                     value={productPrice}
                     onChange={this.handlePriceChange.bind(this)}
                 />
                 <AtInput
-                    name='value4'
+                    name='activePrice'
                     title='活动价'
-                    type='text'
+                    type='number'
                     placeholder='请输入产品活动价格'
                     value={activePrice}
                     onChange={this.handleActivePriceChange.bind(this)}
@@ -285,7 +285,7 @@ class EditProduct extends Component{
                   <AtInput
                     name='preAmount'
                     title='预定金'
-                    type='text'
+                    type='number'
                     placeholder='请输入预定金'
                     value={preAmount}
                     onChange={this.handlePreAmountChange.bind(this)}

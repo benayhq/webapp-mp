@@ -72,7 +72,6 @@ export default class Index extends Component{
   async renderCanvas(templateId){
 
       let userInfo = await getAuthInfo();
-
       
       var payload = {
         auto_color: true,
@@ -670,7 +669,7 @@ export default class Index extends Component{
 
   getActivityData(){
     var payload = {
-      activityId:this.state.activityId
+      activityId:this.state.activeId
     };
     return new Promise((resolve,reject)=>{
       this.props.dispatchAdvertQuery(payload)

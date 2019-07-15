@@ -761,7 +761,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _this4 = this;
 
       var payload = {
-        activityId: this.state.activityId
+        activityId: this.state.activeId
       };
       return new Promise(function (resolve, reject) {
         _this4.props.dispatchAdvertQuery(payload).then(function (result) {

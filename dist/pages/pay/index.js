@@ -20,8 +20,6 @@ var _actionCreators = require("./store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _payment = require("../../utils/payment.js");
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -48,7 +46,7 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pay.__proto__ || Object.getPrototypeOf(Pay)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpended", "text", "dispatchPrePay"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pay.__proto__ || Object.getPrototypeOf(Pay)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["text", "isOpended"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Pay, [{
@@ -59,43 +57,6 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
         text: '',
         isOpended: false
       };
-    }
-  }, {
-    key: "handlePay",
-    value: function handlePay() {
-      var _this2 = this;
-
-      var payload = {
-        id: 4
-      };
-      this.props.dispatchPrePay(payload).then(function (response) {
-        (0, _payment.WeChatPay)(response.content, _this2.payNotice.bind(_this2));
-      });
-    }
-  }, {
-    key: "payNotice",
-    value: function payNotice(type, response) {
-      var that = this;
-      switch (type) {
-        case "success":
-          that.setState({
-            isOpended: true,
-            text: '支付成功'
-          });
-          break;
-        case "fail":
-          that.setState({
-            isOpended: true,
-            text: '支付失败'
-          });
-          break;
-        case "complete":
-          that.setState({
-            isOpended: true,
-            text: '支付失败'
-          });
-          break;
-      }
     }
   }, {
     key: "_createData",
@@ -116,12 +77,7 @@ var Pay = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Pay;
-}(_index.Component), _class2.properties = {
-  "dispatchPrePay": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handlePay"], _temp2)) || _class);
+}(_index.Component), _class2.properties = {}, _class2.$$events = ["handlePay"], _temp2)) || _class);
 exports.default = Pay;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Pay, true));

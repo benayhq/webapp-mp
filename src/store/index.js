@@ -17,7 +17,7 @@ const composeEnhancers =
     const middlewares = [
       thunkMiddleWare
     ];
-
+    
 // if (process.env.NODE_ENV === 'development') {
 //       middlewares.push(require('redux-logger').createLogger())
 // }

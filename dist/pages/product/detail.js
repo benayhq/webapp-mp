@@ -50,7 +50,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "isOpened", "categoryDialog", "visible", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "isOpened", "categoryDialog", "visible", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -72,8 +72,22 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         showOrderDialog: false,
         data: {},
         commentList: [],
-        bannerList: []
+        bannerList: [],
+        activeId: ''
       };
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+
+      var scene = this.$router.params.scene;
+      if (scene) {
+        scene = decodeURIComponent(scene);
+      }
+      console.log('scene', scene);
+      this.setState({
+        activeId: 333
+      });
     }
   }, {
     key: "openDialog",
@@ -116,7 +130,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var _this2 = this;
 
       var payload = {
-        activityId: 18
+        activityId: 35
       };
       this.props.dispatchActiveInfo(payload).then(function (res) {
         console.log('res.content', res.content);
@@ -202,7 +216,8 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var _state = this.__state,
           data = _state.data,
           commentList = _state.commentList,
-          bannerList = _state.bannerList;
+          bannerList = _state.bannerList,
+          activeId = _state.activeId;
 
       var height = (0, _style.getWindowHeight)(false);
       var _state2 = this.__state,

@@ -4,9 +4,10 @@ import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD
     ,ACTION_UPLOAD_CONFIG
     ,CREATE_COMMENT_IMAGE
     ,ACTION_ORDER_DETAIL
+    ,PAY_PRE
 } from './constants';
 import {API_PRODUCT_INFO,API_CREATE_ORDER,API_CREATE_RESEVER_ORDER,API_UPLOAD_FILE,API_ORDER_LIST
-    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT,API_ORDER_DETAIL
+    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT,API_ORDER_DETAIL,API_PRE_PAY
 } from './../../../constants/api';
 
 export const dispatchQueryProductInfo = payload => createAction({
@@ -79,4 +80,12 @@ export const dispatchOrderDetail = payload =>  createAction({
        method:'GET'
     },
     payload
+});
+
+export const dispatchPrePay = payload => createAction({
+    type:PAY_PRE,
+    url:API_PRE_PAY+`?id=${payload.id}`,
+    fetchOptions:{
+        method:'POST'
+    }
 });

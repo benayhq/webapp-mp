@@ -94,7 +94,7 @@ class Index extends Component{
       })
     }
   }
-
+  
   render () {
     const {newFilterList} = this.state;
     return (

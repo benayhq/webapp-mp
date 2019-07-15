@@ -2,7 +2,7 @@ import Taro,{Component} from '@tarojs/taro';
 import {View,Text} from '@tarojs/components';
 import classNames from 'classnames'
 import PropTypes from 'prop-types';
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
+
 import './index.scss';
 
 export default class CheckBox extends Component{
@@ -102,6 +102,7 @@ export default class CheckBox extends Component{
                                 </View>
                               
                             </View>
+                        
 {/*                             
                             <AtModal
                             isOpened

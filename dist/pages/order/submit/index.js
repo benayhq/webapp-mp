@@ -20,6 +20,8 @@ var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
+var _payment = require("../../../utils/payment.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -48,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "dispatchCreateOrder", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpended", "text", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -70,7 +72,9 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         imgUrl: '',
         appointmentDate: '',
         activityProductId: '',
-        product: {}
+        product: {},
+        text: '',
+        isOpended: false
       };
     }
   }, {
@@ -83,22 +87,75 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           activityProductId = _state.activityProductId,
           appointmentDate = _state.appointmentDate;
 
+
       if (appointmentDate == "" || appointmentDate === null) {
         this.handleAlert('error', '请选择预约时间!');
         return;
-      }
+      };
+
+      var that = this;
+
       var payload = {
         activityProductId: activityProductId,
         appointmentDate: appointmentDate
       };
+
       this.props.dispatchCreateOrder(payload).then(function (response) {
-        console.log(response);
+        if (response.content && response.content != null) {
+          // 微信支付.
+          that.handlePay(response.content);
+        } else {
+          that.handleAlert('error', response.error);
+        }
       });
+    }
+  }, {
+    key: "handlePay",
+    value: function handlePay(orderId) {
+      var _this2 = this;
+
+      var payload = {
+        id: orderId
+      };
+      this.props.dispatchPrePay(payload).then(function (response) {
+        console.log('response', response);
+
+        if (response.content && response.content != null) {
+          (0, _payment.WeChatPay)(response.content, _this2.payNotice.bind(_this2));
+        } else {
+          _this2.handleAlert('error', response.error);
+        }
+      });
+    }
+  }, {
+    key: "payNotice",
+    value: function payNotice(type, response) {
+      var that = this;
+      switch (type) {
+        case "success":
+          that.setState({
+            isOpended: true,
+            text: '支付成功'
+          });
+          break;
+        case "fail":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+        case "complete":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+      }
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this3 = this;
 
       var payload = {
         productId: this.$router.params.productId
@@ -110,13 +167,13 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       });
 
       this.props.dispatchQueryProductInfo(payload).then(function (response) {
-        _this2.setState({
+        _this3.setState({
           product: response.content
         });
         console.log('response.content.location', response.content.location);
-        _this2.getImgUrl(response.content.location).then(function (response) {
+        _this3.getImgUrl(response.content.location).then(function (response) {
           console.log('response getImgUrl', response);
-          _this2.setState({
+          _this3.setState({
             imgUrl: response
           });
         });
@@ -166,7 +223,9 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var _state2 = this.__state,
           product = _state2.product,
           activityName = _state2.activityName,
-          imgUrl = _state2.imgUrl;
+          imgUrl = _state2.imgUrl,
+          isOpended = _state2.isOpended,
+          text = _state2.text;
 
 
       Object.assign(this.__state, {
@@ -179,6 +238,10 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   return SubmitOrder;
 }(_index.Component), _class2.properties = {
   "dispatchCreateOrder": {
+    "type": null,
+    "value": null
+  },
+  "dispatchPrePay": {
     "type": null,
     "value": null
   },
