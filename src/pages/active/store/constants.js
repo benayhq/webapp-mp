@@ -36,4 +36,10 @@ export const ACTION_END_TIME = 'action/ACTION_END_TIME';
 // 活动价
 export const ACTION_PRODUCT_PRICE = 'action/ACTION_PRODUCT_PRICE';
 
+// 保存图片
+export const ACTION_SAVE_UPLOADIMG = 'action/ACTION_SAVE_UPLOADIMG';
+
+// 缓存临时图片
+export const ACTION_SAVE_TEMPFILES = 'action/ACTION_SAVE_TEMPFILES';
+
 

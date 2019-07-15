@@ -232,10 +232,6 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
               case 18:
                 result = _context.sent;
-
-
-                console.log('files', files);
-
                 payload = {
                   "advance": preAmount,
                   "agentId": result.id,
@@ -271,7 +267,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 23:
+              case 22:
               case "end":
                 return _context.stop();
             }

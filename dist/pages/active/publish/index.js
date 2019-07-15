@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "activePrice", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "location", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "startTime", "endTime", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "activePrice", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "docLocations", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "startTime", "endTime", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -102,7 +102,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         activeName: '',
         weChatNumber: '',
         isOpened: false,
-        location: [],
+        docLocations: [],
         activePrice: ''
       };
       this.init();
@@ -205,6 +205,22 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         });
       }
 
+      if (this.props.tempfiles.length > 0) {
+        this.setState({
+          files: this.props.tempfiles
+        });
+      }
+
+      if (this.props.imgs.length > 0) {
+        var docLocations = [];
+        this.props.imgs.map(function (item, key) {
+          docLocations.push(item);
+        });
+        this.setState({
+          docLocations: docLocations
+        });
+      }
+
       console.log('this.props', this.props);
       console.log('this.props.active', this.props.activeName);
     }
@@ -229,9 +245,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function HandlePickerChange(files) {
       var _this3 = this;
 
-      this.setState({
-        files: files
-      });
+      // console.log('files',files);
+      this.setState({ files: files });
+      this.props.dispatchCacheTempFiles(files);
+
       var that = this;
       var tempFilePaths = files;
       var nowTime = util.formatTime(new Date());
@@ -250,11 +267,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           documentType: 'ACTIVITY',
           fileName: 'ACTIVITY.png'
         };
+        that = _this3;
 
 
         _this3.props.dispatchUploadConfig(payload).then(function (response) {
           uploadImage(file, response.content.location, function (result) {
             imgArraySrc.push(result);
+            that.setState({
+              docLocations: imgArraySrc
+            });
+            that.props.dispatchSaveImg(imgArraySrc);
             console.log("======上传成功图片地址为：", result);
             wx.hideLoading();
           }, function (result) {
@@ -267,64 +289,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       for (var i = 0; i < tempFilePaths.length; i++) {
         var payload;
+        var that;
 
         _loop();
       }
-    }
-  }, {
-    key: "choose",
-    value: function choose() {
-      var that = this;
-      wx.chooseImage({
-        count: 1, // 默认最多一次选择9张图
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function success(res) {
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths;
-          var nowTime = util.formatTime(new Date());
-
-          //支持多图上传
-
-          var _loop2 = function _loop2() {
-            //显示消息提示框
-            wx.showLoading({
-              title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
-              mask: true
-            });
-
-            var file = res.tempFilePaths[i];
-
-            payload = {
-              documentType: 'ACTIVITY',
-              fileName: 'ACTIVITY.png'
-            };
-
-
-            that.props.dispatchUploadConfig(payload).then(function (response) {
-              console.log('dispatchUploadConfig', response.content.location);
-              //上传图片
-              //图片路径可自行修改
-              uploadImage(file, response.content.location, function (result) {
-                that.setState({
-                  location: [result]
-                });
-                console.log("======上传成功图片地址为：", result);
-                wx.hideLoading();
-              }, function (result) {
-                console.log("======上传失败======", result);
-                wx.hideLoading();
-              });
-            });
-          };
-
-          for (var i = 0; i < res.tempFilePaths.length; i++) {
-            var payload;
-
-            _loop2();
-          }
-        }
-      });
     }
   }, {
     key: "handlePickerViewChange",
@@ -372,13 +340,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
         var _this4 = this;
 
-        var _state, activeName, groupItemChecked, dateStart, dateEnd, location, weChatNumber, result, payload;
+        var _state, activeName, groupItemChecked, dateStart, dateEnd, docLocations, weChatNumber, result, payload;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, location = _state.location, weChatNumber = _state.weChatNumber;
+                _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
 
                 // Taro.navigateTo({
                 //   url:`/pages/active/share/index?activeName=${activeName}`
@@ -421,7 +389,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 return _context2.abrupt("return");
 
               case 13:
-                if (!(imgArraySrc.length <= 0)) {
+                if (!(docLocations.length <= 0)) {
                   _context2.next = 16;
                   break;
                 }
@@ -437,7 +405,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 result = _context2.sent;
                 payload = {
                   "areaCode": "string",
-                  "docLocations": this.state.location,
+                  "docLocations": docLocations,
                   "endD": dateEnd,
                   "id": 0,
                   "name": activeName,
@@ -467,10 +435,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       url: '/pages/active/share/index'
                     });
                   } else {
-                    _this4.setState({
-                      isOpened: true
-                    });
-                    _this4.handleAlert('error', '发布活动失败');
+                    _this4.handleAlert('error', res.error);
                   }
                 });
 
@@ -563,7 +528,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.getAuthInfo().then(function (userinfo) {
         var payload = {
           openId: userinfo.openId,
-          wechatId: _this5.weChatNumber,
+          wechatId: _this5.state.weChatNumber,
           id: userinfo.id
         };
 
@@ -622,6 +587,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "value": null
   },
   "activePrice": {
+    "type": null,
+    "value": null
+  },
+  "tempfiles": {
+    "type": null,
+    "value": null
+  },
+  "imgs": {
+    "type": null,
+    "value": null
+  },
+  "dispatchCacheTempFiles": {
     "type": null,
     "value": null
   },

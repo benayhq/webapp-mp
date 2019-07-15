@@ -23,6 +23,14 @@ export default class CheckBox extends Component{
         this.props.onChange([...seletecdSet]);
     }
 
+    handleProductEdit(){
+        
+    }
+
+    handleProductDelete(){
+
+    }
+
     render(){
         const {
             className,
@@ -44,10 +52,10 @@ export default class CheckBox extends Component{
                             'mp-checkbox__option--selected':!selectedList.includes(value)
                         });
 
-                        return  <View className={optionCls} key={value} onClick={this.handleClick.bind(this, idx)}>
+                        return  <View className={optionCls} key={value}>
                             <View className="mp-checkbox__option-wrap">
                                 <View className="mp-checkbox__option-cnt">
-                                    <View className="mp-checkbox__icon-cnt">
+                                    <View className="mp-checkbox__icon-cnt" onClick={this.handleClick.bind(this, idx)}>
                                         <Text className="mp-icon mp-icon-check"></Text>    
                                     </View>
                                     {
@@ -70,7 +78,13 @@ export default class CheckBox extends Component{
                                             <View className='mp-checkbox__preprice'> 预定金:{data.prePrice} </View>
                                         </View>
                                    </View>
+
+                                   <View className="mp-checkbox__action">
+                                      <Text className='mp-icon mp-icon-edit' onClick={this.handleProductEdit.bind(this)}></Text>
+                                      <Text className='mp-icon mp-icon-delete' onClick={this.handleProductDelete.bind(this)}></Text>
+                                   </View>
                                 </View>
+                              
                             </View>
                         </View>
                     })

@@ -1,9 +1,9 @@
 <block>
     <view class="{{rootCls}}" style="{{anonymousState__temp}}">
-        <view class="{{option.optionCls}}" wx:key="value" bindtap="handleClick" wx:for="{{loopArray0}}" wx:for-item="option" wx:for-index="idx" data-e-tap-so="this" data-e-tap-a-a="{{idx}}">
+        <view class="{{option.optionCls}}" wx:key="value" wx:for="{{loopArray0}}" wx:for-item="option" wx:for-index="idx">
             <view class="mp-checkbox__option-wrap">
                 <view class="mp-checkbox__option-cnt">
-                    <view class="mp-checkbox__icon-cnt"><text class="mp-icon mp-icon-check"></text>
+                    <view class="mp-checkbox__icon-cnt" bindtap="handleClick" data-e-tap-so="this" data-e-tap-a-a="{{idx}}"><text class="mp-icon mp-icon-check"></text>
                     </view>
                     <block wx:if="{{option.data.imgUrl}}">
                         <view>
@@ -16,6 +16,8 @@
                             </view>
                             <view class="mp-checkbox__preprice">预定金:{{option.data.prePrice}}</view>
                         </view>
+                    </view>
+                    <view class="mp-checkbox__action"><text class="mp-icon mp-icon-edit" bindtap="handleProductEdit" data-e-tap-so="this"></text><text class="mp-icon mp-icon-delete" bindtap="handleProductDelete" data-e-tap-so="this"></text>
                     </view>
                 </view>
             </view>

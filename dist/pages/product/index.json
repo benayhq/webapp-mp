@@ -2,5 +2,5 @@
   "usingComponents": {
     "check-box": "../../components/checkbox/index"
   },
-  "navigationBarTitleText": "选择往期产品"
+  "navigationBarTitleText": "产品列表"
 }

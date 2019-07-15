@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.dispatchSaveImg = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -80,5 +80,11 @@ var dispatchCategoryList = exports.dispatchCategoryList = function dispatchCateg
 var dispatchSelectProduct = exports.dispatchSelectProduct = function dispatchSelectProduct(payload) {
   return function (dispatch) {
     dispatch({ type: _constants.ACTION_SELECT_PRODUCT, value: payload });
+  };
+};
+
+var dispatchSaveImg = exports.dispatchSaveImg = function dispatchSaveImg(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_SAVE_UPLOADIMG, value: payload });
   };
 };

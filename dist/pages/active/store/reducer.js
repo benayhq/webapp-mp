@@ -14,7 +14,9 @@ var defaultState = {
   groupCount: '',
   startTime: '',
   endTime: '',
-  activePrice: ''
+  activePrice: '',
+  imgs: [],
+  tempfiles: []
 };
 
 exports.default = function () {
@@ -45,6 +47,14 @@ exports.default = function () {
     case _constants.ACTION_PRODUCT_PRICE:
       return _extends({}, state, {
         activePrice: action.value
+      });
+    case _constants.ACTION_SAVE_UPLOADIMG:
+      return _extends({}, state, {
+        imgs: action.value
+      });
+    case _constants.ACTION_SAVE_TEMPFILES:
+      return _extends({}, state, {
+        tempfiles: action.value
       });
     default:
       return state;

@@ -1,4 +1,7 @@
-import {PRODUCT_PUBLISH_INFO,ACTION_ACTIVE_NAME,ACTION_GROUP_COUNT, ACTION_START_TIME,ACTION_END_TIME, ACTION_PRODUCT_PRICE} from './constants';
+import {PRODUCT_PUBLISH_INFO,ACTION_ACTIVE_NAME,ACTION_GROUP_COUNT, 
+    ACTION_START_TIME,ACTION_END_TIME, ACTION_PRODUCT_PRICE,
+    ACTION_SAVE_UPLOADIMG,
+    ACTION_SAVE_TEMPFILES} from './constants';
 
 const defaultState = {
     product:[],
@@ -6,7 +9,9 @@ const defaultState = {
     groupCount:'',
     startTime:'',
     endTime:'',
-    activePrice:''
+    activePrice:'',
+    imgs:[],
+    tempfiles:[]
 };
 
 export default (state = defaultState,action) => {
@@ -41,6 +46,16 @@ export default (state = defaultState,action) => {
                 ...state,
                 activePrice:action.value
             }
+        case ACTION_SAVE_UPLOADIMG:
+                return {
+                    ...state,
+                    imgs:action.value
+                }
+        case ACTION_SAVE_TEMPFILES:
+                return {
+                    ...state,
+                    tempfiles:action.value
+                }
         default:
             return state;
     }

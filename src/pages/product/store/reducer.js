@@ -1,4 +1,4 @@
-import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,ACTION_SELECT_PRODUCT} from './constants';
+import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,ACTION_SELECT_PRODUCT,ACTION_SAVE_UPLOADIMG} from './constants';
 
 const defaultState = {
     productList:[],

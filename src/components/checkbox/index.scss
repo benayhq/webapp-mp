@@ -6,6 +6,7 @@ $component: '.mp-checkbox';
 
     &__option-cnt{
         display: flex;
+        height: 120%;
     }
 
     &__icon-cnt{
@@ -43,6 +44,24 @@ $component: '.mp-checkbox';
         font-size: $mp-checkbox-title-font-size;
         line-height: $line-height-zh;
         text-align: left;
+        width: 200px;
+        margin-top: 20px;
+    }
+
+    &__action{
+        width: 100px;
+        height: 150px;
+        margin-top: 20px;
+        margin-left: 180px;
+
+        &>Text:nth-child(1){
+            display: block;
+        }
+
+        &>Text:nth-child(2){
+            display: block;
+            margin-top: 50px;
+        }
     }
 
     &__img{

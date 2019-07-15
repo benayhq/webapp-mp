@@ -78,6 +78,12 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       this.__triggerPropsFn("onChange", [null].concat([[].concat(_toConsumableArray(seletecdSet))]));
     }
   }, {
+    key: "handleProductEdit",
+    value: function handleProductEdit() {}
+  }, {
+    key: "handleProductDelete",
+    value: function handleProductDelete() {}
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -152,7 +158,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["handleClick"], _temp2);
+}, _class.$$events = ["handleClick", "handleProductEdit", "handleProductDelete"], _temp2);
 
 
 CheckBox.defaultProps = {

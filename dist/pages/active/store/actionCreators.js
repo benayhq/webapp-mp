@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
+exports.dispatchCacheTempFiles = exports.dispatchSaveImg = exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -137,5 +137,17 @@ var dispatchEndTime = exports.dispatchEndTime = function dispatchEndTime(payload
 var dispatchActivePrice = exports.dispatchActivePrice = function dispatchActivePrice(payload) {
   return function (dispatch) {
     dispatch({ type: _constants.ACTION_PRODUCT_PRICE, value: payload });
+  };
+};
+
+var dispatchSaveImg = exports.dispatchSaveImg = function dispatchSaveImg(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_SAVE_UPLOADIMG, value: payload });
+  };
+};
+
+var dispatchCacheTempFiles = exports.dispatchCacheTempFiles = function dispatchCacheTempFiles(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_SAVE_TEMPFILES, value: payload });
   };
 };

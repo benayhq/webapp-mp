@@ -146,8 +146,6 @@ class EditProduct extends Component{
 
       const result = await getAuthInfo();
 
-      console.log('files',files);
-
       var payload = {
         "advance": preAmount,
         "agentId": result.id,

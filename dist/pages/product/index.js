@@ -49,7 +49,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "checkedList", "productList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
-      navigationBarTitleText: '选择往期产品'
+      navigationBarTitleText: '产品列表'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -179,7 +179,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleSaveItem",
     value: function handleSaveItem() {
       var params = this.state.checkedList;
-      // this.props.dispatchSelectProduct(this.state.checkedList);
       _index2.default.navigateTo({
         url: '/pages/active/publish/index?ids=' + params.join(',')
       });

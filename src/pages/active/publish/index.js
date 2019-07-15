@@ -34,7 +34,7 @@ export default class Index extends Component {
       activeName: '',
       weChatNumber:'',
       isOpened:false,
-      location:[],
+      docLocations:[],
       activePrice:''
     };
     this.init();
@@ -108,7 +108,23 @@ export default class Index extends Component {
         activePrice:this.props.activePrice
       });
     }
-    
+
+    if(this.props.tempfiles.length>0){
+      this.setState({
+        files:this.props.tempfiles
+      });
+    }
+
+    if(this.props.imgs.length > 0){
+      var docLocations = [];
+      this.props.imgs.map((item,key)=>{
+        docLocations.push(item);
+      })
+      this.setState({
+        docLocations:docLocations
+      });
+    }
+
     console.log('this.props',this.props);
     console.log('this.props.active',this.props.activeName);
   }
@@ -128,9 +144,10 @@ export default class Index extends Component {
   }
 
   HandlePickerChange (files){
-      this.setState({
-        files
-      });
+    // console.log('files',files);
+      this.setState({ files });
+      this.props.dispatchCacheTempFiles(files);
+
       var that = this;
       var tempFilePaths = files;
       var nowTime = util.formatTime(new Date());
@@ -149,10 +166,16 @@ export default class Index extends Component {
               fileName:'ACTIVITY.png'
             };
 
+            var that = this;
+
             this.props.dispatchUploadConfig(payload).then((response)=>{
                 uploadImage(file, response.content.location,
                   function (result) {
                     imgArraySrc.push(result);
+                    that.setState({
+                      docLocations:imgArraySrc
+                    });
+                    that.props.dispatchSaveImg(imgArraySrc);
                     console.log("======上传成功图片地址为：", result);
                     wx.hideLoading();
                   }, function (result) {
@@ -163,54 +186,6 @@ export default class Index extends Component {
                 )
             });
       }
-  }
-
-  choose(){
-    var that = this;
-    wx.chooseImage({
-        count: 1, // 默认最多一次选择9张图
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res){
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths;
-          var nowTime = util.formatTime(new Date());
-
-          //支持多图上传
-          for (var i = 0; i < res.tempFilePaths.length; i++) {
-              //显示消息提示框
-              wx.showLoading({
-                title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
-                mask: true
-              });
-
-              let file = res.tempFilePaths[i];
-
-              var payload ={
-                documentType:'ACTIVITY',
-                fileName:'ACTIVITY.png'
-              };
-
-              that.props.dispatchUploadConfig(payload).then((response)=>{
-                console.log('dispatchUploadConfig',response.content.location);
-                  //上传图片
-                  //图片路径可自行修改
-                  uploadImage(file, response.content.location,
-                    function (result) {
-                      that.setState({
-                        location:[result]
-                      });
-                      console.log("======上传成功图片地址为：", result);
-                      wx.hideLoading();
-                    }, function (result) {
-                      console.log("======上传失败======", result);
-                      wx.hideLoading()
-                    }
-                  )
-              });
-          }
-        }
-    })
   }
 
   handleUploadLoader = () =>{
@@ -275,7 +250,7 @@ export default class Index extends Component {
   }
   
   async onPublish(e){
-    const {activeName,groupItemChecked,dateStart,dateEnd,location,weChatNumber} = this.state;
+    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
     
     // Taro.navigateTo({
     //   url:`/pages/active/share/index?activeName=${activeName}`
@@ -298,7 +273,7 @@ export default class Index extends Component {
       this.handleAlert('error','请选择结束时间')
       return;
     }
-    if(imgArraySrc.length <= 0){
+    if(docLocations.length <= 0){
       this.handleAlert('error','请选择上传主图')
       return;
     }
@@ -306,7 +281,7 @@ export default class Index extends Component {
 
     let payload =  {
       "areaCode": "string",
-      "docLocations": this.state.location,
+      "docLocations": docLocations,
       "endD":dateEnd,
       "id": 0,
       "name": activeName,
@@ -331,10 +306,7 @@ export default class Index extends Component {
           url:'/pages/active/share/index'
         })
       }else{
-        this.setState({
-          isOpened:true
-        });
-        this.handleAlert('error','发布活动失败');
+        this.handleAlert('error',res.error);
       }
     })
   }
@@ -386,7 +358,7 @@ export default class Index extends Component {
     this.getAuthInfo().then(userinfo=>{
       var payload = {
           openId:userinfo.openId,
-          wechatId:this.weChatNumber,
+          wechatId:this.state.weChatNumber,
           id:userinfo.id
       };
 
@@ -450,16 +422,10 @@ export default class Index extends Component {
                      <ProductList products={products}/>
                      <View className="publish-active">
                             <Text>活动价</Text>
-                            {/* <AtInput 
-                            onChange={this.onChangeActivePrice}  
-                            value={activePrice}
-                            placeholder="请输入活动优惠价" /> */}
                               <AtInput border={false} 
                                           value={activePrice}
                                           onChange={this.onChangeActivePrice.bind(this)}
                                           placeholder="请输入活动优惠价" />
-
-                            {/* <Text className="mp-icon mp-icon-trash margin"></Text> */}
                       </View>
 
                       <View className="pulbish-create">
@@ -470,7 +436,7 @@ export default class Index extends Component {
 
         <View className="publish">
             <View onClick={this.onPublish}>立即发布</View>
-        </View>
+        </View> 
 
         <AtModal isOpened={isOpened}>
           <AtModalHeader>完善信息</AtModalHeader>

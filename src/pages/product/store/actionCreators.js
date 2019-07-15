@@ -1,5 +1,5 @@
 import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,ACTION_UPLOAD_DOWN,ACTION_UPLOAD_CONFIG,ACTIVE_INFO_ACTION,
-ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT} from './constants';
+ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,ACTION_SAVE_UPLOADIMG} from './constants';
 import {createAction} from '../../../utils/redux';
 import {API_PRODUCT_OWNER,API_PORDUCT_CREATE,API_UPLOAD_FILE,API_UPLOAD_CONFIG,API_ACTIVE_INFO,API_PRODUCT_CATEGORY
 } from '../../../constants/api';
@@ -63,3 +63,10 @@ export const dispatchSelectProduct = (payload)=>{
         dispatch({type:ACTION_SELECT_PRODUCT,value:payload})
      }
 }
+
+export const dispatchSaveImg = (payload) => {
+    return (dispatch) => {
+        dispatch({type:ACTION_SAVE_UPLOADIMG,value:payload})
+    }
+}
+

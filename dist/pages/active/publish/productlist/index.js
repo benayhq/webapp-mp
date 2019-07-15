@@ -45,13 +45,6 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       _get(ProductList.prototype.__proto__ || Object.getPrototypeOf(ProductList.prototype), "_constructor", this).call(this, props);
     }
   }, {
-    key: "createProduct",
-    value: function createProduct() {
-      _index2.default.navigateTo({
-        url: '/pages/product/edit'
-      });
-    }
-  }, {
     key: "selectProduct",
     value: function selectProduct() {
       _index2.default.navigateTo({

@@ -16,7 +16,7 @@ export default class Detail extends Component{
     config = {
         navigationBarTitleText: '活动详情'
     }
-    
+
     constructor(){
         super(...arguments);
         this.state = {
@@ -328,7 +328,6 @@ export default class Detail extends Component{
                 <Modal isOpened={showOrderDialog}>
                      <TuanList/>
                 </Modal>
-
             </View>
         )
     }

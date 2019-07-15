@@ -56,7 +56,6 @@ class App extends Component {
       debug : true
     });
     console.log('jim',jim);
-  
     jim.init({
       appkey:"bb62a48cc54e300e2e58fa0b",
       random_str:"b37b052d0e9b4aa8a16ebe5446f9fba9",

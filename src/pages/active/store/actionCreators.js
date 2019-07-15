@@ -9,13 +9,17 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_GROUP_COUNT,
     ACTION_START_TIME,
     ACTION_END_TIME,
-    ACTION_PRODUCT_PRICE
+    ACTION_PRODUCT_PRICE,
+    ACTION_SAVE_UPLOADIMG,
+    ACTION_SAVE_TEMPFILES
     } from './constants';
+
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
     API_UPLOAD_CONFIG,
     API_USER_INFO,
     API_QRCODE,
-    API_ADVERT_LIST} from './../../../constants/api';
+    API_ADVERT_LIST
+} from './../../../constants/api';
 
 export const dispatchPublishProduct = payload => createAction({
     type:PRODUCT_PUBLISH_INFO,
@@ -125,5 +129,17 @@ export const dispatchEndTime = payload => {
 export const dispatchActivePrice = payload => {
     return (dispatch) => {
         dispatch({type:ACTION_PRODUCT_PRICE,value:payload})
+    }
+}
+
+export const dispatchSaveImg = (payload) => {
+    return (dispatch) => {
+        dispatch({type:ACTION_SAVE_UPLOADIMG,value:payload})
+    }
+}
+
+export const dispatchCacheTempFiles = (payload) =>{
+    return (dispatch)=>{
+        dispatch({type:ACTION_SAVE_TEMPFILES,value:payload})
     }
 }

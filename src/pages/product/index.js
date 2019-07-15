@@ -9,7 +9,7 @@ import {connect} from '@tarojs/redux';
 @connect(state=>state.product,actions)
 class Index extends Component{
   config = {
-    navigationBarTitleText: '选择往期产品'
+    navigationBarTitleText: '产品列表'
   }
 
   constructor(){
@@ -46,13 +46,12 @@ class Index extends Component{
   }
 
   async initProductList(){
-
     var that = this;
     var payload = {
       pageNo:0,
       pageSize:10
     };
-
+    
     var responseList = [];
     const resultProductList = await this.props.dispatchProductList(payload);
 
@@ -82,7 +81,6 @@ class Index extends Component{
   
   handleSaveItem(){
     var params = this.state.checkedList;
-    // this.props.dispatchSelectProduct(this.state.checkedList);
     Taro.navigateTo({
             url:'/pages/active/publish/index?ids='+params.join(',')
     })

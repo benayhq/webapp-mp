@@ -5,11 +5,7 @@ import './index.scss'
 
 export default class ProductList extends Component{
 
-    createProduct(){
-        Taro.navigateTo({
-          url:'/pages/product/edit'
-        })
-    }
+
 
     selectProduct(){
         Taro.navigateTo({
