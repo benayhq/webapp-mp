@@ -18,11 +18,13 @@
             <at-input name="productName" __triggerObserer="{{ _triggerObserer }}" title="名称" type="text" placeholder="产品名称品牌规格信息" value="{{productName}}" bindonchange="handleProductChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
             <at-input name="productPrice" __triggerObserer="{{ _triggerObserer }}" title="价格" type="number" placeholder="请输入产品原价" value="{{productPrice}}" bindonchange="handlePriceChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
             <at-input name="activePrice" __triggerObserer="{{ _triggerObserer }}" title="活动价" type="number" placeholder="请输入产品活动价格" value="{{activePrice}}" bindonchange="handleActivePriceChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
-            <at-image-picker files="{{files}}" __triggerObserer="{{ _triggerObserer }}" bindonchange="handleChooseImage" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-image-picker>
+            <at-image-picker files="{{files}}" __triggerObserer="{{ _triggerObserer }}" bindonchange="handleChooseImage" bindonimageclick="onImageClick" __fn_onChange="{{true}}" data-e-onchange-so="this" __fn_onImageClick="{{true}}" data-e-onimageclick-so="this"></at-image-picker>
             <at-input name="preAmount" __triggerObserer="{{ _triggerObserer }}" title="预定金" type="number" placeholder="请输入预定金" value="{{preAmount}}" bindonchange="handlePreAmountChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
         </at-form>
         <view class="mp-edit-product__warn-tips">温馨提醒：</view>
         <view class="mp-edit-product__warn-info">预定金优先由平台代为收取,客户当面核销后转入您的微信余额。</view>
-        <button bindtap="handleSaveProduct">保存</button>
+        <view class="mp-edit-product__save">
+            <view bindtap="handleSaveProduct">保 存</view>
+        </view>
     </view>
 </block>

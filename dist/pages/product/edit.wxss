@@ -262,6 +262,28 @@ page {
   line-height: 33rpx;
   margin: 0 30rpx 30rpx 30rpx; }
 
+.mp-edit-product__save {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #FFF;
+  height: 110rpx;
+  line-height: 110rpx;
+  padding: 30rpx; }
+  .mp-edit-product__save > View {
+    padding: 5rpx;
+    background-color: #7DD6D0;
+    border-radius: 5rpx;
+    border: 1rpx solid #7DD6D0;
+    font-size: 36rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 80rpx;
+    display: inline-block;
+    height: 80rpx;
+    width: 91%;
+    text-align: center; }
+
 .demo-list-item {
   position: relative;
   display: -webkit-box;

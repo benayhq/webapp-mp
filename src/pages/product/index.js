@@ -49,12 +49,13 @@ class Index extends Component{
     var that = this;
     var payload = {
       pageNo:0,
-      pageSize:10
+      pageSize:1000
     };
     
     var responseList = [];
     const resultProductList = await this.props.dispatchProductList(payload);
 
+    console.log('resultProductList',resultProductList);
     resultProductList.content.map((item)=>{
       this.getImgUrl(item.location)
       .then(response=>{
@@ -99,14 +100,14 @@ class Index extends Component{
       productId:id
     };
     this.props.dispatchDeleteProduct(payload).then((response)=>{
-      console.log('response',response);
       this.init();
     });
-    console.log('result',payload);
   }
   
   render () {
     const {newFilterList} = this.state;
+
+    console.log('newFilterList',newFilterList);
 
     return (
       <View className="mp-product">

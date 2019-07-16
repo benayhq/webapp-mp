@@ -13,7 +13,7 @@ var imgArraySrc = [];
 class EditProduct extends Component{
 
     config = {
-        navigationBarTitleText: '新增产品'
+        navigationBarTitleText: '产品'
     }
 
     constructor(){
@@ -33,16 +33,19 @@ class EditProduct extends Component{
            status:'',
            duration:2000,
            location:'',
-           activeId:0
+           productId:0
         };
 
-        this.initCategory();
+   }
+
+   init(){
+    this.initCategory();
+    this.initProduct();
    }
 
    initCategory(){
       var payload ={
       };
-
       var that = this;
       this.props.dispatchCategoryList(payload).then((response)=>{
 
@@ -63,13 +66,13 @@ class EditProduct extends Component{
             });
           }
         });
-        
         this.setState({
           multiSelector:[firstList,secondList,thirdList]
         });
-        console.log('response',response);
       });
    }
+
+
 
    handleAlert = (type,message) => {
       Taro.atMessage({
@@ -116,15 +119,18 @@ class EditProduct extends Component{
       }
    }
 
-   componentWillMount(){
-     let activeId = this.$router.params.activeId;
+   componentDidMount(){
+     this.init();
+   }
 
-     console.log('activeId',activeId);
+   componentWillMount(){
+     this.setState({
+      productId:this.$router.params.productId
+     });
    }
 
    async handleSaveProduct(){
-      const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location,activeId} = this.state;
-
+      const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location,productId} = this.state;
       
       if(productName===''){
         this.handleAlert('error','名称不能为空');
@@ -157,7 +163,7 @@ class EditProduct extends Component{
         "advance": preAmount,
         "agentId": result.id,
         "discountPrice": activePrice,
-        "id": 0,
+        "id": productId,
         "location": imgArraySrc[0],
         "name": productName,
         "price": productPrice,
@@ -167,15 +173,34 @@ class EditProduct extends Component{
         "status": "string"
       };
 
-      if(activeId>0){
-        // todo:edit
+      if(productId>0){
+        console.log('payload',payload);
+        this.props.dispatchUpdateProductInfo(payload).then((res)=>{
+          if(res.result === 'success'){
+            this.setState({
+              isOpened:true,
+              toastText:'保存成功',
+              status: 'success'
+            });
+            Taro.navigateTo({
+              url:'/pages/product/index'
+            })
+          }
+          else{
+            this.setState({
+              isOpened:true,
+              toastText:res.error,
+              status: 'error'
+            })
+          }
+        });
       }
       else{
         this.props.dispatchCreateProduct(payload).then((res)=>{
           if(res.result === 'success'){
             this.setState({
               isOpened:true,
-              toastText:'添加成功',
+              toastText:'保存成功',
               status: 'success'
             });
             Taro.navigateTo({
@@ -232,9 +257,49 @@ class EditProduct extends Component{
         console.log(mes)
     }
 
-    onImageClick (index, file) {
-        console.log(index, file)
+    async getImgUrl(location){
+      var payload = {
+        location:location
+      };
+      const result = await this.props.dispatchDownLoadUrl(payload);
+      return result.content;
     }
+
+   async initProduct(){
+      const {productId} = this.state;
+      if(productId>0){
+        var payload = {
+          productId:productId
+        }
+        this.props.dispatchQueryProductInfo(payload).then((response)=>{
+          var data = response.content;
+          console.log('productinfo',data);
+          if(data){
+            this.getImgUrl(data.location).then((response)=>{
+              this.setState({
+                files:[
+                  {url:response}
+                ]
+              });
+              imgArraySrc.push(data.location);
+            });
+            this.setState({
+              productName:data.name,
+              productPrice:data.discountPrice,
+              activePrice:data.price,
+              preAmount:data.advance
+            });
+          }
+        })
+      }
+   }
+
+   onImageClick(index,file){
+     this.setState({
+       files:[]
+     });
+     imgArraySrc=[];
+   }
 
     render(){
         const {productName,productPrice,activePrice,preAmount,
@@ -292,6 +357,7 @@ class EditProduct extends Component{
                  <AtImagePicker
                     files={files}
                     onChange={this.handleChooseImage.bind(this)}
+                    onImageClick={this.onImageClick.bind(this)}
                 />
                   <AtInput
                     name='preAmount'
@@ -308,7 +374,9 @@ class EditProduct extends Component{
                 <View className="mp-edit-product__warn-info">
                   预定金优先由平台代为收取,客户当面核销后转入您的微信余额。
                 </View>
-                <Button onClick={this.handleSaveProduct}>保存</Button>
+                <View className="mp-edit-product__save">
+                    <View onClick={this.handleSaveProduct}>保  存</View>
+                </View>
             </View>
         )
     }

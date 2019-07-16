@@ -220,9 +220,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           docLocations: docLocations
         });
       }
-
-      console.log('this.props', this.props);
-      console.log('this.props.active', this.props.activeName);
     }
   }, {
     key: "init",

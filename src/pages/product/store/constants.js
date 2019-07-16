@@ -18,3 +18,7 @@ export const UPDATE_USER_INFO = 'user/UPDATE_USER_INFO';
 
 export const ACTION_PRODUCT_DELETE = 'action/ACTION_PRODUCT_DELETE';
 
+export const PRODUCT_QUERY_INFO = 'user/PRODUCT_QUERY_INFO';
+
+export const ACTION_PRODUCT_INFO = 'user/ACTION_PRODUCT_INFO';
+

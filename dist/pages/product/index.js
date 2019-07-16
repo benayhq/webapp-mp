@@ -128,7 +128,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 that = this;
                 payload = {
                   pageNo: 0,
-                  pageSize: 10
+                  pageSize: 1000
                 };
                 responseList = [];
                 _context2.next = 5;
@@ -138,6 +138,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 resultProductList = _context2.sent;
 
 
+                console.log('resultProductList', resultProductList);
                 resultProductList.content.map(function (item) {
                   _this2.getImgUrl(item.location).then(function (response) {
                     responseList.push({
@@ -160,7 +161,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 });
 
-              case 7:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -198,10 +199,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         productId: id
       };
       this.props.dispatchDeleteProduct(payload).then(function (response) {
-        console.log('response', response);
         _this3.init();
       });
-      console.log('result', payload);
     }
   }, {
     key: "_createData",
@@ -213,6 +212,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var newFilterList = this.__state.newFilterList;
 
+
+      console.log('newFilterList', newFilterList);
 
       Object.assign(this.__state, {});
       return this.__state;

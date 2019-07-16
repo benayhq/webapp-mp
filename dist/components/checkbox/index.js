@@ -75,15 +75,14 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "handleProductEdit",
-    value: function handleProductEdit() {
+    value: function handleProductEdit(id, event) {
       _index2.default.navigateTo({
-        url: '/pages/product/edit'
+        url: '/pages/product/edit?productId=' + id
       });
     }
   }, {
     key: "handleProductDelete",
     value: function handleProductDelete(id) {
-      console.log('e', this.props);
       this.__triggerPropsFn("onDelete", [null].concat([id]));
     }
   }, {
@@ -116,6 +115,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
             label = _option$$original.label,
             data = _option$$original.data;
 
+        console.log('data', data);
 
         var optionCls = (0, _index4.default)('mp-checkbox__option', {
           'mp-checkbox__option--selected': !selectedList.includes(value)

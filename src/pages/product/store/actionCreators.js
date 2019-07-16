@@ -1,6 +1,8 @@
 import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,
     ACTION_UPLOAD_DOWN,ACTION_UPLOAD_CONFIG,ACTIVE_INFO_ACTION,
-ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,WX_USER_LOGIN,UPDATE_USER_INFO,ACTION_PRODUCT_DELETE} from './constants';
+ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,WX_USER_LOGIN,
+UPDATE_USER_INFO,ACTION_PRODUCT_DELETE,PRODUCT_QUERY_INFO,ACTION_PRODUCT_INFO
+} from './constants';
 import {createAction} from '../../../utils/redux';
 import {
     API_PRODUCT_OWNER,API_PORDUCT_CREATE,API_UPLOAD_FILE,API_UPLOAD_CONFIG,API_ACTIVE_INFO
@@ -8,6 +10,8 @@ import {
     ,API_USER_LOGIN
     ,API_USER_INFO
     ,API_DELETE_PRODUCT
+    ,API_PRODUCT_INFO,
+    API_PRODUCT_UPDATE
 } from '../../../constants/api';
 
 export const dispatchProductList = payload => createAction({
@@ -97,4 +101,23 @@ export const dispatchDeleteProduct = (payload) => createAction({
     },
     payload
 })
+
+export const dispatchQueryProductInfo = payload => createAction({
+    type:PRODUCT_QUERY_INFO,
+    url:API_PRODUCT_INFO,
+    fetchOptions:{
+        method:'GET'
+    },
+    payload
+});
+
+export const dispatchUpdateProductInfo = payload =>  createAction({
+    type:ACTION_PRODUCT_INFO,
+    url:API_PRODUCT_UPDATE,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
+
 

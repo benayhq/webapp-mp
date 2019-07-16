@@ -27,14 +27,13 @@ export default class CheckBox extends Component{
         this.props.onChange([...seletecdSet]);
     }
 
-    handleProductEdit(){
+    handleProductEdit(id,event){
         Taro.navigateTo({
-            url:'/pages/product/edit'
+            url:'/pages/product/edit?productId='+id
         });
     }
 
     handleProductDelete(id){
-        console.log('e',this.props);
         this.props.onDelete(id);
     }
 
@@ -54,7 +53,7 @@ export default class CheckBox extends Component{
                 {
                     options.map((option,idx) => {
                         const { value,disabled,label,data} = option;
-
+                        console.log('data',data);
 
                         const optionCls = classNames('mp-checkbox__option',{
                             'mp-checkbox__option--selected':!selectedList.includes(value)
@@ -88,7 +87,7 @@ export default class CheckBox extends Component{
                                    </View>
 
                                    <View className="mp-checkbox__action">
-                                      <Text className='mp-icon mp-icon-edit' onClick={this.handleProductEdit.bind(this)}></Text>
+                                      <Text className='mp-icon mp-icon-edit' onClick={this.handleProductEdit.bind(this,value)}></Text>
                                       <Text className='mp-icon mp-icon-delete' onClick={this.handleProductDelete.bind(this,value)}></Text>
                                    </View>
                                 </View>

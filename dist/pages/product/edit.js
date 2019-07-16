@@ -52,8 +52,8 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "activeId", "dispatchCategoryList", "dispatchUploadConfig", "dispatchCreateProduct"], _this.config = {
-      navigationBarTitleText: '新增产品'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "productId", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+      navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
@@ -128,10 +128,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         status: '',
         duration: 2000,
         location: '',
-        activeId: 0
+        productId: 0
       };
-
+    }
+  }, {
+    key: "init",
+    value: function init() {
       this.initCategory();
+      this.initProduct();
     }
   }, {
     key: "initCategory",
@@ -139,7 +143,6 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var _this2 = this;
 
       var payload = {};
-
       var that = this;
       this.props.dispatchCategoryList(payload).then(function (response) {
 
@@ -162,19 +165,22 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
             });
           }
         });
-
         _this2.setState({
           multiSelector: [firstList, secondList, thirdList]
         });
-        console.log('response', response);
       });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.init();
     }
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      var activeId = this.$router.params.activeId;
-
-      console.log('activeId', activeId);
+      this.setState({
+        productId: this.$router.params.productId
+      });
     }
   }, {
     key: "handleSaveProduct",
@@ -182,13 +188,13 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var _this3 = this;
 
-        var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, activeId, result, payload;
+        var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, productId, result, payload;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, activeId = _state.activeId;
+                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId;
 
                 if (!(productName === '')) {
                   _context.next = 4;
@@ -244,7 +250,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "advance": preAmount,
                   "agentId": result.id,
                   "discountPrice": activePrice,
-                  "id": 0,
+                  "id": productId,
                   "location": imgArraySrc[0],
                   "name": productName,
                   "price": productPrice,
@@ -255,12 +261,32 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 };
 
 
-                if (!(activeId > 0)) {
+                if (productId > 0) {
+                  console.log('payload', payload);
+                  this.props.dispatchUpdateProductInfo(payload).then(function (res) {
+                    if (res.result === 'success') {
+                      _this3.setState({
+                        isOpened: true,
+                        toastText: '保存成功',
+                        status: 'success'
+                      });
+                      _index2.default.navigateTo({
+                        url: '/pages/product/index'
+                      });
+                    } else {
+                      _this3.setState({
+                        isOpened: true,
+                        toastText: res.error,
+                        status: 'error'
+                      });
+                    }
+                  });
+                } else {
                   this.props.dispatchCreateProduct(payload).then(function (res) {
                     if (res.result === 'success') {
                       _this3.setState({
                         isOpened: true,
-                        toastText: '添加成功',
+                        toastText: '保存成功',
                         status: 'success'
                       });
                       _index2.default.navigateTo({
@@ -328,9 +354,97 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       console.log(mes);
     }
   }, {
+    key: "getImgUrl",
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(location) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                payload = {
+                  location: location
+                };
+                _context2.next = 3;
+                return this.props.dispatchDownLoadUrl(payload);
+
+              case 3:
+                result = _context2.sent;
+                return _context2.abrupt("return", result.content);
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getImgUrl(_x) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return getImgUrl;
+    }()
+  }, {
+    key: "initProduct",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        var _this4 = this;
+
+        var productId, payload;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                productId = this.state.productId;
+
+                if (productId > 0) {
+                  payload = {
+                    productId: productId
+                  };
+
+                  this.props.dispatchQueryProductInfo(payload).then(function (response) {
+                    var data = response.content;
+                    console.log('productinfo', data);
+                    if (data) {
+                      _this4.getImgUrl(data.location).then(function (response) {
+                        _this4.setState({
+                          files: [{ url: response }]
+                        });
+                        imgArraySrc.push(data.location);
+                      });
+                      _this4.setState({
+                        productName: data.name,
+                        productPrice: data.discountPrice,
+                        activePrice: data.price,
+                        preAmount: data.advance
+                      });
+                    }
+                  });
+                }
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function initProduct() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return initProduct;
+    }()
+  }, {
     key: "onImageClick",
     value: function onImageClick(index, file) {
-      console.log(index, file);
+      this.setState({
+        files: []
+      });
+      imgArraySrc = [];
     }
   }, {
     key: "_createData",
@@ -367,11 +481,23 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "dispatchUpdateProductInfo": {
+    "type": null,
+    "value": null
+  },
   "dispatchCreateProduct": {
     "type": null,
     "value": null
+  },
+  "dispatchDownLoadUrl": {
+    "type": null,
+    "value": null
+  },
+  "dispatchQueryProductInfo": {
+    "type": null,
+    "value": null
   }
-}, _class2.$$events = ["handleMulitChange", "handleProductChange", "handlePriceChange", "handleActivePriceChange", "handleChooseImage", "handlePreAmountChange", "handleSaveProduct"], _temp2)) || _class);
+}, _class2.$$events = ["handleMulitChange", "handleProductChange", "handlePriceChange", "handleActivePriceChange", "handleChooseImage", "onImageClick", "handlePreAmountChange", "handleSaveProduct"], _temp2)) || _class);
 exports.default = EditProduct;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(EditProduct, true));

@@ -31,6 +31,31 @@ $component:'.mp-edit-product';
         line-height:33px;
         margin: 0px 30px 30px 30px;
     }
+
+    &__save{
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      background: $color-bg;
+      height:110px;
+      line-height: 110px;
+      padding: 30px;
+
+      &>View{
+          padding:5rpx;
+          background-color:#7DD6D0;
+          border-radius:5px;
+          border:1px solid #7DD6D0;
+          font-size:36px;
+          color:#fff;
+          text-align:center;
+          line-height:80px;
+          display:inline-block;
+          height:80px;
+          width:91%;
+          text-align:center;
+      }
+  }
 }
 
 

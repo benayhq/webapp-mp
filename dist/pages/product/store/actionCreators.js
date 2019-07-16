@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchDeleteProduct = exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.dispatchUpdateProductInfo = exports.dispatchQueryProductInfo = exports.dispatchDeleteProduct = exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -110,6 +110,28 @@ var dispatchDeleteProduct = exports.dispatchDeleteProduct = function dispatchDel
   return (0, _redux.createAction)({
     type: _constants.ACTION_PRODUCT_DELETE,
     url: _api.API_DELETE_PRODUCT + "?productId=" + payload.productId,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchQueryProductInfo = exports.dispatchQueryProductInfo = function dispatchQueryProductInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.PRODUCT_QUERY_INFO,
+    url: _api.API_PRODUCT_INFO,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchUpdateProductInfo = exports.dispatchUpdateProductInfo = function dispatchUpdateProductInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_PRODUCT_INFO,
+    url: _api.API_PRODUCT_UPDATE,
     fetchOptions: {
       method: 'POST'
     },

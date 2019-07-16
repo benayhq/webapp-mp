@@ -17,7 +17,7 @@
                             <view class="mp-checkbox__preprice">预定金:{{option.data.prePrice}}</view>
                         </view>
                     </view>
-                    <view class="mp-checkbox__action"><text class="mp-icon mp-icon-edit" bindtap="handleProductEdit" data-e-tap-so="this"></text><text class="mp-icon mp-icon-delete" bindtap="handleProductDelete" data-e-tap-so="this" data-e-tap-a-a="{{option.value}}"></text>
+                    <view class="mp-checkbox__action"><text class="mp-icon mp-icon-edit" bindtap="handleProductEdit" data-e-tap-so="this" data-e-tap-a-a="{{option.value}}"></text><text class="mp-icon mp-icon-delete" bindtap="handleProductDelete" data-e-tap-so="this" data-e-tap-a-a="{{option.value}}"></text>
                     </view>
                 </view>
             </view>

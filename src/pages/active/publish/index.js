@@ -124,9 +124,7 @@ export default class Index extends Component {
         docLocations:docLocations
       });
     }
-
-    console.log('this.props',this.props);
-    console.log('this.props.active',this.props.activeName);
+    
   }
 
   init(){
