@@ -50,7 +50,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "isOpened", "categoryDialog", "visible", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "isOpened", "categoryDialog", "visible", "referId", "source", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -73,64 +73,112 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         data: {},
         commentList: [],
         bannerList: [],
-        activeId: ''
+        activeId: '',
+        referId: '',
+        source: ''
       };
     }
   }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "init",
+    value: function init() {
+      this.initLogin();
+    }
+  }, {
+    key: "initLogin",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var user;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.getAuthInfo();
 
-      var scene = this.$router.params.scene;
-      if (scene) {
-        scene = decodeURIComponent(scene);
+              case 2:
+                user = _context.sent;
+
+                if (!(user && user.id > 0)) {
+                  _context.next = 5;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 5:
+                this.autoLogin();
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function initLogin() {
+        return _ref2.apply(this, arguments);
       }
-      console.log('scene', scene);
-      this.setState({
-        activeId: 333
-      });
-    }
-  }, {
-    key: "openDialog",
-    value: function openDialog() {
-      this.setState({
-        visible: true,
-        bContact: true,
-        bSpec: false,
-        showOrderDialog: false
-      });
-    }
-  }, {
-    key: "openCategoryDialog",
-    value: function openCategoryDialog() {
 
-      this.setState({
-        visible: true,
-        bSpec: true,
-        bContact: false,
-        showOrderDialog: false
+      return initLogin;
+    }()
+  }, {
+    key: "getAuthInfo",
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
+                  return res.data;
+                });
+                return _context2.abrupt("return", result);
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getAuthInfo() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return getAuthInfo;
+    }()
+  }, {
+    key: "autoLogin",
+    value: function autoLogin() {
+      var that = this;
+      var _state = this.state,
+          referId = _state.referId,
+          source = _state.source;
+
+      wx.login({
+        success: function success(res) {
+          var payload = {
+            code: res.code,
+            referId: referId,
+            source: source
+          };
+          that.props.WeChatLogin(payload).then(function (res) {
+            _index2.default.setStorage({ key: 'userinfo', data: res.content });
+          });
+        }
       });
     }
   }, {
-    key: "close",
-    value: function close() {
-      this.setState({
-        isOpened: false
-      });
-    }
-  }, {
-    key: "showMpDialog",
-    value: function showMpDialog() {
-      this.setState({
-        showOrderDialog: true
-      });
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "loadData",
+    value: function loadData() {
       var _this2 = this;
 
       var payload = {
-        activityId: 35
+        activityId: 34
+        // this.state.activeId
       };
       this.props.dispatchActiveInfo(payload).then(function (res) {
         console.log('res.content', res.content);
@@ -173,34 +221,93 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.initLogin();
+      this.loadData();
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var activeId = this.$router.params.activeId,
+          referId = this.$router.params.referId,
+          source = this.$router.params.sc;
+      if (activeId && referId) {
+        activeId = decodeURIComponent(activeId);
+        referId = decodeURIComponent(referId);
+        source = decodeURIComponent(source);
+      };
+      console.log('scene', activeId);
+      this.setState({
+        activeId: activeId,
+        referId: referId,
+        source: source
+      });
+    }
+  }, {
+    key: "openDialog",
+    value: function openDialog() {
+      this.setState({
+        visible: true,
+        bContact: true,
+        bSpec: false,
+        showOrderDialog: false
+      });
+    }
+  }, {
+    key: "openCategoryDialog",
+    value: function openCategoryDialog() {
+
+      this.setState({
+        visible: true,
+        bSpec: true,
+        bContact: false,
+        showOrderDialog: false
+      });
+    }
+  }, {
+    key: "close",
+    value: function close() {
+      this.setState({
+        isOpened: false
+      });
+    }
+  }, {
+    key: "showMpDialog",
+    value: function showMpDialog() {
+      this.setState({
+        showOrderDialog: true
+      });
+    }
+  }, {
     key: "getImgUrl",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context.next = 3;
+                _context3.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context.sent;
-                return _context.abrupt("return", result.content);
+                result = _context3.sent;
+                return _context3.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee, this);
+        }, _callee3, this);
       }));
 
       function getImgUrl(_x) {
-        return _ref2.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return getImgUrl;
@@ -213,18 +320,18 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var _state = this.__state,
-          data = _state.data,
-          commentList = _state.commentList,
-          bannerList = _state.bannerList,
-          activeId = _state.activeId;
+      var _state2 = this.__state,
+          data = _state2.data,
+          commentList = _state2.commentList,
+          bannerList = _state2.bannerList,
+          activeId = _state2.activeId;
 
       var height = (0, _style.getWindowHeight)(false);
-      var _state2 = this.__state,
-          isOpened = _state2.isOpened,
-          bSpec = _state2.bSpec,
-          bContact = _state2.bContact,
-          showOrderDialog = _state2.showOrderDialog;
+      var _state3 = this.__state,
+          isOpened = _state3.isOpened,
+          bSpec = _state3.bSpec,
+          bContact = _state3.bContact,
+          showOrderDialog = _state3.showOrderDialog;
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });

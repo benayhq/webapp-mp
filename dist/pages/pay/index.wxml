@@ -1,4 +1,0 @@
-<block>
-    <view class="mp-pay"><text bindtap="handlePay" data-e-tap-so="this">支付</text>
-    </view>
-</block>

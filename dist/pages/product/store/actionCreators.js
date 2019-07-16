@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -81,4 +81,27 @@ var dispatchSelectProduct = exports.dispatchSelectProduct = function dispatchSel
   return function (dispatch) {
     dispatch({ type: _constants.ACTION_SELECT_PRODUCT, value: payload });
   };
+};
+
+var WeChatLogin = exports.WeChatLogin = function WeChatLogin(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.WX_USER_LOGIN,
+    url: _api.API_USER_LOGIN,
+    fetchOptions: {
+      method: 'POST',
+      contentType: 'application/x-www-form-urlencoded'
+    },
+    payload: payload
+  });
+};
+
+var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.UPDATE_USER_INFO,
+    url: _api.API_USER_INFO,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
 };

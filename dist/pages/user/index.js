@@ -229,34 +229,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-
-                // wx.login({
-                //   success (res) {
-                //     if (res.code) {
-                //       console.log('res.code',res.code);
-                //       //发起网络请求
-                //       // wx.request({
-                //       //   url: 'https://test.com/onLogin',
-                //       //   data: {
-                //       //     code: res.code
-                //       //   }
-                //       // })
-                //     } else {
-                //       console.log('登录失败！' + res.errMsg)
-                //     }
-                //   }
-                // })
-
-                // var jpushAuth = await this.getJpushAuthInfo();
-                // console.log('jpushAuth',jpushAuth);
-
-                // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
                       userInfo = res.userInfo;
 
                   if (errMsg === 'getUserInfo:ok') {
                     _index2.default.setStorage({ key: 'authinfo', data: userInfo });
+
+                    console.log('userInfo', userInfo);
 
                     var payload = {
                       id: userInfo.id,
@@ -268,36 +248,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       avatarUrl: userInfo.avatarUrl,
                       userName: userInfo.nickName
                     });
-
-                    //  console.log(' JPush.getInstance();', JPush.getInstance());
-
-                    // JPush.getInstance().init({
-                    //   "appkey": jpushAuth.appkey,
-                    //   "random_str": jpushAuth.random_str,
-                    //   "signature": jpushAuth.signature,
-                    //   "timestamp": jpushAuth.timestamp
-                    // }).onSuccess(function(data) {
-                    //   console.log('data',data);
-
-                    // }).onFail(function(data) {
-                    //   //TODO
-                    //   console.log('data',data);
-                    // });
-
-                    //   JPush.getInstance().register({
-                    //     'username':userInfo.nickName,
-                    //     'password':'123456',
-                    //       'is_md5':false,
-                    //       'extras':false,
-                    //       'address': userInfo.province
-                    //     }).onSuccess(function(data) {
-                    //         //data.code 返回码
-                    //         //data.message 描述
-                    //         console.log('data',data);
-                    //       }).onFail(function(data) {
-                    //         // 同上
-                    //         console.log('data',data);
-                    //     });
 
                     _this2.props.UpdateUserInfo(payload).then(function (res) {
                       if (res.result === "success") {

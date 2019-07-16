@@ -78,15 +78,11 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       };
     }
   }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {}
-  }, {
     key: "handleSubmitOrder",
     value: function handleSubmitOrder() {
       var _state = this.state,
           activityProductId = _state.activityProductId,
           appointmentDate = _state.appointmentDate;
-
 
       if (appointmentDate == "" || appointmentDate === null) {
         this.handleAlert('error', '请选择预约时间!');

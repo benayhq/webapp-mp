@@ -24,13 +24,8 @@ export default class SubmitOrder extends Component{
         };
     }
 
-    componentWillMount(){
-
-    }
-
     handleSubmitOrder(){
         const {activityProductId,appointmentDate} = this.state;
-
         if(appointmentDate=="" || appointmentDate === null){
             this.handleAlert('error','请选择预约时间!');
             return;
@@ -60,7 +55,7 @@ export default class SubmitOrder extends Component{
         };
         this.props.dispatchPrePay(payload).then((response)=>{
             console.log('response',response);
-            
+
             if(response.content && response.content!=null){
                 WeChatPay(response.content,this.payNotice.bind(this));
             }

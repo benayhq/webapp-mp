@@ -28,8 +28,7 @@ class App extends Component {
       'pages/product/detail',
       'pages/order/submit/index',
       'pages/p2p/index',
-      'pages/order/comment/index',
-      'pages/pay/index'
+      'pages/order/comment/index'
     ],
     window:{
       backgroundTextStyle: 'light',

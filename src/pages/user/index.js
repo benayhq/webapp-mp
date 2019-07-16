@@ -99,9 +99,8 @@ class Index extends Component{
     catch(e){
       console.log("exception",e)
     }
-  
   }
-
+  
   autoLogin(){
       var currentObj = this;
       wx.login({
@@ -122,32 +121,12 @@ class Index extends Component{
   }
   
   async handleAuthClick(){
-   
-    // wx.login({
-    //   success (res) {
-    //     if (res.code) {
-    //       console.log('res.code',res.code);
-    //       //发起网络请求
-    //       // wx.request({
-    //       //   url: 'https://test.com/onLogin',
-    //       //   data: {
-    //       //     code: res.code
-    //       //   }
-    //       // })
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg)
-    //     }
-    //   }
-    // })
-
-    // var jpushAuth = await this.getJpushAuthInfo();
-    // console.log('jpushAuth',jpushAuth);
-
-    // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
           Taro.setStorage({key:'authinfo',data:userInfo});
+
+          console.log('userInfo',userInfo);
 
           let payload = {
             id:userInfo.id,
@@ -159,36 +138,6 @@ class Index extends Component{
             avatarUrl:userInfo.avatarUrl,
             userName:userInfo.nickName
           });
-
-        //  console.log(' JPush.getInstance();', JPush.getInstance());
-
-        // JPush.getInstance().init({
-        //   "appkey": jpushAuth.appkey,
-        //   "random_str": jpushAuth.random_str,
-        //   "signature": jpushAuth.signature,
-        //   "timestamp": jpushAuth.timestamp
-        // }).onSuccess(function(data) {
-        //   console.log('data',data);
-         
-        // }).onFail(function(data) {
-        //   //TODO
-        //   console.log('data',data);
-        // });
-
-        //   JPush.getInstance().register({
-        //     'username':userInfo.nickName,
-        //     'password':'123456',
-        //       'is_md5':false,
-        //       'extras':false,
-        //       'address': userInfo.province
-        //     }).onSuccess(function(data) {
-        //         //data.code 返回码
-        //         //data.message 描述
-        //         console.log('data',data);
-        //       }).onFail(function(data) {
-        //         // 同上
-        //         console.log('data',data);
-        //     });
 
           this.props.UpdateUserInfo(payload).then((res)=>{
             if(res.result==="success"){

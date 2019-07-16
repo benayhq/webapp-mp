@@ -29,64 +29,48 @@ export default class Detail extends Component{
             data:{},
             commentList:[],
             bannerList:[],
-            activeId:''
+            activeId:'',
+            referId:'',
+            source:''
         }
     }
 
-    componentWillMount(){
-      
-
-        let scene = this.$router.params.scene;
-        if (scene) {
-          scene = decodeURIComponent(scene);
-        }
-        console.log('scene',scene);
-        this.setState({
-            activeId:333
-           });
+    init(){
+        this.initLogin();
     }
 
-    openDialog(){
-        this.setState({
-            visible: true,
-            bContact: true,
-            bSpec:false,
-            showOrderDialog:false
-        })
+    async initLogin(){
+        var user = await this.getAuthInfo();
+        if(user && user.id>0) return;
+        this.autoLogin();
     }
 
-    openCategoryDialog(){
+    async getAuthInfo(){
+        const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
+        return result;
+    }
 
-        this.setState({
-            visible: true,
-            bSpec:true,
-            bContact: false,
-            showOrderDialog:false
+    autoLogin(){
+        var that = this;
+        const {referId,source} = this.state;
+        wx.login({
+            success(res) {
+                var payload = {
+                    code:res.code,
+                    referId:referId,
+                    source:source
+                };
+                that.props.WeChatLogin(payload).then((res)=>{
+                    Taro.setStorage({key:'userinfo',data:res.content});
+                });
+            }
         });
-
     }
 
-    toggleVisible = () =>{
-        this.setState({
-            visible:!this.state.visible
-        })
-    }
-
-    close(){
-        this.setState({
-            isOpened:false
-        })
-    }
-
-    showMpDialog(){
-        this.setState({
-            showOrderDialog:true
-        })
-    }
-
-    componentDidMount(){
+    loadData(){
         var payload ={
-            activityId:35
+            activityId:34
+            // this.state.activeId
         };
         this.props.dispatchActiveInfo(payload).then(res=>{
             console.log('res.content',res.content);
@@ -126,6 +110,66 @@ export default class Detail extends Component{
                 })
             }
             // bannerList
+        });
+    }
+
+    componentDidMount(){
+        this.initLogin();
+        this.loadData();
+    }
+
+    componentWillMount(){
+        let activeId = this.$router.params.activeId,
+            referId = this.$router.params.referId,
+            source = this.$router.params.sc;
+        if (activeId && referId ) {
+            activeId = decodeURIComponent(activeId);
+            referId =  decodeURIComponent(referId);
+            source =  decodeURIComponent(source);
+        };
+        console.log('scene',activeId);
+        this.setState({
+            activeId:activeId,
+            referId:referId,
+            source:source
+        });
+    }
+
+    openDialog(){
+        this.setState({
+            visible: true,
+            bContact: true,
+            bSpec:false,
+            showOrderDialog:false
+        })
+    }
+
+    openCategoryDialog(){
+
+        this.setState({
+            visible: true,
+            bSpec:true,
+            bContact: false,
+            showOrderDialog:false
+        });
+
+    }
+
+    toggleVisible = () =>{
+        this.setState({
+            visible:!this.state.visible
+        })
+    }
+
+    close(){
+        this.setState({
+            isOpened:false
+        })
+    }
+
+    showMpDialog(){
+        this.setState({
+            showOrderDialog:true
         })
     }
 

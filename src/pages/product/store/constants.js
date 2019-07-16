@@ -11,3 +11,9 @@ export const ACTIVE_INFO_ACTION = 'action/ACTIVE_INFO_ACTION';
 export const ACTION_PRODUCT_CATEOGRY = 'action/ACTION_PRODUCT_CATEOGRY';
 
 export const ACTION_SELECT_PRODUCT = 'action/ACTION_SELECT_PRODUCT';
+
+export const WX_USER_LOGIN = 'user/WX_USER_LOGIN';
+
+
+export const UPDATE_USER_INFO = 'user/UPDATE_USER_INFO';
+

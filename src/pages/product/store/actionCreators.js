@@ -1,7 +1,12 @@
-import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,ACTION_UPLOAD_DOWN,ACTION_UPLOAD_CONFIG,ACTIVE_INFO_ACTION,
-ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,ACTION_SAVE_UPLOADIMG} from './constants';
+import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,
+    ACTION_UPLOAD_DOWN,ACTION_UPLOAD_CONFIG,ACTIVE_INFO_ACTION,
+ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,WX_USER_LOGIN,UPDATE_USER_INFO} from './constants';
 import {createAction} from '../../../utils/redux';
-import {API_PRODUCT_OWNER,API_PORDUCT_CREATE,API_UPLOAD_FILE,API_UPLOAD_CONFIG,API_ACTIVE_INFO,API_PRODUCT_CATEGORY
+import {
+    API_PRODUCT_OWNER,API_PORDUCT_CREATE,API_UPLOAD_FILE,API_UPLOAD_CONFIG,API_ACTIVE_INFO
+    ,API_PRODUCT_CATEGORY
+    ,API_USER_LOGIN
+    ,API_USER_INFO
 } from '../../../constants/api';
 
 export const dispatchProductList = payload => createAction({
@@ -64,5 +69,23 @@ export const dispatchSelectProduct = (payload)=>{
      }
 }
 
+export const WeChatLogin = payload => createAction({
+    type:WX_USER_LOGIN,
+    url:API_USER_LOGIN,
+    fetchOptions:{
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded'
+    },
+    payload
+});
+
+export const UpdateUserInfo = payload => createAction({
+    type:UPDATE_USER_INFO,
+    url:API_USER_INFO,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
 
 

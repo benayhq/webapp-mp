@@ -109,7 +109,7 @@
 					"id": 10,
 					"name": "产品详情",
 					"pathName": "pages/product/detail",
-					"query": "scene=333",
+					"query": "activeId=1&&refId=2",
 					"scene": null
 				},
 				{
