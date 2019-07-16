@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "checkedList", "productList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "checkedList", "productList", "dispatchDownLoadUrl", "dispatchProductList", "dispatchDeleteProduct"], _this.config = {
       navigationBarTitleText: '产品列表'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -66,7 +66,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleChange",
     value: function handleChange(value) {
-      console.log('value', value);
       this.setState({
         checkedList: value
       });
@@ -191,6 +190,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       }
     }
   }, {
+    key: "handleDelItem",
+    value: function handleDelItem(id) {
+      var _this3 = this;
+
+      var payload = {
+        productId: id
+      };
+      this.props.dispatchDeleteProduct(payload).then(function (response) {
+        console.log('response', response);
+        _this3.init();
+      });
+      console.log('result', payload);
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -199,6 +212,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       ;
 
       var newFilterList = this.__state.newFilterList;
+
 
       Object.assign(this.__state, {});
       return this.__state;
@@ -214,8 +228,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   "dispatchProductList": {
     "type": null,
     "value": null
+  },
+  "dispatchDeleteProduct": {
+    "type": null,
+    "value": null
   }
-}, _class2.$$events = ["handleChange", "handleSaveItem"], _temp2)) || _class);
+}, _class2.$$events = ["handleDelItem", "handleChange", "handleSaveItem"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

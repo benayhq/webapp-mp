@@ -55,3 +55,6 @@ var API_JPUSH_AUTH = exports.API_JPUSH_AUTH = HOST + '/api/v1/im/auth-payload';
 
 // 预支付订单.
 var API_PRE_PAY = exports.API_PRE_PAY = HOST + '/api/v1/reservation/prepay';
+
+// 删除产品
+var API_DELETE_PRODUCT = exports.API_DELETE_PRODUCT = HOST + '/api/v1/product/delete';

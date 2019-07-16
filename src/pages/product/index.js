@@ -23,7 +23,6 @@ class Index extends Component{
   }
 
   handleChange (value) {
-    console.log('value',value);
     this.setState({
       checkedList: value
     })
@@ -94,20 +93,33 @@ class Index extends Component{
       })
     }
   }
+
+  handleDelItem(id){
+    let payload = {
+      productId:id
+    };
+    this.props.dispatchDeleteProduct(payload).then((response)=>{
+      console.log('response',response);
+      this.init();
+    });
+    console.log('result',payload);
+  }
   
   render () {
     const {newFilterList} = this.state;
+
     return (
       <View className="mp-product">
-                <AtMessage/>
-                <CheckBox
-                  options={newFilterList}
-                  selectedList={this.state.checkedList}
-                  onChange={this.handleChange.bind(this)}
-                />
-                <View className="mp-product__save">
-                   <View onClick={this.handleSaveItem}>保  存</View>
-                </View>
+            <AtMessage/>
+            <CheckBox
+              onDelete={this.handleDelItem.bind(this)}
+              options={newFilterList}
+              selectedList={this.state.checkedList}
+              onChange={this.handleChange.bind(this)}
+            />
+            <View className="mp-product__save">
+                <View onClick={this.handleSaveItem}>保  存</View>
+            </View>
       </View>
     )
   }

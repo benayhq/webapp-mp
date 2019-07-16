@@ -32,43 +32,43 @@ class EditProduct extends Component{
            isOpened:false,
            status:'',
            duration:2000,
-           location:''
+           location:'',
+           activeId:0
         };
 
         this.initCategory();
    }
 
    initCategory(){
-    var payload ={
-    };
+      var payload ={
+      };
 
-    var that = this;
-    this.props.dispatchCategoryList(payload).then((response)=>{
+      var that = this;
+      this.props.dispatchCategoryList(payload).then((response)=>{
 
-      var list = response.content;
-      var firstList = [],secondList = [],thirdList = [];
+        var list = response.content;
+        var firstList = [],secondList = [],thirdList = [];
 
-      list.map((category,index)=>{
-        firstList.push(category.name);
+        list.map((category,index)=>{
+          firstList.push(category.name);
+          
+          if(category.son && category.son.length > 0){
+            category.son.map((categoryChild,index)=>{
+              secondList.push(categoryChild.name);
+              if(categoryChild.son && categoryChild.son.length > 0){
+                  categoryChild.son.map((child,index)=>{
+                    thirdList.push(child.name);
+                  })
+              }
+            });
+          }
+        });
         
-        if(category.son && category.son.length > 0){
-          category.son.map((categoryChild,index)=>{
-            secondList.push(categoryChild.name);
-            if(categoryChild.son && categoryChild.son.length > 0){
-                categoryChild.son.map((child,index)=>{
-                  thirdList.push(child.name);
-                })
-            }
-          });
-        }
+        this.setState({
+          multiSelector:[firstList,secondList,thirdList]
+        });
+        console.log('response',response);
       });
-
-      this.setState({
-        multiSelector:[firstList,secondList,thirdList]
-      });
-      console.log('response',response);
-    });
-  
    }
 
    handleAlert = (type,message) => {
@@ -116,9 +116,16 @@ class EditProduct extends Component{
       }
    }
 
-   async handleSaveProduct(){
-      const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location} = this.state;
+   componentWillMount(){
+     let activeId = this.$router.params.activeId;
 
+     console.log('activeId',activeId);
+   }
+
+   async handleSaveProduct(){
+      const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location,activeId} = this.state;
+
+      
       if(productName===''){
         this.handleAlert('error','名称不能为空');
         return;
@@ -159,27 +166,31 @@ class EditProduct extends Component{
         "projectName": productName,
         "status": "string"
       };
-      console.log('payload',payload);
 
-      this.props.dispatchCreateProduct(payload).then((res)=>{
-        if(res.result === 'success'){
-          this.setState({
-            isOpened:true,
-            toastText:'添加成功',
-            status: 'success'
-          });
-          Taro.navigateTo({
-            url:'/pages/product/index'
-          })
-        }
-        else{
-          this.setState({
-            isOpened:true,
-            toastText:res.error,
-            status: 'error'
-          })
-        }
-      });
+      if(activeId>0){
+        // todo:edit
+      }
+      else{
+        this.props.dispatchCreateProduct(payload).then((res)=>{
+          if(res.result === 'success'){
+            this.setState({
+              isOpened:true,
+              toastText:'添加成功',
+              status: 'success'
+            });
+            Taro.navigateTo({
+              url:'/pages/product/index'
+            })
+          }
+          else{
+            this.setState({
+              isOpened:true,
+              toastText:res.error,
+              status: 'error'
+            })
+          }
+        });
+      }
     }
     
     handleProductChange(productName){
@@ -291,15 +302,12 @@ class EditProduct extends Component{
                     onChange={this.handlePreAmountChange.bind(this)}
                 />
                 </AtForm>
-
                 <View className="mp-edit-product__warn-tips">
                     温馨提醒：
                 </View>
-
                 <View className="mp-edit-product__warn-info">
                   预定金优先由平台代为收取,客户当面核销后转入您的微信余额。
                 </View>
-
                 <Button onClick={this.handleSaveProduct}>保存</Button>
             </View>
         )

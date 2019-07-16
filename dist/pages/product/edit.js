@@ -52,7 +52,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "dispatchCategoryList", "dispatchUploadConfig", "dispatchCreateProduct"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "activeId", "dispatchCategoryList", "dispatchUploadConfig", "dispatchCreateProduct"], _this.config = {
       navigationBarTitleText: '新增产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -127,7 +127,8 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         isOpened: false,
         status: '',
         duration: 2000,
-        location: ''
+        location: '',
+        activeId: 0
       };
 
       this.initCategory();
@@ -169,18 +170,25 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var activeId = this.$router.params.activeId;
+
+      console.log('activeId', activeId);
+    }
+  }, {
     key: "handleSaveProduct",
     value: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var _this3 = this;
 
-        var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, result, payload;
+        var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, activeId, result, payload;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location;
+                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, activeId = _state.activeId;
 
                 if (!(productName === '')) {
                   _context.next = 4;
@@ -246,28 +254,29 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "status": "string"
                 };
 
-                console.log('payload', payload);
 
-                this.props.dispatchCreateProduct(payload).then(function (res) {
-                  if (res.result === 'success') {
-                    _this3.setState({
-                      isOpened: true,
-                      toastText: '添加成功',
-                      status: 'success'
-                    });
-                    _index2.default.navigateTo({
-                      url: '/pages/product/index'
-                    });
-                  } else {
-                    _this3.setState({
-                      isOpened: true,
-                      toastText: res.error,
-                      status: 'error'
-                    });
-                  }
-                });
+                if (!(activeId > 0)) {
+                  this.props.dispatchCreateProduct(payload).then(function (res) {
+                    if (res.result === 'success') {
+                      _this3.setState({
+                        isOpened: true,
+                        toastText: '添加成功',
+                        status: 'success'
+                      });
+                      _index2.default.navigateTo({
+                        url: '/pages/product/index'
+                      });
+                    } else {
+                      _this3.setState({
+                        isOpened: true,
+                        toastText: res.error,
+                        status: 'error'
+                      });
+                    }
+                  });
+                }
 
-              case 22:
+              case 21:
               case "end":
                 return _context.stop();
             }

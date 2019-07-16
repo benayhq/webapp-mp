@@ -18,10 +18,6 @@ var _index3 = require("../../npm/classnames/index.js");
 
 var _index4 = _interopRequireDefault(_index3);
 
-var _index5 = require("../../npm/prop-types/index.js");
-
-var _index6 = _interopRequireDefault(_index5);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -86,19 +82,10 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "handleProductDelete",
-    value: function handleProductDelete(id, e) {
-      // TODO:
-      console.log('id', id);
+    value: function handleProductDelete(id) {
+      console.log('e', this.props);
+      this.__triggerPropsFn("onDelete", [null].concat([id]));
     }
-  }, {
-    key: "handleClose",
-    value: function handleClose() {}
-  }, {
-    key: "handleCancel",
-    value: function handleCancel() {}
-  }, {
-    key: "handleConfirm",
-    value: function handleConfirm() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -111,7 +98,8 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
           className = _props2.className,
           customStyle = _props2.customStyle,
           selectedList = _props2.selectedList,
-          options = _props2.options;
+          options = _props2.options,
+          onDelete = _props2.onDelete;
 
 
       var rootCls = (0, _index4.default)('mp-checkbox', className);
@@ -166,6 +154,10 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   },
+  "__fn_onDelete": {
+    "type": null,
+    "value": null
+  },
   "className": {
     "type": null,
     "value": null
@@ -173,27 +165,39 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
   "customStyle": {
     "type": null,
     "value": null
+  },
+  "onDelete": {
+    "type": null,
+    "value": null
   }
 }, _class.$$events = ["handleClick", "handleProductEdit", "handleProductDelete"], _temp2);
+// CheckBox.defaultProps = {
+//     customStyle:'',
+//     className:'',
+//     data:[],
+//     options:[],
+//     selectedList:[],
+//     onChange () {},
+//     delItem (){}
+// };
+
+// CheckBox.propTypes = {
+//     customStyle: PropTypes.oneOfType([
+//         PropTypes.object,
+//         PropTypes.string
+//     ]),
+//     className: PropTypes.oneOfType([
+//         PropTypes.array,
+//         PropTypes.string
+//     ]),
+//     data: PropTypes.array,
+//     options: PropTypes.array,
+//     selectedList: PropTypes.array,
+//     onChange: PropTypes.func,
+//     delItem:PropTypes.func
+// }
 
 
-CheckBox.defaultProps = {
-  customStyle: '',
-  className: '',
-  data: [],
-  options: [],
-  selectedList: [],
-  onChange: function onChange() {}
-};
-
-CheckBox.propTypes = {
-  customStyle: _index6.default.oneOfType([_index6.default.object, _index6.default.string]),
-  className: _index6.default.oneOfType([_index6.default.array, _index6.default.string]),
-  data: _index6.default.array,
-  options: _index6.default.array,
-  selectedList: _index6.default.array,
-  onChange: _index6.default.func
-};
 exports.default = CheckBox;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(CheckBox));

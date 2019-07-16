@@ -51,3 +51,5 @@ export const API_JPUSH_AUTH = `${HOST}/api/v1/im/auth-payload`;
 // 预支付订单.
 export const API_PRE_PAY = `${HOST}/api/v1/reservation/prepay`;
 
+// 删除产品
+export const API_DELETE_PRODUCT = `${HOST}/api/v1/product/delete`;

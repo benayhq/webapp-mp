@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.dispatchDeleteProduct = exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -99,6 +99,17 @@ var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
   return (0, _redux.createAction)({
     type: _constants.UPDATE_USER_INFO,
     url: _api.API_USER_INFO,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchDeleteProduct = exports.dispatchDeleteProduct = function dispatchDeleteProduct(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_PRODUCT_DELETE,
+    url: _api.API_DELETE_PRODUCT + "?productId=" + payload.productId,
     fetchOptions: {
       method: 'POST'
     },

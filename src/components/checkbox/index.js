@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 export default class CheckBox extends Component{
+    constructor (props) {
+        super(props)
+    }
 
     handleClick(idx){
         const {selectedList,options} = this.props;
@@ -30,21 +33,9 @@ export default class CheckBox extends Component{
         });
     }
 
-    handleProductDelete(id,e){
-        // TODO:
-        console.log('id',id);
-    }
-
-    handleClose(){
-
-    }
-
-    handleCancel(){
-
-    }
-
-    handleConfirm(){
-
+    handleProductDelete(id){
+        console.log('e',this.props);
+        this.props.onDelete(id);
     }
 
     render(){
@@ -52,7 +43,8 @@ export default class CheckBox extends Component{
             className,
             customStyle,
             selectedList,
-            options
+            options,
+            onDelete
         } = this.props;
 
         const rootCls = classNames('mp-checkbox',className);
@@ -121,27 +113,28 @@ export default class CheckBox extends Component{
         )
     }
 }
+// CheckBox.defaultProps = {
+//     customStyle:'',
+//     className:'',
+//     data:[],
+//     options:[],
+//     selectedList:[],
+//     onChange () {},
+//     delItem (){}
+// };
 
-CheckBox.defaultProps = {
-    customStyle:'',
-    className:'',
-    data:[],
-    options:[],
-    selectedList:[],
-    onChange () {},
-};
-
-CheckBox.propTypes = {
-    customStyle: PropTypes.oneOfType([
-        PropTypes.object,
-        PropTypes.string
-    ]),
-    className: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.string
-    ]),
-    data: PropTypes.array,
-    options: PropTypes.array,
-    selectedList: PropTypes.array,
-    onChange: PropTypes.func
-}
+// CheckBox.propTypes = {
+//     customStyle: PropTypes.oneOfType([
+//         PropTypes.object,
+//         PropTypes.string
+//     ]),
+//     className: PropTypes.oneOfType([
+//         PropTypes.array,
+//         PropTypes.string
+//     ]),
+//     data: PropTypes.array,
+//     options: PropTypes.array,
+//     selectedList: PropTypes.array,
+//     onChange: PropTypes.func,
+//     delItem:PropTypes.func
+// }
