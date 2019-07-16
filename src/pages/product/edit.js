@@ -169,8 +169,7 @@ class EditProduct extends Component{
         "price": productPrice,
         "projectId": 1,
         "projectLevel": 0,
-        "projectName": productName,
-        "status": "string"
+        "projectName": productName
       };
 
       if(productId>0){

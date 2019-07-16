@@ -58,3 +58,6 @@ var API_PRE_PAY = exports.API_PRE_PAY = HOST + '/api/v1/reservation/prepay';
 
 // 删除产品
 var API_DELETE_PRODUCT = exports.API_DELETE_PRODUCT = HOST + '/api/v1/product/delete';
+
+// 初始化收益
+var API_INIT_AMOUNT = exports.API_INIT_AMOUNT = HOST + '/api/v1/reservation/plan';

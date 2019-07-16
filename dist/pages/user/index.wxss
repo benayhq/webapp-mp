@@ -278,7 +278,7 @@
     font-weight: 400;
     color: white;
     line-height: 50rpx;
-    padding-top: 31rpx; }
+    padding-top: 39rpx; }
   .mp-user__user-level {
     width: 149rpx;
     height: 33rpx;
@@ -311,7 +311,7 @@
     font-weight: 400;
     color: white;
     line-height: 67rpx;
-    padding: 25rpx 0 24rpx 0;
+    padding: 36rpx 0 24rpx 0;
     text-align: right;
     margin-right: 20rpx; }
   .mp-user__money-order {

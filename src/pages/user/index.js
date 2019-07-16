@@ -2,10 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import UserOrder from './order';
 import InCome from './income';
-import Publish from './publish';
-import Info from './info';
-import Panel from './panel';
-import ChangeUser from './switch';
 import Creator from './common/create';
 import './index.scss';
 import * as actions from './store/actionCreators';
@@ -26,14 +22,15 @@ class Index extends Component{
       isAgent:false,
       list:[],
       orders:[],
+      profit:{},
       userName:'',
       showUserText:'切换为咨询师',
       avatarUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
     }
-    this.init();
   }
 
   componentDidMount(){
+      this.init();
       var that = this;
       Taro.getStorage({key:'authinfo'}).then(res=>{
           console.log('res.data.avatarUrl',res.data.avatarUrl);
@@ -47,6 +44,7 @@ class Index extends Component{
   init(){
     this.autoLogin();
     this.bindEvent();
+    this.initReservationPlan();
     let creatorInstance = new Creator();
     this.setState({
         isAgent:false,
@@ -55,8 +53,15 @@ class Index extends Component{
         user:creatorInstance.factory(false).getUserInfo()
     })
   }
-  
-  
+
+  initReservationPlan(){
+    this.props.dispatchReservationPlan().then((response)=>{
+      this.setState({
+        profit:response.content
+      });
+    })
+  }
+
   bindEvent(){
       this.handleChangeState = this.handleChangeState.bind(this);
   }
@@ -66,31 +71,6 @@ class Index extends Component{
      return result;
   }
 
-
-  initMessage(){
-
-    try{
-      var JIM = new JMessage({
-        debug:false
-      });
-      console.log('JIM',JIM);
-      JIM.init({
-        "appkey":"bb62a48cc54e300e2e58fa0b",
-        "random_str":  "ed23053f70fe4f879c8611608260c834",
-        "signature":  'ff36d4b8ea6dbcc2d342aa500e93a195',
-        "timestamp":  1562934618063,
-        "flag": 1
-      }).onSuccess(function(data) {
-        console.log('success:' + JSON.stringify(data));
-      }).onFail(function(data) {
-      console.log('error:' + JSON.stringify(data))
-      });
-    }
-    catch(e){
-      console.log("exception",e)
-    }
-  }
-  
   autoLogin(){
       var currentObj = this;
       wx.login({
@@ -183,12 +163,10 @@ class Index extends Component{
     })
   }
 
-  changeValue = () =>{
-  }
 
   render(){
 
-    const {isAgent,avatarUrl,userName} = this.state;
+    const {isAgent,avatarUrl,userName,profit} = this.state;
     
     return (
       <View className='mp-user'>
@@ -198,20 +176,22 @@ class Index extends Component{
                         </image>
                     <View className="mp-user__info-message">
                         <View className="mp-user__user-username">{userName}</View>
-                        {/* <View className="mp-user__user-level">
-                        </View> */}
+                        {profit && profit.creditLevel && <View className="mp-user__user-level">
+                            {profit? `信用等级:${profit.creditLevel}`:''}
+                        </View>
+                        } 
                         <View className="mp-user__user-level-up"> </View>
                     </View>
                     {
                         isAgent && 
                         <View className="mp-user__info-money">
-                            <View className="mp-user__money-amount">1000</View>
+                            <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
                             <View className="mp-user__money-order">已结定金</View>
                         </View>
                     }
        </View>
         {/* <Info user={this.state.user}  isAgent={isAgent}/> */}
-       { isAgent && <InCome/> }  
+       { isAgent && <InCome profit={profit}/> }  
        { isAgent &&     <View className="mp-user__publish">
                 <View className="mp-user__publish-introduce">让客户来为您拓展客户</View>
                 <View className="mp-user__publish-action">
@@ -224,7 +204,6 @@ class Index extends Component{
             </View>
         }  
         <UserOrder list={this.state.orders}/>
-        {/* <Panel list={this.state.list}/> */}
         <View className="mp-user__list">
           <AtList>
             {

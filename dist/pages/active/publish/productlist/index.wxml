@@ -13,7 +13,7 @@
                         <view>
                             <view class="product-item margin20">{{item.name}}</view>
                             <view class="product-item font">{{item.price}}</view>
-                            <view class="product-item textfont">预定金: <text class="amount">200</text>
+                            <view class="product-item textfont">预定金: <text class="amount">{{item.advance}}</text>
                             </view>
                         </view>
                     </view>

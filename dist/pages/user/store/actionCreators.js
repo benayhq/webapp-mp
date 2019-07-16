@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -53,5 +53,15 @@ var dispatchUploadConfig = exports.dispatchUploadConfig = function dispatchUploa
       method: 'GET'
     },
     payload: payload
+  });
+};
+
+var dispatchReservationPlan = exports.dispatchReservationPlan = function dispatchReservationPlan() {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_USER_AMOUNT,
+    url: _api.API_INIT_AMOUNT,
+    fetchOptions: {
+      method: 'POST'
+    }
   });
 };

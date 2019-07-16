@@ -5,14 +5,12 @@ import './index.scss'
 
 export default class ProductList extends Component{
 
-
-
     selectProduct(){
         Taro.navigateTo({
             url:'/pages/product/index'
           })
     }
-
+    
     render(){
         return (
             <View>
@@ -39,7 +37,7 @@ export default class ProductList extends Component{
                                             <View>
                                                 <View className="product-item margin20"> {item.name} </View>
                                                 <View className="product-item font"> {item.price} </View>
-                                                <View className="product-item textfont"> 预定金: <Text className="amount">200</Text> </View>
+                                                <View className="product-item textfont"> 预定金: <Text className="amount">{item.advance}</Text> </View>
                                             </View>
                                         </View>
                                     </View>

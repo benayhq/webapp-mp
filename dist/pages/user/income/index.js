@@ -32,13 +32,13 @@ var InCome = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InCome.__proto__ || Object.getPrototypeOf(InCome)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InCome.__proto__ || Object.getPrototypeOf(InCome)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["profit"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(InCome, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(InCome.prototype.__proto__ || Object.getPrototypeOf(InCome.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(InCome.prototype.__proto__ || Object.getPrototypeOf(InCome.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "_createData",
@@ -53,7 +53,12 @@ var InCome = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return InCome;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class.properties = {
+  "profit": {
+    "type": null,
+    "value": null
+  }
+}, _class.$$events = [], _temp2);
 exports.default = InCome;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(InCome));

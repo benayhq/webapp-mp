@@ -4,17 +4,20 @@
             <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" __triggerObserer="{{ _triggerObserer }}" src="{{avatarUrl}}"></image>
             <view class="mp-user__info-message">
                 <view class="mp-user__user-username">{{userName}}</view>
+                <block wx:if="{{profit && profit.creditLevel}}">
+                    <view class="mp-user__user-level">{{profit ? '信用等级:' + profit.creditLevel : ''}}</view>
+                </block>
                 <view class="mp-user__user-level-up"></view>
             </view>
             <block wx:if="{{isAgent}}">
                 <view class="mp-user__info-money">
-                    <view class="mp-user__money-amount">1000</view>
+                    <view class="mp-user__money-amount">{{profit ? profit.verifyEarnest : 0}}</view>
                     <view class="mp-user__money-order">已结定金</view>
                 </view>
             </block>
         </view>
         <block wx:if="{{isAgent}}">
-            <in-come __triggerObserer="{{ _triggerObserer }}"></in-come>
+            <in-come profit="{{profit}}" __triggerObserer="{{ _triggerObserer }}"></in-come>
         </block>
         <block wx:if="{{isAgent}}">
             <view class="mp-user__publish">

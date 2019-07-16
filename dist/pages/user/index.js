@@ -56,13 +56,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "isAgent", "userName", "list", "orders", "showUserText", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "userName", "list", "orders", "showUserText", "dispatchReservationPlan", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.changeValue = function () {}, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -73,15 +73,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         isAgent: false,
         list: [],
         orders: [],
+        profit: {},
         userName: '',
         showUserText: '切换为咨询师',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
-      this.init();
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.init();
       var that = this;
       _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
         console.log('res.data.avatarUrl', res.data.avatarUrl);
@@ -96,12 +97,24 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function init() {
       this.autoLogin();
       this.bindEvent();
+      this.initReservationPlan();
       var creatorInstance = new _create2.default();
       this.setState({
         isAgent: false,
         list: creatorInstance.factory(false).getPanelList(),
         orders: creatorInstance.factory(false).getList(),
         user: creatorInstance.factory(false).getUserInfo()
+      });
+    }
+  }, {
+    key: "initReservationPlan",
+    value: function initReservationPlan() {
+      var _this2 = this;
+
+      this.props.dispatchReservationPlan().then(function (response) {
+        _this2.setState({
+          profit: response.content
+        });
       });
     }
   }, {
@@ -137,30 +150,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       return getAuthInfo;
     }()
-  }, {
-    key: "initMessage",
-    value: function initMessage() {
-
-      try {
-        var JIM = new JMessage({
-          debug: false
-        });
-        console.log('JIM', JIM);
-        JIM.init({
-          "appkey": "bb62a48cc54e300e2e58fa0b",
-          "random_str": "ed23053f70fe4f879c8611608260c834",
-          "signature": 'ff36d4b8ea6dbcc2d342aa500e93a195',
-          "timestamp": 1562934618063,
-          "flag": 1
-        }).onSuccess(function (data) {
-          console.log('success:' + JSON.stringify(data));
-        }).onFail(function (data) {
-          console.log('error:' + JSON.stringify(data));
-        });
-      } catch (e) {
-        console.log("exception", e);
-      }
-    }
   }, {
     key: "autoLogin",
     value: function autoLogin() {
@@ -210,7 +199,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleAuthClick",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-        var _this2 = this;
+        var _this3 = this;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -248,12 +237,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       name: userInfo.nickName
                     };
 
-                    _this2.setState({
+                    _this3.setState({
                       avatarUrl: userInfo.avatarUrl,
                       userName: userInfo.nickName
                     });
 
-                    _this2.props.UpdateUserInfo(payload).then(function (res) {
+                    _this3.props.UpdateUserInfo(payload).then(function (res) {
                       if (res.result === "success") {
                         (0, _jump2.default)({ url: '/pages/active/publish/index' });
                       }
@@ -310,7 +299,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _state = this.__state,
           isAgent = _state.isAgent,
           avatarUrl = _state.avatarUrl,
-          userName = _state.userName;
+          userName = _state.userName,
+          profit = _state.profit;
 
 
       Object.assign(this.__state, {});
@@ -320,6 +310,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
+  "dispatchReservationPlan": {
+    "type": null,
+    "value": null
+  },
   "UpdateUserInfo": {
     "type": null,
     "value": null

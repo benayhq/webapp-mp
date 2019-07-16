@@ -256,8 +256,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "price": productPrice,
                   "projectId": 1,
                   "projectLevel": 0,
-                  "projectName": productName,
-                  "status": "string"
+                  "projectName": productName
                 };
 
 

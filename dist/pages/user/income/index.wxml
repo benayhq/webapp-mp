@@ -1,15 +1,15 @@
 <block>
     <view class="mp-user__income">
         <view class="mp-user__income-left">
-            <view class="mp-user__income-text">30000</view>
+            <view class="mp-user__income-text">{{profit ? profit.verifyingEarnest : 0}}</view>
             <view class="mp-user__income-text-desc">待结定金</view>
         </view>
         <view class="mp-user__income-middle">
-            <view class="mp-user__income-text">300</view>
+            <view class="mp-user__income-text">{{profit ? profit.billAmount : 0}}</view>
             <view class="mp-user__income-text-desc">累计成单</view>
         </view>
         <view class="mp-user__income-right">
-            <view class="mp-user__income-text">30000</view>
+            <view class="mp-user__income-text">{{profit ? profit.planEarnest : 0}}</view>
             <view class="mp-user__income-text-desc">预计收入</view>
         </view>
     </view>
