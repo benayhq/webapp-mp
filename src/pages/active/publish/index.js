@@ -124,7 +124,7 @@ export default class Index extends Component {
         docLocations:docLocations
       });
     }
-    
+
   }
 
   init(){
@@ -142,7 +142,6 @@ export default class Index extends Component {
   }
 
   HandlePickerChange (files){
-    // console.log('files',files);
       this.setState({ files });
       this.props.dispatchCacheTempFiles(files);
 
@@ -317,7 +316,7 @@ export default class Index extends Component {
     });
     this.props.dispatchEndTime(e.detail.value);
   }
-
+  
   createProduct(){
     Taro.navigateTo({
       url:'/pages/product/edit'

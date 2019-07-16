@@ -325,27 +325,40 @@
     color: white;
     line-height: 33rpx; }
   .mp-user__publish {
-    margin: 19rpx;
-    height: 96rpx;
-    background: white;
-    border-radius: 8rpx;
-    border: 1rpx solid white; }
+    margin: 15rpx;
+    background: url("http://i1.fuimg.com/693434/ddbbf116045c5dae.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-origin: content-box;
+    height: 166rpx; }
     .mp-user__publish-introduce {
       position: relative;
-      left: 47rpx;
-      top: 30rpx;
+      left: 210rpx;
+      top: 40rpx;
       width: 383rpx;
       height: 40rpx;
-      font-size: 28rpx;
       font-family: PingFangSC-Regular;
       font-weight: 400;
-      color: black;
+      color: #FFFFFF;
       line-height: 40rpx;
-      -webkit-text-stroke: 1rpx black; }
+      z-index: 1000;
+      font-size: 32rpx; }
+    .mp-user__publish-introduce-desc {
+      position: relative;
+      left: 270rpx;
+      top: 60rpx;
+      width: 383rpx;
+      height: 40rpx;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 40rpx;
+      z-index: 1000;
+      font-size: 32rpx; }
     .mp-user__publish-action {
       position: relative;
-      right: 32rpx;
-      top: -21rpx;
+      right: 50rpx;
+      top: -19rpx;
       float: right;
       width: 140rpx;
       height: 60rpx;
@@ -355,3 +368,7 @@
   .mp-user__list {
     height: auto;
     margin: 20rpx; }
+
+.at-button--primary {
+  border: 1PX solid #FF9C5E;
+  background: #FF9C5E; }

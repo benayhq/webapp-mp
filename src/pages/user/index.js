@@ -184,13 +184,14 @@ class Index extends Component{
         {/* <Info user={this.state.user}  isAgent={isAgent}/> */}
        { isAgent && <InCome profit={profit}/> }  
        { isAgent &&     <View className="mp-user__publish">
-                <View className="mp-user__publish-introduce">让客户来为您拓展客户</View>
-                <View className="mp-user__publish-action">
-                <AtButton 
-                   text='微信登录'
-                   openType='getUserInfo'
-                   onGetUserInfo={this.handleAuthClick}
-                type='primary' size='small'>发布活动</AtButton>
+       {/* <View className="mp-user__publish-introduce">让客户来为您拓展客户</View> */}
+                <View className="mp-user__publish-introduce">助力朋友圈获客</View>
+                <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
+                <View className="mp-user__publish-action" >
+                    <AtButton 
+                      text='微信登录'
+                      openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
+                    type='primary' size='small'>发布活动</AtButton>
                 </View>
             </View>
         }  

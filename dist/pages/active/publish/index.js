@@ -242,7 +242,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function HandlePickerChange(files) {
       var _this3 = this;
 
-      // console.log('files',files);
       this.setState({ files: files });
       this.props.dispatchCacheTempFiles(files);
 

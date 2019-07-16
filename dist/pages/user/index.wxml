@@ -21,7 +21,8 @@
         </block>
         <block wx:if="{{isAgent}}">
             <view class="mp-user__publish">
-                <view class="mp-user__publish-introduce">让客户来为您拓展客户</view>
+                <view class="mp-user__publish-introduce">助力朋友圈获客</view>
+                <view class="mp-user__publish-introduce-desc">拼团活动老带新</view>
                 <view class="mp-user__publish-action">
                     <at-button text="微信登录" __triggerObserer="{{ _triggerObserer }}" openType="getUserInfo" bindongetuserinfo="handleAuthClick" type="primary" size="small" __fn_onGetUserInfo="{{true}}">发布活动</at-button>
                 </view>
