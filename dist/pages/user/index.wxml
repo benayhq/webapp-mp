@@ -4,7 +4,6 @@
             <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" __triggerObserer="{{ _triggerObserer }}" src="{{avatarUrl}}"></image>
             <view class="mp-user__info-message">
                 <view class="mp-user__user-username">{{userName}}</view>
-                <view class="mp-user__user-level">ddd</view>
                 <view class="mp-user__user-level-up"></view>
             </view>
             <block wx:if="{{isAgent}}">
@@ -26,7 +25,11 @@
             </view>
         </block>
         <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>
-        <panel list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></panel>
+        <view class="mp-user__list">
+            <at-list __triggerObserer="{{ _triggerObserer }}">
+                <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx"></at-list-item>
+            </at-list>
+        </view>
         <view class="mp-user-changeuser" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
     </view>
 </block>

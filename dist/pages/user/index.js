@@ -40,9 +40,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import JPush from '../../utils/jpush';
-var JMessage = require('./../../utils/jmessage-wxapplet-sdk-1.4.0.min.js');
-
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -97,24 +94,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "init",
     value: function init() {
-      this.initState();
       this.autoLogin();
       this.bindEvent();
-    }
-  }, {
-    key: "initState",
-    value: function initState() {
-      this.initPanelList();
-    }
-  }, {
-    key: "initPanelList",
-    value: function initPanelList(isAgent) {
       var creatorInstance = new _create2.default();
       this.setState({
-        isAgent: isAgent,
-        list: creatorInstance.factory(isAgent).getPanelList(),
-        orders: creatorInstance.factory(isAgent).getList(),
-        user: creatorInstance.factory(isAgent).getUserInfo()
+        isAgent: false,
+        list: creatorInstance.factory(false).getPanelList(),
+        orders: creatorInstance.factory(false).getList(),
+        user: creatorInstance.factory(false).getUserInfo()
       });
     }
   }, {
@@ -229,6 +216,23 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                // wx.login({
+                //   success (res) {
+                //     if (res.code) {
+                //       console.log('res.code',res.code);
+                //       //发起网络请求
+                //       wx.request({
+                //         url: 'https://test.com/onLogin',
+                //         data: {
+                //           code: res.code
+                //         }
+                //       })
+                //     } else {
+                //       console.log('登录失败！' + res.errMsg)
+                //     }
+                //   }
+                // })
+                // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
                       userInfo = res.userInfo;
@@ -282,7 +286,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.props.ChangeToAgent({});
       var isAgent = this.state.isAgent;
 
-      this.initPanelList(isAgent);
+      console.log('isAgent', isAgent);
+      var creatorInstance = new _create2.default();
+      this.setState({
+        isAgent: !isAgent,
+        list: creatorInstance.factory(!isAgent).getPanelList(),
+        orders: creatorInstance.factory(!isAgent).getList(),
+        user: creatorInstance.factory(!isAgent).getUserInfo()
+      });
       this.setState({
         isAgent: !isAgent,
         showUserText: !isAgent ? '切换为用户' : '切换为咨询师'
@@ -314,6 +325,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "value": null
   },
   "ChangeToAgent": {
+    "type": null,
+    "value": null
+  },
+  "list": {
     "type": null,
     "value": null
   }

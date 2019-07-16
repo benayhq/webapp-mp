@@ -251,17 +251,3 @@
     font-weight: 400;
     color: #919191;
     line-height: 40rpx; }
-  .mp-user__controlpanel-active {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-product {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-customer {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-account {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-invite {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-close {
-    width: 177.5rpx; }
-  .mp-user__controlpanel-appoint {
-    width: 177.5rpx; }

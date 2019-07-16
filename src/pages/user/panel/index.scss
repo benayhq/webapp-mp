@@ -35,33 +35,6 @@ $panelBgColor:rgba(255,255,255,1);
             color:rgba(145,145,145,1);
             line-height:40px;
         }
-        
-        &-active{
-            @include panelBlockWidth;
-        }
-
-        &-product{
-            @include panelBlockWidth;
-        }
-
-        &-customer{
-            @include panelBlockWidth;
-        }
-
-        &-account{
-            @include panelBlockWidth;
-        }
-
-        &-invite{
-            @include panelBlockWidth;
-        }
-
-        &-close{
-            @include panelBlockWidth;
-        }
-
-        &-appoint{
-            @include panelBlockWidth;
-        }
+       
     }
 }

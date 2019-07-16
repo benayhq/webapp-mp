@@ -10,10 +10,8 @@ import Creator from './common/create';
 import './index.scss';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
-import { AtButton } from 'taro-ui';
+import { AtButton,AtList, AtListItem } from 'taro-ui';
 import jump from '../utils/jump';
-// import JPush from '../../utils/jpush';
-var JMessage = require('./../../utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
 @connect(state=>state.user,actions)
 class Index extends Component{
@@ -47,27 +45,19 @@ class Index extends Component{
   }
 
   init(){
-    this.initState();
     this.autoLogin();
     this.bindEvent();
+    let creatorInstance = new Creator();
+    this.setState({
+        isAgent:false,
+        list:creatorInstance.factory(false).getPanelList(),
+        orders:creatorInstance.factory(false).getList(),
+        user:creatorInstance.factory(false).getUserInfo()
+    })
   }
   
-
-  initState(){
-     this.initPanelList();
-  }
-
-  initPanelList(isAgent){
-      let creatorInstance = new Creator();
-      this.setState({
-          isAgent:isAgent,
-          list:creatorInstance.factory(isAgent).getPanelList(),
-          orders:creatorInstance.factory(isAgent).getList(),
-          user:creatorInstance.factory(isAgent).getUserInfo()
-      })
-  }
-
-    bindEvent(){
+  
+  bindEvent(){
       this.handleChangeState = this.handleChangeState.bind(this);
   }
 
@@ -121,6 +111,23 @@ class Index extends Component{
   }
   
   async handleAuthClick(){
+    // wx.login({
+    //   success (res) {
+    //     if (res.code) {
+    //       console.log('res.code',res.code);
+    //       //发起网络请求
+    //       wx.request({
+    //         url: 'https://test.com/onLogin',
+    //         data: {
+    //           code: res.code
+    //         }
+    //       })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
+    // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
@@ -156,7 +163,14 @@ class Index extends Component{
   handleChangeState(){
       this.props.ChangeToAgent({});
       const {isAgent} = this.state;
-      this.initPanelList(isAgent);
+      console.log('isAgent',isAgent);
+      let creatorInstance = new Creator();
+      this.setState({
+          isAgent:!isAgent,
+          list:creatorInstance.factory(!isAgent).getPanelList(),
+          orders:creatorInstance.factory(!isAgent).getList(),
+          user:creatorInstance.factory(!isAgent).getUserInfo()
+      })
       this.setState({
           isAgent:!isAgent,
           showUserText:!isAgent? '切换为用户' : '切换为咨询师'
@@ -184,9 +198,8 @@ class Index extends Component{
                         </image>
                     <View className="mp-user__info-message">
                         <View className="mp-user__user-username">{userName}</View>
-                        <View className="mp-user__user-level">
-                              ddd
-                        </View>
+                        {/* <View className="mp-user__user-level">
+                        </View> */}
                         <View className="mp-user__user-level-up"> </View>
                     </View>
                     {
@@ -211,11 +224,24 @@ class Index extends Component{
             </View>
         }  
         <UserOrder list={this.state.orders}/>
-        <Panel list={this.state.list}/>
+        {/* <Panel list={this.state.list}/> */}
+        <View className="mp-user__list">
+          <AtList>
+            {
+                this.props.list.map(item=>(
+                    <AtListItem
+                    title={item.text}
+                    arrow='right'
+                    thumb={item.url}
+                    />
+                ))
+            }
+          </AtList>
+        </View>
+
         <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
                 {this.state.showUserText} 
         </View>
-        {/* <ChangeUser role={userInfo.role}/> */}
       </View>
     )
   }

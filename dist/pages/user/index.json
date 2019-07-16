@@ -3,7 +3,8 @@
     "in-come": "./income/index",
     "at-button": "../../npm/taro-ui/dist/weapp/components/button/index",
     "user-order": "./order/index",
-    "panel": "./panel/index"
+    "at-list": "../../npm/taro-ui/dist/weapp/components/list/index",
+    "at-list-item": "../../npm/taro-ui/dist/weapp/components/list/item/index"
   },
   "navigationBarTitleText": "个人中心"
 }

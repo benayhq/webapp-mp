@@ -37,9 +37,10 @@ var User = function () {
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-comment',
         text: '待评价'
-      }, {
-        icon: 'mp-user__ordernav-icon mp-icon mp-icon-refund',
-        text: '退款'
+        // {
+        //     icon:'mp-user__ordernav-icon mp-icon mp-icon-refund',
+        //     text:'退款'
+        // }
       }];
     }
   }, {
@@ -48,27 +49,27 @@ var User = function () {
       return [{
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-footer',
         text: '浏览历史',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/35232d302546d311.png'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-collect',
         text: '我的收藏',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/c8f79b2803080f4d.png'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-people',
         text: '历史咨询师',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/bd428f0847831ca6.png'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-coupon',
         text: '优惠券',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/34d934d38b42f2b8.png'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-about',
         text: '关于我们',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/4c346b64b120bfb3.png'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-service',
         text: '客户服务',
-        url: ''
+        url: 'http://i2.tiimg.com/693434/f60b1369c18e6712.png'
       }];
     }
   }]);
