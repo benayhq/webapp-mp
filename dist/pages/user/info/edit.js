@@ -52,7 +52,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "selector", "selectorChecked", "timeSel", "dateSel", "files", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nickName", "userName", "cellPhone", "weixin", "address", "selector", "selectorChecked", "timeSel", "dateSel", "files", "serviceAddress", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -80,16 +80,14 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         _this.handleAlert('error', '微信号不能为空');
       }
 
-      if (serviceAddress === "") {
-        _this.handleAlert('error', '服务地址不能为空');
-      }
+      // if(serviceAddress===""){
+      //     this.handleAlert('error','服务地址不能为空');
+      // }
+      // if(imgArraySrc.length === 0){
+      //     this.handleAlert('error','请上传二维码');
+      // }
 
-      if (imgArraySrc.length === 0) {
-        _this.handleAlert('error', '请上传图片');
-      }
       _this.getAuthInfo().then(function (userinfo) {
-        // console.log('res',userinfo);
-
         var payload = {
           nickname: nickName,
           openId: userinfo.openId,
@@ -97,10 +95,9 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           cellphone: cellPhone,
           address: address,
           wechatQrcode: imgArraySrc[0],
-          areaCode: 'eee',
+          areaCode: '',
           id: userinfo.id
         };
-
         _this.props.UpdateUserInfo(payload).then(function (res) {
           console.log('response', res);
         });
@@ -127,6 +124,53 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         qrCode: ''
       };
     }
+  }, {
+    key: "init",
+    value: function init() {
+      this.initData();
+    }
+  }, {
+    key: "initData",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var response;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.getAuthInfo();
+
+              case 2:
+                response = _context.sent;
+
+                console.log('response', response);
+
+                // this.setState({
+                //     nickName:response.nickname,
+                //     name:response.name,
+                //     cellPhone:response.cellphone,
+                //     wechatId:response.wechatId,
+                //     address:response.address
+                // });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function initData() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return initData;
+    }()
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
   }, {
     key: "handleUploadChange",
     value: function handleUploadChange(files) {
@@ -188,31 +232,31 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getAuthInfo",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var result;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
                   return res.data;
                 });
 
               case 2:
-                result = _context.sent;
-                return _context.abrupt("return", result);
+                result = _context2.sent;
+                return _context2.abrupt("return", result);
 
               case 4:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getAuthInfo() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       }
 
       return getAuthInfo;
@@ -282,7 +326,6 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _state.address,
           qrCode = _state.qrCode;
 
-
       Object.assign(this.__state, {});
       return this.__state;
     }
@@ -298,7 +341,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleNickNameChange", "handleUserNameChange", "handleMobileChange", "handleWeChatChange", "handleServiceAddressChange", "handleAddressChange", "handleUploadChange", "handleSaveUserInfo"], _temp2)) || _class);
+}, _class2.$$events = ["handleNickNameChange", "handleUserNameChange", "handleMobileChange", "handleWeChatChange", "handleAddressChange", "handleUploadChange", "handleSaveUserInfo"], _temp2)) || _class);
 exports.default = Edit;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Edit, true));

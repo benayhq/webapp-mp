@@ -9,10 +9,12 @@ var util = require('../../../utils/util.js');
 var uploadImage = require('./../../../utils/uploadFile.js');
 
 @connect(state=>state.user,actions)
- class Edit extends Component{
+class Edit extends Component{
+
     config = {
         navigationBarTitleText: '个人信息'
     }
+
     constructor(){
         super(...arguments);
         this.state = {
@@ -29,6 +31,34 @@ var uploadImage = require('./../../../utils/uploadFile.js');
             address:'',
             qrCode:''
         };
+    }
+
+    init(){
+        this.initData();
+    }
+
+    async initData(){
+        // this.setState({
+        //     nickName:'eee',
+        //     name:'eee',
+        //     cellPhone:'eee',
+        //     wechatId:'eee',
+        //     address:'eee'
+        // });
+        var response = await this.getAuthInfo();
+        console.log('response',response);
+
+        // this.setState({
+        //     nickName:response.nickname,
+        //     name:response.name,
+        //     cellPhone:response.cellphone,
+        //     wechatId:response.wechatId,
+        //     address:response.address
+        // });
+    }
+
+    componentDidMount(){
+       
     }
 
     handleUploadChange(files) {
@@ -137,28 +167,26 @@ var uploadImage = require('./../../../utils/uploadFile.js');
         const {nickName,cellPhone,weixin,serviceAddress
         ,address} = this.state;
 
-        if(nickName === ""){
+        if(nickName === "") {
             this.handleAlert('error','呢称不能为空');
         }
 
-        if(cellPhone===""){
+        if(cellPhone==="") {
             this.handleAlert('error','手机号不能为空');
         }
 
-        if(weixin===""){
+        if(weixin==="") {
             this.handleAlert('error','微信号不能为空');
         }
 
-        if(serviceAddress===""){
-            this.handleAlert('error','服务地址不能为空');
-        }
+        // if(serviceAddress===""){
+        //     this.handleAlert('error','服务地址不能为空');
+        // }
+        // if(imgArraySrc.length === 0){
+        //     this.handleAlert('error','请上传二维码');
+        // }
 
-        if(imgArraySrc.length === 0){
-            this.handleAlert('error','请上传图片');
-        }
         this.getAuthInfo().then(userinfo=>{
-            // console.log('res',userinfo);
-
             var payload = {
                 nickname:nickName,
                 openId:userinfo.openId,
@@ -166,10 +194,9 @@ var uploadImage = require('./../../../utils/uploadFile.js');
                 cellphone:cellPhone,
                 address:address,
                 wechatQrcode:imgArraySrc[0],
-                areaCode:'eee',
+                areaCode:'',
                 id:userinfo.id
             };
-            
             this.props.UpdateUserInfo(payload).then(res=>{
                 console.log('response',res);
             });
@@ -178,7 +205,6 @@ var uploadImage = require('./../../../utils/uploadFile.js');
 
     render(){
         const {nickName,userName,cellPhone,weixin,serviceAddress,address,qrCode} = this.state;
-
         return (
             <View className="mp-edit-user">
                     <AtMessage/>
@@ -215,14 +241,14 @@ var uploadImage = require('./../../../utils/uploadFile.js');
                         value={weixin}
                         onChange={this.handleWeChatChange.bind(this)}
                     />
-                    <AtInput
+                    {/* <AtInput
                         name='value1'
                         title='服务地址'
                         type='text'
                         placeholder='服务地址'
                         value={serviceAddress}
                         onChange={this.handleServiceAddressChange.bind(this)}
-                    />
+                    /> */}
                     <AtInput 
                         name='value1'
                         title='地址'

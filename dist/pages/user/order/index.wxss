@@ -267,10 +267,8 @@
       -webkit-box-flex: 1;
       -webkit-flex: 1;
           -ms-flex: 1;
-              flex: 1; }
-    .mp-user__ordernav-icon {
-      padding-top: 23rpx;
-      padding-bottom: 5rpx; }
+              flex: 1;
+      margin-top: 30rpx; }
     .mp-user__ordernav-text {
       height: 44rpx;
       font-size: 28rpx;

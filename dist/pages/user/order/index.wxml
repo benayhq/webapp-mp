@@ -4,7 +4,9 @@
         </view>
         <view class="mp-user__ordernav">
             <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?index=' + index}}">
-                <view class="{{item.icon}}"></view>
+                <at-badge value="{{10}}" __triggerObserer="{{ _triggerObserer }}" maxValue="{{99}}">
+                    <view class="{{item.icon}}"></view>
+                </at-badge>
                 <view class="mp-user__ordernav-text">{{item.text}}</view>
             </view>
         </view>

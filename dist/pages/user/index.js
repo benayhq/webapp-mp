@@ -205,23 +205,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                // wx.login({
-                //   success (res) {
-                //     if (res.code) {
-                //       console.log('res.code',res.code);
-                //       //发起网络请求
-                //       wx.request({
-                //         url: 'https://test.com/onLogin',
-                //         data: {
-                //           code: res.code
-                //         }
-                //       })
-                //     } else {
-                //       console.log('登录失败！' + res.errMsg)
-                //     }
-                //   }
-                // })
-                // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
                       userInfo = res.userInfo;
@@ -289,6 +272,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleUpdateInfo",
+    value: function handleUpdateInfo() {
+      _index2.default.navigateTo({
+        url: 'info/edit?userId=' + this.state.profit.id
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -326,7 +316,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleAuthClick", "handleChangeState"], _temp2)) || _class);
+}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

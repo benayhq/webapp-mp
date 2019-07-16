@@ -91,23 +91,6 @@ class Index extends Component{
   }
   
   async handleAuthClick(){
-    // wx.login({
-    //   success (res) {
-    //     if (res.code) {
-    //       console.log('res.code',res.code);
-    //       //发起网络请求
-    //       wx.request({
-    //         url: 'https://test.com/onLogin',
-    //         data: {
-    //           code: res.code
-    //         }
-    //       })
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg)
-    //     }
-    //   }
-    // })
-    // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
@@ -163,6 +146,12 @@ class Index extends Component{
     })
   }
 
+  handleUpdateInfo(){
+    Taro.navigateTo({
+      url:'info/edit?userId='+this.state.profit.id
+    })
+  }
+
 
   render(){
 
@@ -170,25 +159,27 @@ class Index extends Component{
     
     return (
       <View className='mp-user'>
-        <View className="mp-user__info" >
-                    <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
-                            src={avatarUrl}>
-                        </image>
-                    <View className="mp-user__info-message">
-                        <View className="mp-user__user-username">{userName}</View>
-                        {profit && profit.creditLevel && <View className="mp-user__user-level">
-                            {profit? `信用等级:${profit.creditLevel}`:''}
-                        </View>
-                        } 
-                        <View className="mp-user__user-level-up"> </View>
+        <View className="mp-user__info"  >
+                <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
+                        src={avatarUrl}
+                        
+                        >
+                    </image>
+                <View className="mp-user__info-message"  onClick={this.handleUpdateInfo.bind(this)} > 
+                    <View className="mp-user__user-username">{userName}</View>
+                    {profit && profit.creditLevel && <View className="mp-user__user-level">
+                        {profit? `信用等级:${profit.creditLevel}`:''}
                     </View>
-                    {
-                        isAgent && 
-                        <View className="mp-user__info-money">
-                            <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
-                            <View className="mp-user__money-order">已结定金</View>
-                        </View>
-                    }
+                    } 
+                    <View className="mp-user__user-level-up"> </View>
+                </View>
+                {
+                    isAgent && 
+                    <View className="mp-user__info-money">
+                        <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
+                        <View className="mp-user__money-order">已结定金</View>
+                    </View>
+                }
        </View>
         {/* <Info user={this.state.user}  isAgent={isAgent}/> */}
        { isAgent && <InCome profit={profit}/> }  
