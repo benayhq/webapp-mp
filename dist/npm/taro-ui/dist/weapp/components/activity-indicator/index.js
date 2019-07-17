@@ -10,11 +10,21 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
-var _jump = require("../../utils/jump.js");
+var _index2 = _interopRequireDefault(_index);
 
-var _jump2 = _interopRequireDefault(_jump);
+var _index3 = require("../../../../../prop-types/index.js");
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = require("../../../../../classnames/index.js");
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _component = require("../../common/component.js");
+
+var _component2 = _interopRequireDefault(_component);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,32 +34,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UserOrder = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(UserOrder, _BaseComponent);
+var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
+  _inherits(AtActivityIndicator, _AtComponent);
 
-  function UserOrder() {
+  function AtActivityIndicator() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, UserOrder);
+    _classCallCheck(this, AtActivityIndicator);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["list"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtActivityIndicator.__proto__ || Object.getPrototypeOf(AtActivityIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "size", "color", "content", "mode", "className"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(UserOrder, [{
+  _createClass(AtActivityIndicator, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(UserOrder.prototype.__proto__ || Object.getPrototypeOf(UserOrder.prototype), "_constructor", this).apply(this, arguments);
-    }
-  }, {
-    key: "jumpUrl",
-    value: function jumpUrl(url) {
-      (0, _jump2.default)({ url: url });
+      _get(AtActivityIndicator.prototype.__proto__ || Object.getPrototypeOf(AtActivityIndicator.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "_createData",
@@ -59,23 +64,67 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       var __runloopRef = arguments[2];
       ;
 
-      var list = this.__props.list;
+      var _props = this.__props,
+          color = _props.color,
+          size = _props.size,
+          mode = _props.mode,
+          content = _props.content;
 
+
+      var rootClass = (0, _index6.default)('at-activity-indicator', {
+        'at-activity-indicator--center': mode === 'center'
+      }, this.__props.className);
 
       Object.assign(this.__state, {
-        list: list
+        rootClass: rootClass,
+        size: size,
+        color: color,
+        content: content
       });
       return this.__state;
     }
   }]);
 
-  return UserOrder;
-}(_index.Component), _class.properties = {
-  "list": {
+  return AtActivityIndicator;
+}(_component2.default), _class.properties = {
+  "color": {
+    "type": null,
+    "value": null
+  },
+  "size": {
+    "type": null,
+    "value": null
+  },
+  "mode": {
+    "type": null,
+    "value": null
+  },
+  "content": {
+    "type": null,
+    "value": null
+  },
+  "className": {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["jumpUrl"], _temp2);
-exports.default = UserOrder;
+}, _class.$$events = [], _temp2);
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(UserOrder));
+
+AtActivityIndicator.defaultProps = {
+  size: 0,
+  mode: '',
+  color: '',
+  content: '',
+  className: ''
+};
+
+AtActivityIndicator.propTypes = {
+  size: _index4.default.number,
+  mode: _index4.default.string,
+  color: _index4.default.string,
+  content: _index4.default.string,
+  className: _index4.default.oneOfType([_index4.default.array, _index4.default.string])
+};
+exports.default = AtActivityIndicator;
+
+Component(require('../../../../../@tarojs/taro-weapp/index.js').default.createComponent(AtActivityIndicator));

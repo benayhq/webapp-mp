@@ -12,7 +12,6 @@ export default class ProductItem extends Component{
   }
 
   render () {
-    console.log('product Item',this.props.products);
     return (
       <View>
         <View className="product">

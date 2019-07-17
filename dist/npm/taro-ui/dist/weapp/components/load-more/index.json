@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "at-activity-indicator": "../activity-indicator/index",
+    "at-button": "../button/index"
+  }
+}

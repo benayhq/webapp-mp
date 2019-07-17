@@ -5,9 +5,16 @@
         <view class="mp-user__ordernav">
             <block wx:if="{{list}}">
                 <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?index=' + index}}">
-                    <at-badge value="{{item.count}}" __triggerObserer="{{ _triggerObserer }}" maxValue="{{99}}">
-                        <view class="{{item.icon}}"></view>
-                    </at-badge>
+                    <block>
+                        <block wx:if="{{item.count > 0}}">
+                            <at-badge value="{{item.count}}" __triggerObserer="{{ _triggerObserer }}" maxValue="{{99}}">
+                                <view class="{{item.icon}}"></view>
+                            </at-badge>
+                        </block>
+                        <block wx:else>
+                            <view class="{{item.icon}}"></view>
+                        </block>
+                    </block>
                     <view class="mp-user__ordernav-text">{{item.text}}</view>
                 </view>
             </block>

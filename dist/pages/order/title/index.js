@@ -38,7 +38,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp2", "OrderId", "AgentName", "OrderState"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderId", "AgentName", "DisplayStatusDes"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Title, [{
@@ -55,6 +55,8 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
   }, {
     key: "getOrderTextByStatus",
     value: function getOrderTextByStatus(OrderState) {
+      console.log('OrderState', OrderState);
+
       var showOrderText = "";
       if (OrderState === "UNPAY") {
         showOrderText = "待付款";
@@ -78,13 +80,12 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       var _props = this.__props,
           OrderId = _props.OrderId,
           AgentName = _props.AgentName,
-          OrderState = _props.OrderState;
+          DisplayStatusDes = _props.DisplayStatusDes;
 
-      console.log("this.props className", this.__props);
-      var anonymousState__temp2 = this.getOrderTextByStatus(this.__props.OrderState);
       Object.assign(this.__state, {
-        anonymousState__temp2: anonymousState__temp2,
-        OrderId: OrderId
+        OrderId: OrderId,
+        AgentName: AgentName,
+        DisplayStatusDes: DisplayStatusDes
       });
       return this.__state;
     }
@@ -100,7 +101,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   },
-  "OrderState": {
+  "DisplayStatusDes": {
     "type": null,
     "value": null
   }

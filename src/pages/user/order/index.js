@@ -10,11 +10,6 @@ export default class UserOrder extends Component{
     }
 
 
-    componentWillReceiveProps(nextProps){
-        console.log('nextProps',nextProps);
-        console.log('props',this.props);
-    }
-
     jumpUrl(url){
         jump({url:url});
     }
@@ -22,8 +17,6 @@ export default class UserOrder extends Component{
     render(){
         const {list} = this.props;
 
-        console.log('list',list);
-        
         return (
             <View className="mp-user__order"> 
                 <View className="mp-user__order-title">
@@ -35,9 +28,9 @@ export default class UserOrder extends Component{
                     {
                         list && list.map((item,index)=>(
                             <View className="mp-user__ordernav-tuan" onClick={this.jumpUrl.bind(this,`/pages/order/index?index=${index}`)}>
-                                <AtBadge value={item.count} maxValue={99}>
+                               { item.count > 0 ? <AtBadge value={item.count} maxValue={99}>
                                         <View className={item.icon}></View>
-                                </AtBadge>
+                                </AtBadge> : <View className={item.icon}></View>}  
                                 <View className="mp-user__ordernav-text" >{item.text}</View>
                             </View>
                         ))

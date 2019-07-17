@@ -107,8 +107,6 @@ class Index extends Component{
   render () {
     const {newFilterList} = this.state;
 
-    console.log('newFilterList',newFilterList);
-
     return (
       <View className="mp-product">
             <AtMessage/>

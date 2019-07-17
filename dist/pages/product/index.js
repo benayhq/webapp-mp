@@ -213,8 +213,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var newFilterList = this.__state.newFilterList;
 
 
-      console.log('newFilterList', newFilterList);
-
       Object.assign(this.__state, {});
       return this.__state;
     }

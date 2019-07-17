@@ -326,8 +326,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           orders = _state.orders;
 
 
-      console.log('orders', orders);
-
       Object.assign(this.__state, {});
       return this.__state;
     }

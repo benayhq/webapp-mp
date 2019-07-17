@@ -104,30 +104,36 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
     }
   }, {
     key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(props) {
+    value: function componentWillReceiveProps(props, nextProps) {
       var _this2 = this;
 
-      var cacheList = [];
-
-      props.list.map(function (item, key) {
-        _this2.getImgUrl(item.activityProductLocation).then(function (response) {
-          cacheList.push({
-            id: item.id,
-            status: item.status,
-            customerName: item.customerName,
-            activityName: item.activityName,
-            activityProductName: item.activityProductName,
-            productDiscountPrice: item.productDiscountPrice,
-            imgUrl: response,
-            number: item.number
-          });
-          if (props.list.length === cacheList.length) {
-            _this2.setState({
-              OrderList: cacheList
+      if (props.list.length > 0) {
+        var cacheList = [];
+        props.list.map(function (item, key) {
+          _this2.getImgUrl(item.activityProductLocation).then(function (response) {
+            cacheList.push({
+              id: item.id,
+              status: item.status,
+              displayStatusDes: item.displayStatusDes,
+              customerName: item.customerName,
+              activityName: item.activityName,
+              activityProductName: item.activityProductName,
+              productDiscountPrice: item.productDiscountPrice,
+              imgUrl: response,
+              number: item.number
             });
-          }
+            if (props.list.length === cacheList.length) {
+              _this2.setState({
+                OrderList: cacheList
+              });
+            }
+          });
         });
-      });
+      } else {
+        this.setState({
+          OrderList: []
+        });
+      }
     }
   }, {
     key: "_createData",
@@ -137,11 +143,9 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var __runloopRef = arguments[2];
       ;
 
-      var _state = this.__state,
-          ProductImg = _state.ProductImg,
-          OrderList = _state.OrderList;
+      var OrderList = this.__state.OrderList;
 
-      console.log('OrderList', this.__props.list);
+
       Object.assign(this.__state, {});
       return this.__state;
     }

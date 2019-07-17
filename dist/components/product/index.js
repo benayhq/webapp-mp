@@ -53,8 +53,6 @@ var ProductItem = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-
-      console.log('product Item', this.__props.products);
       Object.assign(this.__state, {});
       return this.__state;
     }

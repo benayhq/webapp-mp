@@ -34,39 +34,45 @@ export default class OrderItem extends Component{
         });
     }
 
-    componentWillReceiveProps(props){
-        var cacheList = [];
-
-        props.list.map((item,key)=>{
-            this.getImgUrl(item.activityProductLocation).then((response)=>{
-                cacheList.push({
-                    id:item.id,
-                    status:item.status,
-                    customerName:item.customerName,
-                    activityName:item.activityName,
-                    activityProductName:item.activityProductName,
-                    productDiscountPrice:item.productDiscountPrice,
-                    imgUrl:response,
-                    number:item.number
-                });
-                if(props.list.length === cacheList.length){
-                    this.setState({
-                        OrderList:cacheList
+    componentWillReceiveProps(props,nextProps){
+        if(props.list.length>0){
+            var cacheList = [];
+            props.list.map((item,key)=>{
+                this.getImgUrl(item.activityProductLocation).then((response)=>{
+                    cacheList.push({
+                        id:item.id,
+                        status:item.status,
+                        displayStatusDes:item.displayStatusDes,
+                        customerName:item.customerName,
+                        activityName:item.activityName,
+                        activityProductName:item.activityProductName,
+                        productDiscountPrice:item.productDiscountPrice,
+                        imgUrl:response,
+                        number:item.number
                     });
-                }
-            })
-        });
+                    if(props.list.length === cacheList.length){
+                        this.setState({
+                            OrderList:cacheList
+                        });
+                    }
+                })
+            });
+        }else{
+            this.setState({
+                OrderList:[]
+            });
+        }
     }
    
     render(){
-        const {ProductImg,OrderList} = this.state;
-        console.log('OrderList',this.props.list);
+        const {OrderList} = this.state;
+
         return (
             <View>
                 {
                     OrderList.map(item=>(
                         <View className="mp-order-list">
-                        <Title OrderId={item.id} OrderState={item.status}  AgentName={item.customerName}/>
+                        <Title OrderId={item.id}  DisplayStatusDes={item.displayStatusDes}  AgentName={item.customerName}/>
                         <View className="product">
                             <View className="left">
                                 <image style="height:100%;width:100%;margin:0 auto;padding:5px;"
@@ -94,23 +100,18 @@ export default class OrderItem extends Component{
                                     <AtButton type='primary' size='small'>立即核销</AtButton>
                                 </View>
                             }
-                            {/* {
-                                item.status == "待评价" && <View>
+                            {
+                                item.status == "COMMENTING  " && <View>
                                     <AtButton type='primary' size='small'>退款申请</AtButton> 
                                     <Text className="margin8"></Text>
                                     <AtButton type='primary' size='small'>我要评价</AtButton>
                                 </View>
                             }
                             {
-                                item.status == "已取消" && <View>
+                                item.status == "CONSUMPTION" && <View>
                                     <AtButton type='primary' size='small'>重新购买</AtButton>
                                 </View>
                             }
-                            {
-                                item.status == "拼团失败" && <View>
-                                    <AtButton type='primary' size='small'>重新购买</AtButton>
-                                </View>
-                            } */}
                             </View>
                             <Text></Text>  
                         </View>

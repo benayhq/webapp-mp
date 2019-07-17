@@ -24,6 +24,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -46,7 +48,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabList", "current", "list", "dispatchOrderList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabList", "current", "list", "status", "totalPage", "dispatchOrderList"], _this.config = {
       navigationBarTitleText: '我的订单'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -58,51 +60,100 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
 
       this.state = {
         current: 0,
-        list: []
+        list: [],
+        status: 'more',
+        totalPage: 1
       };
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getAllOrderList('');
+      // this.getAllOrderList('',0,10);
     }
   }, {
     key: "getAllOrderList",
-    value: function getAllOrderList(statusVo) {
-      var _this2 = this;
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(statusVo, pageNo, pageSize) {
+        var payload, response;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payload = {
+                  statusVo: statusVo,
+                  pageNo: pageNo,
+                  pageSize: pageSize
+                };
+                _context.next = 3;
+                return this.props.dispatchOrderList(payload);
 
-      var payload = {
-        statusVo: statusVo
-      };
-      this.props.dispatchOrderList(payload).then(function (response) {
-        _this2.setState({
-          list: response.content
-        });
-      });
-    }
+              case 3:
+                response = _context.sent;
+
+
+                this.setState({
+                  list: response.content
+                });
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAllOrderList(_x, _x2, _x3) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getAllOrderList;
+    }()
   }, {
     key: "handleClick",
     value: function handleClick(value) {
       this.setState({
-        current: value
+        current: value,
+        list: []
       });
       switch (value) {
         case 0:
-          this.getAllOrderList('');
+          this.getAllOrderList('', 0, 10);
           break;
         case 1:
-          this.getAllOrderList('UNPAY');
+          this.getAllOrderList('UNPAY', 0, 10);
           break;
         case 2:
-          this.getAllOrderList('BATING');
+          this.getAllOrderList('BATING', 0, 10);
           break;
         case 3:
-          this.getAllOrderList('CONSUMPTION');
+          this.getAllOrderList('CONSUMPTION', 0, 10);
           break;
         case 4:
-          this.getAllOrderList('COMMENTING');
+          this.getAllOrderList('COMMENTING', 0, 10);
           break;
       }
+    }
+  }, {
+    key: "handleLoadMore",
+    value: function handleLoadMore(status) {
+      var _this2 = this;
+
+      this.setState(function (prevState, props) {
+        return {
+          totalPage: prevState.totalPage + 1,
+          status: 'loading'
+        };
+      }, function () {
+        console.log('this.state.totalPage', _this2.state.totalPage);
+        var pageNo = _this2.state.totalPage * 10;
+        console.log('pageNo', pageNo);
+        console.log('status', status);
+        _this2.getAllOrderList(status, 0, pageNo);
+        _this2.setState({
+          status: 'noMore'
+        });
+      });
     }
   }, {
     key: "_createData",
@@ -115,9 +166,10 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
       var _state = this.__state,
           list = _state.list,
-          current = _state.current;
+          current = _state.current,
+          status = _state.status;
 
-      console.log('current', current);
+
       console.log('list', list);
 
       Object.assign(this.__state, {
@@ -133,7 +185,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleClick"], _temp2)) || _class);
+}, _class2.$$events = ["handleClick", "handleLoadMore"], _temp2)) || _class);
 exports.default = OrderList;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderList, true));

@@ -180,13 +180,9 @@ class Index extends Component{
     })
   }
 
-
   render(){
-
     const {isAgent,avatarUrl,userName,profit,orders} = this.state;
 
-    console.log('orders',orders);
-    
     return (
       <View className='mp-user'>
         <View className="mp-user__info"  >
@@ -238,7 +234,6 @@ class Index extends Component{
             }
           </AtList>
         </View>
-
 
         { !isAgent && 
         <View className="mp-user__loan">

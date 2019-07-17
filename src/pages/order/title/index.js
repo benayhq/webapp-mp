@@ -15,6 +15,8 @@ export default class Title extends Component{
     }
 
     getOrderTextByStatus(OrderState){
+        console.log('OrderState',OrderState);
+        
         var  showOrderText = "";
         if(OrderState === "UNPAY"){
             showOrderText = "待付款";
@@ -30,18 +32,16 @@ export default class Title extends Component{
         }
         return showOrderText;
     }
+    
     render(){
-        const {OrderId,AgentName,OrderState} = this.props;
-        console.log("this.props className",this.props);
+        const {OrderId,AgentName,DisplayStatusDes} = this.props;
         return (
             <View className="order-title" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index',OrderId)}>
                 <Text>{
-                    this.props.AgentName
+                   AgentName
                 }</Text>
                 <Text className="mp-icon mp-icon-arrow-balck" ></Text>
-                {
-                 <Text>{this.getOrderTextByStatus(this.props.OrderState)}</Text>
-                }
+                <Text>{DisplayStatusDes}</Text>
             </View> 
         )
     }

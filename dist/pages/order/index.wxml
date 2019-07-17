@@ -3,7 +3,60 @@
         <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{0}}">
             <view>
                 <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                <block wx:if="{{list.length > 0}}">
+                    <view class="mp-order-loadmore">
+                        <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this"></at-load-more>
+                    </view>
+                </block>
             </view>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{1}}">
+            <block wx:if="{{list}}">
+                <view>
+                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <block wx:if="{{list.length > 0}}">
+                        <view class="mp-order-loadmore">
+                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="UNPAY"></at-load-more>
+                        </view>
+                    </block>
+                </view>
+            </block>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{2}}">
+            <block wx:if="{{list}}">
+                <view>
+                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <block wx:if="{{list.length > 0}}">
+                        <view class="mp-order-loadmore">
+                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="BATING"></at-load-more>
+                        </view>
+                    </block>
+                </view>
+            </block>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{3}}">
+            <block wx:if="{{list}}">
+                <view>
+                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <block wx:if="{{list.length > 0}}">
+                        <view class="mp-order-loadmore">
+                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="CONSUMPTION"></at-load-more>
+                        </view>
+                    </block>
+                </view>
+            </block>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{4}}">
+            <block wx:if="{{list}}">
+                <view>
+                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <block wx:if="{{list.length > 0}}">
+                        <view class="mp-order-loadmore">
+                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="CONSUMPTION"></at-load-more>
+                        </view>
+                    </block>
+                </view>
+            </block>
         </at-tabs-pane>
     </at-tabs>
 </block>
