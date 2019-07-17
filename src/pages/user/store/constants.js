@@ -5,3 +5,5 @@ export const ACTION_UPLOAD_CONFIG = 'action/ACTION_UPLOAD_CONFIG';
 export const ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN';
 
 export const ACTION_USER_AMOUNT = 'action/ACTION_USER_AMOUNT';
+
+export const ORDER_LIST = 'action/ORDER_LIST';

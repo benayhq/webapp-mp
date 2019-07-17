@@ -51,10 +51,8 @@ export default class CheckBox extends Component{
         return (
             <View className={rootCls} style={customStyle}>
                 {
-                    options.map((option,idx) => {
+                 options &&  options.map((option,idx) => {
                         const { value,disabled,label,data} = option;
-                        console.log('data',data);
-
                         const optionCls = classNames('mp-checkbox__option',{
                             'mp-checkbox__option--selected':!selectedList.includes(value)
                         });

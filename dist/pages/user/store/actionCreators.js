@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -63,5 +63,16 @@ var dispatchReservationPlan = exports.dispatchReservationPlan = function dispatc
     fetchOptions: {
       method: 'POST'
     }
+  });
+};
+
+var dispatchOrderList = exports.dispatchOrderList = function dispatchOrderList(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ORDER_LIST,
+    url: _api.API_ORDER_LIST,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
   });
 };

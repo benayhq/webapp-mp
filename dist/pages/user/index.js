@@ -56,7 +56,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "userName", "list", "orders", "showUserText", "dispatchReservationPlan", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "userName", "list", "showUserText", "dispatchOrderList", "dispatchReservationPlan", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -99,20 +99,47 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.bindEvent();
       this.initReservationPlan();
       var creatorInstance = new _create2.default();
+      this.initOrderNotice(creatorInstance, false);
       this.setState({
         isAgent: false,
         list: creatorInstance.factory(false).getPanelList(),
-        orders: creatorInstance.factory(false).getList(),
         user: creatorInstance.factory(false).getUserInfo()
       });
     }
   }, {
-    key: "initReservationPlan",
-    value: function initReservationPlan() {
+    key: "initOrderNotice",
+    value: function initOrderNotice(creatorInstance, isAgent) {
       var _this2 = this;
 
+      var list = creatorInstance.factory(isAgent).getList();
+      var promises = list.map(function (item, key) {
+        var payload = {
+          statusVo: item.status
+        };
+        return _this2.props.dispatchOrderList(payload);
+      });
+      Promise.all(promises).then(function (posts) {
+        list.map(function (item, key) {
+          item.count = posts[key].content.length;
+        });
+      }).catch(function (reason) {
+        console.log('initOrderNotice', reason);
+      });
+      var that = this;
+      setTimeout(function () {
+        that.setState({
+          orders: list
+        });
+      }, 100);
+      return list;
+    }
+  }, {
+    key: "initReservationPlan",
+    value: function initReservationPlan() {
+      var _this3 = this;
+
       this.props.dispatchReservationPlan().then(function (response) {
-        _this2.setState({
+        _this3.setState({
           profit: response.content
         });
       });
@@ -199,7 +226,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleAuthClick",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-        var _this3 = this;
+        var _this4 = this;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -212,20 +239,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   if (errMsg === 'getUserInfo:ok') {
                     _index2.default.setStorage({ key: 'authinfo', data: userInfo });
 
-                    console.log('userInfo', userInfo);
-
                     var payload = {
                       id: userInfo.id,
                       nickname: userInfo.nickName,
                       name: userInfo.nickName
                     };
 
-                    _this3.setState({
+                    _this4.setState({
                       avatarUrl: userInfo.avatarUrl,
                       userName: userInfo.nickName
                     });
 
-                    _this3.props.UpdateUserInfo(payload).then(function (res) {
+                    _this4.props.UpdateUserInfo(payload).then(function (res) {
                       if (res.result === "success") {
                         (0, _jump2.default)({ url: '/pages/active/publish/index' });
                       }
@@ -263,7 +288,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         isAgent: !isAgent,
         list: creatorInstance.factory(!isAgent).getPanelList(),
-        orders: creatorInstance.factory(!isAgent).getList(),
+        orders: this.initOrderNotice(creatorInstance, !isAgent),
         user: creatorInstance.factory(!isAgent).getUserInfo()
       });
       this.setState({
@@ -297,8 +322,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isAgent = _state.isAgent,
           avatarUrl = _state.avatarUrl,
           userName = _state.userName,
-          profit = _state.profit;
+          profit = _state.profit,
+          orders = _state.orders;
 
+
+      console.log('orders', orders);
 
       Object.assign(this.__state, {});
       return this.__state;
@@ -307,6 +335,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
+  "dispatchOrderList": {
+    "type": null,
+    "value": null
+  },
   "dispatchReservationPlan": {
     "type": null,
     "value": null

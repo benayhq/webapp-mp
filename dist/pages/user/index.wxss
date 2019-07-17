@@ -413,6 +413,6 @@
   border-bottom: 1PX #FFFFFF solid;
   border-right: 1PX #FFFFFF solid;
   border-left: 1PX #FFFFFF solid;
-  margin: 0 22rpx;
+  margin: 0 21rpx;
   border-radius: 0;
   background-color: #FFF; }

@@ -41,17 +41,41 @@ class Index extends Component{
     });
   }
 
-  init(){
+ init(){
     this.autoLogin();
     this.bindEvent();
     this.initReservationPlan();
     let creatorInstance = new Creator();
+    this.initOrderNotice(creatorInstance,false);
     this.setState({
         isAgent:false,
         list:creatorInstance.factory(false).getPanelList(),
-        orders:creatorInstance.factory(false).getList(),
         user:creatorInstance.factory(false).getUserInfo()
     })
+  }
+
+  initOrderNotice(creatorInstance,isAgent){
+    var list = creatorInstance.factory(isAgent).getList();
+    const promises = list.map((item,key)=>{
+        var payload = {
+          statusVo:item.status
+        };
+        return this.props.dispatchOrderList(payload);
+    });
+    Promise.all(promises).then(function(posts){
+      list.map((item,key)=>{
+          item.count = posts[key].content.length;
+      });
+    }).catch(function(reason){
+      console.log('initOrderNotice',reason);
+    });
+    var that = this;
+    setTimeout(() => {
+      that.setState({
+        orders:list
+      })
+    }, 100);
+    return list;  
   }
 
   initReservationPlan(){
@@ -96,8 +120,6 @@ class Index extends Component{
         if (errMsg === 'getUserInfo:ok') {
           Taro.setStorage({key:'authinfo',data:userInfo});
 
-          console.log('userInfo',userInfo);
-
           let payload = {
             id:userInfo.id,
             nickname:userInfo.nickName,
@@ -131,7 +153,7 @@ class Index extends Component{
       this.setState({
           isAgent:!isAgent,
           list:creatorInstance.factory(!isAgent).getPanelList(),
-          orders:creatorInstance.factory(!isAgent).getList(),
+          orders:this.initOrderNotice(creatorInstance,!isAgent),
           user:creatorInstance.factory(!isAgent).getUserInfo()
       })
       this.setState({
@@ -161,21 +183,23 @@ class Index extends Component{
 
   render(){
 
-    const {isAgent,avatarUrl,userName,profit} = this.state;
+    const {isAgent,avatarUrl,userName,profit,orders} = this.state;
+
+    console.log('orders',orders);
     
     return (
       <View className='mp-user'>
         <View className="mp-user__info"  >
                 <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
-                        src={avatarUrl}
-                        
-                        >
-                    </image>
+                        src={avatarUrl}>
+                </image>
                 <View className="mp-user__info-message"  onClick={this.handleUpdateInfo.bind(this)} > 
                     <View className="mp-user__user-username">{userName}</View>
-                    {profit && profit.creditLevel && <View className="mp-user__user-level">
-                        {profit? `信用等级:${profit.creditLevel}`:''}
-                    </View>
+                    {
+                      profit && profit.creditLevel && 
+                      <View className="mp-user__user-level">
+                          {profit? `信用等级:${profit.creditLevel}`:''}
+                      </View>
                     } 
                     <View className="mp-user__user-level-up"> </View>
                 </View>
@@ -189,8 +213,7 @@ class Index extends Component{
        </View>
         {/* <Info user={this.state.user}  isAgent={isAgent}/> */}
        { isAgent && <InCome profit={profit}/> }  
-       { isAgent &&     <View className="mp-user__publish">
-       {/* <View className="mp-user__publish-introduce">让客户来为您拓展客户</View> */}
+       { isAgent && <View className="mp-user__publish">
                 <View className="mp-user__publish-introduce">助力朋友圈获客</View>
                 <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
                 <View className="mp-user__publish-action" >
@@ -201,7 +224,7 @@ class Index extends Component{
                 </View>
             </View>
         }  
-        <UserOrder list={this.state.orders}/>
+        <UserOrder list={orders}/>
         <View className="mp-user__list">
           <AtList>
             {

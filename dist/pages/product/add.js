@@ -47,28 +47,7 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor() {
       this.state = {
-        productList: [{
-          productId: 0,
-          price: 3000,
-          marketPrice: 3000,
-          prePrice: 200,
-          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-        }, {
-          productId: 1,
-          price: 3000,
-          marketPrice: 3000,
-          prePrice: 200,
-          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-        }, {
-          productId: 2,
-          price: 3000,
-          marketPrice: 3000,
-          prePrice: 200,
-          imgUrl: 'https://storage.360buyimg.com/mtd/home/111543234387022.jpg',
-          desc: '【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑'
-        }]
+        productList: []
       };
       this.handleEditProduct = this.handleEditProduct.bind(this);
     }

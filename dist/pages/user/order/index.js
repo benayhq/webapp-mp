@@ -47,6 +47,12 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       _get(UserOrder.prototype.__proto__ || Object.getPrototypeOf(UserOrder.prototype), "_constructor", this).apply(this, arguments);
     }
   }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      console.log('nextProps', nextProps);
+      console.log('props', this.props);
+    }
+  }, {
     key: "jumpUrl",
     value: function jumpUrl(url) {
       (0, _jump2.default)({ url: url });
@@ -58,7 +64,15 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      Object.assign(this.__state, {});
+
+      var list = this.__props.list;
+
+
+      console.log('list', list);
+
+      Object.assign(this.__state, {
+        list: list
+      });
       return this.__state;
     }
   }]);

@@ -27,16 +27,24 @@ var User = function () {
     value: function getList() {
       return [{
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
-        text: '待付款'
+        text: '待付款',
+        status: 'UNPAY',
+        count: 0
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
-        text: '待成团'
+        text: '待成团',
+        status: 'BATING',
+        count: 0
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-consumption',
-        text: '待消费'
+        text: '待消费',
+        status: 'CONSUMPTION',
+        count: 0
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-comment',
-        text: '待评价'
+        text: '待评价',
+        status: 'COMMENTING',
+        count: 0
         // {
         //     icon:'mp-user__ordernav-icon mp-icon mp-icon-refund',
         //     text:'退款'

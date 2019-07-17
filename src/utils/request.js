@@ -37,15 +37,19 @@ export default async function fetch(options){
         data:payload,
         header:header
     }).then(async(res)=>{
-
+        if(res.data && res.data.result === "login"){
+            Taro.navigateTo({
+                url: '/pages/user/index'
+            });
+            return;
+        }
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);
         }
         return res.data;
     }).catch((err)=>{
         const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
-
-
+        console.log('err',err);
         return Promise.reject({message:defaultMsg,...err}); 
     })
 }

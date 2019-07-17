@@ -1,6 +1,7 @@
-import {UPDATE_USER_INFO,WX_USER_LOGIN,USER_AGENT_TRUE,ACTION_UPLOAD_CONFIG,ACTION_USER_AMOUNT} from './constants';
+import {UPDATE_USER_INFO,WX_USER_LOGIN,USER_AGENT_TRUE,ACTION_UPLOAD_CONFIG,ACTION_USER_AMOUNT,ORDER_LIST} from './constants';
 import {createAction} from './../../../utils/redux';
-import {API_USER_INFO,API_USER_LOGIN,API_USER_AGENT,API_UPLOAD_CONFIG,API_INIT_AMOUNT} from './../../../constants/api';
+import {API_USER_INFO,API_USER_LOGIN,API_USER_AGENT,API_UPLOAD_CONFIG,API_INIT_AMOUNT
+,API_ORDER_LIST} from './../../../constants/api';
 
 export const UpdateUserInfo = payload => createAction({
     type:UPDATE_USER_INFO,
@@ -47,5 +48,13 @@ export const dispatchReservationPlan = () => createAction({
     }
 });
 
+export const dispatchOrderList = payload => createAction({
+    type:ORDER_LIST,
+    url:API_ORDER_LIST,
+    fetchOptions:{
+        method:'GET'
+    },
+    payload 
+});
 
 

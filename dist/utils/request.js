@@ -96,18 +96,29 @@ exports.default = function () {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        if (!(url === _api.API_USER_LOGIN)) {
+                        if (!(res.data && res.data.result === "login")) {
                           _context2.next = 3;
                           break;
                         }
 
-                        _context2.next = 3;
-                        return updateStorage(res.data);
+                        _index2.default.navigateTo({
+                          url: '/pages/user/index'
+                        });
+                        return _context2.abrupt("return");
 
                       case 3:
+                        if (!(url === _api.API_USER_LOGIN)) {
+                          _context2.next = 6;
+                          break;
+                        }
+
+                        _context2.next = 6;
+                        return updateStorage(res.data);
+
+                      case 6:
                         return _context2.abrupt("return", res.data);
 
-                      case 4:
+                      case 7:
                       case "end":
                         return _context2.stop();
                     }
@@ -120,7 +131,7 @@ exports.default = function () {
               };
             }()).catch(function (err) {
               var defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
-
+              console.log('err', err);
               return Promise.reject(_extends({ message: defaultMsg }, err));
             }));
 

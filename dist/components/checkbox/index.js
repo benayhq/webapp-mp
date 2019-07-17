@@ -104,7 +104,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       var rootCls = (0, _index4.default)('mp-checkbox', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray0 = options.map(function (option, idx) {
+      var loopArray0 = options ? options.map(function (option, idx) {
         option = {
           $original: (0, _index.internal_get_original)(option)
         };
@@ -114,8 +114,6 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
             disabled = _option$$original.disabled,
             label = _option$$original.label,
             data = _option$$original.data;
-
-        console.log('data', data);
 
         var optionCls = (0, _index4.default)('mp-checkbox__option', {
           'mp-checkbox__option--selected': !selectedList.includes(value)
@@ -129,7 +127,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
           optionCls: optionCls,
           $original: option.$original
         };
-      });
+      }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         loopArray0: loopArray0,
