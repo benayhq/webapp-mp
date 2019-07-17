@@ -1,8 +1,0 @@
-<block>
-    <view class="mp-user__controlpanel">
-        <view class="mp-user__controlpanel-active" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx" data-e-tap-so="this" data-e-tap-a-a="{{item.url}}">
-            <view class="{{item.icon}}"></view>
-            <view class="mp-user__controlpanel-text">{{item.text}}</view>
-        </view>
-    </view>
-</block>

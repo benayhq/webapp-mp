@@ -130,9 +130,6 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};

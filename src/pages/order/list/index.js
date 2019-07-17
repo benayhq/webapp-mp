@@ -57,10 +57,6 @@ export default class OrderItem extends Component{
             })
         });
     }
-
-    componentDidMount(){
-
-    }
    
     render(){
         const {ProductImg,OrderList} = this.state;

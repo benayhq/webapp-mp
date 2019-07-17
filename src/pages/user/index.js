@@ -6,7 +6,7 @@ import Creator from './common/create';
 import './index.scss';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
-import { AtButton,AtList, AtListItem } from 'taro-ui';
+import { AtButton,AtList, AtListItem,AtCard } from 'taro-ui';
 import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
@@ -152,6 +152,12 @@ class Index extends Component{
     })
   }
 
+  handleAppLoan(){
+    Taro.navigateTo({
+      url:'../../pages/p2p/index'
+    })
+  }
+
 
   render(){
 
@@ -209,6 +215,21 @@ class Index extends Component{
             }
           </AtList>
         </View>
+
+
+        { !isAgent && 
+        <View className="mp-user__loan">
+        <AtCard
+        title='无抵押  信用借款'>
+            <View className="mp-user__loan-text">最高借款额度</View>
+            <View className="mp-user__loan-amount">￥1,000,000</View>
+            <View className="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</View>
+            <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
+                 立即申请
+            </View>
+        </AtCard>
+      </View>}
+        
 
         <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
                 {this.state.showUserText} 

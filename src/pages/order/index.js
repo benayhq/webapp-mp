@@ -30,11 +30,9 @@ export default class OrderList extends Component{
             statusVo:statusVo
         };
         this.props.dispatchOrderList(payload).then(response=>{
-            console.log('response',response);
             this.setState({
                 list:response.content
             });
-            this.forceUpdate();
         });
     }
 
@@ -60,19 +58,21 @@ export default class OrderList extends Component{
                 break;
         }
     }
-
+    
     render(){
         const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
         const {list,current} = this.state;
-        
+        console.log('current',current);
+        console.log('list',list);
+
         return (
             <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={current} index={0} >
                 <View>
-                  <OrderItem list={list}/>
+                <OrderItem list={list}/>
                 </View>
               </AtTabsPane>
-              <AtTabsPane current={this.state.current} index={1}>
+              {/* <AtTabsPane current={this.state.current} index={1}>
               <View>
                   <OrderItem list={list}/>
               </View>
@@ -91,7 +91,7 @@ export default class OrderList extends Component{
                  <View>
                     <OrderItem list={list}/>
               </View>
-              </AtTabsPane>
+              </AtTabsPane> */}
             </AtTabs>
         );
     }

@@ -193,10 +193,63 @@ $panelBgColor:rgba(255,255,255,1);
         margin: 20px;
     }
 
+    &__loan{
+        &-text{
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+            font-size:24px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(60,60,60,1);
+        }
+        &-amount{
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+            color:rgba(250,110,19,1);
+            font-size:48px;
+        }
+        &-desc{
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+            color:rgba(191,191,191,1);
+            font-size:24px;
+        }
+        &-application{
+            margin: 0 auto;
+            text-align: center;
+            background: #FFFFFF;
+            width: 187px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            border:1px solid #7dd6d0;
+            color: #7dd6d0;
+        }
+    }
+
 }
 
 .at-button--primary {
     border:1PX solid #FF9C5E;
     background:#FF9C5E;
+}
+    
+.at-list__item .item-extra__icon-arrow {
+    color:#7dd6d0;
+    font-size:48rpx;
+}
+
+.at-card {
+    border-top:1PX #FFFFFF solid;
+    border-bottom:1PX #FFFFFF solid;
+    border-right:1PX #FFFFFF solid;
+    border-left:1PX #FFFFFF solid;
+    margin:0 22px;
+    border-radius: 0px;
+    background-color:#FFF;
 }
     

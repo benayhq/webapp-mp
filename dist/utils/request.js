@@ -120,6 +120,7 @@ exports.default = function () {
               };
             }()).catch(function (err) {
               var defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
+
               return Promise.reject(_extends({ message: defaultMsg }, err));
             }));
 

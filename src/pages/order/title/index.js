@@ -3,7 +3,8 @@ import {View} from '@tarojs/components';
 import './index.scss';
 import jump from './../../utils/jump';
 
-export default class Title extends Component {
+export default class Title extends Component{
+
     constructor(){
         super(...arguments);
     }
@@ -29,7 +30,6 @@ export default class Title extends Component {
         }
         return showOrderText;
     }
-    
     render(){
         const {OrderId,AgentName,OrderState} = this.props;
         console.log("this.props className",this.props);

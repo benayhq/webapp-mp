@@ -279,6 +279,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleAppLoan",
+    value: function handleAppLoan() {
+      _index2.default.navigateTo({
+        url: '../../pages/p2p/index'
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -316,7 +323,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleChangeState"], _temp2)) || _class);
+}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

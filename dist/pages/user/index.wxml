@@ -34,6 +34,16 @@
                 <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx"></at-list-item>
             </at-list>
         </view>
+        <block wx:if="{{!isAgent}}">
+            <view class="mp-user__loan">
+                <at-card title="无抵押  信用借款" __triggerObserer="{{ _triggerObserer }}">
+                    <view class="mp-user__loan-text">最高借款额度</view>
+                    <view class="mp-user__loan-amount">￥1,000,000</view>
+                    <view class="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</view>
+                    <view class="mp-user__loan-application" bindtap="handleAppLoan" data-e-tap-so="this">立即申请</view>
+                </at-card>
+            </view>
+        </block>
         <view class="mp-user-changeuser" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
     </view>
 </block>

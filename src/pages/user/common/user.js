@@ -44,24 +44,9 @@ export default class User{
                 url:'http://i2.tiimg.com/693434/35232d302546d311.png'
             },
             {
-                icon:'mp-user__controlpanel-icon mp-icon mp-icon-collect',
-                text:'我的收藏',
-                url:'http://i2.tiimg.com/693434/c8f79b2803080f4d.png'
-            },
-            {
                 icon:'mp-user__controlpanel-icon mp-icon mp-icon-people',
                 text:'历史咨询师',
                 url:'http://i2.tiimg.com/693434/bd428f0847831ca6.png'
-            },
-            {
-                icon:'mp-user__controlpanel-icon mp-icon mp-icon-coupon',
-                text:'优惠券',
-                url:'http://i2.tiimg.com/693434/34d934d38b42f2b8.png'
-            },
-            {
-                icon:'mp-user__controlpanel-icon mp-icon mp-icon-about',
-                text:'关于我们',
-                url:'http://i2.tiimg.com/693434/4c346b64b120bfb3.png'
             },
             {
                 icon:'mp-user__controlpanel-icon mp-icon mp-icon-service',

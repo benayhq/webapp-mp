@@ -368,7 +368,51 @@
   .mp-user__list {
     height: auto;
     margin: 20rpx; }
+  .mp-user__loan-text {
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #3c3c3c; }
+  .mp-user__loan-amount {
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #fa6e13;
+    font-size: 48rpx; }
+  .mp-user__loan-desc {
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #bfbfbf;
+    font-size: 24rpx; }
+  .mp-user__loan-application {
+    margin: 0 auto;
+    text-align: center;
+    background: #FFFFFF;
+    width: 187rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    border-radius: 50rpx;
+    text-align: center;
+    border: 1rpx solid #7dd6d0;
+    color: #7dd6d0; }
 
 .at-button--primary {
   border: 1PX solid #FF9C5E;
   background: #FF9C5E; }
+
+.at-list__item .item-extra__icon-arrow {
+  color: #7dd6d0;
+  font-size: 48rpx; }
+
+.at-card {
+  border-top: 1PX #FFFFFF solid;
+  border-bottom: 1PX #FFFFFF solid;
+  border-right: 1PX #FFFFFF solid;
+  border-left: 1PX #FFFFFF solid;
+  margin: 0 22rpx;
+  border-radius: 0;
+  background-color: #FFF; }

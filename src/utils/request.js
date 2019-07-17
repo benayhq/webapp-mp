@@ -37,12 +37,15 @@ export default async function fetch(options){
         data:payload,
         header:header
     }).then(async(res)=>{
+
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);
         }
         return res.data;
     }).catch((err)=>{
         const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常';
+
+
         return Promise.reject({message:defaultMsg,...err}); 
     })
 }

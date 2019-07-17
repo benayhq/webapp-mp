@@ -75,11 +75,9 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
         statusVo: statusVo
       };
       this.props.dispatchOrderList(payload).then(function (response) {
-        console.log('response', response);
         _this2.setState({
           list: response.content
         });
-        _this2.forceUpdate();
       });
     }
   }, {
@@ -119,6 +117,8 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           list = _state.list,
           current = _state.current;
 
+      console.log('current', current);
+      console.log('list', list);
 
       Object.assign(this.__state, {
         tabList: tabList
