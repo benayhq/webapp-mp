@@ -1,10 +1,10 @@
 <block>
     <view class="mp-user__order">
-        <view class="mp-user__order-title"><text>客户订单</text><text class="mp-user__order-queryall" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/order/index">查看全部订单</text>
+        <view class="mp-user__order-title"><text>客户订单</text><text class="mp-user__order-queryall" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/order/index?status=&index=0">查看全部订单</text>
         </view>
         <view class="mp-user__ordernav">
             <block wx:if="{{list}}">
-                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?index=' + index}}">
+                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?status=' + item.status + '&index=' + (index + 1)}}">
                     <block>
                         <block wx:if="{{item.count > 0}}">
                             <at-badge value="{{item.count}}" __triggerObserer="{{ _triggerObserer }}" maxValue="{{99}}">

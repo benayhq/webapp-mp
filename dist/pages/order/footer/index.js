@@ -32,7 +32,7 @@ var Footer = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["qrCode"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["qrCode", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Footer, [{
@@ -55,6 +55,10 @@ var Footer = (_temp2 = _class = function (_BaseComponent) {
   return Footer;
 }(_index.Component), _class.properties = {
   "qrCode": {
+    "type": null,
+    "value": null
+  },
+  "content": {
     "type": null,
     "value": null
   }

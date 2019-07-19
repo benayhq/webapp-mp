@@ -19,23 +19,26 @@ export default class OrderDetail extends Component{
             order:{
                 agentName:'医美管家 vivi'
             },
-            content:{}
+            content:{},
+            id:0
         };
     }
+
     config = {
         navigationBarTitleText: '订单详情'
     }
 
+    componentWillMount(){
+        this.setState({
+            id:this.$router.params.orderId
+        })
+    }
+
     componentDidMount() {
-
-        this.$router.params.status = '待付款';
-        
         var payload = {
-            id:3
+            id:this.state.id
         };
-
         this.props.dispatchOrderDetail(payload).then((response)=>{
-            console.log('response22',response.content);
             this.setState({
                 content:response.content
             });
@@ -43,14 +46,15 @@ export default class OrderDetail extends Component{
     }
 
     render(){
+
+        const {content,order} = this.state;
         return (
             <View className="mp-order-detail">
-                <Header content={this.state.content}/>
-                {/* <Customer/> */}
-                <Assemble content={this.state.content}/>
-                <OrderProduct order={this.state.order} content={this.state.content}/>
-                <Footer qrCode={this.state.content.qrCode}/>
-                <ToolBar toolBar={this.state.content.toolBar}/>
+                <Header content={content}/>
+                <Assemble content={content}/>
+                <OrderProduct order={order} content={content}/>
+                <Footer content={content} qrCode={content.qrCode}/>
+                <ToolBar toolBar={content.toolBar}/>
             </View>
         )
     }

@@ -12,3 +12,7 @@ var ACTION_UPLOAD_DOWN = exports.ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN
 var ACTION_USER_AMOUNT = exports.ACTION_USER_AMOUNT = 'action/ACTION_USER_AMOUNT';
 
 var ORDER_LIST = exports.ORDER_LIST = 'action/ORDER_LIST';
+
+var ORDER_COUNT = exports.ORDER_COUNT = 'action/ORDER_COUNT';
+
+var LOAN_INFO = exports.LOAN_INFO = 'action/LOANINFO';

@@ -1,10 +1,19 @@
 <block>
     <view class="product">
-        <title AgentName="{{content.agentName}}" __triggerObserer="{{ _triggerObserer }}"></title>
+        <title displayStatusDes="{{content.displayStatusDes}}" __triggerObserer="{{ _triggerObserer }}" AgentName="{{content.agentName}}"></title>
         <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
+        <view class="item">
+            <view class="item-image">
+                <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{profileUrl}}"></image>
+            </view>
+            <view class="item-desc">
+                <view>{{content.activityName}}</view>
+                <view>{{content.activityProductName}}</view>
+                <view>{{content.productDiscountPrice}}</view>
+            </view>
+        </view>
         <view class="appoint"><text>预约时间: {{anonymousState__temp}}</text><text>预定金: <text class="amount">￥{{content.productAdvance}}</text></text>
         </view>
-        <view></view>
         <view class="service">
             <view class="wechat"><text class="mp-icon mp-icon-wechat margin8"></text><text>微信联系</text>
             </view>

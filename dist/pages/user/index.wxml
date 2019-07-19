@@ -34,7 +34,7 @@
                 <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx"></at-list-item>
             </at-list>
         </view>
-        <block wx:if="{{!isAgent}}">
+        <block wx:if="{{!isAgent && flag}}">
             <view class="mp-user__loan">
                 <at-card title="无抵押  信用借款" __triggerObserer="{{ _triggerObserer }}">
                     <view class="mp-user__loan-text">最高借款额度</view>

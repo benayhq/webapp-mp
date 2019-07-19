@@ -34,14 +34,14 @@ export default class Title extends Component{
     }
     
     render(){
-        const {OrderId,AgentName,DisplayStatusDes} = this.props;
+        const {OrderId,AgentName,displayStatusDes} = this.props;
         return (
             <View className="order-title" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index',OrderId)}>
                 <Text>{
                    AgentName
                 }</Text>
                 <Text className="mp-icon mp-icon-arrow-balck" ></Text>
-                <Text>{DisplayStatusDes}</Text>
+                <Text>{displayStatusDes}</Text>
             </View> 
         )
     }

@@ -7,3 +7,7 @@ export const ACTION_UPLOAD_DOWN = 'action/ACTION_UPLOAD_DOWN';
 export const ACTION_USER_AMOUNT = 'action/ACTION_USER_AMOUNT';
 
 export const ORDER_LIST = 'action/ORDER_LIST';
+
+export const ORDER_COUNT = 'action/ORDER_COUNT';
+
+export const LOAN_INFO = 'action/LOANINFO';

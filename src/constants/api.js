@@ -16,6 +16,9 @@ export const API_PRODUCT_INFO = `${HOST}/api/v1/product/info`;
 // active
 export const API_ACTIVE_CREATE = `${HOST}/api/v1/activity/create`;
 export const API_ACTIVE_INFO = `${HOST}/api/v1/activity/info`;
+
+export const API_ACTIVE_PRODUCTINFO = `${HOST}/api/v1/activityProduct/info`;
+
 export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
 export const API_ACTIVE_CLOSE = `${HOST}/api/v1/activity/close`;
 
@@ -56,3 +59,9 @@ export const API_DELETE_PRODUCT = `${HOST}/api/v1/product/delete`;
 
 // 初始化收益
 export const API_INIT_AMOUNT = `${HOST}/api/v1/reservation/plan`;
+
+// 累计成单信息量
+export const API_ORDER_COUNT = `${HOST}/api/v1/reservation/count`;
+
+// 贷款开关
+export const API_LOAN_INFO = `${HOST}/v1/user/daichao`;

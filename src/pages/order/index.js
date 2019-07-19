@@ -14,17 +14,26 @@ export default class OrderList extends Component{
 
     constructor(){
         super(...arguments);
+    }
 
-        this.state = {
-            current:0,
-            list:[],
-            status: 'more',
-            totalPage:1
-        }
+    state = {
+        current:1,
+        list:[],
+        status: 'more',
+        totalPage:1,
+        orderStatus:''
+    }
+
+    componentWillMount(){
+        var selectTabIndex = Number(this.$router.params.index);
+        this.setState({
+            orderStatus:this.$router.params.status,
+            current:selectTabIndex
+        });
     }
 
     componentDidMount(){
-        // this.getAllOrderList('',0,10);
+        this.getAllOrderList(this.state.orderStatus,0,10);
     }
 
     async getAllOrderList(statusVo,pageNo,pageSize){
@@ -34,7 +43,6 @@ export default class OrderList extends Component{
             pageSize:pageSize
         };
         const response = await this.props.dispatchOrderList(payload);
-
         this.setState({
             list:response.content
         });
@@ -69,10 +77,7 @@ export default class OrderList extends Component{
             totalPage:prevState.totalPage + 1,
             status: 'loading'
         }),()=>{
-            console.log('this.state.totalPage',this.state.totalPage);
             const pageNo = this.state.totalPage * 10;
-            console.log('pageNo',pageNo);
-            console.log('status',status);
             this.getAllOrderList(status,0, pageNo);
             this.setState({
                 status: 'noMore'
@@ -84,10 +89,8 @@ export default class OrderList extends Component{
         const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
         const {list,current,status} = this.state;
 
-        console.log('list',list);
-
         return (
-            <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+            <AtTabs current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={current} index={0} >
                 <View>
                     <OrderItem list={list}/>
@@ -101,21 +104,23 @@ export default class OrderList extends Component{
                 </View>
               </AtTabsPane>
 
-             <AtTabsPane current={this.state.current} index={1}>
+             <AtTabsPane current={current} index={1}>
                  {
                      list &&  <View>
                      <OrderItem list={list}/>
-                     {list.length> 0 && <View className="mp-order-loadmore">
+                     {
+                         list.length> 0 && <View className="mp-order-loadmore">
                            <AtLoadMore
                                onClick={this.handleLoadMore.bind(this,'UNPAY')}
                                status={status}
                            />
-                     </View> }
-                 </View>
+                         </View> 
+                    }
+                    </View>
                  }
              
               </AtTabsPane>
-             <AtTabsPane current={this.state.current} index={2}>
+             <AtTabsPane current={current} index={2}>
                  {list && <View>
                     <OrderItem list={list}/>
                     {list.length> 0 && <View className="mp-order-loadmore">
@@ -127,7 +132,7 @@ export default class OrderList extends Component{
                     }
                 </View>}
               </AtTabsPane>
-              <AtTabsPane current={this.state.current} index={3}>
+              <AtTabsPane current={current} index={3}>
                   {
                       list &&  <View>
                       <OrderItem list={list}/>
@@ -142,16 +147,17 @@ export default class OrderList extends Component{
                   }
 
               </AtTabsPane>
-                 <AtTabsPane current={this.state.current} index={4}>
+                 <AtTabsPane current={current} index={4}>
                  {
                      list && <View>
-                     <OrderItem list={list}/>
-                     {list.length> 0 &&  <View className="mp-order-loadmore">
+                     <OrderItem list={list}/>{
+                         list.length> 0 &&  <View className="mp-order-loadmore">
                           <AtLoadMore
                               onClick={this.handleLoadMore.bind(this,'CONSUMPTION')}
                               status={status}
                           />
-                     </View>}
+                     </View>
+                    }
                   </View>
                  } 
               </AtTabsPane> 

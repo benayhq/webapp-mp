@@ -188,6 +188,13 @@
           "pathName": "pages/product/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": 22,
+          "name": "个人中心",
+          "pathName": "pages/order/detail/index",
+          "query": "orderId=1",
+          "scene": null
         }
       ]
     }

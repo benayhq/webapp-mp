@@ -48,8 +48,14 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabList", "current", "list", "status", "totalPage", "dispatchOrderList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["current", "tabList", "list", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
       navigationBarTitleText: '我的订单'
+    }, _this.state = {
+      current: 1,
+      list: [],
+      status: 'more',
+      totalPage: 1,
+      orderStatus: ''
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -57,18 +63,20 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor() {
       _get(OrderList.prototype.__proto__ || Object.getPrototypeOf(OrderList.prototype), "_constructor", this).apply(this, arguments);
-
-      this.state = {
-        current: 0,
-        list: [],
-        status: 'more',
-        totalPage: 1
-      };
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var selectTabIndex = Number(this.$router.params.index);
+      this.setState({
+        orderStatus: this.$router.params.status,
+        current: selectTabIndex
+      });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.getAllOrderList('',0,10);
+      this.getAllOrderList(this.state.orderStatus, 0, 10);
     }
   }, {
     key: "getAllOrderList",
@@ -89,7 +97,6 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
 
               case 3:
                 response = _context.sent;
-
 
                 this.setState({
                   list: response.content
@@ -145,10 +152,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           status: 'loading'
         };
       }, function () {
-        console.log('this.state.totalPage', _this2.state.totalPage);
         var pageNo = _this2.state.totalPage * 10;
-        console.log('pageNo', pageNo);
-        console.log('status', status);
         _this2.getAllOrderList(status, 0, pageNo);
         _this2.setState({
           status: 'noMore'
@@ -169,8 +173,6 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           current = _state.current,
           status = _state.status;
 
-
-      console.log('list', list);
 
       Object.assign(this.__state, {
         tabList: tabList

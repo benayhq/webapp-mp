@@ -56,7 +56,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "userName", "list", "showUserText", "dispatchOrderList", "dispatchReservationPlan", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -74,6 +74,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         list: [],
         orders: [],
         profit: {},
+        flag: false,
         userName: '',
         showUserText: '切换为咨询师',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
@@ -98,6 +99,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.autoLogin();
       this.bindEvent();
       this.initReservationPlan();
+      this.initLoanFlag();
       var creatorInstance = new _create2.default();
       this.initOrderNotice(creatorInstance, false);
       this.setState({
@@ -108,39 +110,72 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }
   }, {
     key: "initOrderNotice",
-    value: function initOrderNotice(creatorInstance, isAgent) {
-      var _this2 = this;
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(creatorInstance, isAgent) {
+        var list, response;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                list = creatorInstance.factory(isAgent).getList();
+                _context.next = 3;
+                return this.props.dispatchReservationCount({});
 
-      var list = creatorInstance.factory(isAgent).getList();
-      var promises = list.map(function (item, key) {
-        var payload = {
-          statusVo: item.status
-        };
-        return _this2.props.dispatchOrderList(payload);
-      });
-      Promise.all(promises).then(function (posts) {
-        list.map(function (item, key) {
-          item.count = posts[key].content.length;
-        });
-      }).catch(function (reason) {
-        console.log('initOrderNotice', reason);
-      });
-      var that = this;
-      setTimeout(function () {
-        that.setState({
-          orders: list
-        });
-      }, 100);
-      return list;
-    }
+              case 3:
+                response = _context.sent;
+
+                list.map(function (item, key) {
+                  switch (item.status) {
+                    case "UNPAY":
+                      item.count = response.content.unpayCount;
+                      break;
+                    case "BATING":
+                      item.count = response.content.batingCount;
+                      break;
+                    case "CONSUMPTION":
+                      item.count = response.content.consumptionCount;
+                      break;
+                    case "COMMENTING":
+                      item.count = response.content.commentingCount;
+                      break;
+                  }
+                });
+                this.setState({
+                  orders: list
+                });
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function initOrderNotice(_x, _x2) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return initOrderNotice;
+    }()
   }, {
     key: "initReservationPlan",
     value: function initReservationPlan() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.props.dispatchReservationPlan().then(function (response) {
-        _this3.setState({
+        _this2.setState({
           profit: response.content
+        });
+      });
+    }
+  }, {
+    key: "initLoanFlag",
+    value: function initLoanFlag() {
+      var that = this;
+      this.props.dispatchLoanInfo().then(function (response) {
+        that.setState({
+          flag: response.content.flag
         });
       });
     }
@@ -152,27 +187,27 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getAuthInfo",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var result;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
                   return res.data;
                 });
-                return _context.abrupt("return", result);
+                return _context2.abrupt("return", result);
 
               case 2:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getAuthInfo() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       }
 
       return getAuthInfo;
@@ -195,29 +230,29 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getJpushAuthInfo",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var result;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 result = _index2.default.getStorage({ key: 'jpushAuth' }).then(function (res) {
                   return res.data;
                 }).catch(function () {
                   return '';
                 });
-                return _context2.abrupt("return", result);
+                return _context3.abrupt("return", result);
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function getJpushAuthInfo() {
-        return _ref3.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return getJpushAuthInfo;
@@ -225,12 +260,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleAuthClick",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-        var _this4 = this;
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        var _this3 = this;
 
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
@@ -245,12 +280,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       name: userInfo.nickName
                     };
 
-                    _this4.setState({
+                    _this3.setState({
                       avatarUrl: userInfo.avatarUrl,
                       userName: userInfo.nickName
                     });
 
-                    _this4.props.UpdateUserInfo(payload).then(function (res) {
+                    _this3.props.UpdateUserInfo(payload).then(function (res) {
                       if (res.result === "success") {
                         (0, _jump2.default)({ url: '/pages/active/publish/index' });
                       }
@@ -265,14 +300,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 1:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function handleAuthClick() {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       }
 
       return handleAuthClick;
@@ -283,7 +318,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.props.ChangeToAgent({});
       var isAgent = this.state.isAgent;
 
-      console.log('isAgent', isAgent);
       var creatorInstance = new _create2.default();
       this.setState({
         isAgent: !isAgent,
@@ -323,7 +357,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           avatarUrl = _state.avatarUrl,
           userName = _state.userName,
           profit = _state.profit,
-          orders = _state.orders;
+          orders = _state.orders,
+          flag = _state.flag;
 
 
       Object.assign(this.__state, {});
@@ -333,11 +368,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
-  "dispatchOrderList": {
+  "dispatchReservationCount": {
     "type": null,
     "value": null
   },
   "dispatchReservationPlan": {
+    "type": null,
+    "value": null
+  },
+  "dispatchLoanInfo": {
     "type": null,
     "value": null
   },

@@ -20,6 +20,8 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
+var _payment = require("../../../utils/payment.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33,7 +35,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var OrderItem = (_dec = (0, _index3.connect)(function (state) {
-  return state.user;
+  return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(OrderItem, _BaseComponent);
 
@@ -48,18 +50,24 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderList", "OrderState", "ProductImg", "dispatchCreateOrderDownLoadUrl", "list"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+      OrderState: '待付款',
+      ProductImg: '',
+      OrderList: [],
+      isOpended: false,
+      text: ''
+    }, _this.handleAlert = function (type, message) {
+      _index2.default.atMessage({
+        'message': message,
+        'type': type
+      });
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderItem, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(OrderItem.prototype.__proto__ || Object.getPrototypeOf(OrderItem.prototype), "_constructor", this).apply(this, arguments);
-      this.state = {
-        OrderState: '待付款',
-        ProductImg: '',
-        OrderList: []
-      };
+      _get(OrderItem.prototype.__proto__ || Object.getPrototypeOf(OrderItem.prototype), "_constructor", this).call(this, props);
     }
   }, {
     key: "getImgUrl",
@@ -97,7 +105,6 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "jumpUrl",
     value: function jumpUrl(orderId) {
-      console.log('orderId', orderId);
       _index2.default.navigateTo({
         url: '/pages/order/comment/index?orderId=' + orderId
       });
@@ -136,6 +143,28 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       }
     }
   }, {
+    key: "handleWeChatPay",
+    value: function handleWeChatPay(orderId) {
+      var _this3 = this;
+
+      var payload = {
+        id: orderId
+      };
+      this.props.dispatchPrePay(payload).then(function (response) {
+        if (response.content && response.content != null) {
+          (0, _payment.WeChatPay)(response.content, _this3.payNotice.bind(_this3));
+        } else {
+          _this3.handleAlert('error', response.error);
+        }
+      });
+    }
+  }, {
+    key: "payNotice",
+    value: function payNotice(type, response) {
+      console.log('payNoticeLog type', type);
+      console.log('payNoticeLog response', response);
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -157,11 +186,15 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "dispatchPrePay": {
+    "type": null,
+    "value": null
+  },
   "list": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["jumpUrl"], _temp2)) || _class);
+}, _class2.$$events = ["handleWeChatPay", "jumpUrl"], _temp2)) || _class);
 exports.default = OrderItem;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderItem));

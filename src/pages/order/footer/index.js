@@ -8,12 +8,12 @@ export default class Footer extends Component{
     constructor(){
         super(...arguments);
     }
-
+    
     render(){
         return (
             <View className="footer">
-                {this.props.qrCode && <Code/>}  
-                <Info/>
+                {this.props.qrCode && <Code  content={this.props.content}/>}  
+                <Info content={this.props.content}/>
             </View>
         )
     }

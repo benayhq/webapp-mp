@@ -21,6 +21,9 @@ var API_PRODUCT_INFO = exports.API_PRODUCT_INFO = HOST + '/api/v1/product/info';
 // active
 var API_ACTIVE_CREATE = exports.API_ACTIVE_CREATE = HOST + '/api/v1/activity/create';
 var API_ACTIVE_INFO = exports.API_ACTIVE_INFO = HOST + '/api/v1/activity/info';
+
+var API_ACTIVE_PRODUCTINFO = exports.API_ACTIVE_PRODUCTINFO = HOST + '/api/v1/activityProduct/info';
+
 var API_ACTIVE_OWNER = exports.API_ACTIVE_OWNER = HOST + '/api/v1/activity/owner';
 var API_ACTIVE_CLOSE = exports.API_ACTIVE_CLOSE = HOST + '/api/v1/activity/close';
 
@@ -61,3 +64,9 @@ var API_DELETE_PRODUCT = exports.API_DELETE_PRODUCT = HOST + '/api/v1/product/de
 
 // 初始化收益
 var API_INIT_AMOUNT = exports.API_INIT_AMOUNT = HOST + '/api/v1/reservation/plan';
+
+// 累计成单信息量
+var API_ORDER_COUNT = exports.API_ORDER_COUNT = HOST + '/api/v1/reservation/count';
+
+// 贷款开关
+var API_LOAN_INFO = exports.API_LOAN_INFO = HOST + '/v1/user/daichao';

@@ -14,7 +14,7 @@ var _api = require("../../../constants/api.js");
 var dispatchQueryProductInfo = exports.dispatchQueryProductInfo = function dispatchQueryProductInfo(payload) {
   return (0, _redux.createAction)({
     type: _constants.PRODUCT_QUERY_INFO,
-    url: _api.API_PRODUCT_INFO,
+    url: _api.API_ACTIVE_PRODUCTINFO,
     fetchOptions: {
       method: 'GET'
     },

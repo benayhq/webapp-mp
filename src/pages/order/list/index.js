@@ -1,22 +1,21 @@
 import Taro,{Component} from '@tarojs/taro';
 import './index.scss';
 import ProductItem from '../../../components/product';
-import { AtButton } from 'taro-ui';
+import { AtButton,AtMessage,AtToast } from 'taro-ui';
 import jump from './../../utils/jump';
 import Title from '../title';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
+import {WeChatPay} from './../../../utils/payment';
 
-@connect(state=>state.user,actions)
+@connect(state=>state,actions)
 export default class OrderItem extends Component{
-
-    constructor(props){
-        super(...arguments);
-        this.state = {
-            OrderState:'待付款',
-            ProductImg:'',
-            OrderList:[]
-        }
+    state = {
+        OrderState:'待付款',
+        ProductImg:'',
+        OrderList:[],
+        isOpended:false,
+        text:''
     }
 
     async getImgUrl(location){
@@ -28,7 +27,6 @@ export default class OrderItem extends Component{
     }
 
     jumpUrl(orderId){
-        console.log('orderId',orderId);
         Taro.navigateTo({
             url:'/pages/order/comment/index?orderId='+orderId
         });
@@ -63,6 +61,33 @@ export default class OrderItem extends Component{
             });
         }
     }
+
+    handleWeChatPay(orderId){
+        var payload ={
+            id:orderId
+        };
+        this.props.dispatchPrePay(payload).then((response)=>{
+            if(response.content && response.content!=null){
+                WeChatPay(response.content,this.payNotice.bind(this));
+            }
+            else{
+                this.handleAlert('error',response.error);
+            }
+        });
+    }
+
+    payNotice(type,response){
+        console.log('payNoticeLog type',type);
+        console.log('payNoticeLog response',response);
+    }
+
+    handleAlert = (type,message) => {
+        Taro.atMessage({
+          'message': message,
+          'type': type
+        });
+    }
+
    
     render(){
         const {OrderList} = this.state;
@@ -72,7 +97,7 @@ export default class OrderItem extends Component{
                 {
                     OrderList.map(item=>(
                         <View className="mp-order-list">
-                        <Title OrderId={item.id}  DisplayStatusDes={item.displayStatusDes}  AgentName={item.customerName}/>
+                        <Title OrderId={item.id}  displayStatusDes={item.displayStatusDes}  AgentName={item.customerName}/>
                         <View className="product">
                             <View className="left">
                                 <image style="height:100%;width:100%;margin:0 auto;padding:5px;"
@@ -91,11 +116,11 @@ export default class OrderItem extends Component{
                         <View className="order-action">
                             <View className="action">
                             {
-                                item.status == "UNPAY" && (<AtButton type='primary' size='small'>支付订单</AtButton>)
+                                item.status == "UNPAY" && (<AtButton type='primary' onClick={this.handleWeChatPay.bind(this,item.id)} size='small'>支付订单</AtButton>)
                             }
                             {
                                 item.status == "PAID" && <View>
-                                    <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.number)}>我要评价</AtButton>
+                                    <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.id)}>我要评价</AtButton>
                                     <Text className="margin8"></Text>
                                     <AtButton type='primary' size='small'>立即核销</AtButton>
                                 </View>

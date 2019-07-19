@@ -94,7 +94,7 @@ export default class SubmitOrder extends Component{
           'message': message,
           'type': type
         });
-     }
+    }
 
     componentDidMount(){
         var payload = {
@@ -110,9 +110,7 @@ export default class SubmitOrder extends Component{
             this.setState({
                 product:response.content
             });
-            console.log('response.content.location',response.content.location);
             this.getImgUrl(response.content.location).then((response)=>{
-                console.log('response getImgUrl',response);
                 this.setState({
                     imgUrl:response
                 })

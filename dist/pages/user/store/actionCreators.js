@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -68,8 +68,30 @@ var dispatchReservationPlan = exports.dispatchReservationPlan = function dispatc
 
 var dispatchOrderList = exports.dispatchOrderList = function dispatchOrderList(payload) {
   return (0, _redux.createAction)({
-    type: _constants.ORDER_LIST,
+    type: ORDER_LIST,
     url: _api.API_ORDER_LIST,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchReservationCount = exports.dispatchReservationCount = function dispatchReservationCount(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ORDER_COUNT,
+    url: _api.API_ORDER_COUNT,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchLoanInfo = exports.dispatchLoanInfo = function dispatchLoanInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.LOAN_INFO,
+    url: _api.API_LOAN_INFO,
     fetchOptions: {
       method: 'GET'
     },

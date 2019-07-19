@@ -5,6 +5,13 @@ page{
     background:rgba(245,245,249,1);
 }
 
+image {
+    width:100%;
+    display:inline-block;
+    overflow:hidden;    
+}
+    
+
 $component:'.mp-activedetail';
 
 #{$component}{

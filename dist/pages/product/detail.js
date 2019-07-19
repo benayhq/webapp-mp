@@ -176,9 +176,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     value: function loadData() {
       var _this2 = this;
 
+      console.log('loadData');
       var payload = {
-        activityId: 34
-        // this.state.activeId
+        activityId: this.state.activeId
       };
       this.props.dispatchActiveInfo(payload).then(function (res) {
         console.log('res.content', res.content);

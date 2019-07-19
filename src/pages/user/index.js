@@ -23,6 +23,7 @@ class Index extends Component{
       list:[],
       orders:[],
       profit:{},
+      flag:false,
       userName:'',
       showUserText:'切换为咨询师',
       avatarUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
@@ -45,6 +46,7 @@ class Index extends Component{
     this.autoLogin();
     this.bindEvent();
     this.initReservationPlan();
+    this.initLoanFlag();
     let creatorInstance = new Creator();
     this.initOrderNotice(creatorInstance,false);
     this.setState({
@@ -54,28 +56,28 @@ class Index extends Component{
     })
   }
 
-  initOrderNotice(creatorInstance,isAgent){
+  async initOrderNotice(creatorInstance,isAgent){
     var list = creatorInstance.factory(isAgent).getList();
-    const promises = list.map((item,key)=>{
-        var payload = {
-          statusVo:item.status
-        };
-        return this.props.dispatchOrderList(payload);
+    const response = await this.props.dispatchReservationCount({});
+    list.map((item,key)=>{
+        switch(item.status){
+          case "UNPAY":
+            item.count = response.content.unpayCount;
+            break;
+          case "BATING":
+              item.count = response.content.batingCount;
+            break;
+          case "CONSUMPTION":
+              item.count = response.content.consumptionCount;
+            break;
+          case "COMMENTING":
+              item.count = response.content.commentingCount;
+            break;
+        }
     });
-    Promise.all(promises).then(function(posts){
-      list.map((item,key)=>{
-          item.count = posts[key].content.length;
-      });
-    }).catch(function(reason){
-      console.log('initOrderNotice',reason);
-    });
-    var that = this;
-    setTimeout(() => {
-      that.setState({
-        orders:list
-      })
-    }, 100);
-    return list;  
+    this.setState({
+      orders:list
+    })
   }
 
   initReservationPlan(){
@@ -84,6 +86,15 @@ class Index extends Component{
         profit:response.content
       });
     })
+  }
+
+  initLoanFlag(){
+    var that = this;
+    this.props.dispatchLoanInfo().then((response)=>{
+      that.setState({
+        flag:response.content.flag
+      });
+    });
   }
 
   bindEvent(){
@@ -148,7 +159,6 @@ class Index extends Component{
   handleChangeState(){
       this.props.ChangeToAgent({});
       const {isAgent} = this.state;
-      console.log('isAgent',isAgent);
       let creatorInstance = new Creator();
       this.setState({
           isAgent:!isAgent,
@@ -181,7 +191,7 @@ class Index extends Component{
   }
 
   render(){
-    const {isAgent,avatarUrl,userName,profit,orders} = this.state;
+    const {isAgent,avatarUrl,userName,profit,orders,flag} = this.state;
 
     return (
       <View className='mp-user'>
@@ -207,8 +217,7 @@ class Index extends Component{
                     </View>
                 }
        </View>
-        {/* <Info user={this.state.user}  isAgent={isAgent}/> */}
-       { isAgent && <InCome profit={profit}/> }  
+       { isAgent && <InCome profit={profit}/> }
        { isAgent && <View className="mp-user__publish">
                 <View className="mp-user__publish-introduce">助力朋友圈获客</View>
                 <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
@@ -219,7 +228,7 @@ class Index extends Component{
                     type='primary' size='small'>发布活动</AtButton>
                 </View>
             </View>
-        }  
+        }
         <UserOrder list={orders}/>
         <View className="mp-user__list">
           <AtList>
@@ -235,19 +244,19 @@ class Index extends Component{
           </AtList>
         </View>
 
-        { !isAgent && 
-        <View className="mp-user__loan">
-        <AtCard
-        title='无抵押  信用借款'>
-            <View className="mp-user__loan-text">最高借款额度</View>
-            <View className="mp-user__loan-amount">￥1,000,000</View>
-            <View className="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</View>
-            <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
-                 立即申请
-            </View>
-        </AtCard>
-      </View>}
-        
+        { !isAgent && flag && 
+          <View className="mp-user__loan">
+          <AtCard
+          title='无抵押  信用借款'>
+              <View className="mp-user__loan-text">最高借款额度</View>
+              <View className="mp-user__loan-amount">￥1,000,000</View>
+              <View className="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</View>
+              <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
+                  立即申请
+              </View>
+          </AtCard>
+        </View>
+       } 
 
         <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
                 {this.state.showUserText} 

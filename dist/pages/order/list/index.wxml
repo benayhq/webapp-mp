@@ -1,7 +1,7 @@
 <block>
     <view>
         <view class="mp-order-list" wx:for="{{OrderList}}" wx:for-item="item" wx:for-index="_anonIdx">
-            <title OrderId="{{item.id}}" __triggerObserer="{{ _triggerObserer }}" DisplayStatusDes="{{item.displayStatusDes}}" AgentName="{{item.customerName}}"></title>
+            <title OrderId="{{item.id}}" __triggerObserer="{{ _triggerObserer }}" displayStatusDes="{{item.displayStatusDes}}" AgentName="{{item.customerName}}"></title>
             <view class="product">
                 <view class="left">
                     <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{item.imgUrl}}"></image>
@@ -15,11 +15,11 @@
             <view class="order-action">
                 <view class="action">
                     <block wx:if="{{item.status == 'UNPAY'}}">
-                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">支付订单</at-button>
+                        <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="handleWeChatPay" size="small" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.id}}">支付订单</at-button>
                     </block>
                     <block wx:if="{{item.status == 'PAID'}}">
                         <view>
-                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="jumpUrl" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.number}}">我要评价</at-button><text class="margin8"></text>
+                            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small" bindonclick="jumpUrl" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.id}}">我要评价</at-button><text class="margin8"></text>
                             <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">立即核销</at-button>
                         </view>
                     </block>

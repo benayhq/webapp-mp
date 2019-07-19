@@ -152,11 +152,10 @@ export default class Comment extends Taro.Component{
         imgArraySrc = [];
      
         this.props.dispatchCreateComment(payload).then((response)=>{
-           console.log('response');
+           Taro.navigateTo({
+              url:`pages/order/index`
+           })
         });
-
-        console.log('location',location);
-        return;
     }
 
     uploadImage(){

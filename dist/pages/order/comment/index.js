@@ -247,11 +247,10 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       imgArraySrc = [];
 
       this.props.dispatchCreateComment(payload).then(function (response) {
-        console.log('response');
+        _index2.default.navigateTo({
+          url: "pages/order/index"
+        });
       });
-
-      console.log('location', location);
-      return;
     }
   }, {
     key: 'uploadImage',

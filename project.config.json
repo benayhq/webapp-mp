@@ -109,7 +109,7 @@
 					"id": 10,
 					"name": "产品详情",
 					"pathName": "pages/product/detail",
-					"query": "activeId=1&&refId=2",
+					"query": "activeId=45&&refId=2",
 					"scene": null
 				},
 				{
@@ -130,7 +130,7 @@
 					"id": 13,
 					"name": "产品详情",
 					"pathName": "pages/product/detail",
-					"query": "",
+					"query": "activeId=44&referId=2",
 					"scene": null
 				},
 				{
@@ -187,6 +187,13 @@
 					"name": "产品列表",
 					"pathName": "pages/product/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "个人中心",
+					"pathName": "pages/order/detail/index",
+					"query": "orderId=1",
 					"scene": null
 				}
 			]

@@ -68,9 +68,9 @@ export default class Detail extends Component{
     }
 
     loadData(){
+        console.log('loadData');
         var payload ={
-            activityId:34
-            // this.state.activeId
+            activityId:this.state.activeId
         };
         this.props.dispatchActiveInfo(payload).then(res=>{
             console.log('res.content',res.content);

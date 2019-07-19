@@ -156,6 +156,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
     value: function handleChangeCategory(product) {
       var _this3 = this;
 
+      console.log('product.productId', product.productId);
       this.setState({
         productId: product.productId,
         isOpended: false

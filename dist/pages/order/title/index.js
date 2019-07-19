@@ -38,7 +38,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderId", "AgentName", "DisplayStatusDes"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderId", "AgentName", "displayStatusDes"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Title, [{
@@ -80,12 +80,12 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       var _props = this.__props,
           OrderId = _props.OrderId,
           AgentName = _props.AgentName,
-          DisplayStatusDes = _props.DisplayStatusDes;
+          displayStatusDes = _props.displayStatusDes;
 
       Object.assign(this.__state, {
         OrderId: OrderId,
         AgentName: AgentName,
-        DisplayStatusDes: DisplayStatusDes
+        displayStatusDes: displayStatusDes
       });
       return this.__state;
     }
@@ -101,7 +101,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   },
-  "DisplayStatusDes": {
+  "displayStatusDes": {
     "type": null,
     "value": null
   }

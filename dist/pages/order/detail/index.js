@@ -42,7 +42,7 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["order", "content", "dispatchOrderDetail"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["content", "order", "id", "dispatchOrderDetail"], _this.config = {
       navigationBarTitleText: '订单详情'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -55,22 +55,26 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
         order: {
           agentName: '医美管家 vivi'
         },
-        content: {}
+        content: {},
+        id: 0
       };
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.setState({
+        id: this.$router.params.orderId
+      });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.$router.params.status = '待付款';
-
       var payload = {
-        id: 3
+        id: this.state.id
       };
-
       this.props.dispatchOrderDetail(payload).then(function (response) {
-        console.log('response22', response.content);
         _this2.setState({
           content: response.content
         });
@@ -83,6 +87,11 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var _state = this.__state,
+          content = _state.content,
+          order = _state.order;
+
       Object.assign(this.__state, {});
       return this.__state;
     }

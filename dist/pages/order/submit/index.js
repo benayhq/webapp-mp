@@ -166,9 +166,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         _this3.setState({
           product: response.content
         });
-        console.log('response.content.location', response.content.location);
         _this3.getImgUrl(response.content.location).then(function (response) {
-          console.log('response getImgUrl', response);
           _this3.setState({
             imgUrl: response
           });

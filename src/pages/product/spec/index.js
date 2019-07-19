@@ -81,6 +81,8 @@ export default class Spec extends Component{
     }
 
     handleChangeCategory(product){
+        
+       console.log('product.productId',product.productId);
        this.setState({
             productId:product.productId,
             isOpended:false
