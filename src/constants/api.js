@@ -65,3 +65,7 @@ export const API_ORDER_COUNT = `${HOST}/api/v1/reservation/count`;
 
 // 贷款开关
 export const API_LOAN_INFO = `${HOST}/v1/user/daichao`;
+
+// 客户服务
+export const API_CUSTOMER_INFO = `${HOST}/api/v1/customer/customers`;
+

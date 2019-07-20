@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -94,6 +94,17 @@ var dispatchLoanInfo = exports.dispatchLoanInfo = function dispatchLoanInfo(payl
     url: _api.API_LOAN_INFO,
     fetchOptions: {
       method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchCustomerList = exports.dispatchCustomerList = function dispatchCustomerList(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_CUSTOMER_INFO,
+    url: _api.API_CUSTOMER_INFO,
+    fetchOptions: {
+      method: 'POST'
     },
     payload: payload
   });

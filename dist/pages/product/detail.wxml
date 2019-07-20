@@ -93,6 +93,7 @@
                 </view>
                 <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">立即购买</view>
             </view>
+            <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
         <popup visible="{{visible}}" __triggerObserer="{{ _triggerObserer }}" bindonclose="toggleVisible" __fn_onClose="{{true}}">
             <block wx:if="{{bContact}}">

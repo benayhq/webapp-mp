@@ -16,3 +16,5 @@ var ORDER_LIST = exports.ORDER_LIST = 'action/ORDER_LIST';
 var ORDER_COUNT = exports.ORDER_COUNT = 'action/ORDER_COUNT';
 
 var LOAN_INFO = exports.LOAN_INFO = 'action/LOANINFO';
+
+var ACTION_CUSTOMER_INFO = exports.ACTION_CUSTOMER_INFO = 'action/ACTION_CUSTOMER_INFO';

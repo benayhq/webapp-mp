@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -194,6 +194,13 @@
 					"name": "个人中心",
 					"pathName": "pages/order/detail/index",
 					"query": "orderId=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的客户",
+					"pathName": "pages/user/customer/index",
+					"query": "activeId=45&&refId=2",
 					"scene": null
 				}
 			]

@@ -12,7 +12,8 @@
     "pages/product/detail",
     "pages/order/submit/index",
     "pages/p2p/index",
-    "pages/order/comment/index"
+    "pages/order/comment/index",
+    "pages/user/customer/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

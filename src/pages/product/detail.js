@@ -1,7 +1,7 @@
 import Taro,{Component} from '@tarojs/taro';
 import {View,Text,Swiper,SwiperItem,ScrollView} from '@tarojs/components';
 import './detail.scss';
-import { AtButton } from 'taro-ui';
+import { AtButton,AtFab} from 'taro-ui';
 import Modal from './../../components/modal';
 import {Popup} from './../../components/popup/index';
 import Spec from './spec/index';
@@ -170,6 +170,16 @@ export default class Detail extends Component{
     showMpDialog(){
         this.setState({
             showOrderDialog:true
+        })
+    }
+
+    handleFloatClick(){
+        console.log('handleFloatClick');
+    }
+
+    handleShare(){
+        wx.showShareMenu({
+            withShareTicket: true
         })
     }
 
@@ -368,6 +378,14 @@ export default class Detail extends Component{
                         <View className="mp-activedetail__action__footer" onClick={this.openCategoryDialog.bind(this)}>
                             立即购买
                         </View>
+                    </View>
+{/* 
+                    <View className="mp-share">
+                        分 享
+                    </View> */}
+
+                    <View className="mp-service" onClick={this.handleShare.bind(this)}>
+                        分 享
                     </View>
                 </ScrollView>
 

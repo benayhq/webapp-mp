@@ -11,12 +11,12 @@ import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
 class Index extends Component{
-
+  
   config = {
     navigationBarTitleText: '个人中心'
   }
 
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       isAgent:false,
@@ -25,6 +25,10 @@ class Index extends Component{
       profit:{},
       flag:false,
       userName:'',
+      context1:'',
+      context2:'',
+      context3:'',
+      context4:'',
       showUserText:'切换为咨询师',
       avatarUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
     }
@@ -92,7 +96,11 @@ class Index extends Component{
     var that = this;
     this.props.dispatchLoanInfo().then((response)=>{
       that.setState({
-        flag:response.content.flag
+        flag:response.content.flag,
+        context1:response.content.context1,
+        context2:response.content.context2,
+        context3:response.content.context3,
+        context4:response.content.context4
       });
     });
   }
@@ -190,6 +198,14 @@ class Index extends Component{
     })
   }
 
+  handleJumpUrl(url,event){
+    console.log('url',url);
+
+    Taro.navigateTo({
+      url:'../../'+url
+    })
+  }
+
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,flag} = this.state;
 
@@ -222,7 +238,7 @@ class Index extends Component{
                 <View className="mp-user__publish-introduce">助力朋友圈获客</View>
                 <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
                 <View className="mp-user__publish-action" >
-                    <AtButton 
+                    <AtButton
                       text='微信登录'
                       openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
                     type='primary' size='small'>发布活动</AtButton>
@@ -238,6 +254,7 @@ class Index extends Component{
                     title={item.text}
                     arrow='right'
                     thumb={item.url}
+                    onClick={this.handleJumpUrl.bind(this,item.pageUrl)}
                     />
                 ))
             }
@@ -247,10 +264,10 @@ class Index extends Component{
         { !isAgent && flag && 
           <View className="mp-user__loan">
           <AtCard
-          title='无抵押  信用借款'>
-              <View className="mp-user__loan-text">最高借款额度</View>
-              <View className="mp-user__loan-amount">￥1,000,000</View>
-              <View className="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</View>
+          title={this.state.context1}>
+              <View className="mp-user__loan-text">{this.state.context2}</View>
+              <View className="mp-user__loan-amount">{this.state.context3}</View>
+              <View className="mp-user__loan-desc">{this.state.context4}</View>
               <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
                   立即申请
               </View>

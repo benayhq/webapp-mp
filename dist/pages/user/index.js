@@ -56,7 +56,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -76,6 +76,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         profit: {},
         flag: false,
         userName: '',
+        context1: '',
+        context2: '',
+        context3: '',
+        context4: '',
         showUserText: '切换为咨询师',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
@@ -175,7 +179,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var that = this;
       this.props.dispatchLoanInfo().then(function (response) {
         that.setState({
-          flag: response.content.flag
+          flag: response.content.flag,
+          context1: response.content.context1,
+          context2: response.content.context2,
+          context3: response.content.context3,
+          context4: response.content.context4
         });
       });
     }
@@ -345,6 +353,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleJumpUrl",
+    value: function handleJumpUrl(url, event) {
+      console.log('url', url);
+
+      _index2.default.navigateTo({
+        url: '../../' + url
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -392,7 +409,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
+}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleJumpUrl", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

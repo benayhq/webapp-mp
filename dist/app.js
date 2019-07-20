@@ -50,7 +50,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index'],
+      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index', 'pages/user/customer/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -71,7 +71,26 @@ var _App = function (_BaseComponent) {
     value: function componentDidCatchError() {}
   }, {
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+
+      var jim = new JMessage({
+        debug: true
+      });
+      console.log('jim', jim);
+      jim.init({
+        appkey: "bb62a48cc54e300e2e58fa0b",
+        random_str: "b37b052d0e9b4aa8a16ebe5446f9fba9",
+        signature: "bf184eeb9722a637c313a36e9fea80bf",
+        timestamp: "1562947140309",
+        flag: 1
+      }).onSuccess(function (data) {
+        console.log('data', data);
+        //TODO
+      }).onFail(function (data) {
+        console.log('data', data);
+        //TODO
+      });
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {}

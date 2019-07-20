@@ -280,6 +280,18 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleFloatClick",
+    value: function handleFloatClick() {
+      console.log('handleFloatClick');
+    }
+  }, {
+    key: "handleShare",
+    value: function handleShare() {
+      wx.showShareMenu({
+        withShareTicket: true
+      });
+    }
+  }, {
     key: "getImgUrl",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
@@ -352,7 +364,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["showMpDialog", "openDialog", "openCategoryDialog", "toggleVisible"], _temp2)) || _class);
+}, _class2.$$events = ["showMpDialog", "openDialog", "openCategoryDialog", "handleShare", "toggleVisible"], _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

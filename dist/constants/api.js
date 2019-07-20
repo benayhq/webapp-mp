@@ -70,3 +70,6 @@ var API_ORDER_COUNT = exports.API_ORDER_COUNT = HOST + '/api/v1/reservation/coun
 
 // 贷款开关
 var API_LOAN_INFO = exports.API_LOAN_INFO = HOST + '/v1/user/daichao';
+
+// 客户服务
+var API_CUSTOMER_INFO = exports.API_CUSTOMER_INFO = HOST + '/api/v1/customer/customers';

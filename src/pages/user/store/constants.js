@@ -11,3 +11,5 @@ export const ORDER_LIST = 'action/ORDER_LIST';
 export const ORDER_COUNT = 'action/ORDER_COUNT';
 
 export const LOAN_INFO = 'action/LOANINFO';
+
+export const ACTION_CUSTOMER_INFO = 'action/ACTION_CUSTOMER_INFO';

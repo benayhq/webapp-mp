@@ -31,15 +31,15 @@
         <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>
         <view class="mp-user__list">
             <at-list __triggerObserer="{{ _triggerObserer }}">
-                <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx"></at-list-item>
+                <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" bindonclick="handleJumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.pageUrl}}"></at-list-item>
             </at-list>
         </view>
         <block wx:if="{{!isAgent && flag}}">
             <view class="mp-user__loan">
-                <at-card title="无抵押  信用借款" __triggerObserer="{{ _triggerObserer }}">
-                    <view class="mp-user__loan-text">最高借款额度</view>
-                    <view class="mp-user__loan-amount">￥1,000,000</view>
-                    <view class="mp-user__loan-desc">如实填写个人信息，立即完成借款申请</view>
+                <at-card title="{{context1}}" __triggerObserer="{{ _triggerObserer }}">
+                    <view class="mp-user__loan-text">{{context2}}</view>
+                    <view class="mp-user__loan-amount">{{context3}}</view>
+                    <view class="mp-user__loan-desc">{{context4}}</view>
                     <view class="mp-user__loan-application" bindtap="handleAppLoan" data-e-tap-so="this">立即申请</view>
                 </at-card>
             </view>

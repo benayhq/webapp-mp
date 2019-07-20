@@ -1,0 +1,17 @@
+<block>
+    <view class="mp-customer">
+        <view class="list-wrapper">
+            <view>
+                <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132"></image>
+            </view>
+            <view>
+                <view class="header">爱吐槽的徐教授</view>
+                <view>电话: 15618925212</view>
+                <view>微信: 15618925212</view>
+            </view>
+            <view>
+                <view class="mp-icon mp-icon-tel telephone"></view>
+            </view>
+        </view>
+    </view>
+</block>

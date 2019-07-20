@@ -442,7 +442,32 @@ $component:'.mp-activedetail';
     }
 }
 
+.mp-service{
+    position: fixed;
+    bottom: 156px;
+    right: 26px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    line-height: 100px;
+    background: red;
+    color: #FFFFFF;
+    background: #7DD6D0;
+    text-align: center;
+}
 
-
+.mp-share{
+    position: fixed;
+    bottom: 306px;
+    right: 26px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    line-height: 100px;
+    background: red;
+    color: #FFFFFF;
+    background: #7DD6D0;
+    text-align: center;
+}
 
 

@@ -628,3 +628,29 @@ image {
   float: right;
   text-align: center;
   color: #FFFFFF; }
+
+.mp-service {
+  position: fixed;
+  bottom: 156rpx;
+  right: 26rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  line-height: 100rpx;
+  background: red;
+  color: #FFFFFF;
+  background: #7DD6D0;
+  text-align: center; }
+
+.mp-share {
+  position: fixed;
+  bottom: 306rpx;
+  right: 26rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  line-height: 100rpx;
+  background: red;
+  color: #FFFFFF;
+  background: #7DD6D0;
+  text-align: center; }
