@@ -1,0 +1,15 @@
+<block>
+    <view class="mp-history">
+        <block wx:if="{{actives}}">
+            <view class="list-wrapper" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx">
+                <view>
+                    <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="{{item.profileUrl}}"></image>
+                </view>
+                <view>
+                    <view>{{item.name}}</view>
+                    <view>地址：{{item.address}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

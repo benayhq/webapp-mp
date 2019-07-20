@@ -275,6 +275,23 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                // wx.login({
+                //   success (res) {
+                //     if (res.code) {
+                //       console.log('res.code',res.code);
+                //       //发起网络请求
+                //       wx.request({
+                //         url: 'https://test.com/onLogin',
+                //         data: {
+                //           code: res.code
+                //         }
+                //       })
+                //     } else {
+                //       console.log('登录失败！' + res.errMsg)
+                //     }
+                //   }
+                // });
+                // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
                       userInfo = res.userInfo;
@@ -360,6 +377,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       _index2.default.navigateTo({
         url: '../../' + url
       });
+    }
+  }, {
+    key: "handleContact",
+    value: function handleContact(e) {
+      console.log(e.path);
+      console.log(e.query);
     }
   }, {
     key: "_createData",

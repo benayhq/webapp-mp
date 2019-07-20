@@ -77,6 +77,12 @@
   color: #7DD6D0;
   content: "\e637"; }
 
+.mp-icon-arrow-history:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
 .mp-icon-arrow1:before {
   font-size: 30rpx;
   font-weight: 100;
@@ -363,6 +369,12 @@
   font-size: 45rpx;
   font-weight: 100;
   color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow-history:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
   content: "\e637"; }
 
 .mp-icon-arrow1:before {

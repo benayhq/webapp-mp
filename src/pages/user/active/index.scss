@@ -1,0 +1,59 @@
+@import '../../../style/index.scss';
+
+.mp-history{
+    .list-title{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        line-height: 50px;
+    }
+    .list-title>view:nth-child(1){
+        width: 30%;
+        margin-left: 10px;
+        color:rgba(187,187,187,1);
+    }
+    .list-title>view:nth-child(2){
+        margin-left: 10px;
+        width: 50%;
+     
+    }
+    .list-title>view:nth-child(3){
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        margin-left: 10px;
+        width: 20%;
+        color:#7DD6D0;
+    }
+
+    .list-wrapper{
+        display:flex;
+        flex-direction: row;
+        height: 180px;
+        border-bottom:1px solid #F5F5F9;
+    }
+
+    .list-wrapper>view:nth-child(1){
+        width: 30%;
+
+        &>image{
+            width: 180px;
+            height: 160px;
+            margin: 10px;
+        }
+    }
+ 
+    .list-wrapper>view:nth-child(2){
+        width: 65%;
+        height: 50px;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(187,187,187,1);
+    }
+}
+
+.mp-active-group{
+    height: 60px;
+    line-height: 60px;
+}

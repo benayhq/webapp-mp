@@ -14,31 +14,41 @@ class Index extends Component{
   constructor(props){
     super(props);
     this.state = {
+      customer:[]
     }
   }
 
   componentDidMount(){
     this.props.dispatchCustomerList({}).then((response)=>{
-      console.log('response',response);
+      this.setState({
+        customer:response.content
+      });
+      // console.log('response',response);
     });
   }
 
   render(){
+    const {customer} = this.state;
+
     return (
       <View className="mp-customer">
-          <View className="list-wrapper">
-             <View>
-                <image className="icon-header" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132"></image>
-             </View>
-             <View>
-                <View className="header">爱吐槽的徐教授</View>
-                <View>电话: 15618925212 </View>
-                <View>微信: 15618925212 </View>
-             </View>
-             <View>
-               <View className="mp-icon mp-icon-tel telephone"></View>
-             </View>
-          </View>
+          {
+            customer.length>0 && customer.map((item)=>(
+              <View className="list-wrapper">
+                <View>
+                  <image className="icon-header" src={item.profileUrl}></image>
+                </View>
+                <View>
+                  <View className="header">{item.customerNickName}</View>
+                  <View>电话: {item.cellphone} </View>
+                  <View>微信: {item.weChatId} </View>
+                </View>
+                <View>
+                  <View className="mp-icon mp-icon-tel telephone"></View>
+                </View>
+              </View>
+            ))
+          } 
       </View>
     )
   }

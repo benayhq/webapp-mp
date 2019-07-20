@@ -134,6 +134,23 @@ class Index extends Component{
   }
   
   async handleAuthClick(){
+    // wx.login({
+    //   success (res) {
+    //     if (res.code) {
+    //       console.log('res.code',res.code);
+    //       //发起网络请求
+    //       wx.request({
+    //         url: 'https://test.com/onLogin',
+    //         data: {
+    //           code: res.code
+    //         }
+    //       })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // });
+    // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
@@ -206,6 +223,11 @@ class Index extends Component{
     })
   }
 
+  handleContact (e) {
+    console.log(e.path)
+    console.log(e.query)
+  }
+
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,flag} = this.state;
 
@@ -259,6 +281,7 @@ class Index extends Component{
                 ))
             }
           </AtList>
+          { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
         </View>
 
         { !isAgent && flag && 
@@ -273,8 +296,8 @@ class Index extends Component{
               </View>
           </AtCard>
         </View>
-       } 
-
+       }
+      
         <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
                 {this.state.showUserText} 
         </View>

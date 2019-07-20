@@ -13,6 +13,12 @@ export default class Agent{
         return [
             {
                 icon:'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
+                text:'待付款',
+                status:'UNPAY',
+                count:0
+            },
+            {
+                icon:'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
                 text:'待成团',
                 status:'BATING',
                 count:0
@@ -42,13 +48,13 @@ export default class Agent{
                 icon:'mp-user__controlpanel-icon mp-icon mp-icon-active',
                 text:'我的活动',
                 url:'http://i1.fuimg.com/693434/b609d927da9f0bc2.png',
-                pageUrl:'pages/user/customer/index'
+                pageUrl:'pages/user/active/index'
             },
             {
                 icon:'mp-user__controlpanel-icon mp-icon mp-icon-product',
                 text:'往期产品',
                 url:'http://i1.fuimg.com/693434/cff1eaebf93dd23d.png',
-                pageUrl:'pages/user/customer/index'
+                pageUrl:'pages/user/product/index'
             },
             {
                 icon:'mp-user__controlpanel-icon mp-icon mp-icon-customer',

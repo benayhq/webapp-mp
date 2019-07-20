@@ -33,6 +33,9 @@
             <at-list __triggerObserer="{{ _triggerObserer }}">
                 <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" bindonclick="handleJumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.pageUrl}}"></at-list-item>
             </at-list>
+            <block wx:if="{{!isAgent}}">
+                <button open-type="contact" __triggerObserer="{{ _triggerObserer }}" bindcontact="handleContact">客服服务</button>
+            </block>
         </view>
         <block wx:if="{{!isAgent && flag}}">
             <view class="mp-user__loan">

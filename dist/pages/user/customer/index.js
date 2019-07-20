@@ -46,7 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["dispatchCustomerList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["customer", "dispatchCustomerList"], _this.config = {
       navigationBarTitleText: '我的客户'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -55,13 +55,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-      this.state = {};
+      this.state = {
+        customer: []
+      };
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.props.dispatchCustomerList({}).then(function (response) {
-        console.log('response', response);
+        _this2.setState({
+          customer: response.content
+        });
+        // console.log('response',response);
       });
     }
   }, {
@@ -71,6 +78,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var customer = this.__state.customer;
+
+
       Object.assign(this.__state, {});
       return this.__state;
     }

@@ -29,7 +29,11 @@ class App extends Component {
       'pages/order/submit/index',
       'pages/p2p/index',
       'pages/order/comment/index',
-      'pages/user/customer/index'
+      'pages/user/customer/index',
+      'pages/user/history/index',
+      'pages/user/consultant/index',
+      'pages/user/product/index',
+      'pages/user/active/index'
     ],
     window:{
       backgroundTextStyle: 'light',

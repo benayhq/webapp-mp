@@ -50,7 +50,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index', 'pages/user/customer/index'],
+      pages: ['pages/order/detail/index', 'pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index', 'pages/user/customer/index', 'pages/user/history/index', 'pages/user/consultant/index', 'pages/user/product/index', 'pages/user/active/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',

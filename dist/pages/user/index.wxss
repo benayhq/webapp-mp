@@ -77,6 +77,12 @@
   color: #7DD6D0;
   content: "\e637"; }
 
+.mp-icon-arrow-history:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
 .mp-icon-arrow1:before {
   font-size: 30rpx;
   font-weight: 100;
@@ -220,6 +226,38 @@
   font-size: 45rpx;
   color: #7DD6D0;
   content: "\e61a"; }
+
+button {
+  position: relative;
+  top: -90rpx;
+  height: 80rpx;
+  width: 570rpx;
+  opacity: 0.8;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 30rpx;
+  left: 20rpx;
+  text-align: left;
+  text-decoration: none;
+  line-height: 2.55555556;
+  border-radius: 5rpx;
+  border: none;
+  border: initial;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000000;
+  background-color: #FFFFFF; }
+
+button::after {
+  border: none; }
+
+.button-hover {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #DEDEDE; }
 
 .mp-user {
   background: #f5f5f9;

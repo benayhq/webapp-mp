@@ -1,0 +1,16 @@
+<block>
+    <view class="mp-history">
+        <block wx:if="{{activeList}}">
+            <view class="list-wrapper" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="_anonIdx">
+                <view>
+                    <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132"></image>
+                </view>
+                <view>
+                    <view class="mp-active-group">{{item.$original.name}}</view>
+                    <view class="mp-active-group">{{item.$original.people}}人成团</view>
+                    <view class="mp-active-group">截止日期:{{item.$loopState__temp2}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

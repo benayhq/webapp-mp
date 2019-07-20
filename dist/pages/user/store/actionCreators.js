@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -105,6 +105,39 @@ var dispatchCustomerList = exports.dispatchCustomerList = function dispatchCusto
     url: _api.API_CUSTOMER_INFO,
     fetchOptions: {
       method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchActiveHistory = exports.dispatchActiveHistory = function dispatchActiveHistory(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_HISTORY_INFO,
+    url: _api.API_ACTIVE_HISTORY,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchOwnerServiceHistory = exports.dispatchOwnerServiceHistory = function dispatchOwnerServiceHistory(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_WATER_HISTORY,
+    url: _api.API_WATER_HISTORY,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchOwnerActiveHistory = exports.dispatchOwnerActiveHistory = function dispatchOwnerActiveHistory(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_OWNER_INFO,
+    url: _api.API_ACTIVE_OWNER,
+    fetchOptions: {
+      method: 'GET'
     },
     payload: payload
   });

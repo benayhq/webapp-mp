@@ -20,7 +20,11 @@ export const API_ACTIVE_INFO = `${HOST}/api/v1/activity/info`;
 export const API_ACTIVE_PRODUCTINFO = `${HOST}/api/v1/activityProduct/info`;
 
 export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
+
 export const API_ACTIVE_CLOSE = `${HOST}/api/v1/activity/close`;
+
+// 浏览历史
+export const API_ACTIVE_HISTORY = `${HOST}/api/v1/activity/history`;
 
 // 创建订单
 export const API_CREATE_ORDER = `${HOST}/api/v1/batch/create`;
@@ -67,5 +71,14 @@ export const API_ORDER_COUNT = `${HOST}/api/v1/reservation/count`;
 export const API_LOAN_INFO = `${HOST}/v1/user/daichao`;
 
 // 客户服务
-export const API_CUSTOMER_INFO = `${HOST}/api/v1/customer/customers`;
+export const API_CUSTOMER_INFO = `${HOST}/api/v1/agent-customer/customers`;
+
+// 历史咨询师
+export const API_WATER_HISTORY = `${HOST}/api/v1/agent-customer/agents`;
+
+// 我的活动
+// export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
+
+
+
 

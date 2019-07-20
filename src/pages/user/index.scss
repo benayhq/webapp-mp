@@ -7,9 +7,47 @@ $panelBgColor:rgba(255,255,255,1);
     width: 177.5px;
 }
 
+button {
+    position:relative;
+    // display:block;
+    top:-90px;
+    height: 80px;
+    width: 570px;
+    opacity: 0.8;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:14px;
+    padding-right:14px;
+    box-sizing:border-box;
+    font-size:30px;
+    left: 20px;
+    text-align:left;
+    text-decoration:none;
+    line-height:2.55555556;
+    border-radius:5px;
+    border:none;
+    border:initial;
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+    color:#000000;
+    background-color:#FFFFFF;
+}
+button::after{
+    border: none;
+}
+    
+
+.button-hover {
+    color:rgba(0, 0, 0, 0.6);
+    background-color:#DEDEDE;
+}
+    
+    
+
 .mp-user{
     background:$userHomeBgColor;
     height: 1750px;
+
 
     /* modifiers */
     &-changeuser{

@@ -13,3 +13,9 @@ export const ORDER_COUNT = 'action/ORDER_COUNT';
 export const LOAN_INFO = 'action/LOANINFO';
 
 export const ACTION_CUSTOMER_INFO = 'action/ACTION_CUSTOMER_INFO';
+
+export const ACTION_HISTORY_INFO = 'action/ACTION_HISTORY_INFO';
+
+export const ACTION_OWNER_INFO = 'action/ACTION_OWNER_INFO';
+
+export const ACTION_WATER_HISTORY = 'action/ACTION_WATER_HISTORY';
