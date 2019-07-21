@@ -1,5 +1,13 @@
 <block>
     <view class="mp-user">
+        <at-modal isOpened="{{isOpened}}" __triggerObserer="{{ _triggerObserer }}">
+            <at-modal-header __triggerObserer="{{ _triggerObserer }}">授权登录</at-modal-header>
+            <at-modal-content __triggerObserer="{{ _triggerObserer }}">
+                <view class="mp-user__authinfo">申请获取以下权限</view>获取你的公开信息(呢称,头像等)</at-modal-content>
+            <view class="wechat-login">
+                <at-button className="mp-user__login" __triggerObserer="{{ _triggerObserer }}" text="微信登录" openType="getUserInfo" bindongetuserinfo="handleAuthClick" type="primary" size="small" __fn_onGetUserInfo="{{true}}">授权登录</at-button>
+            </view>
+        </at-modal>
         <view class="mp-user__info">
             <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" __triggerObserer="{{ _triggerObserer }}" src="{{avatarUrl}}"></image>
             <view class="mp-user__info-message" bindtap="handleUpdateInfo" data-e-tap-so="this">
@@ -23,9 +31,7 @@
             <view class="mp-user__publish">
                 <view class="mp-user__publish-introduce">助力朋友圈获客</view>
                 <view class="mp-user__publish-introduce-desc">拼团活动老带新</view>
-                <view class="mp-user__publish-action">
-                    <at-button text="微信登录" __triggerObserer="{{ _triggerObserer }}" openType="getUserInfo" bindongetuserinfo="handleAuthClick" type="primary" size="small" __fn_onGetUserInfo="{{true}}">发布活动</at-button>
-                </view>
+                <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
             </view>
         </block>
         <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>

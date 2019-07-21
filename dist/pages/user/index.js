@@ -24,10 +24,6 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
-var _jump = require("../utils/jump.js");
-
-var _jump2 = _interopRequireDefault(_jump);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -56,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "current", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "current", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -81,6 +77,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         context2: '',
         context3: '',
         context4: '',
+        isOpened: false,
         showUserText: '切换为咨询师',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
@@ -96,6 +93,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           avatarUrl: res.data.avatarUrl,
           userName: res.data.nickName
         });
+      }).catch(function () {
+        that.setState({
+          isOpened: true
+        });
       });
     }
   }, {
@@ -103,15 +104,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function init() {
       this.autoLogin();
       this.bindEvent();
-      this.initReservationPlan();
-      this.initLoanFlag();
-      var creatorInstance = new _create2.default();
-      this.initOrderNotice(creatorInstance, false);
-      this.setState({
-        isAgent: false,
-        list: creatorInstance.factory(false).getPanelList(),
-        user: creatorInstance.factory(false).getUserInfo()
-      });
     }
   }, {
     key: "initOrderNotice",
@@ -231,14 +223,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             code: res.code
           };
           currentObj.props.WeChatLogin(payload).then(function (res) {
-            console.log('WeChatLogin', res);
             currentObj.setState({
               userName: res.content.name
             });
             _index2.default.setStorage({ key: 'userinfo', data: res.content });
+          }).then(function () {
+            currentObj.initReservationPlan();
+            currentObj.initLoanFlag();
+            var creatorInstance = new _create2.default();
+            currentObj.initOrderNotice(creatorInstance, false);
+            currentObj.setState({
+              isAgent: false,
+              list: creatorInstance.factory(false).getPanelList(),
+              user: creatorInstance.factory(false).getUserInfo()
+            });
           });
-
-          console.log('res', res);
         }
       });
     }
@@ -282,23 +281,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                // wx.login({
-                //   success (res) {
-                //     if (res.code) {
-                //       console.log('res.code',res.code);
-                //       //发起网络请求
-                //       wx.request({
-                //         url: 'https://test.com/onLogin',
-                //         data: {
-                //           code: res.code
-                //         }
-                //       })
-                //     } else {
-                //       console.log('登录失败！' + res.errMsg)
-                //     }
-                //   }
-                // });
-                // return;
                 _index2.default.getUserInfo().then(function (res) {
                   var errMsg = res.errMsg,
                       userInfo = res.userInfo;
@@ -318,9 +300,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     });
 
                     _this3.props.UpdateUserInfo(payload).then(function (res) {
-                      if (res.result === "success") {
-                        (0, _jump2.default)({ url: '/pages/active/publish/index' });
-                      }
+                      console.log('res', res);
+                      _this3.setState({
+                        isOpened: false
+                      });
                     });
                   } else {
                     _index2.default.showToast({
@@ -379,25 +362,26 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleJumpUrl",
     value: function handleJumpUrl(url, event) {
-      console.log('url', url);
-
       _index2.default.navigateTo({
         url: '../../' + url
       });
     }
   }, {
     key: "handleContact",
-    value: function handleContact(e) {
-      console.log(e.path);
-      console.log(e.query);
-    }
+    value: function handleContact(e) {}
   }, {
     key: "handleClick",
     value: function handleClick(value) {
       this.setState({
         current: value
       });
-      console.log('value', value);
+    }
+  }, {
+    key: "handlePublish",
+    value: function handlePublish() {
+      _index2.default.navigateTo({
+        url: '../../pages/active/publish/index'
+      });
     }
   }, {
     key: "_createData",
@@ -413,7 +397,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           userName = _state.userName,
           profit = _state.profit,
           orders = _state.orders,
-          flag = _state.flag;
+          flag = _state.flag,
+          isOpened = _state.isOpened;
 
 
       Object.assign(this.__state, {});
@@ -447,7 +432,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["handleUpdateInfo", "handleAuthClick", "handleJumpUrl", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
+}, _class2.$$events = ["handleAuthClick", "handleUpdateInfo", "handlePublish", "handleJumpUrl", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

@@ -48,6 +48,23 @@ button::after{
     background:$userHomeBgColor;
     height: 1750px;
 
+    &__login{
+        width: 80%;
+        height: 90px;
+        line-height: 90px;
+        border-radius: 10px;
+        background:#07c160;
+        color: #FFFFFF;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    &__authinfo{
+        color: #000000;
+        height: 60px;
+        line-height: 60px;
+    }
 
     /* modifiers */
     &-changeuser{
@@ -212,7 +229,6 @@ button::after{
             z-index: 1000;
             font-size:32px
         }
-        
         &-action{
             position:relative;
             right:50px;
@@ -223,14 +239,15 @@ button::after{
             border-radius:6px;
             text-align: center;
             line-height: 60px;
+            background: #FF9C5E;
+            color: #FFFFFF;
+            font-size: 28px;
         }
     }
-
     &__list{
         height: auto;
         margin: 20px;
     }
-
     &__loan{
         &-text{
             text-align: center;
@@ -268,7 +285,6 @@ button::after{
             color: #7dd6d0;
         }
     }
-
 }
 
 .at-button--primary {
@@ -280,7 +296,6 @@ button::after{
     color:#7dd6d0;
     font-size:48rpx;
 }
-
 .at-card {
     border-top:1PX #FFFFFF solid;
     border-bottom:1PX #FFFFFF solid;
@@ -289,4 +304,15 @@ button::after{
     margin:0 21px;
     border-radius: 0px;
     background-color:#FFF;
+}
+.button-hover {
+    color:rgba(0, 0, 0, 0.6);
+    background-color:#07c160;
+}
+.wechat-login{
+    text-align: center;
+}
+.at-button--primary {
+    border:1PX solid #07c160;
+    background:#07c160;
 }

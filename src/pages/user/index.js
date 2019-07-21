@@ -6,7 +6,7 @@ import Creator from './common/create';
 import './index.scss';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
-import { AtButton,AtList, AtListItem,AtCard,AtTabBar } from 'taro-ui';
+import { AtButton,AtList, AtListItem,AtCard,AtTabBar,AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
 import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
@@ -30,6 +30,7 @@ class Index extends Component{
       context2:'',
       context3:'',
       context4:'',
+      isOpened:false,
       showUserText:'切换为咨询师',
       avatarUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
     }
@@ -38,27 +39,22 @@ class Index extends Component{
   componentDidMount(){
       this.init();
       var that = this;
-      Taro.getStorage({key:'authinfo'}).then(res=>{
+        Taro.getStorage({key:'authinfo'}).then(res=>{
           console.log('res.data.avatarUrl',res.data.avatarUrl);
           that.setState({
               avatarUrl:res.data.avatarUrl,
               userName:res.data.nickName
           })
-    });
+        }).catch(()=> {
+          that.setState({
+            isOpened:true
+          })
+        });
   }
 
  init(){
     this.autoLogin();
     this.bindEvent();
-    this.initReservationPlan();
-    this.initLoanFlag();
-    let creatorInstance = new Creator();
-    this.initOrderNotice(creatorInstance,false);
-    this.setState({
-        isAgent:false,
-        list:creatorInstance.factory(false).getPanelList(),
-        user:creatorInstance.factory(false).getUserInfo()
-    })
   }
 
   async initOrderNotice(creatorInstance,isAgent){
@@ -116,24 +112,32 @@ class Index extends Component{
   }
 
   autoLogin(){
-      var currentObj = this;
-      wx.login({
+    var currentObj = this;
+    wx.login({
           success(res) {
               var payload = {
                   code:res.code
               };
               currentObj.props.WeChatLogin(payload).then((res)=>{
-                  console.log('WeChatLogin',res);
                   currentObj.setState({
                     userName:res.content.name
                   });
                   Taro.setStorage({key:'userinfo',data:res.content});
+              }).then(()=>{
+                currentObj.initReservationPlan();
+                currentObj.initLoanFlag();
+                let creatorInstance = new Creator();
+                currentObj.initOrderNotice(creatorInstance,false);
+                currentObj.setState({
+                    isAgent:false,
+                    list:creatorInstance.factory(false).getPanelList(),
+                    user:creatorInstance.factory(false).getUserInfo()
+                })
               });
-
-              console.log('res',res);
           }
-      });
+    });
   }
+
 
   async getJpushAuthInfo(){
     const result = Taro.getStorage({key:'jpushAuth'}).then(res => {return res.data}).catch(() => '')
@@ -141,23 +145,6 @@ class Index extends Component{
   }
 
   async handleAuthClick(){
-    // wx.login({
-    //   success (res) {
-    //     if (res.code) {
-    //       console.log('res.code',res.code);
-    //       //发起网络请求
-    //       wx.request({
-    //         url: 'https://test.com/onLogin',
-    //         data: {
-    //           code: res.code
-    //         }
-    //       })
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg)
-    //     }
-    //   }
-    // });
-    // return;
     Taro.getUserInfo().then((res) => {
         const { errMsg, userInfo } = res;
         if (errMsg === 'getUserInfo:ok') {
@@ -175,9 +162,10 @@ class Index extends Component{
           });
 
           this.props.UpdateUserInfo(payload).then((res)=>{
-            if(res.result==="success"){
-              jump({url:'/pages/active/publish/index'});
-            }
+              console.log('res',res);
+              this.setState({
+                isOpened:false
+              });
           });
         } else {
           Taro.showToast({
@@ -223,51 +211,47 @@ class Index extends Component{
   }
 
   handleJumpUrl(url,event){
-    console.log('url',url);
-
     Taro.navigateTo({
       url:'../../'+url
     })
   }
 
   handleContact (e) {
-    console.log(e.path)
-    console.log(e.query)
   }
 
   handleClick (value) {
     this.setState({
       current: value
     });
-    console.log('value',value);
   }
 
+  handlePublish(){
+    Taro.navigateTo({
+      url:'../../pages/active/publish/index'
+    })
+  }
 
   render(){
-    const {isAgent,avatarUrl,userName,profit,orders,flag} = this.state;
+    const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened} = this.state;
 
     return (
-      // <View>
-      //     <AtTabBar
-      //       fixed
-      //       tabList={[
-      //         { title: '微聊', iconType: 'bullet-list', text: 'new' },
-      //         { title: '我的', iconType: 'camera' },
-      //       ]}
-      //       onClick={this.handleClick.bind(this)}
-      //       current={this.state.current}
-      //     />
-      //    {
-      //      current === 0 && <View>
-      //           {/* <WebView src='https://lovemeipin.com/h5tuiguang/mff?ref=hd_11021801'/> */}
-      //      </View>
-      //    } 
-      //    {
-      //       current === 1 && <View>1</View>
-      //    }
-      // </View>
-
       <View className='mp-user'>
+
+      <AtModal isOpened={isOpened}>
+        <AtModalHeader>授权登录</AtModalHeader>
+        <AtModalContent>
+           <View className="mp-user__authinfo">申请获取以下权限</View>
+           获取你的公开信息(呢称,头像等)
+        </AtModalContent>
+        <View className="wechat-login">
+          <AtButton
+             className="mp-user__login"
+                    text='微信登录'
+                    openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
+                  type='primary' size='small' >授权登录</AtButton>
+        </View>
+      </AtModal>
+
       <View className="mp-user__info"  >
               <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
                       src={avatarUrl}>
@@ -291,17 +275,16 @@ class Index extends Component{
               }
      </View>
      { isAgent && <InCome profit={profit}/> }
+
      { isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
               <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
-              <View className="mp-user__publish-action" >
-                  <AtButton
-                    text='微信登录'
-                    openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
-                  type='primary' size='small'>发布活动</AtButton>
+              <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
+                  发布活动
               </View>
           </View>
       }
+
       <UserOrder list={orders}/>
       <View className="mp-user__list">
         <AtList>
@@ -318,7 +301,6 @@ class Index extends Component{
         </AtList>
         { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
       </View>
-
       { !isAgent && flag && 
         <View className="mp-user__loan">
         <AtCard
@@ -336,6 +318,7 @@ class Index extends Component{
       <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
               {this.state.showUserText} 
       </View>
+
     </View>
     )
   }

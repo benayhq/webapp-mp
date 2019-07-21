@@ -286,11 +286,6 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "handleFloatClick",
-    value: function handleFloatClick() {
-      console.log('handleFloatClick');
-    }
-  }, {
     key: "handleShare",
     value: function handleShare() {
       wx.showShareMenu({
@@ -303,19 +298,15 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var _this3 = this;
 
       var products = [];
-
       data.activityProducts.map(function (item) {
-        console.log('item', item);
         products.push(item.productId);
       });
-
       var payload = {
         pageNo: pageNumberCount,
         pageSize: 10,
         activityProductIds: products
       };
       var that = this;
-
       totalCommentCount = commentArray.length;
       pageNumberCount++;
 
@@ -328,15 +319,12 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
                 _this3.getImgUrl(img).then(function (response) {
                   commentArray[index].docLocations = [];
                   commentArray[index].docLocations.push(response);
-                  console.log('response getImgUrl', response);
                 });
               });
             }
           });
         };
-
         if (commentArray.length > 0) {
-          console.log('commentArray', commentArray);
           setTimeout(function () {
             that.setState({
               comments: commentArray

@@ -264,6 +264,20 @@ button::after {
   height: 1750rpx;
   /* modifiers */
   /* elements */ }
+  .mp-user__login {
+    width: 80%;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 10rpx;
+    background: #07c160;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 30rpx; }
+  .mp-user__authinfo {
+    color: #000000;
+    height: 60rpx;
+    line-height: 60rpx; }
   .mp-user-changeuser {
     background: #FFFFFF;
     border-radius: 10rpx;
@@ -402,7 +416,10 @@ button::after {
       height: 60rpx;
       border-radius: 6rpx;
       text-align: center;
-      line-height: 60rpx; }
+      line-height: 60rpx;
+      background: #FF9C5E;
+      color: #FFFFFF;
+      font-size: 28rpx; }
   .mp-user__list {
     height: auto;
     margin: 20rpx; }
@@ -454,3 +471,14 @@ button::after {
   margin: 0 21rpx;
   border-radius: 0;
   background-color: #FFF; }
+
+.button-hover {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #07c160; }
+
+.wechat-login {
+  text-align: center; }
+
+.at-button--primary {
+  border: 1PX solid #07c160;
+  background: #07c160; }

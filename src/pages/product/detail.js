@@ -176,10 +176,6 @@ export default class Detail extends Component{
         })
     }
 
-    handleFloatClick(){
-        console.log('handleFloatClick');
-    }
-
     handleShare(){
         wx.showShareMenu({
             withShareTicket: true
@@ -188,22 +184,18 @@ export default class Detail extends Component{
 
     handleAllComment(data){
         var products = [];
-
         data.activityProducts.map((item)=>{
-            console.log('item',item);
             products.push(item.productId);
         });
-
         var payload ={
             pageNo:pageNumberCount,
             pageSize:10,
             activityProductIds:products
         };
         var that = this;
-        
         totalCommentCount = commentArray.length;
         pageNumberCount++;
-        
+
         this.props.dispatchCommentInfo(payload,).then((response)=>{
             if(response.content.length>0){
                 response.content.map((item,index)=>{
@@ -213,15 +205,12 @@ export default class Detail extends Component{
                             this.getImgUrl(img).then((response)=>{
                                 commentArray[index].docLocations = [];
                                 commentArray[index].docLocations.push(response);
-                                console.log('response getImgUrl',response);
                             })
                         })
                     }
                 });
             };
-
             if(commentArray.length>0){
-                console.log('commentArray',commentArray);
                 setTimeout(() => {
                     that.setState({
                         comments:commentArray
@@ -235,7 +224,7 @@ export default class Detail extends Component{
                 if(totalCommentCount === commentArray.length){
                     that.setState({
                         commentText:'加载完毕'
-                    })
+                    });
                 }
             }, 1000);
         }
