@@ -10,6 +10,7 @@ import {getWindowHeight} from './../../utils/style';
 import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
+var commentArray=[],totalCommentCount=0,pageNumberCount=0;
 
 @connect(state=>state,actions)
 export default class Detail extends Component{
@@ -32,7 +33,8 @@ export default class Detail extends Component{
             comments:[],
             activeId:'',
             referId:'',
-            source:''
+            source:'',
+            commentText:'查看全部评论'
         }
     }
 
@@ -185,26 +187,58 @@ export default class Detail extends Component{
     }
 
     handleAllComment(data){
-        // console.log('data',data.activityProducts);
         var products = [];
+
         data.activityProducts.map((item)=>{
             console.log('item',item);
             products.push(item.productId);
         });
+
         var payload ={
-            pageNo:0,
+            pageNo:pageNumberCount,
             pageSize:10,
             activityProductIds:products
         };
         var that = this;
-        // console.log('this.props',this.props);
-        // console.log('payload',payload);
+        
+        totalCommentCount = commentArray.length;
+        pageNumberCount++;
+        
         this.props.dispatchCommentInfo(payload,).then((response)=>{
-            that.setState({
-                comments:response.content
-            });
-            console.log('response',response.content);
+            if(response.content.length>0){
+                response.content.map((item,index)=>{
+                    commentArray.push(item);
+                    if(item.docLocations.length>0){
+                        item.docLocations.map((img)=>{
+                            this.getImgUrl(img).then((response)=>{
+                                commentArray[index].docLocations = [];
+                                commentArray[index].docLocations.push(response);
+                                console.log('response getImgUrl',response);
+                            })
+                        })
+                    }
+                });
+            };
+
+            if(commentArray.length>0){
+                console.log('commentArray',commentArray);
+                setTimeout(() => {
+                    that.setState({
+                        comments:commentArray
+                    });
+                }, 1000);
+            }
         });
+
+        if(totalCommentCount>0){
+            setTimeout(() => {
+                if(totalCommentCount === commentArray.length){
+                    that.setState({
+                        commentText:'加载完毕'
+                    })
+                }
+            }, 1000);
+        }
     }
 
     async getImgUrl(location){
@@ -216,10 +250,9 @@ export default class Detail extends Component{
     }
 
     render(){
-        const {data,commentList,bannerList,activeId,comments} = this.state;
+        const {data,commentList,bannerList,activeId,comments,commentText} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
-        console.log('comments',comments);
 
         return (
             <View className='mp-activedetail'>
@@ -336,7 +369,6 @@ export default class Detail extends Component{
                             <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>
                             <Text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 ({data.commentPeople === null ? 0 : data.commentPeople})</Text>
                         </View>
-
                         {
                               comments.length === 0 && data.commentVo && (
                                     <View className="mp-activedetail__comment-content">
@@ -381,10 +413,8 @@ export default class Detail extends Component{
                                     </View>
                                 )
                         }
-
                         {
                              comments.length > 0 && (
-
                                 comments.map((item)=>{
                                     return (
                                         <View className="mp-activedetail__comment-content">
@@ -421,12 +451,11 @@ export default class Detail extends Component{
                                 })
                             )
                         }
-
                         {
                              data.commentVo && (
                                     <View className="mp-activedetail__query-all-comment" onClick={this.handleAllComment.bind(this,data)}>
-                                        查看全部评论
-                                        <Text className="mp-icon mp-icon-arrow1"></Text>
+                                        {commentText}
+                                        {/* <Text className="mp-icon mp-icon-arrow1"></Text> */}
                                     </View>
                              )
                         }
@@ -448,11 +477,6 @@ export default class Detail extends Component{
                             立即购买
                         </View>
                     </View>
-{/* 
-                    <View className="mp-share">
-                        分 享
-                    </View> */}
-
                     <View className="mp-service" onClick={this.handleShare.bind(this)}>
                         分 享
                     </View>

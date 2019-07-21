@@ -96,8 +96,7 @@
                     </view>
                 </block>
                 <block wx:if="{{data.commentVo}}">
-                    <view class="mp-activedetail__query-all-comment" bindtap="handleAllComment" data-e-tap-so="this" data-e-tap-a-a="{{data}}">查看全部评论<text class="mp-icon mp-icon-arrow1"></text>
-                    </view>
+                    <view class="mp-activedetail__query-all-comment" bindtap="handleAllComment" data-e-tap-so="this" data-e-tap-a-a="{{data}}">{{commentText}}</view>
                 </block>
             </view>
             <view class="mp-activedetail__consultation"></view>
