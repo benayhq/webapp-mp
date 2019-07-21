@@ -421,7 +421,7 @@ button::after {
       color: #FFFFFF;
       font-size: 28rpx; }
   .mp-user__list {
-    height: auto;
+    height: 306rpx;
     margin: 20rpx; }
   .mp-user__loan-text {
     text-align: center;

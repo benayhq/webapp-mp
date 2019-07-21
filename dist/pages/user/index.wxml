@@ -43,7 +43,7 @@
                 <button open-type="contact" __triggerObserer="{{ _triggerObserer }}" bindcontact="handleContact">客服服务</button>
             </block>
         </view>
-        <block wx:if="{{!isAgent && flag}}">
+        <block wx:if="{{isShowLoanApp === true}}">
             <view class="mp-user__loan">
                 <at-card title="{{context1}}" __triggerObserer="{{ _triggerObserer }}">
                     <view class="mp-user__loan-text">{{context2}}</view>

@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "current", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "avatarUrl", "profit", "isAgent", "orders", "isShowLoanApp", "userName", "showUserText", "list", "flag", "current", "context1", "context2", "context3", "context4", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -88,7 +88,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.init();
       var that = this;
       _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
-        console.log('res.data.avatarUrl', res.data.avatarUrl);
         that.setState({
           avatarUrl: res.data.avatarUrl,
           userName: res.data.nickName
@@ -103,7 +102,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "init",
     value: function init() {
       this.autoLogin();
-      this.bindEvent();
     }
   }, {
     key: "initOrderNotice",
@@ -179,11 +177,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           context4: response.content.context4
         });
       });
-    }
-  }, {
-    key: "bindEvent",
-    value: function bindEvent() {
-      this.handleChangeState = this.handleChangeState.bind(this);
     }
   }, {
     key: "getAuthInfo",
@@ -330,19 +323,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleChangeState",
     value: function handleChangeState() {
-      this.props.ChangeToAgent({});
       var isAgent = this.state.isAgent;
 
+      var boolAgent = !isAgent;
+      this.setState({
+        isAgent: boolAgent,
+        showUserText: !isAgent ? '切换为用户' : '切换为咨询师'
+      });
+      this.props.ChangeToAgent({}).then(function (response) {});
       var creatorInstance = new _create2.default();
       this.setState({
-        isAgent: !isAgent,
+        isAgent: boolAgent,
         list: creatorInstance.factory(!isAgent).getPanelList(),
         orders: this.initOrderNotice(creatorInstance, !isAgent),
         user: creatorInstance.factory(!isAgent).getUserInfo()
-      });
-      this.setState({
-        isAgent: !isAgent,
-        showUserText: !isAgent ? '切换为用户' : '切换为咨询师'
       });
     }
   }, {
@@ -398,10 +392,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           profit = _state.profit,
           orders = _state.orders,
           flag = _state.flag,
-          isOpened = _state.isOpened;
+          isOpened = _state.isOpened,
+          showUserText = _state.showUserText;
 
+      var isShowLoanApp = !isAgent && flag;
 
-      Object.assign(this.__state, {});
+      Object.assign(this.__state, {
+        isShowLoanApp: isShowLoanApp
+      });
       return this.__state;
     }
   }]);

@@ -40,7 +40,6 @@ class Index extends Component{
       this.init();
       var that = this;
         Taro.getStorage({key:'authinfo'}).then(res=>{
-          console.log('res.data.avatarUrl',res.data.avatarUrl);
           that.setState({
               avatarUrl:res.data.avatarUrl,
               userName:res.data.nickName
@@ -54,7 +53,6 @@ class Index extends Component{
 
  init(){
     this.autoLogin();
-    this.bindEvent();
   }
 
   async initOrderNotice(creatorInstance,isAgent){
@@ -102,9 +100,6 @@ class Index extends Component{
     });
   }
 
-  bindEvent(){
-      this.handleChangeState = this.handleChangeState.bind(this);
-  }
 
   async getAuthInfo(){
     const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
@@ -177,19 +172,22 @@ class Index extends Component{
   }
 
   handleChangeState(){
-      this.props.ChangeToAgent({});
       const {isAgent} = this.state;
+      var boolAgent = !isAgent;
+      this.setState({
+          isAgent: boolAgent,
+          showUserText: !isAgent ? '切换为用户':'切换为咨询师'
+      });
+      this.props.ChangeToAgent({}).then((response)=>{
+      });
       let creatorInstance = new Creator();
       this.setState({
-          isAgent:!isAgent,
+          isAgent:boolAgent,
           list:creatorInstance.factory(!isAgent).getPanelList(),
           orders:this.initOrderNotice(creatorInstance,!isAgent),
           user:creatorInstance.factory(!isAgent).getUserInfo()
-      })
-      this.setState({
-          isAgent:!isAgent,
-          showUserText:!isAgent? '切换为用户' : '切换为咨询师'
-      })
+      });
+   
   }
   
   jumpUrl = (url) =>{
@@ -232,7 +230,8 @@ class Index extends Component{
   }
 
   render(){
-    const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened} = this.state;
+    const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText} = this.state;
+    const isShowLoanApp = !isAgent && flag;
 
     return (
       <View className='mp-user'>
@@ -246,9 +245,9 @@ class Index extends Component{
         <View className="wechat-login">
           <AtButton
              className="mp-user__login"
-                    text='微信登录'
-                    openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
-                  type='primary' size='small' >授权登录</AtButton>
+             text='微信登录'
+             openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
+             type='primary' size='small' >授权登录</AtButton>
         </View>
       </AtModal>
 
@@ -274,9 +273,11 @@ class Index extends Component{
                   </View>
               }
      </View>
-     { isAgent && <InCome profit={profit}/> }
+     
+      { isAgent && <InCome profit={profit}/> }
 
-     { isAgent && <View className="mp-user__publish">
+      {
+        isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
               <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
               <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
@@ -286,6 +287,7 @@ class Index extends Component{
       }
 
       <UserOrder list={orders}/>
+
       <View className="mp-user__list">
         <AtList>
           {
@@ -301,7 +303,7 @@ class Index extends Component{
         </AtList>
         { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
       </View>
-      { !isAgent && flag && 
+      { isShowLoanApp === true ?
         <View className="mp-user__loan">
         <AtCard
         title={this.state.context1}>
@@ -312,11 +314,11 @@ class Index extends Component{
                 立即申请
             </View>
         </AtCard>
-      </View>
-     }
-    
+      </View> : ""
+      }
+
       <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
-              {this.state.showUserText} 
+              {showUserText}
       </View>
 
     </View>
