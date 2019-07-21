@@ -187,9 +187,8 @@ class Index extends Component{
           orders:this.initOrderNotice(creatorInstance,!isAgent),
           user:creatorInstance.factory(!isAgent).getUserInfo()
       });
-   
   }
-  
+
   jumpUrl = (url) =>{
     Taro.navigateTo({
       url: url
@@ -316,7 +315,6 @@ class Index extends Component{
         </AtCard>
       </View> : ""
       }
-
       <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
               {showUserText}
       </View>

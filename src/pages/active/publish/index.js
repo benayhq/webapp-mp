@@ -410,14 +410,13 @@ export default class Index extends Component {
 
         <View className="mp-publish-product">
                      <ProductList products={products}/>
-                     <View className="publish-active">
+                     {/* <View className="publish-active">
                             <Text>活动价</Text>
                               <AtInput border={false} 
                                           value={activePrice}
                                           onChange={this.onChangeActivePrice.bind(this)}
                                           placeholder="请输入活动优惠价" />
-                      </View>
-
+                      </View> */}
                       <View className="pulbish-create">
                       <Text className="mp-icon mp-icon-plus"></Text>
                       <Text onClick={this.createProduct}>新增产品</Text>
