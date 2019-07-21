@@ -83,3 +83,6 @@ var API_WATER_HISTORY = exports.API_WATER_HISTORY = HOST + '/api/v1/agent-custom
 
 // 我的活动
 // export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
+
+// 查询所有评论. 
+var API_PRODUCT_COMMNET = exports.API_PRODUCT_COMMNET = HOST + '/api/v1/comment/paging';

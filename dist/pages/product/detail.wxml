@@ -57,7 +57,7 @@
             <view class="mp-activedetail__comment">
                 <view class="mp-activedetail__comment-title"><text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></text><text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 ({{data.commentPeople === null ? 0 : data.commentPeople}})</text>
                 </view>
-                <block wx:if="{{data.commentVo}}">
+                <block wx:if="{{comments.length === 0 && data.commentVo}}">
                     <view class="mp-activedetail__comment-content">
                         <view class="mp-activedetail__comment-content-left">
                             <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{data.commentVo.profileUrl}}"></image>
@@ -76,8 +76,27 @@
                         </view>
                     </view>
                 </block>
+                <block wx:if="{{comments.length > 0}}">
+                    <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx5">
+                        <view class="mp-activedetail__comment-content-left">
+                            <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{item.profileUrl}}"></image>
+                        </view>
+                        <view class="mp-activedetail__comment-content-right">
+                            <view class="mp-activedetail__comment-username">{{item.name}}</view>
+                            <view class="mp-activedetail__comment-tag"><text>环境：{{item.environmentStar + '.0'}}</text><text>专业度：{{item.professionStar + '.0'}}</text><text>服务：{{item.serviceStar + '.0'}}</text><text>效果：{{item.effectStar + '.0'}}</text>
+                            </view>
+                            <view class="mp-activedetail__comment-description">{{item.message}}
+                                <view>
+                                    <block wx:if="{{item.docLocations}}">
+                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx4"></image>
+                                    </block>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
                 <block wx:if="{{data.commentVo}}">
-                    <view class="mp-activedetail__query-all-comment">查看全部评论<text class="mp-icon mp-icon-arrow1"></text>
+                    <view class="mp-activedetail__query-all-comment" bindtap="handleAllComment" data-e-tap-so="this" data-e-tap-a-a="{{data}}">查看全部评论<text class="mp-icon mp-icon-arrow1"></text>
                     </view>
                 </block>
             </view>

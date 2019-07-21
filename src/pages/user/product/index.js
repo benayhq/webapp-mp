@@ -19,7 +19,6 @@ export default class Index extends Component{
     }
 
     componentDidMount(){
-        console.log('componentDidMount');
         this.init();
     }
 
@@ -38,6 +37,7 @@ export default class Index extends Component{
     
       async initProductList(){
         var that = this;
+
         var payload = {
           pageNo:0,
           pageSize:1000
@@ -45,7 +45,7 @@ export default class Index extends Component{
         
         var responseList = [];
         const resultProductList = await this.props.dispatchProductList(payload);
-    
+
         resultProductList.content.map((item)=>{
           this.getImgUrl(item.location)
           .then(response=>{

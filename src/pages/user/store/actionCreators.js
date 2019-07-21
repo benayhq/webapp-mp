@@ -1,8 +1,10 @@
 import {UPDATE_USER_INFO,WX_USER_LOGIN,USER_AGENT_TRUE,ACTION_UPLOAD_CONFIG,ACTION_USER_AMOUNT,ORDER_COUNT
-    ,LOAN_INFO,ACTION_CUSTOMER_INFO,ACTION_HISTORY_INFO,ACTION_OWNER_INFO,ACTION_WATER_HISTORY} from './constants';
+    ,LOAN_INFO,ACTION_CUSTOMER_INFO,ACTION_HISTORY_INFO,ACTION_OWNER_INFO,ACTION_WATER_HISTORY,
+    ACTION_UPLOAD_DOWN} from './constants';
 import {createAction} from './../../../utils/redux';
 import {API_USER_INFO,API_USER_LOGIN,API_USER_AGENT,API_UPLOAD_CONFIG,API_INIT_AMOUNT
-,API_ORDER_LIST,API_ORDER_COUNT,API_LOAN_INFO,API_CUSTOMER_INFO,API_ACTIVE_HISTORY,API_ACTIVE_OWNER,API_WATER_HISTORY
+,API_ORDER_LIST,API_ORDER_COUNT,API_LOAN_INFO,API_CUSTOMER_INFO,API_ACTIVE_HISTORY,
+API_ACTIVE_OWNER,API_WATER_HISTORY,API_UPLOAD_FILE
 } from './../../../constants/api';
 
 export const UpdateUserInfo = payload => createAction({
@@ -91,6 +93,15 @@ export const dispatchActiveHistory = payload => createAction({
     url: API_ACTIVE_HISTORY,
     fetchOptions:{
         method:'POST'
+    },
+    payload
+});
+
+export const dispatchDownLoadUrl = payload =>createAction({
+    type: ACTION_UPLOAD_DOWN,
+    url: API_UPLOAD_FILE,
+    fetchOptions:{
+        method:'GET'
     },
     payload
 });

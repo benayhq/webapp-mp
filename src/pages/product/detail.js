@@ -11,7 +11,7 @@ import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
 
-@connect(state=>state.user,actions)
+@connect(state=>state,actions)
 export default class Detail extends Component{
     config = {
         navigationBarTitleText: '活动详情'
@@ -29,6 +29,7 @@ export default class Detail extends Component{
             data:{},
             commentList:[],
             bannerList:[],
+            comments:[],
             activeId:'',
             referId:'',
             source:''
@@ -105,7 +106,7 @@ export default class Detail extends Component{
                     }).then(()=>{
                         this.setState({
                             bannerList:bannerItemList
-                        })
+                        });
                     })
                 })
             }
@@ -183,6 +184,29 @@ export default class Detail extends Component{
         })
     }
 
+    handleAllComment(data){
+        // console.log('data',data.activityProducts);
+        var products = [];
+        data.activityProducts.map((item)=>{
+            console.log('item',item);
+            products.push(item.productId);
+        });
+        var payload ={
+            pageNo:0,
+            pageSize:10,
+            activityProductIds:products
+        };
+        var that = this;
+        // console.log('this.props',this.props);
+        // console.log('payload',payload);
+        this.props.dispatchCommentInfo(payload,).then((response)=>{
+            that.setState({
+                comments:response.content
+            });
+            console.log('response',response.content);
+        });
+    }
+
     async getImgUrl(location){
         var payload = {
           location:location
@@ -192,10 +216,11 @@ export default class Detail extends Component{
     }
 
     render(){
-        const {data,commentList,bannerList,activeId} = this.state;
+        const {data,commentList,bannerList,activeId,comments} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
-        
+        console.log('comments',comments);
+
         return (
             <View className='mp-activedetail'>
                 <ScrollView
@@ -313,8 +338,9 @@ export default class Detail extends Component{
                         </View>
 
                         {
-                                data.commentVo && (
+                              comments.length === 0 && data.commentVo && (
                                     <View className="mp-activedetail__comment-content">
+
                                     <View className="mp-activedetail__comment-content-left">
                                             <image
                                                     mode="scaleToFill"
@@ -350,12 +376,55 @@ export default class Detail extends Component{
                                                 </View>
                                         </View>
                                     </View>
-                                </View>
+                               
+                               
+                                    </View>
                                 )
                         }
+
+                        {
+                             comments.length > 0 && (
+
+                                comments.map((item)=>{
+                                    return (
+                                        <View className="mp-activedetail__comment-content">
+                                            <View className="mp-activedetail__comment-content-left">
+                                                    <image
+                                                            mode="scaleToFill"
+                                                            src={item.profileUrl}>
+                                                    </image>
+                                            </View>
+                                            <View className="mp-activedetail__comment-content-right">
+                                                <View className="mp-activedetail__comment-username">{item.name}</View>
+                                                    <View className="mp-activedetail__comment-tag">
+                                                        <Text> 环境：{`${item.environmentStar}.0`}  </Text>
+                                                        <Text> 专业度：{`${item.professionStar}.0`} </Text>
+                                                        <Text> 服务：{`${item.serviceStar}.0`} </Text>
+                                                        <Text> 效果：{`${item.effectStar}.0`} </Text>
+                                                    </View>
+                                                    <View className="mp-activedetail__comment-description">
+                                                    {item.message}
+                                                        <View>
+                                                            {
+                                                                item.docLocations && item.docLocations.map(comment=>(
+                                                                    <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;"
+                                                                        mode="scaleToFill"
+                                                                        src={comment}>
+                                                                    </image>
+                                                                ))
+                                                            }
+                                                        </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    )
+                                })
+                            )
+                        }
+
                         {
                              data.commentVo && (
-                                    <View className="mp-activedetail__query-all-comment">
+                                    <View className="mp-activedetail__query-all-comment" onClick={this.handleAllComment.bind(this,data)}>
                                         查看全部评论
                                         <Text className="mp-icon mp-icon-arrow1"></Text>
                                     </View>

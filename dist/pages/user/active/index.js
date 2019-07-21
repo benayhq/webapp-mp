@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "activeList", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "activeList", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -96,37 +96,23 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getAuthInfo;
     }()
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.init();
-    }
-  }, {
-    key: "init",
+    key: "getImgUrl",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var _this2 = this;
-
-        var result, payload;
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(location) {
+        var payload, result;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return this.getAuthInfo();
-
-              case 2:
-                result = _context2.sent;
                 payload = {
-                  pageNo: 0,
-                  pageSize: 10,
-                  agentId: result.id
+                  location: location
                 };
+                _context2.next = 3;
+                return this.props.dispatchDownLoadUrl(payload);
 
-                this.props.dispatchOwnerActiveHistory(payload).then(function (response) {
-                  _this2.setState({
-                    activeList: response.content
-                  });
-                });
+              case 3:
+                result = _context2.sent;
+                return _context2.abrupt("return", result.content);
 
               case 5:
               case "end":
@@ -136,8 +122,99 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee2, this);
       }));
 
-      function init() {
+      function getImgUrl(_x) {
         return _ref3.apply(this, arguments);
+      }
+
+      return getImgUrl;
+    }()
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.init();
+    }
+  }, {
+    key: "init",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        var _this2 = this;
+
+        var result, that, payload, list, response;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return this.getAuthInfo();
+
+              case 2:
+                result = _context4.sent;
+                that = this;
+                payload = {
+                  pageNo: 0,
+                  pageSize: 10,
+                  agentId: result.id
+                }, list = [];
+                _context4.next = 7;
+                return this.props.dispatchOwnerActiveHistory(payload);
+
+              case 7:
+                response = _context4.sent;
+
+                console.log('response', response);
+
+                if (response.content.length > 0) {
+                  response.content.map(function () {
+                    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(item) {
+                      var result;
+                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                        while (1) {
+                          switch (_context3.prev = _context3.next) {
+                            case 0:
+                              _context3.next = 2;
+                              return _this2.getImgUrl(item.displayLocation);
+
+                            case 2:
+                              result = _context3.sent;
+
+                              list.push({
+                                name: item.name,
+                                people: item.people,
+                                endD: item.endD,
+                                url: result
+                              });
+                              console.log('result', result);
+
+                            case 5:
+                            case "end":
+                              return _context3.stop();
+                          }
+                        }
+                      }, _callee3, _this2);
+                    }));
+
+                    return function (_x2) {
+                      return _ref5.apply(this, arguments);
+                    };
+                  }());
+                }
+
+                setTimeout(function () {
+                  that.setState({
+                    activeList: list
+                  });
+                }, 1000);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function init() {
+        return _ref4.apply(this, arguments);
       }
 
       return init;
@@ -151,7 +228,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       ;
 
       var activeList = this.__state.activeList;
-
 
       console.log('activeList', activeList);
 
@@ -174,6 +250,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
   return Index;
 }(_index.Component), _class2.properties = {
+  "dispatchDownLoadUrl": {
+    "type": null,
+    "value": null
+  },
   "dispatchOwnerActiveHistory": {
     "type": null,
     "value": null

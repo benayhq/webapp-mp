@@ -35,7 +35,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Detail = (_dec = (0, _index3.connect)(function (state) {
-  return state.user;
+  return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Detail, _BaseComponent);
 
@@ -50,7 +50,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "isOpened", "categoryDialog", "visible", "referId", "source", "dispatchActiveInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "comments", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "isOpened", "categoryDialog", "visible", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -73,6 +73,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         data: {},
         commentList: [],
         bannerList: [],
+        comments: [],
         activeId: '',
         referId: '',
         source: ''
@@ -292,6 +293,30 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleAllComment",
+    value: function handleAllComment(data) {
+      // console.log('data',data.activityProducts);
+      var products = [];
+      data.activityProducts.map(function (item) {
+        console.log('item', item);
+        products.push(item.productId);
+      });
+      var payload = {
+        pageNo: 0,
+        pageSize: 10,
+        activityProductIds: products
+      };
+      var that = this;
+      // console.log('this.props',this.props);
+      // console.log('payload',payload);
+      this.props.dispatchCommentInfo(payload).then(function (response) {
+        that.setState({
+          comments: response.content
+        });
+        console.log('response', response.content);
+      });
+    }
+  }, {
     key: "getImgUrl",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
@@ -336,7 +361,8 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           data = _state2.data,
           commentList = _state2.commentList,
           bannerList = _state2.bannerList,
-          activeId = _state2.activeId;
+          activeId = _state2.activeId,
+          comments = _state2.comments;
 
       var height = (0, _style.getWindowHeight)(false);
       var _state3 = this.__state,
@@ -345,6 +371,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           bContact = _state3.bContact,
           showOrderDialog = _state3.showOrderDialog;
 
+      console.log('comments', comments);
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
       Object.assign(this.__state, {
@@ -360,11 +387,15 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     "type": null,
     "value": null
   },
+  "dispatchCommentInfo": {
+    "type": null,
+    "value": null
+  },
   "dispatchDownLoadUrl": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["showMpDialog", "openDialog", "openCategoryDialog", "handleShare", "toggleVisible"], _temp2)) || _class);
+}, _class2.$$events = ["showMpDialog", "handleAllComment", "openDialog", "openCategoryDialog", "handleShare", "toggleVisible"], _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

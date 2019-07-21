@@ -1,21 +1,16 @@
 <block>
     <view class="mp-history">
-        <view class="list-title">
-            <view>医美关键 vivi</view>
-            <view>
-                <view class="mp-icon mp-icon-arrow-history"></view>
+        <block wx:if="{{actives}}">
+            <view class="list-wrapper" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx">
+                <view>
+                    <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="{{item.profileUrl}}"></image>
+                </view>
+                <view>
+                    <view>{{item.name}}</view>
+                    <view>2人成团</view>
+                    <view>活动有效期：2019.09.19~201</view>
+                </view>
             </view>
-            <view>活动中</view>
-        </view>
-        <view class="list-wrapper">
-            <view>
-                <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132"></image>
-            </view>
-            <view>
-                <view>【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇微笑</view>
-                <view>2人成团</view>
-                <view>活动有效期：2019.09.19~201</view>
-            </view>
-        </view>
+        </block>
     </view>
 </block>

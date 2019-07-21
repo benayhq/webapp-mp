@@ -62,11 +62,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.props.dispatchActiveHistory({}).then(function (response) {
-        // this.setState({
-        //   customer:response.content
-        // });
-        console.log('response', response);
+        _this2.setState({
+          actives: response.content
+        });
+        // console.log('response',response);
       });
     }
   }, {

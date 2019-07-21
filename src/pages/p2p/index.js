@@ -15,7 +15,7 @@ export default class Application extends Component{
     render(){
         return (
             <View className="mp-user__controlpanel">
-                <WebView src='https://lovemeipin.com:8445/h5tuiguang/mff?ref=hd_11021801'/>
+                <WebView src='https://lovemeipin.com/h5tuiguang/mff?ref=hd_11021801'/>
             </View>
         )
     }

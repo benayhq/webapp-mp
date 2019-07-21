@@ -33,6 +33,15 @@ class Index extends Component{
      return result;
   }
 
+
+  async getImgUrl(location){
+    var payload = {
+      location:location
+    };
+    const result = await this.props.dispatchDownLoadUrl(payload);
+    return result.content;
+  }
+
   
   componentDidMount(){
       this.init();
@@ -40,21 +49,41 @@ class Index extends Component{
 
   async init(){
     var result = await this.getAuthInfo();
+
+    var that = this;
+
     var payload ={
         pageNo:0,
         pageSize:10,
         agentId:result.id
-    };
-    this.props.dispatchOwnerActiveHistory(payload).then((response)=>{
-        this.setState({
-            activeList:response.content
-        })
-    });
+    },list=[];
+
+    const response = await this.props.dispatchOwnerActiveHistory(payload);
+    console.log('response',response);
+
+    if(response.content.length > 0){
+        response.content.map(async(item)=>{
+            const result = await this.getImgUrl(item.displayLocation);
+            list.push({
+                name:item.name,
+                people:item.people,
+                endD:item.endD,
+                url:result
+            });
+            console.log('result',result);
+        });
+       
+    }
+
+    setTimeout(() => {
+        that.setState({
+            activeList:list
+        });
+    }, 1000);
   }
 
   render(){
     const {activeList} = this.state;
-
     console.log('activeList',activeList);
 
     return (
@@ -71,7 +100,7 @@ class Index extends Component{
                   return (
                     <View className="list-wrapper">
                                 <View>
-                                    <image className="icon-header" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132" ></image>
+                                    <image className="icon-header" src={item.url} ></image>
                                 </View>
                                 <View>
                                     <View className="mp-active-group">{item.name}</View>

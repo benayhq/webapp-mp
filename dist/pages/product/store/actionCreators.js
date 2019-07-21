@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchUpdateProductInfo = exports.dispatchQueryProductInfo = exports.dispatchDeleteProduct = exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
+exports.dispatchCommentInfo = exports.dispatchUpdateProductInfo = exports.dispatchQueryProductInfo = exports.dispatchDeleteProduct = exports.UpdateUserInfo = exports.WeChatLogin = exports.dispatchSelectProduct = exports.dispatchCategoryList = exports.dispatchActiveInfo = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchCreateProduct = exports.dispatchProductList = undefined;
 
 var _constants = require("./constants.js");
 
@@ -132,6 +132,17 @@ var dispatchUpdateProductInfo = exports.dispatchUpdateProductInfo = function dis
   return (0, _redux.createAction)({
     type: _constants.ACTION_PRODUCT_INFO,
     url: _api.API_PRODUCT_UPDATE,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchCommentInfo = exports.dispatchCommentInfo = function dispatchCommentInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_PRODUCT_COMMENT,
+    url: _api.API_PRODUCT_COMMNET + "?pageNo=" + payload.pageNo + "&pageSize=" + payload.pageSize,
     fetchOptions: {
       method: 'POST'
     },

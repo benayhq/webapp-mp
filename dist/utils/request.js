@@ -97,28 +97,25 @@ exports.default = function () {
                     switch (_context2.prev = _context2.next) {
                       case 0:
                         if (!(res.data && res.data.result === "login")) {
-                          _context2.next = 3;
+                          _context2.next = 2;
                           break;
                         }
 
-                        _index2.default.navigateTo({
-                          url: '/pages/user/index'
-                        });
                         return _context2.abrupt("return");
 
-                      case 3:
+                      case 2:
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context2.next = 6;
+                          _context2.next = 5;
                           break;
                         }
 
-                        _context2.next = 6;
+                        _context2.next = 5;
                         return updateStorage(res.data);
 
-                      case 6:
+                      case 5:
                         return _context2.abrupt("return", res.data);
 
-                      case 7:
+                      case 6:
                       case "end":
                         return _context2.stop();
                     }

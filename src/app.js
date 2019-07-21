@@ -49,30 +49,29 @@ class App extends Component {
   componentDidCatchError () {}
 
   componentWillMount(){
-
-    var jim = new JMessage({
-      debug : true
-    });
-    console.log('jim',jim);
-    jim.init({
-      appkey:"bb62a48cc54e300e2e58fa0b",
-      random_str:"b37b052d0e9b4aa8a16ebe5446f9fba9",
-      signature:"bf184eeb9722a637c313a36e9fea80bf",
-      timestamp:"1562947140309",
-      flag:1
-    }).onSuccess(function(data){
-      console.log('data',data);
-      //TODO
-    }).onFail(function(data){
-      console.log('data',data);
-      //TODO
-    });
   }
 
+  // var jim = new JMessage({
+  //   debug : true
+  // });
+  // console.log('jim',jim);
+  // jim.init({
+  //   appkey:"bb62a48cc54e300e2e58fa0b",
+  //   random_str:"b37b052d0e9b4aa8a16ebe5446f9fba9",
+  //   signature:"bf184eeb9722a637c313a36e9fea80bf",
+  //   timestamp:"1562947140309",
+  //   flag:1
+  // }).onSuccess(function(data){
+  //   console.log('data',data);
+  //   //TODO
+  // }).onFail(function(data){
+  //   console.log('data',data);
+  //   //TODO
+  // });
   componentDidMount(){
 
   }
-  
+
   init(){
     var jim = new JMessage({
       debug : true

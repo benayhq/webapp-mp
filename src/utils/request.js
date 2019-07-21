@@ -38,9 +38,9 @@ export default async function fetch(options){
         header:header
     }).then(async(res)=>{
         if(res.data && res.data.result === "login"){
-            Taro.navigateTo({
-                url: '/pages/user/index'
-            });
+            // Taro.navigateTo({
+            //     url: '/pages/user/index'
+            // });
             return;
         }
         if(url === API_USER_LOGIN){

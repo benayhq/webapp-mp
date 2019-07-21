@@ -33,7 +33,7 @@
       "list": []
     },
     "miniprogram": {
-      "current": 10,
+      "current": 13,
       "list": [
         {
           "id": -1,
@@ -130,7 +130,7 @@
           "id": 13,
           "name": "产品详情",
           "pathName": "pages/product/detail",
-          "query": "activeId=44&referId=2",
+          "query": "activeId=45&referId=2",
           "scene": null
         },
         {
@@ -190,10 +190,38 @@
           "scene": null
         },
         {
-          "id": 22,
-          "name": "个人中心",
-          "pathName": "pages/order/detail/index",
-          "query": "orderId=1",
+          "id": -1,
+          "name": "我的客户",
+          "pathName": "pages/user/customer/index",
+          "query": "activeId=45&&refId=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "浏览历史",
+          "pathName": "pages/user/history/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "历史咨询师",
+          "pathName": "pages/user/consultant/index",
+          "query": "activeId=45&&refId=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "往期产品",
+          "pathName": "pages/user/product/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的活动",
+          "pathName": "pages/user/active/index",
+          "query": "",
           "scene": null
         }
       ]

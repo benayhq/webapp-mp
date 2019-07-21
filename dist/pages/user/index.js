@@ -56,7 +56,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["avatarUrl", "profit", "isAgent", "orders", "flag", "userName", "list", "current", "context1", "context2", "context3", "context4", "showUserText", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -75,6 +75,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         orders: [],
         profit: {},
         flag: false,
+        current: 0,
         userName: '',
         context1: '',
         context2: '',
@@ -230,8 +231,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             code: res.code
           };
           currentObj.props.WeChatLogin(payload).then(function (res) {
+            console.log('WeChatLogin', res);
+            currentObj.setState({
+              userName: res.content.name
+            });
             _index2.default.setStorage({ key: 'userinfo', data: res.content });
           });
+
+          console.log('res', res);
         }
       });
     }
@@ -383,6 +390,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function handleContact(e) {
       console.log(e.path);
       console.log(e.query);
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(value) {
+      this.setState({
+        current: value
+      });
+      console.log('value', value);
     }
   }, {
     key: "_createData",

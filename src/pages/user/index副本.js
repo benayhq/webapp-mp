@@ -1,12 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,WebView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import UserOrder from './order';
 import InCome from './income';
 import Creator from './common/create';
 import './index.scss';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
-import { AtButton,AtList, AtListItem,AtCard,AtTabBar } from 'taro-ui';
+import { AtButton,AtList, AtListItem,AtCard } from 'taro-ui';
 import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
@@ -24,7 +24,6 @@ class Index extends Component{
       orders:[],
       profit:{},
       flag:false,
-      current: 0,
       userName:'',
       context1:'',
       context2:'',
@@ -123,14 +122,8 @@ class Index extends Component{
                   code:res.code
               };
               currentObj.props.WeChatLogin(payload).then((res)=>{
-                  console.log('WeChatLogin',res);
-                  currentObj.setState({
-                    userName:res.content.name
-                  });
                   Taro.setStorage({key:'userinfo',data:res.content});
               });
-
-              console.log('res',res);
           }
       });
   }
@@ -139,7 +132,7 @@ class Index extends Component{
     const result = Taro.getStorage({key:'jpushAuth'}).then(res => {return res.data}).catch(() => '')
     return result;
   }
-
+  
   async handleAuthClick(){
     // wx.login({
     //   success (res) {
@@ -235,108 +228,80 @@ class Index extends Component{
     console.log(e.query)
   }
 
-  handleClick (value) {
-    this.setState({
-      current: value
-    });
-    console.log('value',value);
-  }
-
-
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,flag} = this.state;
 
     return (
-      // <View>
-      //     <AtTabBar
-      //       fixed
-      //       tabList={[
-      //         { title: '微聊', iconType: 'bullet-list', text: 'new' },
-      //         { title: '我的', iconType: 'camera' },
-      //       ]}
-      //       onClick={this.handleClick.bind(this)}
-      //       current={this.state.current}
-      //     />
-      //    {
-      //      current === 0 && <View>
-      //           {/* <WebView src='https://lovemeipin.com/h5tuiguang/mff?ref=hd_11021801'/> */}
-      //      </View>
-      //    } 
-      //    {
-      //       current === 1 && <View>1</View>
-      //    }
-      // </View>
-
       <View className='mp-user'>
-      <View className="mp-user__info"  >
-              <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
-                      src={avatarUrl}>
-              </image>
-              <View className="mp-user__info-message"  onClick={this.handleUpdateInfo.bind(this)} > 
-                  <View className="mp-user__user-username">{userName}</View>
-                  {
-                    profit && profit.creditLevel && 
-                    <View className="mp-user__user-level">
-                        {profit? `信用等级:${profit.creditLevel}`:''}
+        <View className="mp-user__info"  >
+                <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;"
+                        src={avatarUrl}>
+                </image>
+                <View className="mp-user__info-message"  onClick={this.handleUpdateInfo.bind(this)} > 
+                    <View className="mp-user__user-username">{userName}</View>
+                    {
+                      profit && profit.creditLevel && 
+                      <View className="mp-user__user-level">
+                          {profit? `信用等级:${profit.creditLevel}`:''}
+                      </View>
+                    } 
+                    <View className="mp-user__user-level-up"> </View>
+                </View>
+                {
+                    isAgent && 
+                    <View className="mp-user__info-money">
+                        <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
+                        <View className="mp-user__money-order">已结定金</View>
                     </View>
-                  } 
-                  <View className="mp-user__user-level-up"> </View>
-              </View>
-              {
-                  isAgent && 
-                  <View className="mp-user__info-money">
-                      <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
-                      <View className="mp-user__money-order">已结定金</View>
-                  </View>
-              }
-     </View>
-     { isAgent && <InCome profit={profit}/> }
-     { isAgent && <View className="mp-user__publish">
-              <View className="mp-user__publish-introduce">助力朋友圈获客</View>
-              <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
-              <View className="mp-user__publish-action" >
-                  <AtButton
-                    text='微信登录'
-                    openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
-                  type='primary' size='small'>发布活动</AtButton>
-              </View>
-          </View>
-      }
-      <UserOrder list={orders}/>
-      <View className="mp-user__list">
-        <AtList>
-          {
-              this.props.list.map(item=>(
-                  <AtListItem
-                  title={item.text}
-                  arrow='right'
-                  thumb={item.url}
-                  onClick={this.handleJumpUrl.bind(this,item.pageUrl)}
-                  />
-              ))
-          }
-        </AtList>
-        { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
-      </View>
-
-      { !isAgent && flag && 
-        <View className="mp-user__loan">
-        <AtCard
-        title={this.state.context1}>
-            <View className="mp-user__loan-text">{this.state.context2}</View>
-            <View className="mp-user__loan-amount">{this.state.context3}</View>
-            <View className="mp-user__loan-desc">{this.state.context4}</View>
-            <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
-                立即申请
+                }
+       </View>
+       { isAgent && <InCome profit={profit}/> }
+       { isAgent && <View className="mp-user__publish">
+                <View className="mp-user__publish-introduce">助力朋友圈获客</View>
+                <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
+                <View className="mp-user__publish-action" >
+                    <AtButton
+                      text='微信登录'
+                      openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
+                    type='primary' size='small'>发布活动</AtButton>
+                </View>
             </View>
-        </AtCard>
+        }
+        <UserOrder list={orders}/>
+        <View className="mp-user__list">
+          <AtList>
+            {
+                this.props.list.map(item=>(
+                    <AtListItem
+                    title={item.text}
+                    arrow='right'
+                    thumb={item.url}
+                    onClick={this.handleJumpUrl.bind(this,item.pageUrl)}
+                    />
+                ))
+            }
+          </AtList>
+          { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
+        </View>
+
+        { !isAgent && flag && 
+          <View className="mp-user__loan">
+          <AtCard
+          title={this.state.context1}>
+              <View className="mp-user__loan-text">{this.state.context2}</View>
+              <View className="mp-user__loan-amount">{this.state.context3}</View>
+              <View className="mp-user__loan-desc">{this.state.context4}</View>
+              <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
+                  立即申请
+              </View>
+          </AtCard>
+        </View>
+       }
+      
+        <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
+                {this.state.showUserText} 
+        </View>
       </View>
-     }
-    
-      <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
-              {this.state.showUserText} 
-      </View>
-    </View>
     )
   }
 }

@@ -1,7 +1,8 @@
 import {ACTION_PRODUCT_LIST,ACTION_PRODUCT_CREATE,
     ACTION_UPLOAD_DOWN,ACTION_UPLOAD_CONFIG,ACTIVE_INFO_ACTION,
 ACTION_PRODUCT_CATEOGRY,ACTION_SELECT_PRODUCT,WX_USER_LOGIN,
-UPDATE_USER_INFO,ACTION_PRODUCT_DELETE,PRODUCT_QUERY_INFO,ACTION_PRODUCT_INFO,API_ACTIVE_PRODUCTINFO
+UPDATE_USER_INFO,ACTION_PRODUCT_DELETE,PRODUCT_QUERY_INFO,ACTION_PRODUCT_INFO
+,API_ACTIVE_PRODUCTINFO,ACTION_PRODUCT_COMMENT
 } from './constants';
 import {createAction} from '../../../utils/redux';
 import {
@@ -12,6 +13,7 @@ import {
     ,API_DELETE_PRODUCT
     ,API_PRODUCT_INFO,
     API_PRODUCT_UPDATE
+    ,API_PRODUCT_COMMNET
 } from '../../../constants/api';
 
 export const dispatchProductList = payload => createAction({
@@ -114,6 +116,15 @@ export const dispatchQueryProductInfo = payload => createAction({
 export const dispatchUpdateProductInfo = payload =>  createAction({
     type:ACTION_PRODUCT_INFO,
     url:API_PRODUCT_UPDATE,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
+
+export const dispatchCommentInfo = payload =>  createAction({
+    type:ACTION_PRODUCT_COMMENT,
+    url:API_PRODUCT_COMMNET+`?pageNo=`+payload.pageNo+`&pageSize=`+payload.pageSize,
     fetchOptions:{
         method:'POST'
     },

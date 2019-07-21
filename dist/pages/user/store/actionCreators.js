@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -116,6 +116,17 @@ var dispatchActiveHistory = exports.dispatchActiveHistory = function dispatchAct
     url: _api.API_ACTIVE_HISTORY,
     fetchOptions: {
       method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var dispatchDownLoadUrl = exports.dispatchDownLoadUrl = function dispatchDownLoadUrl(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_UPLOAD_DOWN,
+    url: _api.API_UPLOAD_FILE,
+    fetchOptions: {
+      method: 'GET'
     },
     payload: payload
   });

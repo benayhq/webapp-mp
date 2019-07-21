@@ -64,7 +64,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('componentDidMount');
       this.init();
     }
   }, {
