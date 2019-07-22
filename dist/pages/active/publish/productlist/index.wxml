@@ -17,6 +17,12 @@
                             </view>
                         </view>
                     </view>
+                    <view class="product-item activePrice">
+                        <view>活动价:</view>
+                        <view>
+                            <at-input name="value" __triggerObserer="{{ _triggerObserer }}" type="text" value="{{item.discountPrice}}" bindonchange="handleChange" __fn_onChange="{{true}}" data-e-onchange-so="this"></at-input>
+                        </view>
+                    </view>
                 </view>
             </view>
         </view>

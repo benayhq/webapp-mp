@@ -31,8 +31,6 @@ $pageBgColor:#ffffff;
     background: $pageBgColor;
     padding-bottom:10px;
 
-
-
     .publish-active{
         @include flex(row);
         border-bottom: 1px solid #ddd ;
@@ -180,5 +178,17 @@ $pageBgColor:#ffffff;
             margin-top: 27px;
             margin-left: 17px;
         }
+    }
+}
+
+.activePrice{
+    display: flex;
+    flex-direction: row;
+    
+    > view:nth-child(1){
+        margin-left:33px;
+        padding-top:28px;
+        padding-right:26px;
+        padding-left:12px;
     }
 }

@@ -118,7 +118,7 @@ class EditProduct extends Component{
             });
       }
    }
-
+   
    componentDidMount(){
      this.init();
    }

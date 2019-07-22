@@ -105,7 +105,7 @@ class Index extends Component{
                                 <View>
                                     <View className="mp-active-group">{item.name}</View>
                                     <View className="mp-active-group">{item.people}人成团</View>
-                                    <View className="mp-active-group">截止日期:{getLocalTime(item.endD)}</View>
+                                    {/* <View className="mp-active-group">截止日期:{getLocalTime(item.endD)}</View> */}
                                 </View>
                     </View>
                   )

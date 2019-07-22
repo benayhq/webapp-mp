@@ -37,7 +37,7 @@ export default class Detail extends Component{
             commentText:'查看全部评论'
         }
     }
-
+    
     init(){
         this.initLogin();
     }

@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "activeList", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeList", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -231,19 +231,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       console.log('activeList', activeList);
 
-      var loopArray0 = activeList ? activeList.map(function (item) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-        var $loopState__temp2 = activeList ? getLocalTime(item.$original.endD) : null;
-        return {
-          $loopState__temp2: $loopState__temp2,
-          $original: item.$original
-        };
-      }) : [];
-      Object.assign(this.__state, {
-        loopArray0: loopArray0
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);

@@ -660,3 +660,19 @@
       color: #7DD6D0;
       margin-top: 27rpx;
       margin-left: 17rpx; }
+
+.activePrice {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+  .activePrice > view:nth-child(1) {
+    margin-left: 33rpx;
+    padding-top: 28rpx;
+    padding-right: 26rpx;
+    padding-left: 12rpx; }

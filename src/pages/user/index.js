@@ -315,6 +315,7 @@ class Index extends Component{
         </AtCard>
       </View> : ""
       }
+      
       <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
               {showUserText}
       </View>

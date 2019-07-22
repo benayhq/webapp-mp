@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import ProductItem from '../../../../components/product/index';
 import './index.scss'
+import { AtInput, AtForm } from 'taro-ui'
 
 export default class ProductList extends Component{
 
@@ -11,6 +12,11 @@ export default class ProductList extends Component{
           })
     }
     
+
+    handleChange(){
+        console.log('handleChange');
+    }
+
     render(){
         return (
             <View>
@@ -37,8 +43,20 @@ export default class ProductList extends Component{
                                             <View>
                                                 <View className="product-item margin20"> {item.name} </View>
                                                 <View className="product-item font"> {item.price} </View>
-                                                <View className="product-item textfont"> 预定金: <Text className="amount">{item.advance}</Text> </View>
+                                                <View className="product-item textfont">  预定金: <Text className="amount">{item.advance}</Text> </View>
+                                            
                                             </View>
+                                        </View>
+                                        <View className="product-item activePrice"> 
+                                                  <View>活动价: </View> 
+                                                  <View>
+                                                    <AtInput
+                                                        name='value'
+                                                        type='text'
+                                                        value={item.discountPrice}
+                                                        onChange={this.handleChange.bind(this)}
+                                                    />
+                                                  </View>
                                         </View>
                                     </View>
                                     ))

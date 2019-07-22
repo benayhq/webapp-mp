@@ -52,6 +52,11 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       });
     }
   }, {
+    key: "handleChange",
+    value: function handleChange() {
+      console.log('handleChange');
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -69,7 +74,7 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["selectProduct"], _temp2);
+}, _class.$$events = ["selectProduct", "handleChange"], _temp2);
 exports.default = ProductList;
 
 Component(require('../../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));
