@@ -31,11 +31,11 @@ export default class Index extends Component {
       dateStart: '请选择',
       dateEnd: '请选择',
       products:[],
-      activeName: '',
+      activeAllName: '',
       weChatNumber:'',
       isOpened:false,
       docLocations:[],
-      activePrice:''
+      activeAllPrice:''
     };
     this.init();
   }
@@ -247,7 +247,7 @@ export default class Index extends Component {
   }
   
   async onPublish(e){
-    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
+    const {activeAllName: activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
 
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')
@@ -360,7 +360,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const {activeName,dateEnd,dateStart,products,weChatNumber,isOpened,activePrice} = this.state;
+    const {activeAllName: activeName,dateEnd,dateStart,products,weChatNumber,isOpened,activeAllPrice: activePrice} = this.state;
 
     return (
       <View className="mp-active">

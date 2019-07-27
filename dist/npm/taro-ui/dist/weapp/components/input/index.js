@@ -73,62 +73,71 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "__fn_onChange", "__fn_onFocus", "__fn_onBlur", "__fn_onConfirm", "editable", "__fn_onClick", "__fn_onErrorClick", "className", "customStyle", "border", "placeholderClass", "children"], _this.onInput = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "editable", "className", "customStyle", "border", "placeholderClass", "children"], _this.onInput = function (e) {
+      var _this$props;
+
       for (var _len2 = arguments.length, arg = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
         arg[_key2 - 1] = arguments[_key2];
       }
 
-      return _this.__triggerPropsFn("onChange", [null].concat([e.target.value].concat(arg)));
+      return (_this$props = _this.props).onChange.apply(_this$props, [e.target.value].concat(arg));
     }, _this.onFocus = function (e) {
+      var _this$props2;
+
       for (var _len3 = arguments.length, arg = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
         arg[_key3 - 1] = arguments[_key3];
       }
 
-      return _this.__triggerPropsFn("onFocus", [null].concat([e.target.value].concat(arg)));
+      return (_this$props2 = _this.props).onFocus.apply(_this$props2, [e.target.value].concat(arg));
     }, _this.onBlur = function (e) {
+      var _this$props3;
+
       for (var _len4 = arguments.length, arg = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
         arg[_key4 - 1] = arguments[_key4];
       }
 
-      return _this.__triggerPropsFn("onBlur", [null].concat([e.target.value].concat(arg)));
+      return (_this$props3 = _this.props).onBlur.apply(_this$props3, [e.target.value].concat(arg));
     }, _this.onConfirm = function (e) {
+      var _this$props4;
+
       for (var _len5 = arguments.length, arg = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
         arg[_key5 - 1] = arguments[_key5];
       }
 
-      return _this.__triggerPropsFn("onConfirm", [null].concat([e.target.value].concat(arg)));
+      return (_this$props4 = _this.props).onConfirm.apply(_this$props4, [e.target.value].concat(arg));
     }, _this.onClick = function () {
+      var _this$props5;
+
+      return !_this.props.editable && (_this$props5 = _this.props).onClick.apply(_this$props5, arguments);
+    }, _this.clearValue = function () {
+      var _this$props6;
+
       for (var _len6 = arguments.length, arg = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
         arg[_key6] = arguments[_key6];
       }
 
-      return !_this.props.editable && _this.__triggerPropsFn("onClick", [null].concat([].concat(arg)));
-    }, _this.clearValue = function () {
-      for (var _len7 = arguments.length, arg = Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
-        arg[_key7] = arguments[_key7];
-      }
-
-      return _this.__triggerPropsFn("onChange", [null].concat([''].concat(arg)));
+      return (_this$props6 = _this.props).onChange.apply(_this$props6, [''].concat(arg));
     }, _this.onErrorClick = function () {
-      for (var _len8 = arguments.length, arg = Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
-        arg[_key8] = arguments[_key8];
-      }
+      var _this$props7;
 
-      return _this.__triggerPropsFn("onErrorClick", [null].concat([].concat(arg)));
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+      return (_this$props7 = _this.props).onErrorClick.apply(_this$props7, arguments);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtInput, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -201,112 +210,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtInput;
-}(_component2.default), _class.properties = {
-  "__fn_onChange": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onFocus": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onBlur": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onConfirm": {
-    "type": null,
-    "value": null
-  },
-  "editable": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onErrorClick": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "name": {
-    "type": null,
-    "value": null
-  },
-  "cursorSpacing": {
-    "type": null,
-    "value": null
-  },
-  "confirmType": {
-    "type": null,
-    "value": null
-  },
-  "cursor": {
-    "type": null,
-    "value": null
-  },
-  "selectionStart": {
-    "type": null,
-    "value": null
-  },
-  "selectionEnd": {
-    "type": null,
-    "value": null
-  },
-  "adjustPosition": {
-    "type": null,
-    "value": null
-  },
-  "border": {
-    "type": null,
-    "value": null
-  },
-  "title": {
-    "type": null,
-    "value": null
-  },
-  "error": {
-    "type": null,
-    "value": null
-  },
-  "clear": {
-    "type": null,
-    "value": null
-  },
-  "placeholder": {
-    "type": null,
-    "value": null
-  },
-  "placeholderStyle": {
-    "type": null,
-    "value": null
-  },
-  "placeholderClass": {
-    "type": null,
-    "value": null
-  },
-  "autoFocus": {
-    "type": null,
-    "value": null
-  },
-  "focus": {
-    "type": null,
-    "value": null
-  },
-  "value": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _temp2);
+}(_component2.default), _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/input/index", _temp2);
 
 
 AtInput.defaultProps = {

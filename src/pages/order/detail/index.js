@@ -1,4 +1,4 @@
-import {Component} from '@tarojs/taro';
+import Taro,{Component} from '@tarojs/taro';
 import { View } from '@tarojs/components'
 import './index.scss';
 import Assemble from './../assemble';
@@ -32,12 +32,19 @@ export default class OrderDetail extends Component{
         this.setState({
             id:this.$router.params.orderId
         })
+        console.log('this.state.id ',this.$router.params.orderId);
+        if(this.$router.params.orderId === undefined || this.$router.params.orderId === null){
+            Taro.navigateTo({
+                url: '/pages/user/index'
+            });
+        }
     }
 
     componentDidMount() {
         var payload = {
             id:this.state.id
         };
+       
         this.props.dispatchOrderDetail(payload).then((response)=>{
             this.setState({
                 content:response.content

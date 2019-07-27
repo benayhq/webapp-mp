@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeName", "products", "isOpened", "weChatNumber", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "docLocations", "activePrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "startTime", "endTime", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__18", "$compid__19", "$compid__20", "$compid__21", "$compid__22", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -83,7 +83,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         dateEnd: e.detail.value
       });
       _this.props.dispatchEndTime(e.detail.value);
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "AtInput", "AtImagePicker", "ProductList", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -99,13 +99,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         dateStart: '请选择',
         dateEnd: '请选择',
         products: [],
-        activeName: '',
+        activeAllName: '',
         weChatNumber: '',
         isOpened: false,
         docLocations: [],
-        activePrice: ''
+        activeAllPrice: ''
       };
       this.init();
+      this.$$refs = [];
     }
   }, {
     key: "getImgUrl",
@@ -342,7 +343,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
+                _state = this.state, activeName = _state.activeAllName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
 
                 if (!(activeName === '')) {
                   _context2.next = 4;
@@ -532,103 +533,65 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
+      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
+      var $compid__20 = (0, _index.genCompid)(__prefix + "$compid__20");
+      var $compid__21 = (0, _index.genCompid)(__prefix + "$compid__21");
+      var $compid__22 = (0, _index.genCompid)(__prefix + "$compid__22");
 
       var _state2 = this.__state,
-          activeName = _state2.activeName,
+          activeName = _state2.activeAllName,
           dateEnd = _state2.dateEnd,
           dateStart = _state2.dateStart,
           products = _state2.products,
           weChatNumber = _state2.weChatNumber,
           isOpened = _state2.isOpened,
-          activePrice = _state2.activePrice;
+          activePrice = _state2.activeAllPrice;
 
 
-      Object.assign(this.__state, {});
+      var $props__18 = {
+        "border": false,
+        "value": activeName,
+        "onChange": this.handleActiveChange.bind(this),
+        "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
+      };
+      var $props__19 = {
+        "className": "uploadImage",
+        "files": this.__state.files,
+        "onChange": this.HandlePickerChange.bind(this)
+      };
+      var $props__20 = {
+        "products": products
+      };
+      var $props__21 = {
+        "isOpened": isOpened
+      };
+      var $props__22 = {
+        "placeholder": "\u8BF7\u8F93\u5165\u5FAE\u4FE1\u53F7",
+        "onChange": this.handleWeChatChange.bind(this),
+        "value": weChatNumber
+      };
+      _index.propsManager.set($props__18, $compid__18);
+      _index.propsManager.set($props__19, $compid__19);
+      _index.propsManager.set($props__20, $compid__20);
+      _index.propsManager.set($props__21, $compid__21);
+      _index.propsManager.set($props__22, $compid__22);
+      Object.assign(this.__state, {
+        $compid__18: $compid__18,
+        $compid__19: $compid__19,
+        $compid__20: $compid__20,
+        $compid__21: $compid__21,
+        $compid__22: $compid__22
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "dispatchQueryProductInfo": {
-    "type": null,
-    "value": null
-  },
-  "groupCount": {
-    "type": null,
-    "value": null
-  },
-  "activeName": {
-    "type": null,
-    "value": null
-  },
-  "startTime": {
-    "type": null,
-    "value": null
-  },
-  "endTime": {
-    "type": null,
-    "value": null
-  },
-  "activePrice": {
-    "type": null,
-    "value": null
-  },
-  "tempfiles": {
-    "type": null,
-    "value": null
-  },
-  "imgs": {
-    "type": null,
-    "value": null
-  },
-  "dispatchCacheTempFiles": {
-    "type": null,
-    "value": null
-  },
-  "dispatchUploadConfig": {
-    "type": null,
-    "value": null
-  },
-  "dispatchUploadFile": {
-    "type": null,
-    "value": null
-  },
-  "dispatchGroupCount": {
-    "type": null,
-    "value": null
-  },
-  "dispatchStartTime": {
-    "type": null,
-    "value": null
-  },
-  "dispatchActivePrice": {
-    "type": null,
-    "value": null
-  },
-  "dispatchCreateActive": {
-    "type": null,
-    "value": null
-  },
-  "disptachActiveName": {
-    "type": null,
-    "value": null
-  },
-  "dispatchEndTime": {
-    "type": null,
-    "value": null
-  },
-  "UpdateUserInfo": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "HandlePickerChange", "createProduct", "onPublish", "handleWeChatChange", "handleCancel", "handleConfirm"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "createProduct", "onPublish", "handleCancel", "handleConfirm"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

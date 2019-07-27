@@ -69,10 +69,10 @@ var AtToast = (_temp2 = _class = function (_AtComponent) {
         return;
       }
       if (onClick) {
-        return _this.__triggerPropsFn("onClick", [null].concat([]));
+        return _this.props.onClick();
       }
       _this.close();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtToast, [{
@@ -92,6 +92,7 @@ var AtToast = (_temp2 = _class = function (_AtComponent) {
       this.state = {
         _isOpened: isOpened
       };
+      this.$$refs = [];
     }
   }, {
     key: "clearTimmer",
@@ -129,7 +130,7 @@ var AtToast = (_temp2 = _class = function (_AtComponent) {
     key: "handleClose",
     value: function handleClose() {
       if ((0, _isFunction3.default)(this.props.onClose)) {
-        this.__triggerPropsFn("onClose", [null].concat([]));
+        this.props.onClose();
       }
     }
   }, {
@@ -157,7 +158,8 @@ var AtToast = (_temp2 = _class = function (_AtComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _isOpened = this.__state._isOpened;
@@ -197,60 +199,7 @@ var AtToast = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtToast;
-}(_component2.default), _class.properties = {
-  "onClose": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClose": {
-    "type": null,
-    "value": null
-  },
-  "onClick": {
-    "type": null,
-    "value": null
-  },
-  "status": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "text": {
-    "type": null,
-    "value": null
-  },
-  "icon": {
-    "type": null,
-    "value": null
-  },
-  "image": {
-    "type": null,
-    "value": null
-  },
-  "hasMask": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "isOpened": {
-    "type": null,
-    "value": null
-  },
-  "duration": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick"], _temp2);
+}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/toast/index", _temp2);
 
 
 AtToast.defaultProps = {

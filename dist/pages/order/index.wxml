@@ -1,58 +1,58 @@
-<block>
-    <at-tabs current="{{current}}" __triggerObserer="{{ _triggerObserer }}" tabList="{{tabList}}" bindonclick="handleClick" __fn_onClick="{{true}}" data-e-onclick-so="this">
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{0}}">
+<block wx:if="{{$taroCompReady}}">
+    <at-tabs compid="{{$compid__31}}">
+        <at-tabs-pane compid="{{$compid__32}}">
             <view>
-                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                <order-item compid="{{$compid__33}}"></order-item>
                 <block wx:if="{{list.length > 0}}">
                     <view class="mp-order-loadmore">
-                        <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this"></at-load-more>
+                        <at-load-more compid="{{$compid__34}}"></at-load-more>
                     </view>
                 </block>
             </view>
         </at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{1}}">
+        <at-tabs-pane compid="{{$compid__35}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <order-item compid="{{$compid__36}}"></order-item>
                     <block wx:if="{{list.length > 0}}">
                         <view class="mp-order-loadmore">
-                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="UNPAY"></at-load-more>
+                            <at-load-more compid="{{$compid__37}}"></at-load-more>
                         </view>
                     </block>
                 </view>
             </block>
         </at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{2}}">
+        <at-tabs-pane compid="{{$compid__38}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <order-item compid="{{$compid__39}}"></order-item>
                     <block wx:if="{{list.length > 0}}">
                         <view class="mp-order-loadmore">
-                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="BATING"></at-load-more>
+                            <at-load-more compid="{{$compid__40}}"></at-load-more>
                         </view>
                     </block>
                 </view>
             </block>
         </at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{3}}">
+        <at-tabs-pane compid="{{$compid__41}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <order-item compid="{{$compid__42}}"></order-item>
                     <block wx:if="{{list.length > 0}}">
                         <view class="mp-order-loadmore">
-                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="CONSUMPTION"></at-load-more>
+                            <at-load-more compid="{{$compid__43}}"></at-load-more>
                         </view>
                     </block>
                 </view>
             </block>
         </at-tabs-pane>
-        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}" index="{{4}}">
+        <at-tabs-pane compid="{{$compid__44}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+                    <order-item compid="{{$compid__45}}"></order-item>
                     <block wx:if="{{list.length > 0}}">
                         <view class="mp-order-loadmore">
-                            <at-load-more bindonclick="handleLoadMore" __triggerObserer="{{ _triggerObserer }}" status="{{status}}" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="CONSUMPTION"></at-load-more>
+                            <at-load-more compid="{{$compid__46}}"></at-load-more>
                         </view>
                     </block>
                 </view>

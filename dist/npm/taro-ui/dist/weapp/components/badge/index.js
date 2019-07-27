@@ -52,7 +52,7 @@ var AtBadge = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtBadge.__proto__ || Object.getPrototypeOf(AtBadge)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "dot", "val", "value", "maxValue", "customStyle", "className", "children"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtBadge.__proto__ || Object.getPrototypeOf(AtBadge)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "dot", "val", "value", "maxValue", "customStyle", "className", "children"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtBadge, [{
@@ -60,6 +60,7 @@ var AtBadge = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor() {
       _get(AtBadge.prototype.__proto__ || Object.getPrototypeOf(AtBadge.prototype), "_constructor", this).apply(this, arguments);
       this.state = {};
+      this.$$refs = [];
     }
   }, {
     key: "formatValue",
@@ -77,7 +78,8 @@ var AtBadge = (_temp2 = _class = function (_AtComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -103,28 +105,7 @@ var AtBadge = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtBadge;
-}(_component2.default), _class.properties = {
-  "dot": {
-    "type": null,
-    "value": null
-  },
-  "value": {
-    "type": null,
-    "value": null
-  },
-  "maxValue": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/badge/index", _temp2);
 
 
 AtBadge.defaultProps = {

@@ -40,7 +40,7 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CreateProduct.__proto__ || Object.getPrototypeOf(CreateProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["productList"], _this.config = {
       navigationBarTitleText: '新增产品'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CreateProduct, [{
@@ -50,6 +50,7 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
         productList: []
       };
       this.handleEditProduct = this.handleEditProduct.bind(this);
+      this.$$refs = [];
     }
   }, {
     key: "handleEditProduct",
@@ -64,7 +65,8 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var productList = this.__state.productList;
@@ -76,7 +78,7 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return CreateProduct;
-}(_index.Component), _class2.properties = {}, _class2.$$events = ["handleEditProduct"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleEditProduct"], _class2.$$componentPath = "pages/product/add", _temp2)) || _class);
 exports.default = CreateProduct;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(CreateProduct, true));

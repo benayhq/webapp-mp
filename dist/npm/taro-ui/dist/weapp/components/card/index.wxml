@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view bindtap="handleClick" class="{{rootClass}}">
         <view class="at-card__header">
             <block wx:if="{{thumb}}">

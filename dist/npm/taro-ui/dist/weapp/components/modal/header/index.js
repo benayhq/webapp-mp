@@ -44,20 +44,23 @@ var AtModalHeader = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModalHeader.__proto__ || Object.getPrototypeOf(AtModalHeader)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "className", "children"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModalHeader.__proto__ || Object.getPrototypeOf(AtModalHeader)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "className", "children"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtModalHeader, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtModalHeader.prototype.__proto__ || Object.getPrototypeOf(AtModalHeader.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var rootClass = (0, _index4.default)('at-modal__header', this.__props.className);
@@ -69,12 +72,7 @@ var AtModalHeader = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModalHeader;
-}(_component2.default), _class.properties = {
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/modal/header/index", _temp2);
 exports.default = AtModalHeader;
 
 Component(require('../../../../../../@tarojs/taro-weapp/index.js').default.createComponent(AtModalHeader));

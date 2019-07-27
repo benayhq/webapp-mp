@@ -123,7 +123,7 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
         if (!onCreateFail) {
           console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateFail 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#fail');
         }
-        onCreateFail && _this.__triggerPropsFn("onCreateFail", [null].concat([err]));
+        onCreateFail && _this.props.onCreateFail(err);
       });
     }, _this.create = function (config) {
       _this.ctx = _index2.default.createCanvasContext(_this.canvasId, _this.$scope);
@@ -205,7 +205,7 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
           if (!onCreateSuccess) {
             console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateSuccess 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#success');
           }
-          onCreateSuccess && _this.__triggerPropsFn("onCreateSuccess", [null].concat([result]));
+          onCreateSuccess && _this.props.onCreateSuccess(result);
         },
         fail: function fail(error) {
           var errMsg = error.errMsg;
@@ -219,12 +219,12 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
               if (!onCreateFail) {
                 console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateFail 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#fail');
               }
-              onCreateFail && _this.__triggerPropsFn("onCreateFail", [null].concat([error]));
+              onCreateFail && _this.props.onCreateFail(error);
             }
           }
         }
       }, _this.$scope);
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CanvasDrawer, [{
@@ -241,6 +241,7 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
       this.ctx = null;
       this.cache = {};
       this.drawArr = [];
+      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
@@ -317,7 +318,8 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       var canvasId = this.canvasId;
       var _state = this.__state,
           pxWidth = _state.pxWidth,
@@ -333,32 +335,11 @@ var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return CanvasDrawer;
-}(_index.Component), _class.properties = {
-  "config": {
-    "type": null,
-    "value": null
-  },
-  "onCreateFail": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onCreateFail": {
-    "type": null,
-    "value": null
-  },
-  "onCreateSuccess": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onCreateSuccess": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _class.defaultProps = {}, _class.propTypes = {
+}(_index.Component), _class.$$events = [], _class.defaultProps = {}, _class.propTypes = {
   config: _index4.default.object.isRequired,
   onCreateSuccess: _index4.default.func.isRequired,
   onCreateFail: _index4.default.func.isRequired
-}, _temp2);
+}, _class.$$componentPath = "components/taro-plugin-canvas/index", _temp2);
 exports.default = CanvasDrawer;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(CanvasDrawer));

@@ -54,7 +54,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["title", "content", "rootClass", "_$isRenderAction", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__67", "title", "content", "_$isRenderAction", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -62,19 +62,19 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       }
     }, _this.handleClose = function () {
       if ((0, _isFunction3.default)(_this.props.onClose)) {
-        _this.__triggerPropsFn("onClose", [null].concat([]));
+        _this.props.onClose();
       }
     }, _this.handleCancel = function () {
       if ((0, _isFunction3.default)(_this.props.onCancel)) {
-        _this.__triggerPropsFn("onCancel", [null].concat([]));
+        _this.props.onCancel();
       }
     }, _this.handleConfirm = function () {
       if ((0, _isFunction3.default)(_this.props.onConfirm)) {
-        _this.__triggerPropsFn("onConfirm", [null].concat([]));
+        _this.props.onConfirm();
       }
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtModal, [{
@@ -87,6 +87,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       this.state = {
         _isOpened: isOpened
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillReceiveProps",
@@ -111,8 +112,10 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__67 = (0, _index.genCompid)(__prefix + "$compid__67");
 
       var _isOpened = this.__state._isOpened;
       var _props = this.__props,
@@ -128,75 +131,27 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
 
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
+        var $props__67 = {
+          "isSimple": true
+        };
+        _$isRenderAction && _index.propsManager.set($props__67, $compid__67);
       }
 
       Object.assign(this.__state, {
+        $compid__67: $compid__67,
         title: title,
         content: content,
-        rootClass: rootClass,
         _$isRenderAction: _$isRenderAction,
         cancelText: cancelText,
-        confirmText: confirmText
+        confirmText: confirmText,
+        rootClass: rootClass
       });
       return this.__state;
     }
   }]);
 
   return AtModal;
-}(_component2.default), _class.properties = {
-  "isOpened": {
-    "type": null,
-    "value": null
-  },
-  "closeOnClickOverlay": {
-    "type": null,
-    "value": null
-  },
-  "onClose": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClose": {
-    "type": null,
-    "value": null
-  },
-  "onCancel": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onCancel": {
-    "type": null,
-    "value": null
-  },
-  "onConfirm": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onConfirm": {
-    "type": null,
-    "value": null
-  },
-  "title": {
-    "type": null,
-    "value": null
-  },
-  "content": {
-    "type": null,
-    "value": null
-  },
-  "cancelText": {
-    "type": null,
-    "value": null
-  },
-  "confirmText": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _temp2);
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
 
 
 AtModal.defaultProps = {

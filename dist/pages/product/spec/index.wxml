@@ -1,24 +1,24 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view>
         <block wx:if="{{products}}">
             <view class="{{prefix + '__img'}}">
-                <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{categoryItem.productDocumentLocation}}"></image>
+                <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{categoryItem.productDocumentLocation}}"></image>
                 <view class="{{prefix + '__desc'}}">
                     <view>{{categoryItem.productName}}</view>
                     <view><text class="{{prefix + '__order-price'}}">{{categoryItem.productDiscountPrice}}</text><text class="{{prefix + '__order-marketprice'}}">{{categoryItem.productPrice}}</text>
                     </view>
-                    <view><text class="{{prefix + '__order-money'}}">定金: {{categoryItem.productAdvance}}</text>
+                    <view><text class="{{prefix + '__order-money'}}">定金: {{categoryItem.productAdvance}} </text>
                     </view>
                 </view>
             </view>
         </block>
         <view class="{{prefix + '__title'}}">品牌与说明</view>
         <block wx:if="{{productItems}}">
-            <view wx:for="{{productItems}}" wx:for-item="product" wx:for-index="_anonIdx">
+            <view wx:for="{{productItems}}" wx:for-item="product" wx:for-index="_anonIdx2">
                 <view bindtap="handleChangeCategory" class="{{product.isChecked ? 'mp-spec__category-green' : 'mp-spec__category'}}" data-e-tap-so="this" data-e-tap-a-a="{{product}}">{{product.productName}}</view>
             </view>
         </block>
         <view class="{{prefix + '__bottom'}}" bindtap="handleSubmitOrder" data-e-tap-so="this">拼 团</view>
-        <at-toast isOpened="{{isOpended}}" __triggerObserer="{{ _triggerObserer }}" text="{{text}}" duration="{{1000}}"></at-toast>
+        <at-toast compid="{{$compid__80}}"></at-toast>
     </view>
 </block>

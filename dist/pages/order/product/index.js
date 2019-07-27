@@ -12,13 +12,17 @@ var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
 var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _index2 = require("../../../npm/@tarojs/redux/index.js");
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -34,7 +38,7 @@ function getLocalTime(timestamp) {
   return date;
 }
 
-var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
+var OrderProduct = (_dec = (0, _index3.connect)(function (state) {
   return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(OrderProduct, _BaseComponent);
@@ -50,7 +54,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "profileUrl", "dispatchCreateOrderDownLoadUrl", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__59", "profileUrl", "dispatchCreateOrderDownLoadUrl", "content"], _this.customComponents = ["Title", "ProductItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderProduct, [{
@@ -60,6 +64,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
       this.state = {
         profileUrl: ''
       };
+      this.$$refs = [];
     }
   }, {
     key: "getImgUrl",
@@ -114,32 +119,31 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__59 = (0, _index.genCompid)(__prefix + "$compid__59");
 
       var profileUrl = this.__state.profileUrl;
 
       console.log('profileUrl', profileUrl);
 
       var anonymousState__temp = this.__props.content && getLocalTime(this.__props.content.createdD);
+      var $props__59 = {
+        "displayStatusDes": this.__props.content.displayStatusDes,
+        "AgentName": this.__props.content.agentName
+      };
+      _index.propsManager.set($props__59, $compid__59);
       Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp
+        anonymousState__temp: anonymousState__temp,
+        $compid__59: $compid__59
       });
       return this.__state;
     }
   }]);
 
   return OrderProduct;
-}(_index.Component), _class2.properties = {
-  "dispatchCreateOrderDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "content": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = [], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/product/index", _temp2)) || _class);
 exports.default = OrderProduct;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderProduct));

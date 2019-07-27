@@ -15,7 +15,6 @@ function getLocalTime(timestamp) {
     return date;
 }
 
-
 @connect(state=>state,actions)
 class Index extends Component{
   config = {

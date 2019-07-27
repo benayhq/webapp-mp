@@ -1,7 +1,7 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-product">
-        <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
-        <check-box bindondelete="handleDelItem" __triggerObserer="{{ _triggerObserer }}" options="{{newFilterList}}" selectedList="{{checkedList}}" bindonchange="handleChange" __fn_onDelete="{{true}}" data-e-ondelete-so="this" __fn_onChange="{{true}}" data-e-onchange-so="this"></check-box>
+        <at-message></at-message>
+        <check-box compid="{{$compid__24}}"></check-box>
         <view class="mp-product__save">
             <view bindtap="handleSaveItem">保 存</view>
         </view>

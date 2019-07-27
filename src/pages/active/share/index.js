@@ -69,7 +69,7 @@ export default class Index extends Component{
      return result;
   }
 
-  async renderCanvas(templateId){
+  async getCanvas(templateId){
 
       let userInfo = await getAuthInfo();
       
@@ -84,7 +84,7 @@ export default class Index extends Component{
       };
   
       this.getQrCode(payload).then(response=>{
-         
+        
         this.getBase64Src(response).then((imgUrl)=>{
           this.getActivityData().then(data=>{
             const config = this.buildConfig(templateId,{
@@ -748,7 +748,7 @@ export default class Index extends Component{
   }
 
   canvasDrawFunc = (id,event) => {
-    this.renderCanvas(id);
+    this.getCanvas(id);
     this.showMask(id);
   }
 

@@ -1,9 +1,9 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-own-product">
-        <view class="mp-own-product__item" wx:for="{{productList}}" wx:for-item="product" wx:for-index="_anonIdx">
+        <view class="mp-own-product__item" wx:for="{{productList}}" wx:for-item="product" wx:for-index="_anonIdx2">
             <view class="mp-own-product__product">
                 <view>
-                    <image style="width:101px; height:101px;margin-top:6px; margin-left:9px; margin-right:9px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{product.imgUrl}}"></image>
+                    <image style="width:101px; height:101px;margin-top:6px; margin-left:9px; margin-right:9px;" mode="scaleToFill" src="{{product.imgUrl}}"></image>
                 </view>
                 <view><text class="mp-own-product__title">{{product.desc}}</text>
                     <view class="mp-own-product__content"><text class="mp-own-product__price">￥{{product.price}}</text><text class="mp-own-product__marketPrice">￥{{product.marketPrice}}</text>

@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["actives", "dispatchActiveHistory"], _this.config = {
       navigationBarTitleText: '浏览历史'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -58,6 +58,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.state = {
         actives: []
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentDidMount",
@@ -76,7 +77,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var actives = this.__state.actives;
@@ -88,12 +90,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {
-  "dispatchActiveHistory": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = [], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

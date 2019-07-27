@@ -44,20 +44,22 @@ var AtLoading = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoading.__proto__ || Object.getPrototypeOf(AtLoading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "color", "size"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoading.__proto__ || Object.getPrototypeOf(AtLoading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "color", "size"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtLoading, [{
     key: "_constructor",
     value: function _constructor() {
       _get(AtLoading.prototype.__proto__ || Object.getPrototypeOf(AtLoading.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -89,16 +91,7 @@ var AtLoading = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtLoading;
-}(_component2.default), _class.properties = {
-  "color": {
-    "type": null,
-    "value": null
-  },
-  "size": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/loading/index", _temp2);
 
 
 AtLoading.defaultProps = {

@@ -58,25 +58,27 @@ class Index extends Component{
   async initOrderNotice(creatorInstance,isAgent){
     var list = creatorInstance.factory(isAgent).getList();
     const response = await this.props.dispatchReservationCount({});
-    list.map((item,key)=>{
-        switch(item.status){
-          case "UNPAY":
-            item.count = response.content.unpayCount;
-            break;
-          case "BATING":
-              item.count = response.content.batingCount;
-            break;
-          case "CONSUMPTION":
-              item.count = response.content.consumptionCount;
-            break;
-          case "COMMENTING":
-              item.count = response.content.commentingCount;
-            break;
-        }
-    });
-    this.setState({
-      orders:list
-    })
+    if(list && list.length>0){
+        list.map((item,key)=>{
+          switch(item.status){
+            case "UNPAY":
+              item.count = response.content.unpayCount;
+              break;
+            case "BATING":
+                item.count = response.content.batingCount;
+              break;
+            case "CONSUMPTION":
+                item.count = response.content.consumptionCount;
+              break;
+            case "COMMENTING":
+                item.count = response.content.commentingCount;
+              break;
+          }
+      });
+      this.setState({
+        orders:list
+      })
+    }
   }
 
   initReservationPlan(){
@@ -229,8 +231,10 @@ class Index extends Component{
   }
 
   render(){
-    const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText} = this.state;
+    const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText,list} = this.state;
     const isShowLoanApp = !isAgent && flag;
+
+    console.log('list',list);
 
     return (
       <View className='mp-user'>
@@ -272,9 +276,9 @@ class Index extends Component{
                   </View>
               }
      </View>
-     
+   
       { isAgent && <InCome profit={profit}/> }
-
+ 
       {
         isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
@@ -283,14 +287,14 @@ class Index extends Component{
                   发布活动
               </View>
           </View>
-      }
+      } 
 
       <UserOrder list={orders}/>
 
       <View className="mp-user__list">
         <AtList>
           {
-              this.props.list.map(item=>(
+               list.length>0 && list.map(item=>(
                   <AtListItem
                   title={item.text}
                   arrow='right'
@@ -315,10 +319,10 @@ class Index extends Component{
         </AtCard>
       </View> : ""
       }
-      
+     
       <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
               {showUserText}
-      </View>
+      </View> 
 
     </View>
     )

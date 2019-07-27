@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="{{rootClass}}" catchtouchmove="handleTouchMove">
         <view class="mp-modal__overlay" bindtap="onClose"></view>
         <view class="{{popUpClass}}">

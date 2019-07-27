@@ -79,7 +79,7 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray0", "rootCls", "matrix", "mode", "files", "multiple", "__fn_onChange", "onFail", "__fn_onImageClick", "className", "customStyle", "length", "showAddBtn"], _this.chooseFile = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray14", "rootCls", "matrix", "mode", "files", "multiple", "onFail", "className", "customStyle", "length", "showAddBtn"], _this.chooseFile = function () {
       var _this$props = _this.props,
           _this$props$files = _this$props.files,
           files = _this$props$files === undefined ? [] : _this$props$files,
@@ -96,10 +96,10 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
           };
         });
         var newFiles = files.concat(targetFiles);
-        _this.__triggerPropsFn("onChange", [null].concat([newFiles, 'add']));
+        _this.props.onChange(newFiles, 'add');
       }).catch(_this.props.onFail);
     }, _this.handleImageClick = function (idx) {
-      return _this.__triggerPropsFn("onImageClick", [null].concat([idx, _this.props.files[idx]]));
+      return _this.props.onImageClick(idx, _this.props.files[idx]);
     }, _this.handleRemoveImg = function (idx) {
       var _this$props$files2 = _this.props.files,
           files = _this$props$files2 === undefined ? [] : _this$props$files2;
@@ -110,21 +110,24 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       var newFiles = files.filter(function (file, i) {
         return i !== idx;
       });
-      _this.__triggerPropsFn("onChange", [null].concat([newFiles, 'remove', idx]));
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+      _this.props.onChange(newFiles, 'remove', idx);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtImagePicker, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtImagePicker.prototype.__proto__ || Object.getPrototypeOf(AtImagePicker.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -140,11 +143,11 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       var rootCls = (0, _index6.default)('at-image-picker', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray0 = matrix.map(function (row, i) {
+      var loopArray14 = matrix.map(function (row, i) {
         row = {
           $original: (0, _index.internal_get_original)(row)
         };
-        var $anonymousCallee__0 = row.$original.map(function (item, j) {
+        var $anonymousCallee__1 = row.$original.map(function (item, j) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
@@ -157,13 +160,13 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
           };
         });
         return {
-          $anonymousCallee__0: $anonymousCallee__0,
+          $anonymousCallee__1: $anonymousCallee__1,
           $original: row.$original
         };
       });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray0: loopArray0,
+        loopArray14: loopArray14,
         rootCls: rootCls,
         matrix: matrix,
         mode: mode
@@ -173,48 +176,7 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtImagePicker;
-}(_component2.default), _class.properties = {
-  "files": {
-    "type": null,
-    "value": null
-  },
-  "multiple": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onChange": {
-    "type": null,
-    "value": null
-  },
-  "onFail": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onImageClick": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "mode": {
-    "type": null,
-    "value": null
-  },
-  "length": {
-    "type": null,
-    "value": null
-  },
-  "showAddBtn": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleRemoveImg", "handleImageClick", "chooseFile"], _temp2);
+}(_component2.default), _class.$$events = ["handleRemoveImg", "handleImageClick", "chooseFile"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/image-picker/index", _temp2);
 
 
 AtImagePicker.defaultProps = {

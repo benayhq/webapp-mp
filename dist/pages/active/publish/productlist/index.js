@@ -36,13 +36,15 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["products"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray15", "products"], _this.customComponents = ["AtInput"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProductList, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(ProductList.prototype.__proto__ || Object.getPrototypeOf(ProductList.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "selectProduct",
@@ -59,22 +61,40 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+
+      var loopArray15 = this.__props.products.map(function (item, _anonIdx) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $compid__70 = (0, _index.genCompid)(__prefix + "wXFhxvSVTg" + _anonIdx);
+        _index.propsManager.set({
+          "name": "value",
+          "type": "text",
+          "value": item.$original.discountPrice,
+          "onChange": _this2.handleChange.bind(_this2)
+        }, $compid__70);
+        return {
+          $compid__70: $compid__70,
+          $original: item.$original
+        };
+      });
+
+      Object.assign(this.__state, {
+        loopArray15: loopArray15
+      });
       return this.__state;
     }
   }]);
 
   return ProductList;
-}(_index.Component), _class.properties = {
-  "products": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["selectProduct", "handleChange"], _temp2);
+}(_index.Component), _class.$$events = ["selectProduct"], _class.$$componentPath = "pages/active/publish/productlist/index", _temp2);
 exports.default = ProductList;
 
 Component(require('../../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));

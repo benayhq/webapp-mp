@@ -52,7 +52,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nickName", "userName", "cellPhone", "weixin", "address", "selector", "selectorChecked", "timeSel", "dateSel", "files", "serviceAddress", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "$compid__16", "$compid__17", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -102,7 +102,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           console.log('response', res);
         });
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "AtForm", "AtInput", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Edit, [{
@@ -123,6 +123,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         address: '',
         qrCode: ''
       };
+      this.$$refs = [];
     }
   }, {
     key: "init",
@@ -314,8 +315,16 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__11 = (0, _index.genCompid)(__prefix + "$compid__11");
+      var $compid__12 = (0, _index.genCompid)(__prefix + "$compid__12");
+      var $compid__13 = (0, _index.genCompid)(__prefix + "$compid__13");
+      var $compid__14 = (0, _index.genCompid)(__prefix + "$compid__14");
+      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
+      var $compid__16 = (0, _index.genCompid)(__prefix + "$compid__16");
+      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
 
       var _state = this.__state,
           nickName = _state.nickName,
@@ -326,22 +335,77 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _state.address,
           qrCode = _state.qrCode;
 
-      Object.assign(this.__state, {});
+      var $props__11 = {
+        "name": "value1",
+        "title": "\u5462\u79F0",
+        "type": "text",
+        "placeholder": "Shawn",
+        "value": nickName,
+        "onChange": this.handleNickNameChange.bind(this)
+      };
+      var $props__12 = {
+        "name": "value1",
+        "title": "\u59D3\u540D",
+        "type": "text",
+        "placeholder": "(\u9009\u586B)",
+        "value": userName,
+        "onChange": this.handleUserNameChange.bind(this)
+      };
+      var $props__13 = {
+        "name": "value6",
+        "title": "\u624B\u673A\u53F7\u7801",
+        "type": "phone",
+        "placeholder": "\u8BF7\u8F93\u5165\u5E38\u7528\u624B\u673A\u53F7",
+        "value": cellPhone,
+        "onChange": this.handleMobileChange.bind(this)
+      };
+      var $props__14 = {
+        "name": "value1",
+        "title": "\u5FAE\u4FE1",
+        "type": "text",
+        "placeholder": "\u5BA2\u6237\u901A\u8FC7\u5FAE\u4FE1\u4E0E\u60A8\u8054\u7CFB",
+        "value": weixin,
+        "onChange": this.handleWeChatChange.bind(this)
+      };
+      var $props__15 = {
+        "name": "value1",
+        "title": "\u5730\u5740",
+        "type": "text",
+        "placeholder": "(\u9009\u586B)",
+        "value": address,
+        "onChange": this.handleAddressChange.bind(this)
+      };
+      var $props__16 = {
+        "className": "uploadPicker",
+        "files": this.__state.files,
+        "onChange": this.handleUploadChange.bind(this)
+      };
+      var $props__17 = {
+        "type": "primary",
+        "onClick": this.handleSaveUserInfo.bind(this)
+      };
+      _index.propsManager.set($props__11, $compid__11);
+      _index.propsManager.set($props__12, $compid__12);
+      _index.propsManager.set($props__13, $compid__13);
+      _index.propsManager.set($props__14, $compid__14);
+      _index.propsManager.set($props__15, $compid__15);
+      _index.propsManager.set($props__16, $compid__16);
+      _index.propsManager.set($props__17, $compid__17);
+      Object.assign(this.__state, {
+        $compid__11: $compid__11,
+        $compid__12: $compid__12,
+        $compid__13: $compid__13,
+        $compid__14: $compid__14,
+        $compid__15: $compid__15,
+        $compid__16: $compid__16,
+        $compid__17: $compid__17
+      });
       return this.__state;
     }
   }]);
 
   return Edit;
-}(_index.Component), _class2.properties = {
-  "dispatchUploadConfig": {
-    "type": null,
-    "value": null
-  },
-  "UpdateUserInfo": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleNickNameChange", "handleUserNameChange", "handleMobileChange", "handleWeChatChange", "handleAddressChange", "handleUploadChange", "handleSaveUserInfo"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/info/edit", _temp2)) || _class);
 exports.default = Edit;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Edit, true));

@@ -35,6 +35,15 @@ var store = (0, _index5.default)();
 
 (0, _index3.setStore)(store);
 
+if (_index3.ReduxContext.Provider) {
+  _index3.ReduxContext.Provider({
+    store: store
+  });
+  _index3.ReduxContext.Provider({
+    store: store
+  });
+}
+
 var _App = function (_BaseComponent) {
   _inherits(_App, _BaseComponent);
 

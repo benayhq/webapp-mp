@@ -1,11 +1,11 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="{{anonymousState__temp2}}" style="{{anonymousState__temp3}}">
         <block>
             <block wx:if="{{status === 'loading'}}">
-                <at-activity-indicator mode="center" __triggerObserer="{{ _triggerObserer }}" content="{{loadingText}}"></at-activity-indicator>
+                <at-activity-indicator compid="{{$compid__78}}"></at-activity-indicator>
             </block>
             <block wx:elif="{{status === 'more'}}">
-                <at-button full="{{true}}" __triggerObserer="{{ _triggerObserer }}" bindonclick="onClick" customStyle="{{moreBtnStyle}}" __fn_onClick="{{true}}" data-e-onclick-so="this">{{moreText}}</at-button>
+                <at-button compid="{{$compid__79}}">{{moreText}}</at-button>
             </block>
             <block wx:else><text class="at-load-more__tip" style="{{_$anonymousState__temp}}">{{noMoreText}}</text>
             </block>

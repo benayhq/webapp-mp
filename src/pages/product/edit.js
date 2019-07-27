@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text,Button,Picker } from '@tarojs/components'
 import {connect} from '@tarojs/redux';
-import {AtButton,AtInput,AtForm,AtImagePicker,AtMessage,AtToast} from 'taro-ui';
+import {AtInput,AtForm,AtImagePicker,AtMessage,AtToast} from 'taro-ui';
 import './edit.scss';
 import * as actions from './store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
@@ -33,7 +33,11 @@ class EditProduct extends Component{
            status:'',
            duration:2000,
            location:'',
-           productId:0
+           productId:0,
+           firstList:[],
+           secondList:[],
+           thirdList:[],
+           initSeletedValue:''
         };
 
    }
@@ -48,23 +52,25 @@ class EditProduct extends Component{
       };
       var that = this;
       this.props.dispatchCategoryList(payload).then((response)=>{
-
         var list = response.content;
         var firstList = [],secondList = [],thirdList = [];
-
         list.map((category,index)=>{
           firstList.push(category.name);
-          
-          if(category.son && category.son.length > 0){
-            category.son.map((categoryChild,index)=>{
-              secondList.push(categoryChild.name);
-              if(categoryChild.son && categoryChild.son.length > 0){
-                  categoryChild.son.map((child,index)=>{
-                    thirdList.push(child.name);
-                  })
-              }
-            });
-          }
+          // if(index === 0){
+          //   category.son.map((categoryChild,index)=>{
+          //     secondList.push(categoryChild.name);
+          //     if(index ===0 ){
+          //       categoryChild.son.map((thirdItem,index)=>{
+          //         thirdList.push(thirdItem.name);
+          //       });
+          //     }
+          //   })
+          // }
+        });
+        this.setState({
+          firstList:firstList,
+          secondList:[],
+          thirdList:[]
         });
         this.setState({
           multiSelector:[firstList,secondList,thirdList]
@@ -72,16 +78,14 @@ class EditProduct extends Component{
       });
    }
 
-
-
-   handleAlert = (type,message) => {
+    handleAlert = (type,message) => {
       Taro.atMessage({
         'message': message,
         'type': type
       });
-   }
+    }
 
-   handleChooseImage = (files) =>{
+    handleChooseImage = (files) =>{
       this.setState({
           files
       });
@@ -117,19 +121,19 @@ class EditProduct extends Component{
                 )
             });
       }
-   }
+    }
    
-   componentDidMount(){
+    componentDidMount(){
      this.init();
-   }
+    }
 
-   componentWillMount(){
+    componentWillMount(){
      this.setState({
       productId:this.$router.params.productId
      });
-   }
+    }
 
-   async handleSaveProduct(){
+    async handleSaveProduct(){
       const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location,productId} = this.state;
       
       if(productName===''){
@@ -239,10 +243,74 @@ class EditProduct extends Component{
     }
 
     handleMulitChange = e => {
-      this.setState({
-        mulitSelectorValues: e.detail.value,
-        isOpened:false
-      })
+      const {firstList,secondList,thirdList,multiSelector} = this.state;
+      if(firstList.length>0){
+        this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened:false,
+          initSeletedValue:multiSelector[0][e.detail.value[0]]
+        })
+      }
+      if(secondList.length>0){
+        this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened:false,
+          initSeletedValue:multiSelector[1][e.detail.value[1]]
+        })
+      }
+      if(thirdList.length>0){
+        this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened:false,
+          initSeletedValue:multiSelector[2][e.detail.value[2]]
+        })
+      }
+    }
+
+    async handleColumnChange(e){
+      const {multiSelector,mulitSelectorValues} = this.state;
+      var list = await this.getCategroyList(multiSelector[e.detail.column][e.detail.value]);
+      var firsts=[],seconds =[],thirds=[];
+      const {firstList,secondList,thirdList} = this.state;
+
+      switch(e.detail.column){
+        case 0:
+            if(list && list.content.length>0){
+              list.content[0].son.map((item)=>{
+                seconds.push(item.name);
+              })
+              this.setState({
+                secondList:seconds
+              });
+            }
+            this.setState({
+              multiSelector:[firstList,seconds,thirdList]
+            });
+          break;
+        case 1:
+            if(list && list.content.length>0){
+              list.content[0].son.map((item)=>{
+                thirds.push(item.name);
+              })
+              this.setState({
+                thirdList:thirds
+              });
+            }
+            this.setState({
+              multiSelector:[firstList,secondList,thirds]
+            });
+          break;
+        case 2:
+          break;
+      }
+    }
+    
+    async getCategroyList(name){
+      var payload = {
+        name:name
+      };
+      const result  = await this.props.dispatchCategoryList(payload);
+      return result;
     }
 
     handlePreAmountChange(preAmount){
@@ -300,9 +368,10 @@ class EditProduct extends Component{
      imgArraySrc=[];
    }
 
+
     render(){
         const {productName,productPrice,activePrice,preAmount,
-          files,toastText,isOpened,status,duration} = this.state;
+          files,toastText,isOpened,status,duration,initSeletedValue} = this.state;
 
         return (
             <View className="mp-edit-product">
@@ -318,10 +387,10 @@ class EditProduct extends Component{
               <View className='panel'>
                 <View className='panel__content'>
                   <View className='example-item'>
-                    <Picker mode='multiSelector' range={multiSelector} value={mulitSelectorValues} onChange={this.handleMulitChange}>
+                    <Picker mode='multiSelector' range={multiSelector} onColumnChange={this.handleColumnChange} value={mulitSelectorValues} onChange={this.handleMulitChange}>
                       <View className='demo-list-item'>
                         <View className='demo-list-item__label'>分类</View>
-                        <View className='demo-list-item__value'>{  multiSelector[0][mulitSelectorValues[0]] &&  `${multiSelector[0][mulitSelectorValues[0]]} & ${multiSelector[1][mulitSelectorValues[1]]} & ${multiSelector[2][mulitSelectorValues[2]]}`}</View>
+                        <View className='demo-list-item__value'>{ initSeletedValue}</View>
                       </View>
                     </Picker>
                   </View>

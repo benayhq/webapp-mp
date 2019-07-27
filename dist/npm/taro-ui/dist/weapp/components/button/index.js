@@ -60,7 +60,7 @@ var AtButton = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtButton.__proto__ || Object.getPrototypeOf(AtButton)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loading", "loadingColor", "loadingSize", "formType", "openType", "lang", "sessionFrom", "sendMessageTitle", "sendMessagePath", "sendMessageImg", "showMessageCard", "appParameter", "isWEAPP", "disabled", "isALIPAY", "isWEB", "size", "type", "circle", "full", "customStyle", "className", "children"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtButton.__proto__ || Object.getPrototypeOf(AtButton)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__68", "loading", "formType", "openType", "lang", "sessionFrom", "sendMessageTitle", "sendMessagePath", "sendMessageImg", "showMessageCard", "appParameter", "isWEAPP", "disabled", "isALIPAY", "isWEB", "size", "type", "circle", "full", "customStyle", "className", "children"], _this.customComponents = ["AtLoading"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtButton, [{
@@ -72,38 +72,51 @@ var AtButton = (_temp2 = _class = function (_AtComponent) {
         isWEAPP: _index2.default.getEnv() === _index2.default.ENV_TYPE.WEAPP,
         isALIPAY: _index2.default.getEnv() === _index2.default.ENV_TYPE.ALIPAY
       };
+      this.$$refs = [];
     }
   }, {
     key: "onClick",
     value: function onClick() {
       if (!this.props.disabled) {
-        this.props.onClick && this.__triggerPropsFn("onClick", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+        var _props;
+
+        this.props.onClick && (_props = this.props).onClick.apply(_props, arguments);
       }
     }
   }, {
     key: "onGetUserInfo",
     value: function onGetUserInfo() {
-      this.props.onGetUserInfo && this.__triggerPropsFn("onGetUserInfo", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props2;
+
+      this.props.onGetUserInfo && (_props2 = this.props).onGetUserInfo.apply(_props2, arguments);
     }
   }, {
     key: "onContact",
     value: function onContact() {
-      this.props.onContact && this.__triggerPropsFn("onContact", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props3;
+
+      this.props.onContact && (_props3 = this.props).onContact.apply(_props3, arguments);
     }
   }, {
     key: "onGetPhoneNumber",
     value: function onGetPhoneNumber() {
-      this.props.onGetPhoneNumber && this.__triggerPropsFn("onGetPhoneNumber", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props4;
+
+      this.props.onGetPhoneNumber && (_props4 = this.props).onGetPhoneNumber.apply(_props4, arguments);
     }
   }, {
     key: "onError",
     value: function onError() {
-      this.props.onError && this.__triggerPropsFn("onError", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props5;
+
+      this.props.onError && (_props5 = this.props).onError.apply(_props5, arguments);
     }
   }, {
     key: "onOpenSetting",
     value: function onOpenSetting() {
-      this.props.onOpenSetting && this.__triggerPropsFn("onOpenSetting", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props6;
+
+      this.props.onOpenSetting && (_props6 = this.props).onOpenSetting.apply(_props6, arguments);
     }
   }, {
     key: "onSumit",
@@ -132,28 +145,30 @@ var AtButton = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__68 = (0, _index.genCompid)(__prefix + "$compid__68");
 
-      var _props = this.__props,
-          _props$size = _props.size,
-          size = _props$size === undefined ? 'normal' : _props$size,
-          _props$type = _props.type,
-          type = _props$type === undefined ? '' : _props$type,
-          circle = _props.circle,
-          full = _props.full,
-          loading = _props.loading,
-          disabled = _props.disabled,
-          customStyle = _props.customStyle,
-          formType = _props.formType,
-          openType = _props.openType,
-          lang = _props.lang,
-          sessionFrom = _props.sessionFrom,
-          sendMessageTitle = _props.sendMessageTitle,
-          sendMessagePath = _props.sendMessagePath,
-          sendMessageImg = _props.sendMessageImg,
-          showMessageCard = _props.showMessageCard,
-          appParameter = _props.appParameter;
+      var _props7 = this.__props,
+          _props7$size = _props7.size,
+          size = _props7$size === undefined ? 'normal' : _props7$size,
+          _props7$type = _props7.type,
+          type = _props7$type === undefined ? '' : _props7$type,
+          circle = _props7.circle,
+          full = _props7.full,
+          loading = _props7.loading,
+          disabled = _props7.disabled,
+          customStyle = _props7.customStyle,
+          formType = _props7.formType,
+          openType = _props7.openType,
+          lang = _props7.lang,
+          sessionFrom = _props7.sessionFrom,
+          sendMessageTitle = _props7.sendMessageTitle,
+          sendMessagePath = _props7.sendMessagePath,
+          sendMessageImg = _props7.sendMessageImg,
+          showMessageCard = _props7.showMessageCard,
+          appParameter = _props7.appParameter;
       var _state = this.__state,
           isWEAPP = _state.isWEAPP,
           isALIPAY = _state.isALIPAY;
@@ -164,16 +179,21 @@ var AtButton = (_temp2 = _class = function (_AtComponent) {
       var loadingSize = size === 'small' ? '30' : 0;
       var component = void 0;
       if (loading) {
+        var $props__68 = {
+          "color": loadingColor,
+          "size": loadingSize
+        };
+
         rootClassName.push('at-button--icon');
+        _index.propsManager.set($props__68, $compid__68);
       }
       var anonymousState__temp = (0, _index6.default)(rootClassName, classObject, this.__props.className);
       var anonymousState__temp2 = (0, _index.internal_inline_style)(customStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
+        $compid__68: $compid__68,
         loading: loading,
-        loadingColor: loadingColor,
-        loadingSize: loadingSize,
         formType: formType,
         openType: openType,
         lang: lang,
@@ -190,124 +210,7 @@ var AtButton = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtButton;
-}(_component2.default), _class.properties = {
-  "disabled": {
-    "type": null,
-    "value": null
-  },
-  "onClick": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "onGetUserInfo": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onGetUserInfo": {
-    "type": null,
-    "value": null
-  },
-  "onContact": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onContact": {
-    "type": null,
-    "value": null
-  },
-  "onGetPhoneNumber": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onGetPhoneNumber": {
-    "type": null,
-    "value": null
-  },
-  "onError": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onError": {
-    "type": null,
-    "value": null
-  },
-  "onOpenSetting": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onOpenSetting": {
-    "type": null,
-    "value": null
-  },
-  "size": {
-    "type": null,
-    "value": null
-  },
-  "type": {
-    "type": null,
-    "value": null
-  },
-  "circle": {
-    "type": null,
-    "value": null
-  },
-  "full": {
-    "type": null,
-    "value": null
-  },
-  "loading": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "formType": {
-    "type": null,
-    "value": null
-  },
-  "openType": {
-    "type": null,
-    "value": null
-  },
-  "lang": {
-    "type": null,
-    "value": null
-  },
-  "sessionFrom": {
-    "type": null,
-    "value": null
-  },
-  "sendMessageTitle": {
-    "type": null,
-    "value": null
-  },
-  "sendMessagePath": {
-    "type": null,
-    "value": null
-  },
-  "sendMessageImg": {
-    "type": null,
-    "value": null
-  },
-  "showMessageCard": {
-    "type": null,
-    "value": null
-  },
-  "appParameter": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["onGetUserInfo", "onGetPhoneNumber", "onOpenSetting", "onError", "onContact", "onClick", "onSumit", "onReset"], _temp2);
+}(_component2.default), _class.$$events = ["onGetUserInfo", "onGetPhoneNumber", "onOpenSetting", "onError", "onContact", "onClick", "onSumit", "onReset"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/button/index", _temp2);
 
 
 AtButton.defaultProps = {

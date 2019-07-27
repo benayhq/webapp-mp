@@ -43,10 +43,10 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Popup.__proto__ || Object.getPrototypeOf(Popup)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "closeIcon", "isShow", "compStyle", "__fn_onClick", "visible", "children"], _this.handleClose = function () {
-      _this.__triggerPropsFn("onClose", [null].concat([]));
+      _this.props.onClose();
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Popup, [{
@@ -56,6 +56,7 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       this.state = {
         isShow: props.visible
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillReceiveProps",
@@ -74,7 +75,8 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -95,39 +97,18 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       return this.__state;
     }
   }, {
-    key: "funPrivatemBweT",
-    value: function funPrivatemBweT() {
-      this.__triggerPropsFn("onClose", [].concat(Array.prototype.slice.call(arguments)));
+    key: "funPrivatesWbOB",
+    value: function funPrivatesWbOB() {
+      return this.props.onClose.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }]);
 
   return Popup;
-}(_index.Component), _class.properties = {
-  "__fn_onClose": {
-    "type": null,
-    "value": null
-  },
-  "onClose": {
-    "type": null,
-    "value": null
-  },
-  "compStyle": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "visible": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleTouchMove", "funPrivatemBweT"], _class.defaultProps = {
+}(_index.Component), _class.$$events = ["handleTouchMove", "funPrivatesWbOB"], _class.defaultProps = {
   visible: false,
   compStyle: '',
   onClose: function onClose() {}
-}, _temp2);
+}, _class.$$componentPath = "components/popup/index", _temp2);
 exports.default = Popup;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Popup));

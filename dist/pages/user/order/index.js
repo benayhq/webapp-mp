@@ -12,6 +12,8 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
 var _jump = require("../../utils/jump.js");
 
 var _jump2 = _interopRequireDefault(_jump);
@@ -38,13 +40,14 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["list"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray13", "list"], _this.customComponents = ["AtBadge"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UserOrder, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(UserOrder.prototype.__proto__ || Object.getPrototypeOf(UserOrder.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "jumpUrl",
@@ -56,13 +59,29 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var list = this.__props.list;
 
 
+      var loopArray13 = list ? list.map(function (item, index) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $compid__69 = (0, _index.genCompid)(__prefix + "WrUXzKbgPi" + index);
+        item.$original.count > 0 && _index.propsManager.set({
+          "value": item.$original.count,
+          "maxValue": 99
+        }, $compid__69);
+        return {
+          $compid__69: $compid__69,
+          $original: item.$original
+        };
+      }) : [];
       Object.assign(this.__state, {
+        loopArray13: loopArray13,
         list: list
       });
       return this.__state;
@@ -70,12 +89,7 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return UserOrder;
-}(_index.Component), _class.properties = {
-  "list": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["jumpUrl"], _temp2);
+}(_index.Component), _class.$$events = ["jumpUrl"], _class.$$componentPath = "pages/user/order/index", _temp2);
 exports.default = UserOrder;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(UserOrder));

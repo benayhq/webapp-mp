@@ -61,6 +61,8 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtCard.prototype.__proto__ || Object.getPrototypeOf(AtCard.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
@@ -69,7 +71,8 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -109,59 +112,20 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtCard;
-}(_component2.default), _class.properties = {
-  "onClick": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "title": {
-    "type": null,
-    "value": null
-  },
-  "note": {
-    "type": null,
-    "value": null
-  },
-  "extra": {
-    "type": null,
-    "value": null
-  },
-  "thumb": {
-    "type": null,
-    "value": null
-  },
-  "isFull": {
-    "type": null,
-    "value": null
-  },
-  "icon": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick"], _initialiseProps = function _initialiseProps() {
+}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/card/index", _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
   this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "icon", "iconClass", "extra", "note", "title", "isFull", "className", "children"];
 
   this.handleClick = function () {
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
     if ((0, _isFunction3.default)(_this2.props.onClick)) {
-      _this2.__triggerPropsFn("onClick", [null].concat([].concat(args)));
+      var _props2;
+
+      (_props2 = _this2.props).onClick.apply(_props2, arguments);
     }
   };
 
-  this.$$refs = [];
+  this.customComponents = [];
 }, _temp2);
 
 

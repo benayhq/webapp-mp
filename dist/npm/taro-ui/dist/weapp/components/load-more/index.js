@@ -48,18 +48,22 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoadMore.__proto__ || Object.getPrototypeOf(AtLoadMore)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "status", "loadingText", "moreBtnStyle", "moreText", "noMoreText", "__fn_onClick", "className", "customStyle", "noMoreTextStyle"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoadMore.__proto__ || Object.getPrototypeOf(AtLoadMore)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__78", "$compid__79", "status", "moreText", "noMoreText", "className", "customStyle", "loadingText", "moreBtnStyle", "noMoreTextStyle"], _this.customComponents = ["AtActivityIndicator", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtLoadMore, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtLoadMore.prototype.__proto__ || Object.getPrototypeOf(AtLoadMore.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "onClick",
     value: function onClick() {
-      this.__triggerPropsFn("onClick", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props;
+
+      (_props = this.props).onClick.apply(_props, arguments);
     }
   }, {
     key: "_createData",
@@ -68,22 +72,38 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__78 = (0, _index.genCompid)(__prefix + "$compid__78");
+      var $compid__79 = (0, _index.genCompid)(__prefix + "$compid__79");
 
-      var _props = this.__props,
-          className = _props.className,
-          customStyle = _props.customStyle,
-          loadingText = _props.loadingText,
-          moreText = _props.moreText,
-          status = _props.status,
-          moreBtnStyle = _props.moreBtnStyle,
-          noMoreTextStyle = _props.noMoreTextStyle,
-          noMoreText = _props.noMoreText;
+      var _props2 = this.__props,
+          className = _props2.className,
+          customStyle = _props2.customStyle,
+          loadingText = _props2.loadingText,
+          moreText = _props2.moreText,
+          status = _props2.status,
+          moreBtnStyle = _props2.moreBtnStyle,
+          noMoreTextStyle = _props2.noMoreTextStyle,
+          noMoreText = _props2.noMoreText;
 
 
       var component = null;
-      if (status === 'loading') {} else if (status === 'more') {} else {
+      if (status === 'loading') {
+        var $props__78 = {
+          "mode": "center",
+          "content": loadingText
+        };
+        _index.propsManager.set($props__78, $compid__78);
+      } else if (status === 'more') {
+        var $props__79 = {
+          "full": true,
+          "onClick": this.onClick.bind(this),
+          "customStyle": moreBtnStyle
+        };
+        _index.propsManager.set($props__79, $compid__79);
+      } else {
         _$anonymousState__temp = (0, _index.internal_inline_style)(noMoreTextStyle);
       }
 
@@ -93,9 +113,9 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
         _$anonymousState__temp: _$anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
+        $compid__78: $compid__78,
+        $compid__79: $compid__79,
         status: status,
-        loadingText: loadingText,
-        moreBtnStyle: moreBtnStyle,
         moreText: moreText,
         noMoreText: noMoreText
       });
@@ -104,44 +124,7 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtLoadMore;
-}(_component2.default), _class.properties = {
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "loadingText": {
-    "type": null,
-    "value": null
-  },
-  "moreText": {
-    "type": null,
-    "value": null
-  },
-  "status": {
-    "type": null,
-    "value": null
-  },
-  "moreBtnStyle": {
-    "type": null,
-    "value": null
-  },
-  "noMoreTextStyle": {
-    "type": null,
-    "value": null
-  },
-  "noMoreText": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["onClick"], _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/load-more/index", _temp2);
 
 
 AtLoadMore.defaultProps = {

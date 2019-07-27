@@ -52,11 +52,11 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryItem", "productItems", "isOpended", "text", "isChange", "productId", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__80", "prefix", "categoryItem", "productItems", "isChange", "productId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtToast"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Spec, [{
@@ -78,6 +78,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
         text: '请选择品类',
         isOpended: false
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillReceiveProps",
@@ -203,8 +204,10 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__80 = (0, _index.genCompid)(__prefix + "$compid__80");
 
       var _state = this.__state,
           prefix = _state.prefix,
@@ -215,30 +218,25 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
           text = _state.text;
 
 
-      Object.assign(this.__state, {});
+      var $props__80 = {
+        "isOpened": isOpended,
+        "text": text,
+        "duration": 1000
+      };
+      _index.propsManager.set($props__80, $compid__80);
+      Object.assign(this.__state, {
+        $compid__80: $compid__80
+      });
       return this.__state;
     }
   }]);
 
   return Spec;
-}(_index.Component), _class2.properties = {
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "activityName": {
-    "type": null,
-    "value": null
-  },
-  "products": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleChangeCategory", "handleSubmitOrder"], _class2.defaultProps = {
+}(_index.Component), _class2.$$events = ["handleChangeCategory", "handleSubmitOrder"], _class2.defaultProps = {
   data: {},
   selected: {},
   onSelect: function onSelect() {}
-}, _temp2)) || _class);
+}, _class2.$$componentPath = "pages/product/spec/index", _temp2)) || _class);
 exports.default = Spec;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Spec));

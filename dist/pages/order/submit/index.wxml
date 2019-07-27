@@ -1,13 +1,13 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="submit-order">
-        <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
-        <at-toast isOpened="{{isOpended}}" __triggerObserer="{{ _triggerObserer }}" text="{{text}}" duration="{{1000}}"></at-toast>
+        <at-message></at-message>
+        <at-toast compid="{{$compid__51}}"></at-toast>
         <view class="submit-order_white-space"></view>
         <view class="submit-order_product">
             <view class="submit-order_product-content">
                 <view>
                     <view class="submit-order_product-content-img">
-                        <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{imgUrl}}"></image>
+                        <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{imgUrl}}"></image>
                     </view>
                 </view>
                 <view>
@@ -25,7 +25,7 @@
             </view>
         </view>
         <view class="submit-order_footer">
-            <view>共 1 件，预定金： <text>￥{{product.advance}}</text>
+            <view>共 1 件，预定金： <text>￥{{product.advance}} </text> 
             </view>
             <view bindtap="handleSubmitOrder" data-e-tap-so="this">提交订单</view>
         </view>

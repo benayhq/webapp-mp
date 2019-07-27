@@ -12,13 +12,17 @@ var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
 var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _index2 = require("../../../npm/@tarojs/redux/index.js");
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -26,7 +30,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
+var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
   return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(OrderDetail, _BaseComponent);
@@ -42,9 +46,9 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["content", "order", "id", "dispatchOrderDetail"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__0", "$compid__1", "$compid__2", "$compid__3", "$compid__4", "order", "content", "id", "dispatchOrderDetail"], _this.config = {
       navigationBarTitleText: '订单详情'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Header", "Assemble", "OrderProduct", "Footer", "ToolBar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderDetail, [{
@@ -58,6 +62,7 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
         content: {},
         id: 0
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
@@ -65,6 +70,12 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       this.setState({
         id: this.$router.params.orderId
       });
+      console.log('this.state.id ', this.$router.params.orderId);
+      if (this.$router.params.orderId === undefined || this.$router.params.orderId === null) {
+        _index2.default.navigateTo({
+          url: '/pages/user/index'
+        });
+      }
     }
   }, {
     key: "componentDidMount",
@@ -74,6 +85,7 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
       var payload = {
         id: this.state.id
       };
+
       this.props.dispatchOrderDetail(payload).then(function (response) {
         _this2.setState({
           content: response.content
@@ -85,25 +97,54 @@ var OrderDetail = (_dec = (0, _index2.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__0 = (0, _index.genCompid)(__prefix + "$compid__0");
+      var $compid__1 = (0, _index.genCompid)(__prefix + "$compid__1");
+      var $compid__2 = (0, _index.genCompid)(__prefix + "$compid__2");
+      var $compid__3 = (0, _index.genCompid)(__prefix + "$compid__3");
+      var $compid__4 = (0, _index.genCompid)(__prefix + "$compid__4");
 
       var _state = this.__state,
           content = _state.content,
           order = _state.order;
 
-      Object.assign(this.__state, {});
+      var $props__0 = {
+        "content": content
+      };
+      var $props__1 = {
+        "content": content
+      };
+      var $props__2 = {
+        "order": order,
+        "content": content
+      };
+      var $props__3 = {
+        "content": content,
+        "qrCode": content.qrCode
+      };
+      var $props__4 = {
+        "toolBar": content.toolBar
+      };
+      _index.propsManager.set($props__0, $compid__0);
+      _index.propsManager.set($props__1, $compid__1);
+      _index.propsManager.set($props__2, $compid__2);
+      _index.propsManager.set($props__3, $compid__3);
+      _index.propsManager.set($props__4, $compid__4);
+      Object.assign(this.__state, {
+        $compid__0: $compid__0,
+        $compid__1: $compid__1,
+        $compid__2: $compid__2,
+        $compid__3: $compid__3,
+        $compid__4: $compid__4
+      });
       return this.__state;
     }
   }]);
 
   return OrderDetail;
-}(_index.Component), _class2.properties = {
-  "dispatchOrderDetail": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = [], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/detail/index", _temp2)) || _class);
 exports.default = OrderDetail;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderDetail, true));

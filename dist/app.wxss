@@ -5843,6 +5843,8 @@
       color: #CCC; }
     .at-input__input::-webkit-input-placeholder {
       color: #CCC; }
+    .at-input__input::-moz-placeholder {
+      color: #CCC; }
     .at-input__input::-ms-input-placeholder {
       color: #CCC; }
     .at-input__input::placeholder {
@@ -11156,6 +11158,8 @@
     .placeholder {
       color: #CCC; }
     .at-textarea__textarea::-webkit-input-placeholder {
+      color: #CCC; }
+    .at-textarea__textarea::-moz-placeholder {
       color: #CCC; }
     .at-textarea__textarea::-ms-input-placeholder {
       color: #CCC; }
@@ -17480,6 +17484,8 @@
       color: #CCC; }
     .at-input__input::-webkit-input-placeholder {
       color: #CCC; }
+    .at-input__input::-moz-placeholder {
+      color: #CCC; }
     .at-input__input::-ms-input-placeholder {
       color: #CCC; }
     .at-input__input::placeholder {
@@ -22793,6 +22799,8 @@
     .placeholder {
       color: #CCC; }
     .at-textarea__textarea::-webkit-input-placeholder {
+      color: #CCC; }
+    .at-textarea__textarea::-moz-placeholder {
       color: #CCC; }
     .at-textarea__textarea::-ms-input-placeholder {
       color: #CCC; }

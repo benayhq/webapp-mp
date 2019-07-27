@@ -39,5 +39,5 @@ export default class Contact extends Component{
                         </image>
                      </View>
     </View>)
-    }
+  }
 }

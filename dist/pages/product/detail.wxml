@@ -1,12 +1,12 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-activedetail">
         <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
             <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
-                <swiper-item wx:for="{{bannerList}}" wx:for-item="item" wx:for-index="_anonIdx">
-                    <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{item}}"></image>
+                <swiper-item wx:for="{{bannerList}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                    <image mode="scaleToFill" src="{{item}}"></image>
                 </swiper-item>
             </swiper>
-            <view class="mp-activedetail__user"><text>好友 </text><text>{{data.nickname}}</text><text>发起的拼团,还差 </text><text>{{data.remainPeople}}</text><text>人成团</text>
+            <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
             </view>
             <view class="mp-activedetail__price">
                 <view><text class="mp-activedetail__title">￥{{data.displayPrice}}</text><text class="mp-activedetail__subtitle">￥{{data.displayDiscountPrice}}</text>
@@ -25,7 +25,7 @@
             </view>
             <view class="mp-activedetail__person">
                 <view class="mp-activedetail__header">
-                    <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{data.profileUrl}}"></image>
+                    <image mode="scaleToFill" src="{{data.profileUrl}}"></image>
                 </view>
                 <view class="mp-activedetail__content">
                     <view>{{data.username}}</view>
@@ -35,16 +35,16 @@
             </view>
             <block wx:if="{{data.batchPeople > 0}}">
                 <view class="mp-activedetail__join">
-                    <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this">查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
+                    <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this"> 查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
                     </view>
                     <block wx:if="{{data.activityBatchVos}}">
-                        <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx2">
+                        <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx4">
                             <view>
-                                <image className="mp-activedetail__second-image" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{batch.profileUrl}}"></image>
+                                <image className="mp-activedetail__second-image" mode="scaleToFill" src="{{batch.profileUrl}}"></image>
                             </view>
                             <view>{{batch.publishName}}</view>
                             <view class="mp-activedetail__joinperson">
-                                <view class="mp-activedetail__counter">还差 {{batch.remainPeople}}人拼成</view>
+                                <view class="mp-activedetail__counter">还差 {{batch.remainPeople}} 人拼成</view>
                                 <view class="mp-activedetail__time">剩余20:50:14</view>
                             </view>
                             <view>
@@ -60,16 +60,16 @@
                 <block wx:if="{{comments.length === 0 && data.commentVo}}">
                     <view class="mp-activedetail__comment-content">
                         <view class="mp-activedetail__comment-content-left">
-                            <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{data.commentVo.profileUrl}}"></image>
+                            <image mode="scaleToFill" src="{{data.commentVo.profileUrl}}"></image>
                         </view>
                         <view class="mp-activedetail__comment-content-right">
                             <view class="mp-activedetail__comment-username">{{data.commentVo.name}}</view>
-                            <view class="mp-activedetail__comment-tag"><text>环境：{{data.commentVo.environmentStar + '.0'}}</text><text>专业度：{{data.commentVo.professionStar + '.0'}}</text><text>服务：{{data.commentVo.serviceStar + '.0'}}</text><text>效果：{{data.commentVo.effectStar + '.0'}}</text>
+                            <view class="mp-activedetail__comment-tag"><text> 环境：{{data.commentVo.environmentStar + '.0'}}  </text><text> 专业度：{{data.commentVo.professionStar + '.0'}} </text><text> 服务：{{data.commentVo.serviceStar + '.0'}} </text><text> 效果：{{data.commentVo.effectStar + '.0'}} </text>
                             </view>
                             <view class="mp-activedetail__comment-description">{{data.commentVo.message}}
                                 <view>
                                     <block wx:if="{{commentList}}">
-                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx3"></image>
+                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx6"></image>
                                     </block>
                                 </view>
                             </view>
@@ -77,18 +77,18 @@
                     </view>
                 </block>
                 <block wx:if="{{comments.length > 0}}">
-                    <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx5">
+                    <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx10">
                         <view class="mp-activedetail__comment-content-left">
-                            <image mode="scaleToFill" __triggerObserer="{{ _triggerObserer }}" src="{{item.profileUrl}}"></image>
+                            <image mode="scaleToFill" src="{{item.profileUrl}}"></image>
                         </view>
                         <view class="mp-activedetail__comment-content-right">
                             <view class="mp-activedetail__comment-username">{{item.name}}</view>
-                            <view class="mp-activedetail__comment-tag"><text>环境：{{item.environmentStar + '.0'}}</text><text>专业度：{{item.professionStar + '.0'}}</text><text>服务：{{item.serviceStar + '.0'}}</text><text>效果：{{item.effectStar + '.0'}}</text>
+                            <view class="mp-activedetail__comment-tag"><text> 环境：{{item.environmentStar + '.0'}}  </text><text> 专业度：{{item.professionStar + '.0'}} </text><text> 服务：{{item.serviceStar + '.0'}} </text><text> 效果：{{item.effectStar + '.0'}} </text>
                             </view>
                             <view class="mp-activedetail__comment-description">{{item.message}}
                                 <view>
                                     <block wx:if="{{item.docLocations}}">
-                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx4"></image>
+                                        <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx8"></image>
                                     </block>
                                 </view>
                             </view>
@@ -113,16 +113,16 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup visible="{{visible}}" __triggerObserer="{{ _triggerObserer }}" bindonclose="toggleVisible" __fn_onClose="{{true}}">
+        <popup compid="{{$compid__47}}">
             <block wx:if="{{bContact}}">
-                <contact cellphone="{{data.cellphone}}" __triggerObserer="{{ _triggerObserer }}" weChatId="{{data.weChatId}}" weChatQrCode="{{data.weChatQrCode}}"></contact>
+                <contact compid="{{$compid__48}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec activityName="{{data.activityName}}" __triggerObserer="{{ _triggerObserer }}" products="{{data.activityProducts}}"></spec>
+                <spec compid="{{$compid__49}}"></spec>
             </block>
         </popup>
-        <modal isOpened="{{showOrderDialog}}" __triggerObserer="{{ _triggerObserer }}">
-            <tuan-list __triggerObserer="{{ _triggerObserer }}"></tuan-list>
+        <modal compid="{{$compid__50}}">
+            <tuan-list></tuan-list>
         </modal>
     </view>
 </block>

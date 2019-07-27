@@ -61,6 +61,8 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtListItem.prototype.__proto__ || Object.getPrototypeOf(AtListItem.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "handleSwitchClick",
@@ -72,7 +74,8 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -123,101 +126,28 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtListItem;
-}(_component2.default), _class.properties = {
-  "onClick": {
-    "type": null,
-    "value": null
-  },
-  "disabled": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "onSwitchChange": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onSwitchChange": {
-    "type": null,
-    "value": null
-  },
-  "note": {
-    "type": null,
-    "value": null
-  },
-  "arrow": {
-    "type": null,
-    "value": null
-  },
-  "title": {
-    "type": null,
-    "value": null
-  },
-  "thumb": {
-    "type": null,
-    "value": null
-  },
-  "iconInfo": {
-    "type": null,
-    "value": null
-  },
-  "isSwitch": {
-    "type": null,
-    "value": null
-  },
-  "extraText": {
-    "type": null,
-    "value": null
-  },
-  "hasBorder": {
-    "type": null,
-    "value": null
-  },
-  "extraThumb": {
-    "type": null,
-    "value": null
-  },
-  "switchColor": {
-    "type": null,
-    "value": null
-  },
-  "switchIsCheck": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _initialiseProps = function _initialiseProps() {
+}(_component2.default), _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/list/item/index", _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
   this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "iconInfo", "iconClass", "note", "extraText", "extraThumb", "isSwitch", "switchColor", "disabled", "switchIsCheck", "arrow", "title", "hasBorder", "className"];
 
   this.handleClick = function () {
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
     if ((0, _isFunction3.default)(_this2.props.onClick) && !_this2.props.disabled) {
-      _this2.__triggerPropsFn("onClick", [null].concat([].concat(args)));
+      var _props2;
+
+      (_props2 = _this2.props).onClick.apply(_props2, arguments);
     }
   };
 
   this.handleSwitchChange = function () {
-    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
-    }
-
     if ((0, _isFunction3.default)(_this2.props.onSwitchChange) && !_this2.props.disabled) {
-      _this2.__triggerPropsFn("onSwitchChange", [null].concat([].concat(args)));
+      var _props3;
+
+      (_props3 = _this2.props).onSwitchChange.apply(_props3, arguments);
     }
   };
 
-  this.$$refs = [];
+  this.customComponents = [];
 }, _temp2);
 
 

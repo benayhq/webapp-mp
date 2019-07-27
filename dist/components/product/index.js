@@ -38,20 +38,22 @@ var ProductItem = (_temp2 = _class = function (_BaseComponent) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["products"], _this.config = {
       navigationBarTitleText: '测试'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProductItem, [{
     key: "_constructor",
     value: function _constructor() {
       _get(ProductItem.prototype.__proto__ || Object.getPrototypeOf(ProductItem.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
       Object.assign(this.__state, {});
       return this.__state;
@@ -59,12 +61,7 @@ var ProductItem = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return ProductItem;
-}(_index.Component), _class.properties = {
-  "products": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "components/product/index", _temp2);
 exports.default = ProductItem;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductItem));

@@ -41,7 +41,7 @@ export default async function fetch(options){
             // Taro.navigateTo({
             //     url: '/pages/user/index'
             // });
-            return;
+            // return;
         }
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);

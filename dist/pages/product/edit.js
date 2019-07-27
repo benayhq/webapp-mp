@@ -52,7 +52,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "toastText", "status", "duration", "multiSelector", "mulitSelectorValues", "productName", "productPrice", "activePrice", "files", "preAmount", "selector", "selectorChecked", "selectorValue", "location", "productId", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__691", "$compid__692", "$compid__693", "$compid__694", "$compid__695", "$compid__696", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -102,11 +102,34 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         _loop();
       }
     }, _this.handleMulitChange = function (e) {
-      _this.setState({
-        mulitSelectorValues: e.detail.value,
-        isOpened: false
-      });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+      var _this$state = _this.state,
+          firstList = _this$state.firstList,
+          secondList = _this$state.secondList,
+          thirdList = _this$state.thirdList,
+          multiSelector = _this$state.multiSelector;
+
+      if (firstList.length > 0) {
+        _this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened: false,
+          initSeletedValue: multiSelector[0][e.detail.value[0]]
+        });
+      }
+      if (secondList.length > 0) {
+        _this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened: false,
+          initSeletedValue: multiSelector[1][e.detail.value[1]]
+        });
+      }
+      if (thirdList.length > 0) {
+        _this.setState({
+          mulitSelectorValues: e.detail.value,
+          isOpened: false,
+          initSeletedValue: multiSelector[2][e.detail.value[2]]
+        });
+      }
+    }, _this.customComponents = ["AtMessage", "AtToast", "AtForm", "AtInput", "AtImagePicker"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(EditProduct, [{
@@ -128,8 +151,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         status: '',
         duration: 2000,
         location: '',
-        productId: 0
+        productId: 0,
+        firstList: [],
+        secondList: [],
+        thirdList: [],
+        initSeletedValue: ''
       };
+
+      this.$$refs = [];
     }
   }, {
     key: "init",
@@ -145,25 +174,27 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var payload = {};
       var that = this;
       this.props.dispatchCategoryList(payload).then(function (response) {
-
         var list = response.content;
         var firstList = [],
             secondList = [],
             thirdList = [];
-
         list.map(function (category, index) {
           firstList.push(category.name);
-
-          if (category.son && category.son.length > 0) {
-            category.son.map(function (categoryChild, index) {
-              secondList.push(categoryChild.name);
-              if (categoryChild.son && categoryChild.son.length > 0) {
-                categoryChild.son.map(function (child, index) {
-                  thirdList.push(child.name);
-                });
-              }
-            });
-          }
+          // if(index === 0){
+          //   category.son.map((categoryChild,index)=>{
+          //     secondList.push(categoryChild.name);
+          //     if(index ===0 ){
+          //       categoryChild.son.map((thirdItem,index)=>{
+          //         thirdList.push(thirdItem.name);
+          //       });
+          //     }
+          //   })
+          // }
+        });
+        _this2.setState({
+          firstList: firstList,
+          secondList: [],
+          thirdList: []
         });
         _this2.setState({
           multiSelector: [firstList, secondList, thirdList]
@@ -340,6 +371,106 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       return activePrice;
     }
   }, {
+    key: "handleColumnChange",
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+        var _state2, multiSelector, mulitSelectorValues, list, firsts, seconds, thirds, _state3, firstList, secondList, thirdList;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _state2 = this.state, multiSelector = _state2.multiSelector, mulitSelectorValues = _state2.mulitSelectorValues;
+                _context2.next = 3;
+                return this.getCategroyList(multiSelector[e.detail.column][e.detail.value]);
+
+              case 3:
+                list = _context2.sent;
+                firsts = [], seconds = [], thirds = [];
+                _state3 = this.state, firstList = _state3.firstList, secondList = _state3.secondList, thirdList = _state3.thirdList;
+                _context2.t0 = e.detail.column;
+                _context2.next = _context2.t0 === 0 ? 9 : _context2.t0 === 1 ? 12 : _context2.t0 === 2 ? 15 : 16;
+                break;
+
+              case 9:
+                if (list && list.content.length > 0) {
+                  list.content[0].son.map(function (item) {
+                    seconds.push(item.name);
+                  });
+                  this.setState({
+                    secondList: seconds
+                  });
+                }
+                this.setState({
+                  multiSelector: [firstList, seconds, thirdList]
+                });
+                return _context2.abrupt("break", 16);
+
+              case 12:
+                if (list && list.content.length > 0) {
+                  list.content[0].son.map(function (item) {
+                    thirds.push(item.name);
+                  });
+                  this.setState({
+                    thirdList: thirds
+                  });
+                }
+                this.setState({
+                  multiSelector: [firstList, secondList, thirds]
+                });
+                return _context2.abrupt("break", 16);
+
+              case 15:
+                return _context2.abrupt("break", 16);
+
+              case 16:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleColumnChange(_x) {
+        return _ref3.apply(this, arguments);
+      }
+
+      return handleColumnChange;
+    }()
+  }, {
+    key: "getCategroyList",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                payload = {
+                  name: name
+                };
+                _context3.next = 3;
+                return this.props.dispatchCategoryList(payload);
+
+              case 3:
+                result = _context3.sent;
+                return _context3.abrupt("return", result);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getCategroyList(_x2) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return getCategroyList;
+    }()
+  }, {
     key: "handlePreAmountChange",
     value: function handlePreAmountChange(preAmount) {
       this.setState({
@@ -355,32 +486,32 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getImgUrl",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(location) {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context2.next = 3;
+                _context4.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context2.sent;
-                return _context2.abrupt("return", result.content);
+                result = _context4.sent;
+                return _context4.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee4, this);
       }));
 
-      function getImgUrl(_x) {
-        return _ref3.apply(this, arguments);
+      function getImgUrl(_x3) {
+        return _ref5.apply(this, arguments);
       }
 
       return getImgUrl;
@@ -388,13 +519,13 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "initProduct",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         var _this4 = this;
 
         var productId, payload;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 productId = this.state.productId;
 
@@ -425,14 +556,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
       function initProduct() {
-        return _ref4.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       }
 
       return initProduct;
@@ -450,53 +581,93 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__691 = (0, _index.genCompid)(__prefix + "$compid__691");
+      var $compid__692 = (0, _index.genCompid)(__prefix + "$compid__692");
+      var $compid__693 = (0, _index.genCompid)(__prefix + "$compid__693");
+      var $compid__694 = (0, _index.genCompid)(__prefix + "$compid__694");
+      var $compid__695 = (0, _index.genCompid)(__prefix + "$compid__695");
+      var $compid__696 = (0, _index.genCompid)(__prefix + "$compid__696");
 
-      var _state2 = this.__state,
-          productName = _state2.productName,
-          productPrice = _state2.productPrice,
-          activePrice = _state2.activePrice,
-          preAmount = _state2.preAmount,
-          files = _state2.files,
-          toastText = _state2.toastText,
-          isOpened = _state2.isOpened,
-          status = _state2.status,
-          duration = _state2.duration;
+      var _state4 = this.__state,
+          productName = _state4.productName,
+          productPrice = _state4.productPrice,
+          activePrice = _state4.activePrice,
+          preAmount = _state4.preAmount,
+          files = _state4.files,
+          toastText = _state4.toastText,
+          isOpened = _state4.isOpened,
+          status = _state4.status,
+          duration = _state4.duration,
+          initSeletedValue = _state4.initSeletedValue;
 
 
-      Object.assign(this.__state, {});
+      var $props__691 = {
+        "isOpened": isOpened,
+        "text": toastText,
+        "status": status,
+        "duration": duration,
+        "icon": "{icon}"
+      };
+      var $props__692 = {
+        "name": "productName",
+        "title": "\u540D\u79F0",
+        "type": "text",
+        "placeholder": "\u4EA7\u54C1\u540D\u79F0\u54C1\u724C\u89C4\u683C\u4FE1\u606F",
+        "value": productName,
+        "onChange": this.handleProductChange.bind(this)
+      };
+      var $props__693 = {
+        "name": "productPrice",
+        "title": "\u4EF7\u683C",
+        "type": "number",
+        "placeholder": "\u8BF7\u8F93\u5165\u4EA7\u54C1\u539F\u4EF7",
+        "value": productPrice,
+        "onChange": this.handlePriceChange.bind(this)
+      };
+      var $props__694 = {
+        "name": "activePrice",
+        "title": "\u6D3B\u52A8\u4EF7",
+        "type": "number",
+        "placeholder": "\u8BF7\u8F93\u5165\u4EA7\u54C1\u6D3B\u52A8\u4EF7\u683C",
+        "value": activePrice,
+        "onChange": this.handleActivePriceChange.bind(this)
+      };
+      var $props__695 = {
+        "files": files,
+        "onChange": this.handleChooseImage.bind(this),
+        "onImageClick": this.onImageClick.bind(this)
+      };
+      var $props__696 = {
+        "name": "preAmount",
+        "title": "\u9884\u5B9A\u91D1",
+        "type": "number",
+        "placeholder": "\u8BF7\u8F93\u5165\u9884\u5B9A\u91D1",
+        "value": preAmount,
+        "onChange": this.handlePreAmountChange.bind(this)
+      };
+      _index.propsManager.set($props__691, $compid__691);
+      _index.propsManager.set($props__692, $compid__692);
+      _index.propsManager.set($props__693, $compid__693);
+      _index.propsManager.set($props__694, $compid__694);
+      _index.propsManager.set($props__695, $compid__695);
+      _index.propsManager.set($props__696, $compid__696);
+      Object.assign(this.__state, {
+        $compid__691: $compid__691,
+        $compid__692: $compid__692,
+        $compid__693: $compid__693,
+        $compid__694: $compid__694,
+        $compid__695: $compid__695,
+        $compid__696: $compid__696
+      });
       return this.__state;
     }
   }]);
 
   return EditProduct;
-}(_index.Component), _class2.properties = {
-  "dispatchCategoryList": {
-    "type": null,
-    "value": null
-  },
-  "dispatchUploadConfig": {
-    "type": null,
-    "value": null
-  },
-  "dispatchUpdateProductInfo": {
-    "type": null,
-    "value": null
-  },
-  "dispatchCreateProduct": {
-    "type": null,
-    "value": null
-  },
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "dispatchQueryProductInfo": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleMulitChange", "handleProductChange", "handlePriceChange", "handleActivePriceChange", "handleChooseImage", "onImageClick", "handlePreAmountChange", "handleSaveProduct"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleColumnChange", "handleMulitChange", "handleSaveProduct"], _class2.$$componentPath = "pages/product/edit", _temp2)) || _class);
 exports.default = EditProduct;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(EditProduct, true));

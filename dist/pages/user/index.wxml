@@ -1,15 +1,15 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-user">
-        <at-modal isOpened="{{isOpened}}" __triggerObserer="{{ _triggerObserer }}">
-            <at-modal-header __triggerObserer="{{ _triggerObserer }}">授权登录</at-modal-header>
-            <at-modal-content __triggerObserer="{{ _triggerObserer }}">
+        <at-modal compid="{{$compid__162}}">
+            <at-modal-header>授权登录</at-modal-header>
+            <at-modal-content>
                 <view class="mp-user__authinfo">申请获取以下权限</view>获取你的公开信息(呢称,头像等)</at-modal-content>
             <view class="wechat-login">
-                <at-button className="mp-user__login" __triggerObserer="{{ _triggerObserer }}" text="微信登录" openType="getUserInfo" bindongetuserinfo="handleAuthClick" type="primary" size="small" __fn_onGetUserInfo="{{true}}">授权登录</at-button>
+                <at-button compid="{{$compid__163}}">授权登录</at-button>
             </view>
         </at-modal>
         <view class="mp-user__info">
-            <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" __triggerObserer="{{ _triggerObserer }}" src="{{avatarUrl}}"></image>
+            <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" src="{{avatarUrl}}"></image>
             <view class="mp-user__info-message" bindtap="handleUpdateInfo" data-e-tap-so="this">
                 <view class="mp-user__user-username">{{userName}}</view>
                 <block wx:if="{{profit && profit.creditLevel}}">
@@ -25,7 +25,7 @@
             </block>
         </view>
         <block wx:if="{{isAgent}}">
-            <in-come profit="{{profit}}" __triggerObserer="{{ _triggerObserer }}"></in-come>
+            <in-come compid="{{$compid__164}}"></in-come>
         </block>
         <block wx:if="{{isAgent}}">
             <view class="mp-user__publish">
@@ -34,18 +34,20 @@
                 <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
             </view>
         </block>
-        <user-order list="{{orders}}" __triggerObserer="{{ _triggerObserer }}"></user-order>
+        <user-order compid="{{$compid__165}}"></user-order>
         <view class="mp-user__list">
-            <at-list __triggerObserer="{{ _triggerObserer }}">
-                <at-list-item title="{{item.text}}" __triggerObserer="{{ _triggerObserer }}" arrow="right" thumb="{{item.url}}" bindonclick="handleJumpUrl" wx:for="{{list}}" wx:for-item="item" wx:for-index="_anonIdx" __fn_onClick="{{true}}" data-e-onclick-so="this" data-e-onclick-a-a="{{item.pageUrl}}"></at-list-item>
+            <at-list>
+                <block wx:if="{{list.length > 0}}">
+                    <at-list-item wx:for="{{loopArray31}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__161}}"></at-list-item>
+                </block>
             </at-list>
             <block wx:if="{{!isAgent}}">
-                <button open-type="contact" __triggerObserer="{{ _triggerObserer }}" bindcontact="handleContact">客服服务</button>
+                <button open-type="contact" bindcontact="handleContact">客服服务</button>
             </block>
         </view>
         <block wx:if="{{isShowLoanApp === true}}">
             <view class="mp-user__loan">
-                <at-card title="{{context1}}" __triggerObserer="{{ _triggerObserer }}">
+                <at-card compid="{{$compid__166}}">
                     <view class="mp-user__loan-text">{{context2}}</view>
                     <view class="mp-user__loan-amount">{{context3}}</view>
                     <view class="mp-user__loan-desc">{{context4}}</view>

@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="{{rootClass}}" bindtap="handleClick">
         <view class="at-list__item-container">
             <block wx:if="{{thumb}}">

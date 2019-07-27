@@ -61,50 +61,43 @@ var AtTextarea = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTextarea.__proto__ || Object.getPrototypeOf(AtTextarea)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "rootCls", "placeholderStyle", "placeholderCls", "cursorSpacing", "value", "actualMaxLength", "placeholder", "disabled", "autoFocus", "focus", "showConfirmBar", "selectionStart", "selectionEnd", "fixed", "count", "_maxLength", "__fn_onChange", "__fn_onFocus", "__fn_onBlur", "__fn_onConfirm", "__fn_onLinechange", "customStyle", "className", "placeholderClass", "maxLength", "textOverflowForbidden", "height"], _this.handleInput = function () {
-      for (var _len2 = arguments.length, arg = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        arg[_key2] = arguments[_key2];
-      }
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTextarea.__proto__ || Object.getPrototypeOf(AtTextarea)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "rootCls", "placeholderStyle", "placeholderCls", "cursorSpacing", "value", "actualMaxLength", "placeholder", "disabled", "autoFocus", "focus", "showConfirmBar", "selectionStart", "selectionEnd", "fixed", "count", "_maxLength", "customStyle", "className", "placeholderClass", "maxLength", "textOverflowForbidden", "height"], _this.handleInput = function () {
+      var _this$props;
 
-      return _this.__triggerPropsFn("onChange", [null].concat([].concat(arg)));
+      return (_this$props = _this.props).onChange.apply(_this$props, arguments);
     }, _this.handleFocus = function () {
-      for (var _len3 = arguments.length, arg = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-        arg[_key3] = arguments[_key3];
-      }
+      var _this$props2;
 
-      return _this.__triggerPropsFn("onFocus", [null].concat([].concat(arg)));
+      return (_this$props2 = _this.props).onFocus.apply(_this$props2, arguments);
     }, _this.handleBlur = function () {
-      for (var _len4 = arguments.length, arg = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-        arg[_key4] = arguments[_key4];
-      }
+      var _this$props3;
 
-      return _this.__triggerPropsFn("onBlur", [null].concat([].concat(arg)));
+      return (_this$props3 = _this.props).onBlur.apply(_this$props3, arguments);
     }, _this.handleConfirm = function () {
-      for (var _len5 = arguments.length, arg = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-        arg[_key5] = arguments[_key5];
-      }
+      var _this$props4;
 
-      return _this.__triggerPropsFn("onConfirm", [null].concat([].concat(arg)));
+      return (_this$props4 = _this.props).onConfirm.apply(_this$props4, arguments);
     }, _this.handleLinechange = function () {
-      for (var _len6 = arguments.length, arg = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
-        arg[_key6] = arguments[_key6];
-      }
+      var _this$props5;
 
-      return _this.__triggerPropsFn("onLinechange", [null].concat([].concat(arg)));
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+      return (_this$props5 = _this.props).onLinechange.apply(_this$props5, arguments);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtTextarea, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtTextarea.prototype.__proto__ || Object.getPrototypeOf(AtTextarea.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -163,100 +156,7 @@ var AtTextarea = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtTextarea;
-}(_component2.default), _class.properties = {
-  "__fn_onChange": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onFocus": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onBlur": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onConfirm": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onLinechange": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "value": {
-    "type": null,
-    "value": null
-  },
-  "cursorSpacing": {
-    "type": null,
-    "value": null
-  },
-  "placeholder": {
-    "type": null,
-    "value": null
-  },
-  "placeholderStyle": {
-    "type": null,
-    "value": null
-  },
-  "placeholderClass": {
-    "type": null,
-    "value": null
-  },
-  "maxLength": {
-    "type": null,
-    "value": null
-  },
-  "count": {
-    "type": null,
-    "value": null
-  },
-  "disabled": {
-    "type": null,
-    "value": null
-  },
-  "autoFocus": {
-    "type": null,
-    "value": null
-  },
-  "focus": {
-    "type": null,
-    "value": null
-  },
-  "showConfirmBar": {
-    "type": null,
-    "value": null
-  },
-  "selectionStart": {
-    "type": null,
-    "value": null
-  },
-  "selectionEnd": {
-    "type": null,
-    "value": null
-  },
-  "fixed": {
-    "type": null,
-    "value": null
-  },
-  "textOverflowForbidden": {
-    "type": null,
-    "value": null
-  },
-  "height": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleInput", "handleFocus", "handleBlur", "handleConfirm", "handleLinechange"], _temp2);
+}(_component2.default), _class.$$events = ["handleInput", "handleFocus", "handleBlur", "handleConfirm", "handleLinechange"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/textarea/index", _temp2);
 
 
 AtTextarea.defaultProps = {

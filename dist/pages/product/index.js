@@ -48,9 +48,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "checkedList", "productList", "dispatchDownLoadUrl", "dispatchProductList", "dispatchDeleteProduct"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__24", "checkedList", "productList", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList", "dispatchDeleteProduct"], _this.config = {
       navigationBarTitleText: '产品列表'
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "CheckBox"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -62,6 +62,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         productList: [],
         newFilterList: []
       };
+      this.$$refs = [];
     }
   }, {
     key: "handleChange",
@@ -207,32 +208,30 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__24 = (0, _index.genCompid)(__prefix + "$compid__24");
 
       var newFilterList = this.__state.newFilterList;
 
 
-      Object.assign(this.__state, {});
+      var $props__24 = {
+        "onDelete": this.handleDelItem.bind(this),
+        "options": newFilterList,
+        "selectedList": this.__state.checkedList,
+        "onChange": this.handleChange.bind(this)
+      };
+      _index.propsManager.set($props__24, $compid__24);
+      Object.assign(this.__state, {
+        $compid__24: $compid__24
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "dispatchProductList": {
-    "type": null,
-    "value": null
-  },
-  "dispatchDeleteProduct": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleDelItem", "handleChange", "handleSaveItem"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleSaveItem"], _class2.$$componentPath = "pages/product/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

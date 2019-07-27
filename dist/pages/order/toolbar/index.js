@@ -12,6 +12,10 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -32,9 +36,9 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["toolBar", "undefined", "modal", "__fn_onClick"], _this.toggleVisible = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__62", "$compid__63", "$compid__64", "$compid__65", "$compid__66", "toolBar", "undefined", "modal"], _this.toggleVisible = function () {
       console.log('onConfirm');
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtButton", "Modal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ToolBar, [{
@@ -51,6 +55,7 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
           closeOnClickOverlay: false
         }
       };
+      this.$$refs = [];
     }
   }, {
     key: "handleOrderClick",
@@ -96,46 +101,79 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
-      var modal = this.modal;
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var $compid__62 = (0, _index.genCompid)(__prefix + "$compid__62");
+      var $compid__63 = (0, _index.genCompid)(__prefix + "$compid__63");
+      var $compid__64 = (0, _index.genCompid)(__prefix + "$compid__64");
+      var $compid__65 = (0, _index.genCompid)(__prefix + "$compid__65");
+      var $compid__66 = (0, _index.genCompid)(__prefix + "$compid__66");
+
       var toolBar = this.__props.toolBar;
 
 
       if (toolBar == null || toolBar == undefined) {}
 
-      if (toolBar && toolBar[0] && toolBar[1]) {}
+      if (toolBar && toolBar[0] && toolBar[1]) {
+        var $props__62 = {
+          "onClick": this.handleOrderClick.bind(this, toolBar[0].event),
+          "type": "primary",
+          "size": "small"
+        };
+        var $props__63 = {
+          "onClick": this.__props.toolBar.event,
+          "type": "primary",
+          "size": "small"
+        };
+        var $props__64 = {
+          "title": this.modal.title,
+          "content": this.modal.content,
+          "isOpened": this.modal.isOpened,
+          "cancelText": this.modal.cancelText,
+          "confirmText": this.modal.confirmText,
+          "closeOnClickOverlay": this.modal.closeOnClickOverlay,
+          "onClose": this.onClose,
+          "onConfirm": this.onConfirm,
+          "onCancel": this.onCancel
+        };
+        _index.propsManager.set($props__62, $compid__62);
+        _index.propsManager.set($props__63, $compid__63);
+        _index.propsManager.set($props__64, $compid__64);
+      }
 
-      if (toolBar && toolBar[0]) {}
+      if (toolBar && toolBar[0]) {
+        var $props__65 = {
+          "onClick": this.__props.toolBar.event,
+          "type": "primary",
+          "size": "small"
+        };
+        toolBar && _index.propsManager.set($props__65, $compid__65);
+      }
 
-      if (toolBar && toolBar[1]) {}
+      if (toolBar && toolBar[1]) {
+        var $props__66 = {
+          "onClick": this.__props.toolBar.event,
+          "type": "primary",
+          "size": "small"
+        };
+        toolBar && _index.propsManager.set($props__66, $compid__66);
+      }
       Object.assign(this.__state, {
+        $compid__62: $compid__62,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
         toolBar: toolBar,
         undefined: undefined
       });
       return this.__state;
     }
-  }, {
-    key: "funPrivateErtPS",
-    value: function funPrivateErtPS() {
-      this.__triggerPropsFn("toolBar.event", [].concat(Array.prototype.slice.call(arguments)));
-    }
   }]);
 
   return ToolBar;
-}(_index.Component), _class.properties = {
-  "toolBar": {
-    "type": null,
-    "value": null
-  },
-  "toolBar.event": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleOrderClick", "funPrivateErtPS", "onClose", "onConfirm", "onCancel"], _temp2);
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/order/toolbar/index", _temp2);
 exports.default = ToolBar;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ToolBar));

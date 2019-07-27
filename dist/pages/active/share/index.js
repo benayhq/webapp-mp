@@ -54,10 +54,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__312", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
-      _this.renderCanvas(id);
+      _this.getCanvas(id);
       _this.showMask(id);
     }, _this.onCreateSuccess = function (result) {
       var tempFilePath = result.tempFilePath,
@@ -104,7 +104,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           duration: 2000
         });
       }
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["TaroCanvasDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -122,6 +122,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         imgList: [],
         activeId: 0
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
@@ -189,7 +190,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getAuthInfo;
     }()
   }, {
-    key: "renderCanvas",
+    key: "getCanvas",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(templateId) {
         var _this3 = this;
@@ -247,11 +248,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee2, this);
       }));
 
-      function renderCanvas(_x) {
+      function getCanvas(_x) {
         return _ref3.apply(this, arguments);
       }
 
-      return renderCanvas;
+      return getCanvas;
     }()
   }, {
     key: "buildConfig",
@@ -872,34 +873,31 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__312 = (0, _index.genCompid)(__prefix + "$compid__312");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      Object.assign(this.__state, {});
+      var $props__312 = {
+        "config": this.__state.bannerConfig,
+        "onCreateSuccess": this.onCreateSuccess,
+        "onCreateFail": this.onCreateFail
+      };
+      this.__state.canvasStatus && _index.propsManager.set($props__312, $compid__312);
+      Object.assign(this.__state, {
+        $compid__312: $compid__312
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {
-  "dispatchQueryQrCode": {
-    "type": null,
-    "value": null
-  },
-  "dispatchAdvertQuery": {
-    "type": null,
-    "value": null
-  },
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["onCreateSuccess", "onCreateFail", "canvasDrawFunc", "saveToAlbum"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["canvasDrawFunc", "saveToAlbum"], _class2.$$componentPath = "pages/active/share/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

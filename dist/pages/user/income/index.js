@@ -12,6 +12,10 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -32,20 +36,22 @@ var InCome = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InCome.__proto__ || Object.getPrototypeOf(InCome)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["profit"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InCome.__proto__ || Object.getPrototypeOf(InCome)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["profit"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(InCome, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(InCome.prototype.__proto__ || Object.getPrototypeOf(InCome.prototype), "_constructor", this).call(this, props);
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
       Object.assign(this.__state, {});
       return this.__state;
@@ -53,12 +59,7 @@ var InCome = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return InCome;
-}(_index.Component), _class.properties = {
-  "profit": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/user/income/index", _temp2);
 exports.default = InCome;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(InCome));

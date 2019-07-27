@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <block wx:if="{{_isOpened}}">
         <view class="{{anonymousState__temp}}">
             <block wx:if="{{hasMask}}">

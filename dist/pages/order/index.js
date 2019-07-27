@@ -48,7 +48,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["current", "tabList", "list", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__31", "$compid__32", "$compid__33", "$compid__34", "$compid__35", "$compid__36", "$compid__37", "$compid__38", "$compid__39", "$compid__40", "$compid__41", "$compid__42", "$compid__43", "$compid__44", "$compid__45", "$compid__46", "list", "current", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
       navigationBarTitleText: '我的订单'
     }, _this.state = {
       current: 1,
@@ -56,13 +56,14 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       status: 'more',
       totalPage: 1,
       orderStatus: ''
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtTabs", "AtTabsPane", "OrderItem", "AtLoadMore"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderList, [{
     key: "_constructor",
     value: function _constructor() {
       _get(OrderList.prototype.__proto__ || Object.getPrototypeOf(OrderList.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
@@ -164,8 +165,25 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__31 = (0, _index.genCompid)(__prefix + "$compid__31");
+      var $compid__32 = (0, _index.genCompid)(__prefix + "$compid__32");
+      var $compid__33 = (0, _index.genCompid)(__prefix + "$compid__33");
+      var $compid__34 = (0, _index.genCompid)(__prefix + "$compid__34");
+      var $compid__35 = (0, _index.genCompid)(__prefix + "$compid__35");
+      var $compid__36 = (0, _index.genCompid)(__prefix + "$compid__36");
+      var $compid__37 = (0, _index.genCompid)(__prefix + "$compid__37");
+      var $compid__38 = (0, _index.genCompid)(__prefix + "$compid__38");
+      var $compid__39 = (0, _index.genCompid)(__prefix + "$compid__39");
+      var $compid__40 = (0, _index.genCompid)(__prefix + "$compid__40");
+      var $compid__41 = (0, _index.genCompid)(__prefix + "$compid__41");
+      var $compid__42 = (0, _index.genCompid)(__prefix + "$compid__42");
+      var $compid__43 = (0, _index.genCompid)(__prefix + "$compid__43");
+      var $compid__44 = (0, _index.genCompid)(__prefix + "$compid__44");
+      var $compid__45 = (0, _index.genCompid)(__prefix + "$compid__45");
+      var $compid__46 = (0, _index.genCompid)(__prefix + "$compid__46");
 
       var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
       var _state = this.__state,
@@ -174,20 +192,106 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           status = _state.status;
 
 
+      var $props__31 = {
+        "current": current,
+        "tabList": tabList,
+        "onClick": this.handleClick.bind(this)
+      };
+      var $props__32 = {
+        "current": current,
+        "index": 0
+      };
+      var $props__33 = {
+        "list": list
+      };
+      var $props__34 = {
+        "onClick": this.handleLoadMore.bind(this),
+        "status": status
+      };
+      var $props__35 = {
+        "current": current,
+        "index": 1
+      };
+      var $props__36 = {
+        "list": list
+      };
+      var $props__37 = {
+        "onClick": this.handleLoadMore.bind(this, 'UNPAY'),
+        "status": status
+      };
+      var $props__38 = {
+        "current": current,
+        "index": 2
+      };
+      var $props__39 = {
+        "list": list
+      };
+      var $props__40 = {
+        "onClick": this.handleLoadMore.bind(this, 'BATING'),
+        "status": status
+      };
+      var $props__41 = {
+        "current": current,
+        "index": 3
+      };
+      var $props__42 = {
+        "list": list
+      };
+      var $props__43 = {
+        "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
+        "status": status
+      };
+      var $props__44 = {
+        "current": current,
+        "index": 4
+      };
+      var $props__45 = {
+        "list": list
+      };
+      var $props__46 = {
+        "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
+        "status": status
+      };
+      _index.propsManager.set($props__31, $compid__31);
+      _index.propsManager.set($props__32, $compid__32);
+      _index.propsManager.set($props__33, $compid__33);
+      list.length > 0 && _index.propsManager.set($props__34, $compid__34);
+      _index.propsManager.set($props__35, $compid__35);
+      list && _index.propsManager.set($props__36, $compid__36);
+      list && list.length > 0 && _index.propsManager.set($props__37, $compid__37);
+      _index.propsManager.set($props__38, $compid__38);
+      list && _index.propsManager.set($props__39, $compid__39);
+      list && list.length > 0 && _index.propsManager.set($props__40, $compid__40);
+      _index.propsManager.set($props__41, $compid__41);
+      list && _index.propsManager.set($props__42, $compid__42);
+      list && list.length > 0 && _index.propsManager.set($props__43, $compid__43);
+      _index.propsManager.set($props__44, $compid__44);
+      list && _index.propsManager.set($props__45, $compid__45);
+      list && list.length > 0 && _index.propsManager.set($props__46, $compid__46);
       Object.assign(this.__state, {
-        tabList: tabList
+        $compid__31: $compid__31,
+        $compid__32: $compid__32,
+        $compid__33: $compid__33,
+        $compid__34: $compid__34,
+        $compid__35: $compid__35,
+        $compid__36: $compid__36,
+        $compid__37: $compid__37,
+        $compid__38: $compid__38,
+        $compid__39: $compid__39,
+        $compid__40: $compid__40,
+        $compid__41: $compid__41,
+        $compid__42: $compid__42,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
+        $compid__45: $compid__45,
+        $compid__46: $compid__46
       });
       return this.__state;
     }
   }]);
 
   return OrderList;
-}(_index.Component), _class2.properties = {
-  "dispatchOrderList": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleClick", "handleLoadMore"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/index", _temp2)) || _class);
 exports.default = OrderList;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderList, true));

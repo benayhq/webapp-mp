@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="info">
         <view>订单编号: {{content.number}}<text class="copy">复制</text>
         </view>

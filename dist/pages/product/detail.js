@@ -54,13 +54,13 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "bannerList", "comments", "commentList", "bContact", "bSpec", "showOrderDialog", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__47", "$compid__48", "$compid__49", "$compid__50", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Popup", "Contact", "Spec", "Modal", "TuanList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detail, [{
@@ -83,6 +83,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         source: '',
         commentText: '查看全部评论'
       };
+      this.$$refs = [];
     }
   }, {
     key: "init",
@@ -381,8 +382,13 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
+      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
+      var $compid__49 = (0, _index.genCompid)(__prefix + "$compid__49");
+      var $compid__50 = (0, _index.genCompid)(__prefix + "$compid__50");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -401,28 +407,39 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
+      var $props__47 = {
+        "visible": this.__state.visible,
+        "onClose": this.toggleVisible
+      };
+      var $props__48 = {
+        "cellphone": data.cellphone,
+        "weChatId": data.weChatId,
+        "weChatQrCode": data.weChatQrCode
+      };
+      var $props__49 = {
+        "activityName": data.activityName,
+        "products": data.activityProducts
+      };
+      var $props__50 = {
+        "isOpened": showOrderDialog
+      };
+      _index.propsManager.set($props__47, $compid__47);
+      bContact && _index.propsManager.set($props__48, $compid__48);
+      bSpec && _index.propsManager.set($props__49, $compid__49);
+      _index.propsManager.set($props__50, $compid__50);
       Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp
+        anonymousState__temp: anonymousState__temp,
+        $compid__47: $compid__47,
+        $compid__48: $compid__48,
+        $compid__49: $compid__49,
+        $compid__50: $compid__50
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.properties = {
-  "dispatchActiveInfo": {
-    "type": null,
-    "value": null
-  },
-  "dispatchCommentInfo": {
-    "type": null,
-    "value": null
-  },
-  "dispatchDownLoadUrl": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["showMpDialog", "handleAllComment", "openDialog", "openCategoryDialog", "handleShare", "toggleVisible"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "handleAllComment", "openDialog", "openCategoryDialog", "handleShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

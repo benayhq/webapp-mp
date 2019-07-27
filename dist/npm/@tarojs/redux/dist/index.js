@@ -2,12 +2,24 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+function _interopDefault(ex) {
+  return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
+}
+
+var Taro = require("../../taro/index.js");
+var Taro__default = _interopDefault(Taro);
+
 var store = null;
+var appGlobal = global || {};
+var globalRef = Object.getPrototypeOf(appGlobal) || appGlobal;
 function getStore() {
+
   return store;
 }
 function setStore(arg) {
-  store = arg;
+  {
+    store = arg;
+  }
 }
 
 function _typeof(obj) {
@@ -123,44 +135,42 @@ function _get(target, property, receiver) {
   return _get(target, property, receiver || target);
 }
 
-/* eslint-disable */
-Object.is = Object.is || function (x, y) {
-  if (x === y) {
-    return x !== 0 || 1 / x === 1 / y;
-  }
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
 
-  return x !== x && y !== y;
-};
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
 
-function shallowEqual(obj1, obj2) {
-  if (obj1 === null && obj2 === null) {
-    return true;
-  }
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
 
-  if (obj1 === null || obj2 === null) {
-    return false;
-  }
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
 
-  if (Object.is(obj1, obj2)) {
-    return true;
-  }
-
-  var obj1Keys = obj1 ? Object.keys(obj1) : [];
-  var obj2Keys = obj2 ? Object.keys(obj2) : [];
-
-  if (obj1Keys.length !== obj2Keys.length) {
-    return false;
-  }
-
-  for (var i = 0; i < obj1Keys.length; i++) {
-    var obj1KeyItem = obj1Keys[i];
-
-    if (!obj2.hasOwnProperty(obj1KeyItem) || !Object.is(obj1[obj1KeyItem], obj2[obj1KeyItem])) {
-      return false;
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
     }
   }
 
-  return true;
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
 function isObject(arg) {
@@ -180,22 +190,6 @@ function mergeObjects(obj1, obj2) {
   }
 
   return result;
-}
-
-function isEqual(a, b) {
-  var typeA = _typeof(a);
-
-  var typeB = _typeof(b);
-
-  if (typeA !== typeB) {
-    return false;
-  }
-
-  if (typeA === 'object') {
-    return shallowEqual(a, b);
-  }
-
-  return a === b;
 }
 
 function wrapPropsWithDispatch(mapDispatchToProps, dispatch) {
@@ -239,7 +233,7 @@ function connect(mapStateToProps, mapDispatchToProps) {
         val = mergeObjects(val, initMapDispatch[key]);
       }
 
-      if (!isEqual(_this.props[key], val)) {
+      if (_this.props[key] !== val) {
         _this.props[key] = val;
         isChanged = true;
       }
@@ -314,16 +308,353 @@ var Provider = function Provider() {
   _classCallCheck(this, Provider);
 };
 
-var index$1 = {
+var ReduxContext = Taro__default.createContext(null);
+
+/**
+ * A hook to access the value of the `ReactReduxContext`. This is a low-level
+ * hook that you should usually not need to call directly.
+ *
+ * @returns {any} the value of the `ReactReduxContext`
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useReduxContext } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const { store } = useReduxContext()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+
+function useReduxContext() {
+  var contextValue = Taro.useContext(ReduxContext);
+  return contextValue;
+}
+
+/**
+ * A hook to access the redux store.
+ *
+ * @returns {any} the redux store
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useStore } from 'react-redux'
+ *
+ * export const ExampleComponent = () => {
+ *   const store = useStore()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+
+function useStore() {
+  var _useReduxContext = useReduxContext(),
+      store = _useReduxContext.store;
+
+  return store;
+}
+
+/**
+ * A hook to access the redux `dispatch` function. Note that in most cases where you
+ * might want to use this hook it is recommended to use `useActions` instead to bind
+ * action creators to the `dispatch` function.
+ *
+ * @returns {any|function} redux store's `dispatch` function
+ *
+ * @example
+ *
+ * import React, { useCallback } from 'react'
+ * import { useReduxDispatch } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const dispatch = useDispatch()
+ *   const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
+ *   return (
+ *     <div>
+ *       <span>{value}</span>
+ *       <button onClick={increaseCounter}>Increase counter</button>
+ *     </div>
+ *   )
+ * }
+ */
+
+function useDispatch() {
+  var store = useStore();
+  return store.dispatch;
+}
+
+// Default to a dummy "batch" implementation that just runs the callback
+function defaultNoopBatch(callback) {
+  callback();
+}
+
+var batch = defaultNoopBatch; // Allow injecting another batching function later
+
+var getBatch = function getBatch() {
+  return batch;
+};
+
+// well as nesting subscriptions of descendant components, so that we can ensure the
+// ancestor components re-render before descendants
+
+var CLEARED = null;
+var nullListeners = {
+  notify: function notify() {}
+};
+
+function createListenerCollection() {
+  var batch = getBatch(); // the current/next pattern is copied from redux's createStore code.
+  // TODO: refactor+expose that code to be reusable here?
+
+  var current = [];
+  var next = [];
+  return {
+    clear: function clear() {
+      next = CLEARED;
+      current = CLEARED;
+    },
+    notify: function notify() {
+      var listeners = current = next;
+      batch(function () {
+        for (var i = 0; i < listeners.length; i++) {
+          listeners[i]();
+        }
+      });
+    },
+    get: function get() {
+      return next;
+    },
+    subscribe: function subscribe(listener) {
+      var isSubscribed = true;
+      if (next === current) next = current.slice();
+      next.push(listener);
+      return function unsubscribe() {
+        if (!isSubscribed || current === CLEARED) return;
+        isSubscribed = false;
+        if (next === current) next = current.slice();
+        next.splice(next.indexOf(listener), 1);
+      };
+    }
+  };
+}
+
+var Subscription =
+/*#__PURE__*/
+function () {
+  function Subscription(store, parentSub) {
+    _classCallCheck(this, Subscription);
+
+    this.store = store;
+    this.parentSub = parentSub;
+    this.unsubscribe = null;
+    this.listeners = nullListeners;
+    this.handleChangeWrapper = this.handleChangeWrapper.bind(this);
+  }
+
+  _createClass(Subscription, [{
+    key: "addNestedSub",
+    value: function addNestedSub(listener) {
+      this.trySubscribe();
+      return this.listeners.subscribe(listener);
+    }
+  }, {
+    key: "notifyNestedSubs",
+    value: function notifyNestedSubs() {
+      this.listeners.notify();
+    }
+  }, {
+    key: "handleChangeWrapper",
+    value: function handleChangeWrapper() {
+      if (this.onStateChange) {
+        this.onStateChange();
+      }
+    }
+  }, {
+    key: "isSubscribed",
+    value: function isSubscribed() {
+      return Boolean(this.unsubscribe);
+    }
+  }, {
+    key: "trySubscribe",
+    value: function trySubscribe() {
+      if (!this.unsubscribe) {
+        this.unsubscribe = this.parentSub ? this.parentSub.addNestedSub(this.handleChangeWrapper) : this.store.subscribe(this.handleChangeWrapper);
+        this.listeners = createListenerCollection();
+      }
+    }
+  }, {
+    key: "tryUnsubscribe",
+    value: function tryUnsubscribe() {
+      if (this.unsubscribe) {
+        this.unsubscribe();
+        this.unsubscribe = null;
+        this.listeners.clear();
+        this.listeners = nullListeners;
+      }
+    }
+  }]);
+
+  return Subscription;
+}();
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  if (!condition) {
+    var error;
+
+    if (format === undefined) {
+      error = new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+
+    throw error;
+  }
+}
+
+var refEquality = function refEquality(a, b) {
+  return a === b;
+};
+/**
+ * A hook to access the redux store's state. This hook takes a selector function
+ * as an argument. The selector is called with the store state.
+ *
+ * This hook takes an optional equality comparison function as the second parameter
+ * that allows you to customize the way the selected state is compared to determine
+ * whether the component needs to be re-rendered.
+ *
+ * @param {Function} selector the selector function
+ * @param {Function=} equalityFn the function that will be used to determine equality
+ *
+ * @returns {any} the selected state
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useSelector } from 'react-redux'
+ *
+ * export const CounterComponent = () => {
+ *   const counter = useSelector(state => state.counter)
+ *   return <div>{counter}</div>
+ * }
+ */
+
+function useSelector(selector) {
+  var equalityFn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : refEquality;
+  invariant(selector, "You must pass a selector to useSelectors");
+
+  var _useReduxContext = useReduxContext(),
+      store = _useReduxContext.store,
+      contextSub = _useReduxContext.subscription;
+
+  var _useReducer = Taro.useReducer(function (s) {
+    return s + 1;
+  }, 0),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      forceRender = _useReducer2[1];
+
+  var subscription = Taro.useMemo(function () {
+    return new Subscription(store, contextSub);
+  }, [store, contextSub]);
+  var latestSubscriptionCallbackError = Taro.useRef();
+  var latestSelector = Taro.useRef();
+  var latestSelectedState = Taro.useRef();
+  var selectedState;
+
+  try {
+    if (selector !== latestSelector.current || latestSubscriptionCallbackError.current) {
+      selectedState = selector(store.getState());
+    } else {
+      selectedState = latestSelectedState.current;
+    }
+  } catch (err) {
+    var errorMessage = "An error occured while selecting the store state: ".concat(err.message, ".");
+
+    if (latestSubscriptionCallbackError.current) {
+      errorMessage += "\nThe error may be correlated with this previous error:\n".concat(latestSubscriptionCallbackError.current.stack, "\n\nOriginal stack trace:");
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  Taro.useEffect(function () {
+    latestSelector.current = selector;
+    latestSelectedState.current = selectedState;
+    latestSubscriptionCallbackError.current = undefined;
+  });
+  Taro.useEffect(function () {
+    function checkForUpdates() {
+      try {
+        var newSelectedState = latestSelector.current(store.getState());
+
+        if (equalityFn(newSelectedState, latestSelectedState.current)) {
+          return;
+        }
+
+        latestSelectedState.current = newSelectedState;
+      } catch (err) {
+        // we ignore all errors here, since when the component
+        // is re-rendered, the selectors are called again, and
+        // will throw again, if neither props nor store state
+        // changed
+        latestSubscriptionCallbackError.current = err;
+      }
+
+      forceRender({});
+    }
+
+    subscription.onStateChange = checkForUpdates;
+    subscription.trySubscribe();
+    checkForUpdates();
+    return function () {
+      return subscription.tryUnsubscribe();
+    };
+  }, [store, subscription]);
+  return selectedState;
+}
+
+var index = {
   connect: connect,
   Provider: Provider,
   getStore: getStore,
-  setStore: setStore
+  setStore: setStore,
+  useDispatch: useDispatch,
+  useSelector: useSelector,
+  useStore: useStore,
+  ReduxContext: ReduxContext
 };
 
-exports.default = index$1;
+exports.default = index;
 exports.connect = connect;
 exports.Provider = Provider;
 exports.getStore = getStore;
 exports.setStore = setStore;
+exports.useDispatch = useDispatch;
+exports.useSelector = useSelector;
+exports.useStore = useStore;
+exports.ReduxContext = ReduxContext;
 //# sourceMappingURL=index.js.map

@@ -48,34 +48,38 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtRate.__proto__ || Object.getPrototypeOf(AtRate)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray0", "classNameArr", "__fn_onChange", "customStyle", "className", "value", "max", "size", "margin"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtRate.__proto__ || Object.getPrototypeOf(AtRate)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray20", "classNameArr", "customStyle", "className", "value", "max", "size", "margin"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtRate, [{
     key: "_constructor",
     value: function _constructor() {
       _get(AtRate.prototype.__proto__ || Object.getPrototypeOf(AtRate.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "handleClick",
     value: function handleClick() {
-      this.__triggerPropsFn("onChange", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props;
+
+      (_props = this.props).onChange.apply(_props, arguments);
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
-      var _props = this.__props,
-          customStyle = _props.customStyle,
-          className = _props.className,
-          value = _props.value,
-          max = _props.max,
-          size = _props.size,
-          margin = _props.margin;
+      var _props2 = this.__props,
+          customStyle = _props2.customStyle,
+          className = _props2.className,
+          value = _props2.value,
+          max = _props2.max,
+          size = _props2.size,
+          margin = _props2.margin;
 
 
       var iconStyle = {
@@ -100,7 +104,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
 
       var anonymousState__temp = (0, _index6.default)('at-rate', className);
       var anonymousState__temp2 = (0, _index.internal_inline_style)(customStyle);
-      var loopArray0 = classNameArr.map(function (cls, i) {
+      var loopArray20 = classNameArr.map(function (cls, i) {
         cls = {
           $original: (0, _index.internal_get_original)(cls)
         };
@@ -117,7 +121,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        loopArray0: loopArray0,
+        loopArray20: loopArray20,
         classNameArr: classNameArr
       });
       return this.__state;
@@ -125,36 +129,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtRate;
-}(_component2.default), _class.properties = {
-  "__fn_onChange": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "value": {
-    "type": null,
-    "value": null
-  },
-  "max": {
-    "type": null,
-    "value": null
-  },
-  "size": {
-    "type": null,
-    "value": null
-  },
-  "margin": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick"], _temp2);
+}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/rate/index", _temp2);
 
 
 AtRate.defaultProps = {

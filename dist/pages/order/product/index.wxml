@@ -1,10 +1,10 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="product">
-        <title displayStatusDes="{{content.displayStatusDes}}" __triggerObserer="{{ _triggerObserer }}" AgentName="{{content.agentName}}"></title>
-        <product-item __triggerObserer="{{ _triggerObserer }}"></product-item>
+        <title compid="{{$compid__59}}"></title>
+        <product-item></product-item>
         <view class="item">
             <view class="item-image">
-                <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{profileUrl}}"></image>
+                <image style="height:100%;width:100%;margin:0 auto;padding:5px;" mode="scaleToFill" src="{{profileUrl}}"></image>
             </view>
             <view class="item-desc">
                 <view>{{content.activityName}}</view>

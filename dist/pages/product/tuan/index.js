@@ -36,28 +36,39 @@ var TuanList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TuanList.__proto__ || Object.getPrototypeOf(TuanList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TuanList.__proto__ || Object.getPrototypeOf(TuanList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__81"], _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TuanList, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(TuanList.prototype.__proto__ || Object.getPrototypeOf(TuanList.prototype), "_constructor", this).call(this, props);
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+      var $compid__81 = (0, _index.genCompid)(__prefix + "$compid__81");
+      var $props__81 = {
+        "type": "primary",
+        "size": "small",
+        "onClick": this.showMpDialog.bind(this)
+      };
+      _index.propsManager.set($props__81, $compid__81);
+      Object.assign(this.__state, {
+        $compid__81: $compid__81
+      });
       return this.__state;
     }
   }]);
 
   return TuanList;
-}(_index.Component), _class.properties = {}, _class.$$events = ["showMpDialog"], _temp2);
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/product/tuan/index", _temp2);
 exports.default = TuanList;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(TuanList));

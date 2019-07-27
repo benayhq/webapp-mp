@@ -50,7 +50,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray18", "OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
       OrderState: '待付款',
       ProductImg: '',
       OrderList: [],
@@ -61,13 +61,15 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
         'message': message,
         'type': type
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Title", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderItem, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(OrderItem.prototype.__proto__ || Object.getPrototypeOf(OrderItem.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "getImgUrl",
@@ -167,34 +169,79 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this4 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var OrderList = this.__state.OrderList;
 
 
-      Object.assign(this.__state, {});
+      var loopArray18 = OrderList.map(function (item, _anonIdx) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $compid__71 = (0, _index.genCompid)(__prefix + "AymwCKuSGH" + _anonIdx);
+        _index.propsManager.set({
+          "OrderId": item.$original.id,
+          "displayStatusDes": item.$original.displayStatusDes,
+          "AgentName": item.$original.customerName
+        }, $compid__71);
+        var $compid__72 = (0, _index.genCompid)(__prefix + "kcnvVsiNMC" + _anonIdx);
+        item.$original.status == "UNPAY" && _index.propsManager.set({
+          "type": "primary",
+          "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
+          "size": "small"
+        }, $compid__72);
+        var $compid__73 = (0, _index.genCompid)(__prefix + "NusmrWYcVk" + _anonIdx);
+        item.$original.status == "PAID" && _index.propsManager.set({
+          "type": "primary",
+          "size": "small",
+          "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
+        }, $compid__73);
+        var $compid__74 = (0, _index.genCompid)(__prefix + "wgwdxqiOSa" + _anonIdx);
+        item.$original.status == "PAID" && _index.propsManager.set({
+          "type": "primary",
+          "size": "small"
+        }, $compid__74);
+        var $compid__75 = (0, _index.genCompid)(__prefix + "gGaVHewweo" + _anonIdx);
+        item.$original.status == "COMMENTING  " && _index.propsManager.set({
+          "type": "primary",
+          "size": "small"
+        }, $compid__75);
+        var $compid__76 = (0, _index.genCompid)(__prefix + "xGqZjBFCni" + _anonIdx);
+        item.$original.status == "COMMENTING  " && _index.propsManager.set({
+          "type": "primary",
+          "size": "small"
+        }, $compid__76);
+        var $compid__77 = (0, _index.genCompid)(__prefix + "tRmxQdqkgt" + _anonIdx);
+        item.$original.status == "CONSUMPTION" && _index.propsManager.set({
+          "type": "primary",
+          "size": "small"
+        }, $compid__77);
+        return {
+          $compid__71: $compid__71,
+          $compid__72: $compid__72,
+          $compid__73: $compid__73,
+          $compid__74: $compid__74,
+          $compid__75: $compid__75,
+          $compid__76: $compid__76,
+          $compid__77: $compid__77,
+          $original: item.$original
+        };
+      });
+      Object.assign(this.__state, {
+        loopArray18: loopArray18
+      });
       return this.__state;
     }
   }]);
 
   return OrderItem;
-}(_index.Component), _class2.properties = {
-  "dispatchCreateOrderDownLoadUrl": {
-    "type": null,
-    "value": null
-  },
-  "dispatchPrePay": {
-    "type": null,
-    "value": null
-  },
-  "list": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleWeChatPay", "jumpUrl"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/list/index", _temp2)) || _class);
 exports.default = OrderItem;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderItem));

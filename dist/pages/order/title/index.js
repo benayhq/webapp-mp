@@ -12,6 +12,8 @@ var _class, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
+var _index2 = _interopRequireDefault(_index);
+
 var _jump = require("../../utils/jump.js");
 
 var _jump2 = _interopRequireDefault(_jump);
@@ -38,13 +40,14 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderId", "AgentName", "displayStatusDes"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Title.__proto__ || Object.getPrototypeOf(Title)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderId", "AgentName", "displayStatusDes"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Title, [{
     key: "_constructor",
     value: function _constructor() {
       _get(Title.prototype.__proto__ || Object.getPrototypeOf(Title.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = [];
     }
   }, {
     key: "jumpUrl",
@@ -74,7 +77,8 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props = this.__props,
@@ -92,20 +96,7 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Title;
-}(_index.Component), _class.properties = {
-  "OrderId": {
-    "type": null,
-    "value": null
-  },
-  "AgentName": {
-    "type": null,
-    "value": null
-  },
-  "displayStatusDes": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["jumpUrl"], _temp2);
+}(_index.Component), _class.$$events = ["jumpUrl"], _class.$$componentPath = "pages/order/title/index", _temp2);
 exports.default = Title;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Title));

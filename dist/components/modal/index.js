@@ -46,19 +46,19 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "popUpClass", "title", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "__fn_onCancel", "__fn_onConfirm", "content", "popup", "animationType", "height", "children"], _this.onClose = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "popUpClass", "title", "isRenderFooter", "cancelText", "confirmText", "_isOpened", "isOpened", "closeOnClickOverlay", "content", "popup", "animationType", "height", "children"], _this.onClose = function (e) {
       if (_this.props.closeOnClickOverlay) {
         _this.onCancel();
       }
     }, _this.onCancel = function (e) {
       _this.setState({
         _isOpened: false
-      }, _this.__triggerPropsFn("onCancel", [null].concat([])));
+      }, _this.props.onCancel());
     }, _this.onConfirm = function (e) {
-      _this.__triggerPropsFn("onConfirm", [null].concat([]));
+      _this.props.onConfirm();
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Modal, [{
@@ -68,6 +68,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
       this.state = {
         _isOpened: this.props.isOpened
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentWillReceiveProps",
@@ -86,7 +87,8 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _isOpened = this.__state._isOpened;
@@ -136,52 +138,7 @@ var Modal = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Modal;
-}(_index.Component), _class.properties = {
-  "isOpened": {
-    "type": null,
-    "value": null
-  },
-  "closeOnClickOverlay": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onCancel": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onConfirm": {
-    "type": null,
-    "value": null
-  },
-  "content": {
-    "type": null,
-    "value": null
-  },
-  "title": {
-    "type": null,
-    "value": null
-  },
-  "cancelText": {
-    "type": null,
-    "value": null
-  },
-  "confirmText": {
-    "type": null,
-    "value": null
-  },
-  "popup": {
-    "type": null,
-    "value": null
-  },
-  "animationType": {
-    "type": null,
-    "value": null
-  },
-  "height": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleTouchMove", "onClose", "onCancel", "onConfirm"], _temp2);
+}(_index.Component), _class.$$events = ["handleTouchMove", "onClose", "onCancel", "onConfirm"], _class.$$componentPath = "components/modal/index", _temp2);
 
 
 Modal.defaultProps = {

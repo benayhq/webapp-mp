@@ -96,26 +96,25 @@ exports.default = function () {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        if (!(res.data && res.data.result === "login")) {
-                          _context2.next = 2;
-                          break;
+                        if (res.data && res.data.result === "login") {
+                          // Taro.navigateTo({
+                          //     url: '/pages/user/index'
+                          // });
+                          // return;
                         }
 
-                        return _context2.abrupt("return");
-
-                      case 2:
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context2.next = 5;
+                          _context2.next = 4;
                           break;
                         }
 
-                        _context2.next = 5;
+                        _context2.next = 4;
                         return updateStorage(res.data);
 
-                      case 5:
+                      case 4:
                         return _context2.abrupt("return", res.data);
 
-                      case 6:
+                      case 5:
                       case "end":
                         return _context2.stop();
                     }

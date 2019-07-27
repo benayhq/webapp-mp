@@ -1,13 +1,13 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view>
         <block wx:if="{{newFilterList}}">
-            <view class="mp-user__product" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="_anonIdx">
+            <view class="mp-user__product" wx:for="{{loopArray10}}" wx:for-item="item" wx:for-index="_anonIdx2">
                 <view>
-                    <image className="icon-header" __triggerObserer="{{ _triggerObserer }}" src="{{item.$original.imgUrl}}"></image>
+                    <image className="icon-header" src="{{item.$original.imgUrl}}"></image>
                 </view>
                 <view>
                     <view class="mp-user__product-desc">{{item.$original.desc}}</view>
-                    <view class="mp-user__product-price">￥{{item.$original.price}}<text class="mp-user__product-marketprice">￥{{item.$original.marketPrice}}</text>
+                    <view class="mp-user__product-price">￥{{item.$original.price}} <text class="mp-user__product-marketprice">￥{{item.$original.marketPrice}}</text>
                     </view>
                     <view class="mp-user__product-prePrice">预定金: {{item.$original.prePrice}}</view>
                 </view>

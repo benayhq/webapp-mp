@@ -42,13 +42,14 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CheckBox.__proto__ || Object.getPrototypeOf(CheckBox)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray0", "rootCls", "options", "selectedList", "__fn_onChange", "className", "customStyle"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CheckBox.__proto__ || Object.getPrototypeOf(CheckBox)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray16", "rootCls", "options", "selectedList", "className", "customStyle"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CheckBox, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(CheckBox.prototype.__proto__ || Object.getPrototypeOf(CheckBox.prototype), "_constructor", this).call(this, props);
+      this.$$refs = [];
     }
   }, {
     key: "handleClick",
@@ -71,7 +72,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
         seletecdSet.delete(value);
       }
 
-      this.__triggerPropsFn("onChange", [null].concat([[].concat(_toConsumableArray(seletecdSet))]));
+      this.props.onChange([].concat(_toConsumableArray(seletecdSet)));
     }
   }, {
     key: "handleProductEdit",
@@ -83,14 +84,15 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
   }, {
     key: "handleProductDelete",
     value: function handleProductDelete(id) {
-      this.__triggerPropsFn("onDelete", [null].concat([id]));
+      this.props.onDelete(id);
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
 
       var _props2 = this.__props,
@@ -104,7 +106,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       var rootCls = (0, _index4.default)('mp-checkbox', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray0 = options ? options.map(function (option, idx) {
+      var loopArray16 = options ? options.map(function (option, idx) {
         option = {
           $original: (0, _index.internal_get_original)(option)
         };
@@ -130,7 +132,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray0: loopArray0,
+        loopArray16: loopArray16,
         rootCls: rootCls,
         options: options
       });
@@ -139,36 +141,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return CheckBox;
-}(_index.Component), _class.properties = {
-  "selectedList": {
-    "type": null,
-    "value": null
-  },
-  "options": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onChange": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onDelete": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "onDelete": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick", "handleProductEdit", "handleProductDelete"], _temp2);
+}(_index.Component), _class.$$events = ["handleClick", "handleProductEdit", "handleProductDelete"], _class.$$componentPath = "components/checkbox/index", _temp2);
 // CheckBox.defaultProps = {
 //     customStyle:'',
 //     className:'',

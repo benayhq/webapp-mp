@@ -48,21 +48,25 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtActivityIndicator.__proto__ || Object.getPrototypeOf(AtActivityIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "size", "color", "content", "mode", "className"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtActivityIndicator.__proto__ || Object.getPrototypeOf(AtActivityIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__82", "rootClass", "content", "color", "size", "mode", "className"], _this.customComponents = ["AtLoading"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtActivityIndicator, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtActivityIndicator.prototype.__proto__ || Object.getPrototypeOf(AtActivityIndicator.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__82 = (0, _index.genCompid)(__prefix + "$compid__82");
 
       var _props = this.__props,
           color = _props.color,
@@ -75,10 +79,14 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
         'at-activity-indicator--center': mode === 'center'
       }, this.__props.className);
 
+      var $props__82 = {
+        "size": size,
+        "color": color
+      };
+      _index.propsManager.set($props__82, $compid__82);
       Object.assign(this.__state, {
+        $compid__82: $compid__82,
         rootClass: rootClass,
-        size: size,
-        color: color,
         content: content
       });
       return this.__state;
@@ -86,28 +94,7 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtActivityIndicator;
-}(_component2.default), _class.properties = {
-  "color": {
-    "type": null,
-    "value": null
-  },
-  "size": {
-    "type": null,
-    "value": null
-  },
-  "mode": {
-    "type": null,
-    "value": null
-  },
-  "content": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = [], _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/activity-indicator/index", _temp2);
 
 
 AtActivityIndicator.defaultProps = {

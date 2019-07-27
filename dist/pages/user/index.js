@@ -52,13 +52,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened", "avatarUrl", "profit", "isAgent", "orders", "isShowLoanApp", "userName", "showUserText", "list", "flag", "current", "context1", "context2", "context3", "context4", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray31", "$compid__162", "$compid__163", "$compid__164", "$compid__165", "$compid__166", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "showUserText", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtModal", "AtModalHeader", "AtModalContent", "AtButton", "InCome", "UserOrder", "AtList", "AtListItem", "AtCard"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -81,6 +81,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         showUserText: '切换为咨询师',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
+      this.$$refs = [];
     }
   }, {
     key: "componentDidMount",
@@ -119,27 +120,29 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 3:
                 response = _context.sent;
 
-                list.map(function (item, key) {
-                  switch (item.status) {
-                    case "UNPAY":
-                      item.count = response.content.unpayCount;
-                      break;
-                    case "BATING":
-                      item.count = response.content.batingCount;
-                      break;
-                    case "CONSUMPTION":
-                      item.count = response.content.consumptionCount;
-                      break;
-                    case "COMMENTING":
-                      item.count = response.content.commentingCount;
-                      break;
-                  }
-                });
-                this.setState({
-                  orders: list
-                });
+                if (list && list.length > 0) {
+                  list.map(function (item, key) {
+                    switch (item.status) {
+                      case "UNPAY":
+                        item.count = response.content.unpayCount;
+                        break;
+                      case "BATING":
+                        item.count = response.content.batingCount;
+                        break;
+                      case "CONSUMPTION":
+                        item.count = response.content.consumptionCount;
+                        break;
+                      case "COMMENTING":
+                        item.count = response.content.commentingCount;
+                        break;
+                    }
+                  });
+                  this.setState({
+                    orders: list
+                  });
+                }
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -380,10 +383,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this4 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       ;
+      var $compid__162 = (0, _index.genCompid)(__prefix + "$compid__162");
+      var $compid__163 = (0, _index.genCompid)(__prefix + "$compid__163");
+      var $compid__164 = (0, _index.genCompid)(__prefix + "$compid__164");
+      var $compid__165 = (0, _index.genCompid)(__prefix + "$compid__165");
+      var $compid__166 = (0, _index.genCompid)(__prefix + "$compid__166");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -393,11 +404,61 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           orders = _state.orders,
           flag = _state.flag,
           isOpened = _state.isOpened,
-          showUserText = _state.showUserText;
+          showUserText = _state.showUserText,
+          list = _state.list;
 
       var isShowLoanApp = !isAgent && flag;
 
+      console.log('list', list);
+
+      var $props__162 = {
+        "isOpened": isOpened
+      };
+      var $props__163 = {
+        "className": "mp-user__login",
+        "text": "\u5FAE\u4FE1\u767B\u5F55",
+        "openType": "getUserInfo",
+        "onGetUserInfo": this.handleAuthClick,
+        "type": "primary",
+        "size": "small"
+      };
+      var $props__164 = {
+        "profit": profit
+      };
+      var $props__165 = {
+        "list": orders
+      };
+      var $props__166 = {
+        "title": this.__state.context1
+      };
+      var loopArray31 = list.length > 0 ? list.map(function (item, _anonIdx) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $compid__161 = (0, _index.genCompid)(__prefix + "WUjgDQNJkg" + _anonIdx);
+        _index.propsManager.set({
+          "title": item.$original.text,
+          "arrow": "right",
+          "thumb": item.$original.url,
+          "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
+        }, $compid__161);
+        return {
+          $compid__161: $compid__161,
+          $original: item.$original
+        };
+      }) : [];
+      _index.propsManager.set($props__162, $compid__162);
+      _index.propsManager.set($props__163, $compid__163);
+      isAgent && _index.propsManager.set($props__164, $compid__164);
+      _index.propsManager.set($props__165, $compid__165);
+      isShowLoanApp === true && _index.propsManager.set($props__166, $compid__166);
       Object.assign(this.__state, {
+        loopArray31: loopArray31,
+        $compid__162: $compid__162,
+        $compid__163: $compid__163,
+        $compid__164: $compid__164,
+        $compid__165: $compid__165,
+        $compid__166: $compid__166,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
@@ -405,32 +466,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.properties = {
-  "dispatchReservationCount": {
-    "type": null,
-    "value": null
-  },
-  "dispatchReservationPlan": {
-    "type": null,
-    "value": null
-  },
-  "dispatchLoanInfo": {
-    "type": null,
-    "value": null
-  },
-  "UpdateUserInfo": {
-    "type": null,
-    "value": null
-  },
-  "ChangeToAgent": {
-    "type": null,
-    "value": null
-  },
-  "list": {
-    "type": null,
-    "value": null
-  }
-}, _class2.$$events = ["handleAuthClick", "handleUpdateInfo", "handlePublish", "handleJumpUrl", "handleAppLoan", "handleChangeState"], _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleUpdateInfo", "handlePublish", "handleAppLoan", "handleChangeState"], _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

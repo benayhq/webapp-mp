@@ -54,7 +54,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTabs.__proto__ || Object.getPrototypeOf(AtTabs)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "loopArray0", "tabList", "rootCls", "scroll", "_tabId", "scrollX", "scrollY", "_scrollLeft", "_scrollTop", "_scrollIntoView", "__fn_onClick", "swipeable", "tabDirection", "current", "customStyle", "className", "height", "animated", "children"], _this.updateState = function (idx) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTabs.__proto__ || Object.getPrototypeOf(AtTabs)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "loopArray17", "tabList", "rootCls", "scroll", "_tabId", "scrollX", "scrollY", "_scrollLeft", "_scrollTop", "_scrollIntoView", "swipeable", "tabDirection", "current", "customStyle", "className", "height", "animated", "children"], _this.updateState = function (idx) {
       if (_this.props.scroll) {
         // 标签栏滚动
         switch (ENV) {
@@ -82,7 +82,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
             break;
         }
       }
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtTabs, [{
@@ -103,20 +103,23 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
       this._interval = 0;
       // 是否已经在滑动
       this._isMoving = false;
+      this.$$refs = [];
     }
   }, {
     key: "handleClick",
     value: function handleClick() {
-      this.__triggerPropsFn("onClick", [null].concat([].concat(Array.prototype.slice.call(arguments))));
+      var _props;
+
+      (_props = this.props).onClick.apply(_props, arguments);
     }
   }, {
     key: "handleTouchStart",
     value: function handleTouchStart(e) {
       var _this2 = this;
 
-      var _props = this.props,
-          swipeable = _props.swipeable,
-          tabDirection = _props.tabDirection;
+      var _props2 = this.props,
+          swipeable = _props2.swipeable,
+          tabDirection = _props2.tabDirection;
 
       if (!swipeable || tabDirection === 'vertical') {
         return;
@@ -130,11 +133,11 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: "handleTouchMove",
     value: function handleTouchMove(e) {
-      var _props2 = this.props,
-          swipeable = _props2.swipeable,
-          tabDirection = _props2.tabDirection,
-          current = _props2.current,
-          tabList = _props2.tabList;
+      var _props3 = this.props,
+          swipeable = _props3.swipeable,
+          tabDirection = _props3.tabDirection,
+          current = _props3.current,
+          tabList = _props3.tabList;
 
       if (!swipeable || tabDirection === 'vertical') {
         return;
@@ -158,9 +161,9 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: "handleTouchEnd",
     value: function handleTouchEnd() {
-      var _props3 = this.props,
-          swipeable = _props3.swipeable,
-          tabDirection = _props3.tabDirection;
+      var _props4 = this.props,
+          swipeable = _props4.swipeable,
+          tabDirection = _props4.tabDirection;
 
       if (!swipeable || tabDirection === 'vertical') {
         return;
@@ -203,17 +206,18 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __runloopRef = arguments[2];
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
       var _tabId = this._tabId;
-      var _props4 = this.__props,
-          customStyle = _props4.customStyle,
-          className = _props4.className,
-          height = _props4.height,
-          tabDirection = _props4.tabDirection,
-          animated = _props4.animated,
-          tabList = _props4.tabList,
-          scroll = _props4.scroll,
-          current = _props4.current;
+      var _props5 = this.__props,
+          customStyle = _props5.customStyle,
+          className = _props5.className,
+          height = _props5.height,
+          tabDirection = _props5.tabDirection,
+          animated = _props5.animated,
+          tabList = _props5.tabList,
+          scroll = _props5.scroll,
+          current = _props5.current;
       var _state = this.__state,
           _scrollLeft = _state._scrollLeft,
           _scrollTop = _state._scrollTop,
@@ -249,7 +253,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
       var anonymousState__temp2 = scroll ? (0, _index.internal_inline_style)(heightStyle) : null;
       var anonymousState__temp3 = (0, _index.internal_inline_style)(this.mergeStyle(bodyStyle, heightStyle));
       var anonymousState__temp4 = (0, _index.internal_inline_style)(underlineStyle);
-      var loopArray0 = tabList.map(function (item, idx) {
+      var loopArray17 = tabList.map(function (item, idx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
@@ -269,7 +273,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        loopArray0: loopArray0,
+        loopArray17: loopArray17,
         tabList: tabList,
         rootCls: rootCls,
         scroll: scroll,
@@ -282,48 +286,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtTabs;
-}(_component2.default), _class.properties = {
-  "scroll": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "swipeable": {
-    "type": null,
-    "value": null
-  },
-  "tabDirection": {
-    "type": null,
-    "value": null
-  },
-  "current": {
-    "type": null,
-    "value": null
-  },
-  "tabList": {
-    "type": null,
-    "value": null
-  },
-  "customStyle": {
-    "type": null,
-    "value": null
-  },
-  "className": {
-    "type": null,
-    "value": null
-  },
-  "height": {
-    "type": null,
-    "value": null
-  },
-  "animated": {
-    "type": null,
-    "value": null
-  }
-}, _class.$$events = ["handleClick", "handleTouchStart", "handleTouchEnd", "handleTouchMove"], _temp2);
+}(_component2.default), _class.$$events = ["handleClick", "handleTouchStart", "handleTouchEnd", "handleTouchMove"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/tabs/index", _temp2);
 
 
 AtTabs.defaultProps = {

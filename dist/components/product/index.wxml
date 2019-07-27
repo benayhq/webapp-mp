@@ -1,17 +1,17 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view>
         <view class="product">
             <view></view>
-            <view class="list" wx:for="{{products}}" wx:for-item="item" wx:for-index="_anonIdx">
+            <view class="list" wx:for="{{products}}" wx:for-item="item" wx:for-index="_anonIdx2">
                 <view class="list-top">
                     <view></view>
                     <view>
-                        <image style="width:92px; height:95px;margin-top:14px;" __triggerObserer="{{ _triggerObserer }}" mode="scaleToFill" src="{{item.location}}"></image>
+                        <image style="width:92px; height:95px;margin-top:14px;" mode="scaleToFill" src="{{item.location}}"></image>
                     </view>
                     <view>
                         <view class="product-item margin20">{{item.name}}</view>
                         <view class="product-item font">{{item.price}}</view>
-                        <view class="product-item textfont">预定金: <text class="amount">200</text>
+                        <view class="product-item textfont">预定金: <text class="amount">200</text> 
                         </view>
                     </view>
                 </view>
