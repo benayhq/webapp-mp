@@ -53,7 +53,7 @@ class Index extends Component{
 
  init(){
     this.autoLogin();
-  }
+ }
 
   async initOrderNotice(creatorInstance,isAgent){
     var list = creatorInstance.factory(isAgent).getList();

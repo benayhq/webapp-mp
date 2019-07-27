@@ -304,7 +304,7 @@ class EditProduct extends Component{
           break;
       }
     }
-    
+
     async getCategroyList(name){
       var payload = {
         name:name
@@ -340,7 +340,6 @@ class EditProduct extends Component{
         }
         this.props.dispatchQueryProductInfo(payload).then((response)=>{
           var data = response.content;
-          console.log('productinfo',data);
           if(data){
             this.getImgUrl(data.location).then((response)=>{
               this.setState({
