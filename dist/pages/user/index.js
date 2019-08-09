@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray31", "$compid__162", "$compid__163", "$compid__164", "$compid__165", "$compid__166", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "showUserText", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "showUserText", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -390,11 +390,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__162 = (0, _index.genCompid)(__prefix + "$compid__162");
-      var $compid__163 = (0, _index.genCompid)(__prefix + "$compid__163");
-      var $compid__164 = (0, _index.genCompid)(__prefix + "$compid__164");
-      var $compid__165 = (0, _index.genCompid)(__prefix + "$compid__165");
-      var $compid__166 = (0, _index.genCompid)(__prefix + "$compid__166");
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
+      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
+      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
+      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
+      var $compid__10 = (0, _index.genCompid)(__prefix + "$compid__10");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -411,10 +411,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       console.log('list', list);
 
-      var $props__162 = {
+      var $props__6 = {
         "isOpened": isOpened
       };
-      var $props__163 = {
+      var $props__7 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -422,43 +422,43 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__164 = {
+      var $props__8 = {
         "profit": profit
       };
-      var $props__165 = {
+      var $props__9 = {
         "list": orders
       };
-      var $props__166 = {
+      var $props__10 = {
         "title": this.__state.context1
       };
-      var loopArray31 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__161 = (0, _index.genCompid)(__prefix + "WUjgDQNJkg" + _anonIdx);
+        var $compid__5 = (0, _index.genCompid)(__prefix + "gXSsrGYzBr" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__161);
+        }, $compid__5);
         return {
-          $compid__161: $compid__161,
+          $compid__5: $compid__5,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__162, $compid__162);
-      _index.propsManager.set($props__163, $compid__163);
-      isAgent && _index.propsManager.set($props__164, $compid__164);
-      _index.propsManager.set($props__165, $compid__165);
-      isShowLoanApp === true && _index.propsManager.set($props__166, $compid__166);
+      _index.propsManager.set($props__6, $compid__6);
+      _index.propsManager.set($props__7, $compid__7);
+      isAgent && _index.propsManager.set($props__8, $compid__8);
+      _index.propsManager.set($props__9, $compid__9);
+      isShowLoanApp === true && _index.propsManager.set($props__10, $compid__10);
       Object.assign(this.__state, {
-        loopArray31: loopArray31,
-        $compid__162: $compid__162,
-        $compid__163: $compid__163,
-        $compid__164: $compid__164,
-        $compid__165: $compid__165,
-        $compid__166: $compid__166,
+        loopArray0: loopArray0,
+        $compid__6: $compid__6,
+        $compid__7: $compid__7,
+        $compid__8: $compid__8,
+        $compid__9: $compid__9,
+        $compid__10: $compid__10,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
