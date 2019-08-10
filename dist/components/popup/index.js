@@ -97,14 +97,14 @@ var Popup = (_temp2 = _class = function (_BaseComponent) {
       return this.__state;
     }
   }, {
-    key: "funPrivatelyBAc",
-    value: function funPrivatelyBAc() {
+    key: "funPrivatemYiGN",
+    value: function funPrivatemYiGN() {
       return this.props.onClose.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }]);
 
   return Popup;
-}(_index.Component), _class.$$events = ["handleTouchMove", "funPrivatelyBAc"], _class.defaultProps = {
+}(_index.Component), _class.$$events = ["handleTouchMove", "funPrivatemYiGN"], _class.defaultProps = {
   visible: false,
   compStyle: '',
   onClose: function onClose() {}

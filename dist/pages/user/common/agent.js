@@ -58,17 +58,17 @@ var Agent = function () {
       return [{
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-active',
         text: '我的活动',
-        url: 'http://i1.fuimg.com/693434/b609d927da9f0bc2.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/打折优惠@2x.png',
         pageUrl: 'pages/user/active/index'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-product',
         text: '往期产品',
-        url: 'http://i1.fuimg.com/693434/cff1eaebf93dd23d.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/商品@2x.png',
         pageUrl: 'pages/user/product/index'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-customer',
         text: '我的客户',
-        url: 'http://i1.fuimg.com/693434/a3c5f7cfa4c736d4.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/friend_add_fill@2x.png',
         pageUrl: 'pages/user/customer/index'
         // {
         //     icon:'mp-user__controlpanel-icon mp-icon mp-icon-account',
