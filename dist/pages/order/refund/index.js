@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__554", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__47", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
       navigationBarTitleText: '发起退款'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -210,7 +210,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__554 = (0, _index.genCompid)(__prefix + "$compid__554");
+      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -220,14 +220,14 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           text = _state2.text;
 
 
-      var $props__554 = {
+      var $props__47 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      _index.propsManager.set($props__554, $compid__554);
+      _index.propsManager.set($props__47, $compid__47);
       Object.assign(this.__state, {
-        $compid__554: $compid__554,
+        $compid__47: $compid__47,
         activityName: activityName
       });
       return this.__state;

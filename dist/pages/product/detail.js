@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__506", "$compid__507", "$compid__508", "$compid__509", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__107", "$compid__108", "$compid__109", "$compid__110", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -238,9 +238,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     key: "componentWillMount",
     value: function componentWillMount() {
       //  let activeId = this.$router.params.activeId,
-      var activeId = 51,
+      var activeId = 52,
           referId = this.$router.params.referId,
           source = this.$router.params.sc;
+
       if (activeId && referId) {
         activeId = decodeURIComponent(activeId);
         referId = decodeURIComponent(referId);
@@ -387,10 +388,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__506 = (0, _index.genCompid)(__prefix + "$compid__506");
-      var $compid__507 = (0, _index.genCompid)(__prefix + "$compid__507");
-      var $compid__508 = (0, _index.genCompid)(__prefix + "$compid__508");
-      var $compid__509 = (0, _index.genCompid)(__prefix + "$compid__509");
+      var $compid__107 = (0, _index.genCompid)(__prefix + "$compid__107");
+      var $compid__108 = (0, _index.genCompid)(__prefix + "$compid__108");
+      var $compid__109 = (0, _index.genCompid)(__prefix + "$compid__109");
+      var $compid__110 = (0, _index.genCompid)(__prefix + "$compid__110");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -409,32 +410,32 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__506 = {
+      var $props__107 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__507 = {
+      var $props__108 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__508 = {
+      var $props__109 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      var $props__509 = {
+      var $props__110 = {
         "isOpened": showOrderDialog
       };
-      _index.propsManager.set($props__506, $compid__506);
-      bContact && _index.propsManager.set($props__507, $compid__507);
-      bSpec && _index.propsManager.set($props__508, $compid__508);
-      _index.propsManager.set($props__509, $compid__509);
+      _index.propsManager.set($props__107, $compid__107);
+      bContact && _index.propsManager.set($props__108, $compid__108);
+      bSpec && _index.propsManager.set($props__109, $compid__109);
+      _index.propsManager.set($props__110, $compid__110);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__506: $compid__506,
-        $compid__507: $compid__507,
-        $compid__508: $compid__508,
-        $compid__509: $compid__509
+        $compid__107: $compid__107,
+        $compid__108: $compid__108,
+        $compid__109: $compid__109,
+        $compid__110: $compid__110
       });
       return this.__state;
     }

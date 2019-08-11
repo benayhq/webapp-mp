@@ -48,7 +48,7 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoadMore.__proto__ || Object.getPrototypeOf(AtLoadMore)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__78", "$compid__79", "status", "moreText", "noMoreText", "className", "customStyle", "loadingText", "moreBtnStyle", "noMoreTextStyle"], _this.customComponents = ["AtActivityIndicator", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtLoadMore.__proto__ || Object.getPrototypeOf(AtLoadMore)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__79", "$compid__80", "status", "moreText", "noMoreText", "className", "customStyle", "loadingText", "moreBtnStyle", "noMoreTextStyle"], _this.customComponents = ["AtActivityIndicator", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtLoadMore, [{
@@ -75,8 +75,8 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__78 = (0, _index.genCompid)(__prefix + "$compid__78");
       var $compid__79 = (0, _index.genCompid)(__prefix + "$compid__79");
+      var $compid__80 = (0, _index.genCompid)(__prefix + "$compid__80");
 
       var _props2 = this.__props,
           className = _props2.className,
@@ -91,18 +91,18 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
 
       var component = null;
       if (status === 'loading') {
-        var $props__78 = {
+        var $props__79 = {
           "mode": "center",
           "content": loadingText
         };
-        _index.propsManager.set($props__78, $compid__78);
+        _index.propsManager.set($props__79, $compid__79);
       } else if (status === 'more') {
-        var $props__79 = {
+        var $props__80 = {
           "full": true,
           "onClick": this.onClick.bind(this),
           "customStyle": moreBtnStyle
         };
-        _index.propsManager.set($props__79, $compid__79);
+        _index.propsManager.set($props__80, $compid__80);
       } else {
         _$anonymousState__temp = (0, _index.internal_inline_style)(noMoreTextStyle);
       }
@@ -113,8 +113,8 @@ var AtLoadMore = (_temp2 = _class = function (_AtComponent) {
         _$anonymousState__temp: _$anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-        $compid__78: $compid__78,
         $compid__79: $compid__79,
+        $compid__80: $compid__80,
         status: status,
         moreText: moreText,
         noMoreText: noMoreText

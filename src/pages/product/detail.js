@@ -124,9 +124,10 @@ export default class Detail extends Component{
 
     componentWillMount(){
         //  let activeId = this.$router.params.activeId,
-        let activeId = 51,
+        let activeId = 52,
             referId = this.$router.params.referId,
             source = this.$router.params.sc;
+            
         if (activeId && referId ) {
             activeId = decodeURIComponent(activeId);
             referId =  decodeURIComponent(referId);
