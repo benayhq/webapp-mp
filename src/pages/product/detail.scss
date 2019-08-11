@@ -186,6 +186,7 @@ $component:'.mp-activedetail';
         height: 287px;
         background:rgba(255,255,255,1);
         border:1px solid rgba(255,255,255,1);
+        overflow: auto;
     }
 
     &__first{

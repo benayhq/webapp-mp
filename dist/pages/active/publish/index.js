@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__18", "$compid__19", "$compid__20", "$compid__21", "$compid__22", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__476", "$compid__477", "$compid__478", "$compid__479", "$compid__480", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -343,7 +343,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _state = this.state, activeName = _state.activeAllName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
+                _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber;
 
                 if (!(activeName === '')) {
                   _context2.next = 4;
@@ -536,11 +536,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
-      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
-      var $compid__20 = (0, _index.genCompid)(__prefix + "$compid__20");
-      var $compid__21 = (0, _index.genCompid)(__prefix + "$compid__21");
-      var $compid__22 = (0, _index.genCompid)(__prefix + "$compid__22");
+      var $compid__476 = (0, _index.genCompid)(__prefix + "$compid__476");
+      var $compid__477 = (0, _index.genCompid)(__prefix + "$compid__477");
+      var $compid__478 = (0, _index.genCompid)(__prefix + "$compid__478");
+      var $compid__479 = (0, _index.genCompid)(__prefix + "$compid__479");
+      var $compid__480 = (0, _index.genCompid)(__prefix + "$compid__480");
 
       var _state2 = this.__state,
           activeName = _state2.activeAllName,
@@ -552,39 +552,39 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           activePrice = _state2.activeAllPrice;
 
 
-      var $props__18 = {
+      var $props__476 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__19 = {
+      var $props__477 = {
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__20 = {
+      var $props__478 = {
         "products": products
       };
-      var $props__21 = {
+      var $props__479 = {
         "isOpened": isOpened
       };
-      var $props__22 = {
+      var $props__480 = {
         "placeholder": "\u8BF7\u8F93\u5165\u5FAE\u4FE1\u53F7",
         "onChange": this.handleWeChatChange.bind(this),
         "value": weChatNumber
       };
-      _index.propsManager.set($props__18, $compid__18);
-      _index.propsManager.set($props__19, $compid__19);
-      _index.propsManager.set($props__20, $compid__20);
-      _index.propsManager.set($props__21, $compid__21);
-      _index.propsManager.set($props__22, $compid__22);
+      _index.propsManager.set($props__476, $compid__476);
+      _index.propsManager.set($props__477, $compid__477);
+      _index.propsManager.set($props__478, $compid__478);
+      _index.propsManager.set($props__479, $compid__479);
+      _index.propsManager.set($props__480, $compid__480);
       Object.assign(this.__state, {
-        $compid__18: $compid__18,
-        $compid__19: $compid__19,
-        $compid__20: $compid__20,
-        $compid__21: $compid__21,
-        $compid__22: $compid__22
+        $compid__476: $compid__476,
+        $compid__477: $compid__477,
+        $compid__478: $compid__478,
+        $compid__479: $compid__479,
+        $compid__480: $compid__480
       });
       return this.__state;
     }

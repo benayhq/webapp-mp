@@ -15,7 +15,7 @@ class Index extends Component{
   config = {
     navigationBarTitleText: '个人中心'
   }
-
+  
   constructor(props){
     super(props);
     this.state = {
@@ -271,14 +271,13 @@ class Index extends Component{
               {
                   isAgent && 
                   <View className="mp-user__info-money">
-                      <View className="mp-user__money-amount">{profit?profit.verifyEarnest:0}</View>
+                      <View className="mp-user__money-amount">{profit && profit.verifyEarnest!=null ? profit.verifyEarnest:0}</View>
                       <View className="mp-user__money-order">已结定金</View>
                   </View>
               }
      </View>
-   
+              
       { isAgent && <InCome profit={profit}/> }
- 
       {
         isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
@@ -288,9 +287,7 @@ class Index extends Component{
               </View>
           </View>
       } 
-
       <UserOrder list={orders}/>
-
       <View className="mp-user__list">
         <AtList>
           {
@@ -320,9 +317,11 @@ class Index extends Component{
       </View> : ""
       }
      
-      <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
-              {showUserText}
-      </View> 
+      { 
+        <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
+                {showUserText}
+        </View>   
+      }
 
     </View>
     )

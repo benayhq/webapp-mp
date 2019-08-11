@@ -46,7 +46,7 @@ var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__0", "$compid__1", "$compid__2", "$compid__3", "$compid__4", "order", "content", "id", "dispatchOrderDetail"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__458", "$compid__459", "$compid__460", "$compid__461", "$compid__462", "order", "content", "id", "dispatchOrderDetail"], _this.config = {
       navigationBarTitleText: '订单详情'
     }, _this.customComponents = ["Header", "Assemble", "OrderProduct", "Footer", "ToolBar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -100,44 +100,44 @@ var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__0 = (0, _index.genCompid)(__prefix + "$compid__0");
-      var $compid__1 = (0, _index.genCompid)(__prefix + "$compid__1");
-      var $compid__2 = (0, _index.genCompid)(__prefix + "$compid__2");
-      var $compid__3 = (0, _index.genCompid)(__prefix + "$compid__3");
-      var $compid__4 = (0, _index.genCompid)(__prefix + "$compid__4");
+      var $compid__458 = (0, _index.genCompid)(__prefix + "$compid__458");
+      var $compid__459 = (0, _index.genCompid)(__prefix + "$compid__459");
+      var $compid__460 = (0, _index.genCompid)(__prefix + "$compid__460");
+      var $compid__461 = (0, _index.genCompid)(__prefix + "$compid__461");
+      var $compid__462 = (0, _index.genCompid)(__prefix + "$compid__462");
 
       var _state = this.__state,
           content = _state.content,
           order = _state.order;
 
-      var $props__0 = {
+      var $props__458 = {
         "content": content
       };
-      var $props__1 = {
+      var $props__459 = {
         "content": content
       };
-      var $props__2 = {
+      var $props__460 = {
         "order": order,
         "content": content
       };
-      var $props__3 = {
+      var $props__461 = {
         "content": content,
         "qrCode": content.qrCode
       };
-      var $props__4 = {
+      var $props__462 = {
         "toolBar": content.toolBar
       };
-      _index.propsManager.set($props__0, $compid__0);
-      _index.propsManager.set($props__1, $compid__1);
-      _index.propsManager.set($props__2, $compid__2);
-      _index.propsManager.set($props__3, $compid__3);
-      _index.propsManager.set($props__4, $compid__4);
+      _index.propsManager.set($props__458, $compid__458);
+      _index.propsManager.set($props__459, $compid__459);
+      _index.propsManager.set($props__460, $compid__460);
+      _index.propsManager.set($props__461, $compid__461);
+      _index.propsManager.set($props__462, $compid__462);
       Object.assign(this.__state, {
-        $compid__0: $compid__0,
-        $compid__1: $compid__1,
-        $compid__2: $compid__2,
-        $compid__3: $compid__3,
-        $compid__4: $compid__4
+        $compid__458: $compid__458,
+        $compid__459: $compid__459,
+        $compid__460: $compid__460,
+        $compid__461: $compid__461,
+        $compid__462: $compid__462
       });
       return this.__state;
     }

@@ -35,11 +35,14 @@ button {
 button::after{
     border: none;
 }
-    
 
 page{
     margin: 0;
-    background: #f5f5f9;
+    background: #f5f5f9 !important;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .button-hover {
@@ -86,9 +89,8 @@ page{
         color:rgba(125,214,208,1);
     }
 
-          /* elements */
+          /* elements width:750px; */
     &__info{
-        width:750px;
         height:169px;
         background:$bgColor;
         opacity:0.7;
@@ -131,7 +133,7 @@ page{
 
     &__user{
         &-username{
-            width:252px;
+            // width:252px;
             height:50px;
             font-size:36px;
             font-family:PingFangSC-Regular;
@@ -172,7 +174,7 @@ page{
 
     &__money{
         &-amount{
-            width:250px;
+            width:10px;
             height:67px;
             font-size:48px;
             font-family:PingFangSC-Regular;
@@ -186,8 +188,9 @@ page{
 
         &-order{
             position: relative;
-            top:-20rpx;
-            left:151rpx;
+            top:-20px;
+            margin-left: 20px;
+            right: 50px;
             height:33px;
             font-size:24px;
             font-family:PingFangSC-Regular;
@@ -310,13 +313,13 @@ page{
     background-color:#FFF;
 }
 .button-hover {
-    color:rgba(0, 0, 0, 0.6);
-    background-color:#07c160;
+    // color:rgba(0, 0, 0, 0.6);
+    background:#FFF;
 }
 .wechat-login{
     text-align: center;
 }
 .at-button--primary {
-    border:1PX solid #07c160;
-    background:#07c160;
+    border:1PX solid #FFF;
+    background:#FFF;
 }

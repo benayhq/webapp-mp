@@ -88,6 +88,11 @@ export default class OrderItem extends Component{
         });
     }
 
+    handleRefund = (orderId) => {
+        Taro.navigateTo({
+            url:'/pages/order/refund/index?orderId='+orderId
+        });
+    }
    
     render(){
         const {OrderList} = this.state;
@@ -122,11 +127,12 @@ export default class OrderItem extends Component{
                                 item.status == "PAID" && <View>
                                     <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.id)}>我要评价</AtButton>
                                     <Text className="margin8"></Text>
-                                    <AtButton type='primary' size='small'>立即核销</AtButton>
+                                    {/* <AtButton type='primary' size='small'>立即核销</AtButton> */}
+                                    <AtButton type='primary' size='small' onClick={this.handleRefund.bind(this,item.id)} >退款申请</AtButton> 
                                 </View>
                             }
                             {
-                                item.status == "COMMENTING  " && <View>
+                                item.status == "COMMENTING" && <View>
                                     <AtButton type='primary' size='small'>退款申请</AtButton> 
                                     <Text className="margin8"></Text>
                                     <AtButton type='primary' size='small'>我要评价</AtButton>

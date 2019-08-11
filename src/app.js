@@ -25,6 +25,7 @@ class App extends Component {
       'pages/product/add',
       'pages/product/edit',
       'pages/order/index',
+      'pages/order/refund/index',
       'pages/product/detail',
       'pages/order/submit/index',
       'pages/p2p/index',

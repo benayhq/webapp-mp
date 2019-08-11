@@ -117,12 +117,14 @@ export default class Detail extends Component{
     }
 
     componentDidMount(){
+        console.log('componentDidMount');
         this.initLogin();
         this.loadData();
     }
 
     componentWillMount(){
-        let activeId = this.$router.params.activeId,
+        //  let activeId = this.$router.params.activeId,
+        let activeId = 51,
             referId = this.$router.params.referId,
             source = this.$router.params.sc;
         if (activeId && referId ) {
@@ -292,10 +294,10 @@ export default class Detail extends Component{
                         <View>预付款可退 ·</View>
                         <View>预付款可退</View>
                     </View>
-                    <View className="mp-activedetail__consultation">
+                    {/* <View className="mp-activedetail__consultation">
                         <Text>咨询产品</Text>
                         <Text>艾美玻尿酸 0.8ml 2支</Text>
-                    </View>
+                    </View> */}
 
                     <View className="mp-activedetail__person">
                         <View className="mp-activedetail__header">
@@ -309,7 +311,7 @@ export default class Detail extends Component{
                              {data.username}
                             </View>
                             <View>
-                             {data.commentScore}分（{data.commentPeople}人评）
+                             {data.commentScore}分（{ data &&  data.commentPeople !=null ? data.commentPeople:0}人评）
                             </View>
                             <View>
                             服务区域：上海市 黄浦区  {activeId}

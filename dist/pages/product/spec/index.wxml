@@ -19,6 +19,5 @@
             </view>
         </block>
         <view class="{{prefix + '__bottom'}}" bindtap="handleSubmitOrder" data-e-tap-so="this">拼 团</view>
-        <at-toast compid="{{$compid__80}}"></at-toast>
     </view>
 </block>

@@ -170,7 +170,7 @@ export default class Spec extends Component{
                     拼 团
                 </View>
 
-                <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast>
+                {/* <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast> */}
             </View>
         )
     }

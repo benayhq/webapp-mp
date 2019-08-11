@@ -247,7 +247,7 @@ export default class Index extends Component {
   }
   
   async onPublish(e){
-    const {activeAllName: activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
+    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
 
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')

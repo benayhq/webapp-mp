@@ -21,15 +21,13 @@
                 <view>预付款可退 ·</view>
                 <view>预付款可退</view>
             </view>
-            <view class="mp-activedetail__consultation"><text>咨询产品</text><text>艾美玻尿酸 0.8ml 2支</text>
-            </view>
             <view class="mp-activedetail__person">
                 <view class="mp-activedetail__header">
                     <image mode="scaleToFill" src="{{data.profileUrl}}"></image>
                 </view>
                 <view class="mp-activedetail__content">
                     <view>{{data.username}}</view>
-                    <view>{{data.commentScore}}分（{{data.commentPeople}}人评）</view>
+                    <view>{{data.commentScore}}分（{{data && data.commentPeople != null ? data.commentPeople : 0}}人评）</view>
                     <view>服务区域：上海市 黄浦区 {{activeId}}</view>
                 </view>
             </view>
@@ -113,15 +111,15 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup compid="{{$compid__47}}">
+        <popup compid="{{$compid__506}}">
             <block wx:if="{{bContact}}">
-                <contact compid="{{$compid__48}}"></contact>
+                <contact compid="{{$compid__507}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec compid="{{$compid__49}}"></spec>
+                <spec compid="{{$compid__508}}"></spec>
             </block>
         </popup>
-        <modal compid="{{$compid__50}}">
+        <modal compid="{{$compid__509}}">
             <tuan-list></tuan-list>
         </modal>
     </view>

@@ -397,7 +397,8 @@ image {
   margin: 14rpx 0 0 0;
   height: 287rpx;
   background: white;
-  border: 1rpx solid white; }
+  border: 1rpx solid white;
+  overflow: auto; }
 
 .mp-activedetail__first {
   line-height: 87rpx;

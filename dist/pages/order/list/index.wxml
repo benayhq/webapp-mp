@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <view class="mp-order-list" wx:for="{{loopArray18}}" wx:for-item="item" wx:for-index="_anonIdx2">
-            <title compid="{{item.$compid__71}}"></title>
+        <view class="mp-order-list" wx:for="{{loopArray124}}" wx:for-item="item" wx:for-index="_anonIdx2">
+            <title compid="{{item.$compid__547}}"></title>
             <view class="product">
                 <view class="left">
                     <image style="height:100%;width:100%;margin:0 auto;padding:5px;" mode="scaleToFill" src="{{item.$original.imgUrl}}"></image>
@@ -15,23 +15,23 @@
             <view class="order-action">
                 <view class="action">
                     <block wx:if="{{item.$original.status == 'UNPAY'}}">
-                        <at-button compid="{{item.$compid__72}}">支付订单</at-button>
+                        <at-button compid="{{item.$compid__548}}">支付订单</at-button>
                     </block>
                     <block wx:if="{{item.$original.status == 'PAID'}}">
                         <view>
-                            <at-button compid="{{item.$compid__73}}">我要评价</at-button><text class="margin8"></text>
-                            <at-button compid="{{item.$compid__74}}">立即核销</at-button>
+                            <at-button compid="{{item.$compid__549}}">我要评价</at-button><text class="margin8"></text>
+                            <at-button compid="{{item.$compid__550}}">退款申请</at-button>
                         </view>
                     </block>
-                    <block wx:if="{{item.$original.status == 'COMMENTING  '}}">
+                    <block wx:if="{{item.$original.status == 'COMMENTING'}}">
                         <view>
-                            <at-button compid="{{item.$compid__75}}">退款申请</at-button> <text class="margin8"></text>
-                            <at-button compid="{{item.$compid__76}}">我要评价</at-button>
+                            <at-button compid="{{item.$compid__551}}">退款申请</at-button> <text class="margin8"></text>
+                            <at-button compid="{{item.$compid__552}}">我要评价</at-button>
                         </view>
                     </block>
                     <block wx:if="{{item.$original.status == 'CONSUMPTION'}}">
                         <view>
-                            <at-button compid="{{item.$compid__77}}">重新购买</at-button>
+                            <at-button compid="{{item.$compid__553}}">重新购买</at-button>
                         </view>
                     </block>
                 </view><text></text> 

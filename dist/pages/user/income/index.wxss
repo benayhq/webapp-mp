@@ -1,6 +1,5 @@
 
 .mp-user__income {
-  width: 750rpx;
   height: 169rpx;
   background: white;
   border: 1rpx solid white;

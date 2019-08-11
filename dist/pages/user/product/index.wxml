@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
         <block wx:if="{{newFilterList}}">
-            <view class="mp-user__product" wx:for="{{loopArray10}}" wx:for-item="item" wx:for-index="_anonIdx2">
+            <view class="mp-user__product" wx:for="{{loopArray118}}" wx:for-item="item" wx:for-index="_anonIdx2">
                 <view>
                     <image className="icon-header" src="{{item.$original.imgUrl}}"></image>
                 </view>

@@ -20,9 +20,7 @@ var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _jump = require("../../utils/jump.js");
-
-var _jump2 = _interopRequireDefault(_jump);
+var _payment = require("../../../utils/payment.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -36,88 +34,140 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Spec = (_dec = (0, _index3.connect)(function (state) {
+var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
-  _inherits(Spec, _BaseComponent);
+  _inherits(SubmitOrder, _BaseComponent);
 
-  function Spec() {
+  function SubmitOrder() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Spec);
+    _classCallCheck(this, SubmitOrder);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryItem", "productItems", "isChange", "productId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
-      _index2.default.navigateTo({
-        url: url
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__554", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+      navigationBarTitleText: '发起退款'
+    }, _this.handleAlert = function (type, message) {
+      _index2.default.atMessage({
+        'message': message,
+        'type': type
       });
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.onDateChange = function (e) {
+      _this.setState({
+        appointmentDate: e.detail.value
+      });
+    }, _this.customComponents = ["AtMessage"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Spec, [{
+  _createClass(SubmitOrder, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(Spec.prototype.__proto__ || Object.getPrototypeOf(Spec.prototype), "_constructor", this).apply(this, arguments);
+      _get(SubmitOrder.prototype.__proto__ || Object.getPrototypeOf(SubmitOrder.prototype), "_constructor", this).apply(this, arguments);
       this.state = {
-        prefix: '.mp-spec',
-        isChange: false,
-        productId: 0,
-        categoryItem: {
-          productDocumentLocation: '',
-          productName: '',
-          productDiscountPrice: '',
-          productPrice: '',
-          productAdvance: ''
-        },
-        productItems: [],
-        text: '请选择品类',
+        imgUrl: '',
+        appointmentDate: '',
+        activityProductId: '',
+        product: {},
+        text: '',
         isOpended: false
       };
       this.$$refs = [];
     }
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps, props) {
+    key: "handleSubmitOrder",
+    value: function handleSubmitOrder() {
+      var _state = this.state,
+          activityProductId = _state.activityProductId,
+          appointmentDate = _state.appointmentDate;
+
+      var that = this;
+
+      var payload = {
+        activityProductId: activityProductId,
+        appointmentDate: appointmentDate
+      };
+
+      this.props.dispatchCreateOrder(payload).then(function (response) {
+        if (response.content && response.content != null) {
+          // 微信支付.
+          that.handlePay(response.content);
+        } else {
+          that.handleAlert('error', response.error);
+        }
+      });
+    }
+  }, {
+    key: "handlePay",
+    value: function handlePay(orderId) {
       var _this2 = this;
 
-      this.getImgUrl(nextProps.products[0].productDocumentLocation).then(function (res) {
-        _this2.setState({
-          categoryItem: {
-            productDocumentLocation: res,
-            productName: nextProps.products[0].productName,
-            productDiscountPrice: nextProps.products[0].productDiscountPrice,
-            productPrice: nextProps.products[0].productPrice,
-            productAdvance: nextProps.products[0].productAdvance,
-            productId: nextProps.products[0].productId
-          }
-        });
+      var payload = {
+        id: orderId
+      };
+      this.props.dispatchPrePay(payload).then(function (response) {
+        console.log('response', response);
+
+        if (response.content && response.content != null) {
+          (0, _payment.WeChatPay)(response.content, _this2.payNotice.bind(_this2));
+        } else {
+          _this2.handleAlert('error', response.error);
+        }
+      });
+    }
+  }, {
+    key: "payNotice",
+    value: function payNotice(type, response) {
+      var that = this;
+      switch (type) {
+        case "success":
+          that.setState({
+            isOpended: true,
+            text: '支付成功'
+          });
+          break;
+        case "fail":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+        case "complete":
+          that.setState({
+            isOpended: true,
+            text: '支付失败'
+          });
+          break;
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      var payload = {
+        productId: this.$router.params.productId
+      };
+
+      this.setState({
+        activityProductId: this.$router.params.productId,
+        activityName: this.$router.params.activityName
       });
 
-      if (nextProps.products && nextProps.products.length > 0) {
-
-        var productItems = [];
-
-        nextProps.products.map(function (item, key) {
-          productItems.push({
-            productDocumentLocation: item.productDocumentLocation,
-            productName: item.productName,
-            productDiscountPrice: item.productDiscountPrice,
-            productPrice: item.productPrice,
-            productAdvance: item.productAdvance,
-            isChecked: false,
-            productId: item.productId
+      this.props.dispatchQueryProductInfo(payload).then(function (response) {
+        _this3.setState({
+          product: response.content
+        });
+        _this3.getImgUrl(response.content.location).then(function (response) {
+          _this3.setState({
+            imgUrl: response
           });
         });
-
-        this.setState({
-          productItems: productItems
-        });
-      }
+      });
     }
   }, {
     key: "getImgUrl",
@@ -132,7 +182,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
                   location: location
                 };
                 _context.next = 3;
-                return this.props.dispatchDownLoadUrl(payload);
+                return this.props.dispatchCreateOrderDownLoadUrl(payload);
 
               case 3:
                 result = _context.sent;
@@ -153,53 +203,6 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "handleChangeCategory",
-    value: function handleChangeCategory(product) {
-      var _this3 = this;
-
-      console.log('product.productId', product.productId);
-      this.setState({
-        productId: product.productId,
-        isOpended: false
-      });
-
-      var newProducts = this.state.productItems.map(function (item) {
-        item.isChecked = product.productId === item.productId;
-        return item;
-      });
-
-      this.getImgUrl(product.productDocumentLocation).then(function (res) {
-        _this3.setState({
-          categoryItem: {
-            productDocumentLocation: res,
-            productName: product.productName,
-            productDiscountPrice: product.productDiscountPrice,
-            productPrice: product.productPrice,
-            productAdvance: product.productAdvance
-          }
-        });
-      });
-
-      this.setState({
-        productItems: newProducts
-      });
-    }
-  }, {
-    key: "handleSubmitOrder",
-    value: function handleSubmitOrder(e) {
-      var productId = this.state.productId;
-
-      if (productId === 0) {
-        this.setState({
-          isOpended: true
-        });
-        return;
-      }
-      console.log('productId', productId);
-      console.log('this.props.activityName', this.props.activityName);
-      (0, _jump2.default)({ url: '/pages/order/submit/index?productId=' + productId + '&activityName=' + this.props.activityName });
-    }
-  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -207,27 +210,32 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var $compid__554 = (0, _index.genCompid)(__prefix + "$compid__554");
 
-      var _state = this.__state,
-          prefix = _state.prefix,
-          isChange = _state.isChange,
-          categoryItem = _state.categoryItem,
-          productItems = _state.productItems,
-          icon = _state.icon,
-          text = _state.text;
+      var _state2 = this.__state,
+          product = _state2.product,
+          activityName = _state2.activityName,
+          imgUrl = _state2.imgUrl,
+          isOpended = _state2.isOpended,
+          text = _state2.text;
 
 
-      Object.assign(this.__state, {});
+      var $props__554 = {
+        "isOpened": isOpended,
+        "text": text,
+        "duration": 1000
+      };
+      _index.propsManager.set($props__554, $compid__554);
+      Object.assign(this.__state, {
+        $compid__554: $compid__554,
+        activityName: activityName
+      });
       return this.__state;
     }
   }]);
 
-  return Spec;
-}(_index.Component), _class2.$$events = ["handleChangeCategory", "handleSubmitOrder"], _class2.defaultProps = {
-  data: {},
-  selected: {},
-  onSelect: function onSelect() {}
-}, _class2.$$componentPath = "pages/product/spec/index", _temp2)) || _class);
-exports.default = Spec;
+  return SubmitOrder;
+}(_index.Component), _class2.$$events = ["handleSubmitOrder"], _class2.$$componentPath = "pages/order/refund/index", _temp2)) || _class);
+exports.default = SubmitOrder;
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Spec));
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(SubmitOrder, true));

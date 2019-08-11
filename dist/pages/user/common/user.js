@@ -57,17 +57,17 @@ var User = function () {
       return [{
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-footer',
         text: '浏览历史',
-        url: 'http://i2.tiimg.com/693434/35232d302546d311.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-footprint@2x.png',
         pageUrl: 'pages/user/history/index'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-people',
         text: '历史咨询师',
-        url: 'http://i2.tiimg.com/693434/bd428f0847831ca6.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-portrait@2x.png',
         pageUrl: 'pages/user/consultant/index'
       }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-service',
         text: '',
-        url: 'http://i2.tiimg.com/693434/f60b1369c18e6712.png',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-headset2@2x.png',
         pageUrl: ''
         // 客户服务
       }];

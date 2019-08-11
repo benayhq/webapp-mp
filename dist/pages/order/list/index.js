@@ -50,7 +50,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray18", "OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray124", "OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
       OrderState: '待付款',
       ProductImg: '',
       OrderList: [],
@@ -60,6 +60,10 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       _index2.default.atMessage({
         'message': message,
         'type': type
+      });
+    }, _this.handleRefund = function (orderId) {
+      _index2.default.navigateTo({
+        url: '/pages/order/refund/index?orderId=' + orderId
       });
     }, _this.customComponents = ["Title", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -180,61 +184,62 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var OrderList = this.__state.OrderList;
 
 
-      var loopArray18 = OrderList.map(function (item, _anonIdx) {
+      var loopArray124 = OrderList.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "csNyBegvmQ" + _anonIdx);
+        var $compid__547 = (0, _index.genCompid)(__prefix + "XyDUHnmzoB" + _anonIdx);
         _index.propsManager.set({
           "OrderId": item.$original.id,
           "displayStatusDes": item.$original.displayStatusDes,
           "AgentName": item.$original.customerName
-        }, $compid__71);
-        var $compid__72 = (0, _index.genCompid)(__prefix + "ozVSXjkGWK" + _anonIdx);
+        }, $compid__547);
+        var $compid__548 = (0, _index.genCompid)(__prefix + "vKuJJNeJXV" + _anonIdx);
         item.$original.status == "UNPAY" && _index.propsManager.set({
           "type": "primary",
           "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
           "size": "small"
-        }, $compid__72);
-        var $compid__73 = (0, _index.genCompid)(__prefix + "xPwhOTmLgs" + _anonIdx);
+        }, $compid__548);
+        var $compid__549 = (0, _index.genCompid)(__prefix + "YoWutHULMr" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
           "size": "small",
           "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-        }, $compid__73);
-        var $compid__74 = (0, _index.genCompid)(__prefix + "ZxVuhdrCYb" + _anonIdx);
+        }, $compid__549);
+        var $compid__550 = (0, _index.genCompid)(__prefix + "KaiaERPfsf" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
-          "size": "small"
-        }, $compid__74);
-        var $compid__75 = (0, _index.genCompid)(__prefix + "IXQdXUWdiA" + _anonIdx);
-        item.$original.status == "COMMENTING  " && _index.propsManager.set({
+          "size": "small",
+          "onClick": _this4.handleRefund.bind(_this4, item.$original.id)
+        }, $compid__550);
+        var $compid__551 = (0, _index.genCompid)(__prefix + "HOoRqHMjSI" + _anonIdx);
+        item.$original.status == "COMMENTING" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
-        }, $compid__75);
-        var $compid__76 = (0, _index.genCompid)(__prefix + "DenMhddAkG" + _anonIdx);
-        item.$original.status == "COMMENTING  " && _index.propsManager.set({
+        }, $compid__551);
+        var $compid__552 = (0, _index.genCompid)(__prefix + "ctyGJozalb" + _anonIdx);
+        item.$original.status == "COMMENTING" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
-        }, $compid__76);
-        var $compid__77 = (0, _index.genCompid)(__prefix + "uyFpKyktJD" + _anonIdx);
+        }, $compid__552);
+        var $compid__553 = (0, _index.genCompid)(__prefix + "LgDdKmsNRY" + _anonIdx);
         item.$original.status == "CONSUMPTION" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
-        }, $compid__77);
+        }, $compid__553);
         return {
-          $compid__71: $compid__71,
-          $compid__72: $compid__72,
-          $compid__73: $compid__73,
-          $compid__74: $compid__74,
-          $compid__75: $compid__75,
-          $compid__76: $compid__76,
-          $compid__77: $compid__77,
+          $compid__547: $compid__547,
+          $compid__548: $compid__548,
+          $compid__549: $compid__549,
+          $compid__550: $compid__550,
+          $compid__551: $compid__551,
+          $compid__552: $compid__552,
+          $compid__553: $compid__553,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
-        loopArray18: loopArray18
+        loopArray124: loopArray124
       });
       return this.__state;
     }
