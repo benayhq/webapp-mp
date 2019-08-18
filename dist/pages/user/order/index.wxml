@@ -4,10 +4,10 @@
         </view>
         <view class="mp-user__ordernav">
             <block wx:if="{{list}}">
-                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{loopArray13}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?status=' + item.$original.status + '&index=' + (index + 1)}}">
+                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{loopArray22}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?status=' + item.$original.status + '&index=' + (index + 1)}}">
                     <block>
                         <block wx:if="{{item.$original.count > 0}}">
-                            <at-badge compid="{{item.$compid__70}}">
+                            <at-badge compid="{{item.$compid__125}}">
                                 <view class="{{item.$original.icon}}"></view>
                             </at-badge>
                         </block>

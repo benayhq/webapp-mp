@@ -60,8 +60,8 @@ export default class OrderDetail extends Component{
                 <Header content={content}/>
                 <Assemble content={content}/>
                 <OrderProduct order={order} content={content}/>
-                <Footer content={content} qrCode={content.qrCode}/>
-                <ToolBar toolBar={content.toolBar}/>
+                <Footer content={content} qrCode={content ? content.qrCode : ""}/>
+                <ToolBar toolBar={content ? content.toolBar : ""}/>
             </View>
         )
     }

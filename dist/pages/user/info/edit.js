@@ -52,7 +52,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "$compid__16", "$compid__17", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__206", "$compid__207", "$compid__208", "$compid__209", "$compid__210", "$compid__211", "$compid__212", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -70,21 +70,24 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
 
       if (nickName === "") {
         _this.handleAlert('error', '呢称不能为空');
+        return;
       }
 
       if (cellPhone === "") {
         _this.handleAlert('error', '手机号不能为空');
+        return;
       }
+      // if(weixin==="") {
+      //     this.handleAlert('error','微信号不能为空');
+      //     return;
+      // }
 
-      if (weixin === "") {
-        _this.handleAlert('error', '微信号不能为空');
+      if (imgArraySrc.length === 0) {
+        _this.handleAlert('error', '请上传二维码');
+        return;
       }
-
       // if(serviceAddress===""){
       //     this.handleAlert('error','服务地址不能为空');
-      // }
-      // if(imgArraySrc.length === 0){
-      //     this.handleAlert('error','请上传二维码');
       // }
 
       _this.getAuthInfo().then(function (userinfo) {
@@ -99,7 +102,9 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           id: userinfo.id
         };
         _this.props.UpdateUserInfo(payload).then(function (res) {
-          console.log('response', res);
+          _index2.default.navigateTo({
+            url: '/pages/user/index'
+          });
         });
       });
     }, _this.customComponents = ["AtMessage", "AtForm", "AtInput", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
@@ -123,6 +128,8 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         address: '',
         qrCode: ''
       };
+
+      this.init();
       this.$$refs = [];
     }
   }, {
@@ -134,6 +141,8 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
     key: "initData",
     value: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var _this2 = this;
+
         var response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -145,17 +154,24 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
               case 2:
                 response = _context.sent;
 
+
                 console.log('response', response);
+                this.setState({
+                  nickName: response.name,
+                  userName: response.name,
+                  cellPhone: response.cellphone,
+                  weixin: response.wechatId,
+                  address: response.address
+                });
 
-                // this.setState({
-                //     nickName:response.nickname,
-                //     name:response.name,
-                //     cellPhone:response.cellphone,
-                //     wechatId:response.wechatId,
-                //     address:response.address
-                // });
+                this.getImgUrl(response.wechatQrcode).then(function (response) {
+                  _this2.setState({
+                    files: [{ url: response }]
+                  });
+                  imgArraySrc.push(response);
+                });
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -175,7 +191,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleUploadChange",
     value: function handleUploadChange(files) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.setState({
         files: files
@@ -201,7 +217,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         };
 
 
-        _this2.props.dispatchUploadConfig(payload).then(function (response) {
+        _this3.props.dispatchUploadConfig(payload).then(function (response) {
           uploadImage(file, response.content.location, function (result) {
             imgArraySrc.push(result);
             console.log("======上传成功图片地址为：", result);
@@ -311,6 +327,39 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       return address;
     }
   }, {
+    key: "getImgUrl",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                payload = {
+                  location: location
+                };
+                _context3.next = 3;
+                return this.props.dispatchDownLoadUrl(payload);
+
+              case 3:
+                result = _context3.sent;
+                return _context3.abrupt("return", result.content);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getImgUrl(_x) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return getImgUrl;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -318,13 +367,13 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__11 = (0, _index.genCompid)(__prefix + "$compid__11");
-      var $compid__12 = (0, _index.genCompid)(__prefix + "$compid__12");
-      var $compid__13 = (0, _index.genCompid)(__prefix + "$compid__13");
-      var $compid__14 = (0, _index.genCompid)(__prefix + "$compid__14");
-      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
-      var $compid__16 = (0, _index.genCompid)(__prefix + "$compid__16");
-      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
+      var $compid__206 = (0, _index.genCompid)(__prefix + "$compid__206");
+      var $compid__207 = (0, _index.genCompid)(__prefix + "$compid__207");
+      var $compid__208 = (0, _index.genCompid)(__prefix + "$compid__208");
+      var $compid__209 = (0, _index.genCompid)(__prefix + "$compid__209");
+      var $compid__210 = (0, _index.genCompid)(__prefix + "$compid__210");
+      var $compid__211 = (0, _index.genCompid)(__prefix + "$compid__211");
+      var $compid__212 = (0, _index.genCompid)(__prefix + "$compid__212");
 
       var _state = this.__state,
           nickName = _state.nickName,
@@ -335,15 +384,15 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _state.address,
           qrCode = _state.qrCode;
 
-      var $props__11 = {
+      var $props__206 = {
         "name": "value1",
         "title": "\u5462\u79F0",
         "type": "text",
-        "placeholder": "Shawn",
+        "placeholder": "\u5462\u79F0",
         "value": nickName,
         "onChange": this.handleNickNameChange.bind(this)
       };
-      var $props__12 = {
+      var $props__207 = {
         "name": "value1",
         "title": "\u59D3\u540D",
         "type": "text",
@@ -351,7 +400,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": userName,
         "onChange": this.handleUserNameChange.bind(this)
       };
-      var $props__13 = {
+      var $props__208 = {
         "name": "value6",
         "title": "\u624B\u673A\u53F7\u7801",
         "type": "phone",
@@ -359,7 +408,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": cellPhone,
         "onChange": this.handleMobileChange.bind(this)
       };
-      var $props__14 = {
+      var $props__209 = {
         "name": "value1",
         "title": "\u5FAE\u4FE1",
         "type": "text",
@@ -367,7 +416,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": weixin,
         "onChange": this.handleWeChatChange.bind(this)
       };
-      var $props__15 = {
+      var $props__210 = {
         "name": "value1",
         "title": "\u5730\u5740",
         "type": "text",
@@ -375,30 +424,30 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": address,
         "onChange": this.handleAddressChange.bind(this)
       };
-      var $props__16 = {
+      var $props__211 = {
         "className": "uploadPicker",
         "files": this.__state.files,
         "onChange": this.handleUploadChange.bind(this)
       };
-      var $props__17 = {
+      var $props__212 = {
         "type": "primary",
         "onClick": this.handleSaveUserInfo.bind(this)
       };
-      _index.propsManager.set($props__11, $compid__11);
-      _index.propsManager.set($props__12, $compid__12);
-      _index.propsManager.set($props__13, $compid__13);
-      _index.propsManager.set($props__14, $compid__14);
-      _index.propsManager.set($props__15, $compid__15);
-      _index.propsManager.set($props__16, $compid__16);
-      _index.propsManager.set($props__17, $compid__17);
+      _index.propsManager.set($props__206, $compid__206);
+      _index.propsManager.set($props__207, $compid__207);
+      _index.propsManager.set($props__208, $compid__208);
+      _index.propsManager.set($props__209, $compid__209);
+      _index.propsManager.set($props__210, $compid__210);
+      _index.propsManager.set($props__211, $compid__211);
+      _index.propsManager.set($props__212, $compid__212);
       Object.assign(this.__state, {
-        $compid__11: $compid__11,
-        $compid__12: $compid__12,
-        $compid__13: $compid__13,
-        $compid__14: $compid__14,
-        $compid__15: $compid__15,
-        $compid__16: $compid__16,
-        $compid__17: $compid__17
+        $compid__206: $compid__206,
+        $compid__207: $compid__207,
+        $compid__208: $compid__208,
+        $compid__209: $compid__209,
+        $compid__210: $compid__210,
+        $compid__211: $compid__211,
+        $compid__212: $compid__212
       });
       return this.__state;
     }

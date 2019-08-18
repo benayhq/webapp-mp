@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "showUserText", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray76", "$compid__421", "$compid__422", "$compid__423", "$compid__424", "$compid__425", "showUserText", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -273,43 +273,45 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         var _this3 = this;
 
+        var result, errMsg, userInfo, payload;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _index2.default.getUserInfo().then(function (res) {
-                  var errMsg = res.errMsg,
-                      userInfo = res.userInfo;
+                _context4.next = 2;
+                return _index2.default.getUserInfo();
 
-                  if (errMsg === 'getUserInfo:ok') {
-                    _index2.default.setStorage({ key: 'authinfo', data: userInfo });
+              case 2:
+                result = _context4.sent;
+                errMsg = result.errMsg, userInfo = result.userInfo;
 
-                    var payload = {
-                      id: userInfo.id,
-                      nickname: userInfo.nickName,
-                      name: userInfo.nickName
-                    };
+                if (errMsg === 'getUserInfo:ok') {
+                  _index2.default.setStorage({ key: 'authinfo', data: userInfo });
+                  payload = {
+                    id: userInfo.id,
+                    nickname: userInfo.nickName,
+                    name: userInfo.nickName,
+                    profileUrl: userInfo.avatarUrl
+                  };
 
+                  this.setState({
+                    avatarUrl: userInfo.avatarUrl,
+                    userName: userInfo.nickName
+                  });
+                  this.props.UpdateUserInfo(payload).then(function (res) {
+                    console.log('res', res);
                     _this3.setState({
-                      avatarUrl: userInfo.avatarUrl,
-                      userName: userInfo.nickName
+                      isOpened: false
                     });
+                  });
+                } else {
+                  _index2.default.showToast({
+                    title: '授权失败',
+                    icon: 'none'
+                  });
+                }
 
-                    _this3.props.UpdateUserInfo(payload).then(function (res) {
-                      console.log('res', res);
-                      _this3.setState({
-                        isOpened: false
-                      });
-                    });
-                  } else {
-                    _index2.default.showToast({
-                      title: '授权失败',
-                      icon: 'none'
-                    });
-                  }
-                });
-
-              case 1:
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -390,11 +392,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
-      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
-      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
-      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
-      var $compid__10 = (0, _index.genCompid)(__prefix + "$compid__10");
+      var $compid__421 = (0, _index.genCompid)(__prefix + "$compid__421");
+      var $compid__422 = (0, _index.genCompid)(__prefix + "$compid__422");
+      var $compid__423 = (0, _index.genCompid)(__prefix + "$compid__423");
+      var $compid__424 = (0, _index.genCompid)(__prefix + "$compid__424");
+      var $compid__425 = (0, _index.genCompid)(__prefix + "$compid__425");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -409,56 +411,54 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      console.log('list', list);
-
-      var $props__6 = {
+      var $props__421 = {
         "isOpened": isOpened
       };
-      var $props__7 = {
+      var $props__422 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
-        "onGetUserInfo": this.handleAuthClick,
+        "onGetUserInfo": this.handleAuthClick.bind(this),
         "type": "primary",
         "size": "small"
       };
-      var $props__8 = {
+      var $props__423 = {
         "profit": profit
       };
-      var $props__9 = {
+      var $props__424 = {
         "list": orders
       };
-      var $props__10 = {
+      var $props__425 = {
         "title": this.__state.context1
       };
-      var loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray76 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__5 = (0, _index.genCompid)(__prefix + "bPtzwlccwz" + _anonIdx);
+        var $compid__420 = (0, _index.genCompid)(__prefix + "InEbJVGBCf" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__5);
+        }, $compid__420);
         return {
-          $compid__5: $compid__5,
+          $compid__420: $compid__420,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__6, $compid__6);
-      _index.propsManager.set($props__7, $compid__7);
-      isAgent && _index.propsManager.set($props__8, $compid__8);
-      _index.propsManager.set($props__9, $compid__9);
-      isShowLoanApp === true && _index.propsManager.set($props__10, $compid__10);
+      _index.propsManager.set($props__421, $compid__421);
+      _index.propsManager.set($props__422, $compid__422);
+      isAgent && _index.propsManager.set($props__423, $compid__423);
+      _index.propsManager.set($props__424, $compid__424);
+      isShowLoanApp === true && _index.propsManager.set($props__425, $compid__425);
       Object.assign(this.__state, {
-        loopArray0: loopArray0,
-        $compid__6: $compid__6,
-        $compid__7: $compid__7,
-        $compid__8: $compid__8,
-        $compid__9: $compid__9,
-        $compid__10: $compid__10,
+        loopArray76: loopArray76,
+        $compid__421: $compid__421,
+        $compid__422: $compid__422,
+        $compid__423: $compid__423,
+        $compid__424: $compid__424,
+        $compid__425: $compid__425,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

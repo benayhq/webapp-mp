@@ -37,6 +37,7 @@ export default class OrderList extends Component{
     }
 
     async getAllOrderList(statusVo,pageNo,pageSize){
+        // console.log('this.setState',this.setState);
         var payload = {
             statusVo:statusVo,
             pageNo:pageNo,
@@ -103,8 +104,7 @@ export default class OrderList extends Component{
                     }
                 </View>
               </AtTabsPane>
-
-             <AtTabsPane current={current} index={1}>
+              <AtTabsPane current={current} index={1}>
                  {
                      list &&  <View>
                      <OrderItem list={list}/>
@@ -118,9 +118,8 @@ export default class OrderList extends Component{
                     }
                     </View>
                  }
-             
               </AtTabsPane>
-             <AtTabsPane current={current} index={2}>
+              <AtTabsPane current={current} index={2}>
                  {list && <View>
                     <OrderItem list={list}/>
                     {list.length> 0 && <View className="mp-order-loadmore">
@@ -133,7 +132,7 @@ export default class OrderList extends Component{
                 </View>}
               </AtTabsPane>
               <AtTabsPane current={current} index={3}>
-                  {
+                {
                       list &&  <View>
                       <OrderItem list={list}/>
                       {list.length> 0 && <View className="mp-order-loadmore">
@@ -141,11 +140,10 @@ export default class OrderList extends Component{
                               onClick={this.handleLoadMore.bind(this,'CONSUMPTION')}
                               status={status}
                           />
-                            </View>
+                        </View>
                       }
                   </View>
-                  }
-
+                }
               </AtTabsPane>
                  <AtTabsPane current={current} index={4}>
                  {

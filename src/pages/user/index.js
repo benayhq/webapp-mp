@@ -11,7 +11,7 @@ import jump from '../utils/jump';
 
 @connect(state=>state.user,actions)
 class Index extends Component{
-  
+
   config = {
     navigationBarTitleText: '个人中心'
   }
@@ -142,35 +142,32 @@ class Index extends Component{
   }
 
   async handleAuthClick(){
-    Taro.getUserInfo().then((res) => {
-        const { errMsg, userInfo } = res;
-        if (errMsg === 'getUserInfo:ok') {
-          Taro.setStorage({key:'authinfo',data:userInfo});
-
-          let payload = {
-            id:userInfo.id,
-            nickname:userInfo.nickName,
-            name:userInfo.nickName
-          };
-
+    var result = await Taro.getUserInfo();
+    const { errMsg, userInfo } = result;
+    if (errMsg === 'getUserInfo:ok') {
+      Taro.setStorage({key:'authinfo',data:userInfo});
+      let payload = {
+        id:userInfo.id,
+        nickname:userInfo.nickName,
+        name:userInfo.nickName,
+        profileUrl:userInfo.avatarUrl
+      };
+      this.setState({
+        avatarUrl:userInfo.avatarUrl,
+        userName:userInfo.nickName
+      });
+      this.props.UpdateUserInfo(payload).then((res)=>{
+          console.log('res',res);
           this.setState({
-            avatarUrl:userInfo.avatarUrl,
-            userName:userInfo.nickName
+            isOpened:false
           });
-
-          this.props.UpdateUserInfo(payload).then((res)=>{
-              console.log('res',res);
-              this.setState({
-                isOpened:false
-              });
-          });
-        } else {
-          Taro.showToast({
-            title: '授权失败',
-            icon: 'none'
-          })
-        }
-    });
+      });
+    } else {
+      Taro.showToast({
+        title: '授权失败',
+        icon: 'none'
+      })
+    }
   }
 
   handleChangeState(){
@@ -234,8 +231,6 @@ class Index extends Component{
     const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText,list} = this.state;
     const isShowLoanApp = !isAgent && flag;
 
-    console.log('list',list);
-
     return (
       <View className='mp-user'>
 
@@ -249,8 +244,8 @@ class Index extends Component{
           <AtButton
              className="mp-user__login"
              text='微信登录'
-             openType='getUserInfo' onGetUserInfo={this.handleAuthClick}
-             type='primary' size='small' >授权登录</AtButton>
+             openType='getUserInfo' onGetUserInfo={this.handleAuthClick.bind(this)}
+             type='primary' size='small'>授权登录</AtButton>
         </View>
       </AtModal>
 

@@ -324,13 +324,13 @@ class EditProduct extends Component{
         console.log(mes)
     }
 
-    async getImgUrl(location){
+   async getImgUrl(location){
       var payload = {
         location:location
       };
       const result = await this.props.dispatchDownLoadUrl(payload);
       return result.content;
-    }
+   }
 
    async initProduct(){
       const {productId} = this.state;
@@ -426,7 +426,7 @@ class EditProduct extends Component{
                     onChange={this.handleChooseImage.bind(this)}
                     onImageClick={this.onImageClick.bind(this)}
                 />
-                  <AtInput
+                <AtInput
                     name='preAmount'
                     title='预定金'
                     type='number'

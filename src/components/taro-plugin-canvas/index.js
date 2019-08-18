@@ -18,7 +18,6 @@ export default class CanvasDrawer extends Component {
     onCreateSuccess: PropTypes.func.isRequired,
     onCreateFail: PropTypes.func.isRequired,
   };
-
   constructor(props) {
     super(props);
     this.state = {

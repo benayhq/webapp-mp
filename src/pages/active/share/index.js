@@ -72,7 +72,7 @@ export default class Index extends Component{
   async getCanvas(templateId){
 
       let userInfo = await getAuthInfo();
-      
+      // page: "pages/product/detail",
       var payload = {
         auto_color: true,
         is_hyaline: true,
@@ -82,11 +82,12 @@ export default class Index extends Component{
         width: 100,
         height: 100
       };
-  
+
       this.getQrCode(payload).then(response=>{
-        
         this.getBase64Src(response).then((imgUrl)=>{
+          console.log('imgUrl',imgUrl);
           this.getActivityData().then(data=>{
+            console.log('data333',data);
             const config = this.buildConfig(templateId,{
               data:data.content,
               img:imgUrl
@@ -111,7 +112,8 @@ export default class Index extends Component{
   
   buildConfig(templateId,configData){
     var response = configData.data,imgUrl = configData.img;
-    console.log('response',response);
+    console.log('configData.data',configData.data);
+    response.inviterProfileUrl = 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132';
     // todo: 调用后台接口动态渲染模板.
     switch(templateId){
       case 1:
@@ -148,7 +150,7 @@ export default class Index extends Component{
             ],
             images: [
               {
-                url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -180,7 +182,7 @@ export default class Index extends Component{
               {
                 x: this.factorWidth(530),
                 y: this.factorHeight(780),
-                text: response.agentName,
+                text: response.inviterName,
                 fontSize: 28,
                 color: '#000',
                 opacity: 1,
@@ -251,7 +253,7 @@ export default class Index extends Component{
             debug: true,
             images: [
               {
-                url: 'http://i1.fuimg.com/693434/27a892904e8d6cc3.png',
+                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -279,7 +281,7 @@ export default class Index extends Component{
                 zIndex: 999
               },
               {
-                url:'http://i1.fuimg.com/693434/001ceee2d4ed561f.png',
+                url:'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
                 x: this.factorWidth(470),
                 y: this.factorHeight(2250),
                 lineHeight: 36,
@@ -364,7 +366,7 @@ export default class Index extends Component{
               debug: true,
               images: [
                 {
-                  url: 'http://i2.tiimg.com/693434/21d537be2c4009cf.png',
+                  url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
                   width: this.getScreenW(),
                   height: this.getScreenH(),
                   y: 0,
@@ -392,7 +394,7 @@ export default class Index extends Component{
                   zIndex: 999
                 },
                 {
-                  url:'http://i1.fuimg.com/693434/001ceee2d4ed561f.png',
+                  url:'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
                   x: this.factorWidth(560),
                   y: this.factorHeight(2150),
                   lineHeight: 36,
@@ -477,7 +479,7 @@ export default class Index extends Component{
             debug: true,
             images: [
               {
-                url: 'http://i2.tiimg.com/693434/1c3f990b9b25bc6b.png',
+                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -569,7 +571,7 @@ export default class Index extends Component{
             ],
             images: [
               {
-                url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -716,10 +718,10 @@ export default class Index extends Component{
 
   initImage(){
     var listImg = [
-        'http://i2.tiimg.com/693434/9303c878fd23d918.png',
-        'http://i2.tiimg.com/693434/6e5b1cb48e6fd139.png',
-        'http://i2.tiimg.com/693434/7e8ed643f74d44b5.png',
-        'http://i2.tiimg.com/693434/aea0dccce4c6ee48.png'
+        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'
       ]
       ,
       thumbNails=[]

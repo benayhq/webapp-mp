@@ -26,8 +26,6 @@ export default class OrderProduct extends Component{
         };
     }
 
-
-
     async getImgUrl(location){
         var payload = {
           location:location
@@ -35,16 +33,18 @@ export default class OrderProduct extends Component{
         const result = await this.props.dispatchCreateOrderDownLoadUrl(payload);
         return result.content;
     }
-
+    
     componentDidMount(){
         setTimeout(()=>{
             console.log('this.props.content.activityProductLocationeee',this.props.content);
-            this.getImgUrl(this.props.content.activityProductLocation).then((response)=>{
-                console.log('response',response);
-                this.setState({
-                    profileUrl:response
-                })
-            });
+            if(this.props.content){
+                this.getImgUrl(this.props.content.activityProductLocation).then((response)=>{
+                    console.log('response',response);
+                    this.setState({
+                        profileUrl:response
+                    })
+                });
+            }
         },1000)
     }
 
@@ -54,7 +54,7 @@ export default class OrderProduct extends Component{
 
         return (
                 <View className="product">
-                <Title displayStatusDes={this.props.content.displayStatusDes} AgentName={this.props.content.agentName}/>
+                <Title displayStatusDes={this.props.content ? this.props.content.displayStatusDes : ""} AgentName={this.props.content ? this.props.content.agentName : ""}/>
                 <ProductItem/>
                 <View className="item">
                      <View className="item-image"> 

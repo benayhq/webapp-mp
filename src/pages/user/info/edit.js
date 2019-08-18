@@ -31,6 +31,8 @@ class Edit extends Component{
             address:'',
             qrCode:''
         };
+
+        this.init();
     }
 
     init(){
@@ -38,27 +40,28 @@ class Edit extends Component{
     }
 
     async initData(){
-        // this.setState({
-        //     nickName:'eee',
-        //     name:'eee',
-        //     cellPhone:'eee',
-        //     wechatId:'eee',
-        //     address:'eee'
-        // });
         var response = await this.getAuthInfo();
-        console.log('response',response);
 
-        // this.setState({
-        //     nickName:response.nickname,
-        //     name:response.name,
-        //     cellPhone:response.cellphone,
-        //     wechatId:response.wechatId,
-        //     address:response.address
-        // });
+        console.log('response',response);
+        this.setState({
+            nickName:response.name,
+            userName:response.name,
+            cellPhone:response.cellphone,
+            weixin:response.wechatId,
+            address:response.address
+        });
+
+        this.getImgUrl(response.wechatQrcode).then((response)=>{
+            this.setState({
+              files:[
+                {url:response}
+              ]
+            });
+            imgArraySrc.push(response);
+        });
     }
 
     componentDidMount(){
-       
     }
 
     handleUploadChange(files) {
@@ -77,7 +80,7 @@ class Edit extends Component{
                   title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
                   mask: true
                 });
-    
+
                 let file = tempFilePaths[i].url;
     
                 var payload ={
@@ -113,7 +116,7 @@ class Edit extends Component{
         const result = await Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
         return result;
     }
-    
+
     handleAlert = (type,message) => {
         Taro.atMessage({
           'message': message,
@@ -163,27 +166,38 @@ class Edit extends Component{
         return address;
     }
 
+    async getImgUrl(location){
+        var payload = {
+          location:location
+        };
+        const result = await this.props.dispatchDownLoadUrl(payload);
+        return result.content;
+    }
+
     handleSaveUserInfo = () =>{
         const {nickName,cellPhone,weixin,serviceAddress
         ,address} = this.state;
 
         if(nickName === "") {
             this.handleAlert('error','呢称不能为空');
+            return;
         }
 
         if(cellPhone==="") {
             this.handleAlert('error','手机号不能为空');
+            return;
         }
+        // if(weixin==="") {
+        //     this.handleAlert('error','微信号不能为空');
+        //     return;
+        // }
 
-        if(weixin==="") {
-            this.handleAlert('error','微信号不能为空');
+        if(imgArraySrc.length === 0){
+            this.handleAlert('error','请上传二维码');
+            return;
         }
-
         // if(serviceAddress===""){
         //     this.handleAlert('error','服务地址不能为空');
-        // }
-        // if(imgArraySrc.length === 0){
-        //     this.handleAlert('error','请上传二维码');
         // }
 
         this.getAuthInfo().then(userinfo=>{
@@ -198,7 +212,9 @@ class Edit extends Component{
                 id:userinfo.id
             };
             this.props.UpdateUserInfo(payload).then(res=>{
-                console.log('response',res);
+                Taro.navigateTo({
+                    url:'/pages/user/index'
+                });
             });
         });
     }
@@ -213,7 +229,7 @@ class Edit extends Component{
                         name='value1'
                         title='呢称'
                         type='text'
-                        placeholder='Shawn'
+                        placeholder='呢称'
                         value={nickName}
                         onChange={this.handleNickNameChange.bind(this)}
                     />

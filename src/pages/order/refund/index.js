@@ -135,9 +135,8 @@ export default class SubmitOrder extends Component{
             <View className="submit-order">
                  <AtMessage/>
                  <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast>
-
-                <View className="submit-order_white-space"></View>
-                <View className="submit-order_product">
+                 <View className="submit-order_white-space"></View>
+                 <View className="submit-order_product">
                     <View className="submit-order_product-content">
                         <View>
                             <View className="submit-order_product-content-img">
@@ -156,7 +155,6 @@ export default class SubmitOrder extends Component{
                         </View>
                     </View>
                 </View>
-
                 <View className="submit-order_footer">
                     <View onClick={this.handleSubmitOrder.bind(this)}>提交订单</View>
                 </View>

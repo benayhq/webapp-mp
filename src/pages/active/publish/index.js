@@ -195,7 +195,6 @@ export default class Index extends Component {
     this.props.dispatchUploadFile(payload).then((res)=>{
       console.log('res',res);
     })
-    return;
   }
 
   handlePickerViewChange(e){
@@ -270,7 +269,7 @@ export default class Index extends Component {
       return;
     }
     const result = await getAuthInfo();
-
+    
     let payload =  {
       "areaCode": "string",
       "docLocations": docLocations,
@@ -297,9 +296,12 @@ export default class Index extends Component {
           url:`/pages/active/share/index?activeId=${res.content}`
         })
       }else{
+        this.setState({
+          isOpened:true
+        });
         this.handleAlert('error',res.error);
       }
-    })
+    });
   }
 
   handleActiveChange(activeName){

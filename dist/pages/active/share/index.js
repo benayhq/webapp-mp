@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__23", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__430", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
@@ -205,6 +205,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
                 userInfo = _context2.sent;
+
+                // page: "pages/product/detail",
                 payload = {
                   auto_color: true,
                   is_hyaline: true,
@@ -217,9 +219,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
 
                 this.getQrCode(payload).then(function (response) {
-
                   _this3.getBase64Src(response).then(function (imgUrl) {
+                    console.log('imgUrl', imgUrl);
                     _this3.getActivityData().then(function (data) {
+                      console.log('data333', data);
                       var config = _this3.buildConfig(templateId, {
                         data: data.content,
                         img: imgUrl
@@ -259,7 +262,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function buildConfig(templateId, configData) {
       var response = configData.data,
           imgUrl = configData.img;
-      console.log('response', response);
+      console.log('configData.data', configData.data);
+      response.inviterProfileUrl = 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqgQbxxNe21poPOytoOu6icmqbNTSSdCYiaJ6ibDSIVyMf4kLJOlx3A6iaGDjGRBzH14811yt7jYGfibMg/132';
       // todo: 调用后台接口动态渲染模板.
       switch (templateId) {
         case 1:
@@ -292,7 +296,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 12
             }],
             images: [{
-              url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -320,7 +324,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             texts: [{
               x: this.factorWidth(530),
               y: this.factorHeight(780),
-              text: response.agentName,
+              text: response.inviterName,
               fontSize: 28,
               color: '#000',
               opacity: 1,
@@ -383,7 +387,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://i1.fuimg.com/693434/27a892904e8d6cc3.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -408,7 +412,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 90,
               zIndex: 999
             }, {
-              url: 'http://i1.fuimg.com/693434/001ceee2d4ed561f.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
               x: this.factorWidth(470),
               y: this.factorHeight(2250),
               lineHeight: 36,
@@ -483,7 +487,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://i2.tiimg.com/693434/21d537be2c4009cf.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -508,7 +512,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 90,
               zIndex: 999
             }, {
-              url: 'http://i1.fuimg.com/693434/001ceee2d4ed561f.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
               x: this.factorWidth(560),
               y: this.factorHeight(2150),
               lineHeight: 36,
@@ -588,7 +592,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://i2.tiimg.com/693434/1c3f990b9b25bc6b.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -670,7 +674,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 12
             }],
             images: [{
-              url: 'http://i1.fuimg.com/693434/ed131e39996b083e.png',
+              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -812,7 +816,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function initImage() {
       var _this5 = this;
 
-      var listImg = ['http://i2.tiimg.com/693434/9303c878fd23d918.png', 'http://i2.tiimg.com/693434/6e5b1cb48e6fd139.png', 'http://i2.tiimg.com/693434/7e8ed643f74d44b5.png', 'http://i2.tiimg.com/693434/aea0dccce4c6ee48.png'],
+      var listImg = ['http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'],
           thumbNails = [],
           index = 0;
 
@@ -876,21 +880,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__23 = (0, _index.genCompid)(__prefix + "$compid__23");
+      var $compid__430 = (0, _index.genCompid)(__prefix + "$compid__430");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__23 = {
+      var $props__430 = {
         "config": this.__state.bannerConfig,
         "onCreateSuccess": this.onCreateSuccess,
         "onCreateFail": this.onCreateFail
       };
-      this.__state.canvasStatus && _index.propsManager.set($props__23, $compid__23);
+      this.__state.canvasStatus && _index.propsManager.set($props__430, $compid__430);
       Object.assign(this.__state, {
-        $compid__23: $compid__23
+        $compid__430: $compid__430
       });
       return this.__state;
     }
