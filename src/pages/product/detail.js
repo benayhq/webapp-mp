@@ -124,7 +124,7 @@ export default class Detail extends Component{
 
     componentWillMount(){
         //  let activeId = this.$router.params.activeId,
-        let activeId = 52,
+        let activeId = this.$router.params.activeId,
             referId = this.$router.params.referId,
             source = this.$router.params.sc;
             

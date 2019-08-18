@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__430", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__476", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
@@ -219,28 +219,26 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
 
                 this.getQrCode(payload).then(function (response) {
-                  _this3.getBase64Src(response).then(function (imgUrl) {
-                    console.log('imgUrl', imgUrl);
-                    _this3.getActivityData().then(function (data) {
-                      console.log('data333', data);
-                      var config = _this3.buildConfig(templateId, {
-                        data: data.content,
-                        img: imgUrl
-                      });
-                      console.log('config', config);
-                      _index2.default.showLoading({
-                        title: '绘制中...'
-                      });
-                      _this3.setState({
-                        bannerConfig: config
-                      });
-                      setTimeout(function () {
-                        _this3.setState({
-                          canvasStatus: true
-                        });
-                      }, 1000);
+                  console.log('response', response);
+                  // this.getBase64Src(response).then((imgUrl)=>{
+                  _this3.getActivityData().then(function (data) {
+                    var config = _this3.buildConfig(templateId, {
+                      data: data.content,
+                      img: response.content
                     });
+                    _index2.default.showLoading({
+                      title: '绘制中...'
+                    });
+                    _this3.setState({
+                      bannerConfig: config
+                    });
+                    setTimeout(function () {
+                      _this3.setState({
+                        canvasStatus: true
+                      });
+                    }, 1000);
                   });
+                  // });
                 });
 
               case 5:
@@ -296,7 +294,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 12
             }],
             images: [{
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -387,7 +385,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -412,7 +410,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 90,
               zIndex: 999
             }, {
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
               x: this.factorWidth(470),
               y: this.factorHeight(2250),
               lineHeight: 36,
@@ -424,7 +422,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             texts: [{
               x: this.factorWidth(340),
               y: this.factorHeight(1580),
-              text: response.agentName,
+              text: response.inviterName,
               fontSize: 28,
               color: '#000',
               opacity: 1,
@@ -487,7 +485,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -512,7 +510,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 90,
               zIndex: 999
             }, {
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
               x: this.factorWidth(560),
               y: this.factorHeight(2150),
               lineHeight: 36,
@@ -524,7 +522,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             texts: [{
               x: this.factorWidth(340),
               y: this.factorHeight(1100),
-              text: response.agentName,
+              text: response.inviterName,
               fontSize: 28,
               color: '#000',
               opacity: 1,
@@ -592,23 +590,25 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             backgroundColor: '#fff',
             debug: true,
             images: [{
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
               x: 0,
               borderRadius: 12,
               zIndex: 10
-            }, {
-              x: this.factorWidth(330),
-              y: this.factorHeight(700),
-              url: imgUrl,
-              width: 180,
-              height: 180,
-              borderRadius: 100,
-              borderWidth: 0,
-              zIndex: 99
-            }, {
+            },
+            // {
+            //   x: this.factorWidth(330),
+            //   y: this.factorHeight(700),
+            //   url: imgUrl,
+            //   width: 180,
+            //   height:180,
+            //   borderRadius: 100,
+            //   borderWidth: 0,
+            //   zIndex: 99,
+            // },
+            {
               x: this.factorWidth(120),
               y: this.factorHeight(100),
               url: response.inviterProfileUrl,
@@ -620,7 +620,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             texts: [{
               x: this.factorWidth(340),
               y: this.factorHeight(140),
-              text: response.agentName,
+              text: response.inviterName,
               fontSize: 28,
               color: '#000',
               opacity: 1,
@@ -674,7 +674,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               borderRadius: 12
             }],
             images: [{
-              url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+              url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
               width: this.getScreenW(),
               height: this.getScreenH(),
               y: 0,
@@ -702,7 +702,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             texts: [{
               x: this.factorWidth(530),
               y: this.factorHeight(780),
-              text: response.agentName,
+              text: response.inviterName,
               fontSize: 28,
               color: '#000',
               opacity: 1,
@@ -816,7 +816,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function initImage() {
       var _this5 = this;
 
-      var listImg = ['http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png', 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'],
+      var listImg = ['https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png', 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png', 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png', 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'],
           thumbNails = [],
           index = 0;
 
@@ -880,21 +880,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__430 = (0, _index.genCompid)(__prefix + "$compid__430");
+      var $compid__476 = (0, _index.genCompid)(__prefix + "$compid__476");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__430 = {
+      var $props__476 = {
         "config": this.__state.bannerConfig,
         "onCreateSuccess": this.onCreateSuccess,
         "onCreateFail": this.onCreateFail
       };
-      this.__state.canvasStatus && _index.propsManager.set($props__430, $compid__430);
+      this.__state.canvasStatus && _index.propsManager.set($props__476, $compid__476);
       Object.assign(this.__state, {
-        $compid__430: $compid__430
+        $compid__476: $compid__476
       });
       return this.__state;
     }

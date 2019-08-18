@@ -114,26 +114,44 @@ function mapHttpToHttps(rawUrl) {
  */
 function downImage(imageUrl) {
   return new Promise(function (resolve, reject) {
-    if (/^http/.test(imageUrl) && !new RegExp(wx.env.USER_DATA_PATH).test(imageUrl)) {
-      _index2.default.downloadFile({
-        // url: (imageUrl),
-        // TODO
-        url: mapHttpToHttps(imageUrl),
-        success: function success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          } else {
-            reject(res.errMsg);
-          }
-        },
-        fail: function fail(err) {
-          reject(err);
+
+    console.log('imageUrl', imageUrl);
+    _index2.default.downloadFile({
+      // url: (imageUrl),
+      // TODO
+      url: mapHttpToHttps(imageUrl),
+      success: function success(res) {
+        if (res.statusCode === 200) {
+          resolve(res.tempFilePath);
+        } else {
+          reject(res.errMsg);
         }
-      });
-    } else {
-      // 支持本地地址
-      resolve(imageUrl);
-    }
+      },
+      fail: function fail(err) {
+        reject(err);
+      }
+    });
+
+    // if (/^http/.test(imageUrl) && !new RegExp(wx.env.USER_DATA_PATH).test(imageUrl)) {
+    //   Taro.downloadFile({
+    //     // url: (imageUrl),
+    //     // TODO
+    //     url: mapHttpToHttps(imageUrl),
+    //     success: (res) => {
+    //       if (res.statusCode === 200) {
+    //         resolve(res.tempFilePath);
+    //       } else {
+    //         reject(res.errMsg);
+    //       }
+    //     },
+    //     fail(err) {
+    //       reject(err);
+    //     },
+    //   });
+    // } else {
+    //   // 支持本地地址
+    //   resolve(imageUrl);
+    // }
   });
 }
 

@@ -84,15 +84,13 @@ export default class Index extends Component{
       };
 
       this.getQrCode(payload).then(response=>{
-        this.getBase64Src(response).then((imgUrl)=>{
-          console.log('imgUrl',imgUrl);
+        console.log('response',response);
+        // this.getBase64Src(response).then((imgUrl)=>{
           this.getActivityData().then(data=>{
-            console.log('data333',data);
             const config = this.buildConfig(templateId,{
               data:data.content,
-              img:imgUrl
+              img:response.content
             });
-            console.log('config',config);
             Taro.showLoading({
               title: '绘制中...'
             });
@@ -105,9 +103,8 @@ export default class Index extends Component{
               });
             },1000);
           });
-        });
+        // });
       });
-
   }
   
   buildConfig(templateId,configData){
@@ -150,7 +147,7 @@ export default class Index extends Component{
             ],
             images: [
               {
-                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+                url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -253,7 +250,7 @@ export default class Index extends Component{
             debug: true,
             images: [
               {
-                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+                url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -281,7 +278,7 @@ export default class Index extends Component{
                 zIndex: 999
               },
               {
-                url:'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+                url:'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
                 x: this.factorWidth(470),
                 y: this.factorHeight(2250),
                 lineHeight: 36,
@@ -295,7 +292,7 @@ export default class Index extends Component{
               {
                 x: this.factorWidth(340),
                 y: this.factorHeight(1580),
-                text: response.agentName,
+                text: response.inviterName,
                 fontSize: 28,
                 color: '#000',
                 opacity: 1,
@@ -366,7 +363,7 @@ export default class Index extends Component{
               debug: true,
               images: [
                 {
-                  url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+                  url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
                   width: this.getScreenW(),
                   height: this.getScreenH(),
                   y: 0,
@@ -394,7 +391,7 @@ export default class Index extends Component{
                   zIndex: 999
                 },
                 {
-                  url:'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+                  url:'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
                   x: this.factorWidth(560),
                   y: this.factorHeight(2150),
                   lineHeight: 36,
@@ -408,7 +405,7 @@ export default class Index extends Component{
                 {
                   x: this.factorWidth(340),
                   y: this.factorHeight(1100),
-                  text: response.agentName,
+                  text: response.inviterName,
                   fontSize: 28,
                   color: '#000',
                   opacity: 1,
@@ -479,7 +476,7 @@ export default class Index extends Component{
             debug: true,
             images: [
               {
-                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
+                url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -487,16 +484,16 @@ export default class Index extends Component{
                 borderRadius: 12,
                 zIndex: 10,
               },
-              {
-                x: this.factorWidth(330),
-                y: this.factorHeight(700),
-                url: imgUrl,
-                width: 180,
-                height:180,
-                borderRadius: 100,
-                borderWidth: 0,
-                zIndex: 99,
-              },
+              // {
+              //   x: this.factorWidth(330),
+              //   y: this.factorHeight(700),
+              //   url: imgUrl,
+              //   width: 180,
+              //   height:180,
+              //   borderRadius: 100,
+              //   borderWidth: 0,
+              //   zIndex: 99,
+              // },
               {
                 x: this.factorWidth(120),
                 y: this.factorHeight(100),
@@ -511,7 +508,7 @@ export default class Index extends Component{
               {
                 x: this.factorWidth(340),
                 y: this.factorHeight(140),
-                text: response.agentName,
+                text: response.inviterName,
                 fontSize: 28,
                 color: '#000',
                 opacity: 1,
@@ -571,7 +568,7 @@ export default class Index extends Component{
             ],
             images: [
               {
-                url: 'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+                url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
                 width: this.getScreenW(),
                 height: this.getScreenH(),
                 y: 0,
@@ -603,7 +600,7 @@ export default class Index extends Component{
               {
                 x: this.factorWidth(530),
                 y: this.factorHeight(780),
-                text: response.agentName,
+                text: response.inviterName,
                 fontSize: 28,
                 color: '#000',
                 opacity: 1,
@@ -718,10 +715,10 @@ export default class Index extends Component{
 
   initImage(){
     var listImg = [
-        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
-        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
-        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
-        'http://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'
+        'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_01.png',
+        'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share_02.png',
+        'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-03.png',
+        'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/share-04.png'
       ]
       ,
       thumbNails=[]
