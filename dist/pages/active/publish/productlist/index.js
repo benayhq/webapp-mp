@@ -73,7 +73,7 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "GzdYZyVMtN" + _anonIdx);
+        var $compid__71 = (0, _index.genCompid)(__prefix + "rROCHOmmjO" + _anonIdx);
         _index.propsManager.set({
           "name": "value",
           "type": "text",
