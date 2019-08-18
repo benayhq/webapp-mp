@@ -79,6 +79,7 @@ export default class Index extends Component {
   }
 
   componentDidMount(){
+    
     if(this.props.groupCount !== ''){
       this.setState({
         groupItemChecked:this.props.groupCount
@@ -305,6 +306,8 @@ export default class Index extends Component {
   }
 
   handleActiveChange(activeName){
+    console.log('activeName',activeName);
+
     this.props.disptachActiveName(activeName);
     this.setState({
       activeName
@@ -362,7 +365,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const {activeAllName: activeName,dateEnd,dateStart,products,weChatNumber,isOpened,activeAllPrice: activePrice} = this.state;
+    const {activeName,dateEnd,dateStart,products,weChatNumber,isOpened} = this.state;
 
     return (
       <View className="mp-active">

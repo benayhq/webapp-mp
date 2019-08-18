@@ -23,6 +23,7 @@ exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments[1];
 
+  console.log('action', action.value);
   switch (action.type) {
     case _constants.PRODUCT_PUBLISH_INFO:
       return _extends({}, state, {

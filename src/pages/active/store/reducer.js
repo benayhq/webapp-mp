@@ -15,6 +15,7 @@ const defaultState = {
 };
 
 export default (state = defaultState,action) => {
+    console.log('action',action.value);
     switch(action.type){
         case PRODUCT_PUBLISH_INFO:
             return {
