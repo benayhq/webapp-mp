@@ -7,9 +7,9 @@ $panelBgColor:rgba(255,255,255,1);
     width: 177.5px;
 }
 
-button {
+.customer-service{
     position:relative;
-    // display:block;
+    display:block;
     top:-90px;
     height: 80px;
     width: 570px;
@@ -34,6 +34,32 @@ button {
 }
 button::after{
     border: none;
+}
+
+.customer-service-agent{
+    position:relative;
+    display:block;
+    top:-90px;
+    height: 80px;
+    width: 570px;
+    opacity: 0.8;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:14px;
+    padding-right:14px;
+    box-sizing:border-box;
+    font-size:30px;
+    left: 20px;
+    text-align:left;
+    text-decoration:none;
+    line-height:2.55555556;
+    border-radius:5px;
+    border:none;
+    border:initial;
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+    color:#000000;
+    background-color:#FFFFFF;
 }
 
 page{
@@ -78,6 +104,22 @@ page{
         border-radius: 10px;
         margin: 0 auto;
         margin-top: 50px;
+        border: 1px solid #E8E8E8;
+        width: 544px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        font-size:36px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(125,214,208,1);
+    }
+
+    &-changeagent{
+        background: #FFFFFF;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 150px;
         border: 1px solid #E8E8E8;
         width: 544px;
         height: 80px;

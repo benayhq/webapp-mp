@@ -38,17 +38,7 @@ class Index extends Component{
 
   componentDidMount(){
       this.init();
-      var that = this;
-        Taro.getStorage({key:'authinfo'}).then(res=>{
-          that.setState({
-              avatarUrl:res.data.avatarUrl,
-              userName:res.data.nickName
-          })
-        }).catch(()=> {
-          that.setState({
-            isOpened:true
-          })
-        });
+    
   }
 
  init(){
@@ -102,7 +92,6 @@ class Index extends Component{
     });
   }
 
-
   async getAuthInfo(){
     const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
      return result;
@@ -110,31 +99,48 @@ class Index extends Component{
 
   autoLogin(){
     var currentObj = this;
-    wx.login({
-          success(res) {
-              var payload = {
-                  code:res.code
-              };
-              currentObj.props.WeChatLogin(payload).then((res)=>{
+    wx.login({async success(res) {
+              var payload = {code:res.code};
+              const result = await currentObj.props.WeChatLogin(payload);
+              if(result.result === "success"){
+                  const data = result.content,
+                        isAgent = data.role === "AGENT" ? true : false,
+                        creatorInstance = new Creator();
+                  Taro.setStorage({key:'userinfo',data});
+                  currentObj.checkAuth(data);
+                  currentObj.initReservationPlan();
+                  currentObj.initLoanFlag();
+                  await currentObj.initOrderNotice(creatorInstance,isAgent);
                   currentObj.setState({
-                    userName:res.content.name
+                      isAgent:isAgent,
+                      list:creatorInstance.factory(isAgent).getPanelList(),
+                      user:creatorInstance.factory(isAgent).getUserInfo(),
+                      avatarUrl:data.profileUrl,
+                      userName:data.name
                   });
-                  Taro.setStorage({key:'userinfo',data:res.content});
-              }).then(()=>{
-                currentObj.initReservationPlan();
-                currentObj.initLoanFlag();
-                let creatorInstance = new Creator();
-                currentObj.initOrderNotice(creatorInstance,false);
-                currentObj.setState({
-                    isAgent:false,
-                    list:creatorInstance.factory(false).getPanelList(),
-                    user:creatorInstance.factory(false).getUserInfo()
+              }
+              else{
+                Taro.showToast({
+                  title: '网络异常',
+                  icon: 'none'
                 })
-              });
+              }
           }
     });
   }
 
+  checkAuth(data){
+      if(data.profileUrl && data.name){
+        this.setState({
+          isOpened:false
+        })
+      }
+      else{
+          this.setState({
+            isOpened:true
+          })
+      }
+  }
 
   async getJpushAuthInfo(){
     const result = Taro.getStorage({key:'jpushAuth'}).then(res => {return res.data}).catch(() => '')
@@ -147,10 +153,10 @@ class Index extends Component{
     if (errMsg === 'getUserInfo:ok') {
       Taro.setStorage({key:'authinfo',data:userInfo});
       let payload = {
-        id:userInfo.id,
-        nickname:userInfo.nickName,
-        name:userInfo.nickName,
-        profileUrl:userInfo.avatarUrl
+          id:userInfo.id,
+          nickname:userInfo.nickName,
+          name:userInfo.nickName,
+          profileUrl:userInfo.avatarUrl
       };
       this.setState({
         avatarUrl:userInfo.avatarUrl,
@@ -296,28 +302,28 @@ class Index extends Component{
               ))
           }
         </AtList>
-        { !isAgent && <button open-type="contact" bindcontact="handleContact">客服服务</button>}
+        { isAgent ? <button style="position:relative;display:block;top:-108px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
+        :   <button style="position:relative;display:block;top:-52px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;"  open-type="contact" bindcontact="handleContact">客服服务</button>
+      }
       </View>
       { isShowLoanApp === true ?
         <View className="mp-user__loan">
-        <AtCard
-        title={this.state.context1}>
-            <View className="mp-user__loan-text">{this.state.context2}</View>
-            <View className="mp-user__loan-amount">{this.state.context3}</View>
-            <View className="mp-user__loan-desc">{this.state.context4}</View>
-            <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
-                立即申请
-            </View>
-        </AtCard>
-      </View> : ""
+          <AtCard
+          title={this.state.context1}>
+              <View className="mp-user__loan-text">{this.state.context2}</View>
+              <View className="mp-user__loan-amount">{this.state.context3}</View>
+              <View className="mp-user__loan-desc">{this.state.context4}</View>
+              <View className="mp-user__loan-application" onClick={this.handleAppLoan.bind(this)}>
+                  立即申请
+              </View>
+          </AtCard>
+        </View> : <View></View>
       }
-     
       { 
-        <View className="mp-user-changeuser" onClick={this.handleChangeState.bind(this)}> 
+        <View className={isAgent?"mp-user-changeagent":"mp-user-changeuser"} onClick={this.handleChangeState.bind(this)}> 
                 {showUserText}
         </View>   
       }
-
     </View>
     )
   }

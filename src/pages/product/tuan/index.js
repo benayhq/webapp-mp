@@ -23,7 +23,8 @@ export default class TuanList extends Component{
                             <View className="mp-tuan__time">剩余20:50:14</View>
                         </View>
                          <View className="mp-tuan__joinaction">
-                             <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >去拼团</AtButton>
+                            <AtButton type='primary'>去拼团</AtButton>
+                             {/* <AtButton type='primary' size='small' onClick={this.showMpDialog.bind(this)} >去拼团</AtButton> */}
                          </View>
                  </View>
             </View>

@@ -52,7 +52,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__379", "$compid__380", "$compid__381", "$compid__382", "$compid__383", "$compid__384", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__692", "$compid__693", "$compid__694", "$compid__695", "$compid__696", "$compid__697", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -179,7 +179,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
             secondList = [],
             thirdList = [];
         list.map(function (category, index) {
-          firstList.push(category.name);
+          firstList.push(category.name + '-' + category.id);
           // if(index === 0){
           //   category.son.map((categoryChild,index)=>{
           //     secondList.push(categoryChild.name);
@@ -219,63 +219,72 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var _this3 = this;
 
-        var _state, productName, productPrice, activePrice, files, preAmount, mulitSelectorValues, location, productId, result, payload;
+        var _state, productName, productPrice, activePrice, files, preAmount, initSeletedValue, mulitSelectorValues, location, productId, result, payload;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId;
+                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, initSeletedValue = _state.initSeletedValue, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId;
 
-                if (!(productName === '')) {
+                if (!(initSeletedValue === '')) {
                   _context.next = 4;
+                  break;
+                }
+
+                this.handleAlert('error', '请选择分类');
+                return _context.abrupt("return");
+
+              case 4:
+                if (!(productName === '')) {
+                  _context.next = 7;
                   break;
                 }
 
                 this.handleAlert('error', '名称不能为空');
                 return _context.abrupt("return");
 
-              case 4:
+              case 7:
                 if (!(productPrice === '')) {
-                  _context.next = 7;
+                  _context.next = 10;
                   break;
                 }
 
                 this.handleAlert('error', '价格不能为空');
                 return _context.abrupt("return");
 
-              case 7:
+              case 10:
                 if (!(activePrice === '')) {
-                  _context.next = 10;
+                  _context.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '活动价不能为空');
                 return _context.abrupt("return");
 
-              case 10:
+              case 13:
                 if (!(imgArraySrc.length === 0)) {
-                  _context.next = 13;
+                  _context.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请上传产品图片');
                 return _context.abrupt("return");
 
-              case 13:
+              case 16:
                 if (!(preAmount === '')) {
-                  _context.next = 16;
+                  _context.next = 19;
                   break;
                 }
 
                 this.handleAlert('error', '请输入预定金');
                 return _context.abrupt("return");
 
-              case 16:
-                _context.next = 18;
+              case 19:
+                _context.next = 21;
                 return (0, _storage.getAuthInfo)();
 
-              case 18:
+              case 21:
                 result = _context.sent;
                 payload = {
                   "advance": preAmount,
@@ -285,7 +294,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "location": imgArraySrc[0],
                   "name": productName,
                   "price": productPrice,
-                  "projectId": 1,
+                  "projectId": initSeletedValue.split('-')[1],
                   "projectLevel": 0,
                   "projectName": productName
                 };
@@ -332,7 +341,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 21:
+              case 24:
               case "end":
                 return _context.stop();
             }
@@ -374,28 +383,29 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
     key: "handleColumnChange",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-        var _state2, multiSelector, mulitSelectorValues, list, firsts, seconds, thirds, _state3, firstList, secondList, thirdList;
+        var _state2, multiSelector, mulitSelectorValues, selectedValue, list, firsts, seconds, thirds, _state3, firstList, secondList, thirdList;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _state2 = this.state, multiSelector = _state2.multiSelector, mulitSelectorValues = _state2.mulitSelectorValues;
-                _context2.next = 3;
-                return this.getCategroyList(multiSelector[e.detail.column][e.detail.value]);
+                selectedValue = multiSelector[e.detail.column][e.detail.value];
+                _context2.next = 4;
+                return this.getCategroyList(selectedValue.split('-')[0]);
 
-              case 3:
+              case 4:
                 list = _context2.sent;
                 firsts = [], seconds = [], thirds = [];
                 _state3 = this.state, firstList = _state3.firstList, secondList = _state3.secondList, thirdList = _state3.thirdList;
                 _context2.t0 = e.detail.column;
-                _context2.next = _context2.t0 === 0 ? 9 : _context2.t0 === 1 ? 12 : _context2.t0 === 2 ? 15 : 16;
+                _context2.next = _context2.t0 === 0 ? 10 : _context2.t0 === 1 ? 13 : _context2.t0 === 2 ? 16 : 17;
                 break;
 
-              case 9:
+              case 10:
                 if (list && list.content.length > 0) {
                   list.content[0].son.map(function (item) {
-                    seconds.push(item.name);
+                    seconds.push(item.name + '-' + item.id);
                   });
                   this.setState({
                     secondList: seconds
@@ -404,12 +414,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 this.setState({
                   multiSelector: [firstList, seconds, thirdList]
                 });
-                return _context2.abrupt("break", 16);
+                return _context2.abrupt("break", 17);
 
-              case 12:
+              case 13:
                 if (list && list.content.length > 0) {
                   list.content[0].son.map(function (item) {
-                    thirds.push(item.name);
+                    thirds.push(item.name + '-' + item.id);
                   });
                   this.setState({
                     thirdList: thirds
@@ -418,12 +428,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 this.setState({
                   multiSelector: [firstList, secondList, thirds]
                 });
-                return _context2.abrupt("break", 16);
-
-              case 15:
-                return _context2.abrupt("break", 16);
+                return _context2.abrupt("break", 17);
 
               case 16:
+                return _context2.abrupt("break", 17);
+
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -583,12 +593,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__379 = (0, _index.genCompid)(__prefix + "$compid__379");
-      var $compid__380 = (0, _index.genCompid)(__prefix + "$compid__380");
-      var $compid__381 = (0, _index.genCompid)(__prefix + "$compid__381");
-      var $compid__382 = (0, _index.genCompid)(__prefix + "$compid__382");
-      var $compid__383 = (0, _index.genCompid)(__prefix + "$compid__383");
-      var $compid__384 = (0, _index.genCompid)(__prefix + "$compid__384");
+      var $compid__692 = (0, _index.genCompid)(__prefix + "$compid__692");
+      var $compid__693 = (0, _index.genCompid)(__prefix + "$compid__693");
+      var $compid__694 = (0, _index.genCompid)(__prefix + "$compid__694");
+      var $compid__695 = (0, _index.genCompid)(__prefix + "$compid__695");
+      var $compid__696 = (0, _index.genCompid)(__prefix + "$compid__696");
+      var $compid__697 = (0, _index.genCompid)(__prefix + "$compid__697");
 
       var _state4 = this.__state,
           productName = _state4.productName,
@@ -603,14 +613,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           initSeletedValue = _state4.initSeletedValue;
 
 
-      var $props__379 = {
+      var $props__692 = {
         "isOpened": isOpened,
         "text": toastText,
         "status": status,
         "duration": duration,
         "icon": "{icon}"
       };
-      var $props__380 = {
+      var $props__693 = {
         "name": "productName",
         "title": "\u540D\u79F0",
         "type": "text",
@@ -618,7 +628,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productName,
         "onChange": this.handleProductChange.bind(this)
       };
-      var $props__381 = {
+      var $props__694 = {
         "name": "productPrice",
         "title": "\u4EF7\u683C",
         "type": "number",
@@ -626,7 +636,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productPrice,
         "onChange": this.handlePriceChange.bind(this)
       };
-      var $props__382 = {
+      var $props__695 = {
         "name": "activePrice",
         "title": "\u6D3B\u52A8\u4EF7",
         "type": "number",
@@ -634,12 +644,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": activePrice,
         "onChange": this.handleActivePriceChange.bind(this)
       };
-      var $props__383 = {
+      var $props__696 = {
         "files": files,
         "onChange": this.handleChooseImage.bind(this),
         "onImageClick": this.onImageClick.bind(this)
       };
-      var $props__384 = {
+      var $props__697 = {
         "name": "preAmount",
         "title": "\u9884\u5B9A\u91D1",
         "type": "number",
@@ -647,19 +657,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": preAmount,
         "onChange": this.handlePreAmountChange.bind(this)
       };
-      _index.propsManager.set($props__379, $compid__379);
-      _index.propsManager.set($props__380, $compid__380);
-      _index.propsManager.set($props__381, $compid__381);
-      _index.propsManager.set($props__382, $compid__382);
-      _index.propsManager.set($props__383, $compid__383);
-      _index.propsManager.set($props__384, $compid__384);
+      _index.propsManager.set($props__692, $compid__692);
+      _index.propsManager.set($props__693, $compid__693);
+      _index.propsManager.set($props__694, $compid__694);
+      _index.propsManager.set($props__695, $compid__695);
+      _index.propsManager.set($props__696, $compid__696);
+      _index.propsManager.set($props__697, $compid__697);
       Object.assign(this.__state, {
-        $compid__379: $compid__379,
-        $compid__380: $compid__380,
-        $compid__381: $compid__381,
-        $compid__382: $compid__382,
-        $compid__383: $compid__383,
-        $compid__384: $compid__384
+        $compid__692: $compid__692,
+        $compid__693: $compid__693,
+        $compid__694: $compid__694,
+        $compid__695: $compid__695,
+        $compid__696: $compid__696,
+        $compid__697: $compid__697
       });
       return this.__state;
     }

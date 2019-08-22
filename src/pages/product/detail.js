@@ -124,16 +124,21 @@ export default class Detail extends Component{
 
     componentWillMount(){
         //  let activeId = this.$router.params.activeId,
-        let activeId = this.$router.params.activeId,
-            referId = this.$router.params.referId,
+        let activeId = this.$router.params.activeId  === undefined?48:this.$router.params.activeId,
+            referId = this.$router.params.referId  === undefined?2:this.$router.params.referId,
             source = this.$router.params.sc;
-            
+
         if (activeId && referId ) {
+            wx.showToast({
+                title: activeId+referId,
+                icon: 'success',
+                duration: 2000
+            });
             activeId = decodeURIComponent(activeId);
             referId =  decodeURIComponent(referId);
             source =  decodeURIComponent(source);
         };
-        console.log('scene',activeId);
+        console.log('scene',sc);
         this.setState({
             activeId:activeId,
             referId:referId,

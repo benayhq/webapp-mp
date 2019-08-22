@@ -42,7 +42,8 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   _inherits(Edit, _BaseComponent);
 
   function Edit() {
-    var _ref;
+    var _ref,
+        _this2 = this;
 
     var _temp, _this, _ret;
 
@@ -52,61 +53,83 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__206", "$compid__207", "$compid__208", "$compid__209", "$compid__210", "$compid__211", "$compid__212", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__364", "$compid__365", "$compid__366", "$compid__367", "$compid__368", "$compid__369", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
         'type': type
       });
-    }, _this.handleSaveUserInfo = function () {
-      var _this$state = _this.state,
-          nickName = _this$state.nickName,
-          cellPhone = _this$state.cellPhone,
-          weixin = _this$state.weixin,
-          serviceAddress = _this$state.serviceAddress,
-          address = _this$state.address;
+    }, _this.handleSaveUserInfo = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var _this$state, cellPhone, weixin, userName, address, userinfo, payload, result;
 
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this$state = _this.state, cellPhone = _this$state.cellPhone, weixin = _this$state.weixin, userName = _this$state.userName, address = _this$state.address;
 
-      if (nickName === "") {
-        _this.handleAlert('error', '呢称不能为空');
-        return;
-      }
+              if (!(cellPhone === "")) {
+                _context.next = 4;
+                break;
+              }
 
-      if (cellPhone === "") {
-        _this.handleAlert('error', '手机号不能为空');
-        return;
-      }
-      // if(weixin==="") {
-      //     this.handleAlert('error','微信号不能为空');
-      //     return;
-      // }
+              _this.handleAlert('error', '手机号不能为空');
+              return _context.abrupt("return");
 
-      if (imgArraySrc.length === 0) {
-        _this.handleAlert('error', '请上传二维码');
-        return;
-      }
-      // if(serviceAddress===""){
-      //     this.handleAlert('error','服务地址不能为空');
-      // }
+            case 4:
 
-      _this.getAuthInfo().then(function (userinfo) {
-        var payload = {
-          nickname: nickName,
-          openId: userinfo.openId,
-          wechatId: weixin,
-          cellphone: cellPhone,
-          address: address,
-          wechatQrcode: imgArraySrc[0],
-          areaCode: '',
-          id: userinfo.id
-        };
-        _this.props.UpdateUserInfo(payload).then(function (res) {
-          _index2.default.navigateTo({
-            url: '/pages/user/index'
-          });
-        });
-      });
+              console.log('imgArraySrc', imgArraySrc);
+
+              if (!(imgArraySrc.length === 0)) {
+                _context.next = 8;
+                break;
+              }
+
+              _this.handleAlert('error', '请上传微信二维码');
+              return _context.abrupt("return");
+
+            case 8:
+              console.log('imgArraySrc', imgArraySrc[0]);
+              _context.next = 11;
+              return _this.getAuthInfo();
+
+            case 11:
+              userinfo = _context.sent;
+
+              console.log('userinfo', userinfo);
+
+              payload = {
+                name: userName,
+                openId: userinfo.openId,
+                wechatId: weixin,
+                cellphone: cellPhone,
+                address: address,
+                wechatQrcode: imgArraySrc[0],
+                areaCode: '',
+                id: userinfo.id
+              };
+              _context.next = 16;
+              return _this.props.UpdateUserInfo(payload);
+
+            case 16:
+              result = _context.sent;
+
+              imgArraySrc.length = 0;
+              _index2.default.navigateTo({
+                url: '/pages/user/index'
+              });
+
+            case 19:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2);
+    })), _this.handleImageClick = function () {
+      console.log('imgArraySrc', imgArraySrc);
+      imgArraySrc.length = 0;
+      imgArraySrc = [];
     }, _this.customComponents = ["AtMessage", "AtForm", "AtInput", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -140,22 +163,20 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "initData",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var _this2 = this;
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this3 = this;
 
         var response;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return this.getAuthInfo();
 
               case 2:
-                response = _context.sent;
+                response = _context2.sent;
 
-
-                console.log('response', response);
                 this.setState({
                   nickName: response.name,
                   userName: response.name,
@@ -163,24 +184,28 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
                   weixin: response.wechatId,
                   address: response.address
                 });
+                console.log('response.wechatQrcode', response.wechatQrcode);
 
-                this.getImgUrl(response.wechatQrcode).then(function (response) {
-                  _this2.setState({
-                    files: [{ url: response }]
+                if (response.wechatQrcode) {
+                  this.getImgUrl(response.wechatQrcode).then(function (res) {
+                    _this3.setState({
+                      files: [{ url: res }]
+                    });
+                    console.log('res', res);
+                    imgArraySrc.push(response.wechatQrcode);
                   });
-                  imgArraySrc.push(response);
-                });
+                }
 
               case 6:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function initData() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       }
 
       return initData;
@@ -191,12 +216,11 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleUploadChange",
     value: function handleUploadChange(files) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.setState({
         files: files
       });
-
       var that = this;
       var tempFilePaths = files;
       var nowTime = util.formatTime(new Date());
@@ -217,7 +241,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         };
 
 
-        _this3.props.dispatchUploadConfig(payload).then(function (response) {
+        _this4.props.dispatchUploadConfig(payload).then(function (response) {
           uploadImage(file, response.content.location, function (result) {
             imgArraySrc.push(result);
             console.log("======上传成功图片地址为：", result);
@@ -249,31 +273,31 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getAuthInfo",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var result;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
                   return res.data;
                 });
 
               case 2:
-                result = _context2.sent;
-                return _context2.abrupt("return", result);
+                result = _context3.sent;
+                return _context3.abrupt("return", result);
 
               case 4:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function getAuthInfo() {
-        return _ref3.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return getAuthInfo;
@@ -329,32 +353,32 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getImgUrl",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(location) {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context3.next = 3;
+                _context4.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context3.sent;
-                return _context3.abrupt("return", result.content);
+                result = _context4.sent;
+                return _context4.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function getImgUrl(_x) {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       }
 
       return getImgUrl;
@@ -367,16 +391,14 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__206 = (0, _index.genCompid)(__prefix + "$compid__206");
-      var $compid__207 = (0, _index.genCompid)(__prefix + "$compid__207");
-      var $compid__208 = (0, _index.genCompid)(__prefix + "$compid__208");
-      var $compid__209 = (0, _index.genCompid)(__prefix + "$compid__209");
-      var $compid__210 = (0, _index.genCompid)(__prefix + "$compid__210");
-      var $compid__211 = (0, _index.genCompid)(__prefix + "$compid__211");
-      var $compid__212 = (0, _index.genCompid)(__prefix + "$compid__212");
+      var $compid__364 = (0, _index.genCompid)(__prefix + "$compid__364");
+      var $compid__365 = (0, _index.genCompid)(__prefix + "$compid__365");
+      var $compid__366 = (0, _index.genCompid)(__prefix + "$compid__366");
+      var $compid__367 = (0, _index.genCompid)(__prefix + "$compid__367");
+      var $compid__368 = (0, _index.genCompid)(__prefix + "$compid__368");
+      var $compid__369 = (0, _index.genCompid)(__prefix + "$compid__369");
 
       var _state = this.__state,
-          nickName = _state.nickName,
           userName = _state.userName,
           cellPhone = _state.cellPhone,
           weixin = _state.weixin,
@@ -384,15 +406,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _state.address,
           qrCode = _state.qrCode;
 
-      var $props__206 = {
-        "name": "value1",
-        "title": "\u5462\u79F0",
-        "type": "text",
-        "placeholder": "\u5462\u79F0",
-        "value": nickName,
-        "onChange": this.handleNickNameChange.bind(this)
-      };
-      var $props__207 = {
+      var $props__364 = {
         "name": "value1",
         "title": "\u59D3\u540D",
         "type": "text",
@@ -400,7 +414,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": userName,
         "onChange": this.handleUserNameChange.bind(this)
       };
-      var $props__208 = {
+      var $props__365 = {
         "name": "value6",
         "title": "\u624B\u673A\u53F7\u7801",
         "type": "phone",
@@ -408,7 +422,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": cellPhone,
         "onChange": this.handleMobileChange.bind(this)
       };
-      var $props__209 = {
+      var $props__366 = {
         "name": "value1",
         "title": "\u5FAE\u4FE1",
         "type": "text",
@@ -416,7 +430,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": weixin,
         "onChange": this.handleWeChatChange.bind(this)
       };
-      var $props__210 = {
+      var $props__367 = {
         "name": "value1",
         "title": "\u5730\u5740",
         "type": "text",
@@ -424,30 +438,28 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": address,
         "onChange": this.handleAddressChange.bind(this)
       };
-      var $props__211 = {
+      var $props__368 = {
         "className": "uploadPicker",
         "files": this.__state.files,
         "onChange": this.handleUploadChange.bind(this)
       };
-      var $props__212 = {
+      var $props__369 = {
         "type": "primary",
         "onClick": this.handleSaveUserInfo.bind(this)
       };
-      _index.propsManager.set($props__206, $compid__206);
-      _index.propsManager.set($props__207, $compid__207);
-      _index.propsManager.set($props__208, $compid__208);
-      _index.propsManager.set($props__209, $compid__209);
-      _index.propsManager.set($props__210, $compid__210);
-      _index.propsManager.set($props__211, $compid__211);
-      _index.propsManager.set($props__212, $compid__212);
+      _index.propsManager.set($props__364, $compid__364);
+      _index.propsManager.set($props__365, $compid__365);
+      _index.propsManager.set($props__366, $compid__366);
+      _index.propsManager.set($props__367, $compid__367);
+      _index.propsManager.set($props__368, $compid__368);
+      _index.propsManager.set($props__369, $compid__369);
       Object.assign(this.__state, {
-        $compid__206: $compid__206,
-        $compid__207: $compid__207,
-        $compid__208: $compid__208,
-        $compid__209: $compid__209,
-        $compid__210: $compid__210,
-        $compid__211: $compid__211,
-        $compid__212: $compid__212
+        $compid__364: $compid__364,
+        $compid__365: $compid__365,
+        $compid__366: $compid__366,
+        $compid__367: $compid__367,
+        $compid__368: $compid__368,
+        $compid__369: $compid__369
       });
       return this.__state;
     }
@@ -455,6 +467,8 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
 
   return Edit;
 }(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/info/edit", _temp2)) || _class);
+// onImageClick={this.handleImageClick.bind(this)}
+
 exports.default = Edit;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Edit, true));

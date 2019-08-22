@@ -68,24 +68,22 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var loopArray15 = this.__props.products.map(function (item, _anonIdx) {
+      var loopArray15 = this.__props.products != null ? this.__props.products.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "uquoyszDEM" + _anonIdx);
+        var $compid__70 = (0, _index.genCompid)(__prefix + "gebiOYyJEs" + _anonIdx);
         _index.propsManager.set({
           "name": "value",
           "type": "text",
           "value": item.$original.discountPrice,
           "onChange": _this2.handleChange.bind(_this2)
-        }, $compid__71);
+        }, $compid__70);
         return {
-          $compid__71: $compid__71,
+          $compid__70: $compid__70,
           $original: item.$original
         };
-      });
-
+      }) : [];
       Object.assign(this.__state, {
         loopArray15: loopArray15
       });

@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__52", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__51", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -215,7 +215,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__52 = (0, _index.genCompid)(__prefix + "$compid__52");
+      var $compid__51 = (0, _index.genCompid)(__prefix + "$compid__51");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -225,14 +225,14 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           text = _state2.text;
 
 
-      var $props__52 = {
+      var $props__51 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      _index.propsManager.set($props__52, $compid__52);
+      _index.propsManager.set($props__51, $compid__51);
       Object.assign(this.__state, {
-        $compid__52: $compid__52,
+        $compid__51: $compid__51,
         activityName: activityName
       });
       return this.__state;

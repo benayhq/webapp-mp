@@ -69,7 +69,6 @@ var User = function () {
         text: '',
         url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-headset2@2x.png',
         pageUrl: ''
-        // 客户服务
       }];
     }
   }]);

@@ -28,7 +28,7 @@ export default class ProductList extends Component{
                     <View>
                         <View className="product">
                                 {
-                                    this.props.products.map(item=>(
+                                this.props.products!=null && this.props.products.map(item=>(
                                         <View className="list">
                                         <View className="list-top">
                                             <View>

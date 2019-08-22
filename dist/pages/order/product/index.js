@@ -54,7 +54,7 @@ var OrderProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__378", "profileUrl", "dispatchCreateOrderDownLoadUrl", "content"], _this.customComponents = ["Title", "ProductItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__59", "profileUrl", "dispatchCreateOrderDownLoadUrl", "content"], _this.customComponents = ["Title", "ProductItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderProduct, [{
@@ -124,21 +124,21 @@ var OrderProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__378 = (0, _index.genCompid)(__prefix + "$compid__378");
+      var $compid__59 = (0, _index.genCompid)(__prefix + "$compid__59");
 
       var profileUrl = this.__state.profileUrl;
 
       console.log('profileUrl', profileUrl);
 
       var anonymousState__temp = this.__props.content && getLocalTime(this.__props.content.createdD);
-      var $props__378 = {
+      var $props__59 = {
         "displayStatusDes": this.__props.content ? this.__props.content.displayStatusDes : "",
         "AgentName": this.__props.content ? this.__props.content.agentName : ""
       };
-      _index.propsManager.set($props__378, $compid__378);
+      _index.propsManager.set($props__59, $compid__59);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__378: $compid__378
+        $compid__59: $compid__59
       });
       return this.__state;
     }

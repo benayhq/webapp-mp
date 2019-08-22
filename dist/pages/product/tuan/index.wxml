@@ -7,7 +7,7 @@
                 <view class="mp-tuan__time">剩余20:50:14</view>
             </view>
             <view class="mp-tuan__joinaction">
-                <at-button compid="{{$compid__81}}">去拼团</at-button>
+                <at-button compid="{{$compid__80}}">去拼团</at-button>
             </view>
         </view>
     </view>

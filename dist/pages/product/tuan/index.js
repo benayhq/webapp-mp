@@ -36,7 +36,7 @@ var TuanList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TuanList.__proto__ || Object.getPrototypeOf(TuanList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__81"], _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TuanList.__proto__ || Object.getPrototypeOf(TuanList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__80"], _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TuanList, [{
@@ -53,15 +53,13 @@ var TuanList = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__81 = (0, _index.genCompid)(__prefix + "$compid__81");
-      var $props__81 = {
-        "type": "primary",
-        "size": "small",
-        "onClick": this.showMpDialog.bind(this)
+      var $compid__80 = (0, _index.genCompid)(__prefix + "$compid__80");
+      var $props__80 = {
+        "type": "primary"
       };
-      _index.propsManager.set($props__81, $compid__81);
+      _index.propsManager.set($props__80, $compid__80);
       Object.assign(this.__state, {
-        $compid__81: $compid__81
+        $compid__80: $compid__80
       });
       return this.__state;
     }

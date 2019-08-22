@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__481", "$compid__482", "$compid__483", "$compid__484", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__698", "$compid__699", "$compid__700", "$compid__701", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -238,16 +238,21 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     key: "componentWillMount",
     value: function componentWillMount() {
       //  let activeId = this.$router.params.activeId,
-      var activeId = this.$router.params.activeId,
-          referId = this.$router.params.referId,
+      var activeId = this.$router.params.activeId === undefined ? 48 : this.$router.params.activeId,
+          referId = this.$router.params.referId === undefined ? 2 : this.$router.params.referId,
           source = this.$router.params.sc;
 
       if (activeId && referId) {
+        wx.showToast({
+          title: activeId + referId,
+          icon: 'success',
+          duration: 2000
+        });
         activeId = decodeURIComponent(activeId);
         referId = decodeURIComponent(referId);
         source = decodeURIComponent(source);
       };
-      console.log('scene', activeId);
+      console.log('scene', sc);
       this.setState({
         activeId: activeId,
         referId: referId,
@@ -388,10 +393,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__481 = (0, _index.genCompid)(__prefix + "$compid__481");
-      var $compid__482 = (0, _index.genCompid)(__prefix + "$compid__482");
-      var $compid__483 = (0, _index.genCompid)(__prefix + "$compid__483");
-      var $compid__484 = (0, _index.genCompid)(__prefix + "$compid__484");
+      var $compid__698 = (0, _index.genCompid)(__prefix + "$compid__698");
+      var $compid__699 = (0, _index.genCompid)(__prefix + "$compid__699");
+      var $compid__700 = (0, _index.genCompid)(__prefix + "$compid__700");
+      var $compid__701 = (0, _index.genCompid)(__prefix + "$compid__701");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -410,32 +415,32 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__481 = {
+      var $props__698 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__482 = {
+      var $props__699 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__483 = {
+      var $props__700 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      var $props__484 = {
+      var $props__701 = {
         "isOpened": showOrderDialog
       };
-      _index.propsManager.set($props__481, $compid__481);
-      bContact && _index.propsManager.set($props__482, $compid__482);
-      bSpec && _index.propsManager.set($props__483, $compid__483);
-      _index.propsManager.set($props__484, $compid__484);
+      _index.propsManager.set($props__698, $compid__698);
+      bContact && _index.propsManager.set($props__699, $compid__699);
+      bSpec && _index.propsManager.set($props__700, $compid__700);
+      _index.propsManager.set($props__701, $compid__701);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__481: $compid__481,
-        $compid__482: $compid__482,
-        $compid__483: $compid__483,
-        $compid__484: $compid__484
+        $compid__698: $compid__698,
+        $compid__699: $compid__699,
+        $compid__700: $compid__700,
+        $compid__701: $compid__701
       });
       return this.__state;
     }

@@ -1,11 +1,11 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-user">
-        <at-modal compid="{{$compid__421}}">
+        <at-modal compid="{{$compid__567}}">
             <at-modal-header>授权登录</at-modal-header>
             <at-modal-content>
                 <view class="mp-user__authinfo">申请获取以下权限</view>获取你的公开信息(呢称,头像等)</at-modal-content>
             <view class="wechat-login">
-                <at-button compid="{{$compid__422}}">授权登录</at-button>
+                <at-button compid="{{$compid__568}}">授权登录</at-button>
             </view>
         </at-modal>
         <view class="mp-user__info">
@@ -25,7 +25,7 @@
             </block>
         </view>
         <block wx:if="{{isAgent}}">
-            <in-come compid="{{$compid__423}}"></in-come>
+            <in-come compid="{{$compid__569}}"></in-come>
         </block>
         <block wx:if="{{isAgent}}">
             <view class="mp-user__publish">
@@ -34,27 +34,37 @@
                 <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
             </view>
         </block>
-        <user-order compid="{{$compid__424}}"></user-order>
+        <user-order compid="{{$compid__570}}"></user-order>
         <view class="mp-user__list">
             <at-list>
                 <block wx:if="{{list.length > 0}}">
-                    <at-list-item wx:for="{{loopArray76}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__420}}"></at-list-item>
+                    <at-list-item wx:for="{{loopArray54}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__566}}"></at-list-item>
                 </block>
             </at-list>
-            <block wx:if="{{!isAgent}}">
-                <button open-type="contact" bindcontact="handleContact">客服服务</button>
+            <block>
+                <block wx:if="{{isAgent}}">
+                    <button style="position:relative;display:block;top:-108px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
+                </block>
+                <block wx:else>
+                    <button style="position:relative;display:block;top:-52px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" open-type="contact" bindcontact="handleContact">客服服务</button>
+                </block>
             </block>
         </view>
-        <block wx:if="{{isShowLoanApp === true}}">
-            <view class="mp-user__loan">
-                <at-card compid="{{$compid__425}}">
-                    <view class="mp-user__loan-text">{{context2}}</view>
-                    <view class="mp-user__loan-amount">{{context3}}</view>
-                    <view class="mp-user__loan-desc">{{context4}}</view>
-                    <view class="mp-user__loan-application" bindtap="handleAppLoan" data-e-tap-so="this">立即申请</view>
-                </at-card>
-            </view>
+        <block>
+            <block wx:if="{{isShowLoanApp === true}}">
+                <view class="mp-user__loan">
+                    <at-card compid="{{$compid__571}}">
+                        <view class="mp-user__loan-text">{{context2}}</view>
+                        <view class="mp-user__loan-amount">{{context3}}</view>
+                        <view class="mp-user__loan-desc">{{context4}}</view>
+                        <view class="mp-user__loan-application" bindtap="handleAppLoan" data-e-tap-so="this">立即申请</view>
+                    </at-card>
+                </view>
+            </block>
+            <block wx:else>
+                <view></view>
+            </block>
         </block>
-        <view class="mp-user-changeuser" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
+        <view class="{{isAgent ? 'mp-user-changeagent' : 'mp-user-changeuser'}}" bindtap="handleChangeState" data-e-tap-so="this">{{showUserText}}</view>
     </view>
 </block>

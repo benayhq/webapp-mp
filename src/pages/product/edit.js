@@ -55,7 +55,7 @@ class EditProduct extends Component{
         var list = response.content;
         var firstList = [],secondList = [],thirdList = [];
         list.map((category,index)=>{
-          firstList.push(category.name);
+          firstList.push(category.name+'-'+category.id);
           // if(index === 0){
           //   category.son.map((categoryChild,index)=>{
           //     secondList.push(categoryChild.name);
@@ -134,8 +134,13 @@ class EditProduct extends Component{
     }
 
     async handleSaveProduct(){
-      const {productName,productPrice,activePrice,files,preAmount,mulitSelectorValues,location,productId} = this.state;
-      
+      const {productName,productPrice,activePrice,files,preAmount,initSeletedValue,mulitSelectorValues,location,productId} = this.state;
+
+      if(initSeletedValue === ''){
+        this.handleAlert('error','请选择分类');
+        return;
+      }
+
       if(productName===''){
         this.handleAlert('error','名称不能为空');
         return;
@@ -161,7 +166,9 @@ class EditProduct extends Component{
         return;
       }
 
+
       const result = await getAuthInfo();
+
 
       var payload = {
         "advance": preAmount,
@@ -171,7 +178,7 @@ class EditProduct extends Component{
         "location": imgArraySrc[0],
         "name": productName,
         "price": productPrice,
-        "projectId": 1,
+        "projectId": initSeletedValue.split('-')[1],
         "projectLevel": 0,
         "projectName": productName
       };
@@ -269,7 +276,8 @@ class EditProduct extends Component{
 
     async handleColumnChange(e){
       const {multiSelector,mulitSelectorValues} = this.state;
-      var list = await this.getCategroyList(multiSelector[e.detail.column][e.detail.value]);
+      const selectedValue = multiSelector[e.detail.column][e.detail.value];
+      var list = await this.getCategroyList(selectedValue.split('-')[0]);
       var firsts=[],seconds =[],thirds=[];
       const {firstList,secondList,thirdList} = this.state;
 
@@ -277,7 +285,7 @@ class EditProduct extends Component{
         case 0:
             if(list && list.content.length>0){
               list.content[0].son.map((item)=>{
-                seconds.push(item.name);
+                seconds.push(item.name+'-'+item.id);
               })
               this.setState({
                 secondList:seconds
@@ -290,7 +298,7 @@ class EditProduct extends Component{
         case 1:
             if(list && list.content.length>0){
               list.content[0].son.map((item)=>{
-                thirds.push(item.name);
+                thirds.push(item.name+'-'+item.id);
               })
               this.setState({
                 thirdList:thirds

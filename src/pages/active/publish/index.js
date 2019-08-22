@@ -79,7 +79,6 @@ export default class Index extends Component {
   }
 
   componentDidMount(){
-    
     if(this.props.groupCount !== ''){
       this.setState({
         groupItemChecked:this.props.groupCount

@@ -41,8 +41,6 @@ class Edit extends Component{
 
     async initData(){
         var response = await this.getAuthInfo();
-
-        console.log('response',response);
         this.setState({
             nickName:response.name,
             userName:response.name,
@@ -50,25 +48,29 @@ class Edit extends Component{
             weixin:response.wechatId,
             address:response.address
         });
+        console.log('response.wechatQrcode',response.wechatQrcode);
 
-        this.getImgUrl(response.wechatQrcode).then((response)=>{
-            this.setState({
-              files:[
-                {url:response}
-              ]
+        if(response.wechatQrcode){
+            this.getImgUrl(response.wechatQrcode).then((res)=>{
+                this.setState({
+                  files:[
+                    {url:res}
+                  ]
+                });
+                console.log('res',res);
+                imgArraySrc.push(response.wechatQrcode);
             });
-            imgArraySrc.push(response);
-        });
+        }
     }
 
     componentDidMount(){
     }
 
     handleUploadChange(files) {
+
         this.setState({
             files
         });
-
         var that = this;
         var tempFilePaths = files;
         var nowTime = util.formatTime(new Date());
@@ -82,7 +84,7 @@ class Edit extends Component{
                 });
 
                 let file = tempFilePaths[i].url;
-    
+
                 var payload ={
                   documentType:'ACTIVITY',
                   fileName:'ACTIVITY.png'
@@ -174,65 +176,52 @@ class Edit extends Component{
         return result.content;
     }
 
-    handleSaveUserInfo = () =>{
-        const {nickName,cellPhone,weixin,serviceAddress
-        ,address} = this.state;
-
-        if(nickName === "") {
-            this.handleAlert('error','呢称不能为空');
-            return;
-        }
+    handleSaveUserInfo = async () =>{
+        const {cellPhone,weixin,userName,address} = this.state;
 
         if(cellPhone==="") {
             this.handleAlert('error','手机号不能为空');
             return;
         }
-        // if(weixin==="") {
-        //     this.handleAlert('error','微信号不能为空');
-        //     return;
-        // }
 
+        console.log('imgArraySrc',imgArraySrc)
         if(imgArraySrc.length === 0){
-            this.handleAlert('error','请上传二维码');
+            this.handleAlert('error','请上传微信二维码');
             return;
         }
-        // if(serviceAddress===""){
-        //     this.handleAlert('error','服务地址不能为空');
-        // }
+        console.log('imgArraySrc',imgArraySrc[0])
+        const userinfo = await this.getAuthInfo();
+        console.log('userinfo',userinfo);
 
-        this.getAuthInfo().then(userinfo=>{
-            var payload = {
-                nickname:nickName,
-                openId:userinfo.openId,
-                wechatId:weixin,
-                cellphone:cellPhone,
-                address:address,
-                wechatQrcode:imgArraySrc[0],
-                areaCode:'',
-                id:userinfo.id
-            };
-            this.props.UpdateUserInfo(payload).then(res=>{
-                Taro.navigateTo({
-                    url:'/pages/user/index'
-                });
-            });
-        });
+        var payload = {
+            name:userName,
+            openId:userinfo.openId,
+            wechatId:weixin,
+            cellphone:cellPhone,
+            address:address,
+            wechatQrcode:imgArraySrc[0],
+            areaCode:'',
+            id:userinfo.id
+        };
+        const result = await this.props.UpdateUserInfo(payload)
+        imgArraySrc.length = 0;
+        Taro.navigateTo({
+            url:'/pages/user/index'
+        })
+    }
+    
+    handleImageClick = () =>{
+        console.log('imgArraySrc',imgArraySrc);
+        imgArraySrc.length = 0;
+        imgArraySrc = [];
     }
 
     render(){
-        const {nickName,userName,cellPhone,weixin,serviceAddress,address,qrCode} = this.state;
+        const {userName,cellPhone,weixin,serviceAddress,address,qrCode} = this.state;
         return (
             <View className="mp-edit-user">
                     <AtMessage/>
                 <AtForm>
-                    <AtInput
-                        name='value1'
-                        title='呢称'
-                        type='text'
-                        placeholder='呢称'
-                        value={nickName}
-                        onChange={this.handleNickNameChange.bind(this)}
-                    />
                         <AtInput
                             name='value1'
                             title='姓名'
@@ -274,7 +263,7 @@ class Edit extends Component{
                         onChange={this.handleAddressChange.bind(this)}
                     />
                     <View className="qrCode">
-                        <Text className="label">二维码</Text>
+                        <Text className="label">微信二维码</Text>
                     </View>
                     <AtImagePicker
                             className="uploadPicker"
@@ -289,5 +278,6 @@ class Edit extends Component{
         );
     }
 }
+// onImageClick={this.handleImageClick.bind(this)}
 
 export default Edit;

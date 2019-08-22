@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray76", "$compid__421", "$compid__422", "$compid__423", "$compid__424", "$compid__425", "showUserText", "avatarUrl", "profit", "isAgent", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray54", "$compid__567", "$compid__568", "$compid__569", "$compid__570", "$compid__571", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -87,17 +87,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.init();
-      var that = this;
-      _index2.default.getStorage({ key: 'authinfo' }).then(function (res) {
-        that.setState({
-          avatarUrl: res.data.avatarUrl,
-          userName: res.data.nickName
-        });
-      }).catch(function () {
-        that.setState({
-          isOpened: true
-        });
-      });
     }
   }, {
     key: "init",
@@ -214,55 +203,106 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function autoLogin() {
       var currentObj = this;
       wx.login({
-        success: function success(res) {
-          var payload = {
-            code: res.code
-          };
-          currentObj.props.WeChatLogin(payload).then(function (res) {
-            currentObj.setState({
-              userName: res.content.name
-            });
-            _index2.default.setStorage({ key: 'userinfo', data: res.content });
-          }).then(function () {
-            currentObj.initReservationPlan();
-            currentObj.initLoanFlag();
-            var creatorInstance = new _create2.default();
-            currentObj.initOrderNotice(creatorInstance, false);
-            currentObj.setState({
-              isAgent: false,
-              list: creatorInstance.factory(false).getPanelList(),
-              user: creatorInstance.factory(false).getUserInfo()
-            });
-          });
-        }
+        success: function () {
+          var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
+            var payload, result, data, isAgent, creatorInstance;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    payload = { code: res.code };
+                    _context3.next = 3;
+                    return currentObj.props.WeChatLogin(payload);
+
+                  case 3:
+                    result = _context3.sent;
+
+                    if (!(result.result === "success")) {
+                      _context3.next = 15;
+                      break;
+                    }
+
+                    data = result.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
+
+                    _index2.default.setStorage({ key: 'userinfo', data: data });
+                    currentObj.checkAuth(data);
+                    currentObj.initReservationPlan();
+                    currentObj.initLoanFlag();
+                    _context3.next = 12;
+                    return currentObj.initOrderNotice(creatorInstance, isAgent);
+
+                  case 12:
+                    currentObj.setState({
+                      isAgent: isAgent,
+                      list: creatorInstance.factory(isAgent).getPanelList(),
+                      user: creatorInstance.factory(isAgent).getUserInfo(),
+                      avatarUrl: data.profileUrl,
+                      userName: data.name
+                    });
+                    _context3.next = 16;
+                    break;
+
+                  case 15:
+                    _index2.default.showToast({
+                      title: '网络异常',
+                      icon: 'none'
+                    });
+
+                  case 16:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+
+          function success(_x3) {
+            return _ref4.apply(this, arguments);
+          }
+
+          return success;
+        }()
       });
+    }
+  }, {
+    key: "checkAuth",
+    value: function checkAuth(data) {
+      if (data.profileUrl && data.name) {
+        this.setState({
+          isOpened: false
+        });
+      } else {
+        this.setState({
+          isOpened: true
+        });
+      }
     }
   }, {
     key: "getJpushAuthInfo",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         var result;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 result = _index2.default.getStorage({ key: 'jpushAuth' }).then(function (res) {
                   return res.data;
                 }).catch(function () {
                   return '';
                 });
-                return _context3.abrupt("return", result);
+                return _context4.abrupt("return", result);
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function getJpushAuthInfo() {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       }
 
       return getJpushAuthInfo;
@@ -270,19 +310,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleAuthClick",
     value: function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         var _this3 = this;
 
         var result, errMsg, userInfo, payload;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context4.next = 2;
+                _context5.next = 2;
                 return _index2.default.getUserInfo();
 
               case 2:
-                result = _context4.sent;
+                result = _context5.sent;
                 errMsg = result.errMsg, userInfo = result.userInfo;
 
                 if (errMsg === 'getUserInfo:ok') {
@@ -313,14 +353,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 5:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee5, this);
       }));
 
       function handleAuthClick() {
-        return _ref5.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       }
 
       return handleAuthClick;
@@ -392,11 +432,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__421 = (0, _index.genCompid)(__prefix + "$compid__421");
-      var $compid__422 = (0, _index.genCompid)(__prefix + "$compid__422");
-      var $compid__423 = (0, _index.genCompid)(__prefix + "$compid__423");
-      var $compid__424 = (0, _index.genCompid)(__prefix + "$compid__424");
-      var $compid__425 = (0, _index.genCompid)(__prefix + "$compid__425");
+      var $compid__567 = (0, _index.genCompid)(__prefix + "$compid__567");
+      var $compid__568 = (0, _index.genCompid)(__prefix + "$compid__568");
+      var $compid__569 = (0, _index.genCompid)(__prefix + "$compid__569");
+      var $compid__570 = (0, _index.genCompid)(__prefix + "$compid__570");
+      var $compid__571 = (0, _index.genCompid)(__prefix + "$compid__571");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -411,10 +451,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__421 = {
+      var $props__567 = {
         "isOpened": isOpened
       };
-      var $props__422 = {
+      var $props__568 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -422,43 +462,43 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__423 = {
+      var $props__569 = {
         "profit": profit
       };
-      var $props__424 = {
+      var $props__570 = {
         "list": orders
       };
-      var $props__425 = {
+      var $props__571 = {
         "title": this.__state.context1
       };
-      var loopArray76 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray54 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__420 = (0, _index.genCompid)(__prefix + "InEbJVGBCf" + _anonIdx);
+        var $compid__566 = (0, _index.genCompid)(__prefix + "BaAAJMdiOl" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__420);
+        }, $compid__566);
         return {
-          $compid__420: $compid__420,
+          $compid__566: $compid__566,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__421, $compid__421);
-      _index.propsManager.set($props__422, $compid__422);
-      isAgent && _index.propsManager.set($props__423, $compid__423);
-      _index.propsManager.set($props__424, $compid__424);
-      isShowLoanApp === true && _index.propsManager.set($props__425, $compid__425);
+      _index.propsManager.set($props__567, $compid__567);
+      _index.propsManager.set($props__568, $compid__568);
+      isAgent && _index.propsManager.set($props__569, $compid__569);
+      _index.propsManager.set($props__570, $compid__570);
+      isShowLoanApp === true && _index.propsManager.set($props__571, $compid__571);
       Object.assign(this.__state, {
-        loopArray76: loopArray76,
-        $compid__421: $compid__421,
-        $compid__422: $compid__422,
-        $compid__423: $compid__423,
-        $compid__424: $compid__424,
-        $compid__425: $compid__425,
+        loopArray54: loopArray54,
+        $compid__567: $compid__567,
+        $compid__568: $compid__568,
+        $compid__569: $compid__569,
+        $compid__570: $compid__570,
+        $compid__571: $compid__571,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

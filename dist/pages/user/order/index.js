@@ -40,7 +40,7 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray22", "list"], _this.customComponents = ["AtBadge"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray13", "list", "undefined"], _this.customComponents = ["AtBadge"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UserOrder, [{
@@ -66,23 +66,26 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       var list = this.__props.list;
 
 
-      var loopArray22 = list ? list.map(function (item, index) {
+      console.log('list', list);
+
+      var loopArray13 = list != undefined ? list.map(function (item, index) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__125 = (0, _index.genCompid)(__prefix + "aOUrpCbWcv" + index);
+        var $compid__69 = (0, _index.genCompid)(__prefix + "PzGuaaJsWt" + index);
         item.$original.count > 0 && _index.propsManager.set({
           "value": item.$original.count,
           "maxValue": 99
-        }, $compid__125);
+        }, $compid__69);
         return {
-          $compid__125: $compid__125,
+          $compid__69: $compid__69,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray22: loopArray22,
-        list: list
+        loopArray13: loopArray13,
+        list: list,
+        undefined: undefined
       });
       return this.__state;
     }

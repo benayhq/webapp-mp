@@ -4,26 +4,28 @@
         </view>
         <view>
             <view class="product">
-                <view class="list" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                    <view class="list-top">
-                        <view></view>
-                        <view>
-                            <image style="width:92px; height:95px;margin-top:14px;" mode="scaleToFill" src="{{item.$original.location}}"></image>
+                <block wx:if="{{products != null}}">
+                    <view class="list" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                        <view class="list-top">
+                            <view></view>
+                            <view>
+                                <image style="width:92px; height:95px;margin-top:14px;" mode="scaleToFill" src="{{item.$original.location}}"></image>
+                            </view>
+                            <view>
+                                <view class="product-item margin20">{{item.$original.name}}</view>
+                                <view class="product-item font">{{item.$original.price}}</view>
+                                <view class="product-item textfont">预定金: <text class="amount">{{item.$original.advance}}</text> 
+                                </view>
+                            </view>
                         </view>
-                        <view>
-                            <view class="product-item margin20">{{item.$original.name}}</view>
-                            <view class="product-item font">{{item.$original.price}}</view>
-                            <view class="product-item textfont">预定金: <text class="amount">{{item.$original.advance}}</text> 
+                        <view class="product-item activePrice">
+                            <view>活动价:</view>
+                            <view>
+                                <at-input compid="{{item.$compid__70}}"></at-input>
                             </view>
                         </view>
                     </view>
-                    <view class="product-item activePrice">
-                        <view>活动价:</view>
-                        <view>
-                            <at-input compid="{{item.$compid__71}}"></at-input>
-                        </view>
-                    </view>
-                </view>
+                </block>
             </view>
         </view>
     </view>
