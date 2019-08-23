@@ -49,7 +49,10 @@ var API_PUBLISH_COMMENT = exports.API_PUBLISH_COMMENT = HOST + '/api/v1/comment/
 var API_ORDER_DETAIL = exports.API_ORDER_DETAIL = HOST + '/api/v1/reservation/info';
 
 // 获取分类
-var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/v1/project/all';
+// export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;
+
+// 获取分类(修改版本.)
+var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/api/v1/project/query';
 
 // 获取分享
 var API_QRCODE = exports.API_QRCODE = HOST + '/api/v1/wx/getwxacodeunlimit';

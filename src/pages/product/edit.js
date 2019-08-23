@@ -7,7 +7,7 @@ import * as actions from './store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
 var uploadImage = require('./../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
-var imgArraySrc = [];
+var imgArraySrc = [],columnIndex =0,firstValue=0,secondValue=0;
 
 @connect(state=>state.product,actions)
 class EditProduct extends Component{
@@ -37,7 +37,8 @@ class EditProduct extends Component{
            firstList:[],
            secondList:[],
            thirdList:[],
-           initSeletedValue:''
+           initSeletedValue:'',
+           pid:0
         };
 
    }
@@ -47,34 +48,31 @@ class EditProduct extends Component{
     this.initProduct();
    }
 
-   initCategory(){
+   async initCategory(){
       var payload ={
+        pid:0,
       };
       var that = this;
-      this.props.dispatchCategoryList(payload).then((response)=>{
-        var list = response.content;
-        var firstList = [],secondList = [],thirdList = [];
-        list.map((category,index)=>{
-          firstList.push(category.name+'-'+category.id);
-          // if(index === 0){
-          //   category.son.map((categoryChild,index)=>{
-          //     secondList.push(categoryChild.name);
-          //     if(index ===0 ){
-          //       categoryChild.son.map((thirdItem,index)=>{
-          //         thirdList.push(thirdItem.name);
-          //       });
-          //     }
-          //   })
-          // }
-        });
-        this.setState({
-          firstList:firstList,
-          secondList:[],
-          thirdList:[]
-        });
-        this.setState({
-          multiSelector:[firstList,secondList,thirdList]
-        });
+      const response = await this.props.dispatchCategoryList(payload);
+      var list = response.content;
+      console.log('response list',list.subProjectNames);
+
+      var firstList = [],secondList = [],thirdList = [];
+
+      const parentId = list === null? 0 :list.pid;
+      this.setState({
+        pid:parentId
+      });
+      list.subProjectNames.map((category,index)=>{
+        firstList.push(category);
+      });
+      this.setState({
+        firstList:firstList,
+        secondList:[],
+        thirdList:[]
+      });
+      this.setState({
+        multiSelector:[firstList,secondList,thirdList]
       });
    }
 
@@ -134,18 +132,16 @@ class EditProduct extends Component{
     }
 
     async handleSaveProduct(){
-      const {productName,productPrice,activePrice,files,preAmount,initSeletedValue,mulitSelectorValues,location,productId} = this.state;
+      const {productName,productPrice,activePrice,files,preAmount,initSeletedValue,mulitSelectorValues,location,productId,pid} = this.state;
 
       if(initSeletedValue === ''){
         this.handleAlert('error','请选择分类');
         return;
       }
-
       if(productName===''){
         this.handleAlert('error','名称不能为空');
         return;
       }
-
       if(productPrice === ''){
         this.handleAlert('error','价格不能为空');
         return;
@@ -178,7 +174,7 @@ class EditProduct extends Component{
         "location": imgArraySrc[0],
         "name": productName,
         "price": productPrice,
-        "projectId": initSeletedValue.split('-')[1],
+        "projectId": pid,
         "projectLevel": 0,
         "projectName": productName
       };
@@ -249,8 +245,16 @@ class EditProduct extends Component{
       return activePrice;
     }
 
-    handleMulitChange = e => {
-      const {firstList,secondList,thirdList,multiSelector} = this.state;
+    async handleMulitChange(e){
+
+
+      const {firstList,secondList,thirdList,multiSelector,pid} = this.state;
+      console.log('pid',pid);
+      console.log('multiSelector[0][e.detail.value[0]]',multiSelector[0][e.detail.value[0]]);
+
+      var listAll = await this.getCategroyList(multiSelector[0][e.detail.value[0]],0);
+      console.log('listall',listAll);
+
       if(firstList.length>0){
         this.setState({
           mulitSelectorValues: e.detail.value,
@@ -275,47 +279,116 @@ class EditProduct extends Component{
     }
 
     async handleColumnChange(e){
-      const {multiSelector,mulitSelectorValues} = this.state;
-      const selectedValue = multiSelector[e.detail.column][e.detail.value];
-      var list = await this.getCategroyList(selectedValue.split('-')[0]);
-      var firsts=[],seconds =[],thirds=[];
-      const {firstList,secondList,thirdList} = this.state;
+ 
+      var list = null;
 
-      switch(e.detail.column){
-        case 0:
-            if(list && list.content.length>0){
-              list.content[0].son.map((item)=>{
-                seconds.push(item.name+'-'+item.id);
-              })
-              this.setState({
-                secondList:seconds
-              });
-            }
-            this.setState({
-              multiSelector:[firstList,seconds,thirdList]
-            });
-          break;
-        case 1:
-            if(list && list.content.length>0){
-              list.content[0].son.map((item)=>{
-                thirds.push(item.name+'-'+item.id);
-              })
-              this.setState({
-                thirdList:thirds
-              });
-            }
-            this.setState({
-              multiSelector:[firstList,secondList,thirds]
-            });
-          break;
-        case 2:
-          break;
+      if(e.detail.column===0){
+        const {multiSelector,mulitSelectorValues,pid} = this.state;
+        const selectedValue = multiSelector[e.detail.column][e.detail.value];
+        var listAll = await this.getCategroyList(selectedValue,0);
+        console.log('pid',pid);
+        console.log('selectedValue',selectedValue);
+        console.log('e.detail.column',e.detail.column);
+  
+        var firsts=[],seconds =[],thirds=[];
+        const {firstList,secondList,thirdList} = this.state;
+        list = listAll.content === null? [] : listAll.content.subProjectNames;
+        console.log('listAll.content.pid',listAll.content.pid);
+        console.log('columnIndex',columnIndex);
+        firstValue = listAll.content === null? 0 :listAll.content.pid;
+        // this.setState({
+        //   pid:parentId
+        // });
+        // console.log('parentId',parentId);
+        // columnIndex = e.detail.column;
+        if(list && list.length>0){
+          list.map((item)=>{
+            seconds.push(item);
+          });
+          thirds = [];
+          this.setState({
+            secondList:seconds,
+            thirdList:thirds
+          });
+        }
+        else{
+          seconds = [];
+          thirds = [];
+          this.setState({
+            secondList:[],
+            thirdList:thirds
+          });
+        }
+        this.setState({
+          pid:listAll.content.pid,
+          multiSelector:[firstList,seconds,thirdList]
+        });
       }
+      if(e.detail.column === 1){
+        const {multiSelector,mulitSelectorValues,pid} = this.state;
+        const selectedValue = multiSelector[e.detail.column][e.detail.value];
+        var listAll = await this.getCategroyList(selectedValue,firstValue);
+        console.log('pid',pid);
+        console.log('selectedValue',selectedValue);
+        console.log('e.detail.column',e.detail.column);
+        var firsts=[],seconds =[],thirds=[];
+        const {firstList,secondList,thirdList} = this.state;
+        list = listAll.content === null? [] : listAll.content.subProjectNames;
+        secondValue = listAll.content === null? 0 :listAll.content.pid;
+        console.log('listAll.content.pid',listAll.content.pid);
+        console.log('columnIndex',columnIndex);
+        if(list && list.length>0){
+          list.map((item)=>{
+            thirds.push(item);
+          })
+          this.setState({
+            thirdList:thirds
+          });
+        }
+        else{
+          thirds = [];
+          this.setState({
+            thirdList:[]
+          });
+        }
+        this.setState({
+          pid:listAll.content.pid,
+          multiSelector:[firstList,secondList,thirds]
+        });
+      }
+      if(e.detail.column === 2){
+        const {multiSelector,mulitSelectorValues,pid} = this.state;
+        const selectedValue = multiSelector[e.detail.column][e.detail.value];
+        var listAll = await this.getCategroyList(selectedValue,secondValue);
+        console.log('pid',pid);
+        console.log('selectedValue',selectedValue);
+        console.log('e.detail.column',e.detail.column);
+        var firsts=[],seconds =[],thirds=[];
+        list = listAll.content === null? [] : listAll.content.subProjectNames;
+        console.log('listAll.content.pid',listAll.content.pid);
+        console.log('columnIndex',columnIndex);
+        this.setState({
+          pid:listAll.content.pid,
+        });
+      }
+      // console.log('listAll.content.subProjectNames',listAll);
+      // switch(e.detail.column){
+      //   case 0:
+            
+      //     break;
+      //   case 1:
+      //     console.log('list.content',list)
+           
+      //     break;
+      //   case 2:
+      //     break;
+      // }
     }
 
-    async getCategroyList(name){
+    async getCategroyList(name,pid){
       var payload = {
-        name:name
+        name:name,
+        pid:pid
       };
       const result  = await this.props.dispatchCategoryList(payload);
       return result;

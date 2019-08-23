@@ -34,7 +34,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var uploadImage = require('./../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
-var imgArraySrc = [];
+var imgArraySrc = [],
+    columnIndex = 0,
+    firstValue = 0,
+    secondValue = 0;
 
 var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   return state.product;
@@ -52,7 +55,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__692", "$compid__693", "$compid__694", "$compid__695", "$compid__696", "$compid__697", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__550", "$compid__551", "$compid__552", "$compid__553", "$compid__554", "$compid__555", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -101,34 +104,6 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
         _loop();
       }
-    }, _this.handleMulitChange = function (e) {
-      var _this$state = _this.state,
-          firstList = _this$state.firstList,
-          secondList = _this$state.secondList,
-          thirdList = _this$state.thirdList,
-          multiSelector = _this$state.multiSelector;
-
-      if (firstList.length > 0) {
-        _this.setState({
-          mulitSelectorValues: e.detail.value,
-          isOpened: false,
-          initSeletedValue: multiSelector[0][e.detail.value[0]]
-        });
-      }
-      if (secondList.length > 0) {
-        _this.setState({
-          mulitSelectorValues: e.detail.value,
-          isOpened: false,
-          initSeletedValue: multiSelector[1][e.detail.value[1]]
-        });
-      }
-      if (thirdList.length > 0) {
-        _this.setState({
-          mulitSelectorValues: e.detail.value,
-          isOpened: false,
-          initSeletedValue: multiSelector[2][e.detail.value[2]]
-        });
-      }
     }, _this.customComponents = ["AtMessage", "AtToast", "AtForm", "AtInput", "AtImagePicker"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -155,7 +130,8 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         firstList: [],
         secondList: [],
         thirdList: [],
-        initSeletedValue: ''
+        initSeletedValue: '',
+        pid: 0
       };
 
       this.$$refs = [];
@@ -168,39 +144,58 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
     }
   }, {
     key: "initCategory",
-    value: function initCategory() {
-      var _this2 = this;
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var payload, that, response, list, firstList, secondList, thirdList, parentId;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payload = {
+                  pid: 0
+                };
+                that = this;
+                _context.next = 4;
+                return this.props.dispatchCategoryList(payload);
 
-      var payload = {};
-      var that = this;
-      this.props.dispatchCategoryList(payload).then(function (response) {
-        var list = response.content;
-        var firstList = [],
-            secondList = [],
-            thirdList = [];
-        list.map(function (category, index) {
-          firstList.push(category.name + '-' + category.id);
-          // if(index === 0){
-          //   category.son.map((categoryChild,index)=>{
-          //     secondList.push(categoryChild.name);
-          //     if(index ===0 ){
-          //       categoryChild.son.map((thirdItem,index)=>{
-          //         thirdList.push(thirdItem.name);
-          //       });
-          //     }
-          //   })
-          // }
-        });
-        _this2.setState({
-          firstList: firstList,
-          secondList: [],
-          thirdList: []
-        });
-        _this2.setState({
-          multiSelector: [firstList, secondList, thirdList]
-        });
-      });
-    }
+              case 4:
+                response = _context.sent;
+                list = response.content;
+
+                console.log('response list', list.subProjectNames);
+
+                firstList = [], secondList = [], thirdList = [];
+                parentId = list === null ? 0 : list.pid;
+
+                this.setState({
+                  pid: parentId
+                });
+                list.subProjectNames.map(function (category, index) {
+                  firstList.push(category);
+                });
+                this.setState({
+                  firstList: firstList,
+                  secondList: [],
+                  thirdList: []
+                });
+                this.setState({
+                  multiSelector: [firstList, secondList, thirdList]
+                });
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function initCategory() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return initCategory;
+    }()
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -216,76 +211,76 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleSaveProduct",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var _this3 = this;
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
 
-        var _state, productName, productPrice, activePrice, files, preAmount, initSeletedValue, mulitSelectorValues, location, productId, result, payload;
+        var _state, productName, productPrice, activePrice, files, preAmount, initSeletedValue, mulitSelectorValues, location, productId, pid, result, payload;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, initSeletedValue = _state.initSeletedValue, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId;
+                _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, initSeletedValue = _state.initSeletedValue, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId, pid = _state.pid;
 
                 if (!(initSeletedValue === '')) {
-                  _context.next = 4;
+                  _context2.next = 4;
                   break;
                 }
 
                 this.handleAlert('error', '请选择分类');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 4:
                 if (!(productName === '')) {
-                  _context.next = 7;
+                  _context2.next = 7;
                   break;
                 }
 
                 this.handleAlert('error', '名称不能为空');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 7:
                 if (!(productPrice === '')) {
-                  _context.next = 10;
+                  _context2.next = 10;
                   break;
                 }
 
                 this.handleAlert('error', '价格不能为空');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 10:
                 if (!(activePrice === '')) {
-                  _context.next = 13;
+                  _context2.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '活动价不能为空');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 13:
                 if (!(imgArraySrc.length === 0)) {
-                  _context.next = 16;
+                  _context2.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请上传产品图片');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 16:
                 if (!(preAmount === '')) {
-                  _context.next = 19;
+                  _context2.next = 19;
                   break;
                 }
 
                 this.handleAlert('error', '请输入预定金');
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 19:
-                _context.next = 21;
+                _context2.next = 21;
                 return (0, _storage.getAuthInfo)();
 
               case 21:
-                result = _context.sent;
+                result = _context2.sent;
                 payload = {
                   "advance": preAmount,
                   "agentId": result.id,
@@ -294,7 +289,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   "location": imgArraySrc[0],
                   "name": productName,
                   "price": productPrice,
-                  "projectId": initSeletedValue.split('-')[1],
+                  "projectId": pid,
                   "projectLevel": 0,
                   "projectName": productName
                 };
@@ -304,7 +299,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   console.log('payload', payload);
                   this.props.dispatchUpdateProductInfo(payload).then(function (res) {
                     if (res.result === 'success') {
-                      _this3.setState({
+                      _this2.setState({
                         isOpened: true,
                         toastText: '保存成功',
                         status: 'success'
@@ -313,7 +308,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                         url: '/pages/product/index'
                       });
                     } else {
-                      _this3.setState({
+                      _this2.setState({
                         isOpened: true,
                         toastText: res.error,
                         status: 'error'
@@ -323,7 +318,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 } else {
                   this.props.dispatchCreateProduct(payload).then(function (res) {
                     if (res.result === 'success') {
-                      _this3.setState({
+                      _this2.setState({
                         isOpened: true,
                         toastText: '保存成功',
                         status: 'success'
@@ -332,7 +327,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                         url: '/pages/product/index'
                       });
                     } else {
-                      _this3.setState({
+                      _this2.setState({
                         isOpened: true,
                         toastText: res.error,
                         status: 'error'
@@ -343,14 +338,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
               case 24:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function handleSaveProduct() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       }
 
       return handleSaveProduct;
@@ -380,93 +375,51 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       return activePrice;
     }
   }, {
-    key: "handleColumnChange",
+    key: "handleMulitChange",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-        var _state2, multiSelector, mulitSelectorValues, selectedValue, list, firsts, seconds, thirds, _state3, firstList, secondList, thirdList;
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
+        var _state2, firstList, secondList, thirdList, multiSelector, pid, listAll;
 
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _state2 = this.state, multiSelector = _state2.multiSelector, mulitSelectorValues = _state2.mulitSelectorValues;
-                selectedValue = multiSelector[e.detail.column][e.detail.value];
-                _context2.next = 4;
-                return this.getCategroyList(selectedValue.split('-')[0]);
-
-              case 4:
-                list = _context2.sent;
-                firsts = [], seconds = [], thirds = [];
-                _state3 = this.state, firstList = _state3.firstList, secondList = _state3.secondList, thirdList = _state3.thirdList;
-                _context2.t0 = e.detail.column;
-                _context2.next = _context2.t0 === 0 ? 10 : _context2.t0 === 1 ? 13 : _context2.t0 === 2 ? 16 : 17;
-                break;
-
-              case 10:
-                if (list && list.content.length > 0) {
-                  list.content[0].son.map(function (item) {
-                    seconds.push(item.name + '-' + item.id);
-                  });
-                  this.setState({
-                    secondList: seconds
-                  });
-                }
-                this.setState({
-                  multiSelector: [firstList, seconds, thirdList]
-                });
-                return _context2.abrupt("break", 17);
-
-              case 13:
-                if (list && list.content.length > 0) {
-                  list.content[0].son.map(function (item) {
-                    thirds.push(item.name + '-' + item.id);
-                  });
-                  this.setState({
-                    thirdList: thirds
-                  });
-                }
-                this.setState({
-                  multiSelector: [firstList, secondList, thirds]
-                });
-                return _context2.abrupt("break", 17);
-
-              case 16:
-                return _context2.abrupt("break", 17);
-
-              case 17:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function handleColumnChange(_x) {
-        return _ref3.apply(this, arguments);
-      }
-
-      return handleColumnChange;
-    }()
-  }, {
-    key: "getCategroyList",
-    value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name) {
-        var payload, result;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                payload = {
-                  name: name
-                };
-                _context3.next = 3;
-                return this.props.dispatchCategoryList(payload);
+                _state2 = this.state, firstList = _state2.firstList, secondList = _state2.secondList, thirdList = _state2.thirdList, multiSelector = _state2.multiSelector, pid = _state2.pid;
 
-              case 3:
-                result = _context3.sent;
-                return _context3.abrupt("return", result);
+                console.log('pid', pid);
+                console.log('multiSelector[0][e.detail.value[0]]', multiSelector[0][e.detail.value[0]]);
+
+                _context3.next = 5;
+                return this.getCategroyList(multiSelector[0][e.detail.value[0]], 0);
 
               case 5:
+                listAll = _context3.sent;
+
+                console.log('listall', listAll);
+
+                if (firstList.length > 0) {
+                  this.setState({
+                    mulitSelectorValues: e.detail.value,
+                    isOpened: false,
+                    initSeletedValue: multiSelector[0][e.detail.value[0]]
+                  });
+                }
+                if (secondList.length > 0) {
+                  this.setState({
+                    mulitSelectorValues: e.detail.value,
+                    isOpened: false,
+                    initSeletedValue: multiSelector[1][e.detail.value[1]]
+                  });
+                }
+                if (thirdList.length > 0) {
+                  this.setState({
+                    mulitSelectorValues: e.detail.value,
+                    isOpened: false,
+                    initSeletedValue: multiSelector[2][e.detail.value[2]]
+                  });
+                }
+
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -474,8 +427,187 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         }, _callee3, this);
       }));
 
-      function getCategroyList(_x2) {
+      function handleMulitChange(_x) {
         return _ref4.apply(this, arguments);
+      }
+
+      return handleMulitChange;
+    }()
+  }, {
+    key: "handleColumnChange",
+    value: function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
+        var list, _state3, multiSelector, mulitSelectorValues, pid, selectedValue, listAll, firsts, seconds, thirds, _state4, firstList, secondList, thirdList, _state5, _multiSelector, _mulitSelectorValues, _pid, _selectedValue, _state6, _firstList, _secondList, _thirdList, _state7, _multiSelector2, _mulitSelectorValues2, _pid2, _selectedValue2;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                list = null;
+
+                if (!(e.detail.column === 0)) {
+                  _context4.next = 18;
+                  break;
+                }
+
+                _state3 = this.state, multiSelector = _state3.multiSelector, mulitSelectorValues = _state3.mulitSelectorValues, pid = _state3.pid;
+                selectedValue = multiSelector[e.detail.column][e.detail.value];
+                _context4.next = 6;
+                return this.getCategroyList(selectedValue, 0);
+
+              case 6:
+                listAll = _context4.sent;
+
+                console.log('pid', pid);
+                console.log('selectedValue', selectedValue);
+                console.log('e.detail.column', e.detail.column);
+
+                firsts = [], seconds = [], thirds = [];
+                _state4 = this.state, firstList = _state4.firstList, secondList = _state4.secondList, thirdList = _state4.thirdList;
+
+                list = listAll.content === null ? [] : listAll.content.subProjectNames;
+                console.log('listAll.content.pid', listAll.content.pid);
+                console.log('columnIndex', columnIndex);
+                firstValue = listAll.content === null ? 0 : listAll.content.pid;
+                // this.setState({
+                //   pid:parentId
+                // });
+                // console.log('parentId',parentId);
+                // columnIndex = e.detail.column;
+                if (list && list.length > 0) {
+                  list.map(function (item) {
+                    seconds.push(item);
+                  });
+                  thirds = [];
+                  this.setState({
+                    secondList: seconds,
+                    thirdList: thirds
+                  });
+                } else {
+                  seconds = [];
+                  thirds = [];
+                  this.setState({
+                    secondList: [],
+                    thirdList: thirds
+                  });
+                }
+                this.setState({
+                  pid: listAll.content.pid,
+                  multiSelector: [firstList, seconds, thirdList]
+                });
+
+              case 18:
+                if (!(e.detail.column === 1)) {
+                  _context4.next = 35;
+                  break;
+                }
+
+                _state5 = this.state, _multiSelector = _state5.multiSelector, _mulitSelectorValues = _state5.mulitSelectorValues, _pid = _state5.pid;
+                _selectedValue = _multiSelector[e.detail.column][e.detail.value];
+                _context4.next = 23;
+                return this.getCategroyList(_selectedValue, firstValue);
+
+              case 23:
+                listAll = _context4.sent;
+
+                console.log('pid', _pid);
+                console.log('selectedValue', _selectedValue);
+                console.log('e.detail.column', e.detail.column);
+                firsts = [], seconds = [], thirds = [];
+                _state6 = this.state, _firstList = _state6.firstList, _secondList = _state6.secondList, _thirdList = _state6.thirdList;
+
+                list = listAll.content === null ? [] : listAll.content.subProjectNames;
+                secondValue = listAll.content === null ? 0 : listAll.content.pid;
+                console.log('listAll.content.pid', listAll.content.pid);
+                console.log('columnIndex', columnIndex);
+                if (list && list.length > 0) {
+                  list.map(function (item) {
+                    thirds.push(item);
+                  });
+                  this.setState({
+                    thirdList: thirds
+                  });
+                } else {
+                  thirds = [];
+                  this.setState({
+                    thirdList: []
+                  });
+                }
+                this.setState({
+                  pid: listAll.content.pid,
+                  multiSelector: [_firstList, _secondList, thirds]
+                });
+
+              case 35:
+                if (!(e.detail.column === 2)) {
+                  _context4.next = 49;
+                  break;
+                }
+
+                _state7 = this.state, _multiSelector2 = _state7.multiSelector, _mulitSelectorValues2 = _state7.mulitSelectorValues, _pid2 = _state7.pid;
+                _selectedValue2 = _multiSelector2[e.detail.column][e.detail.value];
+                _context4.next = 40;
+                return this.getCategroyList(_selectedValue2, secondValue);
+
+              case 40:
+                listAll = _context4.sent;
+
+                console.log('pid', _pid2);
+                console.log('selectedValue', _selectedValue2);
+                console.log('e.detail.column', e.detail.column);
+                firsts = [], seconds = [], thirds = [];
+
+                list = listAll.content === null ? [] : listAll.content.subProjectNames;
+                console.log('listAll.content.pid', listAll.content.pid);
+                console.log('columnIndex', columnIndex);
+                this.setState({
+                  pid: listAll.content.pid
+                });
+
+              case 49:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function handleColumnChange(_x2) {
+        return _ref5.apply(this, arguments);
+      }
+
+      return handleColumnChange;
+    }()
+  }, {
+    key: "getCategroyList",
+    value: function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(name, pid) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                payload = {
+                  name: name,
+                  pid: pid
+                };
+                _context5.next = 3;
+                return this.props.dispatchCategoryList(payload);
+
+              case 3:
+                result = _context5.sent;
+                return _context5.abrupt("return", result);
+
+              case 5:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function getCategroyList(_x3, _x4) {
+        return _ref6.apply(this, arguments);
       }
 
       return getCategroyList;
@@ -496,32 +628,32 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getImgUrl",
     value: function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(location) {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context4.next = 3;
+                _context6.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context4.sent;
-                return _context4.abrupt("return", result.content);
+                result = _context6.sent;
+                return _context6.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context4.stop();
+                return _context6.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee6, this);
       }));
 
-      function getImgUrl(_x3) {
-        return _ref5.apply(this, arguments);
+      function getImgUrl(_x5) {
+        return _ref7.apply(this, arguments);
       }
 
       return getImgUrl;
@@ -529,13 +661,13 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "initProduct",
     value: function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-        var _this4 = this;
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+        var _this3 = this;
 
         var productId, payload;
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 productId = this.state.productId;
 
@@ -547,13 +679,13 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   this.props.dispatchQueryProductInfo(payload).then(function (response) {
                     var data = response.content;
                     if (data) {
-                      _this4.getImgUrl(data.location).then(function (response) {
-                        _this4.setState({
+                      _this3.getImgUrl(data.location).then(function (response) {
+                        _this3.setState({
                           files: [{ url: response }]
                         });
                         imgArraySrc.push(data.location);
                       });
-                      _this4.setState({
+                      _this3.setState({
                         productName: data.name,
                         productPrice: data.discountPrice,
                         activePrice: data.price,
@@ -565,14 +697,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
               case "end":
-                return _context5.stop();
+                return _context7.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee7, this);
       }));
 
       function initProduct() {
-        return _ref6.apply(this, arguments);
+        return _ref8.apply(this, arguments);
       }
 
       return initProduct;
@@ -593,34 +725,34 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__692 = (0, _index.genCompid)(__prefix + "$compid__692");
-      var $compid__693 = (0, _index.genCompid)(__prefix + "$compid__693");
-      var $compid__694 = (0, _index.genCompid)(__prefix + "$compid__694");
-      var $compid__695 = (0, _index.genCompid)(__prefix + "$compid__695");
-      var $compid__696 = (0, _index.genCompid)(__prefix + "$compid__696");
-      var $compid__697 = (0, _index.genCompid)(__prefix + "$compid__697");
+      var $compid__550 = (0, _index.genCompid)(__prefix + "$compid__550");
+      var $compid__551 = (0, _index.genCompid)(__prefix + "$compid__551");
+      var $compid__552 = (0, _index.genCompid)(__prefix + "$compid__552");
+      var $compid__553 = (0, _index.genCompid)(__prefix + "$compid__553");
+      var $compid__554 = (0, _index.genCompid)(__prefix + "$compid__554");
+      var $compid__555 = (0, _index.genCompid)(__prefix + "$compid__555");
 
-      var _state4 = this.__state,
-          productName = _state4.productName,
-          productPrice = _state4.productPrice,
-          activePrice = _state4.activePrice,
-          preAmount = _state4.preAmount,
-          files = _state4.files,
-          toastText = _state4.toastText,
-          isOpened = _state4.isOpened,
-          status = _state4.status,
-          duration = _state4.duration,
-          initSeletedValue = _state4.initSeletedValue;
+      var _state8 = this.__state,
+          productName = _state8.productName,
+          productPrice = _state8.productPrice,
+          activePrice = _state8.activePrice,
+          preAmount = _state8.preAmount,
+          files = _state8.files,
+          toastText = _state8.toastText,
+          isOpened = _state8.isOpened,
+          status = _state8.status,
+          duration = _state8.duration,
+          initSeletedValue = _state8.initSeletedValue;
 
 
-      var $props__692 = {
+      var $props__550 = {
         "isOpened": isOpened,
         "text": toastText,
         "status": status,
         "duration": duration,
         "icon": "{icon}"
       };
-      var $props__693 = {
+      var $props__551 = {
         "name": "productName",
         "title": "\u540D\u79F0",
         "type": "text",
@@ -628,7 +760,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productName,
         "onChange": this.handleProductChange.bind(this)
       };
-      var $props__694 = {
+      var $props__552 = {
         "name": "productPrice",
         "title": "\u4EF7\u683C",
         "type": "number",
@@ -636,7 +768,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productPrice,
         "onChange": this.handlePriceChange.bind(this)
       };
-      var $props__695 = {
+      var $props__553 = {
         "name": "activePrice",
         "title": "\u6D3B\u52A8\u4EF7",
         "type": "number",
@@ -644,12 +776,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": activePrice,
         "onChange": this.handleActivePriceChange.bind(this)
       };
-      var $props__696 = {
+      var $props__554 = {
         "files": files,
         "onChange": this.handleChooseImage.bind(this),
         "onImageClick": this.onImageClick.bind(this)
       };
-      var $props__697 = {
+      var $props__555 = {
         "name": "preAmount",
         "title": "\u9884\u5B9A\u91D1",
         "type": "number",
@@ -657,19 +789,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": preAmount,
         "onChange": this.handlePreAmountChange.bind(this)
       };
-      _index.propsManager.set($props__692, $compid__692);
-      _index.propsManager.set($props__693, $compid__693);
-      _index.propsManager.set($props__694, $compid__694);
-      _index.propsManager.set($props__695, $compid__695);
-      _index.propsManager.set($props__696, $compid__696);
-      _index.propsManager.set($props__697, $compid__697);
+      _index.propsManager.set($props__550, $compid__550);
+      _index.propsManager.set($props__551, $compid__551);
+      _index.propsManager.set($props__552, $compid__552);
+      _index.propsManager.set($props__553, $compid__553);
+      _index.propsManager.set($props__554, $compid__554);
+      _index.propsManager.set($props__555, $compid__555);
       Object.assign(this.__state, {
-        $compid__692: $compid__692,
-        $compid__693: $compid__693,
-        $compid__694: $compid__694,
-        $compid__695: $compid__695,
-        $compid__696: $compid__696,
-        $compid__697: $compid__697
+        $compid__550: $compid__550,
+        $compid__551: $compid__551,
+        $compid__552: $compid__552,
+        $compid__553: $compid__553,
+        $compid__554: $compid__554,
+        $compid__555: $compid__555
       });
       return this.__state;
     }

@@ -188,41 +188,41 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "WPELXTcumE" + _anonIdx);
+        var $compid__71 = (0, _index.genCompid)(__prefix + "heOUzipOcD" + _anonIdx);
         _index.propsManager.set({
           "OrderId": item.$original.id,
           "displayStatusDes": item.$original.displayStatusDes,
           "AgentName": item.$original.customerName
         }, $compid__71);
-        var $compid__72 = (0, _index.genCompid)(__prefix + "ADfgGEpKsg" + _anonIdx);
+        var $compid__72 = (0, _index.genCompid)(__prefix + "IFxyqSCQms" + _anonIdx);
         item.$original.status == "UNPAY" && _index.propsManager.set({
           "type": "primary",
           "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
           "size": "small"
         }, $compid__72);
-        var $compid__73 = (0, _index.genCompid)(__prefix + "ccKcVaWJQv" + _anonIdx);
+        var $compid__73 = (0, _index.genCompid)(__prefix + "WJdQjFDDOy" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
           "size": "small",
           "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
         }, $compid__73);
-        var $compid__74 = (0, _index.genCompid)(__prefix + "GhsDWBNcxF" + _anonIdx);
+        var $compid__74 = (0, _index.genCompid)(__prefix + "LjlOXRxtYT" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
           "size": "small",
           "onClick": _this4.handleRefund.bind(_this4, item.$original.id)
         }, $compid__74);
-        var $compid__75 = (0, _index.genCompid)(__prefix + "XrTtulCXAp" + _anonIdx);
+        var $compid__75 = (0, _index.genCompid)(__prefix + "OfnKiGJnYM" + _anonIdx);
         item.$original.status == "COMMENTING" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
         }, $compid__75);
-        var $compid__76 = (0, _index.genCompid)(__prefix + "PWNjEeiTjO" + _anonIdx);
+        var $compid__76 = (0, _index.genCompid)(__prefix + "wJDoAqQziN" + _anonIdx);
         item.$original.status == "COMMENTING" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
         }, $compid__76);
-        var $compid__77 = (0, _index.genCompid)(__prefix + "qrpMfdrEdc" + _anonIdx);
+        var $compid__77 = (0, _index.genCompid)(__prefix + "nFAIHKeXeg" + _anonIdx);
         item.$original.status == "CONSUMPTION" && _index.propsManager.set({
           "type": "primary",
           "size": "small"

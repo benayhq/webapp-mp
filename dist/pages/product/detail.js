@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__698", "$compid__699", "$compid__700", "$compid__701", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__47", "$compid__48", "$compid__49", "$compid__50", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -393,10 +393,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__698 = (0, _index.genCompid)(__prefix + "$compid__698");
-      var $compid__699 = (0, _index.genCompid)(__prefix + "$compid__699");
-      var $compid__700 = (0, _index.genCompid)(__prefix + "$compid__700");
-      var $compid__701 = (0, _index.genCompid)(__prefix + "$compid__701");
+      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
+      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
+      var $compid__49 = (0, _index.genCompid)(__prefix + "$compid__49");
+      var $compid__50 = (0, _index.genCompid)(__prefix + "$compid__50");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -415,32 +415,32 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__698 = {
+      var $props__47 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__699 = {
+      var $props__48 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__700 = {
+      var $props__49 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      var $props__701 = {
+      var $props__50 = {
         "isOpened": showOrderDialog
       };
-      _index.propsManager.set($props__698, $compid__698);
-      bContact && _index.propsManager.set($props__699, $compid__699);
-      bSpec && _index.propsManager.set($props__700, $compid__700);
-      _index.propsManager.set($props__701, $compid__701);
+      _index.propsManager.set($props__47, $compid__47);
+      bContact && _index.propsManager.set($props__48, $compid__48);
+      bSpec && _index.propsManager.set($props__49, $compid__49);
+      _index.propsManager.set($props__50, $compid__50);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__698: $compid__698,
-        $compid__699: $compid__699,
-        $compid__700: $compid__700,
-        $compid__701: $compid__701
+        $compid__47: $compid__47,
+        $compid__48: $compid__48,
+        $compid__49: $compid__49,
+        $compid__50: $compid__50
       });
       return this.__state;
     }
