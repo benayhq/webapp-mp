@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
 
 var _constants = require("./constants.js");
 
@@ -149,6 +149,17 @@ var dispatchOwnerActiveHistory = exports.dispatchOwnerActiveHistory = function d
     url: _api.API_ACTIVE_OWNER,
     fetchOptions: {
       method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var dispatchWeixinDecrypt = exports.dispatchWeixinDecrypt = function dispatchWeixinDecrypt(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_WEIXIN_DECRYPT,
+    url: _api.API_WEIXIN_DECRYPT,
+    fetchOptions: {
+      method: 'POST'
     },
     payload: payload
   });

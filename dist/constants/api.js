@@ -89,3 +89,6 @@ var API_WATER_HISTORY = exports.API_WATER_HISTORY = HOST + '/api/v1/agent-custom
 
 // 查询所有评论. 
 var API_PRODUCT_COMMNET = exports.API_PRODUCT_COMMNET = HOST + '/api/v1/comment/paging';
+
+// 微信解密信息.
+var API_WEIXIN_DECRYPT = exports.API_WEIXIN_DECRYPT = HOST + '/api/v1/wx/wxDecrypt';

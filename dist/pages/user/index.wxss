@@ -463,7 +463,7 @@ page {
       right: 50rpx;
       top: -19rpx;
       float: right;
-      width: 140rpx;
+      width: 178rpx;
       height: 60rpx;
       border-radius: 6rpx;
       text-align: center;

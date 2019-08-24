@@ -54,13 +54,13 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__519", "$compid__520", "$compid__521", "$compid__522", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__905", "$compid__906", "$compid__907", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.customComponents = ["Popup", "Contact", "Spec", "Modal", "TuanList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detail, [{
@@ -252,7 +252,8 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
         referId = decodeURIComponent(referId);
         source = decodeURIComponent(source);
       };
-      console.log('scene', source);
+
+      // console.log('scene',source);
       this.setState({
         activeId: activeId,
         referId: referId,
@@ -272,7 +273,6 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "openCategoryDialog",
     value: function openCategoryDialog() {
-
       this.setState({
         visible: true,
         bSpec: true,
@@ -393,10 +393,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__519 = (0, _index.genCompid)(__prefix + "$compid__519");
-      var $compid__520 = (0, _index.genCompid)(__prefix + "$compid__520");
-      var $compid__521 = (0, _index.genCompid)(__prefix + "$compid__521");
-      var $compid__522 = (0, _index.genCompid)(__prefix + "$compid__522");
+      var $compid__905 = (0, _index.genCompid)(__prefix + "$compid__905");
+      var $compid__906 = (0, _index.genCompid)(__prefix + "$compid__906");
+      var $compid__907 = (0, _index.genCompid)(__prefix + "$compid__907");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -415,39 +414,34 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__519 = {
+      var $props__905 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__520 = {
+      var $props__906 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__521 = {
+      var $props__907 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      var $props__522 = {
-        "isOpened": showOrderDialog
-      };
-      _index.propsManager.set($props__519, $compid__519);
-      bContact && _index.propsManager.set($props__520, $compid__520);
-      bSpec && _index.propsManager.set($props__521, $compid__521);
-      _index.propsManager.set($props__522, $compid__522);
+      _index.propsManager.set($props__905, $compid__905);
+      bContact && _index.propsManager.set($props__906, $compid__906);
+      bSpec && _index.propsManager.set($props__907, $compid__907);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__519: $compid__519,
-        $compid__520: $compid__520,
-        $compid__521: $compid__521,
-        $compid__522: $compid__522
+        $compid__905: $compid__905,
+        $compid__906: $compid__906,
+        $compid__907: $compid__907
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.$$events = ["showMpDialog", "handleAllComment", "openDialog", "openCategoryDialog", "handleShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "openDialog", "handleShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

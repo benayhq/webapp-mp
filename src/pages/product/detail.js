@@ -138,7 +138,8 @@ export default class Detail extends Component{
             referId =  decodeURIComponent(referId);
             source =  decodeURIComponent(source);
         };
-        console.log('scene',source);
+
+        // console.log('scene',source);
         this.setState({
             activeId:activeId,
             referId:referId,
@@ -156,14 +157,12 @@ export default class Detail extends Component{
     }
 
     openCategoryDialog(){
-
         this.setState({
             visible: true,
             bSpec:true,
             bContact: false,
             showOrderDialog:false
         });
-
     }
 
     toggleVisible = () =>{
@@ -330,7 +329,7 @@ export default class Detail extends Component{
                                 <View className="mp-activedetail__first">
                                     <Text className="mp-activedetail__etitle">{data.batchPeople}人在拼单，可直接参与</Text>
                                     <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 
-                                        查看全部
+                                        {/* 查看全部 */}
                                         <Text className="mp-icon mp-icon-arrow1"></Text>
                                     </Text>
                                 </View>
@@ -350,7 +349,7 @@ export default class Detail extends Component{
                                                 <View className="mp-activedetail__time">剩余20:50:14</View>
                                             </View>
                                             <View>
-                                                <View className="mp-activedetail__second__buyAction" onClick={this.showMpDialog.bind(this)}>
+                                                <View className="mp-activedetail__second__buyAction" onClick={this.openCategoryDialog.bind(this)}>
                                                     立即购买
                                                 </View>
                                             </View>
@@ -491,9 +490,9 @@ export default class Detail extends Component{
                       }
                 </Popup>
 
-                <Modal isOpened={showOrderDialog}>
+                {/* <Modal isOpened={showOrderDialog}>
                      <TuanList/>
-                </Modal>
+                </Modal> */}
             </View>
         )
     }

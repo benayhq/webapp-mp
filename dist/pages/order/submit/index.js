@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__51", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1014", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -116,9 +116,11 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       };
       this.props.dispatchPrePay(payload).then(function (response) {
         console.log('response', response);
-
         if (response.content && response.content != null) {
           (0, _payment.WeChatPay)(response.content, _this2.payNotice.bind(_this2));
+          _index2.default.navigateTo({
+            url: '/pages/user/index'
+          });
         } else {
           _this2.handleAlert('error', response.error);
         }
@@ -215,7 +217,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__51 = (0, _index.genCompid)(__prefix + "$compid__51");
+      var $compid__1014 = (0, _index.genCompid)(__prefix + "$compid__1014");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -225,14 +227,14 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           text = _state2.text;
 
 
-      var $props__51 = {
+      var $props__1014 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      _index.propsManager.set($props__51, $compid__51);
+      _index.propsManager.set($props__1014, $compid__1014);
       Object.assign(this.__state, {
-        $compid__51: $compid__51,
+        $compid__1014: $compid__1014,
         activityName: activityName
       });
       return this.__state;

@@ -42,6 +42,7 @@ export default class SubmitOrder extends Component{
             if(response.content &&response.content!=null){
                 // 微信支付.
                 that.handlePay(response.content);
+
             }
             else{
                 that.handleAlert('error',response.error);
@@ -55,11 +56,13 @@ export default class SubmitOrder extends Component{
         };
         this.props.dispatchPrePay(payload).then((response)=>{
             console.log('response',response);
-
             if(response.content && response.content!=null){
                 WeChatPay(response.content,this.payNotice.bind(this));
+                Taro.navigateTo({
+                    url: '/pages/user/index'
+                });
             }
-            else{
+            else {
                 this.handleAlert('error',response.error);
             }
         });

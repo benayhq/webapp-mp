@@ -31,7 +31,7 @@ class Index extends Component{
       context3:'',
       context4:'',
       isOpened:false,
-      showUserText:'切换为咨询师',
+      showUserText:'',
       avatarUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
     }
   }
@@ -112,12 +112,14 @@ class Index extends Component{
                   currentObj.initLoanFlag();
                   await currentObj.initOrderNotice(creatorInstance,isAgent);
                   currentObj.setState({
+                      showUserText: isAgent ? '切换为用户':'切换为咨询师',
                       isAgent:isAgent,
                       list:creatorInstance.factory(isAgent).getPanelList(),
                       user:creatorInstance.factory(isAgent).getUserInfo(),
                       avatarUrl:data.profileUrl,
                       userName:data.name
                   });
+                  
               }
               else{
                 Taro.showToast({
@@ -233,6 +235,46 @@ class Index extends Component{
     })
   }
 
+  async getPhoneNumber(e) {
+    try {
+      if (e.detail.encryptedData && e.detail.iv) {
+          let payload = {
+            iv: e.detail.iv,
+            phone: e.detail.encryptedData
+          };
+          const result = await this.props.dispatchWeixinDecrypt(payload);
+          if(result.content){
+             await this.props.UpdateUserInfo({cellphone:result.content.phoneNumber});
+             Taro.navigateTo({
+              url:'../../pages/active/publish/index'
+            })
+          }
+          else{
+            Taro.showToast({
+              title: '网络异常',
+              icon: 'none',
+              duration: 3000,
+              mask: true
+            });
+          }
+      } else {
+        Taro.showToast({
+          title: '取消授权成功',
+          icon: 'success',
+          duration: 3000,
+          mask: true
+        });
+      }
+    } catch (error) {
+      Taro.showToast({
+        title: '系统错误',
+        icon: 'none',
+        duration: 3000,
+        mask: true
+      });
+    }
+  }
+
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText,list} = this.state;
     const isShowLoanApp = !isAgent && flag;
@@ -283,11 +325,12 @@ class Index extends Component{
         isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
               <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
-              <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
+              {/* <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
                   发布活动
-              </View>
+              </View> */}
+              <Button className="mp-user__publish-action" formType='submit' openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>发布活动</Button>
           </View>
-      } 
+      }
       <UserOrder list={orders}/>
       <View className="mp-user__list">
         <AtList>

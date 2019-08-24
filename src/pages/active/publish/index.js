@@ -283,13 +283,6 @@ export default class Index extends Component {
       "wechatId": weChatNumber
     };
 
-    if(result.wechatId === 0 || result.wechatId === null){
-      this.setState({
-        isOpened:true
-      })
-      return;
-    }
-
     this.props.dispatchCreateActive(payload).then((res)=>{
       if(res && res.result === "success" && res.content !=null){
         Taro.navigateTo({

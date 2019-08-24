@@ -2,9 +2,7 @@
   "usingComponents": {
     "popup": "../../components/popup/index",
     "contact": "./contact/index",
-    "spec": "./spec/index",
-    "modal": "../../components/modal/index",
-    "tuan-list": "./tuan/index"
+    "spec": "./spec/index"
   },
   "navigationBarTitleText": "活动详情"
 }

@@ -85,4 +85,5 @@ export const API_WATER_HISTORY = `${HOST}/api/v1/agent-customer/agents`;
 // 查询所有评论. 
 export const API_PRODUCT_COMMNET = `${HOST}/api/v1/comment/paging`;
 
-
+// 微信解密信息.
+export const API_WEIXIN_DECRYPT = `${HOST}/api/v1/wx/wxDecrypt`;

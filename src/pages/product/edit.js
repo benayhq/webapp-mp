@@ -154,11 +154,17 @@ class EditProduct extends Component{
       }
 
       if(preAmount === ''){
-        this.handleAlert('error','请输入预定金');
+        this.handleAlert('error','请输入不少于5元的预定金');
+        return;
+      }
+      
+      if(preAmount<5){
+        this.handleAlert('error','预定金不能少于5元');
         return;
       }
 
       const result = await getAuthInfo();
+
       var payload = {
         "advance": preAmount,
         "agentId": result.id,
@@ -185,13 +191,14 @@ class EditProduct extends Component{
               url:'/pages/product/index'
             })
           }
-          else{
-            this.setState({
-              isOpened:true,
-              toastText:res.error,
-              status: 'error'
-            })
-          }
+          // else{
+
+          //   this.setState({
+          //     isOpened:true,
+          //     toastText:res.error,
+          //     status: 'error'
+          //   })
+          // }
         });
       }
       else{
@@ -278,17 +285,20 @@ class EditProduct extends Component{
         console.log('pid',pid);
         console.log('selectedValue',selectedValue);
         console.log('e.detail.column',e.detail.column);
+
         var firsts=[],seconds =[],thirds=[];
         const {firstList,secondList,thirdList} = this.state;
         list = listAll.content === null? [] : listAll.content.subProjectNames;
         console.log('listAll.content.pid',listAll.content.pid);
         console.log('columnIndex',columnIndex);
         firstValue = listAll.content === null? 0 :listAll.content.pid;
+
         // this.setState({
         //   pid:parentId
         // });
         // console.log('parentId',parentId);
         // columnIndex = e.detail.column;
+
         if(list && list.length>0){
           list.map((item)=>{
             seconds.push(item);
@@ -359,18 +369,6 @@ class EditProduct extends Component{
           pid:listAll.content.pid,
         });
       }
-      // console.log('listAll.content.subProjectNames',listAll);
-      // switch(e.detail.column){
-      //   case 0:
-            
-      //     break;
-      //   case 1:
-      //     console.log('list.content',list)
-           
-      //     break;
-      //   case 2:
-      //     break;
-      // }
     }
 
     async getCategroyList(name,pid){
@@ -502,7 +500,7 @@ class EditProduct extends Component{
                     name='preAmount'
                     title='预定金'
                     type='number'
-                    placeholder='请输入预定金'
+                    placeholder='请输入不少于5元的预定金'
                     value={preAmount}
                     onChange={this.handlePreAmountChange.bind(this)}
                 />

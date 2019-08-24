@@ -33,7 +33,7 @@
             </view>
             <block wx:if="{{data.batchPeople > 0}}">
                 <view class="mp-activedetail__join">
-                    <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this"> 查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
+                    <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this"> <text class="mp-icon mp-icon-arrow1"></text></text>
                     </view>
                     <block wx:if="{{data.activityBatchVos}}">
                         <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx4">
@@ -46,7 +46,7 @@
                                 <view class="mp-activedetail__time">剩余20:50:14</view>
                             </view>
                             <view>
-                                <view class="mp-activedetail__second__buyAction" bindtap="showMpDialog" data-e-tap-so="this">立即购买</view>
+                                <view class="mp-activedetail__second__buyAction" bindtap="openCategoryDialog" data-e-tap-so="this">立即购买</view>
                             </view>
                         </view>
                     </block>
@@ -111,16 +111,13 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup compid="{{$compid__519}}">
+        <popup compid="{{$compid__905}}">
             <block wx:if="{{bContact}}">
-                <contact compid="{{$compid__520}}"></contact>
+                <contact compid="{{$compid__906}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec compid="{{$compid__521}}"></spec>
+                <spec compid="{{$compid__907}}"></spec>
             </block>
         </popup>
-        <modal compid="{{$compid__522}}">
-            <tuan-list></tuan-list>
-        </modal>
     </view>
 </block>

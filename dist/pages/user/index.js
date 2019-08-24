@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray347", "$compid__1275", "$compid__1276", "$compid__1277", "$compid__1278", "$compid__1279", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "dispatchWeixinDecrypt"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -78,7 +78,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         context3: '',
         context4: '',
         isOpened: false,
-        showUserText: '切换为咨询师',
+        showUserText: '',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
       };
       this.$$refs = [];
@@ -233,6 +233,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
                   case 12:
                     currentObj.setState({
+                      showUserText: isAgent ? '切换为用户' : '切换为咨询师',
                       isAgent: isAgent,
                       list: creatorInstance.factory(isAgent).getPanelList(),
                       user: creatorInstance.factory(isAgent).getUserInfo(),
@@ -423,6 +424,96 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "getPhoneNumber",
+    value: function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(e) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+
+                if (!(e.detail.encryptedData && e.detail.iv)) {
+                  _context6.next = 15;
+                  break;
+                }
+
+                payload = {
+                  iv: e.detail.iv,
+                  phone: e.detail.encryptedData
+                };
+                _context6.next = 5;
+                return this.props.dispatchWeixinDecrypt(payload);
+
+              case 5:
+                result = _context6.sent;
+
+                if (!result.content) {
+                  _context6.next = 12;
+                  break;
+                }
+
+                _context6.next = 9;
+                return this.props.UpdateUserInfo({ cellphone: result.content.phoneNumber });
+
+              case 9:
+                _index2.default.navigateTo({
+                  url: '../../pages/active/publish/index'
+                });
+                _context6.next = 13;
+                break;
+
+              case 12:
+                _index2.default.showToast({
+                  title: '网络异常',
+                  icon: 'none',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 13:
+                _context6.next = 16;
+                break;
+
+              case 15:
+                _index2.default.showToast({
+                  title: '取消授权成功',
+                  icon: 'success',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 16:
+                _context6.next = 21;
+                break;
+
+              case 18:
+                _context6.prev = 18;
+                _context6.t0 = _context6["catch"](0);
+
+                _index2.default.showToast({
+                  title: '系统错误',
+                  icon: 'none',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 21:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[0, 18]]);
+      }));
+
+      function getPhoneNumber(_x4) {
+        return _ref7.apply(this, arguments);
+      }
+
+      return getPhoneNumber;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
       var _this4 = this;
@@ -432,11 +523,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
-      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
-      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
-      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
-      var $compid__10 = (0, _index.genCompid)(__prefix + "$compid__10");
+      var $compid__1275 = (0, _index.genCompid)(__prefix + "$compid__1275");
+      var $compid__1276 = (0, _index.genCompid)(__prefix + "$compid__1276");
+      var $compid__1277 = (0, _index.genCompid)(__prefix + "$compid__1277");
+      var $compid__1278 = (0, _index.genCompid)(__prefix + "$compid__1278");
+      var $compid__1279 = (0, _index.genCompid)(__prefix + "$compid__1279");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -451,10 +542,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__6 = {
+      var $props__1275 = {
         "isOpened": isOpened
       };
-      var $props__7 = {
+      var $props__1276 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -462,43 +553,43 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__8 = {
+      var $props__1277 = {
         "profit": profit
       };
-      var $props__9 = {
+      var $props__1278 = {
         "list": orders
       };
-      var $props__10 = {
+      var $props__1279 = {
         "title": this.__state.context1
       };
-      var loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray347 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__5 = (0, _index.genCompid)(__prefix + "CcjNIWKArA" + _anonIdx);
+        var $compid__1274 = (0, _index.genCompid)(__prefix + "GOApnoldWw" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__5);
+        }, $compid__1274);
         return {
-          $compid__5: $compid__5,
+          $compid__1274: $compid__1274,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__6, $compid__6);
-      _index.propsManager.set($props__7, $compid__7);
-      isAgent && _index.propsManager.set($props__8, $compid__8);
-      _index.propsManager.set($props__9, $compid__9);
-      isShowLoanApp === true && _index.propsManager.set($props__10, $compid__10);
+      _index.propsManager.set($props__1275, $compid__1275);
+      _index.propsManager.set($props__1276, $compid__1276);
+      isAgent && _index.propsManager.set($props__1277, $compid__1277);
+      _index.propsManager.set($props__1278, $compid__1278);
+      isShowLoanApp === true && _index.propsManager.set($props__1279, $compid__1279);
       Object.assign(this.__state, {
-        loopArray0: loopArray0,
-        $compid__6: $compid__6,
-        $compid__7: $compid__7,
-        $compid__8: $compid__8,
-        $compid__9: $compid__9,
-        $compid__10: $compid__10,
+        loopArray347: loopArray347,
+        $compid__1275: $compid__1275,
+        $compid__1276: $compid__1276,
+        $compid__1277: $compid__1277,
+        $compid__1278: $compid__1278,
+        $compid__1279: $compid__1279,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
@@ -506,7 +597,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handleChangeState", "handleUpdateInfo", "handlePublish", "handleAppLoan"], _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleChangeState", "handleUpdateInfo", "getPhoneNumber", "handleAppLoan"], _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

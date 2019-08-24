@@ -55,7 +55,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__446", "$compid__447", "$compid__448", "$compid__449", "$compid__450", "$compid__451", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__992", "$compid__993", "$compid__994", "$compid__995", "$compid__996", "$compid__997", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -271,14 +271,23 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   break;
                 }
 
-                this.handleAlert('error', '请输入预定金');
+                this.handleAlert('error', '请输入不少于5元的预定金');
                 return _context2.abrupt("return");
 
               case 19:
-                _context2.next = 21;
+                if (!(preAmount < 5)) {
+                  _context2.next = 22;
+                  break;
+                }
+
+                this.handleAlert('error', '预定金不能少于5元');
+                return _context2.abrupt("return");
+
+              case 22:
+                _context2.next = 24;
                 return (0, _storage.getAuthInfo)();
 
-              case 21:
+              case 24:
                 result = _context2.sent;
                 payload = {
                   "advance": preAmount,
@@ -306,13 +315,15 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                       _index2.default.navigateTo({
                         url: '/pages/product/index'
                       });
-                    } else {
-                      _this2.setState({
-                        isOpened: true,
-                        toastText: res.error,
-                        status: 'error'
-                      });
                     }
+                    // else{
+
+                    //   this.setState({
+                    //     isOpened:true,
+                    //     toastText:res.error,
+                    //     status: 'error'
+                    //   })
+                    // }
                   });
                 } else {
                   this.props.dispatchCreateProduct(payload).then(function (res) {
@@ -335,7 +346,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 24:
+              case 27:
               case "end":
                 return _context2.stop();
             }
@@ -459,6 +470,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 console.log('pid', pid);
                 console.log('selectedValue', selectedValue);
                 console.log('e.detail.column', e.detail.column);
+
                 firsts = [], seconds = [], thirds = [];
                 _state4 = this.state, firstList = _state4.firstList, secondList = _state4.secondList, thirdList = _state4.thirdList;
 
@@ -466,11 +478,13 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 console.log('listAll.content.pid', listAll.content.pid);
                 console.log('columnIndex', columnIndex);
                 firstValue = listAll.content === null ? 0 : listAll.content.pid;
+
                 // this.setState({
                 //   pid:parentId
                 // });
                 // console.log('parentId',parentId);
                 // columnIndex = e.detail.column;
+
                 if (list && list.length > 0) {
                   list.map(function (item) {
                     seconds.push(item);
@@ -725,12 +739,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__446 = (0, _index.genCompid)(__prefix + "$compid__446");
-      var $compid__447 = (0, _index.genCompid)(__prefix + "$compid__447");
-      var $compid__448 = (0, _index.genCompid)(__prefix + "$compid__448");
-      var $compid__449 = (0, _index.genCompid)(__prefix + "$compid__449");
-      var $compid__450 = (0, _index.genCompid)(__prefix + "$compid__450");
-      var $compid__451 = (0, _index.genCompid)(__prefix + "$compid__451");
+      var $compid__992 = (0, _index.genCompid)(__prefix + "$compid__992");
+      var $compid__993 = (0, _index.genCompid)(__prefix + "$compid__993");
+      var $compid__994 = (0, _index.genCompid)(__prefix + "$compid__994");
+      var $compid__995 = (0, _index.genCompid)(__prefix + "$compid__995");
+      var $compid__996 = (0, _index.genCompid)(__prefix + "$compid__996");
+      var $compid__997 = (0, _index.genCompid)(__prefix + "$compid__997");
 
       var _state8 = this.__state,
           productName = _state8.productName,
@@ -745,14 +759,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           initSeletedValue = _state8.initSeletedValue;
 
 
-      var $props__446 = {
+      var $props__992 = {
         "isOpened": isOpened,
         "text": toastText,
         "status": status,
         "duration": duration,
         "icon": "{icon}"
       };
-      var $props__447 = {
+      var $props__993 = {
         "name": "productName",
         "title": "\u540D\u79F0",
         "type": "text",
@@ -760,7 +774,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productName,
         "onChange": this.handleProductChange.bind(this)
       };
-      var $props__448 = {
+      var $props__994 = {
         "name": "productPrice",
         "title": "\u4EF7\u683C",
         "type": "number",
@@ -768,7 +782,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productPrice,
         "onChange": this.handlePriceChange.bind(this)
       };
-      var $props__449 = {
+      var $props__995 = {
         "name": "activePrice",
         "title": "\u6D3B\u52A8\u4EF7",
         "type": "number",
@@ -776,32 +790,32 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": activePrice,
         "onChange": this.handleActivePriceChange.bind(this)
       };
-      var $props__450 = {
+      var $props__996 = {
         "files": files,
         "onChange": this.handleChooseImage.bind(this),
         "onImageClick": this.onImageClick.bind(this)
       };
-      var $props__451 = {
+      var $props__997 = {
         "name": "preAmount",
         "title": "\u9884\u5B9A\u91D1",
         "type": "number",
-        "placeholder": "\u8BF7\u8F93\u5165\u9884\u5B9A\u91D1",
+        "placeholder": "\u8BF7\u8F93\u5165\u4E0D\u5C11\u4E8E5\u5143\u7684\u9884\u5B9A\u91D1",
         "value": preAmount,
         "onChange": this.handlePreAmountChange.bind(this)
       };
-      _index.propsManager.set($props__446, $compid__446);
-      _index.propsManager.set($props__447, $compid__447);
-      _index.propsManager.set($props__448, $compid__448);
-      _index.propsManager.set($props__449, $compid__449);
-      _index.propsManager.set($props__450, $compid__450);
-      _index.propsManager.set($props__451, $compid__451);
+      _index.propsManager.set($props__992, $compid__992);
+      _index.propsManager.set($props__993, $compid__993);
+      _index.propsManager.set($props__994, $compid__994);
+      _index.propsManager.set($props__995, $compid__995);
+      _index.propsManager.set($props__996, $compid__996);
+      _index.propsManager.set($props__997, $compid__997);
       Object.assign(this.__state, {
-        $compid__446: $compid__446,
-        $compid__447: $compid__447,
-        $compid__448: $compid__448,
-        $compid__449: $compid__449,
-        $compid__450: $compid__450,
-        $compid__451: $compid__451
+        $compid__992: $compid__992,
+        $compid__993: $compid__993,
+        $compid__994: $compid__994,
+        $compid__995: $compid__995,
+        $compid__996: $compid__996,
+        $compid__997: $compid__997
       });
       return this.__state;
     }

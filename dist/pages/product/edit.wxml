@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-edit-product">
         <at-message></at-message>
-        <at-toast compid="{{$compid__446}}"></at-toast>
+        <at-toast compid="{{$compid__992}}"></at-toast>
         <at-form>
             <view class="panel">
                 <view class="panel__content">
@@ -15,11 +15,11 @@
                     </view>
                 </view>
             </view>
-            <at-input compid="{{$compid__447}}"></at-input>
-            <at-input compid="{{$compid__448}}"></at-input>
-            <at-input compid="{{$compid__449}}"></at-input>
-            <at-image-picker compid="{{$compid__450}}"></at-image-picker>
-            <at-input compid="{{$compid__451}}"></at-input>
+            <at-input compid="{{$compid__993}}"></at-input>
+            <at-input compid="{{$compid__994}}"></at-input>
+            <at-input compid="{{$compid__995}}"></at-input>
+            <at-image-picker compid="{{$compid__996}}"></at-image-picker>
+            <at-input compid="{{$compid__997}}"></at-input>
         </at-form>
         <view class="mp-edit-product__warn-tips">温馨提醒：</view>
         <view class="mp-edit-product__warn-info">预定金优先由平台代为收取,客户当面核销后转入您的微信余额。</view>

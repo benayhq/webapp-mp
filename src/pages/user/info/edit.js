@@ -254,14 +254,14 @@ class Edit extends Component{
                         value={serviceAddress}
                         onChange={this.handleServiceAddressChange.bind(this)}
                     /> */}
-                    <AtInput 
+                    {/* <AtInput 
                         name='value1'
                         title='地址'
                         type='text'
                         placeholder='(选填)'
                         value={address}
                         onChange={this.handleAddressChange.bind(this)}
-                    />
+                    /> */}
                     <View className="qrCode">
                         <Text className="label">微信二维码</Text>
                     </View>
