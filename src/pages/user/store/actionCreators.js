@@ -1,20 +1,13 @@
 import {UPDATE_USER_INFO,WX_USER_LOGIN,USER_AGENT_TRUE,ACTION_UPLOAD_CONFIG,ACTION_USER_AMOUNT,ORDER_COUNT
     ,LOAN_INFO,ACTION_CUSTOMER_INFO,ACTION_HISTORY_INFO,ACTION_OWNER_INFO,ACTION_WATER_HISTORY,
-    ACTION_UPLOAD_DOWN,ACTION_WEIXIN_DECRYPT} from './constants';
+    ACTION_UPLOAD_DOWN,ACTION_WEIXIN_DECRYPT,ACTION_TO_CUSTOMER} from './constants';
 import {createAction} from './../../../utils/redux';
 import {API_USER_INFO,API_USER_LOGIN,API_USER_AGENT,API_UPLOAD_CONFIG,API_INIT_AMOUNT
 ,API_ORDER_LIST,API_ORDER_COUNT,API_LOAN_INFO,API_CUSTOMER_INFO,API_ACTIVE_HISTORY,
-API_ACTIVE_OWNER,API_WATER_HISTORY,API_UPLOAD_FILE,API_WEIXIN_DECRYPT
+API_ACTIVE_OWNER,API_WATER_HISTORY,API_UPLOAD_FILE,API_WEIXIN_DECRYPT,API_USER_CUSTOMER
 } from './../../../constants/api';
 
-export const UpdateUserInfo = payload => createAction({
-    type:UPDATE_USER_INFO,
-    url:API_USER_INFO,
-    fetchOptions:{
-        method:'POST'
-    },
-    payload
-});
+
 
 export const WeChatLogin = payload => createAction({
     type:WX_USER_LOGIN,
@@ -29,6 +22,15 @@ export const WeChatLogin = payload => createAction({
 export const ChangeToAgent = payload => createAction({
     type:USER_AGENT_TRUE,
     url:API_USER_AGENT,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload  
+})
+
+export const ChangeToCustomer = payload => createAction({
+    type:ACTION_TO_CUSTOMER,
+    url:API_USER_CUSTOMER,
     fetchOptions:{
         method:'POST'
     },
@@ -135,5 +137,12 @@ export const dispatchWeixinDecrypt = payload => createAction({
 });
 
 
-
+export const UpdateUserInfo = payload => createAction({
+    type:UPDATE_USER_INFO,
+    url:API_USER_INFO,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});
 

@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1197", "$compid__1198", "$compid__1199", "$compid__1200", "$compid__1201", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "disptachActiveName", "dispatchEndTime", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1642", "$compid__1643", "$compid__1644", "$compid__1645", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -82,7 +82,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         dateEnd: e.detail.value
       });
       _this.props.dispatchEndTime(e.detail.value);
-    }, _this.customComponents = ["AtMessage", "AtInput", "AtImagePicker", "ProductList", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "AtInput", "AtImagePicker", "ProductList", "AtModal", "AtModalHeader", "AtModalContent"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -150,7 +150,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       if (this.$router.params.ids != undefined) {
         productIds = this.$router.params.ids.split(',');
       }
-
       if (productIds.length > 0) {
         productIds.map(function (item, index) {
           console.log('item', item);
@@ -407,21 +406,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   "wechatId": weChatNumber
                 };
 
+                if (!(result.cellphone === null || result.cellphone === "")) {
+                  _context2.next = 25;
+                  break;
+                }
 
+                this.setState({
+                  isOpened: true
+                });
+                return _context2.abrupt("return");
+
+              case 25:
+                this.setState({
+                  isOpened: false
+                });
+
+              case 26:
                 this.props.dispatchCreateActive(payload).then(function (res) {
                   if (res && res.result === "success" && res.content != null) {
                     _index2.default.navigateTo({
                       url: "/pages/active/share/index?activeId=" + res.content
                     });
                   } else {
-                    _this4.setState({
-                      isOpened: true
-                    });
                     _this4.handleAlert('error', res.error);
                   }
                 });
 
-              case 21:
+              case 27:
               case "end":
                 return _context2.stop();
             }
@@ -434,6 +445,110 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       }
 
       return onPublish;
+    }()
+  }, {
+    key: "getPhoneNumber",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
+        var payload, result, params, phoneMsg, data;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+
+                if (!(e.detail.encryptedData && e.detail.iv)) {
+                  _context3.next = 20;
+                  break;
+                }
+
+                payload = {
+                  iv: e.detail.iv,
+                  phone: e.detail.encryptedData
+                };
+                _context3.next = 5;
+                return this.props.dispatchWeixinDecrypt(payload);
+
+              case 5:
+                result = _context3.sent;
+
+                if (!result.content) {
+                  _context3.next = 17;
+                  break;
+                }
+
+                params = {
+                  cellphone: JSON.parse(result.content).phoneNumber
+                };
+                _context3.next = 10;
+                return this.props.UpdateUserInfo(params);
+
+              case 10:
+                phoneMsg = _context3.sent;
+                data = phoneMsg.content;
+
+                console.log('data', data);
+                _index2.default.setStorage({ key: 'userinfo', data: data });
+                if (phoneMsg.result === "success") {
+                  this.setState({
+                    isOpened: false
+                  });
+                } else {
+                  this.setState({
+                    isOpened: true
+                  });
+                }
+                _context3.next = 18;
+                break;
+
+              case 17:
+                _index2.default.showToast({
+                  title: '网络异常',
+                  icon: 'none',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 18:
+                _context3.next = 21;
+                break;
+
+              case 20:
+                _index2.default.showToast({
+                  title: '取消授权成功',
+                  icon: 'success',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 21:
+                _context3.next = 26;
+                break;
+
+              case 23:
+                _context3.prev = 23;
+                _context3.t0 = _context3["catch"](0);
+
+                _index2.default.showToast({
+                  title: '系统错误',
+                  icon: 'none',
+                  duration: 3000,
+                  mask: true
+                });
+
+              case 26:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 23]]);
+      }));
+
+      function getPhoneNumber(_x3) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return getPhoneNumber;
     }()
   }, {
     key: "handleActiveChange",
@@ -471,31 +586,31 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getAuthInfo",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         var result;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
+                _context4.next = 2;
                 return _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
                   return res.data;
                 });
 
               case 2:
-                result = _context3.sent;
-                return _context3.abrupt("return", result);
+                result = _context4.sent;
+                return _context4.abrupt("return", result);
 
               case 4:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function getAuthInfo() {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       }
 
       return getAuthInfo;
@@ -529,11 +644,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1197 = (0, _index.genCompid)(__prefix + "$compid__1197");
-      var $compid__1198 = (0, _index.genCompid)(__prefix + "$compid__1198");
-      var $compid__1199 = (0, _index.genCompid)(__prefix + "$compid__1199");
-      var $compid__1200 = (0, _index.genCompid)(__prefix + "$compid__1200");
-      var $compid__1201 = (0, _index.genCompid)(__prefix + "$compid__1201");
+      var $compid__1642 = (0, _index.genCompid)(__prefix + "$compid__1642");
+      var $compid__1643 = (0, _index.genCompid)(__prefix + "$compid__1643");
+      var $compid__1644 = (0, _index.genCompid)(__prefix + "$compid__1644");
+      var $compid__1645 = (0, _index.genCompid)(__prefix + "$compid__1645");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -544,46 +658,39 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__1197 = {
+      var $props__1642 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__1198 = {
+      var $props__1643 = {
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__1199 = {
+      var $props__1644 = {
         "products": products
       };
-      var $props__1200 = {
+      var $props__1645 = {
         "isOpened": isOpened
       };
-      var $props__1201 = {
-        "placeholder": "\u8BF7\u8F93\u5165\u5FAE\u4FE1\u53F7",
-        "onChange": this.handleWeChatChange.bind(this),
-        "value": weChatNumber
-      };
-      _index.propsManager.set($props__1197, $compid__1197);
-      _index.propsManager.set($props__1198, $compid__1198);
-      _index.propsManager.set($props__1199, $compid__1199);
-      _index.propsManager.set($props__1200, $compid__1200);
-      _index.propsManager.set($props__1201, $compid__1201);
+      _index.propsManager.set($props__1642, $compid__1642);
+      _index.propsManager.set($props__1643, $compid__1643);
+      _index.propsManager.set($props__1644, $compid__1644);
+      _index.propsManager.set($props__1645, $compid__1645);
       Object.assign(this.__state, {
-        $compid__1197: $compid__1197,
-        $compid__1198: $compid__1198,
-        $compid__1199: $compid__1199,
-        $compid__1200: $compid__1200,
-        $compid__1201: $compid__1201
+        $compid__1642: $compid__1642,
+        $compid__1643: $compid__1643,
+        $compid__1644: $compid__1644,
+        $compid__1645: $compid__1645
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "createProduct", "onPublish", "handleCancel", "handleConfirm"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "createProduct", "onPublish", "getPhoneNumber"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

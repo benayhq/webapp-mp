@@ -5,7 +5,8 @@ export const DevEnv = false;
 export const HOST = DevEnv ? DEV : PROD;
 export const API_USER_LOGIN = `${HOST}/wx/v1/wxuser/wxLogin`;
 export const API_USER_INFO = `${HOST}/api/v1/user/update`;
-export const API_USER_AGENT = `${HOST}//api/v1/user/changeToAgent`;
+export const API_USER_AGENT = `${HOST}/api/v1/user/changeToAgent`;
+export const API_USER_CUSTOMER = `${HOST}/api/v1/user/changeToCustomer`;
 
 // product
 export const API_PRODUCT_OWNER = `${HOST}/api/v1/product/owner`;

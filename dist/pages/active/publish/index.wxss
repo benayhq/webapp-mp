@@ -208,7 +208,7 @@
 .mp-icon-check:before {
   font-size: 45rpx;
   font-weight: 100;
-  color: #7DD6D0;
+  color: #FFFFFF;
   content: "\e626"; }
 
 .mp-icon-telphone:before {
@@ -291,6 +291,15 @@
       margin-top: 20rpx;
       line-height: 96rpx;
       text-align: center; }
+
+.getPhone {
+  border: initial;
+  background: #7DD6D0;
+  color: #ffff;
+  border: none;
+  margin-bottom: 30rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx; }
 
 
 @font-face {
@@ -502,7 +511,7 @@
 .mp-icon-check:before {
   font-size: 45rpx;
   font-weight: 100;
-  color: #7DD6D0;
+  color: #FFFFFF;
   content: "\e626"; }
 
 .mp-icon-telphone:before {

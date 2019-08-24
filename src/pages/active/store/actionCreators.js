@@ -11,14 +11,16 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_END_TIME,
     ACTION_PRODUCT_PRICE,
     ACTION_SAVE_UPLOADIMG,
-    ACTION_SAVE_TEMPFILES
+    ACTION_SAVE_TEMPFILES,
+    ACTION_WEIXIN_DECRYPT
     } from './constants';
 
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
     API_UPLOAD_CONFIG,
-    API_USER_INFO,
     API_QRCODE,
-    API_ADVERT_LIST
+    API_ADVERT_LIST,
+    API_WEIXIN_DECRYPT,
+    API_USER_INFO
 } from './../../../constants/api';
 
 export const dispatchPublishProduct = payload => createAction({
@@ -143,3 +145,12 @@ export const dispatchCacheTempFiles = (payload) =>{
         dispatch({type:ACTION_SAVE_TEMPFILES,value:payload})
     }
 }
+
+export const dispatchWeixinDecrypt = payload => createAction({
+    type: ACTION_WEIXIN_DECRYPT,
+    url: API_WEIXIN_DECRYPT,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+});

@@ -12,7 +12,7 @@
                 <view><text class="mp-activedetail__title">￥{{data.displayPrice}}</text><text class="mp-activedetail__subtitle">￥{{data.displayDiscountPrice}}</text>
                 </view>
                 <view class="mp-activedetail__desc">{{data.activityName}}</view>
-                <view><text class="mp-activedetail__address">上海市</text><text class="mp-activedetail__tel">已咨询：{{data.consultPeople}}</text>
+                <view><text class="mp-activedetail__address"></text><text class="mp-activedetail__tel">已咨询：{{data.consultPeople}}</text>
                 </view>
             </view>
             <view class="mp-activedetail__service">
@@ -28,7 +28,7 @@
                 <view class="mp-activedetail__content">
                     <view>{{data.username}}</view>
                     <view>{{data.commentScore}}分（{{data && data.commentPeople != null ? data.commentPeople : 0}}人评）</view>
-                    <view>服务区域：上海市 黄浦区 {{activeId}}</view>
+                    <view></view>
                 </view>
             </view>
             <block wx:if="{{data.batchPeople > 0}}">
@@ -111,12 +111,12 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup compid="{{$compid__905}}">
+        <popup compid="{{$compid__1882}}">
             <block wx:if="{{bContact}}">
-                <contact compid="{{$compid__906}}"></contact>
+                <contact compid="{{$compid__1883}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec compid="{{$compid__907}}"></spec>
+                <spec compid="{{$compid__1884}}"></spec>
             </block>
         </popup>
     </view>

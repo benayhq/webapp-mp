@@ -179,20 +179,19 @@ class Index extends Component{
   }
 
   handleChangeState(){
-      const {isAgent} = this.state;
+     const {isAgent} = this.state;
       var boolAgent = !isAgent;
       this.setState({
           isAgent: boolAgent,
-          showUserText: !isAgent ? '切换为用户':'切换为咨询师'
+          showUserText: boolAgent ? '切换为用户':'切换为咨询师'
       });
-      this.props.ChangeToAgent({}).then((response)=>{
-      });
+      boolAgent ? this.props.ChangeToAgent() : this.props.ChangeToCustomer();
       let creatorInstance = new Creator();
       this.setState({
           isAgent:boolAgent,
-          list:creatorInstance.factory(!isAgent).getPanelList(),
-          orders:this.initOrderNotice(creatorInstance,!isAgent),
-          user:creatorInstance.factory(!isAgent).getUserInfo()
+          list:creatorInstance.factory(boolAgent).getPanelList(),
+          orders:this.initOrderNotice(creatorInstance,boolAgent),
+          user:creatorInstance.factory(boolAgent).getUserInfo()
       });
   }
 
@@ -234,47 +233,7 @@ class Index extends Component{
       url:'../../pages/active/publish/index'
     })
   }
-
-  async getPhoneNumber(e) {
-    try {
-      if (e.detail.encryptedData && e.detail.iv) {
-          let payload = {
-            iv: e.detail.iv,
-            phone: e.detail.encryptedData
-          };
-          const result = await this.props.dispatchWeixinDecrypt(payload);
-          if(result.content){
-             await this.props.UpdateUserInfo({cellphone:result.content.phoneNumber});
-             Taro.navigateTo({
-              url:'../../pages/active/publish/index'
-            })
-          }
-          else{
-            Taro.showToast({
-              title: '网络异常',
-              icon: 'none',
-              duration: 3000,
-              mask: true
-            });
-          }
-      } else {
-        Taro.showToast({
-          title: '取消授权成功',
-          icon: 'success',
-          duration: 3000,
-          mask: true
-        });
-      }
-    } catch (error) {
-      Taro.showToast({
-        title: '系统错误',
-        icon: 'none',
-        duration: 3000,
-        mask: true
-      });
-    }
-  }
-
+    
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,flag,isOpened,showUserText,list} = this.state;
     const isShowLoanApp = !isAgent && flag;
@@ -325,10 +284,9 @@ class Index extends Component{
         isAgent && <View className="mp-user__publish">
               <View className="mp-user__publish-introduce">助力朋友圈获客</View>
               <View className="mp-user__publish-introduce-desc">拼团活动老带新</View>
-              {/* <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
+              <View className="mp-user__publish-action" onClick={this.handlePublish.bind(this)}>
                   发布活动
-              </View> */}
-              <Button className="mp-user__publish-action" formType='submit' openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>发布活动</Button>
+              </View>
           </View>
       }
       <UserOrder list={orders}/>

@@ -58,9 +58,6 @@ export default class SubmitOrder extends Component{
             console.log('response',response);
             if(response.content && response.content!=null){
                 WeChatPay(response.content,this.payNotice.bind(this));
-                Taro.navigateTo({
-                    url: '/pages/user/index'
-                });
             }
             else {
                 this.handleAlert('error',response.error);
@@ -75,6 +72,9 @@ export default class SubmitOrder extends Component{
                 that.setState({
                     isOpended:true,
                     text:'支付成功'
+                });
+                Taro.navigateTo({
+                    url: '/pages/user/index'
                 });
                 break;
             case "fail":

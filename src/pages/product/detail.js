@@ -288,7 +288,7 @@ export default class Detail extends Component{
                         </View>
                         <View className="mp-activedetail__desc">{data.activityName}</View>
                         <View>
-                            <Text className="mp-activedetail__address">上海市</Text>
+                            <Text className="mp-activedetail__address"></Text>
                             <Text className="mp-activedetail__tel">已咨询：{data.consultPeople}</Text>
                         </View>
                     </View>
@@ -319,7 +319,7 @@ export default class Detail extends Component{
                              {data.commentScore}分（{ data &&  data.commentPeople !=null ? data.commentPeople:0}人评）
                             </View>
                             <View>
-                            服务区域：上海市 黄浦区  {activeId}
+                            {/* 服务区域：上海市 黄浦区  {activeId} */}
                             </View>
                         </View>
                     </View>
@@ -359,7 +359,7 @@ export default class Detail extends Component{
                             </View>
                         )
                     }
-                    
+
                     <View className="mp-activedetail__comment">
                         <View className="mp-activedetail__comment-title">
                             <Text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></Text>

@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__462", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1899", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
@@ -94,16 +94,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
       console.log(error);
     }, _this.saveToAlbum = function () {
-      var res = _index2.default.saveImageToPhotosAlbum({
+      _index2.default.saveImageToPhotosAlbum({
         filePath: _this.state.shareImage
       });
-      if (res.errMsg === 'saveImageToPhotosAlbum:ok') {
-        _index2.default.showToast({
-          title: '保存图片成功',
-          icon: 'success',
-          duration: 2000
-        });
-      }
+      _index2.default.showToast({
+        title: '保存图片成功',
+        icon: 'success',
+        duration: 1000
+      });
     }, _this.customComponents = ["TaroCanvasDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -880,21 +878,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__462 = (0, _index.genCompid)(__prefix + "$compid__462");
+      var $compid__1899 = (0, _index.genCompid)(__prefix + "$compid__1899");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__462 = {
+      var $props__1899 = {
         "config": this.__state.bannerConfig,
         "onCreateSuccess": this.onCreateSuccess,
         "onCreateFail": this.onCreateFail
       };
-      this.__state.canvasStatus && _index.propsManager.set($props__462, $compid__462);
+      this.__state.canvasStatus && _index.propsManager.set($props__1899, $compid__1899);
       Object.assign(this.__state, {
-        $compid__462: $compid__462
+        $compid__1899: $compid__1899
       });
       return this.__state;
     }

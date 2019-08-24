@@ -70,7 +70,6 @@ export default class Index extends Component{
   }
 
   async getCanvas(templateId){
-
       let userInfo = await getAuthInfo();
       // page: "pages/product/detail",
       var payload = {
@@ -794,16 +793,14 @@ export default class Index extends Component{
   }
 
   saveToAlbum = () => {
-    const res = Taro.saveImageToPhotosAlbum({
+    Taro.saveImageToPhotosAlbum({
       filePath: this.state.shareImage,
     });
-    if (res.errMsg === 'saveImageToPhotosAlbum:ok') {
-      Taro.showToast({
-        title: '保存图片成功',
-        icon: 'success',
-        duration: 2000,
-      });
-    }
+    Taro.showToast({
+      title: '保存图片成功',
+      icon: 'success',
+      duration: 1000,
+    })
   }
 
   render() {

@@ -54,7 +54,6 @@ export default class Index extends Component {
     if(this.$router.params.ids != undefined){
        productIds = this.$router.params.ids.split(',');
     }
-      
     if(productIds.length>0){
         productIds.map((item,index)=>{
           console.log('item',item);
@@ -247,7 +246,6 @@ export default class Index extends Component {
   
   async onPublish(e){
     const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
-
     if(activeName === ''){
       this.handleAlert('error','请填写活动名称')
       return;
@@ -269,7 +267,7 @@ export default class Index extends Component {
       return;
     }
     const result = await getAuthInfo();
-    
+
     let payload =  {
       "areaCode": "string",
       "docLocations": docLocations,
@@ -283,19 +281,79 @@ export default class Index extends Component {
       "wechatId": weChatNumber
     };
 
+    if(result.cellphone === null || result.cellphone === ""){
+      this.setState({
+        isOpened:true
+      });
+      return;
+    }else{
+      this.setState({
+        isOpened:false
+      });
+    }
     this.props.dispatchCreateActive(payload).then((res)=>{
       if(res && res.result === "success" && res.content !=null){
         Taro.navigateTo({
           url:`/pages/active/share/index?activeId=${res.content}`
         })
       }else{
-        this.setState({
-          isOpened:true
-        });
         this.handleAlert('error',res.error);
       }
     });
   }
+  async getPhoneNumber(e) {
+    try {
+      if (e.detail.encryptedData && e.detail.iv) {
+          let payload = {
+            iv: e.detail.iv,
+            phone: e.detail.encryptedData
+          };
+          const result = await this.props.dispatchWeixinDecrypt(payload);
+          if(result.content){
+             let params = {
+                cellphone:JSON.parse(result.content).phoneNumber
+             };
+             const phoneMsg = await this.props.UpdateUserInfo(params);
+             const data = phoneMsg.content;
+             console.log('data',data);
+             Taro.setStorage({key:'userinfo',data});
+             if(phoneMsg.result === "success"){
+                this.setState({
+                  isOpened:false
+                })
+             }else{
+               this.setState({
+                 isOpened:true
+               })
+             }
+          }
+          else{
+            Taro.showToast({
+              title: '网络异常',
+              icon: 'none',
+              duration: 3000,
+              mask: true
+            });
+          }
+      } else {
+        Taro.showToast({
+          title: '取消授权成功',
+          icon: 'success',
+          duration: 3000,
+          mask: true
+        });
+      }
+    }catch (error) {
+      Taro.showToast({
+        title: '系统错误',
+        icon: 'none',
+        duration: 3000,
+        mask: true
+      });
+    }
+  }
+
+
 
   handleActiveChange(activeName){
     console.log('activeName',activeName);
@@ -425,16 +483,20 @@ export default class Index extends Component {
         </View> 
 
         <AtModal isOpened={isOpened}>
-          <AtModalHeader>完善信息</AtModalHeader>
-          <AtModalContent>
-              <AtInput  placeholder='请输入微信号'   onChange={this.handleWeChatChange.bind(this)} value={weChatNumber}/>
-          </AtModalContent>
-          <AtModalAction> 
-            <Button onClick={this.handleCancel}>取消</Button> 
-            <Button onClick={this.handleConfirm}>确定</Button>
-          </AtModalAction>
-        </AtModal>
-
+        <AtModalHeader>授权获取手机号</AtModalHeader>
+        <AtModalContent>
+           <View className="mp-user__authinfo">申请获取以下权限</View>
+           获取你的手机号
+        </AtModalContent>
+        <View className="wechat-login">
+          <Button className="getPhone" formType='submit' openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>获取手机号</Button>
+          {/* <AtButton
+             className="mp-user__login"
+             text='微信登录'
+             openType='getUserInfo' onGetUserInfo={this.handleAuthClick.bind(this)}
+             type='primary' size='small'>授权登录</AtButton> */}
+        </View>
+      </AtModal>
       </View>
     )
   }

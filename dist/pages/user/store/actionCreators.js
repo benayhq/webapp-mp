@@ -3,24 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToAgent = exports.WeChatLogin = exports.UpdateUserInfo = undefined;
+exports.UpdateUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToCustomer = exports.ChangeToAgent = exports.WeChatLogin = undefined;
 
 var _constants = require("./constants.js");
 
 var _redux = require("../../../utils/redux.js");
 
 var _api = require("../../../constants/api.js");
-
-var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
-  return (0, _redux.createAction)({
-    type: _constants.UPDATE_USER_INFO,
-    url: _api.API_USER_INFO,
-    fetchOptions: {
-      method: 'POST'
-    },
-    payload: payload
-  });
-};
 
 var WeChatLogin = exports.WeChatLogin = function WeChatLogin(payload) {
   return (0, _redux.createAction)({
@@ -38,6 +27,17 @@ var ChangeToAgent = exports.ChangeToAgent = function ChangeToAgent(payload) {
   return (0, _redux.createAction)({
     type: _constants.USER_AGENT_TRUE,
     url: _api.API_USER_AGENT,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var ChangeToCustomer = exports.ChangeToCustomer = function ChangeToCustomer(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_TO_CUSTOMER,
+    url: _api.API_USER_CUSTOMER,
     fetchOptions: {
       method: 'POST'
     },
@@ -158,6 +158,17 @@ var dispatchWeixinDecrypt = exports.dispatchWeixinDecrypt = function dispatchWei
   return (0, _redux.createAction)({
     type: _constants.ACTION_WEIXIN_DECRYPT,
     url: _api.API_WEIXIN_DECRYPT,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.UPDATE_USER_INFO,
+    url: _api.API_USER_INFO,
     fetchOptions: {
       method: 'POST'
     },
