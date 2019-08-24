@@ -475,7 +475,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__5 = (0, _index.genCompid)(__prefix + "zmAMUXVbZk" + _anonIdx);
+        var $compid__5 = (0, _index.genCompid)(__prefix + "CcjNIWKArA" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",

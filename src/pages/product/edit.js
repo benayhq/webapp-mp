@@ -38,9 +38,9 @@ class EditProduct extends Component{
            secondList:[],
            thirdList:[],
            initSeletedValue:'',
-           pid:0
+           initCategoryId:0,
+           pid:0,
         };
-
    }
 
    init(){
@@ -56,9 +56,7 @@ class EditProduct extends Component{
       const response = await this.props.dispatchCategoryList(payload);
       var list = response.content;
       console.log('response list',list.subProjectNames);
-
       var firstList = [],secondList = [],thirdList = [];
-
       const parentId = list === null? 0 :list.pid;
       this.setState({
         pid:parentId
@@ -76,12 +74,12 @@ class EditProduct extends Component{
       });
    }
 
-    handleAlert = (type,message) => {
+   handleAlert = (type,message) => {
       Taro.atMessage({
         'message': message,
         'type': type
       });
-    }
+   }
 
     handleChooseImage = (files) =>{
       this.setState({
@@ -146,12 +144,10 @@ class EditProduct extends Component{
         this.handleAlert('error','价格不能为空');
         return;
       }
-
       if(activePrice === ''){
         this.handleAlert('error','活动价不能为空');
         return;
       }
-
       if(imgArraySrc.length === 0){
         this.handleAlert('error','请上传产品图片');
         return;
@@ -162,10 +158,7 @@ class EditProduct extends Component{
         return;
       }
 
-
       const result = await getAuthInfo();
-
-
       var payload = {
         "advance": preAmount,
         "agentId": result.id,
@@ -247,11 +240,9 @@ class EditProduct extends Component{
 
     async handleMulitChange(e){
 
-
       const {firstList,secondList,thirdList,multiSelector,pid} = this.state;
       console.log('pid',pid);
       console.log('multiSelector[0][e.detail.value[0]]',multiSelector[0][e.detail.value[0]]);
-
       var listAll = await this.getCategroyList(multiSelector[0][e.detail.value[0]],0);
       console.log('listall',listAll);
 
@@ -279,9 +270,7 @@ class EditProduct extends Component{
     }
 
     async handleColumnChange(e){
- 
       var list = null;
-
       if(e.detail.column===0){
         const {multiSelector,mulitSelectorValues,pid} = this.state;
         const selectedValue = multiSelector[e.detail.column][e.detail.value];
@@ -289,7 +278,6 @@ class EditProduct extends Component{
         console.log('pid',pid);
         console.log('selectedValue',selectedValue);
         console.log('e.detail.column',e.detail.column);
-  
         var firsts=[],seconds =[],thirds=[];
         const {firstList,secondList,thirdList} = this.state;
         list = listAll.content === null? [] : listAll.content.subProjectNames;
@@ -419,6 +407,7 @@ class EditProduct extends Component{
         var payload = {
           productId:productId
         }
+
         this.props.dispatchQueryProductInfo(payload).then((response)=>{
           var data = response.content;
           if(data){
@@ -434,7 +423,9 @@ class EditProduct extends Component{
               productName:data.name,
               productPrice:data.discountPrice,
               activePrice:data.price,
-              preAmount:data.advance
+              preAmount:data.advance,
+              initSeletedValue:data.projectName,
+              pid:data.projectId
             });
           }
         })

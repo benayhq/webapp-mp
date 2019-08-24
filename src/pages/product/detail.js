@@ -123,12 +123,12 @@ export default class Detail extends Component{
     }
 
     componentWillMount(){
+        console.log('this.$router.params',this.$router.params);
         //  let activeId = this.$router.params.activeId,
         let activeId = this.$router.params.activeId  === undefined?48:this.$router.params.activeId,
-            referId = this.$router.params.referId  === undefined?2:this.$router.params.referId,
-            source = this.$router.params.sc;
-
-        if (activeId && referId ) {
+            referId = this.$router.params.refId  === undefined?2:this.$router.params.refId,
+            source = this.$router.params.sc;  // advert
+            if (activeId && referId ) {
             wx.showToast({
                 title: activeId+referId,
                 icon: 'success',
@@ -477,6 +477,7 @@ export default class Detail extends Component{
                     <View className="mp-service" onClick={this.handleShare.bind(this)}>
                         分 享
                     </View>
+
                 </ScrollView>
 
                 <Popup 

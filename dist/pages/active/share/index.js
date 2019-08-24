@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__22", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__462", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
@@ -212,7 +212,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   is_hyaline: true,
                   line_color: { "r": 0, "g": 0, "b": 0 },
                   page: "pages/product/detail",
-                  scene: "activeId=" + this.state.activeId + "&refId=" + userInfo.id,
+                  scene: "activeId=" + this.state.activeId + "&refId=" + userInfo.id + "&sc=advert",
                   width: 100,
                   height: 100
                 };
@@ -880,21 +880,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__22 = (0, _index.genCompid)(__prefix + "$compid__22");
+      var $compid__462 = (0, _index.genCompid)(__prefix + "$compid__462");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__22 = {
+      var $props__462 = {
         "config": this.__state.bannerConfig,
         "onCreateSuccess": this.onCreateSuccess,
         "onCreateFail": this.onCreateFail
       };
-      this.__state.canvasStatus && _index.propsManager.set($props__22, $compid__22);
+      this.__state.canvasStatus && _index.propsManager.set($props__462, $compid__462);
       Object.assign(this.__state, {
-        $compid__22: $compid__22
+        $compid__462: $compid__462
       });
       return this.__state;
     }

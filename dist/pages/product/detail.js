@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__47", "$compid__48", "$compid__49", "$compid__50", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__491", "$compid__492", "$compid__493", "$compid__494", "bannerList", "comments", "commentList", "bContact", "bSpec", "activeId", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -237,11 +237,11 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
+      console.log('this.$router.params', this.$router.params);
       //  let activeId = this.$router.params.activeId,
       var activeId = this.$router.params.activeId === undefined ? 48 : this.$router.params.activeId,
-          referId = this.$router.params.referId === undefined ? 2 : this.$router.params.referId,
-          source = this.$router.params.sc;
-
+          referId = this.$router.params.refId === undefined ? 2 : this.$router.params.refId,
+          source = this.$router.params.sc; // advert
       if (activeId && referId) {
         wx.showToast({
           title: activeId + referId,
@@ -393,10 +393,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
-      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
-      var $compid__49 = (0, _index.genCompid)(__prefix + "$compid__49");
-      var $compid__50 = (0, _index.genCompid)(__prefix + "$compid__50");
+      var $compid__491 = (0, _index.genCompid)(__prefix + "$compid__491");
+      var $compid__492 = (0, _index.genCompid)(__prefix + "$compid__492");
+      var $compid__493 = (0, _index.genCompid)(__prefix + "$compid__493");
+      var $compid__494 = (0, _index.genCompid)(__prefix + "$compid__494");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -415,32 +415,32 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__47 = {
+      var $props__491 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__48 = {
+      var $props__492 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__49 = {
+      var $props__493 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      var $props__50 = {
+      var $props__494 = {
         "isOpened": showOrderDialog
       };
-      _index.propsManager.set($props__47, $compid__47);
-      bContact && _index.propsManager.set($props__48, $compid__48);
-      bSpec && _index.propsManager.set($props__49, $compid__49);
-      _index.propsManager.set($props__50, $compid__50);
+      _index.propsManager.set($props__491, $compid__491);
+      bContact && _index.propsManager.set($props__492, $compid__492);
+      bSpec && _index.propsManager.set($props__493, $compid__493);
+      _index.propsManager.set($props__494, $compid__494);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__47: $compid__47,
-        $compid__48: $compid__48,
-        $compid__49: $compid__49,
-        $compid__50: $compid__50
+        $compid__491: $compid__491,
+        $compid__492: $compid__492,
+        $compid__493: $compid__493,
+        $compid__494: $compid__494
       });
       return this.__state;
     }

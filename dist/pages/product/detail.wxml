@@ -111,15 +111,15 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup compid="{{$compid__47}}">
+        <popup compid="{{$compid__491}}">
             <block wx:if="{{bContact}}">
-                <contact compid="{{$compid__48}}"></contact>
+                <contact compid="{{$compid__492}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec compid="{{$compid__49}}"></spec>
+                <spec compid="{{$compid__493}}"></spec>
             </block>
         </popup>
-        <modal compid="{{$compid__50}}">
+        <modal compid="{{$compid__494}}">
             <tuan-list></tuan-list>
         </modal>
     </view>

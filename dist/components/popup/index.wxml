@@ -1,11 +1,11 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="{{anonymousState__temp}}" catchtouchmove="handleTouchMove" style="{{anonymousState__temp2}}">
-        <view class="comp-popup__mask" bindtap="funPrivatecMnis"></view>
+        <view class="comp-popup__mask" bindtap="funPrivateVpSnf"></view>
         <view class="comp-popup__wrapper">
             <scroll-view scroll-y="{{true}}" class="comp-popup__content" style="{{anonymousState__temp3}}">
                 <slot></slot>
             </scroll-view>
-            <view class="comp-popup__close" bindtap="funPrivatecMnis">
+            <view class="comp-popup__close" bindtap="funPrivateVpSnf">
                 <image class="comp-popup__close-img" src="{{closeIcon}}"></image>
             </view>
         </view>
