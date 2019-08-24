@@ -127,7 +127,7 @@ export default class Detail extends Component{
         //  let activeId = this.$router.params.activeId,
         let activeId = this.$router.params.activeId  === undefined?48:this.$router.params.activeId,
             referId = this.$router.params.refId  === undefined?2:this.$router.params.refId,
-            source = this.$router.params.sc;  // advert
+            source = this.$router.params.sc === undefined ? "":this.$router.params.sc;  // advert
             if (activeId && referId ) {
             wx.showToast({
                 title: activeId+referId,
@@ -138,7 +138,7 @@ export default class Detail extends Component{
             referId =  decodeURIComponent(referId);
             source =  decodeURIComponent(source);
         };
-        console.log('scene',sc);
+        console.log('scene',source);
         this.setState({
             activeId:activeId,
             referId:referId,
