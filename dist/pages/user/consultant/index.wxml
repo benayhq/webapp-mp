@@ -1,15 +1,9 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-history">
         <block wx:if="{{actives}}">
-            <view class="list-wrapper" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                <view>
-                    <image className="icon-header" src="{{item.profileUrl}}"></image>
-                </view>
-                <view>
-                    <view>{{item.name}}</view>
-                    <view>地址：{{item.address}}</view>
-                </view>
-            </view>
+            <at-list wx:for="{{loopArray75}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                <at-list-item compid="{{item.$compid__133}}"></at-list-item>
+            </at-list>
         </block>
     </view>
 </block>

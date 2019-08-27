@@ -43,6 +43,7 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
+
   componentDidShow () {}
 
   componentDidHide () {}

@@ -103,10 +103,10 @@ class Index extends Component{
       this.init();
     });
   }
-  
+
   render () {
     const {newFilterList} = this.state;
-
+    
     return (
       <View className="mp-product">
             <AtMessage/>
@@ -122,6 +122,7 @@ class Index extends Component{
       </View>
     )
   }
+
 }
 
 export default Index;

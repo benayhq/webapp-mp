@@ -54,9 +54,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["activeList", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray81", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -64,7 +64,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
       this.state = {
-        activeList: []
+        activeList: [],
+        agentId: 0
       };
       this.$$refs = [];
     }
@@ -130,6 +131,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      console.log('this.$router.params', this.$router.params.agentId);
+      if (this.$router.params.agentId) {
+        this.setState({
+          agentId: this.$router.params.agentId
+        });
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.init();
@@ -140,7 +151,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         var _this2 = this;
 
-        var result, that, payload, list, response;
+        var result, agentId, that, payload, list, response;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -150,16 +161,17 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
                 result = _context4.sent;
+                agentId = this.state.agentId;
                 that = this;
                 payload = {
                   pageNo: 0,
                   pageSize: 10,
-                  agentId: result.id
+                  agentId: agentId === 0 ? result.id : agentId
                 }, list = [];
-                _context4.next = 7;
+                _context4.next = 8;
                 return this.props.dispatchOwnerActiveHistory(payload);
 
-              case 7:
+              case 8:
                 response = _context4.sent;
 
                 console.log('response', response);
@@ -206,7 +218,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }, 1000);
 
-              case 11:
+              case 12:
               case "end":
                 return _context4.stop();
             }
@@ -231,9 +243,28 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var activeList = this.__state.activeList;
 
-      console.log('activeList', activeList);
 
-      Object.assign(this.__state, {});
+      var loopArray81 = activeList ? activeList.map(function (item, _anonIdx) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
+        var $compid__139 = (0, _index.genCompid)(__prefix + "gYnQaHdozK" + _anonIdx);
+        _index.propsManager.set({
+          "title": item.$original.name,
+          "note": $loopState__temp2,
+          "thumb": item.$original.url,
+          "arrow": "right"
+        }, $compid__139);
+        return {
+          $loopState__temp2: $loopState__temp2,
+          $compid__139: $compid__139,
+          $original: item.$original
+        };
+      }) : [];
+      Object.assign(this.__state, {
+        loopArray81: loopArray81
+      });
       return this.__state;
     }
   }]);

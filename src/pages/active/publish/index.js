@@ -301,6 +301,7 @@ export default class Index extends Component {
       }
     });
   }
+  
   async getPhoneNumber(e) {
     try {
       if (e.detail.encryptedData && e.detail.iv) {

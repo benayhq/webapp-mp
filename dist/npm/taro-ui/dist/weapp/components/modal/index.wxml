@@ -14,7 +14,7 @@
                     </at-modal-content>
                 </block>
                 <block wx:if="{{_$isRenderAction}}">
-                    <at-modal-action compid="{{$compid__67}}">
+                    <at-modal-action compid="{{$compid__66}}">
                         <block wx:if="{{cancelText}}">
                             <button bindtap="handleCancel">{{cancelText}}</button>
                         </block>

@@ -200,7 +200,7 @@ class Index extends Component{
       url: url
     })
   }
-
+  
   handleUpdateInfo(){
     Taro.navigateTo({
       url:'info/edit?userId='+this.state.profit.id

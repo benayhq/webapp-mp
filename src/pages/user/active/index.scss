@@ -1,4 +1,10 @@
 @import '../../../style/index.scss';
+image {
+    height: 240px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50px;
+}
 
 .mp-history{
     .list-title{

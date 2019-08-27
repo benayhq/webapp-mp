@@ -46,9 +46,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["actives", "dispatchOwnerServiceHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray75", "actives", "dispatchOwnerServiceHistory"], _this.config = {
       navigationBarTitleText: '历史咨询师'
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -72,8 +72,17 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleListItem",
+    value: function handleListItem(id) {
+      _index2.default.navigateTo({
+        url: '../../../pages/user/active/index?agentId=' + id
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
+      var _this3 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
@@ -83,7 +92,37 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var actives = this.__state.actives;
 
 
-      Object.assign(this.__state, {});
+      var loopArray75 = actives ? actives.map(function (item, _anonIdx) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $compid__133 = (0, _index.genCompid)(__prefix + "MXtnndESkx" + _anonIdx);
+        _index.propsManager.set({
+          "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
+          "title": item.$original.name,
+          "note": item.$original.address,
+          "arrow": "right",
+          "thumb": item.$original.profileUrl
+        }, $compid__133);
+        return {
+          $compid__133: $compid__133,
+          $original: item.$original
+        };
+      }
+      // <View className="list-wrapper">
+      //   <View>
+      //       <image className="icon-header" src={item.profileUrl} ></image>
+      //   </View>
+      //   <View>
+      //       <View>{item.name}</View>
+      //       {/* <View>5.0分（2000人评）| ￥29999</View> */}
+      //       <View>地址：{item.address}</View>
+      //   </View>
+      // </View>
+      ) : [];
+      Object.assign(this.__state, {
+        loopArray75: loopArray75
+      });
       return this.__state;
     }
   }]);

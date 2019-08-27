@@ -54,7 +54,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__67", "title", "content", "_$isRenderAction", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__66", "title", "content", "_$isRenderAction", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -115,7 +115,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__67 = (0, _index.genCompid)(__prefix + "$compid__67");
+      var $compid__66 = (0, _index.genCompid)(__prefix + "$compid__66");
 
       var _isOpened = this.__state._isOpened;
       var _props = this.__props,
@@ -131,14 +131,14 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
 
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
-        var $props__67 = {
+        var $props__66 = {
           "isSimple": true
         };
-        _$isRenderAction && _index.propsManager.set($props__67, $compid__67);
+        _$isRenderAction && _index.propsManager.set($props__66, $compid__66);
       }
 
       Object.assign(this.__state, {
-        $compid__67: $compid__67,
+        $compid__66: $compid__66,
         title: title,
         content: content,
         _$isRenderAction: _$isRenderAction,

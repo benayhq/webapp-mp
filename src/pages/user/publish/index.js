@@ -13,23 +13,27 @@ export default class Publish extends Component{
       const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
        return result;
     }
+ 
     
     async jump(){
         const authInfo = await this.getAuthInfo();
         Taro.getUserInfo().then((res) => {
             const { errMsg, userInfo } = res;
-            if (errMsg === 'getUserInfo:ok') {
+            if (errMsg === 'getUserInfo:ok'){
               Taro.setStorage({key:'authinfo',data:userInfo});
+
               let payload = {
                 id:authInfo.id,
                 nickname:userInfo.nickName,
                 name:userInfo.nickName
               };
+
               this.props.UpdateUserInfo(payload).then((res)=>{
                 if(res.result==="success"){
                     jump({url:'/pages/active/publish/index'});
                 }
               });
+              
             } else {
               Taro.showToast({
                 title: '授权失败',

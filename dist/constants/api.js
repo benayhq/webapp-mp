@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var DEV = exports.DEV = 'https://lovemeipin.com:8444/meipin';
+
 // yapi  
 var PROD = exports.PROD = 'https://lovemeipin.com/meipin';
 var DevEnv = exports.DevEnv = false;
@@ -22,16 +23,12 @@ var API_PRODUCT_INFO = exports.API_PRODUCT_INFO = HOST + '/api/v1/product/info';
 // active
 var API_ACTIVE_CREATE = exports.API_ACTIVE_CREATE = HOST + '/api/v1/activity/create';
 var API_ACTIVE_INFO = exports.API_ACTIVE_INFO = HOST + '/api/v1/activity/info';
-
 var API_ACTIVE_PRODUCTINFO = exports.API_ACTIVE_PRODUCTINFO = HOST + '/api/v1/activityProduct/info';
-
 var API_ACTIVE_OWNER = exports.API_ACTIVE_OWNER = HOST + '/api/v1/activity/owner';
-
 var API_ACTIVE_CLOSE = exports.API_ACTIVE_CLOSE = HOST + '/api/v1/activity/close';
 
 // 浏览历史
 var API_ACTIVE_HISTORY = exports.API_ACTIVE_HISTORY = HOST + '/api/v1/activity/history';
-
 // 创建订单
 var API_CREATE_ORDER = exports.API_CREATE_ORDER = HOST + '/api/v1/batch/create';
 var API_CREATE_RESEVER_ORDER = exports.API_CREATE_RESEVER_ORDER = HOST + '/api/v1/batch/reserve';
@@ -51,7 +48,6 @@ var API_ORDER_DETAIL = exports.API_ORDER_DETAIL = HOST + '/api/v1/reservation/in
 
 // 获取分类
 // export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;
-
 // 获取分类(修改版本.)
 var API_PRODUCT_CATEGORY = exports.API_PRODUCT_CATEGORY = HOST + '/api/v1/project/query';
 
@@ -66,7 +62,6 @@ var API_JPUSH_AUTH = exports.API_JPUSH_AUTH = HOST + '/api/v1/im/auth-payload';
 
 // 预支付订单.
 var API_PRE_PAY = exports.API_PRE_PAY = HOST + '/api/v1/reservation/prepay';
-
 // 删除产品
 var API_DELETE_PRODUCT = exports.API_DELETE_PRODUCT = HOST + '/api/v1/product/delete';
 

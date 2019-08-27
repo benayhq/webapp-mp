@@ -29,7 +29,6 @@ var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(wi
 }) : _redux.compose;
 
 var middlewares = [_index2.default];
-
 // if (process.env.NODE_ENV === 'development') {
 //       middlewares.push(require('redux-logger').createLogger())
 // }

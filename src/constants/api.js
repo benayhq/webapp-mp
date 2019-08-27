@@ -1,4 +1,5 @@
 export const DEV = 'https://lovemeipin.com:8444/meipin';
+
 // yapi  
 export const PROD = 'https://lovemeipin.com/meipin';
 export const DevEnv = false;
@@ -17,16 +18,12 @@ export const API_PRODUCT_INFO = `${HOST}/api/v1/product/info`;
 // active
 export const API_ACTIVE_CREATE = `${HOST}/api/v1/activity/create`;
 export const API_ACTIVE_INFO = `${HOST}/api/v1/activity/info`;
-
 export const API_ACTIVE_PRODUCTINFO = `${HOST}/api/v1/activityProduct/info`;
-
 export const API_ACTIVE_OWNER = `${HOST}/api/v1/activity/owner`;
-
 export const API_ACTIVE_CLOSE = `${HOST}/api/v1/activity/close`;
 
 // 浏览历史
 export const API_ACTIVE_HISTORY = `${HOST}/api/v1/activity/history`;
-
 // 创建订单
 export const API_CREATE_ORDER = `${HOST}/api/v1/batch/create`;
 export const API_CREATE_RESEVER_ORDER = `${HOST}/api/v1/batch/reserve`;
@@ -46,7 +43,6 @@ export const API_ORDER_DETAIL = `${HOST}/api/v1/reservation/info`;
 
 // 获取分类
 // export const API_PRODUCT_CATEGORY = `${HOST}/v1/project/all`;
-
 // 获取分类(修改版本.)
 export const API_PRODUCT_CATEGORY = `${HOST}/api/v1/project/query`;
 
@@ -61,7 +57,6 @@ export const API_JPUSH_AUTH = `${HOST}/api/v1/im/auth-payload`;
 
 // 预支付订单.
 export const API_PRE_PAY = `${HOST}/api/v1/reservation/prepay`;
-
 // 删除产品
 export const API_DELETE_PRODUCT = `${HOST}/api/v1/product/delete`;
 

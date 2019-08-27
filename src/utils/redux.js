@@ -11,6 +11,6 @@ export function createAction(options){
                 .then((res)=>{
                     dispatch({type,payload:cb ? cb(res) : res})
                     return res;
-        });
+       });
     }
 }

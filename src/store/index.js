@@ -6,7 +6,6 @@ import {reducer as productReducer} from './../pages/product/store';
 import {reducer as orderReducer} from './../pages/order/store';
 import {reducer as activeReducer} from './../pages/active/store';
 
-
 const composeEnhancers =
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
@@ -17,7 +16,6 @@ const composeEnhancers =
     const middlewares = [
       thunkMiddleWare
     ];
-    
 // if (process.env.NODE_ENV === 'development') {
 //       middlewares.push(require('redux-logger').createLogger())
 // }

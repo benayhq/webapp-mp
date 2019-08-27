@@ -817,11 +817,12 @@ export default class Index extends Component{
           {
             // 由于部分限制，目前组件通过状态的方式来动态加载
             this.state.canvasStatus &&
-            (<TaroCanvasDrawer
-              config={this.state.bannerConfig} // 绘制配置
-              onCreateSuccess={this.onCreateSuccess} // 绘制成功回调
-              onCreateFail={this.onCreateFail} // 绘制失败回调
-            />
+            (
+              <TaroCanvasDrawer
+                config={this.state.bannerConfig} // 绘制配置
+                onCreateSuccess={this.onCreateSuccess} // 绘制成功回调
+                onCreateFail={this.onCreateFail} // 绘制失败回调
+              />
             )
           }
            <View className="thumbnail-wrapper" >

@@ -188,53 +188,53 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "rjTgvvdJOb" + _anonIdx);
+        var $compid__70 = (0, _index.genCompid)(__prefix + "ztKieOMsJN" + _anonIdx);
         _index.propsManager.set({
           "OrderId": item.$original.id,
           "displayStatusDes": item.$original.displayStatusDes,
           "AgentName": item.$original.customerName
-        }, $compid__71);
-        var $compid__72 = (0, _index.genCompid)(__prefix + "NOVWOGFDva" + _anonIdx);
+        }, $compid__70);
+        var $compid__71 = (0, _index.genCompid)(__prefix + "dFqyTkrIUg" + _anonIdx);
         item.$original.status == "UNPAY" && _index.propsManager.set({
           "type": "primary",
           "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
           "size": "small"
-        }, $compid__72);
-        var $compid__73 = (0, _index.genCompid)(__prefix + "JhCykSxGcX" + _anonIdx);
+        }, $compid__71);
+        var $compid__72 = (0, _index.genCompid)(__prefix + "tytRHbczWR" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
           "size": "small",
           "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-        }, $compid__73);
-        var $compid__74 = (0, _index.genCompid)(__prefix + "UeZCgiVJoP" + _anonIdx);
+        }, $compid__72);
+        var $compid__73 = (0, _index.genCompid)(__prefix + "DevjHOORVx" + _anonIdx);
         item.$original.status == "PAID" && _index.propsManager.set({
           "type": "primary",
           "size": "small",
           "onClick": _this4.handleRefund.bind(_this4, item.$original.id)
+        }, $compid__73);
+        var $compid__74 = (0, _index.genCompid)(__prefix + "YeKoDQGXre" + _anonIdx);
+        item.$original.status == "COMMENTING" && _index.propsManager.set({
+          "type": "primary",
+          "size": "small"
         }, $compid__74);
-        var $compid__75 = (0, _index.genCompid)(__prefix + "dEiYxIHjdl" + _anonIdx);
+        var $compid__75 = (0, _index.genCompid)(__prefix + "TZTPaenhIe" + _anonIdx);
         item.$original.status == "COMMENTING" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
         }, $compid__75);
-        var $compid__76 = (0, _index.genCompid)(__prefix + "gFxrMBPerO" + _anonIdx);
-        item.$original.status == "COMMENTING" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small"
-        }, $compid__76);
-        var $compid__77 = (0, _index.genCompid)(__prefix + "MOGuDMdZEq" + _anonIdx);
+        var $compid__76 = (0, _index.genCompid)(__prefix + "JDtAfjxCuD" + _anonIdx);
         item.$original.status == "CONSUMPTION" && _index.propsManager.set({
           "type": "primary",
           "size": "small"
-        }, $compid__77);
+        }, $compid__76);
         return {
+          $compid__70: $compid__70,
           $compid__71: $compid__71,
           $compid__72: $compid__72,
           $compid__73: $compid__73,
           $compid__74: $compid__74,
           $compid__75: $compid__75,
           $compid__76: $compid__76,
-          $compid__77: $compid__77,
           $original: item.$original
         };
       });

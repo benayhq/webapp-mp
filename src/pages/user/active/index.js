@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
+import { AtList, AtListItem } from "taro-ui"
 
 function getLocalTime(timestamp) {
     var d = new Date(timestamp);
@@ -20,10 +21,12 @@ class Index extends Component{
   config = {
     navigationBarTitleText: '我的活动'
   }
+
   constructor(props){
     super(props);
     this.state = {
-      activeList:[]
+      activeList:[],
+      agentId:0
     }
   }
 
@@ -31,7 +34,6 @@ class Index extends Component{
     const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
      return result;
   }
-
 
   async getImgUrl(location){
     var payload = {
@@ -41,20 +43,28 @@ class Index extends Component{
     return result.content;
   }
 
-  
+  componentWillMount(){
+    console.log('this.$router.params',this.$router.params.agentId);
+    if(this.$router.params.agentId){
+      this.setState({
+        agentId:this.$router.params.agentId
+      })
+    }
+  }
+
   componentDidMount(){
       this.init();
   }
 
   async init(){
     var result = await this.getAuthInfo();
+    const {agentId} = this.state;
 
     var that = this;
-
     var payload ={
         pageNo:0,
         pageSize:10,
-        agentId:result.id
+        agentId: agentId ===  0 ? result.id : agentId
     },list=[];
 
     const response = await this.props.dispatchOwnerActiveHistory(payload);
@@ -71,7 +81,6 @@ class Index extends Component{
             });
             console.log('result',result);
         });
-       
     }
 
     setTimeout(() => {
@@ -83,10 +92,9 @@ class Index extends Component{
 
   render(){
     const {activeList} = this.state;
-    console.log('activeList',activeList);
 
     return (
-      <View className="mp-history">
+      <AtList>
           {/* <View className="list-title">
             <View>医美关键 vivi</View>  
             <View>
@@ -97,20 +105,17 @@ class Index extends Component{
           {
               activeList && activeList.map((item)=>{
                   return (
-                    <View className="list-wrapper">
-                                <View>
-                                    <image className="icon-header" src={item.url} ></image>
-                                </View>
-                                <View>
-                                    <View className="mp-active-group">{item.name}</View>
-                                    <View className="mp-active-group">{item.people}人成团</View>
-                                    {/* <View className="mp-active-group">截止日期:{getLocalTime(item.endD)}</View> */}
-                                </View>
-                    </View>
+                    <AtListItem
+                      title={item.name}
+                      note={`${item.people}人成团`}
+                      thumb={item.url}
+                      // extraText={`日期:${getLocalTime(item.endD)}`}
+                      arrow='right'
+                    />
                   )
               })
-          } 
-      </View>
+          }
+      </AtList>
     )
   }
 }

@@ -22,7 +22,6 @@ npm run dev:weapp
 <img src="https://github.com/xiangxiong/webapp-mp/blob/master/img/home.png" width="365" height="619"/> <img src="https://github.com/xiangxiong/webapp-mp/blob/master/img/userCenter.gif" width="365" height="619"/>
 
 ## 项目结构
-
 ```
 .
 ├── config                                      // 配置文件
@@ -64,7 +63,7 @@ npm run dev:weapp
 │   │   ├── base.scss                           // 主题样式
 │   │   ├── element.scss                        // 抽象布局 scss
 │   │   ├── icon.scss                           // iconfont scss
-│   ├── utils                                   // 通用公用js
+│   ├── utils                                   // 通用公用 js
 │   ├── app.js                                  // 小程序入口
 │   ├── app.scss                                // 主题样式
 .
