@@ -9,7 +9,7 @@ import { AtToast } from "taro-ui"
 
 @connect(state=>state.user,actions)
 export default class Spec extends Component{
-
+    
     static defaultProps ={
         data:{},
         selected:{},

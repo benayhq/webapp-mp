@@ -13,7 +13,7 @@ export default class Index extends Component{
             newFilterList:[]
         }
     }
-
+    
     config = {
         navigationBarTitleText: '往期产品'
     }
@@ -71,15 +71,11 @@ export default class Index extends Component{
 
     render(){
         const {newFilterList} = this.state;
-        console.log('newFilterList',newFilterList);
-        
+
         return (
             <View>
                  {
                      newFilterList && newFilterList.map((item)=>{
-
-                        console.log('item.imgUrl',item.imgUrl);
-
                          return (<View className="mp-user__product"> 
                             <View>
                                 <image className="icon-header" src={item.imgUrl} ></image>

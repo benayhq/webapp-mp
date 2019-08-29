@@ -1,6 +1,16 @@
 @import './../../style/base.scss';
 @import '../../style/icon.scss';
 
+.at-modal__content {
+    padding: 32px 24px;
+    min-height: 180px;
+    max-height: 440px;
+    color: #333;
+    font-size: 28px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 $panelBgColor:rgba(255,255,255,1);
 
 @mixin panelBlockWidth{
@@ -79,6 +89,11 @@ page{
 .mp-user{
     background:$userHomeBgColor;
     height: 1750px;
+
+    &__agree{
+        overflow: auto;
+        height: 400px;
+    }
 
     &__login{
         width: 80%;
@@ -260,7 +275,7 @@ page{
             font-weight:400;
             color:#FFFFFF;
             line-height:40px;
-            z-index: 1000;
+            z-index: 99;
             font-size:32px
         }
 
@@ -274,7 +289,7 @@ page{
             font-weight:400;
             color:#FFFFFF;
             line-height:40px;
-            z-index: 1000;
+            z-index: 99;
             font-size:32px
         }
         &-action{

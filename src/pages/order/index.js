@@ -11,7 +11,7 @@ export default class OrderList extends Component{
     config = {
         navigationBarTitleText: '我的订单'
     }
-
+    
     constructor(){
         super(...arguments);
     }

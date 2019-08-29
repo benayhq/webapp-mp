@@ -121,6 +121,7 @@ class Index extends Component{
               var payload = {
                   code:res.code
               };
+              
               currentObj.props.WeChatLogin(payload).then((res)=>{
                   Taro.setStorage({key:'userinfo',data:res.content});
               });

@@ -10,7 +10,7 @@ export default class Application extends Component{
     constructor(props){
         super(...arguments);
     }
-    
+
     render(){
         return (
             <View className="mp-user__controlpanel">

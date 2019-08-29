@@ -13,8 +13,10 @@ var getSessionId = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
-              return res.data.sessionId;
+            // const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data.sessionId}).catch(() => '')
+            // return result;
+            result = _index2.default.getStorage({ key: 'sessionId' }).then(function (res) {
+              return res.data;
             }).catch(function () {
               return '';
             });

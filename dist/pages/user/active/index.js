@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray81", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -244,26 +244,26 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var activeList = this.__state.activeList;
 
 
-      var loopArray81 = activeList ? activeList.map(function (item, _anonIdx) {
+      var loopArray11 = activeList ? activeList.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
         var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-        var $compid__139 = (0, _index.genCompid)(__prefix + "gYnQaHdozK" + _anonIdx);
+        var $compid__57 = (0, _index.genCompid)(__prefix + "mSkvYdvZkv" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.name,
           "note": $loopState__temp2,
           "thumb": item.$original.url,
           "arrow": "right"
-        }, $compid__139);
+        }, $compid__57);
         return {
           $loopState__temp2: $loopState__temp2,
-          $compid__139: $compid__139,
+          $compid__57: $compid__57,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray81: loopArray81
+        loopArray11: loopArray11
       });
       return this.__state;
     }

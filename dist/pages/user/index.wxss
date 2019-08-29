@@ -228,6 +228,15 @@
   color: #7DD6D0;
   content: "\e61a"; }
 
+.at-modal__content {
+  padding: 32rpx 24rpx;
+  min-height: 180rpx;
+  max-height: 440rpx;
+  color: #333;
+  font-size: 28rpx;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
 .customer-service {
   position: relative;
   display: block;
@@ -302,6 +311,9 @@ page {
   height: 1750rpx;
   /* modifiers */
   /* elements width:750px; */ }
+  .mp-user__agree {
+    overflow: auto;
+    height: 400rpx; }
   .mp-user__login {
     width: 80%;
     height: 90rpx;
@@ -444,7 +456,7 @@ page {
       font-weight: 400;
       color: #FFFFFF;
       line-height: 40rpx;
-      z-index: 1000;
+      z-index: 99;
       font-size: 32rpx; }
     .mp-user__publish-introduce-desc {
       position: relative;
@@ -456,7 +468,7 @@ page {
       font-weight: 400;
       color: #FFFFFF;
       line-height: 40rpx;
-      z-index: 1000;
+      z-index: 99;
       font-size: 32rpx; }
     .mp-user__publish-action {
       position: relative;

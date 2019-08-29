@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray10", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
       navigationBarTitleText: '往期产品'
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -175,22 +175,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var newFilterList = this.__state.newFilterList;
 
-      console.log('newFilterList', newFilterList);
 
-      var loopArray10 = newFilterList ? newFilterList.map(function (item, _anonIdx) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-
-        console.log('item.imgUrl', item.$original.imgUrl);
-
-        return {
-          $original: item.$original
-        };
-      }) : [];
-      Object.assign(this.__state, {
-        loopArray10: loopArray10
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);

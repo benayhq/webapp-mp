@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -8,7 +8,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.createAction = createAction;
 
-var _request = require('./request.js');
+var _request = require("./request.js");
 
 var _request2 = _interopRequireDefault(_request);
 
@@ -23,9 +23,6 @@ function createAction(options) {
       cb = options.cb,
       contentType = options.contentType;
 
-
-  console.log('url', url);
-  console.log('options', options);
 
   return function (dispatch) {
     return (0, _request2.default)(_extends({ url: url, payload: payload, method: method, contentType: contentType }, fetchOptions)).then(function (res) {

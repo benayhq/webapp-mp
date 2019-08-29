@@ -7,6 +7,7 @@ var DEV = exports.DEV = 'https://lovemeipin.com:8444/meipin';
 
 // yapi  
 var PROD = exports.PROD = 'https://lovemeipin.com/meipin';
+
 var DevEnv = exports.DevEnv = false;
 var HOST = exports.HOST = PROD;
 var API_USER_LOGIN = exports.API_USER_LOGIN = HOST + '/wx/v1/wxuser/wxLogin';
@@ -62,6 +63,7 @@ var API_JPUSH_AUTH = exports.API_JPUSH_AUTH = HOST + '/api/v1/im/auth-payload';
 
 // 预支付订单.
 var API_PRE_PAY = exports.API_PRE_PAY = HOST + '/api/v1/reservation/prepay';
+
 // 删除产品
 var API_DELETE_PRODUCT = exports.API_DELETE_PRODUCT = HOST + '/api/v1/product/delete';
 
@@ -88,3 +90,6 @@ var API_PRODUCT_COMMNET = exports.API_PRODUCT_COMMNET = HOST + '/api/v1/comment/
 
 // 微信解密信息.
 var API_WEIXIN_DECRYPT = exports.API_WEIXIN_DECRYPT = HOST + '/api/v1/wx/wxDecrypt';
+
+// 获取用户信息.
+var API_GET_USER_INFO = exports.API_GET_USER_INFO = HOST + '/api/v1/user/info';

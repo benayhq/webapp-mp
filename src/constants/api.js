@@ -2,6 +2,7 @@ export const DEV = 'https://lovemeipin.com:8444/meipin';
 
 // yapi  
 export const PROD = 'https://lovemeipin.com/meipin';
+
 export const DevEnv = false;
 export const HOST = DevEnv ? DEV : PROD;
 export const API_USER_LOGIN = `${HOST}/wx/v1/wxuser/wxLogin`;
@@ -57,6 +58,7 @@ export const API_JPUSH_AUTH = `${HOST}/api/v1/im/auth-payload`;
 
 // 预支付订单.
 export const API_PRE_PAY = `${HOST}/api/v1/reservation/prepay`;
+
 // 删除产品
 export const API_DELETE_PRODUCT = `${HOST}/api/v1/product/delete`;
 
@@ -83,3 +85,6 @@ export const API_PRODUCT_COMMNET = `${HOST}/api/v1/comment/paging`;
 
 // 微信解密信息.
 export const API_WEIXIN_DECRYPT = `${HOST}/api/v1/wx/wxDecrypt`;
+
+// 获取用户信息.
+export const API_GET_USER_INFO = `${HOST}/api/v1/user/info`;

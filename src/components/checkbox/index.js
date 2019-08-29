@@ -2,8 +2,8 @@ import Taro,{Component} from '@tarojs/taro';
 import {View,Text} from '@tarojs/components';
 import classNames from 'classnames'
 import PropTypes from 'prop-types';
-
 import './index.scss';
+
 
 export default class CheckBox extends Component{
     constructor (props) {
@@ -14,16 +14,13 @@ export default class CheckBox extends Component{
         const {selectedList,options} = this.props;
         const option = options[idx];
         const {disabled,value} = option;
-
         if (disabled) return;
-
         const seletecdSet = new Set(selectedList);
         if(!seletecdSet.has(value)){
             seletecdSet.add(value);
         }else{
             seletecdSet.delete(value)
         }
-
         this.props.onChange([...seletecdSet]);
     }
 
@@ -53,6 +50,7 @@ export default class CheckBox extends Component{
                 {
                  options &&  options.map((option,idx) => {
                         const { value,disabled,label,data} = option;
+
                         const optionCls = classNames('mp-checkbox__option',{
                             'mp-checkbox__option--selected':!selectedList.includes(value)
                         });
@@ -89,9 +87,7 @@ export default class CheckBox extends Component{
                                       <Text className='mp-icon mp-icon-delete' onClick={this.handleProductDelete.bind(this,value)}></Text>
                                    </View>
                                 </View>
-                              
                             </View>
-                        
 {/*                             
                             <AtModal
                             isOpened
@@ -110,6 +106,7 @@ export default class CheckBox extends Component{
         )
     }
 }
+
 // CheckBox.defaultProps = {
 //     customStyle:'',
 //     className:'',
@@ -119,7 +116,6 @@ export default class CheckBox extends Component{
 //     onChange () {},
 //     delItem (){}
 // };
-
 // CheckBox.propTypes = {
 //     customStyle: PropTypes.oneOfType([
 //         PropTypes.object,

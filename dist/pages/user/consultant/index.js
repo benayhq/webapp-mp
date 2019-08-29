@@ -46,7 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray75", "actives", "dispatchOwnerServiceHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray9", "actives", "dispatchOwnerServiceHistory"], _this.config = {
       navigationBarTitleText: '历史咨询师'
     }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -92,20 +92,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var actives = this.__state.actives;
 
 
-      var loopArray75 = actives ? actives.map(function (item, _anonIdx) {
+      var loopArray9 = actives ? actives.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__133 = (0, _index.genCompid)(__prefix + "MXtnndESkx" + _anonIdx);
+        var $compid__56 = (0, _index.genCompid)(__prefix + "WBMYjceZkb" + _anonIdx);
         _index.propsManager.set({
           "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
           "title": item.$original.name,
           "note": item.$original.address,
           "arrow": "right",
           "thumb": item.$original.profileUrl
-        }, $compid__133);
+        }, $compid__56);
         return {
-          $compid__133: $compid__133,
+          $compid__56: $compid__56,
           $original: item.$original
         };
       }
@@ -121,7 +121,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       // </View>
       ) : [];
       Object.assign(this.__state, {
-        loopArray75: loopArray75
+        loopArray9: loopArray9
       });
       return this.__state;
     }

@@ -8,11 +8,11 @@ export default class UserOrder extends Component{
     constructor(props){
         super(...arguments);
     }
-
+    
     jumpUrl(url){
         jump({url:url});
     }
-    
+
     render(){
         const {list} = this.props;
 

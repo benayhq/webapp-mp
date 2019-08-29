@@ -62,7 +62,6 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       var disabled = option.disabled,
           value = option.value;
 
-
       if (disabled) {
         return;
       }var seletecdSet = new Set(selectedList);
@@ -71,7 +70,6 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       } else {
         seletecdSet.delete(value);
       }
-
       this.props.onChange([].concat(_toConsumableArray(seletecdSet)));
     }
   }, {
@@ -117,6 +115,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
             label = _option$$original.label,
             data = _option$$original.data;
 
+
         var optionCls = (0, _index4.default)('mp-checkbox__option', {
           'mp-checkbox__option--selected': !selectedList.includes(value)
         });
@@ -142,6 +141,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
 
   return CheckBox;
 }(_index.Component), _class.$$events = ["handleClick", "handleProductEdit", "handleProductDelete"], _class.$$componentPath = "components/checkbox/index", _temp2);
+
 // CheckBox.defaultProps = {
 //     customStyle:'',
 //     className:'',
@@ -151,7 +151,6 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
 //     onChange () {},
 //     delItem (){}
 // };
-
 // CheckBox.propTypes = {
 //     customStyle: PropTypes.oneOfType([
 //         PropTypes.object,

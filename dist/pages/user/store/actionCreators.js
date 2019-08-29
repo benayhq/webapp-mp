@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UpdateUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToCustomer = exports.ChangeToAgent = exports.WeChatLogin = undefined;
+exports.GetUserInfo = exports.UpdateUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToCustomer = exports.ChangeToAgent = exports.WeChatLogin = undefined;
 
 var _constants = require("./constants.js");
 
@@ -169,6 +169,17 @@ var UpdateUserInfo = exports.UpdateUserInfo = function UpdateUserInfo(payload) {
   return (0, _redux.createAction)({
     type: _constants.UPDATE_USER_INFO,
     url: _api.API_USER_INFO,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var GetUserInfo = exports.GetUserInfo = function GetUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_GET_USER_INFO,
+    url: _api.API_GET_USER_INFO,
     fetchOptions: {
       method: 'POST'
     },

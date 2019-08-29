@@ -52,13 +52,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray83", "$compid__147", "$compid__148", "$compid__149", "$compid__150", "$compid__151", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray493", "$compid__2394", "$compid__2395", "$compid__2396", "$compid__2397", "$compid__2398", "$compid__2399", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.customComponents = ["AtModal", "AtModalHeader", "AtModalContent", "AtButton", "InCome", "UserOrder", "AtList", "AtListItem", "AtCard"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtModal", "AtModalHeader", "AtModalContent", "AtButton", "AtModalAction", "InCome", "UserOrder", "AtList", "AtListItem", "AtCard"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -79,7 +79,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         context4: '',
         isOpened: false,
         showUserText: '',
-        avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658'
+        avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
+        isAgree: false
       };
       this.$$refs = [];
     }
@@ -205,7 +206,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       wx.login({
         success: function () {
           var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
-            var payload, result, data, isAgent, creatorInstance;
+            var payload, response, result, rstUserInfo, data, isAgent, creatorInstance;
             return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
@@ -215,23 +216,41 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     return currentObj.props.WeChatLogin(payload);
 
                   case 3:
-                    result = _context3.sent;
+                    response = _context3.sent;
 
-                    if (!(result.result === "success")) {
-                      _context3.next = 15;
+                    if (!(response.result === "success")) {
+                      _context3.next = 22;
                       break;
                     }
 
-                    data = result.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
+                    _context3.next = 7;
+                    return _index2.default.setStorage({ key: 'sessionId', data: response.content });
+
+                  case 7:
+                    result = _context3.sent;
+
+                    if (!(result.errMsg === "setStorage:ok")) {
+                      _context3.next = 20;
+                      break;
+                    }
+
+                    _context3.next = 11;
+                    return currentObj.props.GetUserInfo({});
+
+                  case 11:
+                    rstUserInfo = _context3.sent;
+                    data = rstUserInfo.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
+
 
                     _index2.default.setStorage({ key: 'userinfo', data: data });
+
                     currentObj.checkAuth(data);
                     currentObj.initReservationPlan();
                     currentObj.initLoanFlag();
-                    _context3.next = 12;
+                    _context3.next = 19;
                     return currentObj.initOrderNotice(creatorInstance, isAgent);
 
-                  case 12:
+                  case 19:
                     currentObj.setState({
                       showUserText: isAgent ? '切换为用户' : '切换为咨询师',
                       isAgent: isAgent,
@@ -240,16 +259,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       avatarUrl: data.profileUrl,
                       userName: data.name
                     });
-                    _context3.next = 16;
+
+                  case 20:
+                    _context3.next = 23;
                     break;
 
-                  case 15:
+                  case 22:
                     _index2.default.showToast({
                       title: '网络异常',
                       icon: 'none'
                     });
 
-                  case 16:
+                  case 23:
                   case "end":
                     return _context3.stop();
                 }
@@ -368,23 +389,56 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }()
   }, {
     key: "handleChangeState",
-    value: function handleChangeState() {
-      var isAgent = this.state.isAgent;
+    value: function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+        var isAgent, boolAgent, result, creatorInstance;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                isAgent = this.state.isAgent;
+                boolAgent = !isAgent;
+                _context6.next = 4;
+                return this.getAuthInfo();
 
-      var boolAgent = !isAgent;
-      this.setState({
-        isAgent: boolAgent,
-        showUserText: boolAgent ? '切换为用户' : '切换为咨询师'
-      });
-      boolAgent ? this.props.ChangeToAgent() : this.props.ChangeToCustomer();
-      var creatorInstance = new _create2.default();
-      this.setState({
-        isAgent: boolAgent,
-        list: creatorInstance.factory(boolAgent).getPanelList(),
-        orders: this.initOrderNotice(creatorInstance, boolAgent),
-        user: creatorInstance.factory(boolAgent).getUserInfo()
-      });
-    }
+              case 4:
+                result = _context6.sent;
+
+                if (result.agentStatus === 1) {
+                  boolAgent ? this.props.ChangeToAgent() : this.props.ChangeToCustomer();
+                  this.setState({
+                    isAgent: boolAgent,
+                    showUserText: boolAgent ? '切换为用户' : '切换为咨询师'
+                  });
+                  creatorInstance = new _create2.default();
+
+                  this.setState({
+                    isAgree: false,
+                    isAgent: boolAgent,
+                    list: creatorInstance.factory(boolAgent).getPanelList(),
+                    orders: this.initOrderNotice(creatorInstance, boolAgent),
+                    user: creatorInstance.factory(boolAgent).getUserInfo()
+                  });
+                } else {
+                  this.setState({
+                    isAgree: true
+                  });
+                }
+
+              case 6:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function handleChangeState() {
+        return _ref7.apply(this, arguments);
+      }
+
+      return handleChangeState;
+    }()
   }, {
     key: "handleUpdateInfo",
     value: function handleUpdateInfo() {
@@ -424,6 +478,67 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleCloseAgree",
+    value: function handleCloseAgree() {
+      console.log('handleCloseAgree');
+      this.setState({
+        isAgree: false
+      });
+    }
+  }, {
+    key: "handleCancelAgree",
+    value: function handleCancelAgree() {
+      this.setState({
+        isAgree: false
+      });
+    }
+  }, {
+    key: "handleConfirmAgree",
+    value: function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+        var rstUserInfo, data, creatorInstance;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return this.props.ChangeToAgent();
+
+              case 2:
+                _context7.next = 4;
+                return this.props.GetUserInfo({});
+
+              case 4:
+                rstUserInfo = _context7.sent;
+                data = rstUserInfo.content;
+
+                _index2.default.setStorage({ key: 'userinfo', data: data });
+                creatorInstance = new _create2.default();
+
+                this.setState({
+                  isAgree: false,
+                  isAgent: true,
+                  showUserText: '切换为用户',
+                  list: creatorInstance.factory(true).getPanelList(),
+                  orders: this.initOrderNotice(creatorInstance, true),
+                  user: creatorInstance.factory(true).getUserInfo()
+                });
+
+              case 9:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function handleConfirmAgree() {
+        return _ref8.apply(this, arguments);
+      }
+
+      return handleConfirmAgree;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
       var _this4 = this;
@@ -433,11 +548,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__147 = (0, _index.genCompid)(__prefix + "$compid__147");
-      var $compid__148 = (0, _index.genCompid)(__prefix + "$compid__148");
-      var $compid__149 = (0, _index.genCompid)(__prefix + "$compid__149");
-      var $compid__150 = (0, _index.genCompid)(__prefix + "$compid__150");
-      var $compid__151 = (0, _index.genCompid)(__prefix + "$compid__151");
+      var $compid__2394 = (0, _index.genCompid)(__prefix + "$compid__2394");
+      var $compid__2395 = (0, _index.genCompid)(__prefix + "$compid__2395");
+      var $compid__2396 = (0, _index.genCompid)(__prefix + "$compid__2396");
+      var $compid__2397 = (0, _index.genCompid)(__prefix + "$compid__2397");
+      var $compid__2398 = (0, _index.genCompid)(__prefix + "$compid__2398");
+      var $compid__2399 = (0, _index.genCompid)(__prefix + "$compid__2399");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -448,14 +564,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           flag = _state.flag,
           isOpened = _state.isOpened,
           showUserText = _state.showUserText,
-          list = _state.list;
+          list = _state.list,
+          isAgree = _state.isAgree;
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__147 = {
+      var $props__2394 = {
         "isOpened": isOpened
       };
-      var $props__148 = {
+      var $props__2395 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -463,43 +580,49 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__149 = {
+      var $props__2396 = {
+        "isOpened": isAgree,
+        "closeOnClickOverlay": false
+      };
+      var $props__2397 = {
         "profit": profit
       };
-      var $props__150 = {
+      var $props__2398 = {
         "list": orders
       };
-      var $props__151 = {
+      var $props__2399 = {
         "title": this.__state.context1
       };
-      var loopArray83 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray493 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__146 = (0, _index.genCompid)(__prefix + "TQIgeAaNmc" + _anonIdx);
+        var $compid__2393 = (0, _index.genCompid)(__prefix + "GmiBRUPjxL" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__146);
+        }, $compid__2393);
         return {
-          $compid__146: $compid__146,
+          $compid__2393: $compid__2393,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__147, $compid__147);
-      _index.propsManager.set($props__148, $compid__148);
-      isAgent && _index.propsManager.set($props__149, $compid__149);
-      _index.propsManager.set($props__150, $compid__150);
-      isShowLoanApp === true && _index.propsManager.set($props__151, $compid__151);
+      _index.propsManager.set($props__2394, $compid__2394);
+      _index.propsManager.set($props__2395, $compid__2395);
+      _index.propsManager.set($props__2396, $compid__2396);
+      isAgent && _index.propsManager.set($props__2397, $compid__2397);
+      _index.propsManager.set($props__2398, $compid__2398);
+      isShowLoanApp === true && _index.propsManager.set($props__2399, $compid__2399);
       Object.assign(this.__state, {
-        loopArray83: loopArray83,
-        $compid__147: $compid__147,
-        $compid__148: $compid__148,
-        $compid__149: $compid__149,
-        $compid__150: $compid__150,
-        $compid__151: $compid__151,
+        loopArray493: loopArray493,
+        $compid__2394: $compid__2394,
+        $compid__2395: $compid__2395,
+        $compid__2396: $compid__2396,
+        $compid__2397: $compid__2397,
+        $compid__2398: $compid__2398,
+        $compid__2399: $compid__2399,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
@@ -507,7 +630,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handleChangeState", "handleUpdateInfo", "handlePublish", "handleAppLoan"], _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleChangeState", "handleCloseAgree", "handleConfirmAgree", "handleUpdateInfo", "handlePublish", "handleAppLoan"], _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
