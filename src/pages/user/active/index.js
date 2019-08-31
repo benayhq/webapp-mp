@@ -69,26 +69,33 @@ class Index extends Component{
     },list=[];
 
     const response = await this.props.dispatchOwnerActiveHistory(payload);
-    console.log('response',response);
+
+    var promises = [];
 
     if(response.content.length > 0){
-        response.content.map(async(item)=>{
-            const result = await this.getImgUrl(item.displayLocation);
-            list.push({
-                name:item.name,
-                people:item.people,
-                endD:item.endD,
-                url:result,
-                agentId:item.agentId,
-                id:item.id
-            });
-            if(response.content.length === list.length){
-              that.setState({
-                activeList:list
-              });
-            }
-            console.log('result',result);
+        response.content.map((item)=>{
+          const promise = this.getImgUrl(item.displayLocation);
+          promises.push(promise);
+          list.push({
+            name:item.name,
+            people:item.people,
+            endD:item.endD,
+            url:'',
+            agentId:item.agentId,
+            id:item.id
+          })
         });
+        Promise.all(promises).then((result)=>{
+          if(result){
+            result.map((item,key)=>{
+              list[key].url = item;
+            })
+          }
+        }).then(()=>{
+          that.setState({
+             activeList:list
+          });
+        })
     }
   }
 

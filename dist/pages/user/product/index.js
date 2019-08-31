@@ -109,53 +109,79 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "initProductList",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var _this2 = this;
 
-        var that, payload, responseList, resultProductList;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        var that, payload, products, promises, resultProductList;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 that = this;
                 payload = {
                   pageNo: 0,
                   pageSize: 1000
                 };
-                responseList = [];
-                _context2.next = 5;
+                products = [], promises = [];
+                _context3.next = 5;
                 return this.props.dispatchProductList(payload);
 
               case 5:
-                resultProductList = _context2.sent;
+                resultProductList = _context3.sent;
 
 
-                resultProductList.content.map(function (item) {
-                  _this2.getImgUrl(item.location).then(function (response) {
-                    responseList.push({
-                      value: item.id,
-                      label: item.projectName,
-                      price: item.price,
-                      marketPrice: item.discountPrice,
-                      prePrice: item.advance,
-                      imgUrl: response,
-                      desc: item.name,
-                      disabled: false
+                resultProductList.content.map(function () {
+                  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(item) {
+                    var promise;
+                    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            promise = _this2.getImgUrl(item.location);
+
+                            promises.push(promise);
+                            products.push({
+                              value: item.id,
+                              label: item.projectName,
+                              price: item.price,
+                              marketPrice: item.discountPrice,
+                              prePrice: item.advance,
+                              imgUrl: '',
+                              desc: item.name,
+                              disabled: false
+                            });
+
+                          case 3:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2, _this2);
+                  }));
+
+                  return function (_x2) {
+                    return _ref4.apply(this, arguments);
+                  };
+                }());
+
+                Promise.all(promises).then(function (result) {
+                  if (result) {
+                    result.map(function (item, key) {
+                      products[key].imgUrl = item;
                     });
-                    if (responseList.length === resultProductList.content.length) {
-                      that.setState({
-                        newFilterList: responseList
-                      });
-                    }
+                  }
+                }).then(function (response) {
+                  _this2.setState({
+                    newFilterList: products
                   });
                 });
 
-              case 7:
+              case 8:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function initProductList() {
@@ -174,7 +200,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       ;
 
       var newFilterList = this.__state.newFilterList;
-
 
       var renderTemplate = null;
       if (newFilterList.length === 0) {} else {}

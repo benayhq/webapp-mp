@@ -111,12 +111,12 @@
             </view>
             <view class="mp-service" bindtap="handleShare" data-e-tap-so="this">分 享</view>
         </scroll-view>
-        <popup compid="{{$compid__46}}">
+        <popup compid="{{$compid__218}}">
             <block wx:if="{{bContact}}">
-                <contact compid="{{$compid__47}}"></contact>
+                <contact compid="{{$compid__219}}"></contact>
             </block>
             <block wx:if="{{bSpec}}">
-                <spec compid="{{$compid__48}}"></spec>
+                <spec compid="{{$compid__220}}"></spec>
             </block>
         </popup>
     </view>

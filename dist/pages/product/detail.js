@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__46", "$compid__47", "$compid__48", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__218", "$compid__219", "$compid__220", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -243,11 +243,11 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           referId = this.$router.params.refId === undefined ? 2 : this.$router.params.refId,
           source = this.$router.params.sc === undefined ? "" : this.$router.params.sc; // advert
       if (activeId && referId) {
-        wx.showToast({
-          title: activeId + referId,
-          icon: 'success',
-          duration: 2000
-        });
+        // wx.showToast({
+        //     title: activeId+referId,
+        //     icon: 'success',
+        //     duration: 2000
+        // });
         activeId = decodeURIComponent(activeId);
         referId = decodeURIComponent(referId);
         source = decodeURIComponent(source);
@@ -393,9 +393,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__46 = (0, _index.genCompid)(__prefix + "$compid__46");
-      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
-      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
+      var $compid__218 = (0, _index.genCompid)(__prefix + "$compid__218");
+      var $compid__219 = (0, _index.genCompid)(__prefix + "$compid__219");
+      var $compid__220 = (0, _index.genCompid)(__prefix + "$compid__220");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -414,27 +414,27 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__46 = {
+      var $props__218 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__47 = {
+      var $props__219 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__48 = {
+      var $props__220 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      _index.propsManager.set($props__46, $compid__46);
-      bContact && _index.propsManager.set($props__47, $compid__47);
-      bSpec && _index.propsManager.set($props__48, $compid__48);
+      _index.propsManager.set($props__218, $compid__218);
+      bContact && _index.propsManager.set($props__219, $compid__219);
+      bSpec && _index.propsManager.set($props__220, $compid__220);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__46: $compid__46,
-        $compid__47: $compid__47,
-        $compid__48: $compid__48
+        $compid__218: $compid__218,
+        $compid__219: $compid__219,
+        $compid__220: $compid__220
       });
       return this.__state;
     }

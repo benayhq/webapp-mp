@@ -129,11 +129,11 @@ export default class Detail extends Component{
             referId = this.$router.params.refId  === undefined?2:this.$router.params.refId,
             source = this.$router.params.sc === undefined ? "":this.$router.params.sc;  // advert
             if (activeId && referId ) {
-            wx.showToast({
-                title: activeId+referId,
-                icon: 'success',
-                duration: 2000
-            });
+            // wx.showToast({
+            //     title: activeId+referId,
+            //     icon: 'success',
+            //     duration: 2000
+            // });
             activeId = decodeURIComponent(activeId);
             referId =  decodeURIComponent(referId);
             source =  decodeURIComponent(source);

@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__142", "$compid__143", "$compid__144", "$compid__145", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__233", "$compid__234", "$compid__235", "$compid__236", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -388,19 +388,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 return _context2.abrupt("return");
 
               case 16:
-                if (!(docLocations.length > 9)) {
-                  _context2.next = 19;
-                  break;
-                }
-
-                this.handleAlert('error', '限制只能上传9张图片');
-                return _context2.abrupt("return");
-
-              case 19:
-                _context2.next = 21;
+                _context2.next = 18;
                 return (0, _storage.getAuthInfo)();
 
-              case 21:
+              case 18:
                 result = _context2.sent;
                 payload = {
                   "areaCode": "string",
@@ -416,7 +407,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 };
 
                 if (!(result.cellphone === null || result.cellphone === "")) {
-                  _context2.next = 28;
+                  _context2.next = 25;
                   break;
                 }
 
@@ -425,12 +416,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 28:
+              case 25:
                 this.setState({
                   isOpened: false
                 });
 
-              case 29:
+              case 26:
                 this.props.dispatchCreateActive(payload).then(function (res) {
                   if (res && res.result === "success" && res.content != null) {
                     _index2.default.navigateTo({
@@ -441,7 +432,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 30:
+              case 27:
               case "end":
                 return _context2.stop();
             }
@@ -653,10 +644,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__142 = (0, _index.genCompid)(__prefix + "$compid__142");
-      var $compid__143 = (0, _index.genCompid)(__prefix + "$compid__143");
-      var $compid__144 = (0, _index.genCompid)(__prefix + "$compid__144");
-      var $compid__145 = (0, _index.genCompid)(__prefix + "$compid__145");
+      var $compid__233 = (0, _index.genCompid)(__prefix + "$compid__233");
+      var $compid__234 = (0, _index.genCompid)(__prefix + "$compid__234");
+      var $compid__235 = (0, _index.genCompid)(__prefix + "$compid__235");
+      var $compid__236 = (0, _index.genCompid)(__prefix + "$compid__236");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -667,33 +658,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__142 = {
+      var $props__233 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__143 = {
+      var $props__234 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__144 = {
+      var $props__235 = {
         "products": products
       };
-      var $props__145 = {
+      var $props__236 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__142, $compid__142);
-      _index.propsManager.set($props__143, $compid__143);
-      _index.propsManager.set($props__144, $compid__144);
-      _index.propsManager.set($props__145, $compid__145);
+      _index.propsManager.set($props__233, $compid__233);
+      _index.propsManager.set($props__234, $compid__234);
+      _index.propsManager.set($props__235, $compid__235);
+      _index.propsManager.set($props__236, $compid__236);
       Object.assign(this.__state, {
-        $compid__142: $compid__142,
-        $compid__143: $compid__143,
-        $compid__144: $compid__144,
-        $compid__145: $compid__145
+        $compid__233: $compid__233,
+        $compid__234: $compid__234,
+        $compid__235: $compid__235,
+        $compid__236: $compid__236
       });
       return this.__state;
     }

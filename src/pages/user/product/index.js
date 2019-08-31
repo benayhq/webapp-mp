@@ -38,41 +38,43 @@ export default class Index extends Component{
     
       async initProductList(){
         var that = this;
-
         var payload = {
           pageNo:0,
           pageSize:1000
         };
-        
-        var responseList = [];
+        var products = [],promises=[];
         const resultProductList = await this.props.dispatchProductList(payload);
 
-        resultProductList.content.map((item)=>{
-          this.getImgUrl(item.location)
-          .then(response=>{
-            responseList.push({
-                value: item.id,
-                label: item.projectName,
-                price:item.price,
-                marketPrice:item.discountPrice,
-                prePrice:item.advance,
-                imgUrl:response,
-                desc: item.name,
-                disabled: false
-            });
-            if(responseList.length === resultProductList.content.length){
-              that.setState({
-                newFilterList:responseList
-              })
-            }
+        resultProductList.content.map(async(item)=>{
+          const promise = this.getImgUrl(item.location);
+          promises.push(promise);
+          products.push({
+              value: item.id,
+              label: item.projectName,
+              price:item.price,
+              marketPrice:item.discountPrice,
+              prePrice:item.advance,
+              imgUrl:'',
+              desc: item.name,
+              disabled: false
           });
         });
-      }
 
+        Promise.all(promises).then((result)=>{
+          if(result){
+            result.map((item,key)=>{
+              products[key].imgUrl = item;
+            })
+          }
+        }).then((response)=>{
+          this.setState({
+            newFilterList:products
+          })
+        });
+    }
 
     render(){
         const {newFilterList} = this.state;
-
         let renderTemplate =null;
         if(newFilterList.length === 0){
           renderTemplate =  <Empty/>

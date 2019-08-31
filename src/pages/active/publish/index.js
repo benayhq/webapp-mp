@@ -266,10 +266,10 @@ export default class Index extends Component {
       this.handleAlert('error','请选择上传主图')
       return;
     }
-    if(docLocations.length>9){
-      this.handleAlert('error','限制只能上传9张图片')
-      return;
-    }
+    // if(docLocations.length>9){
+    //   this.handleAlert('error','限制只能上传9张图片')
+    //   return;
+    // }
     const result = await getAuthInfo();
 
     let payload =  {

@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray54", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray91", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.customComponents = ["AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -148,19 +148,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "init",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var _this2 = this;
 
-        var result, agentId, that, payload, list, response;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        var result, agentId, that, payload, list, response, promises;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context4.next = 2;
+                _context3.next = 2;
                 return this.getAuthInfo();
 
               case 2:
-                result = _context4.sent;
+                result = _context3.sent;
                 agentId = this.state.agentId;
                 that = this;
                 payload = {
@@ -168,63 +168,46 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   pageSize: 10,
                   agentId: agentId === 0 ? result.id : agentId
                 }, list = [];
-                _context4.next = 8;
+                _context3.next = 8;
                 return this.props.dispatchOwnerActiveHistory(payload);
 
               case 8:
-                response = _context4.sent;
+                response = _context3.sent;
+                promises = [];
 
-                console.log('response', response);
 
                 if (response.content.length > 0) {
-                  response.content.map(function () {
-                    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(item) {
-                      var result;
-                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                        while (1) {
-                          switch (_context3.prev = _context3.next) {
-                            case 0:
-                              _context3.next = 2;
-                              return _this2.getImgUrl(item.displayLocation);
-
-                            case 2:
-                              result = _context3.sent;
-
-                              list.push({
-                                name: item.name,
-                                people: item.people,
-                                endD: item.endD,
-                                url: result,
-                                agentId: item.agentId,
-                                id: item.id
-                              });
-                              if (response.content.length === list.length) {
-                                that.setState({
-                                  activeList: list
-                                });
-                              }
-                              console.log('result', result);
-
-                            case 6:
-                            case "end":
-                              return _context3.stop();
-                          }
-                        }
-                      }, _callee3, _this2);
-                    }));
-
-                    return function (_x2) {
-                      return _ref5.apply(this, arguments);
-                    };
-                  }());
+                  response.content.map(function (item) {
+                    var promise = _this2.getImgUrl(item.displayLocation);
+                    promises.push(promise);
+                    list.push({
+                      name: item.name,
+                      people: item.people,
+                      endD: item.endD,
+                      url: '',
+                      agentId: item.agentId,
+                      id: item.id
+                    });
+                  });
+                  Promise.all(promises).then(function (result) {
+                    if (result) {
+                      result.map(function (item, key) {
+                        list[key].url = item;
+                      });
+                    }
+                  }).then(function () {
+                    that.setState({
+                      activeList: list
+                    });
+                  });
                 }
 
               case 11:
               case "end":
-                return _context4.stop();
+                return _context3.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee3, this);
       }));
 
       function init() {
@@ -250,35 +233,35 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray54 = void 0;
+      var loopArray91 = void 0;
 
       var activeList = this.__state.activeList;
 
       var renderTemplate = null;
       if (activeList.length > 0) {
-        loopArray54 = activeList ? activeList.map(function (item, _anonIdx) {
+        loopArray91 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__179 = (0, _index.genCompid)(__prefix + "XFiAqFApyj" + _anonIdx);
+          var $compid__211 = (0, _index.genCompid)(__prefix + "UHNUFbsxoT" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
             "note": $loopState__temp2,
             "thumb": item.$original.url,
             "arrow": "right"
-          }, $compid__179);
+          }, $compid__211);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__179: $compid__179,
+            $compid__211: $compid__211,
             $original: item.$original
           };
         }) : [];
       } else {}
 
       Object.assign(this.__state, {
-        loopArray54: loopArray54
+        loopArray91: loopArray91
       });
       return this.__state;
     }

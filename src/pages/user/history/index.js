@@ -28,25 +28,30 @@ class Index extends Component{
   }
 
   async loadData(){
-    var list = [];
-    var that = this;
+    var historys = [],that = this,promises=[];
     const response = await this.props.dispatchActiveHistory({});
 
     console.log('response.content',response.content);
 
     if(response.content){
       response.content.map((item,index)=>{
-        that.getImgUrl(item.displayLocation).then((resultVal)=>{
-          item.displayLocation = resultVal;
-          list.push(item);
-          if(list.length === response.content.length){
-            that.setState({
-              actives:list
-            })
-          }
-        });
+        const promise = that.getImgUrl(item.displayLocation)
+        promises.push(promise);
+        historys.push(item);
       });
     }
+
+    Promise.all(promises).then((result)=>{
+      if(result){
+        result.map((item,key)=>{
+          historys[key].displayLocation = item
+        })
+      }
+    }).then((response)=>{
+      that.setState({
+        actives:historys
+      })
+    })
   }
 
   componentDidMount(){
@@ -62,34 +67,37 @@ class Index extends Component{
   render(){
     const {actives} = this.state;
 
+    let renderTemplate = null;
+
+    if(actives.length===0){
+      renderTemplate = <Empty/>
+    }
+    else{
+      renderTemplate =  actives && actives.map((item)=>{
+         return (
+           <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
+               <View className="list-wrapper-header">
+                   <View>{item.agentName} </View>
+                   <View>{item.status === "NORMAL" ?  "活动中" : "已结束"}</View>
+               </View>
+               <View className="list-wrapper-content">
+                 <View>
+                     <image className="icon-header" src={item.displayLocation} ></image>
+                 </View>
+                 <View>
+                     <View>{item.name}</View>
+                     <View>{item.people}人成团</View>
+                     <View>活动有效期: {item.endD}</View>
+                 </View>
+               </View>
+           </View>
+         )
+       })
+    }
+
     return (
       <View className="mp-history">
-
-          {
-             actives && actives.map((item)=>{
-              return (
-                <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
-                    <View className="list-wrapper-header">
-                        <View>{item.agentName} </View>
-                        <View>{item.status === "NORMAL" ?  "活动中" : "已结束"}</View>
-                    </View>
-                    <View className="list-wrapper-content">
-                      <View>
-                          <image className="icon-header" src={item.displayLocation} ></image>
-                      </View>
-                      <View>
-                          <View>{item.name}</View>
-                          <View>{item.people}人成团</View>
-                          <View>活动有效期: {item.endD}</View>
-                      </View>
-                    </View>
-                </View>
-              )
-            })
-          }
-          {
-            actives.length === 0 && <Empty/>
-          }
+        {renderTemplate}
       </View>
     )
   }

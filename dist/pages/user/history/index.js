@@ -99,17 +99,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "loadData",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var list, that, response;
+        var historys, that, promises, response;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                list = [];
-                that = this;
-                _context2.next = 4;
+                historys = [], that = this, promises = [];
+                _context2.next = 3;
                 return this.props.dispatchActiveHistory({});
 
-              case 4:
+              case 3:
                 response = _context2.sent;
 
 
@@ -117,17 +116,23 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
                 if (response.content) {
                   response.content.map(function (item, index) {
-                    that.getImgUrl(item.displayLocation).then(function (resultVal) {
-                      item.displayLocation = resultVal;
-                      list.push(item);
-                      if (list.length === response.content.length) {
-                        that.setState({
-                          actives: list
-                        });
-                      }
-                    });
+                    var promise = that.getImgUrl(item.displayLocation);
+                    promises.push(promise);
+                    historys.push(item);
                   });
                 }
+
+                Promise.all(promises).then(function (result) {
+                  if (result) {
+                    result.map(function (item, key) {
+                      historys[key].displayLocation = item;
+                    });
+                  }
+                }).then(function (response) {
+                  that.setState({
+                    actives: historys
+                  });
+                });
 
               case 7:
               case "end":
@@ -167,13 +172,17 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var actives = this.__state.actives;
 
 
+      var renderTemplate = null;
+
+      if (actives.length === 0) {} else {}
+
       Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["HandleActiveClick"], _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["HandleActiveClick"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
