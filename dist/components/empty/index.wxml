@@ -1,0 +1,11 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="mp-empty">
+        <view>
+            <view class="mp-empty-blank"></view>
+            <view class="mp-empty-blank-icon">
+                <image class="mp-empty-blank-image" src="{{empty}}"></image>
+                <view class="mp-empty-blank-text">暂无相关数据</view>
+            </view>
+        </view>
+    </view>
+</block>

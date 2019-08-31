@@ -1,3 +1,12 @@
 $color-brand: #7DD6D0;
 /* 引入 Taro UI 默认样式 */
 @import "~taro-ui/dist/style/index.scss";
+
+page {
+    cursor:default;
+    -webkit-user-select:none;
+    user-select:none;
+    width:100%;
+    overflow-x:hidden;
+    background:rgba(245,245,249,1);
+}

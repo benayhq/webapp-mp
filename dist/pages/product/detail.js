@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__2285", "$compid__2286", "$compid__2287", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__46", "$compid__47", "$compid__48", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -393,9 +393,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__2285 = (0, _index.genCompid)(__prefix + "$compid__2285");
-      var $compid__2286 = (0, _index.genCompid)(__prefix + "$compid__2286");
-      var $compid__2287 = (0, _index.genCompid)(__prefix + "$compid__2287");
+      var $compid__46 = (0, _index.genCompid)(__prefix + "$compid__46");
+      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
+      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -414,27 +414,27 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__2285 = {
+      var $props__46 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__2286 = {
+      var $props__47 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__2287 = {
+      var $props__48 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      _index.propsManager.set($props__2285, $compid__2285);
-      bContact && _index.propsManager.set($props__2286, $compid__2286);
-      bSpec && _index.propsManager.set($props__2287, $compid__2287);
+      _index.propsManager.set($props__46, $compid__46);
+      bContact && _index.propsManager.set($props__47, $compid__47);
+      bSpec && _index.propsManager.set($props__48, $compid__48);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__2285: $compid__2285,
-        $compid__2286: $compid__2286,
-        $compid__2287: $compid__2287
+        $compid__46: $compid__46,
+        $compid__47: $compid__47,
+        $compid__48: $compid__48
       });
       return this.__state;
     }

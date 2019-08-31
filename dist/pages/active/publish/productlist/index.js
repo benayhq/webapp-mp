@@ -72,15 +72,15 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__69 = (0, _index.genCompid)(__prefix + "CnbmEavdZv" + _anonIdx);
+        var $compid__71 = (0, _index.genCompid)(__prefix + "UAUnaonbKt" + _anonIdx);
         _index.propsManager.set({
           "name": "value",
           "type": "text",
           "value": item.$original.discountPrice,
           "onChange": _this2.handleChange.bind(_this2)
-        }, $compid__69);
+        }, $compid__71);
         return {
-          $compid__69: $compid__69,
+          $compid__71: $compid__71,
           $original: item.$original
         };
       }) : [];

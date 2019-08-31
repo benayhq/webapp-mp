@@ -1,16 +1,25 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-history">
         <block wx:if="{{actives}}">
-            <view class="list-wrapper" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                <view>
-                    <image className="icon-header" src="{{item.profileUrl}}"></image>
+            <view class="list-wrapper" bindtap="HandleActiveClick" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item}}">
+                <view class="list-wrapper-header">
+                    <view>{{item.agentName}}</view>
+                    <view>{{item.status === "NORMAL" ? "活动中" : "已结束"}}</view>
                 </view>
-                <view>
-                    <view>{{item.name}}</view>
-                    <view>2人成团</view>
-                    <view>活动有效期：2019.09.19~201</view>
+                <view class="list-wrapper-content">
+                    <view>
+                        <image className="icon-header" src="{{item.displayLocation}}"></image>
+                    </view>
+                    <view>
+                        <view>{{item.name}}</view>
+                        <view>{{item.people}}人成团</view>
+                        <view>活动有效期: {{item.endD}}</view>
+                    </view>
                 </view>
             </view>
+        </block>
+        <block wx:if="{{actives.length === 0}}">
+            <empty></empty>
         </block>
     </view>
 </block>

@@ -26,6 +26,11 @@
   color: #7DD6D0;
   content: "\e61e"; }
 
+.mp-icon-nulldata:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e869"; }
+
 .mp-icon-consumption:before {
   font-size: 45rpx;
   color: #7DD6D0;
@@ -231,8 +236,7 @@
   background: #ffffff;
   height: 400rpx;
   margin: 18rpx;
-  border-radius: 8rpx;
-  border: 1rpx solid #ddd; }
+  border-radius: 8rpx; }
   .mp-order-list .order-title {
     line-height: 80rpx;
     height: 80rpx; }

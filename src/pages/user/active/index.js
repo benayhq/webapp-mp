@@ -4,6 +4,7 @@ import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import { AtList, AtListItem } from "taro-ui"
+import Empty from './../../../components/empty';
 
 function getLocalTime(timestamp) {
     var d = new Date(timestamp);
@@ -77,47 +78,57 @@ class Index extends Component{
                 name:item.name,
                 people:item.people,
                 endD:item.endD,
-                url:result
+                url:result,
+                agentId:item.agentId,
+                id:item.id
             });
+            if(response.content.length === list.length){
+              that.setState({
+                activeList:list
+              });
+            }
             console.log('result',result);
         });
     }
+  }
 
-    setTimeout(() => {
-        that.setState({
-            activeList:list
-        });
-    }, 1000);
+  handleClick(item){
+    Taro.navigateTo({
+      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
+    });
   }
 
   render(){
     const {activeList} = this.state;
+    let renderTemplate = null;
+    if(activeList.length>0){
+      renderTemplate =  (
+        <AtList>
+         {
+              activeList && activeList.map((item)=>{
+                return (
+                  <AtListItem
+                    onClick={this.handleClick.bind(this,item)}
+                    title={item.name}
+                    note={`${item.people}人成团`}
+                    thumb={item.url}
+                    arrow='right'
+                  />
+                )
+            })
+         }
+        </AtList>
+        )
+    }
+    else{
+      renderTemplate = <Empty/>
+    }
 
     return (
       <AtList>
-          {/* <View className="list-title">
-            <View>医美关键 vivi</View>  
-            <View>
-              <View className="mp-icon mp-icon-arrow-history"></View>
-            </View>
-            <View>活动中</View>
-          </View> */}
-          {
-              activeList && activeList.map((item)=>{
-                  return (
-                    <AtListItem
-                      title={item.name}
-                      note={`${item.people}人成团`}
-                      thumb={item.url}
-                      // extraText={`日期:${getLocalTime(item.endD)}`}
-                      arrow='right'
-                    />
-                  )
-              })
-          }
+         {renderTemplate}
       </AtList>
     )
   }
 }
-
 export default Index;

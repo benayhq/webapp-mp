@@ -150,11 +150,11 @@ export default class Index extends Component {
         //支持多图上传
         for (var i = 0; i < tempFilePaths.length; i++) {
             //显示消息提示框
-            wx.showLoading({
-              title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
-              mask: true
-            });
-
+            // TODO: bug 修复.
+            // wx.showLoading({
+            //   title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
+            //   mask: true
+            // });
             let file = tempFilePaths[i].url;
 
             var payload ={
@@ -266,21 +266,25 @@ export default class Index extends Component {
       this.handleAlert('error','请选择上传主图')
       return;
     }
+    if(docLocations.length>9){
+      this.handleAlert('error','限制只能上传9张图片')
+      return;
+    }
     const result = await getAuthInfo();
 
     let payload =  {
       "areaCode": "string",
       "docLocations": docLocations,
-      "endD":dateEnd,
       "id": 0,
       "name": activeName,
       "people": groupItemChecked,
       "productIds": productIds,
-      "startD": dateStart,
+      "startD": dateStart + " 00:00:00",
+      "endD":dateEnd + " 59:59:59",
       "userId": result.id,
       "wechatId": weChatNumber
     };
-
+    
     if(result.cellphone === null || result.cellphone === ""){
       this.setState({
         isOpened:true
@@ -459,7 +463,8 @@ export default class Index extends Component {
         </View>
 
         <AtImagePicker
-          className="uploadImage"
+           multiple
+           className="uploadImage"
            files={this.state.files}
            onChange={this.HandlePickerChange.bind(this)}
         />

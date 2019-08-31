@@ -52,7 +52,7 @@ export default class CheckBox extends Component{
                         const { value,disabled,label,data} = option;
 
                         const optionCls = classNames('mp-checkbox__option',{
-                            'mp-checkbox__option--selected':!selectedList.includes(value)
+                            'mp-checkbox__option--selected':selectedList.includes(value)
                         });
 
                         return  <View className={optionCls} key={value}>

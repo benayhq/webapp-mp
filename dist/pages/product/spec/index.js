@@ -85,6 +85,8 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
     value: function componentWillReceiveProps(nextProps, props) {
       var _this2 = this;
 
+      console.log('nextProps', nextProps);
+
       this.getImgUrl(nextProps.products[0].productDocumentLocation).then(function (res) {
         _this2.setState({
           categoryItem: {

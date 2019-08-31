@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray493", "$compid__2394", "$compid__2395", "$compid__2396", "$compid__2397", "$compid__2398", "$compid__2399", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray25", "$compid__104", "$compid__105", "$compid__106", "$compid__107", "$compid__108", "$compid__109", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -104,10 +104,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             switch (_context.prev = _context.next) {
               case 0:
                 list = creatorInstance.factory(isAgent).getList();
-                _context.next = 3;
+
+                console.log('list-1-1', list);
+                _context.next = 4;
                 return this.props.dispatchReservationCount({});
 
-              case 3:
+              case 4:
                 response = _context.sent;
 
                 if (list && list.length > 0) {
@@ -132,7 +134,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -548,12 +550,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__2394 = (0, _index.genCompid)(__prefix + "$compid__2394");
-      var $compid__2395 = (0, _index.genCompid)(__prefix + "$compid__2395");
-      var $compid__2396 = (0, _index.genCompid)(__prefix + "$compid__2396");
-      var $compid__2397 = (0, _index.genCompid)(__prefix + "$compid__2397");
-      var $compid__2398 = (0, _index.genCompid)(__prefix + "$compid__2398");
-      var $compid__2399 = (0, _index.genCompid)(__prefix + "$compid__2399");
+      var $compid__104 = (0, _index.genCompid)(__prefix + "$compid__104");
+      var $compid__105 = (0, _index.genCompid)(__prefix + "$compid__105");
+      var $compid__106 = (0, _index.genCompid)(__prefix + "$compid__106");
+      var $compid__107 = (0, _index.genCompid)(__prefix + "$compid__107");
+      var $compid__108 = (0, _index.genCompid)(__prefix + "$compid__108");
+      var $compid__109 = (0, _index.genCompid)(__prefix + "$compid__109");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -569,10 +571,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__2394 = {
-        "isOpened": isOpened
+      var $props__104 = {
+        "isOpened": isOpened,
+        "closeOnClickOverlay": false
       };
-      var $props__2395 = {
+      var $props__105 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -580,49 +583,49 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__2396 = {
+      var $props__106 = {
         "isOpened": isAgree,
         "closeOnClickOverlay": false
       };
-      var $props__2397 = {
+      var $props__107 = {
         "profit": profit
       };
-      var $props__2398 = {
+      var $props__108 = {
         "list": orders
       };
-      var $props__2399 = {
+      var $props__109 = {
         "title": this.__state.context1
       };
-      var loopArray493 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray25 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__2393 = (0, _index.genCompid)(__prefix + "GmiBRUPjxL" + _anonIdx);
+        var $compid__103 = (0, _index.genCompid)(__prefix + "MNKBjwdQTY" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__2393);
+        }, $compid__103);
         return {
-          $compid__2393: $compid__2393,
+          $compid__103: $compid__103,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__2394, $compid__2394);
-      _index.propsManager.set($props__2395, $compid__2395);
-      _index.propsManager.set($props__2396, $compid__2396);
-      isAgent && _index.propsManager.set($props__2397, $compid__2397);
-      _index.propsManager.set($props__2398, $compid__2398);
-      isShowLoanApp === true && _index.propsManager.set($props__2399, $compid__2399);
+      _index.propsManager.set($props__104, $compid__104);
+      _index.propsManager.set($props__105, $compid__105);
+      _index.propsManager.set($props__106, $compid__106);
+      isAgent && _index.propsManager.set($props__107, $compid__107);
+      _index.propsManager.set($props__108, $compid__108);
+      isShowLoanApp === true && _index.propsManager.set($props__109, $compid__109);
       Object.assign(this.__state, {
-        loopArray493: loopArray493,
-        $compid__2394: $compid__2394,
-        $compid__2395: $compid__2395,
-        $compid__2396: $compid__2396,
-        $compid__2397: $compid__2397,
-        $compid__2398: $compid__2398,
-        $compid__2399: $compid__2399,
+        loopArray25: loopArray25,
+        $compid__104: $compid__104,
+        $compid__105: $compid__105,
+        $compid__106: $compid__106,
+        $compid__107: $compid__107,
+        $compid__108: $compid__108,
+        $compid__109: $compid__109,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

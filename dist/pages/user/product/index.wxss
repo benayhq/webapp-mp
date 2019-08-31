@@ -9,7 +9,10 @@
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  border-bottom: 1rpx solid #F5F5F9; }
+  border-bottom: 1rpx solid #F5F5F9;
+  background: #FFFFFF;
+  margin: 18rpx;
+  border-radius: 10rpx; }
   .mp-user__product-desc {
     width: 100%;
     height: 60rpx;

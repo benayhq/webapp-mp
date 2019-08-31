@@ -23275,3 +23275,13 @@
         margin-top: 0; }
     .at-toast .toast-body.at-toast__body--custom-image, .at-toast .toast-body.at-toast__body--success, .at-toast .toast-body.at-toast__body--error, .at-toast .toast-body.at-toast__body--loading {
       padding-bottom: 17rpx; }
+
+page {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  width: 100%;
+  overflow-x: hidden;
+  background: #f5f5f9; }

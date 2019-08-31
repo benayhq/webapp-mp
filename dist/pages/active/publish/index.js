@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__16", "$compid__17", "$compid__18", "$compid__19", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__142", "$compid__143", "$compid__144", "$compid__145", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -251,11 +251,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var _loop = function _loop() {
         //显示消息提示框
-        wx.showLoading({
-          title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
-          mask: true
-        });
-
+        // TODO: bug 修复.
+        // wx.showLoading({
+        //   title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
+        //   mask: true
+        // });
         var file = tempFilePaths[i].url;
 
         payload = {
@@ -388,26 +388,35 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 return _context2.abrupt("return");
 
               case 16:
-                _context2.next = 18;
+                if (!(docLocations.length > 9)) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                this.handleAlert('error', '限制只能上传9张图片');
+                return _context2.abrupt("return");
+
+              case 19:
+                _context2.next = 21;
                 return (0, _storage.getAuthInfo)();
 
-              case 18:
+              case 21:
                 result = _context2.sent;
                 payload = {
                   "areaCode": "string",
                   "docLocations": docLocations,
-                  "endD": dateEnd,
                   "id": 0,
                   "name": activeName,
                   "people": groupItemChecked,
                   "productIds": productIds,
-                  "startD": dateStart,
+                  "startD": dateStart + " 00:00:00",
+                  "endD": dateEnd + " 59:59:59",
                   "userId": result.id,
                   "wechatId": weChatNumber
                 };
 
                 if (!(result.cellphone === null || result.cellphone === "")) {
-                  _context2.next = 25;
+                  _context2.next = 28;
                   break;
                 }
 
@@ -416,12 +425,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 25:
+              case 28:
                 this.setState({
                   isOpened: false
                 });
 
-              case 26:
+              case 29:
                 this.props.dispatchCreateActive(payload).then(function (res) {
                   if (res && res.result === "success" && res.content != null) {
                     _index2.default.navigateTo({
@@ -432,7 +441,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 });
 
-              case 27:
+              case 30:
               case "end":
                 return _context2.stop();
             }
@@ -644,10 +653,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__16 = (0, _index.genCompid)(__prefix + "$compid__16");
-      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
-      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
-      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
+      var $compid__142 = (0, _index.genCompid)(__prefix + "$compid__142");
+      var $compid__143 = (0, _index.genCompid)(__prefix + "$compid__143");
+      var $compid__144 = (0, _index.genCompid)(__prefix + "$compid__144");
+      var $compid__145 = (0, _index.genCompid)(__prefix + "$compid__145");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -658,32 +667,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__16 = {
+      var $props__142 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__17 = {
+      var $props__143 = {
+        "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__18 = {
+      var $props__144 = {
         "products": products
       };
-      var $props__19 = {
+      var $props__145 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__16, $compid__16);
-      _index.propsManager.set($props__17, $compid__17);
-      _index.propsManager.set($props__18, $compid__18);
-      _index.propsManager.set($props__19, $compid__19);
+      _index.propsManager.set($props__142, $compid__142);
+      _index.propsManager.set($props__143, $compid__143);
+      _index.propsManager.set($props__144, $compid__144);
+      _index.propsManager.set($props__145, $compid__145);
       Object.assign(this.__state, {
-        $compid__16: $compid__16,
-        $compid__17: $compid__17,
-        $compid__18: $compid__18,
-        $compid__19: $compid__19
+        $compid__142: $compid__142,
+        $compid__143: $compid__143,
+        $compid__144: $compid__144,
+        $compid__145: $compid__145
       });
       return this.__state;
     }

@@ -26,6 +26,11 @@
   color: #7DD6D0;
   content: "\e61e"; }
 
+.mp-icon-nulldata:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e869"; }
+
 .mp-icon-consumption:before {
   font-size: 45rpx;
   color: #7DD6D0;
@@ -328,6 +333,11 @@
   font-size: 45rpx;
   color: #7DD6D0;
   content: "\e61e"; }
+
+.mp-icon-nulldata:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e869"; }
 
 .mp-icon-consumption:before {
   font-size: 45rpx;

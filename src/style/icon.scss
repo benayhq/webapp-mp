@@ -6,7 +6,7 @@
     url('//at.alicdn.com/t/font_1110655_afocv53ci5.woff') format('woff'),
     url('//at.alicdn.com/t/font_1110655_afocv53ci5.ttf') format('truetype'),
     url('//at.alicdn.com/t/font_1110655_afocv53ci5.svg#iconfont') format('svg');
-  }
+}
 
 .mp-icon{
     font-family: "iconfont" !important;
@@ -31,6 +31,12 @@
     font-size: 45px;
     color: #7DD6D0;
     content: "\e61e";
+}
+
+.mp-icon-nulldata:before{
+    font-size: 45px;
+    color: #7DD6D0;
+    content: "\e869";
 }
 
 .mp-icon-consumption:before{

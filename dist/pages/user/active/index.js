@@ -54,9 +54,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray54", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
-    }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -194,11 +194,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                                 name: item.name,
                                 people: item.people,
                                 endD: item.endD,
-                                url: result
+                                url: result,
+                                agentId: item.agentId,
+                                id: item.id
                               });
+                              if (response.content.length === list.length) {
+                                that.setState({
+                                  activeList: list
+                                });
+                              }
                               console.log('result', result);
 
-                            case 5:
+                            case 6:
                             case "end":
                               return _context3.stop();
                           }
@@ -212,13 +219,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }());
                 }
 
-                setTimeout(function () {
-                  that.setState({
-                    activeList: list
-                  });
-                }, 1000);
-
-              case 12:
+              case 11:
               case "end":
                 return _context4.stop();
             }
@@ -233,44 +234,58 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return init;
     }()
   }, {
+    key: "handleClick",
+    value: function handleClick(item) {
+      _index2.default.navigateTo({
+        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
+      var _this3 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var loopArray54 = void 0;
 
       var activeList = this.__state.activeList;
 
+      var renderTemplate = null;
+      if (activeList.length > 0) {
+        loopArray54 = activeList ? activeList.map(function (item, _anonIdx) {
+          item = {
+            $original: (0, _index.internal_get_original)(item)
+          };
+          var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
+          var $compid__179 = (0, _index.genCompid)(__prefix + "XFiAqFApyj" + _anonIdx);
+          _index.propsManager.set({
+            "onClick": _this3.handleClick.bind(_this3, item.$original),
+            "title": item.$original.name,
+            "note": $loopState__temp2,
+            "thumb": item.$original.url,
+            "arrow": "right"
+          }, $compid__179);
+          return {
+            $loopState__temp2: $loopState__temp2,
+            $compid__179: $compid__179,
+            $original: item.$original
+          };
+        }) : [];
+      } else {}
 
-      var loopArray11 = activeList ? activeList.map(function (item, _anonIdx) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-        var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-        var $compid__57 = (0, _index.genCompid)(__prefix + "mSkvYdvZkv" + _anonIdx);
-        _index.propsManager.set({
-          "title": item.$original.name,
-          "note": $loopState__temp2,
-          "thumb": item.$original.url,
-          "arrow": "right"
-        }, $compid__57);
-        return {
-          $loopState__temp2: $loopState__temp2,
-          $compid__57: $compid__57,
-          $original: item.$original
-        };
-      }) : [];
       Object.assign(this.__state, {
-        loopArray11: loopArray11
+        loopArray54: loopArray54
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/active/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/active/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

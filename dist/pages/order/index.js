@@ -48,7 +48,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1623", "$compid__1624", "$compid__1625", "$compid__1626", "$compid__1627", "$compid__1628", "$compid__1629", "$compid__1630", "$compid__1631", "$compid__1632", "$compid__1633", "$compid__1634", "$compid__1635", "$compid__1636", "$compid__1637", "$compid__1638", "list", "current", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__29", "$compid__30", "$compid__31", "$compid__32", "$compid__33", "$compid__34", "$compid__35", "$compid__36", "$compid__37", "$compid__38", "$compid__39", "$compid__40", "$compid__41", "$compid__42", "$compid__43", "$compid__44", "list", "current", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
       navigationBarTitleText: '我的订单'
     }, _this.state = {
       current: 1,
@@ -169,22 +169,22 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1623 = (0, _index.genCompid)(__prefix + "$compid__1623");
-      var $compid__1624 = (0, _index.genCompid)(__prefix + "$compid__1624");
-      var $compid__1625 = (0, _index.genCompid)(__prefix + "$compid__1625");
-      var $compid__1626 = (0, _index.genCompid)(__prefix + "$compid__1626");
-      var $compid__1627 = (0, _index.genCompid)(__prefix + "$compid__1627");
-      var $compid__1628 = (0, _index.genCompid)(__prefix + "$compid__1628");
-      var $compid__1629 = (0, _index.genCompid)(__prefix + "$compid__1629");
-      var $compid__1630 = (0, _index.genCompid)(__prefix + "$compid__1630");
-      var $compid__1631 = (0, _index.genCompid)(__prefix + "$compid__1631");
-      var $compid__1632 = (0, _index.genCompid)(__prefix + "$compid__1632");
-      var $compid__1633 = (0, _index.genCompid)(__prefix + "$compid__1633");
-      var $compid__1634 = (0, _index.genCompid)(__prefix + "$compid__1634");
-      var $compid__1635 = (0, _index.genCompid)(__prefix + "$compid__1635");
-      var $compid__1636 = (0, _index.genCompid)(__prefix + "$compid__1636");
-      var $compid__1637 = (0, _index.genCompid)(__prefix + "$compid__1637");
-      var $compid__1638 = (0, _index.genCompid)(__prefix + "$compid__1638");
+      var $compid__29 = (0, _index.genCompid)(__prefix + "$compid__29");
+      var $compid__30 = (0, _index.genCompid)(__prefix + "$compid__30");
+      var $compid__31 = (0, _index.genCompid)(__prefix + "$compid__31");
+      var $compid__32 = (0, _index.genCompid)(__prefix + "$compid__32");
+      var $compid__33 = (0, _index.genCompid)(__prefix + "$compid__33");
+      var $compid__34 = (0, _index.genCompid)(__prefix + "$compid__34");
+      var $compid__35 = (0, _index.genCompid)(__prefix + "$compid__35");
+      var $compid__36 = (0, _index.genCompid)(__prefix + "$compid__36");
+      var $compid__37 = (0, _index.genCompid)(__prefix + "$compid__37");
+      var $compid__38 = (0, _index.genCompid)(__prefix + "$compid__38");
+      var $compid__39 = (0, _index.genCompid)(__prefix + "$compid__39");
+      var $compid__40 = (0, _index.genCompid)(__prefix + "$compid__40");
+      var $compid__41 = (0, _index.genCompid)(__prefix + "$compid__41");
+      var $compid__42 = (0, _index.genCompid)(__prefix + "$compid__42");
+      var $compid__43 = (0, _index.genCompid)(__prefix + "$compid__43");
+      var $compid__44 = (0, _index.genCompid)(__prefix + "$compid__44");
 
       var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
       var _state = this.__state,
@@ -193,99 +193,99 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           status = _state.status;
 
 
-      var $props__1623 = {
+      var $props__29 = {
         "current": current,
         "tabList": tabList,
         "onClick": this.handleClick.bind(this)
       };
-      var $props__1624 = {
+      var $props__30 = {
         "current": current,
         "index": 0
       };
-      var $props__1625 = {
+      var $props__31 = {
         "list": list
       };
-      var $props__1626 = {
+      var $props__32 = {
         "onClick": this.handleLoadMore.bind(this),
         "status": status
       };
-      var $props__1627 = {
+      var $props__33 = {
         "current": current,
         "index": 1
       };
-      var $props__1628 = {
+      var $props__34 = {
         "list": list
       };
-      var $props__1629 = {
+      var $props__35 = {
         "onClick": this.handleLoadMore.bind(this, 'UNPAY'),
         "status": status
       };
-      var $props__1630 = {
+      var $props__36 = {
         "current": current,
         "index": 2
       };
-      var $props__1631 = {
+      var $props__37 = {
         "list": list
       };
-      var $props__1632 = {
+      var $props__38 = {
         "onClick": this.handleLoadMore.bind(this, 'BATING'),
         "status": status
       };
-      var $props__1633 = {
+      var $props__39 = {
         "current": current,
         "index": 3
       };
-      var $props__1634 = {
+      var $props__40 = {
         "list": list
       };
-      var $props__1635 = {
+      var $props__41 = {
         "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
         "status": status
       };
-      var $props__1636 = {
+      var $props__42 = {
         "current": current,
         "index": 4
       };
-      var $props__1637 = {
+      var $props__43 = {
         "list": list
       };
-      var $props__1638 = {
+      var $props__44 = {
         "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
         "status": status
       };
-      _index.propsManager.set($props__1623, $compid__1623);
-      _index.propsManager.set($props__1624, $compid__1624);
-      _index.propsManager.set($props__1625, $compid__1625);
-      list.length > 0 && _index.propsManager.set($props__1626, $compid__1626);
-      _index.propsManager.set($props__1627, $compid__1627);
-      list && _index.propsManager.set($props__1628, $compid__1628);
-      list && list.length > 0 && _index.propsManager.set($props__1629, $compid__1629);
-      _index.propsManager.set($props__1630, $compid__1630);
-      list && _index.propsManager.set($props__1631, $compid__1631);
-      list && list.length > 0 && _index.propsManager.set($props__1632, $compid__1632);
-      _index.propsManager.set($props__1633, $compid__1633);
-      list && _index.propsManager.set($props__1634, $compid__1634);
-      list && list.length > 0 && _index.propsManager.set($props__1635, $compid__1635);
-      _index.propsManager.set($props__1636, $compid__1636);
-      list && _index.propsManager.set($props__1637, $compid__1637);
-      list && list.length > 0 && _index.propsManager.set($props__1638, $compid__1638);
+      _index.propsManager.set($props__29, $compid__29);
+      _index.propsManager.set($props__30, $compid__30);
+      _index.propsManager.set($props__31, $compid__31);
+      list.length > 0 && _index.propsManager.set($props__32, $compid__32);
+      _index.propsManager.set($props__33, $compid__33);
+      list && _index.propsManager.set($props__34, $compid__34);
+      list && list.length > 0 && _index.propsManager.set($props__35, $compid__35);
+      _index.propsManager.set($props__36, $compid__36);
+      list && _index.propsManager.set($props__37, $compid__37);
+      list && list.length > 0 && _index.propsManager.set($props__38, $compid__38);
+      _index.propsManager.set($props__39, $compid__39);
+      list && _index.propsManager.set($props__40, $compid__40);
+      list && list.length > 0 && _index.propsManager.set($props__41, $compid__41);
+      _index.propsManager.set($props__42, $compid__42);
+      list && _index.propsManager.set($props__43, $compid__43);
+      list && list.length > 0 && _index.propsManager.set($props__44, $compid__44);
       Object.assign(this.__state, {
-        $compid__1623: $compid__1623,
-        $compid__1624: $compid__1624,
-        $compid__1625: $compid__1625,
-        $compid__1626: $compid__1626,
-        $compid__1627: $compid__1627,
-        $compid__1628: $compid__1628,
-        $compid__1629: $compid__1629,
-        $compid__1630: $compid__1630,
-        $compid__1631: $compid__1631,
-        $compid__1632: $compid__1632,
-        $compid__1633: $compid__1633,
-        $compid__1634: $compid__1634,
-        $compid__1635: $compid__1635,
-        $compid__1636: $compid__1636,
-        $compid__1637: $compid__1637,
-        $compid__1638: $compid__1638
+        $compid__29: $compid__29,
+        $compid__30: $compid__30,
+        $compid__31: $compid__31,
+        $compid__32: $compid__32,
+        $compid__33: $compid__33,
+        $compid__34: $compid__34,
+        $compid__35: $compid__35,
+        $compid__36: $compid__36,
+        $compid__37: $compid__37,
+        $compid__38: $compid__38,
+        $compid__39: $compid__39,
+        $compid__40: $compid__40,
+        $compid__41: $compid__41,
+        $compid__42: $compid__42,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44
       });
       return this.__state;
     }

@@ -46,9 +46,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["customer", "dispatchCustomerList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray59", "customer", "dispatchCustomerList"], _this.config = {
       navigationBarTitleText: '我的客户'
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Empty", "AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -73,6 +73,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleClick",
+    value: function handleClick() {}
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -80,17 +83,42 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var loopArray59 = void 0;
 
       var customer = this.__state.customer;
 
+      var renderTemplate = null;
 
-      Object.assign(this.__state, {});
+      if (customer.length === 0) {} else {
+        loopArray59 = customer ? customer.map(function (item, _anonIdx) {
+          item = {
+            $original: (0, _index.internal_get_original)(item)
+          };
+          var $loopState__temp2 = item.$original.nickname ? item.$original.nickname + ("" + (item.$original.weChatId === undefined ? '' : '   微信:' + item.$original.weChatId)) : null;
+          var $loopState__temp4 = item.$original.nickname ? "\u7535\u8BDD:" + (item.$original.cellphone === null ? '未设置' : item.$original.cellphone) : null;
+          var $compid__182 = (0, _index.genCompid)(__prefix + "WulywtzoOc" + _anonIdx);
+          item.$original.nickname && _index.propsManager.set({
+            "title": $loopState__temp2,
+            "note": $loopState__temp4,
+            "thumb": item.$original.profileUrl
+          }, $compid__182);
+          return {
+            $loopState__temp2: $loopState__temp2,
+            $loopState__temp4: $loopState__temp4,
+            $compid__182: $compid__182,
+            $original: item.$original
+          };
+        }) : [];
+      }
+      Object.assign(this.__state, {
+        loopArray59: loopArray59
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/customer/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/customer/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

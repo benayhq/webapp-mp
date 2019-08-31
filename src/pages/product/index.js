@@ -90,7 +90,7 @@ class Index extends Component{
     else{
       Taro.atMessage({
         'message': '请选择产品',
-        'type': 'warning',
+        'type': 'error',
       })
     }
   }

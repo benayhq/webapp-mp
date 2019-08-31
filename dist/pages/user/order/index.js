@@ -63,22 +63,20 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var list = this.__props.list;
+      var _props$list = this.__props.list,
+          list = _props$list === undefined ? [] : _props$list;
 
-
-      console.log('list', list);
-
-      var loopArray13 = list != undefined ? list.map(function (item, index) {
+      var loopArray13 = list && list != undefined ? list.map(function (item, index) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__68 = (0, _index.genCompid)(__prefix + "LrGpiRCYaU" + index);
+        var $compid__70 = (0, _index.genCompid)(__prefix + "BfXRSrZwht" + index);
         item.$original.count > 0 && _index.propsManager.set({
           "value": item.$original.count,
           "maxValue": 99
-        }, $compid__68);
+        }, $compid__70);
         return {
-          $compid__68: $compid__68,
+          $compid__70: $compid__70,
           $original: item.$original
         };
       }) : [];

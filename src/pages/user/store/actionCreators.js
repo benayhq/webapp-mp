@@ -96,7 +96,7 @@ export const dispatchActiveHistory = payload => createAction({
     type: ACTION_HISTORY_INFO,
     url: API_ACTIVE_HISTORY,
     fetchOptions:{
-        method:'POST'
+        method:'GET'
     },
     payload
 });

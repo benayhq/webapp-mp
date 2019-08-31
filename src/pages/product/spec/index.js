@@ -36,6 +36,7 @@ export default class Spec extends Component{
     }
 
     componentWillReceiveProps(nextProps,props){
+        console.log('nextProps',nextProps);
         
         this.getImgUrl(nextProps.products[0].productDocumentLocation).then(res=>{
             this.setState({

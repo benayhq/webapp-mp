@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 28,
 			"list": [
 				{
 					"id": -1,
@@ -222,6 +222,26 @@
 					"name": "我的活动",
 					"pathName": "pages/user/active/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "浏览历史2",
+					"pathName": "pages/user/history/index",
+					"query": "activeId=90&referId=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的客户",
+					"pathName": "pages/user/customer/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的活动",
+					"pathName": "pages/user/active/index",
 					"scene": null
 				}
 			]

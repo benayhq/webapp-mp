@@ -1,16 +1,17 @@
 
-.mp-edit-user .qrCode .label {
-  position: relative;
-  left: 30rpx;
-  top: 50rpx;
-  font-size: 32rpx; }
-
-.mp-edit-user .uploadPicker {
-  position: relative;
-  left: 190rpx;
-  top: -20rpx; }
-
-.mp-edit-user .user-submit {
-  width: 80%;
-  text-align: center;
-  margin: 0 auto; }
+.mp-edit-user {
+  height: 750rpx;
+  background: #ffffff; }
+  .mp-edit-user .qrCode .label {
+    position: relative;
+    left: 30rpx;
+    top: 50rpx;
+    font-size: 32rpx; }
+  .mp-edit-user .uploadPicker {
+    position: relative;
+    left: 190rpx;
+    top: -20rpx; }
+  .mp-edit-user .user-submit {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto; }

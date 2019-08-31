@@ -3,6 +3,9 @@ import { View } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
+import { AtList, AtListItem } from "taro-ui"
+import Empty from './../../../components/empty';
+
 
 @connect(state=>state,actions)
 class Index extends Component{
@@ -27,31 +30,39 @@ class Index extends Component{
     });
   }
 
+  handleClick(){
+    
+  }
+
   render(){
     const {customer} = this.state;
+    let renderTemplate  = null;
 
+    if(customer.length===0){
+      renderTemplate = <Empty/>
+    }
+    else{
+      renderTemplate = (<AtList>
+        {
+            customer && customer.map((item)=>{
+                return (
+                  item.nickname && <AtListItem
+                    title={item.nickname + `${item.weChatId===undefined ? '':'   微信:'+item.weChatId}`}
+                    note={`电话:${item.cellphone === null ? '未设置' : item.cellphone}`}
+                    thumb={item.profileUrl}
+                  />
+                )
+            })
+        }
+        </AtList>)
+    }
     return (
-      <View className="mp-customer">
-          {
-            customer.length>0 && customer.map((item)=>(
-              <View className="list-wrapper">
-                <View>
-                  <image className="icon-header" src={item.profileUrl}></image>
-                </View>
-                <View>
-                  <View className="header">{item.customerNickName}</View>
-                  <View>电话: {item.cellphone} </View>
-                  <View>微信: {item.weChatId} </View>
-                </View>
-                <View>
-                  <View className="mp-icon mp-icon-tel telephone"></View>
-                </View>
-              </View>
-            ))
-          } 
+      <View>
+        {renderTemplate}
       </View>
     )
   }
 }
 
 export default Index;
+

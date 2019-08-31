@@ -1,17 +1,24 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <block wx:if="{{newFilterList}}">
-            <view class="mp-user__product" wx:for="{{newFilterList}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                <view>
-                    <image className="icon-header" src="{{item.imgUrl}}"></image>
-                </view>
-                <view>
-                    <view class="mp-user__product-desc">{{item.desc}}</view>
-                    <view class="mp-user__product-price">￥{{item.price}} <text class="mp-user__product-marketprice">￥{{item.marketPrice}}</text>
+        <block>
+            <block wx:if="{{newFilterList.length === 0}}">
+                <empty></empty>
+            </block>
+            <block wx:else>
+                <block wx:if="{{newFilterList}}">
+                    <view class="mp-user__product" wx:for="{{newFilterList}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                        <view>
+                            <image className="icon-header" src="{{item.imgUrl}}"></image>
+                        </view>
+                        <view>
+                            <view class="mp-user__product-desc">{{item.desc}}</view>
+                            <view class="mp-user__product-price">￥{{item.price}} <text class="mp-user__product-marketprice">￥{{item.marketPrice}}</text>
+                            </view>
+                            <view class="mp-user__product-prePrice">预定金: {{item.prePrice}}</view>
+                        </view>
                     </view>
-                    <view class="mp-user__product-prePrice">预定金: {{item.prePrice}}</view>
-                </view>
-            </view>
+                </block>
+            </block>
         </block>
     </view>
 </block>

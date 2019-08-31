@@ -1,0 +1,28 @@
+
+.mp-empty-blank {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  margin: 0;
+  text-align: center;
+  z-index: 1; }
+  .mp-empty-blank-icon {
+    margin-top: 50rpx;
+    z-index: 99;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .mp-empty-blank-text {
+    text-align: center;
+    color: #dddddd; }
+  .mp-empty-blank-image {
+    height: 240rpx;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50rpx;
+    margin-left: 110rpx; }

@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="product">
-        <title compid="{{$compid__58}}"></title>
+        <title compid="{{$compid__60}}"></title>
         <product-item></product-item>
         <view class="item">
             <view class="item-image">

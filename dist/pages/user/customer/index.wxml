@@ -1,19 +1,18 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="mp-customer">
-        <block wx:if="{{customer.length > 0}}">
-            <view class="list-wrapper" wx:for="{{customer}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                <view>
-                    <image className="icon-header" src="{{item.profileUrl}}"></image>
-                </view>
-                <view>
-                    <view class="header">{{item.customerNickName}}</view>
-                    <view>电话: {{item.cellphone}}</view>
-                    <view>微信: {{item.weChatId}}</view>
-                </view>
-                <view>
-                    <view class="mp-icon mp-icon-tel telephone"></view>
-                </view>
-            </view>
+    <view>
+        <block>
+            <block wx:if="{{customer.length === 0}}">
+                <empty></empty>
+            </block>
+            <block wx:else>
+                <at-list>
+                    <block wx:if="{{customer}}">
+                        <block wx:if="{{item.$original.nickname}}" wx:for="{{loopArray59}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                            <at-list-item compid="{{item.$compid__182}}"></at-list-item>
+                        </block>
+                    </block>
+                </at-list>
+            </block>
         </block>
     </view>
 </block>

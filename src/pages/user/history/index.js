@@ -3,25 +3,59 @@ import { View } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
+import formatTime from '../../../utils/util';
+import Empty from './../../../components/empty';
 
 @connect(state=>state,actions)
 class Index extends Component{
   config = {
     navigationBarTitleText: '浏览历史'
   }
+
   constructor(props){
     super(props);
     this.state = {
       actives:[]
     }
   }
-  
-  componentDidMount(){
-    this.props.dispatchActiveHistory({}).then((response)=>{
-      this.setState({
-        actives:response.content
+
+  async getImgUrl(location){
+    var payload = {
+      location:location
+    };
+    const result = await this.props.dispatchDownLoadUrl(payload);
+    return result.content;
+  }
+
+  async loadData(){
+    var list = [];
+    var that = this;
+    const response = await this.props.dispatchActiveHistory({});
+
+    console.log('response.content',response.content);
+
+    if(response.content){
+      response.content.map((item,index)=>{
+        that.getImgUrl(item.displayLocation).then((resultVal)=>{
+          item.displayLocation = resultVal;
+          list.push(item);
+          if(list.length === response.content.length){
+            that.setState({
+              actives:list
+            })
+          }
+        });
       });
-      // console.log('response',response);
+    }
+  }
+
+  componentDidMount(){
+    this.loadData();
+  }
+
+  HandleActiveClick(item){
+    Taro.navigateTo({
+      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
     });
   }
 
@@ -30,29 +64,32 @@ class Index extends Component{
 
     return (
       <View className="mp-history">
-          {/* <View className="list-title">
-            <View>医美关键 vivi</View>  
-            <View>
-              <View className="mp-icon mp-icon-arrow-history"></View>
-            </View>
-            <View>活动中</View>
-          </View> */}
+
           {
-            actives && actives.map((item)=>{
-              return (<View className="list-wrapper">
-                  <View>
-                      <image className="icon-header" src={item.profileUrl} ></image>
-                  </View>
-                  <View>
-                      <View>{item.name}</View>
-                      <View>2人成团</View>
-                      <View>活动有效期：2019.09.19~201</View>
-                  </View>
+             actives && actives.map((item)=>{
+              return (
+                <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
+                    <View className="list-wrapper-header">
+                        <View>{item.agentName} </View>
+                        <View>{item.status === "NORMAL" ?  "活动中" : "已结束"}</View>
+                    </View>
+                    <View className="list-wrapper-content">
+                      <View>
+                          <image className="icon-header" src={item.displayLocation} ></image>
+                      </View>
+                      <View>
+                          <View>{item.name}</View>
+                          <View>{item.people}人成团</View>
+                          <View>活动有效期: {item.endD}</View>
+                      </View>
+                    </View>
                 </View>
               )
             })
           }
-
+          {
+            actives.length === 0 && <Empty/>
+          }
       </View>
     )
   }

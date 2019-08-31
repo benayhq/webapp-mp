@@ -46,6 +46,7 @@ class Index extends Component{
 
   async initOrderNotice(creatorInstance,isAgent){
     var list = creatorInstance.factory(isAgent).getList();
+    console.log('list-1-1',list);
     const response = await this.props.dispatchReservationCount({});
     if(list && list.length>0){
         list.map((item,key)=>{
@@ -285,9 +286,8 @@ class Index extends Component{
     const isShowLoanApp = !isAgent && flag;
 
     return (
-        <View className='mp-user'>
-
-          <AtModal isOpened={isOpened}>
+        <View className='mp-user' >
+          <AtModal isOpened={isOpened} closeOnClickOverlay={false}>
             <AtModalHeader>授权登录</AtModalHeader>
             <AtModalContent>
               <View className="mp-user__authinfo">申请获取以下权限</View>
@@ -503,8 +503,8 @@ class Index extends Component{
                   ))
               }
             </AtList>
-            { isAgent ? <button style="position:relative;display:block;top:-108px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
-            :   <button style="position:relative;display:block;top:-52px;height:50px;width:300px;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:14px;padding-right:14px;box-sizing:border-box;font-size:18px;left:-3px;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;"  open-type="contact" bindcontact="handleContact">客服服务</button>
+            { isAgent ? <button style="position:relative;display:block;top:-192rpx;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
+            :   <button style="position:relative;display:block;top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;"  open-type="contact" bindcontact="handleContact">客服服务</button>
           }
           </View>
           { isShowLoanApp === true ?

@@ -1,7 +1,16 @@
 <block wx:if="{{$taroCompReady}}">
     <at-list>
-        <block wx:if="{{activeList}}">
-            <at-list-item wx:for="{{loopArray11}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__57}}"></at-list-item>
+        <block>
+            <block wx:if="{{activeList.length > 0}}">
+                <at-list>
+                    <block wx:if="{{activeList}}">
+                        <at-list-item wx:for="{{loopArray54}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__179}}"></at-list-item>
+                    </block>
+                </at-list>
+            </block>
+            <block wx:else>
+                <empty></empty>
+            </block>
         </block>
     </at-list>
 </block>

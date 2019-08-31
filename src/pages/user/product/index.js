@@ -4,6 +4,7 @@ import './index.scss';
 import * as actions from './../../product/store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
 import {connect} from '@tarojs/redux';
+import Empty from './../../../components/empty';
 
 @connect(state=>state.product,actions)
 export default class Index extends Component{
@@ -72,22 +73,29 @@ export default class Index extends Component{
     render(){
         const {newFilterList} = this.state;
 
+        let renderTemplate =null;
+        if(newFilterList.length === 0){
+          renderTemplate =  <Empty/>
+        }
+        else{
+          renderTemplate = (
+            newFilterList && newFilterList.map((item)=>{
+                return (<View className="mp-user__product"> 
+                <View>
+                    <image className="icon-header" src={item.imgUrl} ></image>
+                </View>
+                <View>
+                    <View className="mp-user__product-desc">{item.desc}</View>
+                    <View className="mp-user__product-price">￥{item.price} <Text className="mp-user__product-marketprice">￥{item.marketPrice}</Text></View>
+                    <View className="mp-user__product-prePrice">预定金:  {item.prePrice}</View>
+                </View>
+            </View>)
+            })
+          )
+        }
         return (
             <View>
-                 {
-                     newFilterList && newFilterList.map((item)=>{
-                         return (<View className="mp-user__product"> 
-                            <View>
-                                <image className="icon-header" src={item.imgUrl} ></image>
-                            </View>
-                            <View>
-                                <View className="mp-user__product-desc">{item.desc}</View>
-                                <View className="mp-user__product-price">￥{item.price} <Text className="mp-user__product-marketprice">￥{item.marketPrice}</Text></View>
-                                <View className="mp-user__product-prePrice">预定金:  {item.prePrice}</View>
-                            </View>
-                        </View>)
-                     })
-                 }
+              {renderTemplate}
             </View>
         )
     }

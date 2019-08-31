@@ -1,0 +1,34 @@
+.mp-empty{
+    &-blank{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+        background: #FFFFFF;
+        margin: 0px;
+        text-align: center;
+        z-index: 1;
+
+        &-icon{
+            margin-top: 50px;
+            z-index: 99;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%)
+        }
+
+        &-text{
+            text-align: center;
+            color: #dddddd;
+        }
+
+        &-image{
+            height: 240px;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 50px;
+            margin-left:110px;
+        }
+    }
+}

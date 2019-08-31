@@ -50,7 +50,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
       navigationBarTitleText: '往期产品'
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -176,13 +176,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var newFilterList = this.__state.newFilterList;
 
 
+      var renderTemplate = null;
+      if (newFilterList.length === 0) {} else {}
       Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/product/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = [], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/product/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

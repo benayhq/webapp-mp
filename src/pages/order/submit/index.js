@@ -103,7 +103,6 @@ export default class SubmitOrder extends Component{
         var payload = {
             productId:this.$router.params.productId
         };
-
         this.setState({
             activityProductId:this.$router.params.productId,
             activityName:this.$router.params.activityName
@@ -116,10 +115,9 @@ export default class SubmitOrder extends Component{
             this.getImgUrl(response.content.location).then((response)=>{
                 this.setState({
                     imgUrl:response
-                })
+                });
             })
         });
-
     }
 
     async getImgUrl(location){

@@ -115,7 +115,7 @@ var dispatchActiveHistory = exports.dispatchActiveHistory = function dispatchAct
     type: _constants.ACTION_HISTORY_INFO,
     url: _api.API_ACTIVE_HISTORY,
     fetchOptions: {
-      method: 'POST'
+      method: 'GET'
     },
     payload: payload
   });
