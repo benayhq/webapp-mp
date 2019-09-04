@@ -30,9 +30,6 @@ class Index extends Component{
   async loadData(){
     var historys = [],that = this,promises=[];
     const response = await this.props.dispatchActiveHistory({});
-
-    console.log('response.content',response.content);
-
     if(response.content){
       response.content.map((item,index)=>{
         const promise = that.getImgUrl(item.displayLocation)
@@ -40,7 +37,6 @@ class Index extends Component{
         historys.push(item);
       });
     }
-
     Promise.all(promises).then((result)=>{
       if(result){
         result.map((item,key)=>{

@@ -14,7 +14,7 @@ export default class UserOrder extends Component{
     }
 
     render(){
-        const {list=[]} = this.props;
+        const {list=[]} = this.props;   
         return (
             <View className="mp-user__order"> 
                 <View className="mp-user__order-title">

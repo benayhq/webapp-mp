@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import {API_USER_LOGIN} from './../constants/api'
+import {API_USER_LOGIN,API_GET_USER_INFO} from './../constants/api'
 
 const CODE_SUCCESS = '200';
 const CODE_AUTH_EXPIRED = '500';
@@ -40,11 +40,14 @@ export default async function fetch(options){
         data:payload,
         header:header
     }).then(async(res)=>{
-        if(res.data && res.data.result === "login"){
-            Taro.navigateTo({
-                url: '/pages/user/index'
-            });
-            return;
+        console.log('resresresres',res);
+        if(url !== API_GET_USER_INFO){
+            if(res.data && res.data.error === "LOGIN"){
+                Taro.navigateTo({
+                    url: '/pages/login/index'
+                });
+                return;
+            }
         }
         if(url === API_USER_LOGIN){
             await updateStorage(res.data);

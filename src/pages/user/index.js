@@ -43,10 +43,9 @@ class Index extends Component{
   init(){
     this.autoLogin();
   }
-
+  
   async initOrderNotice(creatorInstance,isAgent){
     var list = creatorInstance.factory(isAgent).getList();
-    console.log('list-1-1',list);
     const response = await this.props.dispatchReservationCount({});
     if(list && list.length>0){
         list.map((item,key)=>{
@@ -97,18 +96,15 @@ class Index extends Component{
      return result;
   }
 
-  autoLogin(){
+  async autoLogin(){
     var currentObj = this;
     wx.login({async success(res) {
               var payload = { code:res.code };
-
               const response = await currentObj.props.WeChatLogin(payload);
               if(response.result === "success"){
                 const result = await Taro.setStorage({key:'sessionId',data:response.content});
                 if(result.errMsg === "setStorage:ok"){
-
                   const rstUserInfo = await currentObj.props.GetUserInfo({});
-
                   const data = rstUserInfo.content,
                         isAgent = data.role === "AGENT" ? true : false,
                         creatorInstance = new Creator();
@@ -138,6 +134,14 @@ class Index extends Component{
               }
           }
     });
+  }
+
+  initOrderStatus(){
+    let creatorInstance = new Creator();
+    let list = creatorInstance.factory(false).getList();
+    this.setState({
+      orders:list
+    })
   }
 
   checkAuth(data){

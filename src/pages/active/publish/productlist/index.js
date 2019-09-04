@@ -6,11 +6,7 @@ import { AtInput, AtForm } from 'taro-ui'
 
 export default class ProductList extends Component{
 
-    selectProduct(){
-        Taro.navigateTo({
-            url:'/pages/product/index'
-          })
-    }
+
     
 
     handleChange(){
@@ -20,11 +16,6 @@ export default class ProductList extends Component{
     render(){
         return (
             <View>
-                    <View className="publish-item">
-                        <Text>活动产品</Text>
-                        <Text onClick={this.selectProduct}>选择我的产品</Text>
-                    </View>
-
                     <View>
                         <View className="product">
                                 {

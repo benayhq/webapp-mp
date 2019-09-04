@@ -88,3 +88,6 @@ export const API_WEIXIN_DECRYPT = `${HOST}/api/v1/wx/wxDecrypt`;
 
 // 获取用户信息.
 export const API_GET_USER_INFO = `${HOST}/api/v1/user/info`;
+
+// 创建新用户
+export const API_CREATE_NEW_USER = `${HOST}/v1/user/create`;

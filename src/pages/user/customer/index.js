@@ -26,7 +26,6 @@ class Index extends Component{
       this.setState({
         customer:response.content
       });
-      // console.log('response',response);
     });
   }
 
@@ -37,7 +36,6 @@ class Index extends Component{
   render(){
     const {customer} = this.state;
     let renderTemplate  = null;
-
     if(customer.length===0){
       renderTemplate = <Empty/>
     }
@@ -46,8 +44,8 @@ class Index extends Component{
         {
             customer && customer.map((item)=>{
                 return (
-                  item.nickname && <AtListItem
-                    title={item.nickname + `${item.weChatId===undefined ? '':'   微信:'+item.weChatId}`}
+                  item.name && <AtListItem
+                    title={item.name + `${item.weChatId===undefined ? '':'   微信:'+item.weChatId}`}
                     note={`电话:${item.cellphone === null ? '未设置' : item.cellphone}`}
                     thumb={item.profileUrl}
                   />

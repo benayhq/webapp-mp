@@ -1,7 +1,7 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View,Picker} from '@tarojs/components';
 import './index.scss';
-import { AtInput,AtMessage} from 'taro-ui';
+import { AtInput,AtMessage,AtList,AtListItem} from 'taro-ui';
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
 import {WeChatPay} from './../../../utils/payment';
@@ -20,7 +20,10 @@ export default class SubmitOrder extends Component{
             activityProductId:'',
             product:{},
             text:'',
-            isOpended:false
+            isOpended:false,
+            cellPhone:'',
+            name:'',
+            chooseDate:'请选择预约时间'
         };
     }
 
@@ -101,10 +104,16 @@ export default class SubmitOrder extends Component{
 
     componentDidMount(){
         var payload = {
-            productId:this.$router.params.productId
+            // productId:this.$router.params.productId
+            productId:100
         };
+        // this.setState({
+        //     activityProductId:this.$router.params.productId,
+        //     activityName:this.$router.params.activityName
+        // });
+
         this.setState({
-            activityProductId:this.$router.params.productId,
+            activityProductId:100,
             activityName:this.$router.params.activityName
         });
 
@@ -118,6 +127,8 @@ export default class SubmitOrder extends Component{
                 });
             })
         });
+
+        this.initUser();
     }
 
     async getImgUrl(location){
@@ -134,14 +145,42 @@ export default class SubmitOrder extends Component{
         })
     }
 
+    handleItemClick = e => {
+        Taro.navigateTo({
+            url: '/pages/user/info/edit'
+        });
+    }
+
+    async initUser(){
+        const user = await this.props.GetUserInfo({});
+        console.log('user3333',user);
+        if(user.content){
+            this.setState({
+                cellPhone:user.content.cellphone,
+                name:user.content.name
+            })
+        }
+    }
+
     render(){
 
-        const {product,activityName,imgUrl,isOpended,text} = this.state;
+        const {product,activityName,imgUrl,isOpended,text,
+            cellPhone,name,chooseDate,appointmentDate} = this.state;
         
         return (
             <View className="submit-order">
                  <AtMessage/>
                  <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast>
+
+                <AtList>
+                    <AtListItem
+                        onClick={this.handleItemClick.bind(this)} 
+                        title={cellPhone === ''? "":`客户:${name}`}
+                        note={cellPhone === ''? "":`电话:${cellPhone}`}
+                        thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
+                        arrow='right'
+                    />
+                </AtList>
 
                 <View className="submit-order_white-space"></View>
                 <View className="submit-order_product">
@@ -163,17 +202,26 @@ export default class SubmitOrder extends Component{
                         </View>
                     </View>
 
-                    <View className="submit-order_product-appoint">
-                        <Picker mode='date' onChange={this.onDateChange}>
-                            <View className='picker'>
-                                请选择预约时间 {this.state.appointmentDate}
-                            </View>
+                    {/* <AtList>
+                        <AtListItem
+                            onClick={this.onDateChange.bind(this)} 
+                            iconInfo={{ size:
+                            25, color: '#78A4FA', value: 'calendar', }} 
+                            title={chooseDate}
+                            arrow='right'
+                        />
+                    </AtList> */}
+
+                  <View className="submit-order_product-appoint">
+                        <Picker className="submit-order_product-appoint-picker" mode='date' onChange={this.onDateChange}>
+                                预约时间: {appointmentDate}
                         </Picker>
-                    </View>
+                  </View> 
+                    
                 </View>
 
                 <View className="submit-order_footer">
-                    <View>共 1 件，预定金： <Text>￥{product.advance} </Text> </View>
+                    <View>共 <Text style="color:red">( 1 )</Text> 件 预定金: <Text style="color:red">￥{product.advance} </Text> </View>
                     <View onClick={this.handleSubmitOrder.bind(this)}>提交订单</View>
                 </View>
                 

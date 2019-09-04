@@ -48,7 +48,7 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtActivityIndicator.__proto__ || Object.getPrototypeOf(AtActivityIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__81", "rootClass", "content", "color", "size", "mode", "className"], _this.customComponents = ["AtLoading"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtActivityIndicator.__proto__ || Object.getPrototypeOf(AtActivityIndicator)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__82", "rootClass", "content", "color", "size", "mode", "className"], _this.customComponents = ["AtLoading"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtActivityIndicator, [{
@@ -66,7 +66,7 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__81 = (0, _index.genCompid)(__prefix + "$compid__81");
+      var $compid__82 = (0, _index.genCompid)(__prefix + "$compid__82");
 
       var _props = this.__props,
           color = _props.color,
@@ -79,13 +79,13 @@ var AtActivityIndicator = (_temp2 = _class = function (_AtComponent) {
         'at-activity-indicator--center': mode === 'center'
       }, this.__props.className);
 
-      var $props__81 = {
+      var $props__82 = {
         "size": size,
         "color": color
       };
-      _index.propsManager.set($props__81, $compid__81);
+      _index.propsManager.set($props__82, $compid__82);
       Object.assign(this.__state, {
-        $compid__81: $compid__81,
+        $compid__82: $compid__82,
         rootClass: rootClass,
         content: content
       });

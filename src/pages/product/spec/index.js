@@ -37,9 +37,12 @@ export default class Spec extends Component{
 
     componentWillReceiveProps(nextProps,props){
         console.log('nextProps',nextProps);
+
+        let that = this;
         
-        this.getImgUrl(nextProps.products[0].productDocumentLocation).then(res=>{
-            this.setState({
+        this.getImgUrl(nextProps.products[0].productLocation).then(res=>{
+            console.log('response',res);
+            that.setState({
                 categoryItem:{
                     productDocumentLocation:res,
                     productName:nextProps.products[0].productName,
@@ -52,12 +55,12 @@ export default class Spec extends Component{
         });
 
         if(nextProps.products && nextProps.products.length>0){
-
-            let productItems = [];
-
-            nextProps.products.map((item,key)=>{
-                productItems.push({
-                    productDocumentLocation:item.productDocumentLocation,
+            let products = [],promises = [];
+            nextProps.products.map(async(item,key)=>{
+                const promise = this.getImgUrl(item.productLocation);
+                promises.push(promise);
+                products.push({
+                    productDocumentLocation:'',
                     productName:item.productName,
                     productDiscountPrice:item.productDiscountPrice,
                     productPrice:item.productPrice,
@@ -67,8 +70,16 @@ export default class Spec extends Component{
                 })
             });
 
-            this.setState({
-                productItems:productItems
+            Promise.all(promises).then((result)=>{
+                if(result){
+                    result.map((imgUrl,key)=>{
+                        products[key].productDocumentLocation = imgUrl;
+                    });
+                }
+            }).then((response)=>{
+                that.setState({
+                    productItems:products
+                });
             });
         }
     }
@@ -81,9 +92,7 @@ export default class Spec extends Component{
         return result.content;
     }
 
-    handleChangeCategory(product){
-        
-       console.log('product.productId',product.productId);
+    async handleChangeCategory(product){
        this.setState({
             productId:product.productId,
             isOpended:false
@@ -94,21 +103,16 @@ export default class Spec extends Component{
            return item;
        });
 
-       this.getImgUrl(product.productDocumentLocation).then(res=>{
-                this.setState({
-                    categoryItem:{
-                        productDocumentLocation:res,
-                        productName:product.productName,
-                        productDiscountPrice:product.productDiscountPrice,
-                        productPrice:product.productPrice,
-                        productAdvance:product.productAdvance
-                    }
-                })
-        });
-
-        this.setState({
-            productItems:newProducts
-        });
+       this.setState({
+            categoryItem:{
+                productDocumentLocation:product.productDocumentLocation,
+                productName:product.productName,
+                productDiscountPrice:product.productDiscountPrice,
+                productPrice:product.productPrice,
+                productAdvance:product.productAdvance,
+                productItems:newProducts
+            }
+       })
     }
 
     jumpUrl = (url) =>{
@@ -120,29 +124,36 @@ export default class Spec extends Component{
     handleSubmitOrder(e){
         const {productId} = this.state;
         if(productId === 0){
+             wx.showToast({
+                title: "请选择商品类目",
+                icon:'none',
+                duration: 1000
+            })
             this.setState({
                 isOpended:true
             })
             return;
         }
-        console.log('productId',productId);
-        console.log('this.props.activityName',this.props.activityName);
+        this.setState({
+            productId:0
+        });
         jump({url:'/pages/order/submit/index?productId='+productId+'&activityName='+this.props.activityName});
     }
 
     render(){
         const {prefix,isChange,categoryItem,productItems,icon,text} = this.state;
 
+        console.log('categoryItem',categoryItem);
+
         return (
             <View>
                 {
-                    this.props.products && 
+                    categoryItem && 
                         <View className={prefix+'__img'}>
                             <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;"
                                     mode="scaleToFill"
                                     src={categoryItem.productDocumentLocation}>
                             </image>
-
                             <View className={prefix + '__desc'}>
                                 <View>
                                     {categoryItem.productName}
@@ -170,8 +181,6 @@ export default class Spec extends Component{
                 <View className={prefix + '__bottom'} onClick={this.handleSubmitOrder.bind(this)}>
                     拼 团
                 </View>
-
-                {/* <AtToast isOpened={isOpended} text={text} duration={1000}></AtToast> */}
             </View>
         )
     }

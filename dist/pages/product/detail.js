@@ -54,7 +54,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__218", "$compid__219", "$compid__220", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__46", "$compid__47", "$compid__48", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.toggleVisible = function () {
       _this.setState({
@@ -224,7 +224,6 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
             });
           });
         }
-        // bannerList
       });
     }
   }, {
@@ -386,6 +385,16 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
+    key: "handlerGobackClick",
+    value: function handlerGobackClick() {}
+  }, {
+    key: "handlerGohomeClick",
+    value: function handlerGohomeClick() {
+      _index2.default.navigateTo({
+        url: '/pages/user/index'
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -393,9 +402,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__218 = (0, _index.genCompid)(__prefix + "$compid__218");
-      var $compid__219 = (0, _index.genCompid)(__prefix + "$compid__219");
-      var $compid__220 = (0, _index.genCompid)(__prefix + "$compid__220");
+      var $compid__46 = (0, _index.genCompid)(__prefix + "$compid__46");
+      var $compid__47 = (0, _index.genCompid)(__prefix + "$compid__47");
+      var $compid__48 = (0, _index.genCompid)(__prefix + "$compid__48");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -413,35 +422,36 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           showOrderDialog = _state3.showOrderDialog;
 
 
+      console.log('data-data-data', data);
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__218 = {
+      var $props__46 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__219 = {
+      var $props__47 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__220 = {
+      var $props__48 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      _index.propsManager.set($props__218, $compid__218);
-      bContact && _index.propsManager.set($props__219, $compid__219);
-      bSpec && _index.propsManager.set($props__220, $compid__220);
+      _index.propsManager.set($props__46, $compid__46);
+      bContact && _index.propsManager.set($props__47, $compid__47);
+      bSpec && _index.propsManager.set($props__48, $compid__48);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__218: $compid__218,
-        $compid__219: $compid__219,
-        $compid__220: $compid__220
+        $compid__46: $compid__46,
+        $compid__47: $compid__47,
+        $compid__48: $compid__48
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "openDialog", "handleShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "openDialog"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

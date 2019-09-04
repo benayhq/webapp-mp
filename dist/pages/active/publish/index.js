@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__233", "$compid__234", "$compid__235", "$compid__236", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__17", "$compid__18", "$compid__19", "$compid__20", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -616,6 +616,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getAuthInfo;
     }()
   }, {
+    key: "selectProduct",
+    value: function selectProduct() {
+      _index2.default.navigateTo({
+        url: '/pages/product/index'
+      });
+    }
+  }, {
     key: "handleConfirm",
     value: function handleConfirm() {
       var _this5 = this;
@@ -644,10 +651,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__233 = (0, _index.genCompid)(__prefix + "$compid__233");
-      var $compid__234 = (0, _index.genCompid)(__prefix + "$compid__234");
-      var $compid__235 = (0, _index.genCompid)(__prefix + "$compid__235");
-      var $compid__236 = (0, _index.genCompid)(__prefix + "$compid__236");
+      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
+      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
+      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
+      var $compid__20 = (0, _index.genCompid)(__prefix + "$compid__20");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -658,40 +665,40 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__233 = {
+      var $props__17 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__234 = {
+      var $props__18 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__235 = {
+      var $props__19 = {
         "products": products
       };
-      var $props__236 = {
+      var $props__20 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__233, $compid__233);
-      _index.propsManager.set($props__234, $compid__234);
-      _index.propsManager.set($props__235, $compid__235);
-      _index.propsManager.set($props__236, $compid__236);
+      _index.propsManager.set($props__17, $compid__17);
+      _index.propsManager.set($props__18, $compid__18);
+      _index.propsManager.set($props__19, $compid__19);
+      _index.propsManager.set($props__20, $compid__20);
       Object.assign(this.__state, {
-        $compid__233: $compid__233,
-        $compid__234: $compid__234,
-        $compid__235: $compid__235,
-        $compid__236: $compid__236
+        $compid__17: $compid__17,
+        $compid__18: $compid__18,
+        $compid__19: $compid__19,
+        $compid__20: $compid__20
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "createProduct", "onPublish", "getPhoneNumber"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "selectProduct", "createProduct", "onPublish", "getPhoneNumber"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

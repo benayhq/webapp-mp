@@ -36,7 +36,7 @@ var Footer = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__61", "$compid__62", "qrCode", "content"], _this.customComponents = ["Code", "Info"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__62", "$compid__63", "qrCode", "content"], _this.customComponents = ["Code", "Info"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Footer, [{
@@ -53,19 +53,19 @@ var Footer = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__61 = (0, _index.genCompid)(__prefix + "$compid__61");
       var $compid__62 = (0, _index.genCompid)(__prefix + "$compid__62");
-      var $props__61 = {
-        "content": this.__props.content
-      };
+      var $compid__63 = (0, _index.genCompid)(__prefix + "$compid__63");
       var $props__62 = {
         "content": this.__props.content
       };
-      this.__props.qrCode && _index.propsManager.set($props__61, $compid__61);
-      _index.propsManager.set($props__62, $compid__62);
+      var $props__63 = {
+        "content": this.__props.content
+      };
+      this.__props.qrCode && _index.propsManager.set($props__62, $compid__62);
+      _index.propsManager.set($props__63, $compid__63);
       Object.assign(this.__state, {
-        $compid__61: $compid__61,
-        $compid__62: $compid__62
+        $compid__62: $compid__62,
+        $compid__63: $compid__63
       });
       return this.__state;
     }

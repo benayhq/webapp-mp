@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchPrePay = exports.dispatchOrderDetail = exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.dispatchQueryProductInfo = undefined;
+exports.dispatchPrePay = exports.dispatchOrderDetail = exports.dispatchCreateComment = exports.dispatchUploadConfig = exports.dispatchOrderList = exports.dispatchCreateOrderDownLoadUrl = exports.dispatchCreateReseverOrder = exports.dispatchCreateOrder = exports.GetUserInfo = exports.dispatchQueryProductInfo = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -17,6 +17,17 @@ var dispatchQueryProductInfo = exports.dispatchQueryProductInfo = function dispa
     url: _api.API_ACTIVE_PRODUCTINFO,
     fetchOptions: {
       method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var GetUserInfo = exports.GetUserInfo = function GetUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_GET_USER_INFO,
+    url: _api.API_GET_USER_INFO,
+    fetchOptions: {
+      method: 'POST'
     },
     payload: payload
   });

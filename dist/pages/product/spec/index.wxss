@@ -292,7 +292,9 @@
   text-align: center;
   margin-top: 28rpx;
   display: block;
-  float: left; }
+  float: left;
+  border-radius: 8rpx;
+  padding: 10rpx; }
 
 .mp-spec__category-green {
   float: left;
@@ -305,7 +307,9 @@
   line-height: 60rpx;
   margin-left: 21rpx;
   text-align: center;
-  margin-top: 28rpx; }
+  margin-top: 28rpx;
+  border-radius: 8rpx;
+  padding: 10rpx; }
 
 .mp-spec__bottom {
   width: 100%;

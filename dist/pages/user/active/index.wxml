@@ -4,7 +4,7 @@
             <block wx:if="{{activeList.length > 0}}">
                 <at-list>
                     <block wx:if="{{activeList}}">
-                        <at-list-item wx:for="{{loopArray91}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__211}}"></at-list-item>
+                        <at-list-item wx:for="{{loopArray11}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__59}}"></at-list-item>
                     </block>
                 </at-list>
             </block>

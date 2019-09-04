@@ -304,20 +304,25 @@
     color: black;
     font-size: 28rpx;
     font-family: PingFangSC-Regular;
-    font-weight: 400; }
+    font-weight: 400;
+    height: 72rpx;
+    line-height: 72rpx; }
   .submit-order_product-content-product > View:nth-child(2) {
     font-size: 24rpx;
     font-family: PingFangSC-Regular;
     font-weight: 400;
-    line-height: 78rpx;
-    height: 78rpx;
-    color: #bbbbbb; }
+    color: #bbbbbb;
+    height: 72rpx;
+    line-height: 72rpx; }
   .submit-order_product-content-product > View:nth-child(3) {
     font-family: PingFangSC-Regular;
     font-weight: 400;
-    color: #7dd6d0; }
+    color: #7dd6d0;
+    height: 72rpx;
+    line-height: 72rpx; }
 
 .submit-order_product-appoint {
+  margin-top: 16rpx;
   width: 100%;
   height: 90rpx;
   line-height: 90rpx;
@@ -329,10 +334,15 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
-          flex-direction: row; }
+          flex-direction: row;
+  background: #FFFFFF; }
   .submit-order_product-appoint > View:nth-child(1) {
     width: 100%;
     text-align: center; }
+  .submit-order_product-appoint-picker {
+    width: 100%;
+    text-align: left;
+    padding-left: 16rpx; }
 
 .submit-order_footer {
   position: fixed;
@@ -348,11 +358,13 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
-          flex-direction: row; }
+          flex-direction: row;
+  background: #FFFFFF; }
   .submit-order_footer > View:nth-child(1) {
-    text-align: center;
+    text-align: left;
     width: 75%;
-    color: #919191; }
+    color: #919191;
+    padding-left: 30rpx; }
   .submit-order_footer > View:nth-child(2) {
     text-align: center;
     width: 25%;

@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <block wx:if="{{products}}">
+        <block wx:if="{{categoryItem}}">
             <view class="{{prefix + '__img'}}">
                 <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{categoryItem.productDocumentLocation}}"></image>
                 <view class="{{prefix + '__desc'}}">

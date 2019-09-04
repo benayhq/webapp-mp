@@ -93,3 +93,6 @@ var API_WEIXIN_DECRYPT = exports.API_WEIXIN_DECRYPT = HOST + '/api/v1/wx/wxDecry
 
 // 获取用户信息.
 var API_GET_USER_INFO = exports.API_GET_USER_INFO = HOST + '/api/v1/user/info';
+
+// 创建新用户
+var API_CREATE_NEW_USER = exports.API_CREATE_NEW_USER = HOST + '/v1/user/create';

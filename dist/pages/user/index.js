@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray25", "$compid__104", "$compid__105", "$compid__106", "$compid__107", "$compid__108", "$compid__109", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "$compid__11", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -104,12 +104,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             switch (_context.prev = _context.next) {
               case 0:
                 list = creatorInstance.factory(isAgent).getList();
-
-                console.log('list-1-1', list);
-                _context.next = 4;
+                _context.next = 3;
                 return this.props.dispatchReservationCount({});
 
-              case 4:
+              case 3:
                 response = _context.sent;
 
                 if (list && list.length > 0) {
@@ -134,7 +132,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -203,89 +201,119 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     }()
   }, {
     key: "autoLogin",
-    value: function autoLogin() {
-      var currentObj = this;
-      wx.login({
-        success: function () {
-          var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
-            var payload, response, result, rstUserInfo, data, isAgent, creatorInstance;
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
-              while (1) {
-                switch (_context3.prev = _context3.next) {
-                  case 0:
-                    payload = { code: res.code };
-                    _context3.next = 3;
-                    return currentObj.props.WeChatLogin(payload);
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        var currentObj;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                currentObj = this;
 
-                  case 3:
-                    response = _context3.sent;
+                wx.login({
+                  success: function () {
+                    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
+                      var payload, response, result, rstUserInfo, data, isAgent, creatorInstance;
+                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                        while (1) {
+                          switch (_context3.prev = _context3.next) {
+                            case 0:
+                              payload = { code: res.code };
+                              _context3.next = 3;
+                              return currentObj.props.WeChatLogin(payload);
 
-                    if (!(response.result === "success")) {
-                      _context3.next = 22;
-                      break;
+                            case 3:
+                              response = _context3.sent;
+
+                              if (!(response.result === "success")) {
+                                _context3.next = 22;
+                                break;
+                              }
+
+                              _context3.next = 7;
+                              return _index2.default.setStorage({ key: 'sessionId', data: response.content });
+
+                            case 7:
+                              result = _context3.sent;
+
+                              if (!(result.errMsg === "setStorage:ok")) {
+                                _context3.next = 20;
+                                break;
+                              }
+
+                              _context3.next = 11;
+                              return currentObj.props.GetUserInfo({});
+
+                            case 11:
+                              rstUserInfo = _context3.sent;
+                              data = rstUserInfo.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
+
+
+                              _index2.default.setStorage({ key: 'userinfo', data: data });
+
+                              currentObj.checkAuth(data);
+                              currentObj.initReservationPlan();
+                              currentObj.initLoanFlag();
+                              _context3.next = 19;
+                              return currentObj.initOrderNotice(creatorInstance, isAgent);
+
+                            case 19:
+                              currentObj.setState({
+                                showUserText: isAgent ? '切换为用户' : '切换为咨询师',
+                                isAgent: isAgent,
+                                list: creatorInstance.factory(isAgent).getPanelList(),
+                                user: creatorInstance.factory(isAgent).getUserInfo(),
+                                avatarUrl: data.profileUrl,
+                                userName: data.name
+                              });
+
+                            case 20:
+                              _context3.next = 23;
+                              break;
+
+                            case 22:
+                              _index2.default.showToast({
+                                title: '网络异常',
+                                icon: 'none'
+                              });
+
+                            case 23:
+                            case "end":
+                              return _context3.stop();
+                          }
+                        }
+                      }, _callee3, this);
+                    }));
+
+                    function success(_x3) {
+                      return _ref5.apply(this, arguments);
                     }
 
-                    _context3.next = 7;
-                    return _index2.default.setStorage({ key: 'sessionId', data: response.content });
+                    return success;
+                  }()
+                });
 
-                  case 7:
-                    result = _context3.sent;
-
-                    if (!(result.errMsg === "setStorage:ok")) {
-                      _context3.next = 20;
-                      break;
-                    }
-
-                    _context3.next = 11;
-                    return currentObj.props.GetUserInfo({});
-
-                  case 11:
-                    rstUserInfo = _context3.sent;
-                    data = rstUserInfo.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
-
-
-                    _index2.default.setStorage({ key: 'userinfo', data: data });
-
-                    currentObj.checkAuth(data);
-                    currentObj.initReservationPlan();
-                    currentObj.initLoanFlag();
-                    _context3.next = 19;
-                    return currentObj.initOrderNotice(creatorInstance, isAgent);
-
-                  case 19:
-                    currentObj.setState({
-                      showUserText: isAgent ? '切换为用户' : '切换为咨询师',
-                      isAgent: isAgent,
-                      list: creatorInstance.factory(isAgent).getPanelList(),
-                      user: creatorInstance.factory(isAgent).getUserInfo(),
-                      avatarUrl: data.profileUrl,
-                      userName: data.name
-                    });
-
-                  case 20:
-                    _context3.next = 23;
-                    break;
-
-                  case 22:
-                    _index2.default.showToast({
-                      title: '网络异常',
-                      icon: 'none'
-                    });
-
-                  case 23:
-                  case "end":
-                    return _context3.stop();
-                }
-              }
-            }, _callee3, this);
-          }));
-
-          function success(_x3) {
-            return _ref4.apply(this, arguments);
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
           }
+        }, _callee4, this);
+      }));
 
-          return success;
-        }()
+      function autoLogin() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return autoLogin;
+    }()
+  }, {
+    key: "initOrderStatus",
+    value: function initOrderStatus() {
+      var creatorInstance = new _create2.default();
+      var list = creatorInstance.factory(false).getList();
+      this.setState({
+        orders: list
       });
     }
   }, {
@@ -304,29 +332,29 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "getJpushAuthInfo",
     value: function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         var result;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 result = _index2.default.getStorage({ key: 'jpushAuth' }).then(function (res) {
                   return res.data;
                 }).catch(function () {
                   return '';
                 });
-                return _context4.abrupt("return", result);
+                return _context5.abrupt("return", result);
 
               case 2:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee5, this);
       }));
 
       function getJpushAuthInfo() {
-        return _ref5.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       }
 
       return getJpushAuthInfo;
@@ -334,19 +362,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleAuthClick",
     value: function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
         var _this3 = this;
 
         var result, errMsg, userInfo, payload;
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _context5.next = 2;
+                _context6.next = 2;
                 return _index2.default.getUserInfo();
 
               case 2:
-                result = _context5.sent;
+                result = _context6.sent;
                 errMsg = result.errMsg, userInfo = result.userInfo;
 
                 if (errMsg === 'getUserInfo:ok') {
@@ -377,14 +405,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 5:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee6, this);
       }));
 
       function handleAuthClick() {
-        return _ref6.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       }
 
       return handleAuthClick;
@@ -392,19 +420,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleChangeState",
     value: function () {
-      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
         var isAgent, boolAgent, result, creatorInstance;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 isAgent = this.state.isAgent;
                 boolAgent = !isAgent;
-                _context6.next = 4;
+                _context7.next = 4;
                 return this.getAuthInfo();
 
               case 4:
-                result = _context6.sent;
+                result = _context7.sent;
 
                 if (result.agentStatus === 1) {
                   boolAgent ? this.props.ChangeToAgent() : this.props.ChangeToCustomer();
@@ -429,14 +457,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 6:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee7, this);
       }));
 
       function handleChangeState() {
-        return _ref7.apply(this, arguments);
+        return _ref8.apply(this, arguments);
       }
 
       return handleChangeState;
@@ -497,21 +525,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleConfirmAgree",
     value: function () {
-      var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+      var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
         var rstUserInfo, data, creatorInstance;
-        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
           while (1) {
-            switch (_context7.prev = _context7.next) {
+            switch (_context8.prev = _context8.next) {
               case 0:
-                _context7.next = 2;
+                _context8.next = 2;
                 return this.props.ChangeToAgent();
 
               case 2:
-                _context7.next = 4;
+                _context8.next = 4;
                 return this.props.GetUserInfo({});
 
               case 4:
-                rstUserInfo = _context7.sent;
+                rstUserInfo = _context8.sent;
                 data = rstUserInfo.content;
 
                 _index2.default.setStorage({ key: 'userinfo', data: data });
@@ -528,14 +556,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 9:
               case "end":
-                return _context7.stop();
+                return _context8.stop();
             }
           }
-        }, _callee7, this);
+        }, _callee8, this);
       }));
 
       function handleConfirmAgree() {
-        return _ref8.apply(this, arguments);
+        return _ref9.apply(this, arguments);
       }
 
       return handleConfirmAgree;
@@ -550,12 +578,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__104 = (0, _index.genCompid)(__prefix + "$compid__104");
-      var $compid__105 = (0, _index.genCompid)(__prefix + "$compid__105");
-      var $compid__106 = (0, _index.genCompid)(__prefix + "$compid__106");
-      var $compid__107 = (0, _index.genCompid)(__prefix + "$compid__107");
-      var $compid__108 = (0, _index.genCompid)(__prefix + "$compid__108");
-      var $compid__109 = (0, _index.genCompid)(__prefix + "$compid__109");
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
+      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
+      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
+      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
+      var $compid__10 = (0, _index.genCompid)(__prefix + "$compid__10");
+      var $compid__11 = (0, _index.genCompid)(__prefix + "$compid__11");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -571,11 +599,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__104 = {
+      var $props__6 = {
         "isOpened": isOpened,
         "closeOnClickOverlay": false
       };
-      var $props__105 = {
+      var $props__7 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -583,49 +611,49 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__106 = {
+      var $props__8 = {
         "isOpened": isAgree,
         "closeOnClickOverlay": false
       };
-      var $props__107 = {
+      var $props__9 = {
         "profit": profit
       };
-      var $props__108 = {
+      var $props__10 = {
         "list": orders
       };
-      var $props__109 = {
+      var $props__11 = {
         "title": this.__state.context1
       };
-      var loopArray25 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__103 = (0, _index.genCompid)(__prefix + "MNKBjwdQTY" + _anonIdx);
+        var $compid__5 = (0, _index.genCompid)(__prefix + "BRPMAfJrkP" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__103);
+        }, $compid__5);
         return {
-          $compid__103: $compid__103,
+          $compid__5: $compid__5,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__104, $compid__104);
-      _index.propsManager.set($props__105, $compid__105);
-      _index.propsManager.set($props__106, $compid__106);
-      isAgent && _index.propsManager.set($props__107, $compid__107);
-      _index.propsManager.set($props__108, $compid__108);
-      isShowLoanApp === true && _index.propsManager.set($props__109, $compid__109);
+      _index.propsManager.set($props__6, $compid__6);
+      _index.propsManager.set($props__7, $compid__7);
+      _index.propsManager.set($props__8, $compid__8);
+      isAgent && _index.propsManager.set($props__9, $compid__9);
+      _index.propsManager.set($props__10, $compid__10);
+      isShowLoanApp === true && _index.propsManager.set($props__11, $compid__11);
       Object.assign(this.__state, {
-        loopArray25: loopArray25,
-        $compid__104: $compid__104,
-        $compid__105: $compid__105,
-        $compid__106: $compid__106,
-        $compid__107: $compid__107,
-        $compid__108: $compid__108,
-        $compid__109: $compid__109,
+        loopArray0: loopArray0,
+        $compid__6: $compid__6,
+        $compid__7: $compid__7,
+        $compid__8: $compid__8,
+        $compid__9: $compid__9,
+        $compid__10: $compid__10,
+        $compid__11: $compid__11,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

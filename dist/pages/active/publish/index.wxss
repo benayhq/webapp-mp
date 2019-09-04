@@ -279,7 +279,10 @@
   .mp-active .publish {
     width: 100%;
     margin-top: 32rpx;
-    background: white; }
+    background: white;
+    position: fixed;
+    bottom: 1rpx;
+    z-index: 1000; }
     .mp-active .publish > view {
       padding: 5rpx;
       background-color: #7DD6D0;
@@ -296,6 +299,24 @@
       margin-top: 20rpx;
       line-height: 96rpx;
       text-align: center; }
+
+.pulbish-create {
+  height: 90rpx;
+  line-height: 90rpx; }
+  .pulbish-create > Text:nth-child(1) {
+    padding-left: 30rpx;
+    padding-top: 5rpx;
+    border-radius: 20rpx;
+    padding-right: 17rpx; }
+  .pulbish-create > Text:nth-child(2) {
+    width: 80%;
+    height: 90rpx;
+    margin-bottom: 20rpx;
+    font-size: 36rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: #7dd6d0;
+    line-height: 90rpx; }
 
 .getPhone {
   border: initial;
@@ -557,7 +578,8 @@
 
 .mp-publish-product {
   background: #ffffff;
-  padding-bottom: 10rpx; }
+  margin-top: 25rpx;
+  margin-bottom: 550rpx; }
   .mp-publish-product .publish-active {
     display: -webkit-box;
     display: -webkit-flex;
@@ -584,21 +606,6 @@
       width: 60%; }
     .mp-publish-product .publish-active .margin {
       padding-top: 20rpx; }
-  .mp-publish-product .pulbish-create {
-    line-height: 90rpx;
-    height: 90rpx;
-    background: #ffffff;
-    border: 1rpx solid #7DD6D0;
-    color: #7DD6D0;
-    margin: 20rpx;
-    text-align: center;
-    border-radius: 10rpx; }
-    .mp-publish-product .pulbish-create > Text:nth-child(1) {
-      padding-right: 30rpx; }
-    .mp-publish-product .pulbish-create > Text:nth-child(2) {
-      width: 80%;
-      height: 90rpx;
-      margin-bottom: 20rpx; }
 
 .product {
   width: 100%;

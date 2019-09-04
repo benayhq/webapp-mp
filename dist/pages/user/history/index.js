@@ -111,9 +111,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 3:
                 response = _context2.sent;
 
-
-                console.log('response.content', response.content);
-
                 if (response.content) {
                   response.content.map(function (item, index) {
                     var promise = that.getImgUrl(item.displayLocation);
@@ -121,7 +118,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     historys.push(item);
                   });
                 }
-
                 Promise.all(promises).then(function (result) {
                   if (result) {
                     result.map(function (item, key) {
@@ -134,7 +130,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 });
 
-              case 7:
+              case 6:
               case "end":
                 return _context2.stop();
             }

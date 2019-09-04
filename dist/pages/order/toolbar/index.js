@@ -36,7 +36,7 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__63", "$compid__64", "$compid__65", "$compid__66", "$compid__67", "toolBar", "undefined", "modal"], _this.toggleVisible = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ToolBar.__proto__ || Object.getPrototypeOf(ToolBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__64", "$compid__65", "$compid__66", "$compid__67", "$compid__68", "toolBar", "undefined", "modal"], _this.toggleVisible = function () {
       console.log('onConfirm');
     }, _this.customComponents = ["AtButton", "Modal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -104,11 +104,11 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__63 = (0, _index.genCompid)(__prefix + "$compid__63");
       var $compid__64 = (0, _index.genCompid)(__prefix + "$compid__64");
       var $compid__65 = (0, _index.genCompid)(__prefix + "$compid__65");
       var $compid__66 = (0, _index.genCompid)(__prefix + "$compid__66");
       var $compid__67 = (0, _index.genCompid)(__prefix + "$compid__67");
+      var $compid__68 = (0, _index.genCompid)(__prefix + "$compid__68");
 
       var toolBar = this.__props.toolBar;
 
@@ -116,17 +116,17 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
       if (toolBar == null || toolBar == undefined) {}
 
       if (toolBar && toolBar[0] && toolBar[1]) {
-        var $props__63 = {
+        var $props__64 = {
           "onClick": this.handleOrderClick.bind(this, toolBar[0].event),
           "type": "primary",
           "size": "small"
         };
-        var $props__64 = {
+        var $props__65 = {
           "onClick": this.__props.toolBar.event,
           "type": "primary",
           "size": "small"
         };
-        var $props__65 = {
+        var $props__66 = {
           "title": this.modal.title,
           "content": this.modal.content,
           "isOpened": this.modal.isOpened,
@@ -137,21 +137,12 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
           "onConfirm": this.onConfirm,
           "onCancel": this.onCancel
         };
-        _index.propsManager.set($props__63, $compid__63);
         _index.propsManager.set($props__64, $compid__64);
         _index.propsManager.set($props__65, $compid__65);
+        _index.propsManager.set($props__66, $compid__66);
       }
 
       if (toolBar && toolBar[0]) {
-        var $props__66 = {
-          "onClick": this.__props.toolBar.event,
-          "type": "primary",
-          "size": "small"
-        };
-        toolBar && _index.propsManager.set($props__66, $compid__66);
-      }
-
-      if (toolBar && toolBar[1]) {
         var $props__67 = {
           "onClick": this.__props.toolBar.event,
           "type": "primary",
@@ -159,12 +150,21 @@ var ToolBar = (_temp2 = _class = function (_BaseComponent) {
         };
         toolBar && _index.propsManager.set($props__67, $compid__67);
       }
+
+      if (toolBar && toolBar[1]) {
+        var $props__68 = {
+          "onClick": this.__props.toolBar.event,
+          "type": "primary",
+          "size": "small"
+        };
+        toolBar && _index.propsManager.set($props__68, $compid__68);
+      }
       Object.assign(this.__state, {
-        $compid__63: $compid__63,
         $compid__64: $compid__64,
         $compid__65: $compid__65,
         $compid__66: $compid__66,
         $compid__67: $compid__67,
+        $compid__68: $compid__68,
         toolBar: toolBar,
         undefined: undefined
       });

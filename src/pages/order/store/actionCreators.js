@@ -5,9 +5,10 @@ import {PRODUCT_QUERY_INFO,CREATE_ORDER,CREATE_RESEVER_ORDER,ORDER_ACTION_UPLOAD
     ,CREATE_COMMENT_IMAGE
     ,ACTION_ORDER_DETAIL
     ,PAY_PRE
+    ,ACTION_GET_USER_INFO
 } from './constants';
 import {API_PRODUCT_INFO,API_CREATE_ORDER,API_CREATE_RESEVER_ORDER,API_UPLOAD_FILE,API_ORDER_LIST
-    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT,API_ORDER_DETAIL,API_PRE_PAY,API_ACTIVE_PRODUCTINFO
+    ,API_UPLOAD_CONFIG,API_PUBLISH_COMMENT,API_ORDER_DETAIL,API_PRE_PAY,API_ACTIVE_PRODUCTINFO,API_GET_USER_INFO
 } from './../../../constants/api';
 
 export const dispatchQueryProductInfo = payload => createAction({
@@ -18,6 +19,16 @@ export const dispatchQueryProductInfo = payload => createAction({
     },
     payload
 });
+
+export const GetUserInfo = payload => createAction({
+    type:ACTION_GET_USER_INFO,
+    url:API_GET_USER_INFO,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+})
+
 
 export const dispatchCreateOrder = payload => createAction({
     type:CREATE_ORDER,

@@ -70,13 +70,13 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__70 = (0, _index.genCompid)(__prefix + "BfXRSrZwht" + index);
+        var $compid__71 = (0, _index.genCompid)(__prefix + "HAKOGqPlNY" + index);
         item.$original.count > 0 && _index.propsManager.set({
           "value": item.$original.count,
           "maxValue": 99
-        }, $compid__70);
+        }, $compid__71);
         return {
-          $compid__70: $compid__70,
+          $compid__71: $compid__71,
           $original: item.$original
         };
       }) : [];

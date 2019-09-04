@@ -249,7 +249,8 @@
 
 .mp-publish-product {
   background: #ffffff;
-  padding-bottom: 10rpx; }
+  margin-top: 25rpx;
+  margin-bottom: 550rpx; }
   .mp-publish-product .publish-active {
     display: -webkit-box;
     display: -webkit-flex;
@@ -276,21 +277,6 @@
       width: 60%; }
     .mp-publish-product .publish-active .margin {
       padding-top: 20rpx; }
-  .mp-publish-product .pulbish-create {
-    line-height: 90rpx;
-    height: 90rpx;
-    background: #ffffff;
-    border: 1rpx solid #7DD6D0;
-    color: #7DD6D0;
-    margin: 20rpx;
-    text-align: center;
-    border-radius: 10rpx; }
-    .mp-publish-product .pulbish-create > Text:nth-child(1) {
-      padding-right: 30rpx; }
-    .mp-publish-product .pulbish-create > Text:nth-child(2) {
-      width: 80%;
-      height: 90rpx;
-      margin-bottom: 20rpx; }
 
 .product {
   width: 100%;

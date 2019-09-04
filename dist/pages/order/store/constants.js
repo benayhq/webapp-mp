@@ -16,3 +16,5 @@ var ACTION_ORDER_DETAIL = exports.ACTION_ORDER_DETAIL = 'action/ACTION_ORDER_DET
 
 // 支付.
 var PAY_PRE = exports.PAY_PRE = 'pay/PAY_PRE';
+
+var ACTION_GET_USER_INFO = exports.ACTION_GET_USER_INFO = 'action/ACTION_GET_USER_INFO';

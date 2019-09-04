@@ -52,11 +52,13 @@ export default class OrderDetail extends Component{
         });
     }
 
-    render(){
 
+    render(){
         const {content,order} = this.state;
+        
         return (
             <View className="mp-order-detail">
+           
                 <Header content={content}/>
                 <Assemble content={content}/>
                 <OrderProduct order={order} content={content}/>

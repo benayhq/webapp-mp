@@ -52,7 +52,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["prefix", "categoryItem", "productItems", "isChange", "productId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["categoryItem", "prefix", "productItems", "isChange", "productId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
@@ -87,8 +87,11 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
 
       console.log('nextProps', nextProps);
 
-      this.getImgUrl(nextProps.products[0].productDocumentLocation).then(function (res) {
-        _this2.setState({
+      var that = this;
+
+      this.getImgUrl(nextProps.products[0].productLocation).then(function (res) {
+        console.log('response', res);
+        that.setState({
           categoryItem: {
             productDocumentLocation: res,
             productName: nextProps.products[0].productName,
@@ -101,104 +104,151 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       });
 
       if (nextProps.products && nextProps.products.length > 0) {
+        var products = [],
+            promises = [];
+        nextProps.products.map(function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(item, key) {
+            var promise;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    promise = _this2.getImgUrl(item.productLocation);
 
-        var productItems = [];
+                    promises.push(promise);
+                    products.push({
+                      productDocumentLocation: '',
+                      productName: item.productName,
+                      productDiscountPrice: item.productDiscountPrice,
+                      productPrice: item.productPrice,
+                      productAdvance: item.productAdvance,
+                      isChecked: false,
+                      productId: item.productId
+                    });
 
-        nextProps.products.map(function (item, key) {
-          productItems.push({
-            productDocumentLocation: item.productDocumentLocation,
-            productName: item.productName,
-            productDiscountPrice: item.productDiscountPrice,
-            productPrice: item.productPrice,
-            productAdvance: item.productAdvance,
-            isChecked: false,
-            productId: item.productId
+                  case 3:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, _this2);
+          }));
+
+          return function (_x, _x2) {
+            return _ref2.apply(this, arguments);
+          };
+        }());
+
+        Promise.all(promises).then(function (result) {
+          if (result) {
+            result.map(function (imgUrl, key) {
+              products[key].productDocumentLocation = imgUrl;
+            });
+          }
+        }).then(function (response) {
+          that.setState({
+            productItems: products
           });
-        });
-
-        this.setState({
-          productItems: productItems
         });
       }
     }
   }, {
     key: "getImgUrl",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(location) {
         var payload, result;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 payload = {
                   location: location
                 };
-                _context.next = 3;
+                _context2.next = 3;
                 return this.props.dispatchDownLoadUrl(payload);
 
               case 3:
-                result = _context.sent;
-                return _context.abrupt("return", result.content);
+                result = _context2.sent;
+                return _context2.abrupt("return", result.content);
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
-      function getImgUrl(_x) {
-        return _ref2.apply(this, arguments);
+      function getImgUrl(_x3) {
+        return _ref3.apply(this, arguments);
       }
 
       return getImgUrl;
     }()
   }, {
     key: "handleChangeCategory",
-    value: function handleChangeCategory(product) {
-      var _this3 = this;
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(product) {
+        var newProducts;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.setState({
+                  productId: product.productId,
+                  isOpended: false
+                });
 
-      console.log('product.productId', product.productId);
-      this.setState({
-        productId: product.productId,
-        isOpended: false
-      });
+                newProducts = this.state.productItems.map(function (item) {
+                  item.isChecked = product.productId === item.productId;
+                  return item;
+                });
 
-      var newProducts = this.state.productItems.map(function (item) {
-        item.isChecked = product.productId === item.productId;
-        return item;
-      });
 
-      this.getImgUrl(product.productDocumentLocation).then(function (res) {
-        _this3.setState({
-          categoryItem: {
-            productDocumentLocation: res,
-            productName: product.productName,
-            productDiscountPrice: product.productDiscountPrice,
-            productPrice: product.productPrice,
-            productAdvance: product.productAdvance
+                this.setState({
+                  categoryItem: {
+                    productDocumentLocation: product.productDocumentLocation,
+                    productName: product.productName,
+                    productDiscountPrice: product.productDiscountPrice,
+                    productPrice: product.productPrice,
+                    productAdvance: product.productAdvance,
+                    productItems: newProducts
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
           }
-        });
-      });
+        }, _callee3, this);
+      }));
 
-      this.setState({
-        productItems: newProducts
-      });
-    }
+      function handleChangeCategory(_x4) {
+        return _ref4.apply(this, arguments);
+      }
+
+      return handleChangeCategory;
+    }()
   }, {
     key: "handleSubmitOrder",
     value: function handleSubmitOrder(e) {
       var productId = this.state.productId;
 
       if (productId === 0) {
+        wx.showToast({
+          title: "请选择商品类目",
+          icon: 'none',
+          duration: 1000
+        });
         this.setState({
           isOpended: true
         });
         return;
       }
-      console.log('productId', productId);
-      console.log('this.props.activityName', this.props.activityName);
+      this.setState({
+        productId: 0
+      });
       (0, _jump2.default)({ url: '/pages/order/submit/index?productId=' + productId + '&activityName=' + this.props.activityName });
     }
   }, {
@@ -218,6 +268,8 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
           icon = _state.icon,
           text = _state.text;
 
+
+      console.log('categoryItem', categoryItem);
 
       Object.assign(this.__state, {});
       return this.__state;

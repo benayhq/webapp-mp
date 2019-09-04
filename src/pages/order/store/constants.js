@@ -11,3 +11,5 @@ export const ACTION_ORDER_DETAIL = 'action/ACTION_ORDER_DETAIL';
 
 // 支付.
 export const PAY_PRE = 'pay/PAY_PRE';
+
+export const ACTION_GET_USER_INFO = 'action/ACTION_GET_USER_INFO';

@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__49", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__220", "$compid__221", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -61,7 +61,11 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       _this.setState({
         appointmentDate: e.detail.value
       });
-    }, _this.customComponents = ["AtMessage"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.handleItemClick = function (e) {
+      _index2.default.navigateTo({
+        url: '/pages/user/info/edit'
+      });
+    }, _this.customComponents = ["AtMessage", "AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SubmitOrder, [{
@@ -74,7 +78,10 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         activityProductId: '',
         product: {},
         text: '',
-        isOpended: false
+        isOpended: false,
+        cellPhone: '',
+        name: '',
+        chooseDate: '请选择预约时间'
       };
       this.$$refs = [];
     }
@@ -157,10 +164,16 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var _this3 = this;
 
       var payload = {
-        productId: this.$router.params.productId
+        // productId:this.$router.params.productId
+        productId: 100
       };
+      // this.setState({
+      //     activityProductId:this.$router.params.productId,
+      //     activityName:this.$router.params.activityName
+      // });
+
       this.setState({
-        activityProductId: this.$router.params.productId,
+        activityProductId: 100,
         activityName: this.$router.params.activityName
       });
 
@@ -174,6 +187,8 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           });
         });
       });
+
+      this.initUser();
     }
   }, {
     key: "getImgUrl",
@@ -209,6 +224,43 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
+    key: "initUser",
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var user;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.props.GetUserInfo({});
+
+              case 2:
+                user = _context2.sent;
+
+                console.log('user3333', user);
+                if (user.content) {
+                  this.setState({
+                    cellPhone: user.content.cellphone,
+                    name: user.content.name
+                  });
+                }
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function initUser() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return initUser;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -216,24 +268,38 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__49 = (0, _index.genCompid)(__prefix + "$compid__49");
+      var $compid__220 = (0, _index.genCompid)(__prefix + "$compid__220");
+      var $compid__221 = (0, _index.genCompid)(__prefix + "$compid__221");
 
       var _state2 = this.__state,
           product = _state2.product,
           activityName = _state2.activityName,
           imgUrl = _state2.imgUrl,
           isOpended = _state2.isOpended,
-          text = _state2.text;
+          text = _state2.text,
+          cellPhone = _state2.cellPhone,
+          name = _state2.name,
+          chooseDate = _state2.chooseDate,
+          appointmentDate = _state2.appointmentDate;
 
 
-      var $props__49 = {
+      var $props__220 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      _index.propsManager.set($props__49, $compid__49);
+      var $props__221 = {
+        "onClick": this.handleItemClick.bind(this),
+        "title": cellPhone === '' ? "" : "\u5BA2\u6237:" + name,
+        "note": cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone,
+        "thumb": "https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png",
+        "arrow": "right"
+      };
+      _index.propsManager.set($props__220, $compid__220);
+      _index.propsManager.set($props__221, $compid__221);
       Object.assign(this.__state, {
-        $compid__49: $compid__49,
+        $compid__220: $compid__220,
+        $compid__221: $compid__221,
         activityName: activityName
       });
       return this.__state;

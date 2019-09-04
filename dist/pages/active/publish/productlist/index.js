@@ -47,13 +47,6 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       this.$$refs = [];
     }
   }, {
-    key: "selectProduct",
-    value: function selectProduct() {
-      _index2.default.navigateTo({
-        url: '/pages/product/index'
-      });
-    }
-  }, {
     key: "handleChange",
     value: function handleChange() {
       console.log('handleChange');
@@ -72,15 +65,15 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__71 = (0, _index.genCompid)(__prefix + "UAUnaonbKt" + _anonIdx);
+        var $compid__72 = (0, _index.genCompid)(__prefix + "HTdOsaILKW" + _anonIdx);
         _index.propsManager.set({
           "name": "value",
           "type": "text",
           "value": item.$original.discountPrice,
           "onChange": _this2.handleChange.bind(_this2)
-        }, $compid__71);
+        }, $compid__72);
         return {
-          $compid__71: $compid__71,
+          $compid__72: $compid__72,
           $original: item.$original
         };
       }) : [];
@@ -92,7 +85,7 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return ProductList;
-}(_index.Component), _class.$$events = ["selectProduct"], _class.$$componentPath = "pages/active/publish/productlist/index", _temp2);
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/active/publish/productlist/index", _temp2);
 exports.default = ProductList;
 
 Component(require('../../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(ProductList));

@@ -2,7 +2,7 @@
     <view class="mp-active">
         <at-message></at-message>
         <view class="item"><text>活动名称</text>
-            <at-input compid="{{$compid__233}}"></at-input>
+            <at-input compid="{{$compid__17}}"></at-input>
         </view>
         <view class="item">
             <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
@@ -22,16 +22,18 @@
                 </view>
             </picker>
         </view>
-        <at-image-picker compid="{{$compid__234}}"></at-image-picker>
+        <at-image-picker compid="{{$compid__18}}"></at-image-picker>
         <view class="mp-publish-product">
-            <product-list compid="{{$compid__235}}"></product-list>
-            <view class="pulbish-create"><text class="mp-icon mp-icon-plus"></text><text bindtap="createProduct">新增产品</text>
+            <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
             </view>
+            <view class="pulbish-create" bindtap="createProduct"><text class="mp-icon mp-icon-plus"></text><text>新增产品</text>
+            </view>
+            <product-list compid="{{$compid__19}}"></product-list>
         </view>
         <view class="publish">
             <view bindtap="onPublish">立即发布</view>
         </view>
-        <at-modal compid="{{$compid__236}}">
+        <at-modal compid="{{$compid__20}}">
             <at-modal-header>授权获取手机号</at-modal-header>
             <at-modal-content>
                 <view class="mp-user__authinfo">申请获取以下权限</view>获取你的手机号</at-modal-content>

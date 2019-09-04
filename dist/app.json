@@ -18,7 +18,8 @@
     "pages/user/history/index",
     "pages/user/consultant/index",
     "pages/user/product/index",
-    "pages/user/active/index"
+    "pages/user/active/index",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

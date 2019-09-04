@@ -284,7 +284,7 @@ export default class Index extends Component {
       "userId": result.id,
       "wechatId": weChatNumber
     };
-    
+
     if(result.cellphone === null || result.cellphone === ""){
       this.setState({
         isOpened:true
@@ -401,6 +401,13 @@ export default class Index extends Component {
     return result;
   }
 
+  selectProduct(){
+    Taro.navigateTo({
+        url:'/pages/product/index'
+      })
+  }
+
+
   handleConfirm(){
     this.setState({
       isOpened:false
@@ -470,7 +477,15 @@ export default class Index extends Component {
         />
 
         <View className="mp-publish-product">
-                     <ProductList products={products}/>
+           <View className="publish-item">
+                        <Text>活动产品</Text>
+                        <Text onClick={this.selectProduct}>选择我的产品</Text>
+           </View>
+            <View className="pulbish-create" onClick={this.createProduct}>
+                      <Text className="mp-icon mp-icon-plus"></Text>
+                      <Text>新增产品</Text>
+            </View>
+            <ProductList products={products}/>
                      {/* <View className="publish-active">
                             <Text>活动价</Text>
                               <AtInput border={false} 
@@ -478,10 +493,6 @@ export default class Index extends Component {
                                           onChange={this.onChangeActivePrice.bind(this)}
                                           placeholder="请输入活动优惠价" />
                       </View> */}
-                      <View className="pulbish-create">
-                      <Text className="mp-icon mp-icon-plus"></Text>
-                      <Text onClick={this.createProduct}>新增产品</Text>
-          </View>
         </View>
 
         <View className="publish">

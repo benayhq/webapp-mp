@@ -29,18 +29,16 @@ $pageBgColor:#ffffff;
 
 .mp-publish-product{
     background: $pageBgColor;
-    padding-bottom:10px;
-
+    margin-top: 25px;
+    margin-bottom: 550px;
     .publish-active{
         @include flex(row);
         border-bottom: 1px solid #ddd ;
         background:$pageBgColor;
-
         >Text:nth-child(1){
             @include lineHight;
             padding-left: 30px;
         }
-
         >input{
             @include lineHight;
             padding-left: 80px;
@@ -52,26 +50,7 @@ $pageBgColor:#ffffff;
         }
     }
 
-    .pulbish-create{
-        line-height: 90px;
-        height: 90px;
-        background: $pageBgColor;
-        border: 1px solid #7DD6D0 ;
-        color: #7DD6D0;
-        margin: 20px;
-        text-align: center;
-        border-radius: 10px;
 
-        >Text:nth-child(1){
-            padding-right: 30px;
-        }
-
-        >Text:nth-child(2){
-            width: 80%;
-            height: 90px;
-            margin-bottom: 20px;
-        }
-    }
 }
 
 .product{
