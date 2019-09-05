@@ -31,7 +31,7 @@
                 </view>
             </block>
             <block wx:if="{{!hasMore}}">
-                <view class="home__loading home__loading--not-more"><text class="home__loading-txt">更多内容，敬请期待</text>
+                <view class="home__loading home__loading--not-more"><text class="home__loading-txt">没有更多了</text>
                 </view>
             </block>
         </scroll-view>

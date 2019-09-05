@@ -2,8 +2,7 @@
   "usingComponents": {
     "at-tabs": "../../npm/taro-ui/dist/weapp/components/tabs/index",
     "at-tabs-pane": "../../npm/taro-ui/dist/weapp/components/tabs-pane/index",
-    "order-item": "./list/index",
-    "at-load-more": "../../npm/taro-ui/dist/weapp/components/load-more/index"
+    "order-item": "./list/index"
   },
   "navigationBarTitleText": "我的订单"
 }

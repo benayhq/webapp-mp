@@ -14,3 +14,17 @@ page {
     color:#7dd6d0;
     font-size:48rpx;
 }
+.home__loading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    background: #FFFFFF;
+  
+    &-txt {
+      color:#7DD6D0;
+      font-size: 32px;
+    }
+}
+  

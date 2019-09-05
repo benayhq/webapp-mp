@@ -274,7 +274,7 @@ class Edit extends Component{
                 </AtForm>
                 <View className="user-submit">
                             <AtButton type='primary' onClick={this.handleSaveUserInfo.bind(this)}>保存</AtButton>
-                    </View>
+                 </View>
             </View>
         );
     }

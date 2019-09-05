@@ -11636,9 +11636,6 @@
       padding-bottom: 17rpx; }
 
 
-/* Custom Theme */
-
-
 @charset "UTF-8";
 /* 引入 Taro UI 默认样式 */
 /**
@@ -23289,3 +23286,30 @@ page {
 .at-list__item .item-extra__icon-arrow {
   color: #7dd6d0;
   font-size: 48rpx; }
+
+.home__loading {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80rpx;
+  background: #FFFFFF; }
+  .home__loading-txt {
+    color: #7DD6D0;
+    font-size: 32rpx; }
+
+
+/* Custom Theme */

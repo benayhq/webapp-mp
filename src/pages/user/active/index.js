@@ -1,10 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View,ScrollView,Text } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import { AtList, AtListItem } from "taro-ui"
 import Empty from './../../../components/empty';
+import {getWindowHeight} from './../../../utils/style';
+var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
 function getLocalTime(timestamp) {
     var d = new Date(timestamp);
@@ -23,12 +25,12 @@ class Index extends Component{
     navigationBarTitleText: '我的活动'
   }
 
-  constructor(props){
-    super(props);
-    this.state = {
-      activeList:[],
-      agentId:0
-    }
+  state = {
+    activeList:[],
+    agentId:0,    
+    hasMore:true,
+    loading:false,
+    loaded:false
   }
 
   async getAuthInfo(){
@@ -54,21 +56,48 @@ class Index extends Component{
   }
 
   componentDidMount(){
-      this.init();
+      this.loadMore();
   }
 
-  async init(){
+  handleClick(item){
+    Taro.navigateTo({
+      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
+    });
+  }
+
+  handleSwithActive(item){
+    console.log('item',item);
+  }
+
+  componentWillMount(){
+    globalLastItem = 0;
+    RECOMMEND_SIZE = 0;
+  }
+
+  async loadMore(){
     var result = await this.getAuthInfo();
     const {agentId} = this.state;
 
+    RECOMMEND_SIZE = RECOMMEND_SIZE + 12;
+
     var that = this;
+    this.setState({loading:true});
     var payload ={
         pageNo:0,
-        pageSize:10,
+        pageSize:RECOMMEND_SIZE,
         agentId: agentId ===  0 ? result.id : agentId
     },list=[];
-
     const response = await this.props.dispatchOwnerActiveHistory(payload);
+
+    if(globalLastItem==response.content.length){
+      this.setState({
+        loading:false,
+        hasMore:false
+      })
+      return;
+    }else{
+      globalLastItem = response.content.length;
+    }
 
     var promises = [];
 
@@ -93,20 +122,19 @@ class Index extends Component{
           }
         }).then(()=>{
           that.setState({
-             activeList:list
-          });
-        })
+             activeList:list,
+             loading:false,
+             hasMore:true
+          })
+        }).catch((response)=>{
+          that.setState({
+            loading:false,
+            hasMore:false
+          })
+        });
     }
-  }
 
-  handleClick(item){
-    Taro.navigateTo({
-      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
-    });
-  }
-
-  handleSwithActive(item){
-    console.log('item',item);
+    console.log('loadMore');
   }
 
   render(){
@@ -118,6 +146,7 @@ class Index extends Component{
          {
               activeList && activeList.map((item)=>{
                 return (
+               
                   <AtListItem
                     onClick={this.handleClick.bind(this,item)}
                     title={item.name}
@@ -127,6 +156,7 @@ class Index extends Component{
                     isSwitch
                     onSwitchChange={this.handleSwithActive.bind(this,item)}
                   />
+                 
                 )
             })
          }
@@ -134,13 +164,30 @@ class Index extends Component{
         )
     }
     else{
-      renderTemplate = <Empty/>
+      renderTemplate =  <View><Empty/></View>
     }
 
     return (
-      <AtList>
-         {renderTemplate}
-      </AtList>
+      <View>
+           <ScrollView
+                  scrollY
+                  onScrollToLower={this.loadMore}
+                  style={{ height: getWindowHeight() }}>
+            {renderTemplate}
+
+            {this.state.loading &&
+              <View className='home__loading'>
+                <Text className='home__loading-txt'>正在加载中...</Text>
+              </View>
+            }
+            {!this.state.hasMore &&
+              <View className='home__loading home__loading--not-more'>
+                <Text className='home__loading-txt'>没有更多了</Text>
+              </View>
+            }
+
+          </ScrollView>
+      </View>
     )
   }
 }

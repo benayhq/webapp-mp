@@ -20,6 +20,8 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
+var _style = require("../../../utils/style.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -31,6 +33,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RECOMMEND_SIZE = 0,
+    globalLastItem = 0;
 
 function getLocalTime(timestamp) {
   var d = new Date(timestamp);
@@ -54,8 +59,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray166", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray205", "activeList", "agentId", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
+    }, _this.state = {
+      activeList: [],
+      agentId: 0,
+      hasMore: true,
+      loading: false,
+      loaded: false
     }, _this.customComponents = ["AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -63,10 +74,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-      this.state = {
-        activeList: [],
-        agentId: 0
-      };
+
       this.$$refs = [];
     }
   }, {
@@ -143,10 +151,28 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.init();
+      this.loadMore();
     }
   }, {
-    key: "init",
+    key: "handleClick",
+    value: function handleClick(item) {
+      _index2.default.navigateTo({
+        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
+      });
+    }
+  }, {
+    key: "handleSwithActive",
+    value: function handleSwithActive(item) {
+      console.log('item', item);
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      globalLastItem = 0;
+      RECOMMEND_SIZE = 0;
+    }
+  }, {
+    key: "loadMore",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var _this2 = this;
@@ -162,17 +188,39 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 2:
                 result = _context3.sent;
                 agentId = this.state.agentId;
+
+
+                RECOMMEND_SIZE = RECOMMEND_SIZE + 12;
+
                 that = this;
+
+                this.setState({ loading: true });
                 payload = {
                   pageNo: 0,
-                  pageSize: 10,
+                  pageSize: RECOMMEND_SIZE,
                   agentId: agentId === 0 ? result.id : agentId
                 }, list = [];
-                _context3.next = 8;
+                _context3.next = 10;
                 return this.props.dispatchOwnerActiveHistory(payload);
 
-              case 8:
+              case 10:
                 response = _context3.sent;
+
+                if (!(globalLastItem == response.content.length)) {
+                  _context3.next = 16;
+                  break;
+                }
+
+                this.setState({
+                  loading: false,
+                  hasMore: false
+                });
+                return _context3.abrupt("return");
+
+              case 16:
+                globalLastItem = response.content.length;
+
+              case 17:
                 promises = [];
 
 
@@ -197,12 +245,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     }
                   }).then(function () {
                     that.setState({
-                      activeList: list
+                      activeList: list,
+                      loading: false,
+                      hasMore: true
+                    });
+                  }).catch(function (response) {
+                    that.setState({
+                      loading: false,
+                      hasMore: false
                     });
                   });
                 }
 
-              case 11:
+                console.log('loadMore');
+
+              case 20:
               case "end":
                 return _context3.stop();
             }
@@ -210,24 +267,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee3, this);
       }));
 
-      function init() {
+      function loadMore() {
         return _ref4.apply(this, arguments);
       }
 
-      return init;
+      return loadMore;
     }()
-  }, {
-    key: "handleClick",
-    value: function handleClick(item) {
-      _index2.default.navigateTo({
-        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
-      });
-    }
-  }, {
-    key: "handleSwithActive",
-    value: function handleSwithActive(item) {
-      console.log('item', item);
-    }
   }, {
     key: "_createData",
     value: function _createData() {
@@ -238,18 +283,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray166 = void 0;
+      var loopArray205 = void 0;
 
       var activeList = this.__state.activeList;
 
       var renderTemplate = null;
       if (activeList.length > 0) {
-        loopArray166 = activeList ? activeList.map(function (item, _anonIdx) {
+        loopArray205 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__460 = (0, _index.genCompid)(__prefix + "ydFsKazDDJ" + _anonIdx);
+          var $compid__504 = (0, _index.genCompid)(__prefix + "dinzuqFgUb" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
@@ -258,24 +303,26 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
             "arrow": "right",
             "isSwitch": true,
             "onSwitchChange": _this3.handleSwithActive.bind(_this3, item.$original)
-          }, $compid__460);
+          }, $compid__504);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__460: $compid__460,
+            $compid__504: $compid__504,
             $original: item.$original
           };
         }) : [];
       } else {}
 
+      var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
-        loopArray166: loopArray166
+        anonymousState__temp3: anonymousState__temp3,
+        loopArray205: loopArray205
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/active/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["loadMore"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/active/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

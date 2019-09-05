@@ -1,62 +1,37 @@
 <block wx:if="{{$taroCompReady}}">
-    <at-tabs compid="{{$compid__425}}">
-        <at-tabs-pane compid="{{$compid__426}}">
+    <at-tabs compid="{{$compid__539}}">
+        <at-tabs-pane compid="{{$compid__540}}">
             <view>
-                <order-item compid="{{$compid__427}}"></order-item>
-                <block wx:if="{{list.length > 0}}">
-                    <view class="mp-order-loadmore">
-                        <at-load-more compid="{{$compid__428}}"></at-load-more>
-                    </view>
-                </block>
+                <order-item compid="{{$compid__541}}"></order-item>
             </view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__429}}">
+        <at-tabs-pane compid="{{$compid__542}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp}}">
                 <block wx:if="{{list}}">
                     <view>
-                        <order-item compid="{{$compid__430}}"></order-item>
-                        <block wx:if="{{list.length > 0}}">
-                            <view class="mp-order-loadmore">
-                                <at-load-more compid="{{$compid__431}}"></at-load-more>
-                            </view>
-                        </block>
+                        <order-item compid="{{$compid__543}}"></order-item>
                     </view>
                 </block>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__432}}">
+        <at-tabs-pane compid="{{$compid__544}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item compid="{{$compid__433}}"></order-item>
-                    <block wx:if="{{list.length > 0}}">
-                        <view class="mp-order-loadmore">
-                            <at-load-more compid="{{$compid__434}}"></at-load-more>
-                        </view>
-                    </block>
+                    <order-item compid="{{$compid__545}}"></order-item>
                 </view>
             </block>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__435}}">
+        <at-tabs-pane compid="{{$compid__546}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item compid="{{$compid__436}}"></order-item>
-                    <block wx:if="{{list.length > 0}}">
-                        <view class="mp-order-loadmore">
-                            <at-load-more compid="{{$compid__437}}"></at-load-more>
-                        </view>
-                    </block>
+                    <order-item compid="{{$compid__547}}"></order-item>
                 </view>
             </block>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__438}}">
+        <at-tabs-pane compid="{{$compid__548}}">
             <block wx:if="{{list}}">
                 <view>
-                    <order-item compid="{{$compid__439}}"></order-item>
-                    <block wx:if="{{list.length > 0}}">
-                        <view class="mp-order-loadmore">
-                            <at-load-more compid="{{$compid__440}}"></at-load-more>
-                        </view>
-                    </block>
+                    <order-item compid="{{$compid__549}}"></order-item>
                 </view>
             </block>
         </at-tabs-pane>

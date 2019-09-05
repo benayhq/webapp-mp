@@ -139,7 +139,7 @@ class Index extends Component{
           }
           {!this.state.hasMore &&
             <View className='home__loading home__loading--not-more'>
-              <Text className='home__loading-txt'>更多内容，敬请期待</Text>
+              <Text className='home__loading-txt'>没有更多了</Text>
             </View>
           }
         </ScrollView>
