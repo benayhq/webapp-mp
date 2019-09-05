@@ -8,18 +8,14 @@ page{
 image {
     width:100%;
     display:inline-block;
-    overflow:hidden;    
+    overflow:hidden;  
+    height: 100%;  
 }
     
 
 $component:'.mp-activedetail';
 
 #{$component}{
-
-    .mp-swiper{
-        height:500px;
-    }
-    
     &__user{
         line-height: 80px;
         height:80px;
@@ -402,7 +398,7 @@ $component:'.mp-activedetail';
         bottom: 0px;
         display: flex;
         flex-direction: row;
-        z-index: 0;
+        z-index: 999;
     }
     
     &__orderpay_footer{
@@ -471,4 +467,11 @@ $component:'.mp-activedetail';
     text-align: center;
 }
 
-
+.mp-swiper{
+    height: 620px;
+    background: #FFFFFF;
+}
+.taro-img__mode-scaletofill {
+    width: 100%;
+    height: 100%;
+}

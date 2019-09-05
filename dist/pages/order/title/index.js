@@ -86,6 +86,9 @@ var Title = (_temp2 = _class = function (_BaseComponent) {
           AgentName = _props.AgentName,
           displayStatusDes = _props.displayStatusDes;
 
+
+      console.log('order this.props', this.__props);
+
       Object.assign(this.__state, {
         OrderId: OrderId,
         AgentName: AgentName,

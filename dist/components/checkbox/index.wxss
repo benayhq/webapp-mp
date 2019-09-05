@@ -334,6 +334,10 @@
   color: #7DD6D0;
   font-size: 36rpx; }
 
+.mp-checkbox__price-wrapper {
+  float: left;
+  width: 200rpx; }
+
 .mp-checkbox__marketprice {
   display: inline-block;
   margin-left: 15rpx;

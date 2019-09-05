@@ -257,6 +257,12 @@
   float: right;
   width: 73%;
   height: 100rpx; }
+  .mp-spec__desc > view:nth-child(1) {
+    line-height: 64rpx;
+    height: 64rpx; }
+  .mp-spec__desc > view:nth-child(2) {
+    line-height: 64rpx;
+    height: 64rpx; }
 
 .mp-spec__order-money {
   font-size: 28rpx;
@@ -266,15 +272,21 @@
   margin-top: 10rpx;
   display: inline-block;
   position: relative;
-  top: -16rpx; }
+  top: -16rpx;
+  line-height: 64rpx;
+  height: 64rpx; }
 
 .mp-spec__order-price {
-  color: #7DD6D0; }
+  color: #7DD6D0;
+  line-height: 33rpx;
+  height: 33rpx; }
 
 .mp-spec__order-marketprice {
   color: #E5E5E5;
   text-decoration: line-through;
-  padding-left: 10rpx; }
+  padding-left: 10rpx;
+  line-height: 64rpx;
+  height: 64rpx; }
 
 .mp-spec__title {
   margin: 10rpx 0 0 21rpx;

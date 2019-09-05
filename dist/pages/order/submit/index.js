@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__220", "$compid__221", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__445", "$compid__446", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -164,16 +164,16 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var _this3 = this;
 
       var payload = {
-        // productId:this.$router.params.productId
-        productId: 100
+        productId: this.$router.params.productId
       };
-      // this.setState({
-      //     activityProductId:this.$router.params.productId,
-      //     activityName:this.$router.params.activityName
-      // });
 
       this.setState({
-        activityProductId: 100,
+        activityProductId: this.$router.params.productId,
+        activityName: this.$router.params.activityName
+      });
+
+      this.setState({
+        activityProductId: this.$router.params.productId,
         activityName: this.$router.params.activityName
       });
 
@@ -268,8 +268,8 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__220 = (0, _index.genCompid)(__prefix + "$compid__220");
-      var $compid__221 = (0, _index.genCompid)(__prefix + "$compid__221");
+      var $compid__445 = (0, _index.genCompid)(__prefix + "$compid__445");
+      var $compid__446 = (0, _index.genCompid)(__prefix + "$compid__446");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -283,23 +283,23 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           appointmentDate = _state2.appointmentDate;
 
 
-      var $props__220 = {
+      var $props__445 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      var $props__221 = {
+      var $props__446 = {
+        "hasBorder": false,
         "onClick": this.handleItemClick.bind(this),
         "title": cellPhone === '' ? "" : "\u5BA2\u6237:" + name,
         "note": cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone,
-        "thumb": "https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png",
         "arrow": "right"
       };
-      _index.propsManager.set($props__220, $compid__220);
-      _index.propsManager.set($props__221, $compid__221);
+      _index.propsManager.set($props__445, $compid__445);
+      _index.propsManager.set($props__446, $compid__446);
       Object.assign(this.__state, {
-        $compid__220: $compid__220,
-        $compid__221: $compid__221,
+        $compid__445: $compid__445,
+        $compid__446: $compid__446,
         activityName: activityName
       });
       return this.__state;

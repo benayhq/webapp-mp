@@ -1,10 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View,ScrollView,Text } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import formatTime from '../../../utils/util';
 import Empty from './../../../components/empty';
+import {getWindowHeight} from './../../../utils/style'
+var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
 @connect(state=>state,actions)
 class Index extends Component{
@@ -12,11 +14,11 @@ class Index extends Component{
     navigationBarTitleText: '浏览历史'
   }
 
-  constructor(props){
-    super(props);
-    this.state = {
-      actives:[]
-    }
+  state = {
+    actives:[],
+    hasMore:true,
+    loading:false,
+    loaded:false
   }
 
   async getImgUrl(location){
@@ -27,9 +29,46 @@ class Index extends Component{
     return result.content;
   }
 
-  async loadData(){
+  componentWillMount(){
+    globalLastItem = 0;
+    RECOMMEND_SIZE = 0;
+  }
+
+  componentDidMount(){
+    this.loadMore();
+  }
+
+  HandleActiveClick(item){
+    Taro.navigateTo({
+      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
+    });
+  }
+
+  async loadMore(){
+    console.log('loadMore');
+    if (!this.state.hasMore || this.state.loading) {
+      return
+    }
+
+    RECOMMEND_SIZE = RECOMMEND_SIZE + 6;
+    const payload ={
+      pageNo:0,
+      pageSize:RECOMMEND_SIZE
+    };
+
+    this.setState({loading:true});
     var historys = [],that = this,promises=[];
-    const response = await this.props.dispatchActiveHistory({});
+    const response = await this.props.dispatchActiveHistory(payload);
+    if(globalLastItem==response.content.length){
+      this.setState({
+        loading:false,
+        hasMore:false
+      })
+      return;
+    }else{
+      globalLastItem = response.content.length;
+    }
+
     if(response.content){
       response.content.map((item,index)=>{
         const promise = that.getImgUrl(item.displayLocation)
@@ -45,26 +84,21 @@ class Index extends Component{
       }
     }).then((response)=>{
       that.setState({
-        actives:historys
+        actives:historys,
+        loading:false,
+        hasMore:true
+      })
+    }).catch((response)=>{
+      that.setState({
+        loading:false,
+        hasMore:false
       })
     })
   }
 
-  componentDidMount(){
-    this.loadData();
-  }
-
-  HandleActiveClick(item){
-    Taro.navigateTo({
-      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
-    });
-  }
-
   render(){
     const {actives} = this.state;
-
     let renderTemplate = null;
-
     if(actives.length===0){
       renderTemplate = <Empty/>
     }
@@ -90,10 +124,25 @@ class Index extends Component{
          )
        })
     }
-
     return (
       <View className="mp-history">
-        {renderTemplate}
+         <ScrollView
+          scrollY
+          onScrollToLower={this.loadMore}
+          style={{ height: getWindowHeight() }}>
+          {renderTemplate}
+
+          {this.state.loading &&
+            <View className='home__loading'>
+              <Text className='home__loading-txt'>正在加载中...</Text>
+            </View>
+          }
+          {!this.state.hasMore &&
+            <View className='home__loading home__loading--not-more'>
+              <Text className='home__loading-txt'>更多内容，敬请期待</Text>
+            </View>
+          }
+        </ScrollView>
       </View>
     )
   }

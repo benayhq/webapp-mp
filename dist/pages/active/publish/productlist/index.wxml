@@ -19,7 +19,7 @@
                         <view class="product-item activePrice">
                             <view>活动价:</view>
                             <view>
-                                <at-input compid="{{item.$compid__72}}"></at-input>
+                                <at-input compid="{{item.$compid__73}}"></at-input>
                             </view>
                         </view>
                     </view>

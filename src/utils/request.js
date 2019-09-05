@@ -40,7 +40,6 @@ export default async function fetch(options){
         data:payload,
         header:header
     }).then(async(res)=>{
-        console.log('resresresres',res);
         if(url !== API_GET_USER_INFO){
             if(res.data && res.data.error === "LOGIN"){
                 Taro.navigateTo({

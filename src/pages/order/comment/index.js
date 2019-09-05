@@ -153,7 +153,7 @@ export default class Comment extends Taro.Component{
      
         this.props.dispatchCreateComment(payload).then((response)=>{
            Taro.navigateTo({
-              url:`pages/order/index`
+              url:`./../../../pages/order/index?status=&index=0`
            })
         });
     }

@@ -46,7 +46,7 @@ var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__107", "$compid__108", "$compid__109", "$compid__110", "$compid__111", "order", "content", "id", "dispatchOrderDetail"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__339", "$compid__340", "$compid__341", "$compid__342", "$compid__343", "order", "content", "id", "dispatchOrderDetail"], _this.config = {
       navigationBarTitleText: '订单详情'
     }, _this.customComponents = ["Header", "Assemble", "OrderProduct", "Footer", "ToolBar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -71,11 +71,11 @@ var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
         id: this.$router.params.orderId
       });
       console.log('this.state.id ', this.$router.params.orderId);
-      if (this.$router.params.orderId === undefined || this.$router.params.orderId === null) {
-        _index2.default.navigateTo({
-          url: '/pages/user/index'
-        });
-      }
+      // if(this.$router.params.orderId === undefined || this.$router.params.orderId === null){
+      //     Taro.navigateTo({
+      //         url: '/pages/user/index'
+      //     });
+      // }
     }
   }, {
     key: "componentDidMount",
@@ -100,45 +100,45 @@ var OrderDetail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__107 = (0, _index.genCompid)(__prefix + "$compid__107");
-      var $compid__108 = (0, _index.genCompid)(__prefix + "$compid__108");
-      var $compid__109 = (0, _index.genCompid)(__prefix + "$compid__109");
-      var $compid__110 = (0, _index.genCompid)(__prefix + "$compid__110");
-      var $compid__111 = (0, _index.genCompid)(__prefix + "$compid__111");
+      var $compid__339 = (0, _index.genCompid)(__prefix + "$compid__339");
+      var $compid__340 = (0, _index.genCompid)(__prefix + "$compid__340");
+      var $compid__341 = (0, _index.genCompid)(__prefix + "$compid__341");
+      var $compid__342 = (0, _index.genCompid)(__prefix + "$compid__342");
+      var $compid__343 = (0, _index.genCompid)(__prefix + "$compid__343");
 
       var _state = this.__state,
           content = _state.content,
           order = _state.order;
 
 
-      var $props__107 = {
+      var $props__339 = {
         "content": content
       };
-      var $props__108 = {
+      var $props__340 = {
         "content": content
       };
-      var $props__109 = {
+      var $props__341 = {
         "order": order,
         "content": content
       };
-      var $props__110 = {
+      var $props__342 = {
         "content": content,
         "qrCode": content ? content.qrCode : ""
       };
-      var $props__111 = {
+      var $props__343 = {
         "toolBar": content ? content.toolBar : ""
       };
-      _index.propsManager.set($props__107, $compid__107);
-      _index.propsManager.set($props__108, $compid__108);
-      _index.propsManager.set($props__109, $compid__109);
-      _index.propsManager.set($props__110, $compid__110);
-      _index.propsManager.set($props__111, $compid__111);
+      _index.propsManager.set($props__339, $compid__339);
+      _index.propsManager.set($props__340, $compid__340);
+      _index.propsManager.set($props__341, $compid__341);
+      _index.propsManager.set($props__342, $compid__342);
+      _index.propsManager.set($props__343, $compid__343);
       Object.assign(this.__state, {
-        $compid__107: $compid__107,
-        $compid__108: $compid__108,
-        $compid__109: $compid__109,
-        $compid__110: $compid__110,
-        $compid__111: $compid__111
+        $compid__339: $compid__339,
+        $compid__340: $compid__340,
+        $compid__341: $compid__341,
+        $compid__342: $compid__342,
+        $compid__343: $compid__343
       });
       return this.__state;
     }

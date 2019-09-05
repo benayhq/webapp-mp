@@ -1,21 +1,19 @@
 import Taro, { Component } from '@tarojs/taro';
-import { AtTabs, AtTabsPane,AtLoadMore } from 'taro-ui'
+import { AtTabs, AtTabsPane,AtLoadMore } from 'taro-ui';
+import {ScrollView,View,Text} from '@tarojs/components';
 import './index.scss';
 import OrderItem from './list';
 import Order from './common/order';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
+import {getWindowHeight} from './../../utils/style'
+
 
 @connect(state=>state.user,actions)
 export default class OrderList extends Component{
     config = {
         navigationBarTitleText: '我的订单'
     }
-    
-    constructor(){
-        super(...arguments);
-    }
-
     state = {
         current:1,
         list:[],
@@ -85,6 +83,10 @@ export default class OrderList extends Component{
             })
         });
     }
+
+    loadOrderList = () => {
+        console.log('loadOrderList');
+    }
     
     render(){
         const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
@@ -93,6 +95,7 @@ export default class OrderList extends Component{
         return (
             <AtTabs current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={current} index={0} >
+              
                 <View>
                     <OrderItem list={list}/>
                     {list.length> 0 &&   <View className="mp-order-loadmore">
@@ -103,21 +106,28 @@ export default class OrderList extends Component{
                     </View>
                     }
                 </View>
+                
               </AtTabsPane>
               <AtTabsPane current={current} index={1}>
-                 {
-                     list &&  <View>
-                     <OrderItem list={list}/>
-                     {
-                         list.length> 0 && <View className="mp-order-loadmore">
-                           <AtLoadMore
-                               onClick={this.handleLoadMore.bind(this,'UNPAY')}
-                               status={status}
-                           />
-                         </View> 
+                <ScrollView
+                    scrollY
+                    onScrollToUpper={this.loadOrderList}
+                    style={{height:getWindowHeight()}}
+                >
+                    {
+                        list &&  <View>
+                        <OrderItem list={list}/>
+                        {
+                            list.length> 0 && <View className="mp-order-loadmore">
+                            <AtLoadMore
+                                onClick={this.handleLoadMore.bind(this,'UNPAY')}
+                                status={status}
+                            />
+                            </View> 
+                        }
+                        </View>
                     }
-                    </View>
-                 }
+                 </ScrollView>
               </AtTabsPane>
               <AtTabsPane current={current} index={2}>
                  {list && <View>

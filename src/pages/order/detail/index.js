@@ -31,13 +31,13 @@ export default class OrderDetail extends Component{
     componentWillMount(){
         this.setState({
             id:this.$router.params.orderId
-        })
+        });
         console.log('this.state.id ',this.$router.params.orderId);
-        if(this.$router.params.orderId === undefined || this.$router.params.orderId === null){
-            Taro.navigateTo({
-                url: '/pages/user/index'
-            });
-        }
+        // if(this.$router.params.orderId === undefined || this.$router.params.orderId === null){
+        //     Taro.navigateTo({
+        //         url: '/pages/user/index'
+        //     });
+        // }
     }
 
     componentDidMount() {

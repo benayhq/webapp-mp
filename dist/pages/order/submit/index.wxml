@@ -1,16 +1,16 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="submit-order">
         <at-message></at-message>
-        <at-toast compid="{{$compid__220}}"></at-toast>
+        <at-toast compid="{{$compid__445}}"></at-toast>
         <at-list>
-            <at-list-item compid="{{$compid__221}}"></at-list-item>
+            <at-list-item compid="{{$compid__446}}"></at-list-item>
         </at-list>
         <view class="submit-order_white-space"></view>
         <view class="submit-order_product">
             <view class="submit-order_product-content">
                 <view>
                     <view class="submit-order_product-content-img">
-                        <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{imgUrl}}"></image>
+                        <image style="height:100px;width:100px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{imgUrl}}"></image>
                     </view>
                 </view>
                 <view>
@@ -22,7 +22,10 @@
                 </view>
             </view>
             <view class="submit-order_product-appoint">
-                <picker class="submit-order_product-appoint-picker" mode="date" bindchange="onDateChange">预约时间: {{appointmentDate}}</picker>
+                <picker class="submit-order_product-appoint-picker" mode="date" bindchange="onDateChange">
+                    <view class="item-extra__icon item-extra__icon">预约时间: {{appointmentDate}}<text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right submit-appointer"></text>
+                    </view>
+                </picker>
             </view>
         </view>
         <view class="submit-order_footer">

@@ -159,11 +159,11 @@ export default class Spec extends Component{
                                     {categoryItem.productName}
                                 </View>
                                 <View>
-                                    <Text className={prefix + '__order-price'}>{categoryItem.productDiscountPrice}</Text>
-                                    <Text className={prefix + '__order-marketprice'}>{categoryItem.productPrice}</Text>
+                                    <Text className={prefix + '__order-price'}>￥ {categoryItem.productDiscountPrice}</Text>
+                                    <Text className={prefix + '__order-marketprice'}>￥ {categoryItem.productPrice}</Text>
                                 </View>
                                 <View>
-                                    <Text className={prefix + '__order-money'}>定金: {categoryItem.productAdvance} </Text>
+                                    <Text className={prefix + '__order-money'}>定金: ￥ {categoryItem.productAdvance} </Text>
                                 </View>
                             </View>
                     </View>

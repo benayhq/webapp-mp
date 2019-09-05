@@ -12,11 +12,11 @@ import {API_JPUSH_AUTH} from './constants/api';
 var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
 
 const store = configStore();
+// 'pages/order/detail/index',
 
 class App extends Component {
   config = {
     pages: [
-      'pages/order/detail/index',
       'pages/user/index',
       'pages/user/info/edit',
       'pages/active/publish/index',

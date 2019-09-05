@@ -7,7 +7,7 @@
                 <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{loopArray13}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?status=' + item.$original.status + '&index=' + (index + 1)}}">
                     <block>
                         <block wx:if="{{item.$original.count > 0}}">
-                            <at-badge compid="{{item.$compid__71}}">
+                            <at-badge compid="{{item.$compid__72}}">
                                 <view class="{{item.$original.icon}}"></view>
                             </at-badge>
                         </block>

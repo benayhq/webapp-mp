@@ -35,6 +35,9 @@ export default class Title extends Component{
     
     render(){
         const {OrderId,AgentName,displayStatusDes} = this.props;
+
+        console.log('order this.props',this.props);
+
         return (
             <View className="order-title" onClick={this.jumpUrl.bind(this,'/pages/order/detail/index',OrderId)}>
                 <Text>{

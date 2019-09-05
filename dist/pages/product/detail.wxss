@@ -255,10 +255,8 @@ page {
 image {
   width: 100%;
   display: inline-block;
-  overflow: hidden; }
-
-.mp-activedetail .mp-swiper {
-  height: 500rpx; }
+  overflow: hidden;
+  height: 100%; }
 
 .mp-activedetail__user {
   line-height: 80rpx;
@@ -607,7 +605,7 @@ image {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  z-index: 0; }
+  z-index: 999; }
 
 .mp-activedetail__orderpay_footer {
   font-size: 32rpx;
@@ -666,3 +664,11 @@ image {
   color: #FFFFFF;
   background: #7DD6D0;
   text-align: center; }
+
+.mp-swiper {
+  height: 620rpx;
+  background: #FFFFFF; }
+
+.taro-img__mode-scaletofill {
+  width: 100%;
+  height: 100%; }

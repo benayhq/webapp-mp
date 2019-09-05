@@ -46,7 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray7", "customer", "dispatchCustomerList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray151", "customer", "dispatchCustomerList"], _this.config = {
       navigationBarTitleText: '我的客户'
     }, _this.customComponents = ["Empty", "AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -82,34 +82,34 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray7 = void 0;
+      var loopArray151 = void 0;
 
       var customer = this.__state.customer;
 
       var renderTemplate = null;
       if (customer.length === 0) {} else {
-        loopArray7 = customer ? customer.map(function (item, _anonIdx) {
+        loopArray151 = customer ? customer.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = item.$original.name ? item.$original.name + ("" + (item.$original.weChatId === undefined ? '' : '   微信:' + item.$original.weChatId)) : null;
           var $loopState__temp4 = item.$original.name ? "\u7535\u8BDD:" + (item.$original.cellphone === null ? '未设置' : item.$original.cellphone) : null;
-          var $compid__57 = (0, _index.genCompid)(__prefix + "aPIDvctQvt" + _anonIdx);
+          var $compid__454 = (0, _index.genCompid)(__prefix + "cWdFqsWiKF" + _anonIdx);
           item.$original.name && _index.propsManager.set({
             "title": $loopState__temp2,
             "note": $loopState__temp4,
             "thumb": item.$original.profileUrl
-          }, $compid__57);
+          }, $compid__454);
           return {
             $loopState__temp2: $loopState__temp2,
             $loopState__temp4: $loopState__temp4,
-            $compid__57: $compid__57,
+            $compid__454: $compid__454,
             $original: item.$original
           };
         }) : [];
       }
       Object.assign(this.__state, {
-        loopArray7: loopArray7
+        loopArray151: loopArray151
       });
       return this.__state;
     }

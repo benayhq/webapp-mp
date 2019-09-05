@@ -42,7 +42,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CheckBox.__proto__ || Object.getPrototypeOf(CheckBox)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray16", "rootCls", "options", "selectedList", "className", "customStyle"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CheckBox.__proto__ || Object.getPrototypeOf(CheckBox)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray163", "rootCls", "options", "selectedList", "className", "customStyle"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CheckBox, [{
@@ -104,7 +104,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       var rootCls = (0, _index4.default)('mp-checkbox', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray16 = options ? options.map(function (option, idx) {
+      var loopArray163 = options ? options.map(function (option, idx) {
         option = {
           $original: (0, _index.internal_get_original)(option)
         };
@@ -131,7 +131,7 @@ var CheckBox = (_temp2 = _class = function (_BaseComponent) {
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray16: loopArray16,
+        loopArray163: loopArray163,
         rootCls: rootCls,
         options: options
       });

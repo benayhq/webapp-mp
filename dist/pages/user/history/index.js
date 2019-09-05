@@ -20,6 +20,8 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
+var _style = require("../../../utils/style.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -31,6 +33,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RECOMMEND_SIZE = 0,
+    globalLastItem = 0;
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
@@ -48,8 +53,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["actives", "dispatchDownLoadUrl", "dispatchActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "actives", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchActiveHistory"], _this.config = {
       navigationBarTitleText: '浏览历史'
+    }, _this.state = {
+      actives: [],
+      hasMore: true,
+      loading: false,
+      loaded: false
     }, _this.customComponents = ["Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -57,9 +67,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-      this.state = {
-        actives: []
-      };
+
       this.$$refs = [];
     }
   }, {
@@ -96,20 +104,73 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "loadData",
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      globalLastItem = 0;
+      RECOMMEND_SIZE = 0;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadMore();
+    }
+  }, {
+    key: "HandleActiveClick",
+    value: function HandleActiveClick(item) {
+      _index2.default.navigateTo({
+        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
+      });
+    }
+  }, {
+    key: "loadMore",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var historys, that, promises, response;
+        var payload, historys, that, promises, response;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                historys = [], that = this, promises = [];
-                _context2.next = 3;
-                return this.props.dispatchActiveHistory({});
+                console.log('loadMore');
+
+                if (!(!this.state.hasMore || this.state.loading)) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                return _context2.abrupt("return");
 
               case 3:
+
+                RECOMMEND_SIZE = RECOMMEND_SIZE + 6;
+                payload = {
+                  pageNo: 0,
+                  pageSize: RECOMMEND_SIZE
+                };
+
+
+                this.setState({ loading: true });
+                historys = [], that = this, promises = [];
+                _context2.next = 9;
+                return this.props.dispatchActiveHistory(payload);
+
+              case 9:
                 response = _context2.sent;
+
+                if (!(globalLastItem == response.content.length)) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                this.setState({
+                  loading: false,
+                  hasMore: false
+                });
+                return _context2.abrupt("return");
+
+              case 15:
+                globalLastItem = response.content.length;
+
+              case 16:
 
                 if (response.content) {
                   response.content.map(function (item, index) {
@@ -126,11 +187,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   }
                 }).then(function (response) {
                   that.setState({
-                    actives: historys
+                    actives: historys,
+                    loading: false,
+                    hasMore: true
+                  });
+                }).catch(function (response) {
+                  that.setState({
+                    loading: false,
+                    hasMore: false
                   });
                 });
 
-              case 6:
+              case 18:
               case "end":
                 return _context2.stop();
             }
@@ -138,24 +206,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee2, this);
       }));
 
-      function loadData() {
+      function loadMore() {
         return _ref3.apply(this, arguments);
       }
 
-      return loadData;
+      return loadMore;
     }()
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.loadData();
-    }
-  }, {
-    key: "HandleActiveClick",
-    value: function HandleActiveClick(item) {
-      _index2.default.navigateTo({
-        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
-      });
-    }
   }, {
     key: "_createData",
     value: function _createData() {
@@ -167,18 +223,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var actives = this.__state.actives;
 
-
       var renderTemplate = null;
-
       if (actives.length === 0) {} else {}
-
-      Object.assign(this.__state, {});
+      var anonymousState__temp = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["HandleActiveClick"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["HandleActiveClick", "loadMore"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

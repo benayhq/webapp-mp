@@ -5,9 +5,9 @@
                 <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;" mode="scaleToFill" src="{{categoryItem.productDocumentLocation}}"></image>
                 <view class="{{prefix + '__desc'}}">
                     <view>{{categoryItem.productName}}</view>
-                    <view><text class="{{prefix + '__order-price'}}">{{categoryItem.productDiscountPrice}}</text><text class="{{prefix + '__order-marketprice'}}">{{categoryItem.productPrice}}</text>
+                    <view><text class="{{prefix + '__order-price'}}">￥ {{categoryItem.productDiscountPrice}}</text><text class="{{prefix + '__order-marketprice'}}">￥ {{categoryItem.productPrice}}</text>
                     </view>
-                    <view><text class="{{prefix + '__order-money'}}">定金: {{categoryItem.productAdvance}} </text>
+                    <view><text class="{{prefix + '__order-money'}}">定金: ￥ {{categoryItem.productAdvance}} </text>
                     </view>
                 </view>
             </view>

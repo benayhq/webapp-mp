@@ -376,3 +376,10 @@
   width: 100%;
   height: 16rpx;
   line-height: 16rpx; }
+
+.submit-appointer {
+  float: right;
+  margin-top: 26rpx;
+  margin-right: 11rpx;
+  font-size: 46rpx;
+  color: #7dd6d0; }

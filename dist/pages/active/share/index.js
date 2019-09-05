@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__21", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__417", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '广告预览'
     }, _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
@@ -878,21 +878,21 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__21 = (0, _index.genCompid)(__prefix + "$compid__21");
+      var $compid__417 = (0, _index.genCompid)(__prefix + "$compid__417");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__21 = {
+      var $props__417 = {
         "config": this.__state.bannerConfig,
         "onCreateSuccess": this.onCreateSuccess,
         "onCreateFail": this.onCreateFail
       };
-      this.__state.canvasStatus && _index.propsManager.set($props__21, $compid__21);
+      this.__state.canvasStatus && _index.propsManager.set($props__417, $compid__417);
       Object.assign(this.__state, {
-        $compid__21: $compid__21
+        $compid__417: $compid__417
       });
       return this.__state;
     }

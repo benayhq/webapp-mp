@@ -20,6 +20,8 @@ var actions = _interopRequireWildcard(_actionCreators);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
+var _style = require("../../utils/style.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -48,7 +50,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__29", "$compid__30", "$compid__31", "$compid__32", "$compid__33", "$compid__34", "$compid__35", "$compid__36", "$compid__37", "$compid__38", "$compid__39", "$compid__40", "$compid__41", "$compid__42", "$compid__43", "$compid__44", "list", "current", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__425", "$compid__426", "$compid__427", "$compid__428", "$compid__429", "$compid__430", "$compid__431", "$compid__432", "$compid__433", "$compid__434", "$compid__435", "$compid__436", "$compid__437", "$compid__438", "$compid__439", "$compid__440", "list", "current", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
       navigationBarTitleText: '我的订单'
     }, _this.state = {
       current: 1,
@@ -56,13 +58,16 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       status: 'more',
       totalPage: 1,
       orderStatus: ''
+    }, _this.loadOrderList = function () {
+      console.log('loadOrderList');
     }, _this.customComponents = ["AtTabs", "AtTabsPane", "OrderItem", "AtLoadMore"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderList, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(OrderList.prototype.__proto__ || Object.getPrototypeOf(OrderList.prototype), "_constructor", this).apply(this, arguments);
+    value: function _constructor(props) {
+      _get(OrderList.prototype.__proto__ || Object.getPrototypeOf(OrderList.prototype), "_constructor", this).call(this, props);
+
       this.$$refs = [];
     }
   }, {
@@ -169,22 +174,22 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__29 = (0, _index.genCompid)(__prefix + "$compid__29");
-      var $compid__30 = (0, _index.genCompid)(__prefix + "$compid__30");
-      var $compid__31 = (0, _index.genCompid)(__prefix + "$compid__31");
-      var $compid__32 = (0, _index.genCompid)(__prefix + "$compid__32");
-      var $compid__33 = (0, _index.genCompid)(__prefix + "$compid__33");
-      var $compid__34 = (0, _index.genCompid)(__prefix + "$compid__34");
-      var $compid__35 = (0, _index.genCompid)(__prefix + "$compid__35");
-      var $compid__36 = (0, _index.genCompid)(__prefix + "$compid__36");
-      var $compid__37 = (0, _index.genCompid)(__prefix + "$compid__37");
-      var $compid__38 = (0, _index.genCompid)(__prefix + "$compid__38");
-      var $compid__39 = (0, _index.genCompid)(__prefix + "$compid__39");
-      var $compid__40 = (0, _index.genCompid)(__prefix + "$compid__40");
-      var $compid__41 = (0, _index.genCompid)(__prefix + "$compid__41");
-      var $compid__42 = (0, _index.genCompid)(__prefix + "$compid__42");
-      var $compid__43 = (0, _index.genCompid)(__prefix + "$compid__43");
-      var $compid__44 = (0, _index.genCompid)(__prefix + "$compid__44");
+      var $compid__425 = (0, _index.genCompid)(__prefix + "$compid__425");
+      var $compid__426 = (0, _index.genCompid)(__prefix + "$compid__426");
+      var $compid__427 = (0, _index.genCompid)(__prefix + "$compid__427");
+      var $compid__428 = (0, _index.genCompid)(__prefix + "$compid__428");
+      var $compid__429 = (0, _index.genCompid)(__prefix + "$compid__429");
+      var $compid__430 = (0, _index.genCompid)(__prefix + "$compid__430");
+      var $compid__431 = (0, _index.genCompid)(__prefix + "$compid__431");
+      var $compid__432 = (0, _index.genCompid)(__prefix + "$compid__432");
+      var $compid__433 = (0, _index.genCompid)(__prefix + "$compid__433");
+      var $compid__434 = (0, _index.genCompid)(__prefix + "$compid__434");
+      var $compid__435 = (0, _index.genCompid)(__prefix + "$compid__435");
+      var $compid__436 = (0, _index.genCompid)(__prefix + "$compid__436");
+      var $compid__437 = (0, _index.genCompid)(__prefix + "$compid__437");
+      var $compid__438 = (0, _index.genCompid)(__prefix + "$compid__438");
+      var $compid__439 = (0, _index.genCompid)(__prefix + "$compid__439");
+      var $compid__440 = (0, _index.genCompid)(__prefix + "$compid__440");
 
       var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
       var _state = this.__state,
@@ -193,106 +198,108 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           status = _state.status;
 
 
-      var $props__29 = {
+      var anonymousState__temp = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
+      var $props__425 = {
         "current": current,
         "tabList": tabList,
         "onClick": this.handleClick.bind(this)
       };
-      var $props__30 = {
+      var $props__426 = {
         "current": current,
         "index": 0
       };
-      var $props__31 = {
+      var $props__427 = {
         "list": list
       };
-      var $props__32 = {
+      var $props__428 = {
         "onClick": this.handleLoadMore.bind(this),
         "status": status
       };
-      var $props__33 = {
+      var $props__429 = {
         "current": current,
         "index": 1
       };
-      var $props__34 = {
+      var $props__430 = {
         "list": list
       };
-      var $props__35 = {
+      var $props__431 = {
         "onClick": this.handleLoadMore.bind(this, 'UNPAY'),
         "status": status
       };
-      var $props__36 = {
+      var $props__432 = {
         "current": current,
         "index": 2
       };
-      var $props__37 = {
+      var $props__433 = {
         "list": list
       };
-      var $props__38 = {
+      var $props__434 = {
         "onClick": this.handleLoadMore.bind(this, 'BATING'),
         "status": status
       };
-      var $props__39 = {
+      var $props__435 = {
         "current": current,
         "index": 3
       };
-      var $props__40 = {
+      var $props__436 = {
         "list": list
       };
-      var $props__41 = {
+      var $props__437 = {
         "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
         "status": status
       };
-      var $props__42 = {
+      var $props__438 = {
         "current": current,
         "index": 4
       };
-      var $props__43 = {
+      var $props__439 = {
         "list": list
       };
-      var $props__44 = {
+      var $props__440 = {
         "onClick": this.handleLoadMore.bind(this, 'CONSUMPTION'),
         "status": status
       };
-      _index.propsManager.set($props__29, $compid__29);
-      _index.propsManager.set($props__30, $compid__30);
-      _index.propsManager.set($props__31, $compid__31);
-      list.length > 0 && _index.propsManager.set($props__32, $compid__32);
-      _index.propsManager.set($props__33, $compid__33);
-      list && _index.propsManager.set($props__34, $compid__34);
-      list && list.length > 0 && _index.propsManager.set($props__35, $compid__35);
-      _index.propsManager.set($props__36, $compid__36);
-      list && _index.propsManager.set($props__37, $compid__37);
-      list && list.length > 0 && _index.propsManager.set($props__38, $compid__38);
-      _index.propsManager.set($props__39, $compid__39);
-      list && _index.propsManager.set($props__40, $compid__40);
-      list && list.length > 0 && _index.propsManager.set($props__41, $compid__41);
-      _index.propsManager.set($props__42, $compid__42);
-      list && _index.propsManager.set($props__43, $compid__43);
-      list && list.length > 0 && _index.propsManager.set($props__44, $compid__44);
+      _index.propsManager.set($props__425, $compid__425);
+      _index.propsManager.set($props__426, $compid__426);
+      _index.propsManager.set($props__427, $compid__427);
+      list.length > 0 && _index.propsManager.set($props__428, $compid__428);
+      _index.propsManager.set($props__429, $compid__429);
+      list && _index.propsManager.set($props__430, $compid__430);
+      list && list.length > 0 && _index.propsManager.set($props__431, $compid__431);
+      _index.propsManager.set($props__432, $compid__432);
+      list && _index.propsManager.set($props__433, $compid__433);
+      list && list.length > 0 && _index.propsManager.set($props__434, $compid__434);
+      _index.propsManager.set($props__435, $compid__435);
+      list && _index.propsManager.set($props__436, $compid__436);
+      list && list.length > 0 && _index.propsManager.set($props__437, $compid__437);
+      _index.propsManager.set($props__438, $compid__438);
+      list && _index.propsManager.set($props__439, $compid__439);
+      list && list.length > 0 && _index.propsManager.set($props__440, $compid__440);
       Object.assign(this.__state, {
-        $compid__29: $compid__29,
-        $compid__30: $compid__30,
-        $compid__31: $compid__31,
-        $compid__32: $compid__32,
-        $compid__33: $compid__33,
-        $compid__34: $compid__34,
-        $compid__35: $compid__35,
-        $compid__36: $compid__36,
-        $compid__37: $compid__37,
-        $compid__38: $compid__38,
-        $compid__39: $compid__39,
-        $compid__40: $compid__40,
-        $compid__41: $compid__41,
-        $compid__42: $compid__42,
-        $compid__43: $compid__43,
-        $compid__44: $compid__44
+        anonymousState__temp: anonymousState__temp,
+        $compid__425: $compid__425,
+        $compid__426: $compid__426,
+        $compid__427: $compid__427,
+        $compid__428: $compid__428,
+        $compid__429: $compid__429,
+        $compid__430: $compid__430,
+        $compid__431: $compid__431,
+        $compid__432: $compid__432,
+        $compid__433: $compid__433,
+        $compid__434: $compid__434,
+        $compid__435: $compid__435,
+        $compid__436: $compid__436,
+        $compid__437: $compid__437,
+        $compid__438: $compid__438,
+        $compid__439: $compid__439,
+        $compid__440: $compid__440
       });
       return this.__state;
     }
   }]);
 
   return OrderList;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["loadOrderList"], _class2.$$componentPath = "pages/order/index", _temp2)) || _class);
 exports.default = OrderList;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderList, true));

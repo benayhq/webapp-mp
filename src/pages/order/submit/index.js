@@ -104,16 +104,16 @@ export default class SubmitOrder extends Component{
 
     componentDidMount(){
         var payload = {
-            // productId:this.$router.params.productId
-            productId:100
+            productId:this.$router.params.productId
         };
-        // this.setState({
-        //     activityProductId:this.$router.params.productId,
-        //     activityName:this.$router.params.activityName
-        // });
 
         this.setState({
-            activityProductId:100,
+            activityProductId:this.$router.params.productId,
+            activityName:this.$router.params.activityName
+        });
+
+        this.setState({
+            activityProductId:this.$router.params.productId,
             activityName:this.$router.params.activityName
         });
 
@@ -174,10 +174,11 @@ export default class SubmitOrder extends Component{
 
                 <AtList>
                     <AtListItem
+                       hasBorder={false}
                         onClick={this.handleItemClick.bind(this)} 
                         title={cellPhone === ''? "":`客户:${name}`}
                         note={cellPhone === ''? "":`电话:${cellPhone}`}
-                        thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
+                        // thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
                         arrow='right'
                     />
                 </AtList>
@@ -187,7 +188,7 @@ export default class SubmitOrder extends Component{
                     <View className="submit-order_product-content">
                         <View>
                             <View className="submit-order_product-content-img">
-                            <image style="height:80px;width:80px;margin:0 auto;padding-left:10px;padding-top:5px;"
+                            <image style="height:100px;width:100px;margin:0 auto;padding-left:10px;padding-top:5px;"
                                     mode="scaleToFill"
                                     src={imgUrl}>
                             </image>
@@ -214,7 +215,10 @@ export default class SubmitOrder extends Component{
 
                   <View className="submit-order_product-appoint">
                         <Picker className="submit-order_product-appoint-picker" mode='date' onChange={this.onDateChange}>
-                                预约时间: {appointmentDate}
+                                <View className="item-extra__icon item-extra__icon">
+                                    预约时间: {appointmentDate}
+                                    <Text className="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right submit-appointer"></Text>
+                                </View>
                         </Picker>
                   </View> 
                     

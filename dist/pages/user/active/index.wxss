@@ -334,3 +334,7 @@ image {
 .mp-active-group {
   height: 60rpx;
   line-height: 60rpx; }
+
+.at-list__item .item-extra__switch {
+  vertical-align: middle;
+  margin-right: 64rpx; }

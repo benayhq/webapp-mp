@@ -260,20 +260,9 @@ export default class Detail extends Component{
         const {data,commentList,bannerList,activeId,comments,commentText} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
-
-        console.log('data-data-data',data);
         return (
             <View>
-                  {/* <NavBar
-                title='活动详情'
-                background='#fff'
-                back
-                home
-                onBack={this.handlerGobackClick.bind(this)}
-                onHome={this.handlerGohomeClick.bind(this)}
-                /> */}
                 <View className='mp-activedetail'>
-                
                     <ScrollView
                     scrollY
                     style={{ height }}>
@@ -287,7 +276,7 @@ export default class Detail extends Component{
                                     bannerList.map(item=>(
                                         <SwiperItem>
                                             <image
-                                            mode="scaleToFill"
+                                            className="taro-img__mode-scaletofill"
                                             src={item}
                                             ></image>
                                         </SwiperItem>
@@ -325,7 +314,6 @@ export default class Detail extends Component{
                             <Text>咨询产品</Text>
                             <Text>艾美玻尿酸 0.8ml 2支</Text>
                         </View> */}
-
                         <View className="mp-activedetail__person">
                             <View className="mp-activedetail__header">
                                     <image

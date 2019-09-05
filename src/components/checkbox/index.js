@@ -65,16 +65,16 @@ export default class CheckBox extends Component{
                                         data.imgUrl && 
                                         <View>
                                             <image
-                                            style="width:90px; height:90px;margin-top:8px; margin-left:5px; margin-right:5px;"
+                                            style="width:90px; height:90px;margin-top:8px; margin-left:5px; margin-right:5px;border-radius:5px;"
                                             mode="scaleToFill"
                                             src={data.imgUrl}
                                             ></image>
                                         </View>
                                    }
                                    <View className='mp-checkbox__title'>
-                                        <View>
+                                        <View >
                                             <Text style='margin-left:10px;display:block;'>{data.location}{data.desc}</Text>
-                                            <View>
+                                            <View className='mp-checkbox__price-wrapper'>
                                                 <Text className='mp-checkbox__price'> ￥{data.price} </Text>
                                                 <Text className='mp-checkbox__marketprice'> {data.marketPrice} </Text>
                                             </View>

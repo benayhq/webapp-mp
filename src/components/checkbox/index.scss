@@ -76,6 +76,11 @@ $component: '.mp-checkbox';
         font-size: 36px;
     }
 
+    &__price-wrapper{
+        float: left;
+        width: 200px;
+    }
+
     &__marketprice{
         display: inline-block;
         margin-left: 15px;

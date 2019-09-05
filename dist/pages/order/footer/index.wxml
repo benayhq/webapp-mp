@@ -1,8 +1,8 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="footer">
         <block wx:if="{{qrCode}}">
-            <code compid="{{$compid__62}}"></code>
+            <code compid="{{$compid__63}}"></code>
         </block>
-        <info compid="{{$compid__63}}"></info>
+        <info compid="{{$compid__64}}"></info>
     </view>
 </block>

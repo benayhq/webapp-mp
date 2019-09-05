@@ -53,7 +53,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__12", "$compid__13", "$compid__14", "$compid__15", "$compid__16", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__408", "$compid__409", "$compid__410", "$compid__411", "$compid__412", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '个人信息'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -391,11 +391,11 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__12 = (0, _index.genCompid)(__prefix + "$compid__12");
-      var $compid__13 = (0, _index.genCompid)(__prefix + "$compid__13");
-      var $compid__14 = (0, _index.genCompid)(__prefix + "$compid__14");
-      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
-      var $compid__16 = (0, _index.genCompid)(__prefix + "$compid__16");
+      var $compid__408 = (0, _index.genCompid)(__prefix + "$compid__408");
+      var $compid__409 = (0, _index.genCompid)(__prefix + "$compid__409");
+      var $compid__410 = (0, _index.genCompid)(__prefix + "$compid__410");
+      var $compid__411 = (0, _index.genCompid)(__prefix + "$compid__411");
+      var $compid__412 = (0, _index.genCompid)(__prefix + "$compid__412");
 
       var _state = this.__state,
           userName = _state.userName,
@@ -405,7 +405,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           address = _state.address,
           qrCode = _state.qrCode;
 
-      var $props__12 = {
+      var $props__408 = {
         "name": "value1",
         "title": "\u59D3\u540D",
         "type": "text",
@@ -413,7 +413,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": userName,
         "onChange": this.handleUserNameChange.bind(this)
       };
-      var $props__13 = {
+      var $props__409 = {
         "name": "value6",
         "title": "\u624B\u673A\u53F7\u7801",
         "type": "phone",
@@ -421,7 +421,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": cellPhone,
         "onChange": this.handleMobileChange.bind(this)
       };
-      var $props__14 = {
+      var $props__410 = {
         "name": "value1",
         "title": "\u5FAE\u4FE1",
         "type": "text",
@@ -429,26 +429,26 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         "value": weixin,
         "onChange": this.handleWeChatChange.bind(this)
       };
-      var $props__15 = {
+      var $props__411 = {
         "className": "uploadPicker",
         "files": this.__state.files,
         "onChange": this.handleUploadChange.bind(this)
       };
-      var $props__16 = {
+      var $props__412 = {
         "type": "primary",
         "onClick": this.handleSaveUserInfo.bind(this)
       };
-      _index.propsManager.set($props__12, $compid__12);
-      _index.propsManager.set($props__13, $compid__13);
-      _index.propsManager.set($props__14, $compid__14);
-      _index.propsManager.set($props__15, $compid__15);
-      _index.propsManager.set($props__16, $compid__16);
+      _index.propsManager.set($props__408, $compid__408);
+      _index.propsManager.set($props__409, $compid__409);
+      _index.propsManager.set($props__410, $compid__410);
+      _index.propsManager.set($props__411, $compid__411);
+      _index.propsManager.set($props__412, $compid__412);
       Object.assign(this.__state, {
-        $compid__12: $compid__12,
-        $compid__13: $compid__13,
-        $compid__14: $compid__14,
-        $compid__15: $compid__15,
-        $compid__16: $compid__16
+        $compid__408: $compid__408,
+        $compid__409: $compid__409,
+        $compid__410: $compid__410,
+        $compid__411: $compid__411,
+        $compid__412: $compid__412
       });
       return this.__state;
     }

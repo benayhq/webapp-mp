@@ -98,15 +98,13 @@ exports.default = function () {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        console.log('resresresres', res);
-
                         if (!(url !== _api.API_GET_USER_INFO)) {
-                          _context2.next = 5;
+                          _context2.next = 4;
                           break;
                         }
 
                         if (!(res.data && res.data.error === "LOGIN")) {
-                          _context2.next = 5;
+                          _context2.next = 4;
                           break;
                         }
 
@@ -115,19 +113,19 @@ exports.default = function () {
                         });
                         return _context2.abrupt("return");
 
-                      case 5:
+                      case 4:
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context2.next = 8;
+                          _context2.next = 7;
                           break;
                         }
 
-                        _context2.next = 8;
+                        _context2.next = 7;
                         return updateStorage(res.data);
 
-                      case 8:
+                      case 7:
                         return _context2.abrupt("return", res.data);
 
-                      case 9:
+                      case 8:
                       case "end":
                         return _context2.stop();
                     }

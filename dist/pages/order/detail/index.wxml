@@ -1,9 +1,9 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-order-detail">
-        <header compid="{{$compid__107}}"></header>
-        <assemble compid="{{$compid__108}}"></assemble>
-        <order-product compid="{{$compid__109}}"></order-product>
-        <footer compid="{{$compid__110}}"></footer>
-        <tool-bar compid="{{$compid__111}}"></tool-bar>
+        <header compid="{{$compid__339}}"></header>
+        <assemble compid="{{$compid__340}}"></assemble>
+        <order-product compid="{{$compid__341}}"></order-product>
+        <footer compid="{{$compid__342}}"></footer>
+        <tool-bar compid="{{$compid__343}}"></tool-bar>
     </view>
 </block>

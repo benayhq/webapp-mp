@@ -54,7 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray166", "activeList", "agentId", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.customComponents = ["AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -224,6 +224,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "handleSwithActive",
+    value: function handleSwithActive(item) {
+      console.log('item', item);
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       var _this3 = this;
@@ -233,35 +238,37 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray11 = void 0;
+      var loopArray166 = void 0;
 
       var activeList = this.__state.activeList;
 
       var renderTemplate = null;
       if (activeList.length > 0) {
-        loopArray11 = activeList ? activeList.map(function (item, _anonIdx) {
+        loopArray166 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__59 = (0, _index.genCompid)(__prefix + "FlrHDqsARC" + _anonIdx);
+          var $compid__460 = (0, _index.genCompid)(__prefix + "ydFsKazDDJ" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
             "note": $loopState__temp2,
             "thumb": item.$original.url,
-            "arrow": "right"
-          }, $compid__59);
+            "arrow": "right",
+            "isSwitch": true,
+            "onSwitchChange": _this3.handleSwithActive.bind(_this3, item.$original)
+          }, $compid__460);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__59: $compid__59,
+            $compid__460: $compid__460,
             $original: item.$original
           };
         }) : [];
       } else {}
 
       Object.assign(this.__state, {
-        loopArray11: loopArray11
+        loopArray166: loopArray166
       });
       return this.__state;
     }

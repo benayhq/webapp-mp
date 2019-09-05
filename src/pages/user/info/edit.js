@@ -270,10 +270,11 @@ class Edit extends Component{
                             files={this.state.files}
                             onChange={this.handleUploadChange.bind(this)}
                     />
-                    <View className="user-submit">
+                   
+                </AtForm>
+                <View className="user-submit">
                             <AtButton type='primary' onClick={this.handleSaveUserInfo.bind(this)}>保存</AtButton>
                     </View>
-                </AtForm>
             </View>
         );
     }

@@ -4,7 +4,7 @@
             <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
                 <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
                     <swiper-item wx:for="{{bannerList}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                        <image mode="scaleToFill" src="{{item}}"></image>
+                        <image className="taro-img__mode-scaletofill" src="{{item}}"></image>
                     </swiper-item>
                 </swiper>
                 <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
@@ -111,12 +111,12 @@
                     <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">参与拼团</view>
                 </view>
             </scroll-view>
-            <popup compid="{{$compid__46}}">
+            <popup compid="{{$compid__442}}">
                 <block wx:if="{{bContact}}">
-                    <contact compid="{{$compid__47}}"></contact>
+                    <contact compid="{{$compid__443}}"></contact>
                 </block>
                 <block wx:if="{{bSpec}}">
-                    <spec compid="{{$compid__48}}"></spec>
+                    <spec compid="{{$compid__444}}"></spec>
                 </block>
             </popup>
         </view>
