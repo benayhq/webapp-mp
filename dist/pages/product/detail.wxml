@@ -2,11 +2,7 @@
     <view>
         <view class="mp-activedetail">
             <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
-                <swiper class="mp-swiper" indicator-color="#999" indicator-active-color="#333" indicator-dots="{{true}}" autoplay="{{true}}">
-                    <swiper-item wx:for="{{bannerList}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                        <image className="taro-img__mode-scaletofill" src="{{item}}"></image>
-                    </swiper-item>
-                </swiper>
+                <gallery compid="{{$compid__781}}"></gallery>
                 <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
                 </view>
                 <view class="mp-activedetail__price">
@@ -37,7 +33,7 @@
                         <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.batchPeople}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this"> <text class="mp-icon mp-icon-arrow1"></text></text>
                         </view>
                         <block wx:if="{{data.activityBatchVos}}">
-                            <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx4">
+                            <view class="mp-activedetail__second" wx:for="{{data.activityBatchVos}}" wx:for-item="batch" wx:for-index="_anonIdx2">
                                 <view>
                                     <image className="mp-activedetail__second-image" mode="scaleToFill" src="{{batch.profileUrl}}"></image>
                                 </view>
@@ -68,7 +64,7 @@
                                 <view class="mp-activedetail__comment-description">{{data.commentVo.message}}
                                     <view>
                                         <block wx:if="{{commentList}}">
-                                            <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx6"></image>
+                                            <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx4"></image>
                                         </block>
                                     </view>
                                 </view>
@@ -76,7 +72,7 @@
                         </view>
                     </block>
                     <block wx:if="{{comments.length > 0}}">
-                        <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx10">
+                        <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx8">
                             <view class="mp-activedetail__comment-content-left">
                                 <image mode="scaleToFill" src="{{item.profileUrl}}"></image>
                             </view>
@@ -87,7 +83,7 @@
                                 <view class="mp-activedetail__comment-description">{{item.message}}
                                     <view>
                                         <block wx:if="{{item.docLocations}}">
-                                            <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx8"></image>
+                                            <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx6"></image>
                                         </block>
                                     </view>
                                 </view>
@@ -110,13 +106,35 @@
                     </view>
                     <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">参与拼团</view>
                 </view>
+                <view class="mp-share" bindtap="handleShare" data-e-tap-so="this">
+                    <view>
+                        <view class="mp-icon mp-icon-share"></view>
+                    </view>
+                </view>
             </scroll-view>
-            <popup compid="{{$compid__442}}">
+            <at-modal compid="{{$compid__782}}">
+                <at-modal-content>
+                    <view class="mp-share-haibao">
+                        <view bindtap="handleSendFriend" data-e-tap-so="this">
+                            <view class="mp-haibao mp-icon mp-icon-wechat"></view>
+                            <view>发送给朋友</view>
+                        </view>
+                        <view bindtap="handleCreatePosters" data-e-tap-so="this">
+                            <view class="mp-icon mp-icon-haibao"></view>
+                            <view>生成海报</view>
+                        </view>
+                    </view>
+                </at-modal-content>
+                <at-modal-action>
+                    <button bindtap="handleCancelShare" data-e-tap-so="this">取 消</button>
+                </at-modal-action>
+            </at-modal>
+            <popup compid="{{$compid__783}}">
                 <block wx:if="{{bContact}}">
-                    <contact compid="{{$compid__443}}"></contact>
+                    <contact compid="{{$compid__784}}"></contact>
                 </block>
                 <block wx:if="{{bSpec}}">
-                    <spec compid="{{$compid__444}}"></spec>
+                    <spec compid="{{$compid__785}}"></spec>
                 </block>
             </popup>
         </view>

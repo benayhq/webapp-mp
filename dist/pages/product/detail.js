@@ -54,35 +54,36 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__442", "$compid__443", "$compid__444", "bannerList", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "activeId", "referId", "source", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__781", "$compid__782", "$compid__783", "$compid__784", "$compid__785", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
+    }, _this.state = {
+      isOpened: false,
+      categoryDialog: false,
+      visible: false,
+      bSpec: true,
+      bContact: false,
+      showOrderDialog: false,
+      data: {},
+      commentList: [],
+      bannerList: [],
+      comments: [],
+      activeId: '',
+      referId: '',
+      source: '',
+      commentText: '查看全部评论',
+      isShare: false
     }, _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.customComponents = ["Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Gallery", "AtModal", "AtModalContent", "AtModalAction", "Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detail, [{
     key: "_constructor",
-    value: function _constructor() {
-      _get(Detail.prototype.__proto__ || Object.getPrototypeOf(Detail.prototype), "_constructor", this).apply(this, arguments);
-      this.state = {
-        isOpened: false,
-        categoryDialog: false,
-        visible: false,
-        bSpec: true,
-        bContact: false,
-        showOrderDialog: false,
-        data: {},
-        commentList: [],
-        bannerList: [],
-        comments: [],
-        activeId: '',
-        referId: '',
-        source: '',
-        commentText: '查看全部评论'
-      };
+    value: function _constructor(props) {
+      _get(Detail.prototype.__proto__ || Object.getPrototypeOf(Detail.prototype), "_constructor", this).call(this, props);
+
       this.$$refs = [];
     }
   }, {
@@ -296,9 +297,12 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleShare",
     value: function handleShare() {
-      wx.showShareMenu({
-        withShareTicket: true
+      this.setState({
+        isShare: true
       });
+      // wx.showShareMenu({
+      //     withShareTicket: true
+      // })
     }
   }, {
     key: "handleAllComment",
@@ -385,14 +389,32 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "handlerGobackClick",
-    value: function handlerGobackClick() {}
-  }, {
-    key: "handlerGohomeClick",
-    value: function handlerGohomeClick() {
-      _index2.default.navigateTo({
-        url: '/pages/user/index'
+    key: "handleCancelShare",
+    value: function handleCancelShare() {
+      this.setState({
+        isShare: false
       });
+    }
+  }, {
+    key: "handleCreatePosters",
+    value: function handleCreatePosters() {
+      _index2.default.navigateTo({
+        url: "/pages/active/share/index?activeId=" + this.state.activeId
+      });
+    }
+  }, {
+    key: "handleSendFriend",
+    value: function handleSendFriend(e) {
+      wx.showShareMenu({
+        withShareTicket: true
+      });
+      console.log('fdasfd');
+      var sharePath = "pages/product/detail?activeId=" + this.state.activeId + "&refId=" + this.state.referId;
+      return {
+        title: '商品详情',
+        path: sharePath,
+        imageUrl: ''
+      };
     }
   }, {
     key: "_createData",
@@ -402,9 +424,11 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__442 = (0, _index.genCompid)(__prefix + "$compid__442");
-      var $compid__443 = (0, _index.genCompid)(__prefix + "$compid__443");
-      var $compid__444 = (0, _index.genCompid)(__prefix + "$compid__444");
+      var $compid__781 = (0, _index.genCompid)(__prefix + "$compid__781");
+      var $compid__782 = (0, _index.genCompid)(__prefix + "$compid__782");
+      var $compid__783 = (0, _index.genCompid)(__prefix + "$compid__783");
+      var $compid__784 = (0, _index.genCompid)(__prefix + "$compid__784");
+      var $compid__785 = (0, _index.genCompid)(__prefix + "$compid__785");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -422,34 +446,44 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           showOrderDialog = _state3.showOrderDialog;
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__442 = {
+      var $props__781 = {
+        "list": bannerList
+      };
+      var $props__782 = {
+        "isOpened": this.__state.isShare
+      };
+      var $props__783 = {
         "visible": this.__state.visible,
         "onClose": this.toggleVisible
       };
-      var $props__443 = {
+      var $props__784 = {
         "cellphone": data.cellphone,
         "weChatId": data.weChatId,
         "weChatQrCode": data.weChatQrCode
       };
-      var $props__444 = {
+      var $props__785 = {
         "activityName": data.activityName,
         "products": data.activityProducts
       };
-      _index.propsManager.set($props__442, $compid__442);
-      bContact && _index.propsManager.set($props__443, $compid__443);
-      bSpec && _index.propsManager.set($props__444, $compid__444);
+      _index.propsManager.set($props__781, $compid__781);
+      _index.propsManager.set($props__782, $compid__782);
+      _index.propsManager.set($props__783, $compid__783);
+      bContact && _index.propsManager.set($props__784, $compid__784);
+      bSpec && _index.propsManager.set($props__785, $compid__785);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__442: $compid__442,
-        $compid__443: $compid__443,
-        $compid__444: $compid__444
+        $compid__781: $compid__781,
+        $compid__782: $compid__782,
+        $compid__783: $compid__783,
+        $compid__784: $compid__784,
+        $compid__785: $compid__785
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "openDialog"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "openDialog", "handleShare", "handleSendFriend", "handleCreatePosters", "handleCancelShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

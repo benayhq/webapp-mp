@@ -1,7 +1,7 @@
 import Taro,{Component} from '@tarojs/taro';
 import {View,Text,Swiper,SwiperItem,ScrollView} from '@tarojs/components';
 import './detail.scss';
-import { AtButton,AtFab} from 'taro-ui';
+import { AtButton,AtFab,AtModal, AtModalHeader, AtModalContent, AtModalAction} from 'taro-ui';
 import Modal from './../../components/modal';
 import {Popup} from './../../components/popup/index';
 import Spec from './spec/index';
@@ -11,6 +11,8 @@ import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
 import NavBar from 'taro-navigationbar';
+import Gallery from './gallery';
+
 var commentArray=[],totalCommentCount=0,pageNumberCount=0;
 
 @connect(state=>state,actions)
@@ -19,26 +21,24 @@ export default class Detail extends Component{
         navigationBarTitleText: '活动详情'
     }
 
-    constructor(){
-        super(...arguments);
-        this.state = {
-            isOpened: false,
-            categoryDialog: false,
-            visible: false,
-            bSpec: true,
-            bContact: false,
-            showOrderDialog:false,
-            data:{},
-            commentList:[],
-            bannerList:[],
-            comments:[],
-            activeId:'',
-            referId:'',
-            source:'',
-            commentText:'查看全部评论'
-        }
+    state = {
+        isOpened: false,
+        categoryDialog: false,
+        visible: false,
+        bSpec: true,
+        bContact: false,
+        showOrderDialog:false,
+        data:{},
+        commentList:[],
+        bannerList:[],
+        comments:[],
+        activeId:'',
+        referId:'',
+        source:'',
+        commentText:'查看全部评论',
+        isShare:false
     }
-    
+
     init(){
         this.initLogin();
     }
@@ -184,9 +184,12 @@ export default class Detail extends Component{
     }
 
     handleShare(){
-        wx.showShareMenu({
-            withShareTicket: true
+        this.setState({
+            isShare:true
         })
+        // wx.showShareMenu({
+        //     withShareTicket: true
+        // })
     }
 
     handleAllComment(data){
@@ -245,16 +248,31 @@ export default class Detail extends Component{
         return result.content;
     }
 
-    handlerGobackClick(){
-
-    }
-
-    handlerGohomeClick(){
-        Taro.navigateTo({
-            url: '/pages/user/index'
+    handleCancelShare(){
+        this.setState({
+            isShare:false
         });
     }
 
+    handleCreatePosters(){
+        Taro.navigateTo({
+            url:`/pages/active/share/index?activeId=${this.state.activeId}`
+          })
+    }
+
+    handleSendFriend(e){
+        wx.showShareMenu({
+            withShareTicket: true
+        });
+        console.log('fdasfd');
+        const sharePath = `pages/product/detail?activeId=${this.state.activeId}&refId=${this.state.referId}`; 
+        return {
+          title: '商品详情',
+          path: sharePath,
+          imageUrl: ''
+        };
+    }
+    
 
     render(){
         const {data,commentList,bannerList,activeId,comments,commentText} = this.state;
@@ -266,7 +284,8 @@ export default class Detail extends Component{
                     <ScrollView
                     scrollY
                     style={{ height }}>
-                        <Swiper
+                         <Gallery list={bannerList} />
+                        {/* <Swiper
                             className='mp-swiper'
                             indicatorColor='#999'
                             indicatorActiveColor='#333'
@@ -282,7 +301,7 @@ export default class Detail extends Component{
                                         </SwiperItem>
                                     ))
                                 }
-                        </Swiper>
+                        </Swiper> */}
 
                         <View className="mp-activedetail__user">
                             <Text>好友 </Text>
@@ -314,6 +333,7 @@ export default class Detail extends Component{
                             <Text>咨询产品</Text>
                             <Text>艾美玻尿酸 0.8ml 2支</Text>
                         </View> */}
+                      
                         <View className="mp-activedetail__person">
                             <View className="mp-activedetail__header">
                                     <image
@@ -470,6 +490,7 @@ export default class Detail extends Component{
                         </View>
                         
                         <View className="mp-activedetail__footer">
+                        
                             <View>
                                 <View className="mp-activedetail__orderpay_footer">预定金: 
                                     <Text style="color:rgba(235,47,150,1);">￥{data.advance}</Text>
@@ -483,10 +504,31 @@ export default class Detail extends Component{
                             参与拼团
                             </View>
                         </View>
-                        {/* <View className="mp-service" onClick={this.handleShare.bind(this)}>
-                            分 享
-                        </View> */}
+                     
+                       
+                        <View className="mp-share" onClick={this.handleShare.bind(this)}>
+                           <View>
+                                <View className="mp-icon mp-icon-share"></View>
+                           </View>
+                        </View>
                     </ScrollView>
+
+
+                    <AtModal isOpened={this.state.isShare}>
+                        <AtModalContent>
+                            <View className="mp-share-haibao">
+                                <View onClick={this.handleSendFriend.bind(this)}>
+                                    <View className="mp-haibao mp-icon mp-icon-wechat"></View>
+                                    <View>发送给朋友</View>
+                                </View>
+                                <View onClick={this.handleCreatePosters.bind(this)}>
+                                    <View className="mp-icon mp-icon-haibao"></View>
+                                    <View>生成海报</View>
+                                </View>
+                            </View>
+                        </AtModalContent>
+                        <AtModalAction> <Button onClick={this.handleCancelShare.bind(this)}>取 消</Button> </AtModalAction>
+                    </AtModal>
 
                     <Popup 
                     visible={this.state.visible}
@@ -502,6 +544,8 @@ export default class Detail extends Component{
                     {/* <Modal isOpened={showOrderDialog}>
                         <TuanList/>
                     </Modal> */}
+
+
                 </View>
             </View>
         )
