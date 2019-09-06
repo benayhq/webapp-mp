@@ -79,7 +79,7 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray14", "rootCls", "matrix", "mode", "files", "multiple", "onFail", "className", "customStyle", "length", "showAddBtn"], _this.chooseFile = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray12", "rootCls", "matrix", "mode", "files", "multiple", "onFail", "className", "customStyle", "length", "showAddBtn"], _this.chooseFile = function () {
       var _this$props = _this.props,
           _this$props$files = _this$props.files,
           files = _this$props$files === undefined ? [] : _this$props$files,
@@ -143,7 +143,7 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       var rootCls = (0, _index6.default)('at-image-picker', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray14 = matrix.map(function (row, i) {
+      var loopArray12 = matrix.map(function (row, i) {
         row = {
           $original: (0, _index.internal_get_original)(row)
         };
@@ -166,7 +166,7 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray14: loopArray14,
+        loopArray12: loopArray12,
         rootCls: rootCls,
         matrix: matrix,
         mode: mode

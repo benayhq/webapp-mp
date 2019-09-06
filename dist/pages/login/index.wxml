@@ -4,7 +4,7 @@
             <view class="login-font">美拼LOGO</view>
         </view>
         <view class="login-action">
-            <at-button compid="{{$compid__457}}">授权登录</at-button>
+            <at-button compid="{{$compid__53}}">授权登录</at-button>
         </view>
     </view>
 </block>

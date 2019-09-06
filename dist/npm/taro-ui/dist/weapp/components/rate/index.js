@@ -48,7 +48,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtRate.__proto__ || Object.getPrototypeOf(AtRate)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray20", "classNameArr", "customStyle", "className", "value", "max", "size", "margin"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtRate.__proto__ || Object.getPrototypeOf(AtRate)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray19", "classNameArr", "customStyle", "className", "value", "max", "size", "margin"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtRate, [{
@@ -104,7 +104,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
 
       var anonymousState__temp = (0, _index6.default)('at-rate', className);
       var anonymousState__temp2 = (0, _index.internal_inline_style)(customStyle);
-      var loopArray20 = classNameArr.map(function (cls, i) {
+      var loopArray19 = classNameArr.map(function (cls, i) {
         cls = {
           $original: (0, _index.internal_get_original)(cls)
         };
@@ -121,7 +121,7 @@ var AtRate = (_temp2 = _class = function (_AtComponent) {
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        loopArray20: loopArray20,
+        loopArray19: loopArray19,
         classNameArr: classNameArr
       });
       return this.__state;

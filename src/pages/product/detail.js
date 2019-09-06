@@ -1,7 +1,7 @@
 import Taro,{Component} from '@tarojs/taro';
 import {View,Text,Swiper,SwiperItem,ScrollView} from '@tarojs/components';
 import './detail.scss';
-import { AtButton,AtFab,AtModal, AtModalHeader, AtModalContent, AtModalAction} from 'taro-ui';
+import { AtButton,AtFab,AtModal, AtModalHeader, AtModalContent, AtModalAction,AtToast} from 'taro-ui';
 import Modal from './../../components/modal';
 import {Popup} from './../../components/popup/index';
 import Spec from './spec/index';
@@ -10,8 +10,8 @@ import {getWindowHeight} from './../../utils/style';
 import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
-import NavBar from 'taro-navigationbar';
 import Gallery from './gallery';
+const ICON = 'check'
 
 var commentArray=[],totalCommentCount=0,pageNumberCount=0;
 
@@ -36,7 +36,8 @@ export default class Detail extends Component{
         referId:'',
         source:'',
         commentText:'查看全部评论',
-        isShare:false
+        isShare:false,
+        isForwarding:false
     }
 
     init(){
@@ -260,22 +261,43 @@ export default class Detail extends Component{
           })
     }
 
-    handleSendFriend(e){
-        wx.showShareMenu({
-            withShareTicket: true
-        });
-        console.log('fdasfd');
-        const sharePath = `pages/product/detail?activeId=${this.state.activeId}&refId=${this.state.referId}`; 
+    onShareAppMessage(ops){
+
+        if (ops.from === 'button') {
+            var that = this;
+            that.setState({
+                isShare:false
+            });
+            setTimeout(()=>{
+                wx.showToast({
+                    title: "转发成功",
+                    icon: 'success',
+                    duration: 3000
+                });
+            },3000)
+        }
+
         return {
-          title: '商品详情',
-          path: sharePath,
-          imageUrl: ''
-        };
+          title: this.state.data.activityName,
+          path: `pages/product/detail?activeId=${this.state.activeId}&refId=${this.state.referId}`,  // 路径，传递参数到指定页面。
+          imageUrl:this.state.bannerList[0].item, // 分享的封面图
+          success: function (res) {
+          },
+          fail: function (res) {
+          }
+        }
+      }
+
+    handleJumpHome(){
+        Taro.navigateTo({
+            url:`../../pages/user/index`
+          })
     }
+    
     
 
     render(){
-        const {data,commentList,bannerList,activeId,comments,commentText} = this.state;
+        const {data,commentList,bannerList,activeId,isForwarding,comments,commentText} = this.state;
         const height = getWindowHeight(false);
         const { isOpened,bSpec,bContact,showOrderDialog } = this.state;
         return (
@@ -285,24 +307,6 @@ export default class Detail extends Component{
                     scrollY
                     style={{ height }}>
                          <Gallery list={bannerList} />
-                        {/* <Swiper
-                            className='mp-swiper'
-                            indicatorColor='#999'
-                            indicatorActiveColor='#333'
-                            indicatorDots
-                            autoplay>
-                                {
-                                    bannerList.map(item=>(
-                                        <SwiperItem>
-                                            <image
-                                            className="taro-img__mode-scaletofill"
-                                            src={item}
-                                            ></image>
-                                        </SwiperItem>
-                                    ))
-                                }
-                        </Swiper> */}
-
                         <View className="mp-activedetail__user">
                             <Text>好友 </Text>
                             <Text> {data.nickname} </Text>
@@ -497,11 +501,14 @@ export default class Detail extends Component{
                                 </View>
                                 <View className="mp-activedetail__orderpay_face_footer">当面付: ￥{data.cashAdvance} </View>
                             </View>
-                            <View className="mp-activedetail__zixun_footer">
-                                <View className="mp-icon mp-icon-telphone" onClick={this.openDialog.bind(this)} style="padding-right:20px;"></View> 
+                            <View className="mp-activedetail__home_footer"  onClick={this.handleJumpHome.bind(this)} >
+                                <View className="mp-icon mp-icon-home"></View> 
+                            </View>
+                            <View className="mp-activedetail__zixun_footer"  onClick={this.openDialog.bind(this)}>
+                                <View className="mp-icon mp-icon-telphone"></View> 
                             </View>
                             <View className="mp-activedetail__action__footer" onClick={this.openCategoryDialog.bind(this)}>
-                            参与拼团
+                                参与拼团
                             </View>
                         </View>
                      
@@ -517,8 +524,17 @@ export default class Detail extends Component{
                     <AtModal isOpened={this.state.isShare}>
                         <AtModalContent>
                             <View className="mp-share-haibao">
-                                <View onClick={this.handleSendFriend.bind(this)}>
+                                {/* <View onClick={this.handleSendFriend.bind(this)}>
                                     <View className="mp-haibao mp-icon mp-icon-wechat"></View>
+                                    <View>发送给朋友</View>
+                                </View> */}
+                              
+                                <View>
+                                    <View  className="mp-haibao mp-icon mp-icon-wechat"> 
+                                        <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">
+                                        发送给朋友
+                                        </button>
+                                    </View>
                                     <View>发送给朋友</View>
                                 </View>
                                 <View onClick={this.handleCreatePosters.bind(this)}>

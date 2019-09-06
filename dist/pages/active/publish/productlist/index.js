@@ -36,7 +36,7 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray15", "products"], _this.customComponents = ["AtInput"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray13", "products"], _this.customComponents = ["AtInput"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProductList, [{
@@ -61,24 +61,24 @@ var ProductList = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray15 = this.__props.products != null ? this.__props.products.map(function (item, _anonIdx) {
+      var loopArray13 = this.__props.products != null ? this.__props.products.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__73 = (0, _index.genCompid)(__prefix + "WTWIFQcIhf" + _anonIdx);
+        var $compid__57 = (0, _index.genCompid)(__prefix + "QMOKJRtsKx" + _anonIdx);
         _index.propsManager.set({
           "name": "value",
           "type": "text",
           "value": item.$original.discountPrice,
           "onChange": _this2.handleChange.bind(_this2)
-        }, $compid__73);
+        }, $compid__57);
         return {
-          $compid__73: $compid__73,
+          $compid__57: $compid__57,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray15: loopArray15
+        loopArray13: loopArray13
       });
       return this.__state;
     }

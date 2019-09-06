@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__413", "$compid__414", "$compid__415", "$compid__416", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__12", "$compid__13", "$compid__14", "$compid__15", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -651,10 +651,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__413 = (0, _index.genCompid)(__prefix + "$compid__413");
-      var $compid__414 = (0, _index.genCompid)(__prefix + "$compid__414");
-      var $compid__415 = (0, _index.genCompid)(__prefix + "$compid__415");
-      var $compid__416 = (0, _index.genCompid)(__prefix + "$compid__416");
+      var $compid__12 = (0, _index.genCompid)(__prefix + "$compid__12");
+      var $compid__13 = (0, _index.genCompid)(__prefix + "$compid__13");
+      var $compid__14 = (0, _index.genCompid)(__prefix + "$compid__14");
+      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -665,33 +665,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__413 = {
+      var $props__12 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__414 = {
+      var $props__13 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__415 = {
+      var $props__14 = {
         "products": products
       };
-      var $props__416 = {
+      var $props__15 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__413, $compid__413);
-      _index.propsManager.set($props__414, $compid__414);
-      _index.propsManager.set($props__415, $compid__415);
-      _index.propsManager.set($props__416, $compid__416);
+      _index.propsManager.set($props__12, $compid__12);
+      _index.propsManager.set($props__13, $compid__13);
+      _index.propsManager.set($props__14, $compid__14);
+      _index.propsManager.set($props__15, $compid__15);
       Object.assign(this.__state, {
-        $compid__413: $compid__413,
-        $compid__414: $compid__414,
-        $compid__415: $compid__415,
-        $compid__416: $compid__416
+        $compid__12: $compid__12,
+        $compid__13: $compid__13,
+        $compid__14: $compid__14,
+        $compid__15: $compid__15
       });
       return this.__state;
     }

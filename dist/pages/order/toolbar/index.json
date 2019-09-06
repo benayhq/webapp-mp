@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "at-button": "../../../npm/taro-ui/dist/weapp/components/button/index",
-    "modal": "../../../components/modal/index"
-  }
-}

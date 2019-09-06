@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="{{rootCls}}" style="{{anonymousState__temp}}">
         <block wx:if="{{options}}">
-            <view class="{{option.optionCls}}" wx:key="value" wx:for="{{loopArray163}}" wx:for-item="option" wx:for-index="idx">
+            <view class="{{option.optionCls}}" wx:key="value" wx:for="{{loopArray14}}" wx:for-item="option" wx:for-index="idx">
                 <view class="mp-checkbox__option-wrap">
                     <view class="mp-checkbox__option-cnt">
                         <view class="mp-checkbox__icon-cnt" bindtap="handleClick" data-e-tap-so="this" data-e-tap-a-a="{{idx}}"><text class="mp-icon mp-icon-check"></text> 

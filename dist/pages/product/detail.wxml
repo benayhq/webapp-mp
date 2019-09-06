@@ -2,7 +2,7 @@
     <view>
         <view class="mp-activedetail">
             <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
-                <gallery compid="{{$compid__781}}"></gallery>
+                <gallery compid="{{$compid__1090}}"></gallery>
                 <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
                 </view>
                 <view class="mp-activedetail__price">
@@ -101,8 +101,11 @@
                         </view>
                         <view class="mp-activedetail__orderpay_face_footer">当面付: ￥{{data.cashAdvance}}</view>
                     </view>
-                    <view class="mp-activedetail__zixun_footer">
-                        <view class="mp-icon mp-icon-telphone" bindtap="openDialog" style="padding-right:20px;" data-e-tap-so="this"></view>
+                    <view class="mp-activedetail__home_footer" bindtap="handleJumpHome" data-e-tap-so="this">
+                        <view class="mp-icon mp-icon-home"></view>
+                    </view>
+                    <view class="mp-activedetail__zixun_footer" bindtap="openDialog" data-e-tap-so="this">
+                        <view class="mp-icon mp-icon-telphone"></view>
                     </view>
                     <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">参与拼团</view>
                 </view>
@@ -112,11 +115,13 @@
                     </view>
                 </view>
             </scroll-view>
-            <at-modal compid="{{$compid__782}}">
+            <at-modal compid="{{$compid__1091}}">
                 <at-modal-content>
                     <view class="mp-share-haibao">
-                        <view bindtap="handleSendFriend" data-e-tap-so="this">
-                            <view class="mp-haibao mp-icon mp-icon-wechat"></view>
+                        <view>
+                            <view class="mp-haibao mp-icon mp-icon-wechat">
+                                <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">发送给朋友</button>
+                            </view>
                             <view>发送给朋友</view>
                         </view>
                         <view bindtap="handleCreatePosters" data-e-tap-so="this">
@@ -129,12 +134,12 @@
                     <button bindtap="handleCancelShare" data-e-tap-so="this">取 消</button>
                 </at-modal-action>
             </at-modal>
-            <popup compid="{{$compid__783}}">
+            <popup compid="{{$compid__1092}}">
                 <block wx:if="{{bContact}}">
-                    <contact compid="{{$compid__784}}"></contact>
+                    <contact compid="{{$compid__1093}}"></contact>
                 </block>
                 <block wx:if="{{bSpec}}">
-                    <spec compid="{{$compid__785}}"></spec>
+                    <spec compid="{{$compid__1094}}"></spec>
                 </block>
             </popup>
         </view>

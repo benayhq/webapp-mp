@@ -1,9 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="info">
-        <view>订单编号: {{content.number}}<text class="copy">复制</text>
-        </view>
-        <view>支付方式: 微信支付</view>
-        <view>下单时间: {{anonymousState__temp}}</view>
-        <view>拼团时间: {{anonymousState__temp2}}</view>
-    </view>
-</block>

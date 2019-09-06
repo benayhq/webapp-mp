@@ -11,7 +11,7 @@ import { base64src } from './../../../utils/base64src';
 @connect(state=>state,actions)
 export default class Index extends Component{
   config = {
-    navigationBarTitleText: '广告预览'
+    navigationBarTitleText: '生成海报'
   }
 
   constructor(props) {

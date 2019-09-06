@@ -34,6 +34,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var empty = "/components/empty/assets/empty2.svg";
+
 var OrderItem = (_dec = (0, _index3.connect)(function (state) {
   return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -50,7 +52,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray18", "OrderList", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray32", "OrderList", "empty", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
       OrderState: '待付款',
       ProductImg: '',
       OrderList: [],
@@ -180,66 +182,59 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var loopArray32 = void 0;
 
       var OrderList = this.__state.OrderList;
 
 
-      var loopArray18 = OrderList.map(function (item, _anonIdx) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-        var $compid__74 = (0, _index.genCompid)(__prefix + "obaMgICGle" + _anonIdx);
-        _index.propsManager.set({
-          "OrderId": item.$original.id,
-          "displayStatusDes": item.$original.displayStatusDes,
-          "AgentName": item.$original.customerName
-        }, $compid__74);
-        var $compid__75 = (0, _index.genCompid)(__prefix + "vzJaVjeZSu" + _anonIdx);
-        item.$original.status == "UNPAY" && _index.propsManager.set({
-          "type": "primary",
-          "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
-          "size": "small"
-        }, $compid__75);
-        var $compid__76 = (0, _index.genCompid)(__prefix + "schffFdWOf" + _anonIdx);
-        item.$original.status == "PAID" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small",
-          "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-        }, $compid__76);
-        var $compid__77 = (0, _index.genCompid)(__prefix + "IcURZWZAMK" + _anonIdx);
-        item.$original.status == "PAID" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small",
-          "onClick": _this4.handleRefund.bind(_this4, item.$original.id)
-        }, $compid__77);
-        var $compid__78 = (0, _index.genCompid)(__prefix + "NeCZEzzggU" + _anonIdx);
-        item.$original.status == "COMMENTING" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small"
-        }, $compid__78);
-        var $compid__79 = (0, _index.genCompid)(__prefix + "xqwqPncFOg" + _anonIdx);
-        item.$original.status == "COMMENTING" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small"
-        }, $compid__79);
-        var $compid__80 = (0, _index.genCompid)(__prefix + "rhQpCvXBHw" + _anonIdx);
-        item.$original.status == "CONSUMPTION" && _index.propsManager.set({
-          "type": "primary",
-          "size": "small"
-        }, $compid__80);
-        return {
-          $compid__74: $compid__74,
-          $compid__75: $compid__75,
-          $compid__76: $compid__76,
-          $compid__77: $compid__77,
-          $compid__78: $compid__78,
-          $compid__79: $compid__79,
-          $compid__80: $compid__80,
-          $original: item.$original
-        };
-      });
+      var template = null;
+
+      if (OrderList.length > 0) {
+        loopArray32 = OrderList.map(function (item, _anonIdx) {
+          item = {
+            $original: (0, _index.internal_get_original)(item)
+          };
+          var $compid__713 = (0, _index.genCompid)(__prefix + "lydCcVsuNN" + _anonIdx);
+          _index.propsManager.set({
+            "OrderId": item.$original.id,
+            "displayStatusDes": item.$original.displayStatusDes,
+            "AgentName": item.$original.customerName
+          }, $compid__713);
+          var $compid__714 = (0, _index.genCompid)(__prefix + "iiWCeMGUtw" + _anonIdx);
+          item.$original.status == "UNPAY" && _index.propsManager.set({
+            "type": "primary",
+            "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
+            "size": "small"
+          }, $compid__714);
+          var $compid__715 = (0, _index.genCompid)(__prefix + "jDJFbzrhmq" + _anonIdx);
+          item.$original.status == "PAID" && _index.propsManager.set({
+            "type": "primary",
+            "size": "small",
+            "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
+          }, $compid__715);
+          var $compid__716 = (0, _index.genCompid)(__prefix + "isbrIGkpaW" + _anonIdx);
+          item.$original.status == "COMMENTING" && _index.propsManager.set({
+            "type": "primary",
+            "size": "small"
+          }, $compid__716);
+          var $compid__717 = (0, _index.genCompid)(__prefix + "pYHujVmbAa" + _anonIdx);
+          item.$original.status == "CONSUMPTION" && _index.propsManager.set({
+            "type": "primary",
+            "size": "small"
+          }, $compid__717);
+          return {
+            $compid__713: $compid__713,
+            $compid__714: $compid__714,
+            $compid__715: $compid__715,
+            $compid__716: $compid__716,
+            $compid__717: $compid__717,
+            $original: item.$original
+          };
+        });
+      } else {}
       Object.assign(this.__state, {
-        loopArray18: loopArray18
+        loopArray32: loopArray32,
+        empty: empty
       });
       return this.__state;
     }

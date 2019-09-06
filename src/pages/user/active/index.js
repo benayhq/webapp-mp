@@ -153,10 +153,9 @@ class Index extends Component{
                     note={`${item.people}人成团`}
                     thumb={item.url}
                     arrow='right'
-                    isSwitch
-                    onSwitchChange={this.handleSwithActive.bind(this,item)}
                   />
-                 
+                  // isSwitch
+                  // onSwitchChange={this.handleSwithActive.bind(this,item)}
                 )
             })
          }

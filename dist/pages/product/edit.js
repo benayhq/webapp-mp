@@ -55,7 +55,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__419", "$compid__420", "$compid__421", "$compid__422", "$compid__423", "$compid__424", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__18", "$compid__19", "$compid__20", "$compid__21", "$compid__22", "$compid__23", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -739,12 +739,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__419 = (0, _index.genCompid)(__prefix + "$compid__419");
-      var $compid__420 = (0, _index.genCompid)(__prefix + "$compid__420");
-      var $compid__421 = (0, _index.genCompid)(__prefix + "$compid__421");
-      var $compid__422 = (0, _index.genCompid)(__prefix + "$compid__422");
-      var $compid__423 = (0, _index.genCompid)(__prefix + "$compid__423");
-      var $compid__424 = (0, _index.genCompid)(__prefix + "$compid__424");
+      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
+      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
+      var $compid__20 = (0, _index.genCompid)(__prefix + "$compid__20");
+      var $compid__21 = (0, _index.genCompid)(__prefix + "$compid__21");
+      var $compid__22 = (0, _index.genCompid)(__prefix + "$compid__22");
+      var $compid__23 = (0, _index.genCompid)(__prefix + "$compid__23");
 
       var _state8 = this.__state,
           productName = _state8.productName,
@@ -759,14 +759,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           initSeletedValue = _state8.initSeletedValue;
 
 
-      var $props__419 = {
+      var $props__18 = {
         "isOpened": isOpened,
         "text": toastText,
         "status": status,
         "duration": duration,
         "icon": "{icon}"
       };
-      var $props__420 = {
+      var $props__19 = {
         "name": "productName",
         "title": "\u540D\u79F0",
         "type": "text",
@@ -774,7 +774,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productName,
         "onChange": this.handleProductChange.bind(this)
       };
-      var $props__421 = {
+      var $props__20 = {
         "name": "productPrice",
         "title": "\u4EF7\u683C",
         "type": "number",
@@ -782,7 +782,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productPrice,
         "onChange": this.handlePriceChange.bind(this)
       };
-      var $props__422 = {
+      var $props__21 = {
         "name": "activePrice",
         "title": "\u6D3B\u52A8\u4EF7",
         "type": "number",
@@ -790,12 +790,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": activePrice,
         "onChange": this.handleActivePriceChange.bind(this)
       };
-      var $props__423 = {
+      var $props__22 = {
         "files": files,
         "onChange": this.handleChooseImage.bind(this),
         "onImageClick": this.onImageClick.bind(this)
       };
-      var $props__424 = {
+      var $props__23 = {
         "name": "preAmount",
         "title": "\u9884\u5B9A\u91D1",
         "type": "number",
@@ -803,19 +803,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": preAmount,
         "onChange": this.handlePreAmountChange.bind(this)
       };
-      _index.propsManager.set($props__419, $compid__419);
-      _index.propsManager.set($props__420, $compid__420);
-      _index.propsManager.set($props__421, $compid__421);
-      _index.propsManager.set($props__422, $compid__422);
-      _index.propsManager.set($props__423, $compid__423);
-      _index.propsManager.set($props__424, $compid__424);
+      _index.propsManager.set($props__18, $compid__18);
+      _index.propsManager.set($props__19, $compid__19);
+      _index.propsManager.set($props__20, $compid__20);
+      _index.propsManager.set($props__21, $compid__21);
+      _index.propsManager.set($props__22, $compid__22);
+      _index.propsManager.set($props__23, $compid__23);
       Object.assign(this.__state, {
-        $compid__419: $compid__419,
-        $compid__420: $compid__420,
-        $compid__421: $compid__421,
-        $compid__422: $compid__422,
-        $compid__423: $compid__423,
-        $compid__424: $compid__424
+        $compid__18: $compid__18,
+        $compid__19: $compid__19,
+        $compid__20: $compid__20,
+        $compid__21: $compid__21,
+        $compid__22: $compid__22,
+        $compid__23: $compid__23
       });
       return this.__state;
     }

@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="{{rootCls}}" style="{{anonymousState__temp}}">
-        <view class="at-image-picker__flex-box" wx:key="i" wx:for="{{loopArray14}}" wx:for-item="row" wx:for-index="i">
+        <view class="at-image-picker__flex-box" wx:key="i" wx:for="{{loopArray12}}" wx:for-item="row" wx:for-index="i">
             <block wx:for="{{row.$anonymousCallee__1}}" wx:for-item="item" wx:for-index="j" wx:key="$loopState__temp3">
                 <block wx:if="{{item.$original.url}}">
                     <view class="at-image-picker__flex-item">

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "title": "../title/index",
-    "product-item": "../../../components/product/index"
-  }
-}

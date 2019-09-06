@@ -7,6 +7,8 @@ import Order from './common/order';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
 import {getWindowHeight} from './../../utils/style'
+import Empty from './../../components/empty';
+import empty from './../../components/empty/assets/empty2.svg'
 
 
 @connect(state=>state.user,actions)
@@ -90,84 +92,63 @@ export default class OrderList extends Component{
     
     render(){
         const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
-        const {list,current,status} = this.state;
-
+        const {list,current} = this.state;
         return (
             <AtTabs current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={current} index={0} >
-                <View>
-                    <OrderItem list={list}/>
-                    {/* {list.length> 0 &&   <View className="mp-order-loadmore">
-                        <AtLoadMore
-                            onClick={this.handleLoadMore.bind(this)}
-                            status={status}
-                        />
-                    </View>
-                    } */}
-                </View>
-                
+                    <ScrollView
+                            scrollY
+                            onScrollToUpper={this.loadOrderList}
+                            style={{height:getWindowHeight()}}
+                    >
+                     {
+                        <OrderItem list={list}/>
+                     }
+                    </ScrollView>
               </AtTabsPane>
               <AtTabsPane current={current} index={1}>
                 <ScrollView
                     scrollY
                     onScrollToUpper={this.loadOrderList}
                     style={{height:getWindowHeight()}}
-                >
+                > 
                     {
-                        list &&  <View>
                         <OrderItem list={list}/>
-                        {/* {
-                            list.length> 0 && <View className="mp-order-loadmore">
-                            <AtLoadMore
-                                onClick={this.handleLoadMore.bind(this,'UNPAY')}
-                                status={status}
-                            />
-                            </View> 
-                        } */}
-                        </View>
                     }
                  </ScrollView>
               </AtTabsPane>
               <AtTabsPane current={current} index={2}>
-                 {list && <View>
-                    <OrderItem list={list}/>
-                    {/* {list.length> 0 && <View className="mp-order-loadmore">
-                        <AtLoadMore
-                            onClick={this.handleLoadMore.bind(this,'BATING')}
-                            status={status}
-                        />
-                   </View>
-                    } */}
-                </View>}
+                <ScrollView
+                        scrollY
+                        onScrollToUpper={this.loadOrderList}
+                        style={{height:getWindowHeight()}}
+                    >
+                    {
+                        <OrderItem list={list}/>
+                    }
+                    </ScrollView>
               </AtTabsPane>
               <AtTabsPane current={current} index={3}>
+              <ScrollView
+                        scrollY
+                        onScrollToUpper={this.loadOrderList}
+                        style={{height:getWindowHeight()}}
+                    >
                 {
-                      list &&  <View>
-                      <OrderItem list={list}/>
-                      {/* {list.length> 0 && <View className="mp-order-loadmore">
-                          <AtLoadMore
-                              onClick={this.handleLoadMore.bind(this,'CONSUMPTION')}
-                              status={status}
-                          />
-                        </View>
-                      } */}
-                  </View>
-                }
+                        <OrderItem list={list}/>
+                    }
+                </ScrollView>
               </AtTabsPane>
-                 <AtTabsPane current={current} index={4}>
-                 {
-                     list && <View>
-                     <OrderItem list={list}/>
-                     {/* {
-                         list.length> 0 &&  <View className="mp-order-loadmore">
-                          <AtLoadMore
-                              onClick={this.handleLoadMore.bind(this,'CONSUMPTION')}
-                              status={status}
-                          />
-                     </View>
-                    } */}
-                  </View>
-                 } 
+              <AtTabsPane current={current} index={4}>
+                <ScrollView
+                            scrollY
+                            onScrollToUpper={this.loadOrderList}
+                            style={{height:getWindowHeight()}}
+                >
+                {
+                        <OrderItem list={list}/>
+                    }
+                 </ScrollView>
               </AtTabsPane> 
             </AtTabs>
         );

@@ -1,39 +1,29 @@
 <block wx:if="{{$taroCompReady}}">
-    <at-tabs compid="{{$compid__539}}">
-        <at-tabs-pane compid="{{$compid__540}}">
-            <view>
-                <order-item compid="{{$compid__541}}"></order-item>
-            </view>
-        </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__542}}">
+    <at-tabs compid="{{$compid__692}}">
+        <at-tabs-pane compid="{{$compid__693}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp}}">
-                <block wx:if="{{list}}">
-                    <view>
-                        <order-item compid="{{$compid__543}}"></order-item>
-                    </view>
-                </block>
+                <order-item compid="{{$compid__694}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__544}}">
-            <block wx:if="{{list}}">
-                <view>
-                    <order-item compid="{{$compid__545}}"></order-item>
-                </view>
-            </block>
+        <at-tabs-pane compid="{{$compid__695}}">
+            <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp2}}">
+                <order-item compid="{{$compid__696}}"></order-item>
+            </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__546}}">
-            <block wx:if="{{list}}">
-                <view>
-                    <order-item compid="{{$compid__547}}"></order-item>
-                </view>
-            </block>
+        <at-tabs-pane compid="{{$compid__697}}">
+            <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp3}}">
+                <order-item compid="{{$compid__698}}"></order-item>
+            </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__548}}">
-            <block wx:if="{{list}}">
-                <view>
-                    <order-item compid="{{$compid__549}}"></order-item>
-                </view>
-            </block>
+        <at-tabs-pane compid="{{$compid__699}}">
+            <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp4}}">
+                <order-item compid="{{$compid__700}}"></order-item>
+            </scroll-view>
+        </at-tabs-pane>
+        <at-tabs-pane compid="{{$compid__701}}">
+            <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp5}}">
+                <order-item compid="{{$compid__702}}"></order-item>
+            </scroll-view>
         </at-tabs-pane>
     </at-tabs>
 </block>

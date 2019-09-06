@@ -2,5 +2,5 @@
   "usingComponents": {
     "taro-canvas-drawer": "../../../components/taro-plugin-canvas/index"
   },
-  "navigationBarTitleText": "广告预览"
+  "navigationBarTitleText": "生成海报"
 }

@@ -3,8 +3,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1110655 */
-  src: url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.eot");
-  src: url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_9fi9se7rrlu.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot");
+  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.svg#iconfont") format("svg"); }
 
 .mp-icon {
   font-family: "iconfont" !important;
@@ -252,6 +252,11 @@
   font-size: 80rpx;
   color: #7DD6D0;
   content: "\e63b"; }
+
+.mp-icon-home:before {
+  font-size: 70rpx;
+  color: #7DD6D0;
+  content: "\e667"; }
 
 /* 
  Text Color
@@ -613,7 +618,6 @@ image {
   width: 100%;
   height: 95rpx;
   background: white;
-  border: 1rpx solid white;
   position: fixed;
   bottom: 0;
   display: -webkit-box;
@@ -644,7 +648,16 @@ image {
 .mp-activedetail__zixun_footer {
   line-height: 95rpx;
   height: 95rpx;
-  padding-left: 185rpx; }
+  width: 90rpx;
+  text-align: center; }
+
+.mp-activedetail__home_footer {
+  line-height: 95rpx;
+  height: 95rpx;
+  width: 90rpx;
+  text-align: center;
+  border-right: 1rpx solid #7DD6D0;
+  border-left: 1rpx solid #7DD6D0; }
 
 .mp-activedetail__action__footer {
   -webkit-box-flex: 1;
@@ -667,10 +680,11 @@ image {
   position: fixed;
   bottom: 156rpx;
   right: 26rpx;
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 100rpx;
-  line-height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #7DD6D0;
   text-align: center; }
 
 .mp-share-haibao {
@@ -683,7 +697,8 @@ image {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  width: 100%; }
+  width: 100%;
+  overflow: hidden; }
   .mp-share-haibao > View:nth-child(1) {
     display: -webkit-box;
     display: -webkit-flex;
@@ -727,3 +742,24 @@ image {
 .taro-img__mode-scaletofill {
   width: 100%;
   height: 100%; }
+
+.shareBtn {
+  display: block;
+  width: 100rpx;
+  bottom: 10rpx;
+  height: 100rpx;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 18rpx;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2.55555556;
+  border-radius: 5rpx;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000000;
+  background-color: #F8F8F8; }

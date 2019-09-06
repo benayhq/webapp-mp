@@ -3,7 +3,7 @@
         <view>
             <view class="product">
                 <block wx:if="{{products != null}}">
-                    <view class="list" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                    <view class="list" wx:for="{{loopArray13}}" wx:for-item="item" wx:for-index="_anonIdx2">
                         <view class="list-top">
                             <view></view>
                             <view>
@@ -19,7 +19,7 @@
                         <view class="product-item activePrice">
                             <view>活动价:</view>
                             <view>
-                                <at-input compid="{{item.$compid__73}}"></at-input>
+                                <at-input compid="{{item.$compid__57}}"></at-input>
                             </view>
                         </view>
                     </view>

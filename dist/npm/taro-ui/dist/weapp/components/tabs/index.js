@@ -54,7 +54,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTabs.__proto__ || Object.getPrototypeOf(AtTabs)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "loopArray17", "tabList", "rootCls", "scroll", "_tabId", "scrollX", "scrollY", "_scrollLeft", "_scrollTop", "_scrollIntoView", "swipeable", "tabDirection", "current", "customStyle", "className", "height", "animated", "children"], _this.updateState = function (idx) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTabs.__proto__ || Object.getPrototypeOf(AtTabs)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "loopArray15", "tabList", "rootCls", "scroll", "_tabId", "scrollX", "scrollY", "_scrollLeft", "_scrollTop", "_scrollIntoView", "swipeable", "tabDirection", "current", "customStyle", "className", "height", "animated", "children"], _this.updateState = function (idx) {
       if (_this.props.scroll) {
         // 标签栏滚动
         switch (ENV) {
@@ -253,7 +253,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
       var anonymousState__temp2 = scroll ? (0, _index.internal_inline_style)(heightStyle) : null;
       var anonymousState__temp3 = (0, _index.internal_inline_style)(this.mergeStyle(bodyStyle, heightStyle));
       var anonymousState__temp4 = (0, _index.internal_inline_style)(underlineStyle);
-      var loopArray17 = tabList.map(function (item, idx) {
+      var loopArray15 = tabList.map(function (item, idx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
@@ -273,7 +273,7 @@ var AtTabs = (_temp2 = _class = function (_AtComponent) {
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        loopArray17: loopArray17,
+        loopArray15: loopArray15,
         tabList: tabList,
         rootCls: rootCls,
         scroll: scroll,

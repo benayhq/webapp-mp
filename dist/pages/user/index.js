@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray144", "$compid__402", "$compid__403", "$compid__404", "$compid__405", "$compid__406", "$compid__407", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "$compid__1", "$compid__2", "$compid__3", "$compid__4", "$compid__5", "$compid__6", "isAgent", "showUserText", "avatarUrl", "profit", "list", "isShowLoanApp", "userName", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -578,12 +578,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__402 = (0, _index.genCompid)(__prefix + "$compid__402");
-      var $compid__403 = (0, _index.genCompid)(__prefix + "$compid__403");
-      var $compid__404 = (0, _index.genCompid)(__prefix + "$compid__404");
-      var $compid__405 = (0, _index.genCompid)(__prefix + "$compid__405");
-      var $compid__406 = (0, _index.genCompid)(__prefix + "$compid__406");
-      var $compid__407 = (0, _index.genCompid)(__prefix + "$compid__407");
+      var $compid__1 = (0, _index.genCompid)(__prefix + "$compid__1");
+      var $compid__2 = (0, _index.genCompid)(__prefix + "$compid__2");
+      var $compid__3 = (0, _index.genCompid)(__prefix + "$compid__3");
+      var $compid__4 = (0, _index.genCompid)(__prefix + "$compid__4");
+      var $compid__5 = (0, _index.genCompid)(__prefix + "$compid__5");
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -599,11 +599,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var isShowLoanApp = !isAgent && flag;
 
-      var $props__402 = {
+      var $props__1 = {
         "isOpened": isOpened,
         "closeOnClickOverlay": false
       };
-      var $props__403 = {
+      var $props__2 = {
         "className": "mp-user__login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -611,49 +611,49 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      var $props__404 = {
+      var $props__3 = {
         "isOpened": isAgree,
         "closeOnClickOverlay": false
       };
-      var $props__405 = {
+      var $props__4 = {
         "profit": profit
       };
-      var $props__406 = {
+      var $props__5 = {
         "list": orders
       };
-      var $props__407 = {
+      var $props__6 = {
         "title": this.__state.context1
       };
-      var loopArray144 = list.length > 0 ? list.map(function (item, _anonIdx) {
+      var loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__401 = (0, _index.genCompid)(__prefix + "rZpambnuGA" + _anonIdx);
+        var $compid__0 = (0, _index.genCompid)(__prefix + "jlWLjjlPMA" + _anonIdx);
         _index.propsManager.set({
           "title": item.$original.text,
           "arrow": "right",
           "thumb": item.$original.url,
           "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-        }, $compid__401);
+        }, $compid__0);
         return {
-          $compid__401: $compid__401,
+          $compid__0: $compid__0,
           $original: item.$original
         };
       }) : [];
-      _index.propsManager.set($props__402, $compid__402);
-      _index.propsManager.set($props__403, $compid__403);
-      _index.propsManager.set($props__404, $compid__404);
-      isAgent && _index.propsManager.set($props__405, $compid__405);
-      _index.propsManager.set($props__406, $compid__406);
-      isShowLoanApp === true && _index.propsManager.set($props__407, $compid__407);
+      _index.propsManager.set($props__1, $compid__1);
+      _index.propsManager.set($props__2, $compid__2);
+      _index.propsManager.set($props__3, $compid__3);
+      isAgent && _index.propsManager.set($props__4, $compid__4);
+      _index.propsManager.set($props__5, $compid__5);
+      isShowLoanApp === true && _index.propsManager.set($props__6, $compid__6);
       Object.assign(this.__state, {
-        loopArray144: loopArray144,
-        $compid__402: $compid__402,
-        $compid__403: $compid__403,
-        $compid__404: $compid__404,
-        $compid__405: $compid__405,
-        $compid__406: $compid__406,
-        $compid__407: $compid__407,
+        loopArray0: loopArray0,
+        $compid__1: $compid__1,
+        $compid__2: $compid__2,
+        $compid__3: $compid__3,
+        $compid__4: $compid__4,
+        $compid__5: $compid__5,
+        $compid__6: $compid__6,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

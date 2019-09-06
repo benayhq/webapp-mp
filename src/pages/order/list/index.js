@@ -7,6 +7,7 @@ import Title from '../title';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import {WeChatPay} from './../../../utils/payment';
+import empty from './../../../components/empty/assets/empty2.svg'
 
 @connect(state=>state,actions)
 export default class OrderItem extends Component{
@@ -97,57 +98,70 @@ export default class OrderItem extends Component{
     render(){
         const {OrderList} = this.state;
 
+        let template = null;
+
+        if(OrderList.length>0){
+            template = (OrderList.map(item=>(
+                <View className="mp-order-list">
+                <Title OrderId={item.id}  displayStatusDes={item.displayStatusDes}  AgentName={item.customerName}/>
+                <View className="product">
+                    <View className="left">
+                        <image style="height:100%;width:100%;margin:0 auto;padding:5px;"
+                                mode="scaleToFill"
+                                src={item.imgUrl}>
+                        </image>
+                    </View>
+                    <View className="right">
+                        <View>{item.activityName}</View>
+                        <View>
+                           {item.activityProductName}
+                        </View>
+                        <View>{item.productDiscountPrice}</View>
+                    </View>
+                </View>
+                <View className="order-action">
+                    <View className="action">
+                    {
+                        item.status == "UNPAY" && (<AtButton type='primary' onClick={this.handleWeChatPay.bind(this,item.id)} size='small'>支付订单</AtButton>)
+                    }
+                    {
+                        item.status == "PAID" && <View>
+                            <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.id)}>我要评价</AtButton>
+                            {/* <Text className="margin8"></Text> */}
+                            {/* <AtButton type='primary' size='small'>立即核销</AtButton> */}
+                            {/* <AtButton type='primary' size='small' onClick={this.handleRefund.bind(this,item.id)} >退款申请</AtButton>  */}
+                        </View>
+                    }
+                    {
+                        item.status == "COMMENTING" && <View>
+                            {/* <AtButton type='primary' size='small'>退款申请</AtButton> 
+                            <Text className="margin8"></Text> */}
+                            <AtButton type='primary' size='small'>我要评价</AtButton>
+                        </View>
+                    }
+                    {
+                        item.status == "CONSUMPTION" && <View>
+                            <AtButton type='primary' size='small'>重新购买</AtButton>
+                        </View>
+                    }
+                    </View>
+                    <Text></Text>  
+                </View>
+                </View>
+            )))
+        }
+        else{
+            template = (<View className="mp-empty-blank-icon"> 
+            <View className="mp-order__empty">
+                <Image className="mp-empty-blank-image" src={empty}/>
+                <View className="mp-empty-blank-text">暂无订单数据</View>
+            </View>
+        </View>)
+        }
         return (
             <View>
                 {
-                    OrderList.map(item=>(
-                        <View className="mp-order-list">
-                        <Title OrderId={item.id}  displayStatusDes={item.displayStatusDes}  AgentName={item.customerName}/>
-                        <View className="product">
-                            <View className="left">
-                                <image style="height:100%;width:100%;margin:0 auto;padding:5px;"
-                                        mode="scaleToFill"
-                                        src={item.imgUrl}>
-                                </image>
-                            </View>
-                            <View className="right">
-                                <View>{item.activityName}</View>
-                                <View>
-                                   {item.activityProductName}
-                                </View>
-                                <View>{item.productDiscountPrice}</View>
-                            </View>
-                        </View>
-                        <View className="order-action">
-                            <View className="action">
-                            {
-                                item.status == "UNPAY" && (<AtButton type='primary' onClick={this.handleWeChatPay.bind(this,item.id)} size='small'>支付订单</AtButton>)
-                            }
-                            {
-                                item.status == "PAID" && <View>
-                                    <AtButton type='primary' size='small' onClick={this.jumpUrl.bind(this,item.id)}>我要评价</AtButton>
-                                    <Text className="margin8"></Text>
-                                    {/* <AtButton type='primary' size='small'>立即核销</AtButton> */}
-                                    <AtButton type='primary' size='small' onClick={this.handleRefund.bind(this,item.id)} >退款申请</AtButton> 
-                                </View>
-                            }
-                            {
-                                item.status == "COMMENTING" && <View>
-                                    <AtButton type='primary' size='small'>退款申请</AtButton> 
-                                    <Text className="margin8"></Text>
-                                    <AtButton type='primary' size='small'>我要评价</AtButton>
-                                </View>
-                            }
-                            {
-                                item.status == "CONSUMPTION" && <View>
-                                    <AtButton type='primary' size='small'>重新购买</AtButton>
-                                </View>
-                            }
-                            </View>
-                            <Text></Text>  
-                        </View>
-                        </View>
-                    ))
+                    template
                 }
             </View>
         )
