@@ -95,10 +95,9 @@ class Index extends Component{
      const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
      return result;
   }
-
   async autoLogin(){
     var currentObj = this;
-    wx.login({async success(res) {
+    wx.login({async success(res){
               var payload = { code:res.code };
               const response = await currentObj.props.WeChatLogin(payload);
               if(response.result === "success"){
@@ -108,9 +107,7 @@ class Index extends Component{
                   const data = rstUserInfo.content,
                         isAgent = data.role === "AGENT" ? true : false,
                         creatorInstance = new Creator();
-
                   Taro.setStorage({key:'userinfo',data});
-
                   currentObj.checkAuth(data);
                   currentObj.initReservationPlan();
                   currentObj.initLoanFlag();
@@ -143,17 +140,16 @@ class Index extends Component{
       orders:list
     })
   }
-
   checkAuth(data){
-      if(data.profileUrl && data.name){
-        this.setState({
-          isOpened:false
-        })
+      if(data.profileUrl && data.nickname){
+        // this.setState({
+        //   isOpened:false
+        // })
       }
       else{
-          this.setState({
-            isOpened:true
-          })
+        Taro.navigateTo({
+          url:'pages/login/index'
+        });
       }
   }
 
@@ -291,7 +287,7 @@ class Index extends Component{
 
     return (
         <View className='mp-user' >
-          <AtModal isOpened={isOpened} closeOnClickOverlay={false}>
+          {/* <AtModal isOpened={isOpened} closeOnClickOverlay={false}>
             <AtModalHeader>授权登录</AtModalHeader>
             <AtModalContent>
               <View className="mp-user__authinfo">申请获取以下权限</View>
@@ -304,8 +300,7 @@ class Index extends Component{
                 openType='getUserInfo' onGetUserInfo={this.handleAuthClick.bind(this)}
                 type='primary' size='small'>授权登录</AtButton>
             </View>
-          </AtModal>
-          
+          </AtModal> */}
           <AtModal
                   isOpened={isAgree}
                   closeOnClickOverlay={false}>

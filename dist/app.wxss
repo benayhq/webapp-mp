@@ -23284,7 +23284,7 @@ page {
        user-select: none;
   width: 100%;
   overflow-x: hidden;
-  background: #f5f5f9; }
+  background: #f5f6f8; }
 
 .at-list__item .item-extra__icon-arrow {
   color: #7dd6d0;

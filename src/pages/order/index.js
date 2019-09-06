@@ -10,7 +10,6 @@ import {getWindowHeight} from './../../utils/style'
 import Empty from './../../components/empty';
 import empty from './../../components/empty/assets/empty2.svg'
 
-
 @connect(state=>state.user,actions)
 export default class OrderList extends Component{
     config = {

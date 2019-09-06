@@ -37,12 +37,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var RECOMMEND_SIZE = 0,
     globalLastItem = 0;
 
-function getLocalTime(timestamp) {
-  var d = new Date(timestamp);
-  var date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-  return date;
-}
-
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
 }, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
@@ -59,7 +53,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray199", "activeList", "agentId", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray279", "activeList", "agentId", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.state = {
       activeList: [],
@@ -139,16 +133,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      console.log('this.$router.params', this.$router.params.agentId);
-      if (this.$router.params.agentId) {
-        this.setState({
-          agentId: this.$router.params.agentId
-        });
-      }
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadMore();
@@ -170,6 +154,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function componentWillMount() {
       globalLastItem = 0;
       RECOMMEND_SIZE = 0;
+      if (this.$router.params.agentId) {
+        this.setState({
+          agentId: this.$router.params.agentId
+        });
+      }
     }
   }, {
     key: "loadMore",
@@ -257,9 +246,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-                console.log('loadMore');
-
-              case 20:
+              case 19:
               case "end":
                 return _context3.stop();
             }
@@ -283,28 +270,28 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray199 = void 0;
+      var loopArray279 = void 0;
 
       var activeList = this.__state.activeList;
 
       var renderTemplate = null;
       if (activeList.length > 0) {
-        loopArray199 = activeList ? activeList.map(function (item, _anonIdx) {
+        loopArray279 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__1009 = (0, _index.genCompid)(__prefix + "UKCyeyUyJE" + _anonIdx);
+          var $compid__1238 = (0, _index.genCompid)(__prefix + "NHaQjXWhAW" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
             "note": $loopState__temp2,
             "thumb": item.$original.url,
             "arrow": "right"
-          }, $compid__1009);
+          }, $compid__1238);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__1009: $compid__1009,
+            $compid__1238: $compid__1238,
             $original: item.$original
           };
         }
@@ -316,7 +303,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
-        loopArray199: loopArray199
+        loopArray279: loopArray279
       });
       return this.__state;
     }

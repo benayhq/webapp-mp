@@ -8,17 +8,6 @@ import Empty from './../../../components/empty';
 import {getWindowHeight} from './../../../utils/style';
 var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
-function getLocalTime(timestamp) {
-    var d = new Date(timestamp);
-    var date = (d.getFullYear()) + "-" +
-            (d.getMonth() + 1) + "-" +
-            (d.getDate()) + " " +
-            (d.getHours()) + ":" +
-            (d.getMinutes()) + ":" +
-            (d.getSeconds());
-    return date;
-}
-
 @connect(state=>state,actions)
 class Index extends Component{
   config = {
@@ -46,15 +35,6 @@ class Index extends Component{
     return result.content;
   }
 
-  componentWillMount(){
-    console.log('this.$router.params',this.$router.params.agentId);
-    if(this.$router.params.agentId){
-      this.setState({
-        agentId:this.$router.params.agentId
-      })
-    }
-  }
-
   componentDidMount(){
       this.loadMore();
   }
@@ -72,6 +52,11 @@ class Index extends Component{
   componentWillMount(){
     globalLastItem = 0;
     RECOMMEND_SIZE = 0;
+    if(this.$router.params.agentId){
+      this.setState({
+        agentId:this.$router.params.agentId
+      })
+    }
   }
 
   async loadMore(){
@@ -134,7 +119,6 @@ class Index extends Component{
         });
     }
 
-    console.log('loadMore');
   }
 
   render(){

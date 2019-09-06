@@ -1,10 +1,12 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
         <view class="login-logo">
-            <view class="login-font">美拼LOGO</view>
+            <view class="login-font">
+                <image style="width:130px;height:130px;margin:0 auto;padding:0px;margin-top:80px;" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/logo@2x.png"></image>
+            </view>
         </view>
         <view class="login-action">
-            <at-button compid="{{$compid__53}}">授权登录</at-button>
+            <at-button compid="{{$compid__1370}}">微信登录</at-button>
         </view>
     </view>
 </block>

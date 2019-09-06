@@ -48,7 +48,7 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__53", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1370", "GetUserInfo", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '登录'
     }, _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -177,7 +177,8 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
     key: "WeChatLogin",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(loginResponse) {
-        var result, rstUserInfo, data;
+        var result, _ref5, userInfo, rstUserInfo, payload, data;
+
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -189,15 +190,31 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
                 result = _context3.sent;
 
                 if (!(result.errMsg === "setStorage:ok")) {
-                  _context3.next = 10;
+                  _context3.next = 17;
                   break;
                 }
 
                 _context3.next = 6;
-                return this.props.GetUserInfo({});
+                return _index2.default.getUserInfo();
 
               case 6:
+                _ref5 = _context3.sent;
+                userInfo = _ref5.userInfo;
+                _context3.next = 10;
+                return this.props.GetUserInfo({});
+
+              case 10:
                 rstUserInfo = _context3.sent;
+                payload = {
+                  id: rstUserInfo.content.id,
+                  nickname: userInfo.nickName,
+                  name: userInfo.nickName,
+                  profileUrl: userInfo.avatarUrl
+                };
+                _context3.next = 14;
+                return this.props.UpdateUserInfo(payload);
+
+              case 14:
                 data = rstUserInfo.content;
 
                 _index2.default.setStorage({ key: 'userinfo', data: data });
@@ -205,7 +222,7 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
                   url: '../../pages/user/index'
                 });
 
-              case 10:
+              case 17:
               case "end":
                 return _context3.stop();
             }
@@ -227,8 +244,8 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__53 = (0, _index.genCompid)(__prefix + "$compid__53");
-      var $props__53 = {
+      var $compid__1370 = (0, _index.genCompid)(__prefix + "$compid__1370");
+      var $props__1370 = {
         "className": "wechat-login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -236,9 +253,9 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      _index.propsManager.set($props__53, $compid__53);
+      _index.propsManager.set($props__1370, $compid__1370);
       Object.assign(this.__state, {
-        $compid__53: $compid__53
+        $compid__1370: $compid__1370
       });
       return this.__state;
     }

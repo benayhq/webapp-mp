@@ -1,14 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-user">
-        <at-modal compid="{{$compid__1}}">
-            <at-modal-header>授权登录</at-modal-header>
-            <at-modal-content>
-                <view class="mp-user__authinfo">申请获取以下权限</view>获取你的公开信息(呢称,头像等)</at-modal-content>
-            <view class="wechat-login">
-                <at-button compid="{{$compid__2}}">授权登录</at-button>
-            </view>
-        </at-modal>
-        <at-modal compid="{{$compid__3}}">
+        <at-modal compid="{{$compid__1351}}">
             <at-modal-header>商家入驻协议</at-modal-header>
             <at-modal-content>
                 <scroll-view scroll-y="{{true}}" class="mp-user__agree">
@@ -83,7 +75,7 @@
             </block>
         </view>
         <block wx:if="{{isAgent}}">
-            <in-come compid="{{$compid__4}}"></in-come>
+            <in-come compid="{{$compid__1352}}"></in-come>
         </block>
         <block wx:if="{{isAgent}}">
             <view class="mp-user__publish">
@@ -92,11 +84,11 @@
                 <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
             </view>
         </block>
-        <user-order compid="{{$compid__5}}"></user-order>
+        <user-order compid="{{$compid__1353}}"></user-order>
         <view class="mp-user__list">
             <at-list>
                 <block wx:if="{{list.length > 0}}">
-                    <at-list-item wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__0}}"></at-list-item>
+                    <at-list-item wx:for="{{loopArray302}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__1350}}"></at-list-item>
                 </block>
             </at-list>
             <block>
@@ -111,7 +103,7 @@
         <block>
             <block wx:if="{{isShowLoanApp === true}}">
                 <view class="mp-user__loan">
-                    <at-card compid="{{$compid__6}}">
+                    <at-card compid="{{$compid__1354}}">
                         <view class="mp-user__loan-text">{{context2}}</view>
                         <view class="mp-user__loan-amount">{{context3}}</view>
                         <view class="mp-user__loan-desc">{{context4}}</view>
