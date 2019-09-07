@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "loading": "../../../components/loading/index",
     "at-list": "../../../npm/taro-ui/dist/weapp/components/list/index",
     "at-list-item": "../../../npm/taro-ui/dist/weapp/components/list/item/index",
     "empty": "../../../components/empty/index"

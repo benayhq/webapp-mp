@@ -94,16 +94,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           };
           var $loopState__temp2 = item.$original.name ? item.$original.name + ("" + (item.$original.weChatId === undefined ? '' : '   微信:' + item.$original.weChatId)) : null;
           var $loopState__temp4 = item.$original.name ? "\u7535\u8BDD:" + (item.$original.cellphone === null ? '未设置' : item.$original.cellphone) : null;
-          var $compid__50 = (0, _index.genCompid)(__prefix + "BwleaAGgfH" + _anonIdx);
+          var $compid__48 = (0, _index.genCompid)(__prefix + "zrijOVMoQT" + _anonIdx);
           item.$original.name && _index.propsManager.set({
             "title": $loopState__temp2,
             "note": $loopState__temp4,
             "thumb": item.$original.profileUrl
-          }, $compid__50);
+          }, $compid__48);
           return {
             $loopState__temp2: $loopState__temp2,
             $loopState__temp4: $loopState__temp4,
-            $compid__50: $compid__50,
+            $compid__48: $compid__48,
             $original: item.$original
           };
         }) : [];

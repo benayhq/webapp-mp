@@ -52,7 +52,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray32", "OrderList", "empty", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray16", "OrderList", "empty", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
       OrderState: '待付款',
       ProductImg: '',
       OrderList: [],
@@ -182,7 +182,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray32 = void 0;
+      var loopArray16 = void 0;
 
       var OrderList = this.__state.OrderList;
 
@@ -190,50 +190,50 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       var template = null;
 
       if (OrderList.length > 0) {
-        loopArray32 = OrderList.map(function (item, _anonIdx) {
+        loopArray16 = OrderList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
-          var $compid__713 = (0, _index.genCompid)(__prefix + "lydCcVsuNN" + _anonIdx);
+          var $compid__56 = (0, _index.genCompid)(__prefix + "DxGCOZyhCV" + _anonIdx);
           _index.propsManager.set({
             "OrderId": item.$original.id,
             "displayStatusDes": item.$original.displayStatusDes,
             "AgentName": item.$original.customerName
-          }, $compid__713);
-          var $compid__714 = (0, _index.genCompid)(__prefix + "iiWCeMGUtw" + _anonIdx);
+          }, $compid__56);
+          var $compid__57 = (0, _index.genCompid)(__prefix + "XKTSPQoMeW" + _anonIdx);
           item.$original.status == "UNPAY" && _index.propsManager.set({
             "type": "primary",
             "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
             "size": "small"
-          }, $compid__714);
-          var $compid__715 = (0, _index.genCompid)(__prefix + "jDJFbzrhmq" + _anonIdx);
+          }, $compid__57);
+          var $compid__58 = (0, _index.genCompid)(__prefix + "BkZBygWGPa" + _anonIdx);
           item.$original.status == "PAID" && _index.propsManager.set({
             "type": "primary",
             "size": "small",
             "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-          }, $compid__715);
-          var $compid__716 = (0, _index.genCompid)(__prefix + "isbrIGkpaW" + _anonIdx);
+          }, $compid__58);
+          var $compid__59 = (0, _index.genCompid)(__prefix + "dmoyAnnXas" + _anonIdx);
           item.$original.status == "COMMENTING" && _index.propsManager.set({
             "type": "primary",
             "size": "small"
-          }, $compid__716);
-          var $compid__717 = (0, _index.genCompid)(__prefix + "pYHujVmbAa" + _anonIdx);
+          }, $compid__59);
+          var $compid__60 = (0, _index.genCompid)(__prefix + "qbYypegBmq" + _anonIdx);
           item.$original.status == "CONSUMPTION" && _index.propsManager.set({
             "type": "primary",
             "size": "small"
-          }, $compid__717);
+          }, $compid__60);
           return {
-            $compid__713: $compid__713,
-            $compid__714: $compid__714,
-            $compid__715: $compid__715,
-            $compid__716: $compid__716,
-            $compid__717: $compid__717,
+            $compid__56: $compid__56,
+            $compid__57: $compid__57,
+            $compid__58: $compid__58,
+            $compid__59: $compid__59,
+            $compid__60: $compid__60,
             $original: item.$original
           };
         });
       } else {}
       Object.assign(this.__state, {
-        loopArray32: loopArray32,
+        loopArray16: loopArray16,
         empty: empty
       });
       return this.__state;

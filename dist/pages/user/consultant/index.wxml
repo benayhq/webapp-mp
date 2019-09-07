@@ -2,7 +2,7 @@
     <view class="mp-history">
         <block wx:if="{{actives}}">
             <at-list wx:for="{{loopArray8}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                <at-list-item compid="{{item.$compid__51}}"></at-list-item>
+                <at-list-item compid="{{item.$compid__49}}"></at-list-item>
             </at-list>
         </block>
     </view>

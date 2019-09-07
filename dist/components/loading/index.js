@@ -10,13 +10,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
-
-var _jump = require("../../utils/jump.js");
-
-var _jump2 = _interopRequireDefault(_jump);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,33 +22,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UserOrder = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(UserOrder, _BaseComponent);
+var loading = "/components/loading/assets/loading.gif";
 
-  function UserOrder() {
+var Loading = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Loading, _BaseComponent);
+
+  function Loading() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, UserOrder);
+    _classCallCheck(this, Loading);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserOrder.__proto__ || Object.getPrototypeOf(UserOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "list", "undefined"], _this.customComponents = ["AtBadge"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loading.__proto__ || Object.getPrototypeOf(Loading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loading"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(UserOrder, [{
+  _createClass(Loading, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(UserOrder.prototype.__proto__ || Object.getPrototypeOf(UserOrder.prototype), "_constructor", this).apply(this, arguments);
+      _get(Loading.prototype.__proto__ || Object.getPrototypeOf(Loading.prototype), "_constructor", this).call(this, props);
+
       this.$$refs = [];
-    }
-  }, {
-    key: "jumpUrl",
-    value: function jumpUrl(url) {
-      (0, _jump2.default)({ url: url });
     }
   }, {
     key: "_createData",
@@ -62,35 +56,15 @@ var UserOrder = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var _props$list = this.__props.list,
-          list = _props$list === undefined ? [] : _props$list;
-
-      var loopArray11 = list && list != undefined ? list.map(function (item, index) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-        var $compid__53 = (0, _index.genCompid)(__prefix + "KilUxwySkb" + index);
-        item.$original.count > 0 && _index.propsManager.set({
-          "value": item.$original.count,
-          "maxValue": 99
-        }, $compid__53);
-        return {
-          $compid__53: $compid__53,
-          $original: item.$original
-        };
-      }) : [];
       Object.assign(this.__state, {
-        loopArray11: loopArray11,
-        list: list,
-        undefined: undefined
+        loading: loading
       });
       return this.__state;
     }
   }]);
 
-  return UserOrder;
-}(_index.Component), _class.$$events = ["jumpUrl"], _class.$$componentPath = "pages/user/order/index", _temp2);
-exports.default = UserOrder;
+  return Loading;
+}(_index.Component), _class.$$events = [], _class.$$componentPath = "components/loading/index", _temp2);
+exports.default = Loading;
 
-Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(UserOrder));
+Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Loading));

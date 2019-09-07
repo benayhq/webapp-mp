@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="comp-loading">
+        <image src="{{loading}}" class="comp-loading__img"></image>
+    </view>
+</block>

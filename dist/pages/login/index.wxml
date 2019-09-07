@@ -6,7 +6,7 @@
             </view>
         </view>
         <view class="login-action">
-            <at-button compid="{{$compid__1370}}">微信登录</at-button>
+            <at-button compid="{{$compid__51}}">微信登录</at-button>
         </view>
     </view>
 </block>

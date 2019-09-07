@@ -96,16 +96,16 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__51 = (0, _index.genCompid)(__prefix + "INozltlAxx" + _anonIdx);
+        var $compid__49 = (0, _index.genCompid)(__prefix + "zIWGlJUdnH" + _anonIdx);
         _index.propsManager.set({
           "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
           "title": item.$original.name,
           "note": item.$original.address,
           "arrow": "right",
           "thumb": item.$original.profileUrl
-        }, $compid__51);
+        }, $compid__49);
         return {
-          $compid__51: $compid__51,
+          $compid__49: $compid__49,
           $original: item.$original
         };
       }

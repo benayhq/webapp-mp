@@ -1,9 +1,9 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="submit-order">
         <at-message></at-message>
-        <at-toast compid="{{$compid__41}}"></at-toast>
+        <at-toast compid="{{$compid__39}}"></at-toast>
         <at-list>
-            <at-list-item compid="{{$compid__42}}"></at-list-item>
+            <at-list-item compid="{{$compid__40}}"></at-list-item>
         </at-list>
         <view class="submit-order_white-space"></view>
         <view class="submit-order_product">

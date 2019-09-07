@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__41", "$compid__42", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__39", "$compid__40", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -268,8 +268,8 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__41 = (0, _index.genCompid)(__prefix + "$compid__41");
-      var $compid__42 = (0, _index.genCompid)(__prefix + "$compid__42");
+      var $compid__39 = (0, _index.genCompid)(__prefix + "$compid__39");
+      var $compid__40 = (0, _index.genCompid)(__prefix + "$compid__40");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -283,23 +283,23 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           appointmentDate = _state2.appointmentDate;
 
 
-      var $props__41 = {
+      var $props__39 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      var $props__42 = {
+      var $props__40 = {
         "hasBorder": false,
         "onClick": this.handleItemClick.bind(this),
         "title": cellPhone === '' ? "" : "\u5BA2\u6237:" + name,
         "note": cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone,
         "arrow": "right"
       };
-      _index.propsManager.set($props__41, $compid__41);
-      _index.propsManager.set($props__42, $compid__42);
+      _index.propsManager.set($props__39, $compid__39);
+      _index.propsManager.set($props__40, $compid__40);
       Object.assign(this.__state, {
-        $compid__41: $compid__41,
-        $compid__42: $compid__42,
+        $compid__39: $compid__39,
+        $compid__40: $compid__40,
         activityName: activityName
       });
       return this.__state;

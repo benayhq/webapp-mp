@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__17", "checkedList", "productList", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList", "dispatchDeleteProduct"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__15", "checkedList", "productList", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList", "dispatchDeleteProduct"], _this.config = {
       navigationBarTitleText: '产品列表'
     }, _this.customComponents = ["AtMessage", "CheckBox"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -211,20 +211,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
+      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
 
       var newFilterList = this.__state.newFilterList;
 
 
-      var $props__17 = {
+      var $props__15 = {
         "onDelete": this.handleDelItem.bind(this),
         "options": newFilterList,
         "selectedList": this.__state.checkedList,
         "onChange": this.handleChange.bind(this)
       };
-      _index.propsManager.set($props__17, $compid__17);
+      _index.propsManager.set($props__15, $compid__15);
       Object.assign(this.__state, {
-        $compid__17: $compid__17
+        $compid__15: $compid__15
       });
       return this.__state;
     }

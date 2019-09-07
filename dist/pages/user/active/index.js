@@ -53,15 +53,15 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray279", "activeList", "agentId", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray134", "pageLoaded", "activeList", "agentId", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.state = {
       activeList: [],
       agentId: 0,
       hasMore: true,
       loading: false,
-      loaded: false
-    }, _this.customComponents = ["AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
+      pageLoaded: false
+    }, _this.customComponents = ["Loading", "AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -236,11 +236,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     that.setState({
                       activeList: list,
                       loading: false,
+                      pageLoaded: true,
                       hasMore: true
                     });
                   }).catch(function (response) {
                     that.setState({
                       loading: false,
+                      pageLoaded: true,
                       hasMore: false
                     });
                   });
@@ -270,28 +272,30 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray279 = void 0;
+      var loopArray134 = void 0;
 
-      var activeList = this.__state.activeList;
+      var _state = this.__state,
+          activeList = _state.activeList,
+          pageLoaded = _state.pageLoaded;
 
       var renderTemplate = null;
-      if (activeList.length > 0) {
-        loopArray279 = activeList ? activeList.map(function (item, _anonIdx) {
+      if (!pageLoaded) {} else if (activeList.length > 0) {
+        loopArray134 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__1238 = (0, _index.genCompid)(__prefix + "NHaQjXWhAW" + _anonIdx);
+          var $compid__309 = (0, _index.genCompid)(__prefix + "WKvJCmScIE" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
             "note": $loopState__temp2,
             "thumb": item.$original.url,
             "arrow": "right"
-          }, $compid__1238);
+          }, $compid__309);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__1238: $compid__1238,
+            $compid__309: $compid__309,
             $original: item.$original
           };
         }
@@ -303,7 +307,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
-        loopArray279: loopArray279
+        loopArray134: loopArray134
       });
       return this.__state;
     }

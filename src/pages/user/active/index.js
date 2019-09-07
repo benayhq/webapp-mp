@@ -4,7 +4,7 @@ import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import { AtList, AtListItem } from "taro-ui"
-import Empty from './../../../components/empty';
+import {Empty,Loading} from './../../../components/';
 import {getWindowHeight} from './../../../utils/style';
 var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
@@ -19,7 +19,7 @@ class Index extends Component{
     agentId:0,    
     hasMore:true,
     loading:false,
-    loaded:false
+    pageLoaded:false
   }
 
   async getAuthInfo(){
@@ -109,11 +109,13 @@ class Index extends Component{
           that.setState({
              activeList:list,
              loading:false,
+             pageLoaded:true,
              hasMore:true
           })
         }).catch((response)=>{
           that.setState({
             loading:false,
+            pageLoaded:true,
             hasMore:false
           })
         });
@@ -122,9 +124,12 @@ class Index extends Component{
   }
 
   render(){
-    const {activeList} = this.state;
+    const {activeList,pageLoaded} = this.state;
     let renderTemplate = null;
-    if(activeList.length>0){
+    if(!pageLoaded){
+      renderTemplate = <Loading/>
+    }
+    else if(activeList.length>0){
       renderTemplate =  (
         <AtList>
          {
@@ -158,7 +163,7 @@ class Index extends Component{
                   style={{ height: getWindowHeight() }}>
             {renderTemplate}
 
-            {this.state.loading &&
+             { pageLoaded && this.state.loading &&
               <View className='home__loading'>
                 <Text className='home__loading-txt'>正在加载中...</Text>
               </View>

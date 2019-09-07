@@ -56,7 +56,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "data", "$compid__1090", "$compid__1091", "$compid__1092", "$compid__1093", "$compid__1094", "comments", "commentList", "bContact", "bSpec", "commentText", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "data", "$compid__271", "$compid__272", "$compid__273", "$compid__274", "$compid__275", "loaded", "comments", "commentList", "commentText", "bContact", "bSpec", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.state = {
       isOpened: false,
@@ -74,12 +74,13 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       source: '',
       commentText: '查看全部评论',
       isShare: false,
-      isForwarding: false
+      isForwarding: false,
+      loaded: false
     }, _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.customComponents = ["Gallery", "AtModal", "AtModalContent", "AtModalAction", "Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Loading", "Gallery", "AtModal", "AtModalContent", "AtModalAction", "Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detail, [{
@@ -223,7 +224,8 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
               bannerItemList.push(response);
             }).then(function () {
               _this2.setState({
-                bannerList: bannerItemList
+                bannerList: bannerItemList,
+                loaded: true
               });
             });
           });
@@ -441,16 +443,18 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _$anonymousState__temp;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1090 = (0, _index.genCompid)(__prefix + "$compid__1090");
-      var $compid__1091 = (0, _index.genCompid)(__prefix + "$compid__1091");
-      var $compid__1092 = (0, _index.genCompid)(__prefix + "$compid__1092");
-      var $compid__1093 = (0, _index.genCompid)(__prefix + "$compid__1093");
-      var $compid__1094 = (0, _index.genCompid)(__prefix + "$compid__1094");
+      var $compid__271 = (0, _index.genCompid)(__prefix + "$compid__271");
+      var $compid__272 = (0, _index.genCompid)(__prefix + "$compid__272");
+      var $compid__273 = (0, _index.genCompid)(__prefix + "$compid__273");
+      var $compid__274 = (0, _index.genCompid)(__prefix + "$compid__274");
+      var $compid__275 = (0, _index.genCompid)(__prefix + "$compid__275");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -466,47 +470,53 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state3.isOpened,
           bSpec = _state3.bSpec,
           bContact = _state3.bContact,
-          showOrderDialog = _state3.showOrderDialog;
+          showOrderDialog = _state3.showOrderDialog,
+          loaded = _state3.loaded;
 
-      var anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-      var $props__1090 = {
-        "list": bannerList
-      };
-      var $props__1091 = {
-        "isOpened": this.__state.isShare
-      };
-      var $props__1092 = {
-        "visible": this.__state.visible,
-        "onClose": this.toggleVisible
-      };
-      var $props__1093 = {
-        "cellphone": data.cellphone,
-        "weChatId": data.weChatId,
-        "weChatQrCode": data.weChatQrCode
-      };
-      var $props__1094 = {
-        "activityName": data.activityName,
-        "products": data.activityProducts
-      };
-      _index.propsManager.set($props__1090, $compid__1090);
-      _index.propsManager.set($props__1091, $compid__1091);
-      _index.propsManager.set($props__1092, $compid__1092);
-      bContact && _index.propsManager.set($props__1093, $compid__1093);
-      bSpec && _index.propsManager.set($props__1094, $compid__1094);
+
+      var renderTemplate = null;
+      if (!loaded) {} else {
+        _$anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
+        var $props__271 = {
+          "list": bannerList
+        };
+        var $props__272 = {
+          "isOpened": this.__state.isShare
+        };
+        var $props__273 = {
+          "visible": this.__state.visible,
+          "onClose": this.toggleVisible
+        };
+        var $props__274 = {
+          "cellphone": data.cellphone,
+          "weChatId": data.weChatId,
+          "weChatQrCode": data.weChatQrCode
+        };
+        var $props__275 = {
+          "activityName": data.activityName,
+          "products": data.activityProducts
+        };
+        _index.propsManager.set($props__271, $compid__271);
+        _index.propsManager.set($props__272, $compid__272);
+        _index.propsManager.set($props__273, $compid__273);
+        bContact && _index.propsManager.set($props__274, $compid__274);
+        bSpec && _index.propsManager.set($props__275, $compid__275);
+      }
+
       Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp,
-        $compid__1090: $compid__1090,
-        $compid__1091: $compid__1091,
-        $compid__1092: $compid__1092,
-        $compid__1093: $compid__1093,
-        $compid__1094: $compid__1094
+        _$anonymousState__temp: _$anonymousState__temp,
+        $compid__271: $compid__271,
+        $compid__272: $compid__272,
+        $compid__273: $compid__273,
+        $compid__274: $compid__274,
+        $compid__275: $compid__275
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "handleJumpHome", "openDialog", "handleShare", "handleCreatePosters", "handleCancelShare"], _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "handleJumpHome", "openDialog", "handleShare", "handleCreatePosters", "handleCancelShare"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));
