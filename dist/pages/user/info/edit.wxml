@@ -2,15 +2,15 @@
     <view class="mp-edit-user">
         <at-message></at-message>
         <at-form>
-            <at-input compid="{{$compid__1101}}"></at-input>
-            <at-input compid="{{$compid__1102}}"></at-input>
-            <at-input compid="{{$compid__1103}}"></at-input>
+            <at-input compid="{{$compid__1984}}"></at-input>
+            <at-input compid="{{$compid__1985}}"></at-input>
+            <at-input compid="{{$compid__1986}}"></at-input>
             <view class="qrCode"><text class="label">微信二维码</text>
             </view>
-            <at-image-picker compid="{{$compid__1104}}"></at-image-picker>
+            <at-image-picker compid="{{$compid__1987}}"></at-image-picker>
         </at-form>
         <view class="user-submit">
-            <at-button compid="{{$compid__1105}}">保存</at-button>
+            <at-button compid="{{$compid__1988}}">保存</at-button>
         </view>
     </view>
 </block>

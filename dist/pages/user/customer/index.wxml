@@ -7,8 +7,8 @@
             <block wx:else>
                 <at-list>
                     <block wx:if="{{customer}}">
-                        <block wx:if="{{item.$original.name}}" wx:for="{{loopArray315}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                            <at-list-item compid="{{item.$compid__1150}}"></at-list-item>
+                        <block wx:if="{{item.$original.name}}" wx:for="{{loopArray423}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                            <at-list-item compid="{{item.$compid__2033}}"></at-list-item>
                         </block>
                     </block>
                 </at-list>

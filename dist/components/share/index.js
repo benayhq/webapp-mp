@@ -40,7 +40,7 @@ var Share = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Share.__proto__ || Object.getPrototypeOf(Share)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1207", "activeId", "activityName", "path", "isOpened"], _this.customComponents = ["AtFloatLayout"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Share.__proto__ || Object.getPrototypeOf(Share)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1612", "activeId", "isOpened"], _this.customComponents = ["AtFloatLayout"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Share, [{
@@ -66,14 +66,20 @@ var Share = (_temp2 = _class = function (_BaseComponent) {
   }, {
     key: "onShareAppMessage",
     value: function onShareAppMessage(ops) {
-
+      // console.log('....share....');
+      // debugger;
+      _index2.default.showToast({
+        title: 'fdsafdsaf'
+      });
+      // return;
       return {
-        title: this.props.activityName,
-        path: this.props.path, // 路径，传递参数到指定页面。
+        title: '测试测试',
+        path: '/pages/user/index', // 路径，传递参数到指定页面。
         imageUrl: '', // 分享的封面图
         success: function success(res) {},
         fail: function fail(res) {}
       };
+      return;
 
       var that = this;
       // 设置菜单中的转发按钮触发转发事件时的转发内容
@@ -119,19 +125,19 @@ var Share = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1207 = (0, _index.genCompid)(__prefix + "$compid__1207");
+      var $compid__1612 = (0, _index.genCompid)(__prefix + "$compid__1612");
 
       var isOpened = this.__props.isOpened;
 
 
-      var $props__1207 = {
+      var $props__1612 = {
         "isOpened": isOpened,
         "title": "\u5206  \u4EAB",
         "onClose": this.handleClose.bind(this)
       };
-      _index.propsManager.set($props__1207, $compid__1207);
+      _index.propsManager.set($props__1612, $compid__1612);
       Object.assign(this.__state, {
-        $compid__1207: $compid__1207
+        $compid__1612: $compid__1612
       });
       return this.__state;
     }

@@ -23,7 +23,7 @@ export default class ProductList extends Component{
                                             </View>
                                             <View>
                                                 <image
-                                                style="width:92px; height:95px;margin-top:14px;"
+                                                style="width:86px; height:86px;margin-top:14px;border-radius:9px;"
                                                 mode="scaleToFill"
                                                 src={item.location}
                                                 ></image>
@@ -32,10 +32,10 @@ export default class ProductList extends Component{
                                                 <View className="product-item margin20"> {item.name} </View>
                                                 <View className="product-item font"> {item.price} </View>
                                                 <View className="product-item textfont">  预定金: <Text className="amount">{item.advance}</Text> </View>
-                                            
+                                                <View className="product-item textfont">  活动价: <Text className="amount">{item.discountPrice}</Text> </View>
                                             </View>
                                         </View>
-                                        <View className="product-item activePrice"> 
+                                        {/* <View className="product-item activePrice"> 
                                                   <View>活动价: </View> 
                                                   <View>
                                                     <AtInput
@@ -45,7 +45,7 @@ export default class ProductList extends Component{
                                                         onChange={this.handleChange.bind(this)}
                                                     />
                                                   </View>
-                                        </View>
+                                        </View> */}
                                     </View>
                                     ))
                                 }

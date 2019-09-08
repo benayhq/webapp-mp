@@ -1,23 +1,19 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="product">
         <block wx:if="{{products != null}}">
-            <view class="list" wx:for="{{loopArray349}}" wx:for-item="item" wx:for-index="_anonIdx2">
+            <view class="list" wx:for="{{products}}" wx:for-item="item" wx:for-index="_anonIdx2">
                 <view class="list-top">
                     <view></view>
                     <view>
-                        <image style="width:92px; height:95px;margin-top:14px;" mode="scaleToFill" src="{{item.$original.location}}"></image>
+                        <image style="width:86px; height:86px;margin-top:14px;border-radius:9px;" mode="scaleToFill" src="{{item.location}}"></image>
                     </view>
                     <view>
-                        <view class="product-item margin20">{{item.$original.name}}</view>
-                        <view class="product-item font">{{item.$original.price}}</view>
-                        <view class="product-item textfont">预定金: <text class="amount">{{item.$original.advance}}</text> 
+                        <view class="product-item margin20">{{item.name}}</view>
+                        <view class="product-item font">{{item.price}}</view>
+                        <view class="product-item textfont">预定金: <text class="amount">{{item.advance}}</text> 
                         </view>
-                    </view>
-                </view>
-                <view class="product-item activePrice">
-                    <view>活动价:</view>
-                    <view>
-                        <at-input compid="{{item.$compid__1286}}"></at-input>
+                        <view class="product-item textfont">活动价: <text class="amount">{{item.discountPrice}}</text> 
+                        </view>
                     </view>
                 </view>
             </view>

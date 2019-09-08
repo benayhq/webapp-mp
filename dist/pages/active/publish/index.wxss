@@ -311,7 +311,7 @@
     background: white;
     position: fixed;
     bottom: 1rpx;
-    z-index: 1000; }
+    z-index: 10000; }
     .mp-active .publish > view {
       padding: 5rpx;
       background-color: #7DD6D0;
@@ -357,8 +357,7 @@
   margin-left: 20rpx; }
 
 .scroll-product {
-  overflow: auto;
-  height: 500rpx; }
+  overflow: auto; }
 
 .scroll-product-hidden {
   overflow: hidden; }
@@ -643,8 +642,7 @@
 
 .mp-publish-product {
   background: #ffffff;
-  margin-top: 25rpx;
-  margin-bottom: 550rpx; }
+  margin-top: 25rpx; }
   .mp-publish-product .publish-active {
     display: -webkit-box;
     display: -webkit-flex;
@@ -767,7 +765,3 @@
     padding-top: 28rpx;
     padding-right: 26rpx;
     padding-left: 12rpx; }
-
-.scroll-product {
-  overflow: auto;
-  height: 500rpx; }

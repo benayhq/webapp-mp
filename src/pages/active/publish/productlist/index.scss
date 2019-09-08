@@ -30,7 +30,6 @@ $pageBgColor:#ffffff;
 .mp-publish-product{
     background: $pageBgColor;
     margin-top: 25px;
-    margin-bottom: 550px;
     .publish-active{
         @include flex(row);
         border-bottom: 1px solid #ddd ;
@@ -79,7 +78,6 @@ $pageBgColor:#ffffff;
             -webkit-text-stroke:1px rgba(125,214,208,1);
         }
     }
-
     .list-top{
         @include flex(row);
         height: 227px;
@@ -172,7 +170,3 @@ $pageBgColor:#ffffff;
     }
 }
 
-.scroll-product{
-    overflow: auto;
-    height: 500px;
-}

@@ -271,10 +271,7 @@ export default class Index extends Component {
     //   return;
     // }
     const result = await getAuthInfo();
-    console.log('result555',result);
-    debugger;
-
-    let payload =  {
+    let payload = {
       "areaCode": "string",
       "docLocations": docLocations,
       "id": 0,
@@ -286,7 +283,6 @@ export default class Index extends Component {
       "userId": result.id,
       "wechatId": weChatNumber
     };
-    debugger;
     if(result.cellphone === null || result.cellphone === ""){
       this.setState({
         isOpened:true
@@ -299,9 +295,6 @@ export default class Index extends Component {
     }
     try{
       this.props.dispatchCreateActive(payload).then((res)=>{
-
-        console.log('dispatchCreateActive',res);
-  
         if(res && res.result === "success" && res.content !=null){
           Taro.navigateTo({
             url:`/pages/active/share/index?activeId=${res.content}`
@@ -315,7 +308,7 @@ export default class Index extends Component {
       console.log('e',e);
     }
   }
-  
+
   async getPhoneNumber(e) {
       if (e.detail.encryptedData && e.detail.iv) {
           let payload = {
@@ -437,11 +430,20 @@ export default class Index extends Component {
     });
   }
 
+ getWindowHeight(showTabBar = true,products){
+    const info = Taro.getSystemInfoSync();
+    const { windowHeight}  = info;
+
+    return `${windowHeight+(products.length * 89)}px`
+ }
+
   render () {
     const {activeName,dateEnd,dateStart,products,isOpened} = this.state;
     const isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
     return (
       <View className="mp-active">
+         <ScrollView scrollY style={{ height: this.getWindowHeight(true,products) }}>
+ 
         <AtMessage/>
 
         <View className="item">
@@ -496,9 +498,8 @@ export default class Index extends Component {
                       <Text className="mp-icon mp-icon-plus"></Text>
                       <Text>新增产品</Text>
             </View>
-            <ScrollView scrollY className={isAutoScrollItem}>
-               <ProductList products={products}/>
-            </ScrollView>
+           <ProductList products={products}/>
+          
                      {/* <View className="publish-active">
                             <Text>活动价</Text>
                               <AtInput border={false} 
@@ -508,9 +509,7 @@ export default class Index extends Component {
                       </View> */}
         </View>
 
-        <View className="publish">
-            <View onClick={this.onPublish}>立即发布</View>
-        </View> 
+
 
         <AtModal isOpened={isOpened}>
         <AtModalHeader>授权获取手机号</AtModalHeader>
@@ -527,6 +526,10 @@ export default class Index extends Component {
              type='primary' size='small'>授权登录</AtButton> */}
         </View>
       </AtModal>
+      </ScrollView>
+        <View className="publish">
+            <View onClick={this.onPublish}>立即发布</View>
+        </View> 
       </View>
     )
   }

@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray318", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray426", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
       navigationBarTitleText: '往期产品'
     }, _this.customComponents = ["Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -205,13 +205,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray318 = void 0;
+      var loopArray426 = void 0;
 
       var newFilterList = this.__state.newFilterList;
 
       var renderTemplate = null;
       if (newFilterList.length === 0) {} else {
-        loopArray318 = newFilterList ? newFilterList.map(function (item, _anonIdx) {
+        loopArray426 = newFilterList ? newFilterList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
@@ -223,7 +223,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }) : [];
       }
       Object.assign(this.__state, {
-        loopArray318: loopArray318
+        loopArray426: loopArray426
       });
       return this.__state;
     }

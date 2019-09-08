@@ -48,7 +48,7 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1153", "GetUserInfo", "UpdateUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__2036", "GetUserInfo", "UpdateUserInfo"], _this.config = {
       navigationBarTitleText: '登录'
     }, _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -244,8 +244,8 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1153 = (0, _index.genCompid)(__prefix + "$compid__1153");
-      var $props__1153 = {
+      var $compid__2036 = (0, _index.genCompid)(__prefix + "$compid__2036");
+      var $props__2036 = {
         "className": "wechat-login",
         "text": "\u5FAE\u4FE1\u767B\u5F55",
         "openType": "getUserInfo",
@@ -253,9 +253,9 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
         "type": "primary",
         "size": "small"
       };
-      _index.propsManager.set($props__1153, $compid__1153);
+      _index.propsManager.set($props__2036, $compid__2036);
       Object.assign(this.__state, {
-        $compid__1153: $compid__1153
+        $compid__2036: $compid__2036
       });
       return this.__state;
     }

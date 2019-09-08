@@ -258,8 +258,7 @@
   content: "\e667"; }
 
 .mp-icon-friend:before {
-  font-size: 70rpx;
-  color: #7DD6D0;
+  font-size: 90rpx;
   content: "\e635"; }
 
 .mp-order-detail {

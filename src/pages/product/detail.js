@@ -467,7 +467,6 @@ export default class Detail extends Component{
                 </View>
                 
                 <View className="mp-activedetail__footer">
-                
                     <View>
                         <View className="mp-activedetail__orderpay_footer">预定金: 
                             <Text style="color:rgba(235,47,150,1);">￥{data.advance}</Text>

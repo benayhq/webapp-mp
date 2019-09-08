@@ -1,47 +1,47 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="mp-active">
-        <at-message></at-message>
-        <view class="item"><text>活动名称</text>
-            <at-input compid="{{$compid__1343}}"></at-input>
-        </view>
-        <view class="item">
-            <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
-                <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>成团人数</text>  <text class="time"> {{groupItemChecked}} </text> 
-                </view>
-            </picker>
-        </view>
-        <view class="item">
-            <picker mode="date" bindchange="onDateStartChange">
-                <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>开始时间</text>  <text class="time">{{dateStart}}</text> 
-                </view>
-            </picker>
-        </view>
-        <view class="item">
-            <picker mode="date" bindchange="onDateEndChange">
-                <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>结束时间</text>  <text class="time">  {{dateEnd}}</text> 
-                </view>
-            </picker>
-        </view>
-        <at-image-picker compid="{{$compid__1344}}"></at-image-picker>
-        <view class="mp-publish-product">
-            <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
+        <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
+            <at-message></at-message>
+            <view class="item"><text>活动名称</text>
+                <at-input compid="{{$compid__2239}}"></at-input>
             </view>
-            <view class="pulbish-create" bindtap="createProduct"><text class="mp-icon mp-icon-plus"></text><text>新增产品</text>
+            <view class="item">
+                <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
+                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>成团人数</text>  <text class="time"> {{groupItemChecked}} </text> 
+                    </view>
+                </picker>
             </view>
-            <scroll-view scroll-y="{{true}}" class="{{isAutoScrollItem}}">
-                <product-list compid="{{$compid__1345}}"></product-list>
-            </scroll-view>
-        </view>
+            <view class="item">
+                <picker mode="date" bindchange="onDateStartChange">
+                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>开始时间</text>  <text class="time">{{dateStart}}</text> 
+                    </view>
+                </picker>
+            </view>
+            <view class="item">
+                <picker mode="date" bindchange="onDateEndChange">
+                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>结束时间</text>  <text class="time">  {{dateEnd}}</text> 
+                    </view>
+                </picker>
+            </view>
+            <at-image-picker compid="{{$compid__2240}}"></at-image-picker>
+            <view class="mp-publish-product">
+                <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
+                </view>
+                <view class="pulbish-create" bindtap="createProduct"><text class="mp-icon mp-icon-plus"></text><text>新增产品</text>
+                </view>
+                <product-list compid="{{$compid__2241}}"></product-list>
+            </view>
+            <at-modal compid="{{$compid__2242}}">
+                <at-modal-header>授权获取手机号</at-modal-header>
+                <at-modal-content>
+                    <view class="mp-user__authinfo">申请获取以下权限</view>获取你的手机号</at-modal-content>
+                <view class="wechat-login">
+                    <button class="getPhone" form-type="submit" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-e-getphonenumber-so="this">获取手机号</button>
+                </view>
+            </at-modal>
+        </scroll-view>
         <view class="publish">
             <view bindtap="onPublish">立即发布</view>
         </view>
-        <at-modal compid="{{$compid__1346}}">
-            <at-modal-header>授权获取手机号</at-modal-header>
-            <at-modal-content>
-                <view class="mp-user__authinfo">申请获取以下权限</view>获取你的手机号</at-modal-content>
-            <view class="wechat-login">
-                <button class="getPhone" form-type="submit" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-e-getphonenumber-so="this">获取手机号</button>
-            </view>
-        </at-modal>
     </view>
 </block>

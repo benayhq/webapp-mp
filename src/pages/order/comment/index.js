@@ -79,20 +79,19 @@ export default class Comment extends Taro.Component{
     }
 
     onImageClick (index, file) {
-        console.log(index, file)
+        console.log(index, file);
     }
 
-    handleChange (event) {
+    handleChange(event){
         this.setState({
           commentValue: event.target.value
-        });
-        return event;
+        })
     }
 
     handleEnvChange(value){
         this.setState({
             envValue: value
-        });
+        })
     }
 
     handleServeChange(value){
@@ -262,14 +261,14 @@ export default class Comment extends Taro.Component{
                     />
                 </View>
                 <View className="upload-map">
-                     <AtImagePicker
+                    <AtImagePicker
                         multiple
                         mode='top'
                         onFail={this.onFail.bind(this)}
                         onImageClick={this.onImageClick.bind(this)}
                         files={this.state.files}
                         onChange={this.onChange.bind(this)}
-                />
+                    />
                 </View>
                 <View className="submit">
                     <AtButton type='primary' onClick={this.handleComment.bind(this)}>发表评论</AtButton>

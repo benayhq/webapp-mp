@@ -6,7 +6,7 @@
             </block>
             <block wx:else>
                 <block wx:if="{{newFilterList}}">
-                    <view class="mp-user__product" bindtap="handleProductEdit" wx:for="{{loopArray318}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item.$original.value}}">
+                    <view class="mp-user__product" bindtap="handleProductEdit" wx:for="{{loopArray426}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item.$original.value}}">
                         <view>
                             <image className="icon-header" src="{{item.$original.imgUrl}}"></image>
                         </view>

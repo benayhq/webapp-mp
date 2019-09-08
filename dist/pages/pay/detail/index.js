@@ -48,7 +48,7 @@ var PayDetail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PayDetail.__proto__ || Object.getPrototypeOf(PayDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__1142", "activeId", "isOpened", "referId", "img", "bannerList", "dispatchDownLoadUrl", "dispatchActiveInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PayDetail.__proto__ || Object.getPrototypeOf(PayDetail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__2025", "activeId", "isOpened", "referId", "img", "bannerList", "dispatchDownLoadUrl", "dispatchActiveInfo"], _this.config = {
       navigationBarTitleText: '交易成功提示'
     }, _this.state = {
       activeId: 0,
@@ -161,7 +161,7 @@ var PayDetail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1142 = (0, _index.genCompid)(__prefix + "$compid__1142");
+      var $compid__2025 = (0, _index.genCompid)(__prefix + "$compid__2025");
 
       var _state = this.__state,
           isOpened = _state.isOpened,
@@ -172,7 +172,7 @@ var PayDetail = (_dec = (0, _index3.connect)(function (state) {
 
 
       var anonymousState__temp = "/pages/product/detail?activeId=" + activeId + "&refId=" + referId;
-      var $props__1142 = {
+      var $props__2025 = {
         "isOpened": isOpened,
         "path": anonymousState__temp,
         "activeId": activeId,
@@ -181,10 +181,10 @@ var PayDetail = (_dec = (0, _index3.connect)(function (state) {
         "img": img,
         "onClose": this.handleClose
       };
-      _index.propsManager.set($props__1142, $compid__1142);
+      _index.propsManager.set($props__2025, $compid__2025);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__1142: $compid__1142
+        $compid__2025: $compid__2025
       });
       return this.__state;
     }

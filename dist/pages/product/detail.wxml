@@ -7,7 +7,7 @@
             <block wx:else>
                 <view class="mp-activedetail">
                     <scroll-view scroll-y="{{true}}" style="{{_$anonymousState__temp}}">
-                        <gallery compid="{{$compid__1192}}"></gallery>
+                        <gallery compid="{{$compid__2018}}"></gallery>
                         <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
                         </view>
                         <view class="mp-activedetail__price">
@@ -120,13 +120,13 @@
                             </view>
                         </view>
                     </scroll-view>
-                    <share compid="{{$compid__1193}}"></share>
-                    <popup compid="{{$compid__1194}}">
+                    <share compid="{{$compid__2019}}"></share>
+                    <popup compid="{{$compid__2020}}">
                         <block wx:if="{{bContact}}">
-                            <contact compid="{{$compid__1195}}"></contact>
+                            <contact compid="{{$compid__2021}}"></contact>
                         </block>
                         <block wx:if="{{bSpec}}">
-                            <spec compid="{{$compid__1196}}"></spec>
+                            <spec compid="{{$compid__2022}}"></spec>
                         </block>
                     </popup>
                 </view>

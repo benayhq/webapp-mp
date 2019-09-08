@@ -56,7 +56,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "data", "$compid__1192", "$compid__1193", "$compid__1194", "$compid__1195", "$compid__1196", "loaded", "comments", "commentList", "commentText", "bContact", "bSpec", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "img", "activityName", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "data", "$compid__2018", "$compid__2019", "$compid__2020", "$compid__2021", "$compid__2022", "loaded", "comments", "commentList", "commentText", "bContact", "bSpec", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "img", "activityName", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
     }, _this.state = (_this$state = {
       isOpened: false,
@@ -415,11 +415,11 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1192 = (0, _index.genCompid)(__prefix + "$compid__1192");
-      var $compid__1193 = (0, _index.genCompid)(__prefix + "$compid__1193");
-      var $compid__1194 = (0, _index.genCompid)(__prefix + "$compid__1194");
-      var $compid__1195 = (0, _index.genCompid)(__prefix + "$compid__1195");
-      var $compid__1196 = (0, _index.genCompid)(__prefix + "$compid__1196");
+      var $compid__2018 = (0, _index.genCompid)(__prefix + "$compid__2018");
+      var $compid__2019 = (0, _index.genCompid)(__prefix + "$compid__2019");
+      var $compid__2020 = (0, _index.genCompid)(__prefix + "$compid__2020");
+      var $compid__2021 = (0, _index.genCompid)(__prefix + "$compid__2021");
+      var $compid__2022 = (0, _index.genCompid)(__prefix + "$compid__2022");
 
       var _state2 = this.__state,
           data = _state2.data,
@@ -442,10 +442,10 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       if (!loaded) {} else {
         _$anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
         _$anonymousState__temp2 = "pages/product/detail?activeId=" + activeId + "&refId=" + data.agentId;
-        var $props__1192 = {
+        var $props__2018 = {
           "list": bannerList
         };
-        var $props__1193 = {
+        var $props__2019 = {
           "isOpened": isShare,
           "path": _$anonymousState__temp2,
           "activeId": activeId,
@@ -454,34 +454,34 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
           "img": img,
           "onClose": this.handleClose
         };
-        var $props__1194 = {
+        var $props__2020 = {
           "visible": this.__state.visible,
           "onClose": this.toggleVisible
         };
-        var $props__1195 = {
+        var $props__2021 = {
           "cellphone": data.cellphone,
           "weChatId": data.weChatId,
           "weChatQrCode": data.weChatQrCode
         };
-        var $props__1196 = {
+        var $props__2022 = {
           "activityName": data.activityName,
           "products": data.activityProducts
         };
-        _index.propsManager.set($props__1192, $compid__1192);
-        _index.propsManager.set($props__1193, $compid__1193);
-        _index.propsManager.set($props__1194, $compid__1194);
-        bContact && _index.propsManager.set($props__1195, $compid__1195);
-        bSpec && _index.propsManager.set($props__1196, $compid__1196);
+        _index.propsManager.set($props__2018, $compid__2018);
+        _index.propsManager.set($props__2019, $compid__2019);
+        _index.propsManager.set($props__2020, $compid__2020);
+        bContact && _index.propsManager.set($props__2021, $compid__2021);
+        bSpec && _index.propsManager.set($props__2022, $compid__2022);
       }
 
       Object.assign(this.__state, {
         _$anonymousState__temp: _$anonymousState__temp,
         _$anonymousState__temp2: _$anonymousState__temp2,
-        $compid__1192: $compid__1192,
-        $compid__1193: $compid__1193,
-        $compid__1194: $compid__1194,
-        $compid__1195: $compid__1195,
-        $compid__1196: $compid__1196
+        $compid__2018: $compid__2018,
+        $compid__2019: $compid__2019,
+        $compid__2020: $compid__2020,
+        $compid__2021: $compid__2021,
+        $compid__2022: $compid__2022
       });
       return this.__state;
     }

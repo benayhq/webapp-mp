@@ -53,7 +53,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray319", "pageLoaded", "activeList", "agentId", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray427", "pageLoaded", "activeList", "agentId", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
       navigationBarTitleText: '我的活动'
     }, _this.state = {
       activeList: [],
@@ -272,7 +272,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray319 = void 0;
+      var loopArray427 = void 0;
 
       var _state = this.__state,
           activeList = _state.activeList,
@@ -280,22 +280,22 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var renderTemplate = null;
       if (!pageLoaded) {} else if (activeList.length > 0) {
-        loopArray319 = activeList ? activeList.map(function (item, _anonIdx) {
+        loopArray427 = activeList ? activeList.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
           var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__1152 = (0, _index.genCompid)(__prefix + "QjZjRanbgj" + _anonIdx);
+          var $compid__2035 = (0, _index.genCompid)(__prefix + "cUUNNWSiaX" + _anonIdx);
           _index.propsManager.set({
             "onClick": _this3.handleClick.bind(_this3, item.$original),
             "title": item.$original.name,
             "note": $loopState__temp2,
             "thumb": item.$original.url,
             "arrow": "right"
-          }, $compid__1152);
+          }, $compid__2035);
           return {
             $loopState__temp2: $loopState__temp2,
-            $compid__1152: $compid__1152,
+            $compid__2035: $compid__2035,
             $original: item.$original
           };
         }
@@ -307,7 +307,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
-        loopArray319: loopArray319
+        loopArray427: loopArray427
       });
       return this.__state;
     }

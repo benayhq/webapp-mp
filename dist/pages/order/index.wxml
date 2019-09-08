@@ -1,28 +1,28 @@
 <block wx:if="{{$taroCompReady}}">
-    <at-tabs compid="{{$compid__1118}}">
-        <at-tabs-pane compid="{{$compid__1119}}">
+    <at-tabs compid="{{$compid__2001}}">
+        <at-tabs-pane compid="{{$compid__2002}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp}}">
-                <order-item compid="{{$compid__1120}}"></order-item>
+                <order-item compid="{{$compid__2003}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__1121}}">
+        <at-tabs-pane compid="{{$compid__2004}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp2}}">
-                <order-item compid="{{$compid__1122}}"></order-item>
+                <order-item compid="{{$compid__2005}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__1123}}">
+        <at-tabs-pane compid="{{$compid__2006}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp3}}">
-                <order-item compid="{{$compid__1124}}"></order-item>
+                <order-item compid="{{$compid__2007}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__1125}}">
+        <at-tabs-pane compid="{{$compid__2008}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp4}}">
-                <order-item compid="{{$compid__1126}}"></order-item>
+                <order-item compid="{{$compid__2009}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__1127}}">
+        <at-tabs-pane compid="{{$compid__2010}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp5}}">
-                <order-item compid="{{$compid__1128}}"></order-item>
+                <order-item compid="{{$compid__2011}}"></order-item>
             </scroll-view>
         </at-tabs-pane>
     </at-tabs>

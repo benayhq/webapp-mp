@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1343", "$compid__1344", "$compid__1345", "$compid__1346", "isAutoScrollItem", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__2239", "$compid__2240", "$compid__2241", "$compid__2242", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -393,10 +393,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 18:
                 result = _context2.sent;
-
-                console.log('result555', result);
-                debugger;
-
                 payload = {
                   "areaCode": "string",
                   "docLocations": docLocations,
@@ -410,10 +406,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   "wechatId": weChatNumber
                 };
 
-                debugger;
-
                 if (!(result.cellphone === null || result.cellphone === "")) {
-                  _context2.next = 28;
+                  _context2.next = 25;
                   break;
                 }
 
@@ -422,17 +416,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 28:
+              case 25:
                 this.setState({
                   isOpened: false
                 });
 
-              case 29:
+              case 26:
                 try {
                   this.props.dispatchCreateActive(payload).then(function (res) {
-
-                    console.log('dispatchCreateActive', res);
-
                     if (res && res.result === "success" && res.content != null) {
                       _index2.default.navigateTo({
                         url: "/pages/active/share/index?activeId=" + res.content
@@ -445,7 +436,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   console.log('e', e);
                 }
 
-              case 30:
+              case 27:
               case "end":
                 return _context2.stop();
             }
@@ -649,6 +640,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
+    key: "getWindowHeight",
+    value: function getWindowHeight() {
+      var showTabBar = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      var products = arguments[1];
+
+      var info = _index2.default.getSystemInfoSync();
+      var windowHeight = info.windowHeight;
+
+
+      return windowHeight + products.length * 89 + "px";
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -656,10 +659,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1343 = (0, _index.genCompid)(__prefix + "$compid__1343");
-      var $compid__1344 = (0, _index.genCompid)(__prefix + "$compid__1344");
-      var $compid__1345 = (0, _index.genCompid)(__prefix + "$compid__1345");
-      var $compid__1346 = (0, _index.genCompid)(__prefix + "$compid__1346");
+      var $compid__2239 = (0, _index.genCompid)(__prefix + "$compid__2239");
+      var $compid__2240 = (0, _index.genCompid)(__prefix + "$compid__2240");
+      var $compid__2241 = (0, _index.genCompid)(__prefix + "$compid__2241");
+      var $compid__2242 = (0, _index.genCompid)(__prefix + "$compid__2242");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -669,41 +672,42 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
       var isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
-      var $props__1343 = {
+      var anonymousState__temp = (0, _index.internal_inline_style)({ height: this.getWindowHeight(true, products) });
+      var $props__2239 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__1344 = {
+      var $props__2240 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__1345 = {
+      var $props__2241 = {
         "products": products
       };
-      var $props__1346 = {
+      var $props__2242 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__1343, $compid__1343);
-      _index.propsManager.set($props__1344, $compid__1344);
-      _index.propsManager.set($props__1345, $compid__1345);
-      _index.propsManager.set($props__1346, $compid__1346);
+      _index.propsManager.set($props__2239, $compid__2239);
+      _index.propsManager.set($props__2240, $compid__2240);
+      _index.propsManager.set($props__2241, $compid__2241);
+      _index.propsManager.set($props__2242, $compid__2242);
       Object.assign(this.__state, {
-        $compid__1343: $compid__1343,
-        $compid__1344: $compid__1344,
-        $compid__1345: $compid__1345,
-        $compid__1346: $compid__1346,
-        isAutoScrollItem: isAutoScrollItem
+        anonymousState__temp: anonymousState__temp,
+        $compid__2239: $compid__2239,
+        $compid__2240: $compid__2240,
+        $compid__2241: $compid__2241,
+        $compid__2242: $compid__2242
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "selectProduct", "createProduct", "onPublish", "getPhoneNumber"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "selectProduct", "createProduct", "getPhoneNumber", "onPublish"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

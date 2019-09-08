@@ -6,7 +6,7 @@
             </block>
             <block wx:else>
                 <view class="mp-user">
-                    <at-modal compid="{{$compid__1244}}">
+                    <at-modal compid="{{$compid__2159}}">
                         <at-modal-header>商家入驻协议</at-modal-header>
                         <at-modal-content>
                             <scroll-view scroll-y="{{true}}" class="mp-user__agree">
@@ -79,7 +79,7 @@
                         </block>
                     </view>
                     <block wx:if="{{isAgent}}">
-                        <in-come compid="{{$compid__1245}}"></in-come>
+                        <in-come compid="{{$compid__2160}}"></in-come>
                     </block>
                     <block wx:if="{{isAgent}}">
                         <view class="mp-user__publish">
@@ -88,11 +88,11 @@
                             <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
                         </view>
                     </block>
-                    <user-order compid="{{$compid__1246}}"></user-order>
+                    <user-order compid="{{$compid__2161}}"></user-order>
                     <view class="mp-user__list">
                         <at-list>
                             <block wx:if="{{list.length > 0}}">
-                                <at-list-item wx:for="{{loopArray342}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__1243}}"></at-list-item>
+                                <at-list-item wx:for="{{loopArray433}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__2158}}"></at-list-item>
                             </block>
                         </at-list>
                         <block>
@@ -107,7 +107,7 @@
                     <block>
                         <block wx:if="{{isShowLoanApp === true}}">
                             <view class="mp-user__loan">
-                                <at-card compid="{{$compid__1247}}">
+                                <at-card compid="{{$compid__2162}}">
                                     <view class="mp-user__loan-text">{{context2}}</view>
                                     <view class="mp-user__loan-amount">{{context3}}</view>
                                     <view class="mp-user__loan-desc">{{context4}}</view>

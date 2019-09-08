@@ -262,7 +262,7 @@ class Index extends Component{
       isAgree:false
     })
   }
-
+  
   async handleConfirmAgree(){
     await this.props.ChangeToAgent();
     const rstUserInfo = await this.props.GetUserInfo({});
@@ -517,7 +517,7 @@ class Index extends Component{
        </View>   
      </View>
     }
-    
+
     return (
         <View>
           {renderTemplate}

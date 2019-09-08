@@ -3,27 +3,27 @@
         <at-message></at-message>
         <view class="serve">
             <view class="environ"><text>环境:</text>
-                <at-rate compid="{{$compid__1143}}"></at-rate>
+                <at-rate compid="{{$compid__2026}}"></at-rate>
             </view>
             <view class="environ"><text>服务:</text>
-                <at-rate compid="{{$compid__1144}}"></at-rate>
+                <at-rate compid="{{$compid__2027}}"></at-rate>
             </view>
             <view class="environ"><text class="profession">专业:</text>
-                <at-rate compid="{{$compid__1145}}"></at-rate>
+                <at-rate compid="{{$compid__2028}}"></at-rate>
             </view>
             <view class="environ"><text>效果:</text>
-                <at-rate compid="{{$compid__1146}}"></at-rate>
+                <at-rate compid="{{$compid__2029}}"></at-rate>
             </view>
         </view>
         <view class="space"></view>
         <view class="comment">
-            <at-textarea compid="{{$compid__1147}}"></at-textarea>
+            <at-textarea compid="{{$compid__2030}}"></at-textarea>
         </view>
         <view class="upload-map">
-            <at-image-picker compid="{{$compid__1148}}"></at-image-picker>
+            <at-image-picker compid="{{$compid__2031}}"></at-image-picker>
         </view>
         <view class="submit">
-            <at-button compid="{{$compid__1149}}">发表评论</at-button>
+            <at-button compid="{{$compid__2032}}">发表评论</at-button>
         </view>
     </view>
 </block>

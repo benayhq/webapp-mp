@@ -46,7 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray317", "actives", "dispatchOwnerServiceHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray425", "actives", "dispatchOwnerServiceHistory"], _this.config = {
       navigationBarTitleText: '历史咨询师'
     }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -92,20 +92,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var actives = this.__state.actives;
 
 
-      var loopArray317 = actives ? actives.map(function (item, _anonIdx) {
+      var loopArray425 = actives ? actives.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__1151 = (0, _index.genCompid)(__prefix + "hvfDOYVoan" + _anonIdx);
+        var $compid__2034 = (0, _index.genCompid)(__prefix + "RmzwKadpjm" + _anonIdx);
         _index.propsManager.set({
           "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
           "title": item.$original.name,
           "note": item.$original.address,
           "arrow": "right",
           "thumb": item.$original.profileUrl
-        }, $compid__1151);
+        }, $compid__2034);
         return {
-          $compid__1151: $compid__1151,
+          $compid__2034: $compid__2034,
           $original: item.$original
         };
       }
@@ -121,7 +121,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       // </View>
       ) : [];
       Object.assign(this.__state, {
-        loopArray317: loopArray317
+        loopArray425: loopArray425
       });
       return this.__state;
     }

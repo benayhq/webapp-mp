@@ -7,6 +7,6 @@
         <view class="mp-pay-action" bindtap="handleInvertFirend" data-e-tap-so="this">
             <view>邀请好友拼单</view>
         </view>
-        <share compid="{{$compid__1142}}"></share>
+        <share compid="{{$compid__2025}}"></share>
     </view>
 </block>

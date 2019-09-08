@@ -22,18 +22,23 @@ export default class Share extends Component{
   }
 
   onShareAppMessage(ops){
-
-     return {
-        title: this.props.activityName,
-        path: this.props.path,  // 路径，传递参数到指定页面。
-        imageUrl:'', // 分享的封面图
-        success: function (res) {
-        },
-        fail: function (res) {
-        }
+    // console.log('....share....');
+    // debugger;
+    Taro.showToast({
+      title:'fdsafdsaf'
+    });
+    // return;
+    return {
+      title:'测试测试',
+      path:'/pages/user/index',  // 路径，传递参数到指定页面。
+      imageUrl:'', // 分享的封面图
+      success: function (res) {},
+      fail: function (res) {
       }
+    }
+    return;
 
-    var that = this;
+   var that = this;
 　　// 设置菜单中的转发按钮触发转发事件时的转发内容
 　　var shareObj = {
 　　　　title: "转发的标题",        // 默认是小程序的名称(可以写slogan等)
@@ -82,7 +87,7 @@ export default class Share extends Component{
             <View className="mp-share-haibao">
                 <View>
                     <View  className="mp-haibao mp-icon mp-icon-wechat"> 
-                        <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">
+                        <button catchtap='onShareAppMessage' style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">
                         发送给朋友
                         </button>
                     </View>

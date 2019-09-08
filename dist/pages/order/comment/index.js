@@ -53,7 +53,7 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1143", "$compid__1144", "$compid__1145", "$compid__1146", "$compid__1147", "$compid__1148", "$compid__1149", "commentValue", "envValue", "serveValue", "profValue", "effectValue", "files", "location", "dispatchUploadConfig", "dispatchCreateOrderDownLoadUrl", "dispatchCreateComment"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__2026", "$compid__2027", "$compid__2028", "$compid__2029", "$compid__2030", "$compid__2031", "$compid__2032", "commentValue", "envValue", "serveValue", "profValue", "effectValue", "files", "location", "dispatchUploadConfig", "dispatchCreateOrderDownLoadUrl", "dispatchCreateComment"], _this.config = {
       navigationBarTitleText: '发表评价'
     }, _this.customComponents = ["AtMessage", "AtRate", "AtTextarea", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -144,7 +144,6 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         commentValue: event.target.value
       });
-      return event;
     }
   }, {
     key: 'handleEnvChange',
@@ -322,13 +321,13 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1143 = (0, _index.genCompid)(__prefix + "$compid__1143");
-      var $compid__1144 = (0, _index.genCompid)(__prefix + "$compid__1144");
-      var $compid__1145 = (0, _index.genCompid)(__prefix + "$compid__1145");
-      var $compid__1146 = (0, _index.genCompid)(__prefix + "$compid__1146");
-      var $compid__1147 = (0, _index.genCompid)(__prefix + "$compid__1147");
-      var $compid__1148 = (0, _index.genCompid)(__prefix + "$compid__1148");
-      var $compid__1149 = (0, _index.genCompid)(__prefix + "$compid__1149");
+      var $compid__2026 = (0, _index.genCompid)(__prefix + "$compid__2026");
+      var $compid__2027 = (0, _index.genCompid)(__prefix + "$compid__2027");
+      var $compid__2028 = (0, _index.genCompid)(__prefix + "$compid__2028");
+      var $compid__2029 = (0, _index.genCompid)(__prefix + "$compid__2029");
+      var $compid__2030 = (0, _index.genCompid)(__prefix + "$compid__2030");
+      var $compid__2031 = (0, _index.genCompid)(__prefix + "$compid__2031");
+      var $compid__2032 = (0, _index.genCompid)(__prefix + "$compid__2032");
 
       var _state2 = this.__state,
           envValue = _state2.envValue,
@@ -338,34 +337,34 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
           profValue = _state2.profValue;
 
 
-      var $props__1143 = {
+      var $props__2026 = {
         "max": "5",
         "value": envValue,
         "onChange": this.handleEnvChange.bind(this)
       };
-      var $props__1144 = {
+      var $props__2027 = {
         "max": "5",
         "value": serveValue,
         "onChange": this.handleServeChange.bind(this)
       };
-      var $props__1145 = {
+      var $props__2028 = {
         "max": "5",
         "value": profValue,
         "onChange": this.handleProfChange.bind(this)
       };
-      var $props__1146 = {
+      var $props__2029 = {
         "max": "5",
         "value": effectValue,
         "onChange": this.handleEffectChange.bind(this)
       };
-      var $props__1147 = {
+      var $props__2030 = {
         "height": 400,
         "value": commentValue,
         "onChange": this.handleChange.bind(this),
         "maxLength": 300,
         "placeholder": '\u4EB2\uFF0C\u60A8\u5BF9\u6B64\u6B21\u670D\u52A1\u6EE1\u610F\u5417\uFF1F\u60A8\u7684\u8BC4\u4EF7\u4F1A\u5E2E\u52A9\u6211\u4EEC\u9009\u62E9\u66F4\u597D\u7684\u670D\u52A1\uFF01'
       };
-      var $props__1148 = {
+      var $props__2031 = {
         "multiple": true,
         "mode": "top",
         "onFail": this.onFail.bind(this),
@@ -373,25 +372,25 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
         "files": this.__state.files,
         "onChange": this.onChange.bind(this)
       };
-      var $props__1149 = {
+      var $props__2032 = {
         "type": "primary",
         "onClick": this.handleComment.bind(this)
       };
-      _index.propsManager.set($props__1143, $compid__1143);
-      _index.propsManager.set($props__1144, $compid__1144);
-      _index.propsManager.set($props__1145, $compid__1145);
-      _index.propsManager.set($props__1146, $compid__1146);
-      _index.propsManager.set($props__1147, $compid__1147);
-      _index.propsManager.set($props__1148, $compid__1148);
-      _index.propsManager.set($props__1149, $compid__1149);
+      _index.propsManager.set($props__2026, $compid__2026);
+      _index.propsManager.set($props__2027, $compid__2027);
+      _index.propsManager.set($props__2028, $compid__2028);
+      _index.propsManager.set($props__2029, $compid__2029);
+      _index.propsManager.set($props__2030, $compid__2030);
+      _index.propsManager.set($props__2031, $compid__2031);
+      _index.propsManager.set($props__2032, $compid__2032);
       Object.assign(this.__state, {
-        $compid__1143: $compid__1143,
-        $compid__1144: $compid__1144,
-        $compid__1145: $compid__1145,
-        $compid__1146: $compid__1146,
-        $compid__1147: $compid__1147,
-        $compid__1148: $compid__1148,
-        $compid__1149: $compid__1149
+        $compid__2026: $compid__2026,
+        $compid__2027: $compid__2027,
+        $compid__2028: $compid__2028,
+        $compid__2029: $compid__2029,
+        $compid__2030: $compid__2030,
+        $compid__2031: $compid__2031,
+        $compid__2032: $compid__2032
       });
       return this.__state;
     }

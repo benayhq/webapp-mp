@@ -40,7 +40,7 @@ export default class Publish extends Component{
                 icon: 'none'
               })
             }
-        });
+        })
     }
 
     render(){
