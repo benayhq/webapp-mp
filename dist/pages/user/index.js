@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray120", "$compid__292", "$compid__293", "$compid__294", "$compid__295", "loaded", "userName", "profit", "isAgent", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loopArray320", "$compid__1167", "$compid__1168", "$compid__1169", "$compid__1170", "loaded", "userName", "isAgent", "profit", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -321,7 +321,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function checkAuth(data) {
       if (!(data.profileUrl && data.nickname)) {
         _index2.default.navigateTo({
-          url: 'pages/login/index'
+          url: '../../pages/login/index'
         });
       }
     }
@@ -569,16 +569,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       var _this4 = this;
 
+      var _$anonymousState__temp, _$anonymousState__temp2;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__292 = (0, _index.genCompid)(__prefix + "$compid__292");
-      var $compid__293 = (0, _index.genCompid)(__prefix + "$compid__293");
-      var $compid__294 = (0, _index.genCompid)(__prefix + "$compid__294");
-      var $compid__295 = (0, _index.genCompid)(__prefix + "$compid__295");
-      var loopArray120 = void 0;
+      var $compid__1167 = (0, _index.genCompid)(__prefix + "$compid__1167");
+      var $compid__1168 = (0, _index.genCompid)(__prefix + "$compid__1168");
+      var $compid__1169 = (0, _index.genCompid)(__prefix + "$compid__1169");
+      var $compid__1170 = (0, _index.genCompid)(__prefix + "$compid__1170");
+      var loopArray320 = void 0;
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -597,48 +599,54 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
       var renderTemplate = null;
 
+      console.log('isAgent', isAgent);
+
       if (!loaded) {} else {
-        var $props__292 = {
+        _$anonymousState__temp = isAgent ? "position:relative;display:" + (isAgent === true ? 'block' : 'none') + ";top:-48px;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" : null;
+        _$anonymousState__temp2 = "position:relative;display:" + (isAgent === true ? 'none' : 'block') + ";top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;";
+        var $props__1167 = {
           "isOpened": isAgree,
           "closeOnClickOverlay": false
         };
-        var $props__293 = {
+        var $props__1168 = {
           "profit": profit
         };
-        var $props__294 = {
+        var $props__1169 = {
           "list": orders
         };
-        var $props__295 = {
+        var $props__1170 = {
           "title": this.__state.context1
         };
-        loopArray120 = list.length > 0 ? list.map(function (item, _anonIdx) {
+        loopArray320 = list.length > 0 ? list.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
-          var $compid__291 = (0, _index.genCompid)(__prefix + "ZTualKOUUO" + _anonIdx);
+          var $compid__1166 = (0, _index.genCompid)(__prefix + "IpCaJIGOXt" + _anonIdx);
           _index.propsManager.set({
             "title": item.$original.text,
             "arrow": "right",
             "thumb": item.$original.url,
             "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-          }, $compid__291);
+          }, $compid__1166);
           return {
-            $compid__291: $compid__291,
+            $compid__1166: $compid__1166,
             $original: item.$original
           };
         }) : [];
-        _index.propsManager.set($props__292, $compid__292);
-        isAgent && _index.propsManager.set($props__293, $compid__293);
-        _index.propsManager.set($props__294, $compid__294);
-        isShowLoanApp === true && _index.propsManager.set($props__295, $compid__295);
+        _index.propsManager.set($props__1167, $compid__1167);
+        isAgent && _index.propsManager.set($props__1168, $compid__1168);
+        _index.propsManager.set($props__1169, $compid__1169);
+        isShowLoanApp === true && _index.propsManager.set($props__1170, $compid__1170);
       }
 
       Object.assign(this.__state, {
-        loopArray120: loopArray120,
-        $compid__292: $compid__292,
-        $compid__293: $compid__293,
-        $compid__294: $compid__294,
-        $compid__295: $compid__295,
+        _$anonymousState__temp: _$anonymousState__temp,
+        _$anonymousState__temp2: _$anonymousState__temp2,
+        loopArray320: loopArray320,
+        $compid__1167: $compid__1167,
+        $compid__1168: $compid__1168,
+        $compid__1169: $compid__1169,
+        $compid__1170: $compid__1170,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

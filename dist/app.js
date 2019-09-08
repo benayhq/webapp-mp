@@ -29,10 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var mtjwxsdk = require('./utils/mtj-wx-sdk.js');
 
 
-var JMessage = require('./utils/jmessage-wxapplet-sdk-1.4.0.min.js');
-
 var store = (0, _index5.default)();
-// 'pages/order/detail/index',
 
 (0, _index3.setStore)(store);
 
@@ -60,7 +57,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/order/refund/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/order/comment/index', 'pages/user/customer/index', 'pages/user/history/index', 'pages/user/consultant/index', 'pages/user/product/index', 'pages/user/active/index', 'pages/login/index'],
+      pages: ['pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/order/detail/index', 'pages/order/refund/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/pay/detail/index', 'pages/order/comment/index', 'pages/user/customer/index', 'pages/user/history/index', 'pages/user/consultant/index', 'pages/user/product/index', 'pages/user/active/index', 'pages/login/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -85,26 +82,6 @@ var _App = function (_BaseComponent) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {}
-  }, {
-    key: "init",
-    value: function init() {
-      var jim = new JMessage({
-        debug: true
-      });
-      console.log('jim', jim);
-      jim.init({
-        appkey: "bb62a48cc54e300e2e58fa0b",
-        random_str: "b37b052d0e9b4aa8a16ebe5446f9fba9",
-        signature: "bf184eeb9722a637c313a36e9fea80bf",
-        timestamp: "1562947140309"
-      }).onSuccess(function (data) {
-        console.log('data', data);
-        //TODO
-      }).onFail(function (data) {
-        console.log('data', data);
-        //TODO
-      });
-    }
 
     // 在 App 类中的 render() 函数没有实际作用
     // 请勿修改此函数

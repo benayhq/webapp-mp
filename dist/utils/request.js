@@ -109,7 +109,7 @@ exports.default = function () {
                         }
 
                         _index2.default.navigateTo({
-                          url: '/pages/login/index'
+                          url: '/pages/user/index'
                         });
                         return _context2.abrupt("return");
 

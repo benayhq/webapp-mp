@@ -7,7 +7,6 @@ import './index.scss';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
 import { AtButton,AtList, AtListItem,AtCard,AtTabBar,AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
-import jump from '../utils/jump';
 import {Loading} from './../../components';
 
 @connect(state=>state.user,actions)
@@ -41,7 +40,6 @@ class Index extends Component{
   componentDidMount(){
       this.init();
   }
-
   init(){
     this.autoLogin();
   }
@@ -145,13 +143,10 @@ class Index extends Component{
   }
   checkAuth(data){
       if(data.profileUrl && data.nickname){
-        // this.setState({
-        //   isOpened:false
-        // })
       }
       else{
         Taro.navigateTo({
-          url:'pages/login/index'
+          url:'../../pages/login/index'
         });
       }
   }
@@ -281,14 +276,16 @@ class Index extends Component{
         list:creatorInstance.factory(true).getPanelList(),
         orders:this.initOrderNotice(creatorInstance,true),
         user:creatorInstance.factory(true).getUserInfo()
-    });
+    })
   }
-    
+
   render(){
     const {isAgent,avatarUrl,userName,profit,orders,loaded,flag,isOpened,showUserText,list,isAgree} = this.state;
     const isShowLoanApp = !isAgent && flag;
 
     let renderTemplate = null;
+
+    console.log('isAgent',isAgent);
 
     if(!loaded){
       renderTemplate = <Loading/>
@@ -457,9 +454,10 @@ class Index extends Component{
               <View className="mp-user__info-message"  onClick={this.handleUpdateInfo.bind(this)} > 
                   <View className="mp-user__user-username">{userName}</View>
                   {
-                    profit && profit.creditLevel && 
+                    // profit && profit.creditLevel && 
                     <View className="mp-user__user-level">
-                        {profit? `信用等级:${profit.creditLevel}`:''}
+                        更新资料
+                        {/* {profit? `信用等级:${profit.creditLevel}`:''} */}
                     </View>
                   } 
                   <View className="mp-user__user-level-up"> </View>
@@ -484,7 +482,7 @@ class Index extends Component{
       }
       <UserOrder list={orders}/>
       <View className="mp-user__list">
-        <AtList>
+      <AtList>
           {
               list.length>0 && list.map(item=>(
                   <AtListItem
@@ -496,11 +494,12 @@ class Index extends Component{
               ))
           }
         </AtList>
-        { isAgent ? <button style="position:relative;display:block;top:-192rpx;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
-        :   <button style="position:relative;display:block;top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;"  open-type="contact" bindcontact="handleContact">客服服务</button>
-      }
+        { 
+          isAgent ? <button style={`position:relative;display:${ isAgent === true ?'block':'none'};top:-48px;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;`} className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
+        : <button style={`position:relative;display:${ isAgent === true ?'none':'block'};top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;`}  open-type="contact" bindcontact="handleContact">客服服务</button>
+        }
       </View>
-      { isShowLoanApp === true ?
+       { isShowLoanApp === true ?
         <View className="mp-user__loan">
           <AtCard
           title={this.state.context1}>
@@ -512,13 +511,13 @@ class Index extends Component{
               </View>
           </AtCard>
         </View> : <View></View>
-      }
-        <View className={isAgent?"mp-user-changeagent":"mp-user-changeuser"} onClick={this.handleChangeState.bind(this)}> 
-                {showUserText}
-        </View>   
+       }
+       <View className={isAgent?"mp-user-changeagent":"mp-user-changeuser"} onClick={this.handleChangeState.bind(this)}> 
+         {showUserText}
+       </View>   
      </View>
     }
-
+    
     return (
         <View>
           {renderTemplate}

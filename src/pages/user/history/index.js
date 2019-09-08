@@ -4,7 +4,7 @@ import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
 import formatTime from '../../../utils/util';
-import Empty from './../../../components/empty';
+import {Empty,Loading} from './../../../components';
 import {getWindowHeight} from './../../../utils/style'
 var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
@@ -86,20 +86,25 @@ class Index extends Component{
       that.setState({
         actives:historys,
         loading:false,
-        hasMore:true
+        hasMore:true,
+        loaded:true
       })
     }).catch((response)=>{
       that.setState({
         loading:false,
-        hasMore:false
-      })
-    })
+        hasMore:false,
+        loaded:true
+      });
+    });
   }
-
+  
   render(){
-    const {actives} = this.state;
+    const {actives,loaded} = this.state;
     let renderTemplate = null;
-    if(actives.length===0){
+    if(!loaded){
+      renderTemplate = <Loading/>
+    }
+    else if(actives.length===0){
       renderTemplate = <Empty/>
     }
     else{
@@ -107,7 +112,10 @@ class Index extends Component{
          return (
            <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
                <View className="list-wrapper-header">
-                   <View>{item.agentName} </View>
+                   <View>{item.agentName} 
+                   <text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right history-appointer">
+                      </text>
+                   </View>
                    <View>{item.status === "NORMAL" ?  "活动中" : "已结束"}</View>
                </View>
                <View className="list-wrapper-content">
@@ -132,7 +140,7 @@ class Index extends Component{
           style={{ height: getWindowHeight() }}>
           {renderTemplate}
 
-          {this.state.loading &&
+          { loaded && this.state.loading &&
             <View className='home__loading'>
               <Text className='home__loading-txt'>正在加载中...</Text>
             </View>

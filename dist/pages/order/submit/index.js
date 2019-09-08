@@ -50,7 +50,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__39", "$compid__40", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1140", "$compid__1141", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "activeId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '发起订单'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -77,6 +77,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         appointmentDate: '',
         activityProductId: '',
         product: {},
+        activeId: 0,
         text: '',
         isOpended: false,
         cellPhone: '',
@@ -118,6 +119,10 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
     value: function handlePay(orderId) {
       var _this2 = this;
 
+      // Taro.navigateTo({
+      //     url: '/pages/pay/detail/index?activeId='+this.state.activeId
+      // });
+      // return;
       var payload = {
         id: orderId
       };
@@ -141,7 +146,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
             text: '支付成功'
           });
           _index2.default.navigateTo({
-            url: '/pages/user/index'
+            url: '/pages/pay/detail/index?activeId=' + this.state.activeId
           });
           break;
         case "fail":
@@ -169,7 +174,8 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
 
       this.setState({
         activityProductId: this.$router.params.productId,
-        activityName: this.$router.params.activityName
+        activityName: this.$router.params.activityName,
+        activeId: this.$router.params.activeId
       });
 
       this.setState({
@@ -238,7 +244,6 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
               case 2:
                 user = _context2.sent;
 
-                console.log('user3333', user);
                 if (user.content) {
                   this.setState({
                     cellPhone: user.content.cellphone,
@@ -246,7 +251,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 5:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -268,8 +273,8 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__39 = (0, _index.genCompid)(__prefix + "$compid__39");
-      var $compid__40 = (0, _index.genCompid)(__prefix + "$compid__40");
+      var $compid__1140 = (0, _index.genCompid)(__prefix + "$compid__1140");
+      var $compid__1141 = (0, _index.genCompid)(__prefix + "$compid__1141");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -283,23 +288,23 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           appointmentDate = _state2.appointmentDate;
 
 
-      var $props__39 = {
+      var $props__1140 = {
         "isOpened": isOpended,
         "text": text,
         "duration": 1000
       };
-      var $props__40 = {
+      var $props__1141 = {
         "hasBorder": false,
         "onClick": this.handleItemClick.bind(this),
         "title": cellPhone === '' ? "" : "\u5BA2\u6237:" + name,
         "note": cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone,
         "arrow": "right"
       };
-      _index.propsManager.set($props__39, $compid__39);
-      _index.propsManager.set($props__40, $compid__40);
+      _index.propsManager.set($props__1140, $compid__1140);
+      _index.propsManager.set($props__1141, $compid__1141);
       Object.assign(this.__state, {
-        $compid__39: $compid__39,
-        $compid__40: $compid__40,
+        $compid__1140: $compid__1140,
+        $compid__1141: $compid__1141,
         activityName: activityName
       });
       return this.__state;

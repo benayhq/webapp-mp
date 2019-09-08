@@ -28,13 +28,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ICON = 'check';
 
 var commentArray = [],
     totalCommentCount = 0,
@@ -46,7 +46,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   _inherits(Detail, _BaseComponent);
 
   function Detail() {
-    var _ref;
+    var _ref, _this$state;
 
     var _temp, _this, _ret;
 
@@ -56,9 +56,9 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "data", "$compid__271", "$compid__272", "$compid__273", "$compid__274", "$compid__275", "loaded", "comments", "commentList", "commentText", "bContact", "bSpec", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "data", "$compid__1192", "$compid__1193", "$compid__1194", "$compid__1195", "$compid__1196", "loaded", "comments", "commentList", "commentText", "bContact", "bSpec", "isOpened", "categoryDialog", "visible", "showOrderDialog", "bannerList", "activeId", "referId", "source", "isShare", "img", "activityName", "isForwarding", "dispatchActiveInfo", "dispatchCommentInfo", "dispatchDownLoadUrl"], _this.config = {
       navigationBarTitleText: '活动详情'
-    }, _this.state = {
+    }, _this.state = (_this$state = {
       isOpened: false,
       categoryDialog: false,
       visible: false,
@@ -73,14 +73,12 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       referId: '',
       source: '',
       commentText: '查看全部评论',
-      isShare: false,
-      isForwarding: false,
-      loaded: false
-    }, _this.toggleVisible = function () {
+      isShare: false
+    }, _defineProperty(_this$state, "referId", 0), _defineProperty(_this$state, "img", ''), _defineProperty(_this$state, "activityName", ''), _defineProperty(_this$state, "isForwarding", false), _defineProperty(_this$state, "loaded", false), _this$state), _this.toggleVisible = function () {
       _this.setState({
         visible: !_this.state.visible
       });
-    }, _this.customComponents = ["Loading", "Gallery", "AtModal", "AtModalContent", "AtModalAction", "Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Loading", "Gallery", "Share", "Popup", "Contact", "Spec"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detail, [{
@@ -224,6 +222,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
               bannerItemList.push(response);
             }).then(function () {
               _this2.setState({
+                img: bannerItemList[0],
                 bannerList: bannerItemList,
                 loaded: true
               });
@@ -247,6 +246,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       var activeId = this.$router.params.activeId === undefined ? 48 : this.$router.params.activeId,
           referId = this.$router.params.refId === undefined ? 2 : this.$router.params.refId,
           source = this.$router.params.sc === undefined ? "" : this.$router.params.sc; // advert
+
       if (activeId && referId) {
         // wx.showToast({
         //     title: activeId+referId,
@@ -279,6 +279,7 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
     key: "openCategoryDialog",
     value: function openCategoryDialog() {
       this.setState({
+        isShare: false,
         visible: true,
         bSpec: true,
         bContact: false,
@@ -298,16 +299,6 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         showOrderDialog: true
       });
-    }
-  }, {
-    key: "handleShare",
-    value: function handleShare() {
-      this.setState({
-        isShare: true
-      });
-      // wx.showShareMenu({
-      //     withShareTicket: true
-      // })
     }
   }, {
     key: "handleAllComment",
@@ -394,44 +385,18 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: "handleCancelShare",
-    value: function handleCancelShare() {
+    key: "handleClose",
+    value: function handleClose() {
       this.setState({
         isShare: false
       });
     }
   }, {
-    key: "handleCreatePosters",
-    value: function handleCreatePosters() {
-      _index2.default.navigateTo({
-        url: "/pages/active/share/index?activeId=" + this.state.activeId
+    key: "handleInvertFirend",
+    value: function handleInvertFirend() {
+      this.setState({
+        isShare: true
       });
-    }
-  }, {
-    key: "onShareAppMessage",
-    value: function onShareAppMessage(ops) {
-
-      if (ops.from === 'button') {
-        var that = this;
-        that.setState({
-          isShare: false
-        });
-        setTimeout(function () {
-          wx.showToast({
-            title: "转发成功",
-            icon: 'success',
-            duration: 3000
-          });
-        }, 3000);
-      }
-
-      return {
-        title: this.state.data.activityName,
-        path: "pages/product/detail?activeId=" + this.state.activeId + "&refId=" + this.state.referId, // 路径，传递参数到指定页面。
-        imageUrl: this.state.bannerList[0].item, // 分享的封面图
-        success: function success(res) {},
-        fail: function fail(res) {}
-      };
     }
   }, {
     key: "handleJumpHome",
@@ -443,80 +408,87 @@ var Detail = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
-      var _$anonymousState__temp;
+      var _$anonymousState__temp, _$anonymousState__temp2;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__271 = (0, _index.genCompid)(__prefix + "$compid__271");
-      var $compid__272 = (0, _index.genCompid)(__prefix + "$compid__272");
-      var $compid__273 = (0, _index.genCompid)(__prefix + "$compid__273");
-      var $compid__274 = (0, _index.genCompid)(__prefix + "$compid__274");
-      var $compid__275 = (0, _index.genCompid)(__prefix + "$compid__275");
+      var $compid__1192 = (0, _index.genCompid)(__prefix + "$compid__1192");
+      var $compid__1193 = (0, _index.genCompid)(__prefix + "$compid__1193");
+      var $compid__1194 = (0, _index.genCompid)(__prefix + "$compid__1194");
+      var $compid__1195 = (0, _index.genCompid)(__prefix + "$compid__1195");
+      var $compid__1196 = (0, _index.genCompid)(__prefix + "$compid__1196");
 
       var _state2 = this.__state,
           data = _state2.data,
           commentList = _state2.commentList,
           bannerList = _state2.bannerList,
           activeId = _state2.activeId,
-          isForwarding = _state2.isForwarding,
           comments = _state2.comments,
-          commentText = _state2.commentText;
+          commentText = _state2.commentText,
+          isShare = _state2.isShare,
+          img = _state2.img;
 
       var height = (0, _style.getWindowHeight)(false);
       var _state3 = this.__state,
-          isOpened = _state3.isOpened,
           bSpec = _state3.bSpec,
           bContact = _state3.bContact,
-          showOrderDialog = _state3.showOrderDialog,
           loaded = _state3.loaded;
 
-
       var renderTemplate = null;
+
       if (!loaded) {} else {
         _$anonymousState__temp = (0, _index.internal_inline_style)({ height: height });
-        var $props__271 = {
+        _$anonymousState__temp2 = "pages/product/detail?activeId=" + activeId + "&refId=" + data.agentId;
+        var $props__1192 = {
           "list": bannerList
         };
-        var $props__272 = {
-          "isOpened": this.__state.isShare
+        var $props__1193 = {
+          "isOpened": isShare,
+          "path": _$anonymousState__temp2,
+          "activeId": activeId,
+          "activityName": data.activityName,
+          "referId": data.agentId,
+          "img": img,
+          "onClose": this.handleClose
         };
-        var $props__273 = {
+        var $props__1194 = {
           "visible": this.__state.visible,
           "onClose": this.toggleVisible
         };
-        var $props__274 = {
+        var $props__1195 = {
           "cellphone": data.cellphone,
           "weChatId": data.weChatId,
           "weChatQrCode": data.weChatQrCode
         };
-        var $props__275 = {
+        var $props__1196 = {
           "activityName": data.activityName,
           "products": data.activityProducts
         };
-        _index.propsManager.set($props__271, $compid__271);
-        _index.propsManager.set($props__272, $compid__272);
-        _index.propsManager.set($props__273, $compid__273);
-        bContact && _index.propsManager.set($props__274, $compid__274);
-        bSpec && _index.propsManager.set($props__275, $compid__275);
+        _index.propsManager.set($props__1192, $compid__1192);
+        _index.propsManager.set($props__1193, $compid__1193);
+        _index.propsManager.set($props__1194, $compid__1194);
+        bContact && _index.propsManager.set($props__1195, $compid__1195);
+        bSpec && _index.propsManager.set($props__1196, $compid__1196);
       }
 
       Object.assign(this.__state, {
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__271: $compid__271,
-        $compid__272: $compid__272,
-        $compid__273: $compid__273,
-        $compid__274: $compid__274,
-        $compid__275: $compid__275
+        _$anonymousState__temp2: _$anonymousState__temp2,
+        $compid__1192: $compid__1192,
+        $compid__1193: $compid__1193,
+        $compid__1194: $compid__1194,
+        $compid__1195: $compid__1195,
+        $compid__1196: $compid__1196
       });
       return this.__state;
     }
   }]);
 
   return Detail;
-}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "handleJumpHome", "openDialog", "handleShare", "handleCreatePosters", "handleCancelShare"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["showMpDialog", "openCategoryDialog", "handleAllComment", "handleJumpHome", "openDialog", "handleInvertFirend"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/product/detail", _temp2)) || _class);
 exports.default = Detail;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Detail, true));

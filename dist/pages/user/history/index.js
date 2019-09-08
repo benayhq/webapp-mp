@@ -53,14 +53,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "actives", "hasMore", "loading", "loaded", "dispatchDownLoadUrl", "dispatchActiveHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loaded", "actives", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchActiveHistory"], _this.config = {
       navigationBarTitleText: '浏览历史'
     }, _this.state = {
       actives: [],
       hasMore: true,
       loading: false,
       loaded: false
-    }, _this.customComponents = ["Empty"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Loading", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -189,12 +189,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   that.setState({
                     actives: historys,
                     loading: false,
-                    hasMore: true
+                    hasMore: true,
+                    loaded: true
                   });
                 }).catch(function (response) {
                   that.setState({
                     loading: false,
-                    hasMore: false
+                    hasMore: false,
+                    loaded: true
                   });
                 });
 
@@ -221,10 +223,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __prefix = this.$prefix;
       ;
 
-      var actives = this.__state.actives;
+      var _state = this.__state,
+          actives = _state.actives,
+          loaded = _state.loaded;
 
       var renderTemplate = null;
-      if (actives.length === 0) {} else {}
+      if (!loaded) {} else if (actives.length === 0) {} else {}
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp

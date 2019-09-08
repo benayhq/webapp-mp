@@ -46,7 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray8", "actives", "dispatchOwnerServiceHistory"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray317", "actives", "dispatchOwnerServiceHistory"], _this.config = {
       navigationBarTitleText: '历史咨询师'
     }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -92,20 +92,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var actives = this.__state.actives;
 
 
-      var loopArray8 = actives ? actives.map(function (item, _anonIdx) {
+      var loopArray317 = actives ? actives.map(function (item, _anonIdx) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $compid__49 = (0, _index.genCompid)(__prefix + "zIWGlJUdnH" + _anonIdx);
+        var $compid__1151 = (0, _index.genCompid)(__prefix + "hvfDOYVoan" + _anonIdx);
         _index.propsManager.set({
           "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
           "title": item.$original.name,
           "note": item.$original.address,
           "arrow": "right",
           "thumb": item.$original.profileUrl
-        }, $compid__49);
+        }, $compid__1151);
         return {
-          $compid__49: $compid__49,
+          $compid__1151: $compid__1151,
           $original: item.$original
         };
       }
@@ -121,7 +121,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       // </View>
       ) : [];
       Object.assign(this.__state, {
-        loopArray8: loopArray8
+        loopArray317: loopArray317
       });
       return this.__state;
     }

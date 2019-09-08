@@ -6,7 +6,7 @@
             </block>
             <block wx:else>
                 <view class="mp-user">
-                    <at-modal compid="{{$compid__292}}">
+                    <at-modal compid="{{$compid__1167}}">
                         <at-modal-header>商家入驻协议</at-modal-header>
                         <at-modal-content>
                             <scroll-view scroll-y="{{true}}" class="mp-user__agree">
@@ -68,9 +68,7 @@
                         <image style="width:50px;height:50px;margin:20px 10px 0px 10px;border-radius:69px;float:left;" src="{{avatarUrl}}"></image>
                         <view class="mp-user__info-message" bindtap="handleUpdateInfo" data-e-tap-so="this">
                             <view class="mp-user__user-username">{{userName}}</view>
-                            <block wx:if="{{profit && profit.creditLevel}}">
-                                <view class="mp-user__user-level">{{profit ? '信用等级:' + profit.creditLevel : ''}}</view>
-                            </block>
+                            <view class="mp-user__user-level">更新资料</view>
                             <view class="mp-user__user-level-up"></view>
                         </view>
                         <block wx:if="{{isAgent}}">
@@ -81,7 +79,7 @@
                         </block>
                     </view>
                     <block wx:if="{{isAgent}}">
-                        <in-come compid="{{$compid__293}}"></in-come>
+                        <in-come compid="{{$compid__1168}}"></in-come>
                     </block>
                     <block wx:if="{{isAgent}}">
                         <view class="mp-user__publish">
@@ -90,26 +88,26 @@
                             <view class="mp-user__publish-action" bindtap="handlePublish" data-e-tap-so="this">发布活动</view>
                         </view>
                     </block>
-                    <user-order compid="{{$compid__294}}"></user-order>
+                    <user-order compid="{{$compid__1169}}"></user-order>
                     <view class="mp-user__list">
                         <at-list>
                             <block wx:if="{{list.length > 0}}">
-                                <at-list-item wx:for="{{loopArray120}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__291}}"></at-list-item>
+                                <at-list-item wx:for="{{loopArray320}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__1166}}"></at-list-item>
                             </block>
                         </at-list>
                         <block>
                             <block wx:if="{{isAgent}}">
-                                <button style="position:relative;display:block;top:-192rpx;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
+                                <button style="{{_$anonymousState__temp}}" className="customer-service-agent" open-type="contact" bindcontact="handleContact">客服服务</button>
                             </block>
                             <block wx:else>
-                                <button style="position:relative;display:block;top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" open-type="contact" bindcontact="handleContact">客服服务</button>
+                                <button style="{{_$anonymousState__temp2}}" open-type="contact" bindcontact="handleContact">客服服务</button>
                             </block>
                         </block>
                     </view>
                     <block>
                         <block wx:if="{{isShowLoanApp === true}}">
                             <view class="mp-user__loan">
-                                <at-card compid="{{$compid__295}}">
+                                <at-card compid="{{$compid__1170}}">
                                     <view class="mp-user__loan-text">{{context2}}</view>
                                     <view class="mp-user__loan-amount">{{context3}}</view>
                                     <view class="mp-user__loan-desc">{{context4}}</view>

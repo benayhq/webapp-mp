@@ -66,15 +66,15 @@ var Agent = function () {
         url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/商品@2x.png',
         pageUrl: 'pages/user/product/index'
       }, {
-        icon: 'mp-user__controlpanel-icon mp-icon mp-icon-service',
-        text: '',
-        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-headset2@2x.png',
-        pageUrl: ''
-      }, {
         icon: 'mp-user__controlpanel-icon mp-icon mp-icon-customer',
         text: '我的客户',
         url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/friend_add_fill@2x.png',
         pageUrl: 'pages/user/customer/index'
+      }, {
+        icon: 'mp-user__controlpanel-icon mp-icon mp-icon-service',
+        text: '',
+        url: 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/icon-headset2@2x.png',
+        pageUrl: ''
         // {
         //     icon:'mp-user__controlpanel-icon mp-icon mp-icon-account',
         //     text:'历史账单',

@@ -48,7 +48,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray318", "newFilterList", "dispatchDownLoadUrl", "dispatchProductList"], _this.config = {
       navigationBarTitleText: '往期产品'
     }, _this.customComponents = ["Empty"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -191,6 +191,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return initProductList;
     }()
   }, {
+    key: "handleProductEdit",
+    value: function handleProductEdit(id, event) {
+      _index2.default.navigateTo({
+        url: '/pages/product/edit?productId=' + id
+      });
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -198,18 +205,32 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var loopArray318 = void 0;
 
       var newFilterList = this.__state.newFilterList;
 
       var renderTemplate = null;
-      if (newFilterList.length === 0) {} else {}
-      Object.assign(this.__state, {});
+      if (newFilterList.length === 0) {} else {
+        loopArray318 = newFilterList ? newFilterList.map(function (item, _anonIdx) {
+          item = {
+            $original: (0, _index.internal_get_original)(item)
+          };
+
+          console.log('item', item.$original);
+          return {
+            $original: item.$original
+          };
+        }) : [];
+      }
+      Object.assign(this.__state, {
+        loopArray318: loopArray318
+      });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/product/index", _temp2)) || _class);
+}(_index.Component), _class2.$$events = ["handleProductEdit"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/product/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

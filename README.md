@@ -10,8 +10,7 @@ cd webapp-mp
 yarn install
 
 npm run dev:weapp
-```  
-
+```
 
 ## 部分截图
 

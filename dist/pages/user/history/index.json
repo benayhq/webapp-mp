@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "loading": "../../../components/loading/index",
     "empty": "../../../components/empty/index"
   },
   "navigationBarTitleText": "浏览历史"

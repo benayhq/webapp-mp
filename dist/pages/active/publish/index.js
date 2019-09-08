@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__10", "$compid__11", "$compid__12", "$compid__13", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1106", "$compid__1107", "$compid__1108", "$compid__1109", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -393,6 +393,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 18:
                 result = _context2.sent;
+
+                console.log('result555', result);
+                debugger;
+
                 payload = {
                   "areaCode": "string",
                   "docLocations": docLocations,
@@ -406,8 +410,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   "wechatId": weChatNumber
                 };
 
+                debugger;
+
                 if (!(result.cellphone === null || result.cellphone === "")) {
-                  _context2.next = 25;
+                  _context2.next = 28;
                   break;
                 }
 
@@ -416,23 +422,30 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 });
                 return _context2.abrupt("return");
 
-              case 25:
+              case 28:
                 this.setState({
                   isOpened: false
                 });
 
-              case 26:
-                this.props.dispatchCreateActive(payload).then(function (res) {
-                  if (res && res.result === "success" && res.content != null) {
-                    _index2.default.navigateTo({
-                      url: "/pages/active/share/index?activeId=" + res.content
-                    });
-                  } else {
-                    _this4.handleAlert('error', res.error);
-                  }
-                });
+              case 29:
+                try {
+                  this.props.dispatchCreateActive(payload).then(function (res) {
 
-              case 27:
+                    console.log('dispatchCreateActive', res);
+
+                    if (res && res.result === "success" && res.content != null) {
+                      _index2.default.navigateTo({
+                        url: "/pages/active/share/index?activeId=" + res.content
+                      });
+                    } else {
+                      _this4.handleAlert('error', res.error);
+                    }
+                  });
+                } catch (e) {
+                  console.log('e', e);
+                }
+
+              case 30:
               case "end":
                 return _context2.stop();
             }
@@ -450,15 +463,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "getPhoneNumber",
     value: function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
-        var payload, result, params, phoneMsg, data;
+        var payload, result, object, params, update, data, _result;
+
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
-
                 if (!(e.detail.encryptedData && e.detail.iv)) {
-                  _context3.next = 20;
+                  _context3.next = 25;
                   break;
                 }
 
@@ -466,30 +478,39 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   iv: e.detail.iv,
                   phone: e.detail.encryptedData
                 };
-                _context3.next = 5;
+                _context3.next = 4;
                 return this.props.dispatchWeixinDecrypt(payload);
 
-              case 5:
+              case 4:
                 result = _context3.sent;
+                object = JSON.parse(result.content);
 
-                if (!result.content) {
-                  _context3.next = 17;
+                if (!object.phoneNumber) {
+                  _context3.next = 22;
                   break;
                 }
 
                 params = {
-                  cellphone: JSON.parse(result.content).phoneNumber
+                  cellphone: object.phoneNumber
                 };
                 _context3.next = 10;
                 return this.props.UpdateUserInfo(params);
 
               case 10:
-                phoneMsg = _context3.sent;
-                data = phoneMsg.content;
+                update = _context3.sent;
+                _context3.next = 13;
+                return this.props.GetUserInfo({});
+
+              case 13:
+                data = _context3.sent;
 
                 console.log('data', data);
-                _index2.default.setStorage({ key: 'userinfo', data: data });
-                if (phoneMsg.result === "success") {
+                _result = data.content;
+
+                console.log('getPhoneNumber', _result);
+                _index2.default.setStorage({ key: 'userinfo', data: _result });
+                console.log('getPhoneNumber', _result);
+                if (data.result === "success") {
                   this.setState({
                     isOpened: false
                   });
@@ -498,10 +519,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                     isOpened: true
                   });
                 }
-                _context3.next = 18;
+                _context3.next = 23;
                 break;
 
-              case 17:
+              case 22:
                 _index2.default.showToast({
                   title: '网络异常',
                   icon: 'none',
@@ -509,29 +530,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   mask: true
                 });
 
-              case 18:
-                _context3.next = 21;
-                break;
-
-              case 20:
-                _index2.default.showToast({
-                  title: '取消授权成功',
-                  icon: 'success',
-                  duration: 3000,
-                  mask: true
-                });
-
-              case 21:
+              case 23:
                 _context3.next = 26;
                 break;
 
-              case 23:
-                _context3.prev = 23;
-                _context3.t0 = _context3["catch"](0);
-
+              case 25:
                 _index2.default.showToast({
-                  title: '系统错误',
-                  icon: 'none',
+                  title: '取消授权成功',
+                  icon: 'success',
                   duration: 3000,
                   mask: true
                 });
@@ -541,7 +547,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[0, 23]]);
+        }, _callee3, this);
       }));
 
       function getPhoneNumber(_x3) {
@@ -554,7 +560,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleActiveChange",
     value: function handleActiveChange(activeName) {
       console.log('activeName', activeName);
-
       this.props.disptachActiveName(activeName);
       this.setState({
         activeName: activeName
@@ -651,10 +656,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__10 = (0, _index.genCompid)(__prefix + "$compid__10");
-      var $compid__11 = (0, _index.genCompid)(__prefix + "$compid__11");
-      var $compid__12 = (0, _index.genCompid)(__prefix + "$compid__12");
-      var $compid__13 = (0, _index.genCompid)(__prefix + "$compid__13");
+      var $compid__1106 = (0, _index.genCompid)(__prefix + "$compid__1106");
+      var $compid__1107 = (0, _index.genCompid)(__prefix + "$compid__1107");
+      var $compid__1108 = (0, _index.genCompid)(__prefix + "$compid__1108");
+      var $compid__1109 = (0, _index.genCompid)(__prefix + "$compid__1109");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
@@ -665,33 +670,33 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state2.isOpened;
 
 
-      var $props__10 = {
+      var $props__1106 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__11 = {
+      var $props__1107 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__12 = {
+      var $props__1108 = {
         "products": products
       };
-      var $props__13 = {
+      var $props__1109 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__10, $compid__10);
-      _index.propsManager.set($props__11, $compid__11);
-      _index.propsManager.set($props__12, $compid__12);
-      _index.propsManager.set($props__13, $compid__13);
+      _index.propsManager.set($props__1106, $compid__1106);
+      _index.propsManager.set($props__1107, $compid__1107);
+      _index.propsManager.set($props__1108, $compid__1108);
+      _index.propsManager.set($props__1109, $compid__1109);
       Object.assign(this.__state, {
-        $compid__10: $compid__10,
-        $compid__11: $compid__11,
-        $compid__12: $compid__12,
-        $compid__13: $compid__13
+        $compid__1106: $compid__1106,
+        $compid__1107: $compid__1107,
+        $compid__1108: $compid__1108,
+        $compid__1109: $compid__1109
       });
       return this.__state;
     }

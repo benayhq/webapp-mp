@@ -7,7 +7,7 @@
             <block wx:else>
                 <view class="mp-activedetail">
                     <scroll-view scroll-y="{{true}}" style="{{_$anonymousState__temp}}">
-                        <gallery compid="{{$compid__271}}"></gallery>
+                        <gallery compid="{{$compid__1192}}"></gallery>
                         <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
                         </view>
                         <view class="mp-activedetail__price">
@@ -114,37 +114,19 @@
                             </view>
                             <view class="mp-activedetail__action__footer" bindtap="openCategoryDialog" data-e-tap-so="this">参与拼团</view>
                         </view>
-                        <view class="mp-share" bindtap="handleShare" data-e-tap-so="this">
+                        <view class="mp-share" bindtap="handleInvertFirend" data-e-tap-so="this">
                             <view>
                                 <view class="mp-icon mp-icon-share"></view>
                             </view>
                         </view>
                     </scroll-view>
-                    <at-modal compid="{{$compid__272}}">
-                        <at-modal-content>
-                            <view class="mp-share-haibao">
-                                <view>
-                                    <view class="mp-haibao mp-icon mp-icon-wechat">
-                                        <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">发送给朋友</button>
-                                    </view>
-                                    <view>发送给朋友</view>
-                                </view>
-                                <view bindtap="handleCreatePosters" data-e-tap-so="this">
-                                    <view class="mp-icon mp-icon-haibao"></view>
-                                    <view>生成海报</view>
-                                </view>
-                            </view>
-                        </at-modal-content>
-                        <at-modal-action>
-                            <button bindtap="handleCancelShare" data-e-tap-so="this">取 消</button>
-                        </at-modal-action>
-                    </at-modal>
-                    <popup compid="{{$compid__273}}">
+                    <share compid="{{$compid__1193}}"></share>
+                    <popup compid="{{$compid__1194}}">
                         <block wx:if="{{bContact}}">
-                            <contact compid="{{$compid__274}}"></contact>
+                            <contact compid="{{$compid__1195}}"></contact>
                         </block>
                         <block wx:if="{{bSpec}}">
-                            <spec compid="{{$compid__275}}"></spec>
+                            <spec compid="{{$compid__1196}}"></spec>
                         </block>
                     </popup>
                 </view>

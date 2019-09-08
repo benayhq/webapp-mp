@@ -194,40 +194,40 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
-          var $compid__56 = (0, _index.genCompid)(__prefix + "DxGCOZyhCV" + _anonIdx);
+          var $compid__61 = (0, _index.genCompid)(__prefix + "cRuptHekJw" + _anonIdx);
           _index.propsManager.set({
             "OrderId": item.$original.id,
             "displayStatusDes": item.$original.displayStatusDes,
             "AgentName": item.$original.customerName
-          }, $compid__56);
-          var $compid__57 = (0, _index.genCompid)(__prefix + "XKTSPQoMeW" + _anonIdx);
+          }, $compid__61);
+          var $compid__62 = (0, _index.genCompid)(__prefix + "SyHMpyyrBZ" + _anonIdx);
           item.$original.status == "UNPAY" && _index.propsManager.set({
             "type": "primary",
             "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
             "size": "small"
-          }, $compid__57);
-          var $compid__58 = (0, _index.genCompid)(__prefix + "BkZBygWGPa" + _anonIdx);
+          }, $compid__62);
+          var $compid__63 = (0, _index.genCompid)(__prefix + "QkrWNtTHLW" + _anonIdx);
           item.$original.status == "PAID" && _index.propsManager.set({
             "type": "primary",
             "size": "small",
             "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-          }, $compid__58);
-          var $compid__59 = (0, _index.genCompid)(__prefix + "dmoyAnnXas" + _anonIdx);
+          }, $compid__63);
+          var $compid__64 = (0, _index.genCompid)(__prefix + "XlEtOuHALn" + _anonIdx);
           item.$original.status == "COMMENTING" && _index.propsManager.set({
             "type": "primary",
             "size": "small"
-          }, $compid__59);
-          var $compid__60 = (0, _index.genCompid)(__prefix + "qbYypegBmq" + _anonIdx);
+          }, $compid__64);
+          var $compid__65 = (0, _index.genCompid)(__prefix + "krtglkBSeq" + _anonIdx);
           item.$original.status == "CONSUMPTION" && _index.propsManager.set({
             "type": "primary",
             "size": "small"
-          }, $compid__60);
+          }, $compid__65);
           return {
-            $compid__56: $compid__56,
-            $compid__57: $compid__57,
-            $compid__58: $compid__58,
-            $compid__59: $compid__59,
-            $compid__60: $compid__60,
+            $compid__61: $compid__61,
+            $compid__62: $compid__62,
+            $compid__63: $compid__63,
+            $compid__64: $compid__64,
+            $compid__65: $compid__65,
             $original: item.$original
           };
         });

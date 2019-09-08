@@ -22,7 +22,6 @@ export default class OrderList extends Component{
         totalPage:1,
         orderStatus:''
     }
-
     componentWillMount(){
         var selectTabIndex = Number(this.$router.params.index);
         this.setState({
@@ -36,7 +35,6 @@ export default class OrderList extends Component{
     }
 
     async getAllOrderList(statusVo,pageNo,pageSize){
-        // console.log('this.setState',this.setState);
         var payload = {
             statusVo:statusVo,
             pageNo:pageNo,
@@ -47,7 +45,7 @@ export default class OrderList extends Component{
             list:response.content
         });
     }
-
+    
     handleClick(value){
         this.setState({
             current:value,
@@ -98,8 +96,7 @@ export default class OrderList extends Component{
                     <ScrollView
                             scrollY
                             onScrollToUpper={this.loadOrderList}
-                            style={{height:getWindowHeight()}}
-                    >
+                            style={{height:getWindowHeight()}}>
                      {
                         <OrderItem list={list}/>
                      }
@@ -128,12 +125,11 @@ export default class OrderList extends Component{
                     </ScrollView>
               </AtTabsPane>
               <AtTabsPane current={current} index={3}>
-              <ScrollView
-                        scrollY
-                        onScrollToUpper={this.loadOrderList}
-                        style={{height:getWindowHeight()}}
-                    >
-                {
+               <ScrollView
+                scrollY
+                onScrollToUpper={this.loadOrderList}
+                style={{height:getWindowHeight()}}>
+                    {
                         <OrderItem list={list}/>
                     }
                 </ScrollView>
@@ -142,9 +138,7 @@ export default class OrderList extends Component{
                 <ScrollView
                             scrollY
                             onScrollToUpper={this.loadOrderList}
-                            style={{height:getWindowHeight()}}
-                >
-                {
+                            style={{height:getWindowHeight()}}>{
                         <OrderItem list={list}/>
                     }
                  </ScrollView>

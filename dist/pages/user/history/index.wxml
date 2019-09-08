@@ -2,14 +2,18 @@
     <view class="mp-history">
         <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style="{{anonymousState__temp}}">
             <block>
-                <block wx:if="{{actives.length === 0}}">
+                <block wx:if="{{!loaded}}">
+                    <loading></loading>
+                </block>
+                <block wx:elif="{{actives.length === 0}}">
                     <empty></empty>
                 </block>
                 <block wx:else>
                     <block wx:if="{{actives}}">
                         <view class="list-wrapper" bindtap="HandleActiveClick" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item}}">
                             <view class="list-wrapper-header">
-                                <view>{{item.agentName}}</view>
+                                <view>{{item.agentName}} <text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right history-appointer"></text>
+                                </view>
                                 <view>{{item.status === "NORMAL" ? "活动中" : "已结束"}}</view>
                             </view>
                             <view class="list-wrapper-content">
@@ -26,7 +30,7 @@
                     </block>
                 </block>
             </block>
-            <block wx:if="{{loading}}">
+            <block wx:if="{{loaded && loading}}">
                 <view class="home__loading"><text class="home__loading-txt">正在加载中...</text>
                 </view>
             </block>

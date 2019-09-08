@@ -20,10 +20,6 @@ var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _jump = require("../../utils/jump.js");
-
-var _jump2 = _interopRequireDefault(_jump);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52,7 +48,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["categoryItem", "prefix", "productItems", "isChange", "productId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Spec.__proto__ || Object.getPrototypeOf(Spec)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["categoryItem", "prefix", "productItems", "isChange", "productId", "activeId", "text", "isOpended", "dispatchDownLoadUrl", "activityName", "products"], _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
@@ -67,6 +63,7 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
         prefix: '.mp-spec',
         isChange: false,
         productId: 0,
+        activeId: 0,
         categoryItem: {
           productDocumentLocation: '',
           productName: '',
@@ -85,12 +82,14 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
     value: function componentWillReceiveProps(nextProps, props) {
       var _this2 = this;
 
-      console.log('nextProps', nextProps);
-
+      console.log('nextProps', nextProps.products[0]);
       var that = this;
+      this.setState({
+        activeId: nextProps.products[0].activityId
+      });
 
       this.getImgUrl(nextProps.products[0].productLocation).then(function (res) {
-        console.log('response', res);
+        console.log('response3333', res);
         that.setState({
           categoryItem: {
             productDocumentLocation: res,
@@ -233,7 +232,9 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "handleSubmitOrder",
     value: function handleSubmitOrder(e) {
-      var productId = this.state.productId;
+      var _state = this.state,
+          productId = _state.productId,
+          activeId = _state.activeId;
 
       if (productId === 0) {
         wx.showToast({
@@ -249,7 +250,9 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         productId: 0
       });
-      (0, _jump2.default)({ url: '/pages/order/submit/index?productId=' + productId + '&activityName=' + this.props.activityName });
+      _index2.default.navigateTo({
+        url: '/pages/order/submit/index?activeId=' + activeId + '&productId=' + productId + '&activityName=' + this.props.activityName
+      });
     }
   }, {
     key: "_createData",
@@ -260,16 +263,10 @@ var Spec = (_dec = (0, _index3.connect)(function (state) {
       var __prefix = this.$prefix;
       ;
 
-      var _state = this.__state,
-          prefix = _state.prefix,
-          isChange = _state.isChange,
-          categoryItem = _state.categoryItem,
-          productItems = _state.productItems,
-          icon = _state.icon,
-          text = _state.text;
-
-
-      console.log('categoryItem', categoryItem);
+      var _state2 = this.__state,
+          prefix = _state2.prefix,
+          categoryItem = _state2.categoryItem,
+          productItems = _state2.productItems;
 
       Object.assign(this.__state, {});
       return this.__state;

@@ -3,8 +3,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1110655 */
-  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot");
-  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_1110655_t2pvg64s44.eot");
+  src: url("//at.alicdn.com/t/font_1110655_t2pvg64s44.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.svg#iconfont") format("svg"); }
 
 .mp-icon {
   font-family: "iconfont" !important;
@@ -258,6 +258,11 @@
   color: #7DD6D0;
   content: "\e667"; }
 
+.mp-icon-friend:before {
+  font-size: 70rpx;
+  color: #7DD6D0;
+  content: "\e635"; }
+
 /* 
  Text Color
 */
@@ -315,7 +320,9 @@
     border-radius: 10rpx;
     height: 276x;
     border-bottom: 1rpx solid #F5F5F9;
-    background: #FFFFFF; }
+    background: #FFFFFF;
+    -webkit-box-shadow: 1rpx 2rpx 4rpx  #f4f4f4;
+    box-shadow: 1rpx 2rpx 4rpx #f4f4f4; }
   .mp-history .list-wrapper-header {
     display: -webkit-box;
     display: -webkit-flex;
@@ -335,8 +342,7 @@
       font-family: PingFangSC;
       font-weight: 400;
       color: black;
-      line-height: 40rpx;
-      -webkit-text-stroke: 1rpx #e8e8e8; }
+      line-height: 40rpx; }
     .mp-history .list-wrapper-header > View:nth-child(2) {
       margin-top: 20rpx;
       margin-right: 20rpx;
@@ -377,8 +383,14 @@
     font-family: PingFangSC;
     font-weight: 400;
     color: black;
-    line-height: 40rpx;
-    -webkit-text-stroke: 1rpx #e8e8e8; }
+    line-height: 40rpx; }
     .mp-history .list-wrapper-content > view:nth-child(2) > View {
       line-height: 50rpx;
       height: 50rpx; }
+
+.history-appointer {
+  position: relative;
+  left: 66rpx;
+  height: 50rpx;
+  width: 50rpx;
+  top: 11rpx; }

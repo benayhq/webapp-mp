@@ -271,6 +271,8 @@ export default class Index extends Component {
     //   return;
     // }
     const result = await getAuthInfo();
+    console.log('result555',result);
+    debugger;
 
     let payload =  {
       "areaCode": "string",
@@ -284,7 +286,7 @@ export default class Index extends Component {
       "userId": result.id,
       "wechatId": weChatNumber
     };
-
+    debugger;
     if(result.cellphone === null || result.cellphone === ""){
       this.setState({
         isOpened:true
@@ -295,34 +297,45 @@ export default class Index extends Component {
         isOpened:false
       });
     }
-    this.props.dispatchCreateActive(payload).then((res)=>{
-      if(res && res.result === "success" && res.content !=null){
-        Taro.navigateTo({
-          url:`/pages/active/share/index?activeId=${res.content}`
-        })
-      }else{
-        this.handleAlert('error',res.error);
-      }
-    });
+    try{
+      this.props.dispatchCreateActive(payload).then((res)=>{
+
+        console.log('dispatchCreateActive',res);
+  
+        if(res && res.result === "success" && res.content !=null){
+          Taro.navigateTo({
+            url:`/pages/active/share/index?activeId=${res.content}`
+          })
+        }else{
+          this.handleAlert('error',res.error);
+        }
+      });
+    }
+    catch(e){
+      console.log('e',e);
+    }
   }
   
   async getPhoneNumber(e) {
-    try {
       if (e.detail.encryptedData && e.detail.iv) {
           let payload = {
             iv: e.detail.iv,
             phone: e.detail.encryptedData
           };
           const result = await this.props.dispatchWeixinDecrypt(payload);
-          if(result.content){
-             let params = {
-                cellphone:JSON.parse(result.content).phoneNumber
-             };
-             const phoneMsg = await this.props.UpdateUserInfo(params);
-             const data = phoneMsg.content;
-             console.log('data',data);
-             Taro.setStorage({key:'userinfo',data});
-             if(phoneMsg.result === "success"){
+          var object = JSON.parse(result.content);
+          if(object.phoneNumber){
+            let params = {
+                cellphone:object.phoneNumber
+            };
+            const update =  await this.props.UpdateUserInfo(params);
+            const data = await this.props.GetUserInfo({});
+            console.log('data',data);
+            const result = data.content;
+            console.log('getPhoneNumber',result);
+            Taro.setStorage({key:'userinfo',data:result});
+            console.log('getPhoneNumber',result);
+            if(data.result === "success"){
                 this.setState({
                   isOpened:false
                 })
@@ -348,21 +361,19 @@ export default class Index extends Component {
           mask: true
         });
       }
-    }catch (error) {
-      Taro.showToast({
-        title: '系统错误',
-        icon: 'none',
-        duration: 3000,
-        mask: true
-      });
-    }
+    // }catch (error) {
+    //   console.log('error',error);
+    //   Taro.showToast({
+    //     title: '系统错误',
+    //     icon: 'none',
+    //     duration: 3000,
+    //     mask: true
+    //   });
+    // }
   }
-
-
 
   handleActiveChange(activeName){
     console.log('activeName',activeName);
-
     this.props.disptachActiveName(activeName);
     this.setState({
       activeName
@@ -496,6 +507,7 @@ export default class Index extends Component {
         </View>
 
         <View className="publish">
+            {/* <View onClick={this.onPublish}>立即发布</View> */}
             <View onClick={this.onPublish}>立即发布</View>
         </View> 
 

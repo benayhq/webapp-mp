@@ -43,7 +43,7 @@ export default async function fetch(options){
         if(url !== API_GET_USER_INFO){
             if(res.data && res.data.error === "LOGIN"){
                 Taro.navigateTo({
-                    url: '/pages/login/index'
+                    url: '/pages/user/index'
                 });
                 return;
             }

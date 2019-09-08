@@ -71,7 +71,6 @@ var CreateProduct = (_dec = (0, _index3.connect)(function (state) {
 
       var productList = this.__state.productList;
 
-
       Object.assign(this.__state, {});
       return this.__state;
     }

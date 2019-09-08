@@ -19,6 +19,7 @@ export default class SubmitOrder extends Component{
             appointmentDate:'',
             activityProductId:'',
             product:{},
+            activeId:0,
             text:'',
             isOpended:false,
             cellPhone:'',
@@ -54,6 +55,10 @@ export default class SubmitOrder extends Component{
     }
 
     handlePay(orderId){
+        // Taro.navigateTo({
+        //     url: '/pages/pay/detail/index?activeId='+this.state.activeId
+        // });
+        // return;
         var payload ={
             id:orderId
         };
@@ -77,7 +82,7 @@ export default class SubmitOrder extends Component{
                     text:'支付成功'
                 });
                 Taro.navigateTo({
-                    url: '/pages/user/index'
+                    url: '/pages/pay/detail/index?activeId='+this.state.activeId
                 });
                 break;
             case "fail":
@@ -109,7 +114,8 @@ export default class SubmitOrder extends Component{
 
         this.setState({
             activityProductId:this.$router.params.productId,
-            activityName:this.$router.params.activityName
+            activityName:this.$router.params.activityName,
+            activeId:this.$router.params.activeId
         });
 
         this.setState({
@@ -153,7 +159,6 @@ export default class SubmitOrder extends Component{
 
     async initUser(){
         const user = await this.props.GetUserInfo({});
-        console.log('user3333',user);
         if(user.content){
             this.setState({
                 cellPhone:user.content.cellphone,

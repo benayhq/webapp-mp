@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text,Button } from '@tarojs/components'
 import {connect} from '@tarojs/redux';
-import {AtButton} from 'taro-ui'
 import './add.scss';
 
 @connect(state=>state.product,null)
@@ -27,7 +26,6 @@ class CreateProduct extends Component{
 
     render(){
         const {productList} = this.state;
-        
         return (
             <View className="mp-own-product">
                 {

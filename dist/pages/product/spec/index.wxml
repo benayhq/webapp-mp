@@ -18,6 +18,6 @@
                 <view bindtap="handleChangeCategory" class="{{product.isChecked ? 'mp-spec__category-green' : 'mp-spec__category'}}" data-e-tap-so="this" data-e-tap-a-a="{{product}}">{{product.productName}}</view>
             </view>
         </block>
-        <view class="{{prefix + '__bottom'}}" bindtap="handleSubmitOrder" data-e-tap-so="this">拼 团</view>
+        <view class="{{prefix + '__bottom'}}" bindtap="handleSubmitOrder" data-e-tap-so="this">确 认</view>
     </view>
 </block>

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dispatchWeixinDecrypt = exports.dispatchCacheTempFiles = exports.dispatchSaveImg = exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
+exports.GetUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchCacheTempFiles = exports.dispatchSaveImg = exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -156,6 +156,17 @@ var dispatchWeixinDecrypt = exports.dispatchWeixinDecrypt = function dispatchWei
   return (0, _redux.createAction)({
     type: _constants.ACTION_WEIXIN_DECRYPT,
     url: _api.API_WEIXIN_DECRYPT,
+    fetchOptions: {
+      method: 'POST'
+    },
+    payload: payload
+  });
+};
+
+var GetUserInfo = exports.GetUserInfo = function GetUserInfo(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_GET_USER_INFO,
+    url: _api.API_GET_USER_INFO,
     fetchOptions: {
       method: 'POST'
     },

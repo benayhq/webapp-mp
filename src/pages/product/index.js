@@ -44,14 +44,13 @@ class Index extends Component{
     const result = await this.props.dispatchDownLoadUrl(payload);
     return result.content;
   }
-
+  
   async initProductList(){
     var that = this;
     var payload = {
       pageNo:0,
       pageSize:1000
     };
-    
     var responseList = [];
     const resultProductList = await this.props.dispatchProductList(payload);
 

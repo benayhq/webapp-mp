@@ -1,0 +1,18 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <at-float-layout compid="{{$compid__1207}}">
+            <view class="mp-share-haibao">
+                <view>
+                    <view class="mp-haibao mp-icon mp-icon-wechat">
+                        <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">发送给朋友</button>
+                    </view>
+                    <view>发送给朋友</view>
+                </view>
+                <view bindtap="handleCreatePosters" data-e-tap-so="this">
+                    <image style="width:48px;height:48px;position:relative;left:75px;top:6px;" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/circleoffriends.png"></image>
+                    <view style="margin-top:10px;">生成分享海报</view>
+                </view>
+            </view>
+        </at-float-layout>
+    </view>
+</block>

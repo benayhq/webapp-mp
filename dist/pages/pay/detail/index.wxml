@@ -1,0 +1,12 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="mp-pay">
+        <view class="mp-pay-result">
+            <view class="mp-icon mp-icon-success"></view>
+        </view>
+        <view class="mp-pay-detail">交易成功! 立即邀请好友！</view>
+        <view class="mp-pay-action" bindtap="handleInvertFirend" data-e-tap-so="this">
+            <view>邀请好友拼单</view>
+        </view>
+        <share compid="{{$compid__1142}}"></share>
+    </view>
+</block>

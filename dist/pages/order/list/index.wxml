@@ -3,7 +3,7 @@
         <block>
             <block wx:if="{{OrderList.length > 0}}">
                 <view class="mp-order-list" wx:for="{{loopArray16}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                    <title compid="{{item.$compid__56}}"></title>
+                    <title compid="{{item.$compid__61}}"></title>
                     <view class="product">
                         <view class="left">
                             <image style="height:100%;width:100%;margin:0 auto;padding:5px;" mode="scaleToFill" src="{{item.$original.imgUrl}}"></image>
@@ -17,21 +17,21 @@
                     <view class="order-action">
                         <view class="action">
                             <block wx:if="{{item.$original.status == 'UNPAY'}}">
-                                <at-button compid="{{item.$compid__57}}">支付订单</at-button>
+                                <at-button compid="{{item.$compid__62}}">支付订单</at-button>
                             </block>
                             <block wx:if="{{item.$original.status == 'PAID'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__58}}">我要评价</at-button>
+                                    <at-button compid="{{item.$compid__63}}">我要评价</at-button>
                                 </view>
                             </block>
                             <block wx:if="{{item.$original.status == 'COMMENTING'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__59}}">我要评价</at-button>
+                                    <at-button compid="{{item.$compid__64}}">我要评价</at-button>
                                 </view>
                             </block>
                             <block wx:if="{{item.$original.status == 'CONSUMPTION'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__60}}">重新购买</at-button>
+                                    <at-button compid="{{item.$compid__65}}">重新购买</at-button>
                                 </view>
                             </block>
                         </view><text></text> 

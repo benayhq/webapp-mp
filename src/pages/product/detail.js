@@ -1,8 +1,7 @@
 import Taro,{Component} from '@tarojs/taro';
 import {View,Text,Swiper,SwiperItem,ScrollView} from '@tarojs/components';
 import './detail.scss';
-import { AtButton,AtFab,AtModal, AtModalHeader, AtModalContent, AtModalAction,AtToast} from 'taro-ui';
-import {Popup,Loading,Modal} from './../../components'
+import {Popup,Loading,Share} from './../../components'
 import Spec from './spec/index';
 import Contact from './contact/index';
 import {getWindowHeight} from './../../utils/style';
@@ -10,7 +9,6 @@ import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
 import Gallery from './gallery';
-const ICON = 'check'
 
 var commentArray=[],totalCommentCount=0,pageNumberCount=0;
 
@@ -36,6 +34,9 @@ export default class Detail extends Component{
         source:'',
         commentText:'查看全部评论',
         isShare:false,
+        referId:0,
+        img:'',
+        activityName:'',
         isForwarding:false,
         loaded:false,
     }
@@ -109,6 +110,7 @@ export default class Detail extends Component{
                         bannerItemList.push(response);
                     }).then(()=>{
                         this.setState({
+                            img:bannerItemList[0],
                             bannerList:bannerItemList,
                             loaded:true
                         });
@@ -130,7 +132,8 @@ export default class Detail extends Component{
         let activeId = this.$router.params.activeId  === undefined?48:this.$router.params.activeId,
             referId = this.$router.params.refId  === undefined?2:this.$router.params.refId,
             source = this.$router.params.sc === undefined ? "":this.$router.params.sc;  // advert
-            if (activeId && referId ) {
+
+            if (activeId && referId){
             // wx.showToast({
             //     title: activeId+referId,
             //     icon: 'success',
@@ -160,6 +163,7 @@ export default class Detail extends Component{
 
     openCategoryDialog(){
         this.setState({
+            isShare:false,
             visible: true,
             bSpec:true,
             bContact: false,
@@ -183,15 +187,6 @@ export default class Detail extends Component{
         this.setState({
             showOrderDialog:true
         })
-    }
-
-    handleShare(){
-        this.setState({
-            isShare:true
-        })
-        // wx.showShareMenu({
-        //     withShareTicket: true
-        // })
     }
 
     handleAllComment(data){
@@ -230,7 +225,7 @@ export default class Detail extends Component{
                 }, 1000);
             }
         });
-
+        
         if(totalCommentCount>0){
             setTimeout(() => {
                 if(totalCommentCount === commentArray.length){
@@ -250,57 +245,32 @@ export default class Detail extends Component{
         return result.content;
     }
 
-    handleCancelShare(){
+
+    handleClose(){
         this.setState({
             isShare:false
         });
     }
 
-    handleCreatePosters(){
-        Taro.navigateTo({
-            url:`/pages/active/share/index?activeId=${this.state.activeId}`
-          })
+        
+    handleInvertFirend(){
+        this.setState({
+            isShare:true
+        })
     }
-
-    onShareAppMessage(ops){
-
-        if (ops.from === 'button') {
-            var that = this;
-            that.setState({
-                isShare:false
-            });
-            setTimeout(()=>{
-                wx.showToast({
-                    title: "转发成功",
-                    icon: 'success',
-                    duration: 3000
-                });
-            },3000)
-        }
-
-        return {
-          title: this.state.data.activityName,
-          path: `pages/product/detail?activeId=${this.state.activeId}&refId=${this.state.referId}`,  // 路径，传递参数到指定页面。
-          imageUrl:this.state.bannerList[0].item, // 分享的封面图
-          success: function (res) {
-          },
-          fail: function (res) {
-          }
-        }
-      }
 
     handleJumpHome(){
         Taro.navigateTo({
             url:`../../pages/user/index`
           })
     }
-    
-    render(){
-        const {data,commentList,bannerList,activeId,isForwarding,comments,commentText} = this.state;
-        const height = getWindowHeight(false);
-        const { isOpened,bSpec,bContact,showOrderDialog,loaded} = this.state;
 
+    render(){
+        const {data,commentList,bannerList,activeId,comments,commentText,isShare,img} = this.state;
+        const height = getWindowHeight(false);
+        const { bSpec,bContact,loaded} = this.state;
         let renderTemplate = null;
+
         if(!loaded){
             renderTemplate = <Loading/>
         }
@@ -515,41 +485,14 @@ export default class Detail extends Component{
                     </View>
                 </View>
              
-               
-                <View className="mp-share" onClick={this.handleShare.bind(this)}>
+                <View className="mp-share" onClick={this.handleInvertFirend.bind(this)}>
                    <View>
                         <View className="mp-icon mp-icon-share"></View>
                    </View>
                 </View>
             </ScrollView>
-
-
-            <AtModal isOpened={this.state.isShare}>
-                <AtModalContent>
-                    <View className="mp-share-haibao">
-                        {/* <View onClick={this.handleSendFriend.bind(this)}>
-                            <View className="mp-haibao mp-icon mp-icon-wechat"></View>
-                            <View>发送给朋友</View>
-                        </View> */}
-                      
-                        <View>
-                            <View  className="mp-haibao mp-icon mp-icon-wechat"> 
-                                <button style="margin-bottom:20px;margin-top: -65px;opacity:0;height:73px;" className="shareBtn" open-type="share" type="primary">
-                                发送给朋友
-                                </button>
-                            </View>
-                            <View>发送给朋友</View>
-                        </View>
-                        <View onClick={this.handleCreatePosters.bind(this)}>
-                            <View className="mp-icon mp-icon-haibao"></View>
-                            <View>生成海报</View>
-                        </View>
-                    </View>
-                </AtModalContent>
-                <AtModalAction> <Button onClick={this.handleCancelShare.bind(this)}>取 消</Button> </AtModalAction>
-            </AtModal>
-
-            <Popup 
+            <Share isOpened={isShare} path={`pages/product/detail?activeId=${activeId}&refId=${data.agentId}`} activeId={activeId} activityName={data.activityName} referId={data.agentId} img={img} onClose={this.handleClose}/>
+            <Popup
             visible={this.state.visible}
             onClose={this.toggleVisible}>
                 {
@@ -559,7 +502,6 @@ export default class Detail extends Component{
                     bSpec && <Spec activityName={data.activityName} products={data.activityProducts}/>
                 }
             </Popup>
-
             {/* <Modal isOpened={showOrderDialog}>
                 <TuanList/>
             </Modal> */}

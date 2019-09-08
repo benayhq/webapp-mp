@@ -23,42 +23,30 @@ export default class OrderDetail extends Component{
             id:0
         };
     }
-
+    
     config = {
         navigationBarTitleText: '订单详情'
     }
-
     componentWillMount(){
         this.setState({
             id:this.$router.params.orderId
         });
-        console.log('this.state.id ',this.$router.params.orderId);
-        // if(this.$router.params.orderId === undefined || this.$router.params.orderId === null){
-        //     Taro.navigateTo({
-        //         url: '/pages/user/index'
-        //     });
-        // }
     }
-
     componentDidMount() {
         var payload = {
             id:this.state.id
         };
-       
         this.props.dispatchOrderDetail(payload).then((response)=>{
             this.setState({
                 content:response.content
             });
         });
     }
-
-
     render(){
         const {content,order} = this.state;
         
         return (
             <View className="mp-order-detail">
-           
                 <Header content={content}/>
                 <Assemble content={content}/>
                 <OrderProduct order={order} content={content}/>

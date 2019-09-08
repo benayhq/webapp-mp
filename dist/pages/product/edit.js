@@ -55,7 +55,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__16", "$compid__17", "$compid__18", "$compid__19", "$compid__20", "$compid__21", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1112", "$compid__1113", "$compid__1114", "$compid__1115", "$compid__1116", "$compid__1117", "multiSelector", "mulitSelectorValues", "initSeletedValue", "files", "selector", "selectorChecked", "selectorValue", "productName", "productPrice", "activePrice", "preAmount", "toastText", "isOpened", "status", "duration", "location", "productId", "firstList", "secondList", "thirdList", "initCategoryId", "pid", "dispatchCategoryList", "dispatchUploadConfig", "dispatchUpdateProductInfo", "dispatchCreateProduct", "dispatchDownLoadUrl", "dispatchQueryProductInfo"], _this.config = {
       navigationBarTitleText: '产品'
     }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
@@ -163,7 +163,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                 list = response.content;
 
                 console.log('response list', list.subProjectNames);
-                firstList = [], secondList = [], thirdList = [];
+                firstList = ['--请选择--'], secondList = [], thirdList = [];
                 parentId = list === null ? 0 : list.pid;
 
                 this.setState({
@@ -221,7 +221,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
               case 0:
                 _state = this.state, productName = _state.productName, productPrice = _state.productPrice, activePrice = _state.activePrice, files = _state.files, preAmount = _state.preAmount, initSeletedValue = _state.initSeletedValue, mulitSelectorValues = _state.mulitSelectorValues, location = _state.location, productId = _state.productId, pid = _state.pid;
 
-                if (!(initSeletedValue === '')) {
+                if (!(initSeletedValue === '' || initSeletedValue === '--请选择--')) {
                   _context2.next = 4;
                   break;
                 }
@@ -316,14 +316,6 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                         url: '/pages/product/index'
                       });
                     }
-                    // else{
-
-                    //   this.setState({
-                    //     isOpened:true,
-                    //     toastText:res.error,
-                    //     status: 'error'
-                    //   })
-                    // }
                   });
                 } else {
                   this.props.dispatchCreateProduct(payload).then(function (res) {
@@ -337,11 +329,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                         url: '/pages/product/index'
                       });
                     } else {
-                      _this2.setState({
-                        isOpened: true,
-                        toastText: res.error,
-                        status: 'error'
-                      });
+                      _this2.handleAlert('error', res.content);
                     }
                   });
                 }
@@ -398,10 +386,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
 
                 console.log('pid', pid);
                 console.log('multiSelector[0][e.detail.value[0]]', multiSelector[0][e.detail.value[0]]);
-                _context3.next = 5;
-                return this.getCategroyList(multiSelector[0][e.detail.value[0]], 0);
+
+                if (!(multiSelector[0][e.detail.value[0]] === '--请选择--')) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                return _context3.abrupt("return");
 
               case 5:
+                _context3.next = 7;
+                return this.getCategroyList(multiSelector[0][e.detail.value[0]], 0);
+
+              case 7:
                 listAll = _context3.sent;
 
                 console.log('listall', listAll);
@@ -428,7 +425,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 10:
+              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -452,19 +449,20 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                console.log('handleColumnChange');
                 list = null;
 
                 if (!(e.detail.column === 0)) {
-                  _context4.next = 18;
+                  _context4.next = 19;
                   break;
                 }
 
                 _state3 = this.state, multiSelector = _state3.multiSelector, mulitSelectorValues = _state3.mulitSelectorValues, pid = _state3.pid;
                 selectedValue = multiSelector[e.detail.column][e.detail.value];
-                _context4.next = 6;
+                _context4.next = 7;
                 return this.getCategroyList(selectedValue, 0);
 
-              case 6:
+              case 7:
                 listAll = _context4.sent;
 
                 console.log('pid', pid);
@@ -507,18 +505,18 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   multiSelector: [firstList, seconds, thirdList]
                 });
 
-              case 18:
+              case 19:
                 if (!(e.detail.column === 1)) {
-                  _context4.next = 35;
+                  _context4.next = 36;
                   break;
                 }
 
                 _state5 = this.state, _multiSelector = _state5.multiSelector, _mulitSelectorValues = _state5.mulitSelectorValues, _pid = _state5.pid;
                 _selectedValue = _multiSelector[e.detail.column][e.detail.value];
-                _context4.next = 23;
+                _context4.next = 24;
                 return this.getCategroyList(_selectedValue, firstValue);
 
-              case 23:
+              case 24:
                 listAll = _context4.sent;
 
                 console.log('pid', _pid);
@@ -549,18 +547,18 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   multiSelector: [_firstList, _secondList, thirds]
                 });
 
-              case 35:
+              case 36:
                 if (!(e.detail.column === 2)) {
-                  _context4.next = 49;
+                  _context4.next = 50;
                   break;
                 }
 
                 _state7 = this.state, _multiSelector2 = _state7.multiSelector, _mulitSelectorValues2 = _state7.mulitSelectorValues, _pid2 = _state7.pid;
                 _selectedValue2 = _multiSelector2[e.detail.column][e.detail.value];
-                _context4.next = 40;
+                _context4.next = 41;
                 return this.getCategroyList(_selectedValue2, secondValue);
 
-              case 40:
+              case 41:
                 listAll = _context4.sent;
 
                 console.log('pid', _pid2);
@@ -575,7 +573,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
                   pid: listAll.content.pid
                 });
 
-              case 49:
+              case 50:
               case "end":
                 return _context4.stop();
             }
@@ -739,12 +737,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__16 = (0, _index.genCompid)(__prefix + "$compid__16");
-      var $compid__17 = (0, _index.genCompid)(__prefix + "$compid__17");
-      var $compid__18 = (0, _index.genCompid)(__prefix + "$compid__18");
-      var $compid__19 = (0, _index.genCompid)(__prefix + "$compid__19");
-      var $compid__20 = (0, _index.genCompid)(__prefix + "$compid__20");
-      var $compid__21 = (0, _index.genCompid)(__prefix + "$compid__21");
+      var $compid__1112 = (0, _index.genCompid)(__prefix + "$compid__1112");
+      var $compid__1113 = (0, _index.genCompid)(__prefix + "$compid__1113");
+      var $compid__1114 = (0, _index.genCompid)(__prefix + "$compid__1114");
+      var $compid__1115 = (0, _index.genCompid)(__prefix + "$compid__1115");
+      var $compid__1116 = (0, _index.genCompid)(__prefix + "$compid__1116");
+      var $compid__1117 = (0, _index.genCompid)(__prefix + "$compid__1117");
 
       var _state8 = this.__state,
           productName = _state8.productName,
@@ -759,14 +757,14 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
           initSeletedValue = _state8.initSeletedValue;
 
 
-      var $props__16 = {
+      var $props__1112 = {
         "isOpened": isOpened,
         "text": toastText,
         "status": status,
         "duration": duration,
         "icon": "{icon}"
       };
-      var $props__17 = {
+      var $props__1113 = {
         "name": "productName",
         "title": "\u540D\u79F0",
         "type": "text",
@@ -774,7 +772,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productName,
         "onChange": this.handleProductChange.bind(this)
       };
-      var $props__18 = {
+      var $props__1114 = {
         "name": "productPrice",
         "title": "\u4EF7\u683C",
         "type": "number",
@@ -782,7 +780,7 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": productPrice,
         "onChange": this.handlePriceChange.bind(this)
       };
-      var $props__19 = {
+      var $props__1115 = {
         "name": "activePrice",
         "title": "\u6D3B\u52A8\u4EF7",
         "type": "number",
@@ -790,12 +788,12 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": activePrice,
         "onChange": this.handleActivePriceChange.bind(this)
       };
-      var $props__20 = {
+      var $props__1116 = {
         "files": files,
         "onChange": this.handleChooseImage.bind(this),
         "onImageClick": this.onImageClick.bind(this)
       };
-      var $props__21 = {
+      var $props__1117 = {
         "name": "preAmount",
         "title": "\u9884\u5B9A\u91D1",
         "type": "number",
@@ -803,19 +801,19 @@ var EditProduct = (_dec = (0, _index3.connect)(function (state) {
         "value": preAmount,
         "onChange": this.handlePreAmountChange.bind(this)
       };
-      _index.propsManager.set($props__16, $compid__16);
-      _index.propsManager.set($props__17, $compid__17);
-      _index.propsManager.set($props__18, $compid__18);
-      _index.propsManager.set($props__19, $compid__19);
-      _index.propsManager.set($props__20, $compid__20);
-      _index.propsManager.set($props__21, $compid__21);
+      _index.propsManager.set($props__1112, $compid__1112);
+      _index.propsManager.set($props__1113, $compid__1113);
+      _index.propsManager.set($props__1114, $compid__1114);
+      _index.propsManager.set($props__1115, $compid__1115);
+      _index.propsManager.set($props__1116, $compid__1116);
+      _index.propsManager.set($props__1117, $compid__1117);
       Object.assign(this.__state, {
-        $compid__16: $compid__16,
-        $compid__17: $compid__17,
-        $compid__18: $compid__18,
-        $compid__19: $compid__19,
-        $compid__20: $compid__20,
-        $compid__21: $compid__21
+        $compid__1112: $compid__1112,
+        $compid__1113: $compid__1113,
+        $compid__1114: $compid__1114,
+        $compid__1115: $compid__1115,
+        $compid__1116: $compid__1116,
+        $compid__1117: $compid__1117
       });
       return this.__state;
     }

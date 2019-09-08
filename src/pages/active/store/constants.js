@@ -45,4 +45,6 @@ export const ACTION_SAVE_TEMPFILES = 'action/ACTION_SAVE_TEMPFILES';
 
 export const ACTION_WEIXIN_DECRYPT = 'action/ACTION_WEIXIN_DECRYPT';
 
+export const ACTION_GET_USER_INFO = 'action/ACTION_GET_USER_INFO';
+
 

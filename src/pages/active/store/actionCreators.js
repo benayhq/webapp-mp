@@ -12,7 +12,8 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_PRODUCT_PRICE,
     ACTION_SAVE_UPLOADIMG,
     ACTION_SAVE_TEMPFILES,
-    ACTION_WEIXIN_DECRYPT
+    ACTION_WEIXIN_DECRYPT,
+    ACTION_GET_USER_INFO
     } from './constants';
 
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
@@ -20,7 +21,8 @@ import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
     API_QRCODE,
     API_ADVERT_LIST,
     API_WEIXIN_DECRYPT,
-    API_USER_INFO
+    API_USER_INFO,
+    API_GET_USER_INFO
 } from './../../../constants/api';
 
 export const dispatchPublishProduct = payload => createAction({
@@ -154,3 +156,13 @@ export const dispatchWeixinDecrypt = payload => createAction({
     },
     payload
 });
+
+
+export const GetUserInfo = payload => createAction({
+    type:ACTION_GET_USER_INFO,
+    url:API_GET_USER_INFO,
+    fetchOptions:{
+        method:'POST'
+    },
+    payload
+})

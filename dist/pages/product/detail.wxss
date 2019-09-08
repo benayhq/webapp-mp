@@ -3,8 +3,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1110655 */
-  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot");
-  src: url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_9bv3gdp5r5h.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_1110655_t2pvg64s44.eot");
+  src: url("//at.alicdn.com/t/font_1110655_t2pvg64s44.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_t2pvg64s44.svg#iconfont") format("svg"); }
 
 .mp-icon {
   font-family: "iconfont" !important;
@@ -257,6 +257,10 @@
   font-size: 70rpx;
   color: #7DD6D0;
   content: "\e667"; }
+
+.mp-icon-friend:before {
+  font-size: 90rpx;
+  content: "\e635"; }
 
 /* 
  Text Color
@@ -759,3 +763,24 @@ image {
   overflow: hidden;
   color: #000000;
   background-color: #F8F8F8; }
+
+.at-float-layout .layout-body {
+  font-size: 28rpx;
+  padding: 18rpx;
+  min-height: 0rpx;
+  height: 20rpx; }
+
+.at-float-layout__container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 336rpx;
+  max-height: 950rpx;
+  background-color: #FFF;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: -webkit-transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);
+  -o-transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1), -webkit-transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1); }

@@ -56,7 +56,7 @@ class EditProduct extends Component{
       const response = await this.props.dispatchCategoryList(payload);
       var list = response.content;
       console.log('response list',list.subProjectNames);
-      var firstList = [],secondList = [],thirdList = [];
+      var firstList = ['--请选择--'],secondList = [],thirdList = [];
       const parentId = list === null? 0 :list.pid;
       this.setState({
         pid:parentId
@@ -132,10 +132,11 @@ class EditProduct extends Component{
     async handleSaveProduct(){
       const {productName,productPrice,activePrice,files,preAmount,initSeletedValue,mulitSelectorValues,location,productId,pid} = this.state;
 
-      if(initSeletedValue === ''){
+      if(initSeletedValue === '' || initSeletedValue === '--请选择--'){
         this.handleAlert('error','请选择分类');
         return;
       }
+    
       if(productName===''){
         this.handleAlert('error','名称不能为空');
         return;
@@ -152,12 +153,10 @@ class EditProduct extends Component{
         this.handleAlert('error','请上传产品图片');
         return;
       }
-
       if(preAmount === ''){
         this.handleAlert('error','请输入不少于5元的预定金');
         return;
       }
-      
       if(preAmount<5){
         this.handleAlert('error','预定金不能少于5元');
         return;
@@ -191,14 +190,6 @@ class EditProduct extends Component{
               url:'/pages/product/index'
             })
           }
-          // else{
-
-          //   this.setState({
-          //     isOpened:true,
-          //     toastText:res.error,
-          //     status: 'error'
-          //   })
-          // }
         });
       }
       else{
@@ -214,11 +205,7 @@ class EditProduct extends Component{
             })
           }
           else{
-            this.setState({
-              isOpened:true,
-              toastText:res.error,
-              status: 'error'
-            })
+            this.handleAlert('error',res.content);
           }
         });
       }
@@ -250,6 +237,9 @@ class EditProduct extends Component{
       const {firstList,secondList,thirdList,multiSelector,pid} = this.state;
       console.log('pid',pid);
       console.log('multiSelector[0][e.detail.value[0]]',multiSelector[0][e.detail.value[0]]);
+      if(multiSelector[0][e.detail.value[0]] === '--请选择--'){
+          return;
+      }
       var listAll = await this.getCategroyList(multiSelector[0][e.detail.value[0]],0);
       console.log('listall',listAll);
 
@@ -277,6 +267,7 @@ class EditProduct extends Component{
     }
 
     async handleColumnChange(e){
+      console.log('handleColumnChange');
       var list = null;
       if(e.detail.column===0){
         const {multiSelector,mulitSelectorValues,pid} = this.state;
@@ -502,8 +493,7 @@ class EditProduct extends Component{
                     type='number'
                     placeholder='请输入不少于5元的预定金'
                     value={preAmount}
-                    onChange={this.handlePreAmountChange.bind(this)}
-                />
+                    onChange={this.handlePreAmountChange.bind(this)}/>
                 </AtForm>
                 <View className="mp-edit-product__warn-tips">
                     温馨提醒：
@@ -517,6 +507,6 @@ class EditProduct extends Component{
             </View>
         )
     }
-
 }
+
 export default EditProduct;

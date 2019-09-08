@@ -22,6 +22,7 @@ export default class Spec extends Component{
             prefix:'.mp-spec',
             isChange:false,
             productId:0,
+            activeId:0,
             categoryItem:{
                 productDocumentLocation:'',
                 productName:'',
@@ -36,12 +37,14 @@ export default class Spec extends Component{
     }
 
     componentWillReceiveProps(nextProps,props){
-        console.log('nextProps',nextProps);
-
+        console.log('nextProps',nextProps.products[0]);
         let that = this;
+        this.setState({
+            activeId:nextProps.products[0].activityId
+        });
         
         this.getImgUrl(nextProps.products[0].productLocation).then(res=>{
-            console.log('response',res);
+            console.log('response3333',res);
             that.setState({
                 categoryItem:{
                     productDocumentLocation:res,
@@ -122,7 +125,7 @@ export default class Spec extends Component{
     }
 
     handleSubmitOrder(e){
-        const {productId} = this.state;
+        const {productId,activeId} = this.state;
         if(productId === 0){
              wx.showToast({
                 title: "请选择商品类目",
@@ -137,14 +140,13 @@ export default class Spec extends Component{
         this.setState({
             productId:0
         });
-        jump({url:'/pages/order/submit/index?productId='+productId+'&activityName='+this.props.activityName});
+        Taro.navigateTo({
+            url:'/pages/order/submit/index?activeId='+activeId+'&productId='+productId+'&activityName='+this.props.activityName
+        })
     }
 
     render(){
-        const {prefix,isChange,categoryItem,productItems,icon,text} = this.state;
-
-        console.log('categoryItem',categoryItem);
-
+        const {prefix,categoryItem,productItems} = this.state;
         return (
             <View>
                 {
@@ -179,7 +181,7 @@ export default class Spec extends Component{
                     ))
                 }
                 <View className={prefix + '__bottom'} onClick={this.handleSubmitOrder.bind(this)}>
-                    拼 团
+                    确 认
                 </View>
             </View>
         )
