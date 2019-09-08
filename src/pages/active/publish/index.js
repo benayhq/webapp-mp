@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Text,Picker, PickerView, PickerViewColumn,AtButton  } from '@tarojs/components'
+import { View,Text,Picker } from '@tarojs/components'
 import { AtImagePicker,AtInput,AtMessage,AtModal,
    AtModalHeader, AtModalContent, AtModalAction, AtToast } from 'taro-ui'
 import ProductList from './productlist/index';
@@ -438,8 +438,8 @@ export default class Index extends Component {
   }
 
   render () {
-    const {activeName,dateEnd,dateStart,products,weChatNumber,isOpened} = this.state;
-
+    const {activeName,dateEnd,dateStart,products,isOpened} = this.state;
+    const isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
     return (
       <View className="mp-active">
         <AtMessage/>
@@ -496,7 +496,9 @@ export default class Index extends Component {
                       <Text className="mp-icon mp-icon-plus"></Text>
                       <Text>新增产品</Text>
             </View>
-            <ProductList products={products}/>
+            <ScrollView scrollY className={isAutoScrollItem}>
+               <ProductList products={products}/>
+            </ScrollView>
                      {/* <View className="publish-active">
                             <Text>活动价</Text>
                               <AtInput border={false} 
@@ -507,7 +509,6 @@ export default class Index extends Component {
         </View>
 
         <View className="publish">
-            {/* <View onClick={this.onPublish}>立即发布</View> */}
             <View onClick={this.onPublish}>立即发布</View>
         </View> 
 

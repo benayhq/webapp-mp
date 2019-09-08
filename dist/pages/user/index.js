@@ -52,7 +52,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loopArray320", "$compid__1167", "$compid__1168", "$compid__1169", "$compid__1170", "loaded", "userName", "isAgent", "profit", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loopArray342", "$compid__1244", "$compid__1245", "$compid__1246", "$compid__1247", "loaded", "userName", "isAgent", "profit", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
@@ -576,11 +576,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1167 = (0, _index.genCompid)(__prefix + "$compid__1167");
-      var $compid__1168 = (0, _index.genCompid)(__prefix + "$compid__1168");
-      var $compid__1169 = (0, _index.genCompid)(__prefix + "$compid__1169");
-      var $compid__1170 = (0, _index.genCompid)(__prefix + "$compid__1170");
-      var loopArray320 = void 0;
+      var $compid__1244 = (0, _index.genCompid)(__prefix + "$compid__1244");
+      var $compid__1245 = (0, _index.genCompid)(__prefix + "$compid__1245");
+      var $compid__1246 = (0, _index.genCompid)(__prefix + "$compid__1246");
+      var $compid__1247 = (0, _index.genCompid)(__prefix + "$compid__1247");
+      var loopArray342 = void 0;
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -604,49 +604,49 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       if (!loaded) {} else {
         _$anonymousState__temp = isAgent ? "position:relative;display:" + (isAgent === true ? 'block' : 'none') + ";top:-48px;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" : null;
         _$anonymousState__temp2 = "position:relative;display:" + (isAgent === true ? 'none' : 'block') + ";top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;";
-        var $props__1167 = {
+        var $props__1244 = {
           "isOpened": isAgree,
           "closeOnClickOverlay": false
         };
-        var $props__1168 = {
+        var $props__1245 = {
           "profit": profit
         };
-        var $props__1169 = {
+        var $props__1246 = {
           "list": orders
         };
-        var $props__1170 = {
+        var $props__1247 = {
           "title": this.__state.context1
         };
-        loopArray320 = list.length > 0 ? list.map(function (item, _anonIdx) {
+        loopArray342 = list.length > 0 ? list.map(function (item, _anonIdx) {
           item = {
             $original: (0, _index.internal_get_original)(item)
           };
-          var $compid__1166 = (0, _index.genCompid)(__prefix + "IpCaJIGOXt" + _anonIdx);
+          var $compid__1243 = (0, _index.genCompid)(__prefix + "ZRdHkimkpc" + _anonIdx);
           _index.propsManager.set({
             "title": item.$original.text,
             "arrow": "right",
             "thumb": item.$original.url,
             "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-          }, $compid__1166);
+          }, $compid__1243);
           return {
-            $compid__1166: $compid__1166,
+            $compid__1243: $compid__1243,
             $original: item.$original
           };
         }) : [];
-        _index.propsManager.set($props__1167, $compid__1167);
-        isAgent && _index.propsManager.set($props__1168, $compid__1168);
-        _index.propsManager.set($props__1169, $compid__1169);
-        isShowLoanApp === true && _index.propsManager.set($props__1170, $compid__1170);
+        _index.propsManager.set($props__1244, $compid__1244);
+        isAgent && _index.propsManager.set($props__1245, $compid__1245);
+        _index.propsManager.set($props__1246, $compid__1246);
+        isShowLoanApp === true && _index.propsManager.set($props__1247, $compid__1247);
       }
 
       Object.assign(this.__state, {
         _$anonymousState__temp: _$anonymousState__temp,
         _$anonymousState__temp2: _$anonymousState__temp2,
-        loopArray320: loopArray320,
-        $compid__1167: $compid__1167,
-        $compid__1168: $compid__1168,
-        $compid__1169: $compid__1169,
-        $compid__1170: $compid__1170,
+        loopArray342: loopArray342,
+        $compid__1244: $compid__1244,
+        $compid__1245: $compid__1245,
+        $compid__1246: $compid__1246,
+        $compid__1247: $compid__1247,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;

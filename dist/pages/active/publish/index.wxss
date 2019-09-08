@@ -258,8 +258,7 @@
   content: "\e667"; }
 
 .mp-icon-friend:before {
-  font-size: 70rpx;
-  color: #7DD6D0;
+  font-size: 90rpx;
   content: "\e635"; }
 
 .mp-active {
@@ -356,6 +355,13 @@
   margin-bottom: 30rpx;
   margin-right: 20rpx;
   margin-left: 20rpx; }
+
+.scroll-product {
+  overflow: auto;
+  height: 500rpx; }
+
+.scroll-product-hidden {
+  overflow: hidden; }
 
 
 @font-face {
@@ -617,8 +623,7 @@
   content: "\e667"; }
 
 .mp-icon-friend:before {
-  font-size: 70rpx;
-  color: #7DD6D0;
+  font-size: 90rpx;
   content: "\e635"; }
 
 .publish-item {
@@ -762,3 +767,7 @@
     padding-top: 28rpx;
     padding-right: 26rpx;
     padding-left: 12rpx; }
+
+.scroll-product {
+  overflow: auto;
+  height: 500rpx; }

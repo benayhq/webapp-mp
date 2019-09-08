@@ -55,7 +55,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1106", "$compid__1107", "$compid__1108", "$compid__1109", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1343", "$compid__1344", "$compid__1345", "$compid__1346", "isAutoScrollItem", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "isOpened", "docLocations", "activeAllPrice", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
       navigationBarTitleText: '新增活动'
     }, _this.handleUploadLoader = function () {
 
@@ -656,47 +656,47 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1106 = (0, _index.genCompid)(__prefix + "$compid__1106");
-      var $compid__1107 = (0, _index.genCompid)(__prefix + "$compid__1107");
-      var $compid__1108 = (0, _index.genCompid)(__prefix + "$compid__1108");
-      var $compid__1109 = (0, _index.genCompid)(__prefix + "$compid__1109");
+      var $compid__1343 = (0, _index.genCompid)(__prefix + "$compid__1343");
+      var $compid__1344 = (0, _index.genCompid)(__prefix + "$compid__1344");
+      var $compid__1345 = (0, _index.genCompid)(__prefix + "$compid__1345");
+      var $compid__1346 = (0, _index.genCompid)(__prefix + "$compid__1346");
 
       var _state2 = this.__state,
           activeName = _state2.activeName,
           dateEnd = _state2.dateEnd,
           dateStart = _state2.dateStart,
           products = _state2.products,
-          weChatNumber = _state2.weChatNumber,
           isOpened = _state2.isOpened;
 
-
-      var $props__1106 = {
+      var isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
+      var $props__1343 = {
         "border": false,
         "value": activeName,
         "onChange": this.handleActiveChange.bind(this),
         "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
       };
-      var $props__1107 = {
+      var $props__1344 = {
         "multiple": true,
         "className": "uploadImage",
         "files": this.__state.files,
         "onChange": this.HandlePickerChange.bind(this)
       };
-      var $props__1108 = {
+      var $props__1345 = {
         "products": products
       };
-      var $props__1109 = {
+      var $props__1346 = {
         "isOpened": isOpened
       };
-      _index.propsManager.set($props__1106, $compid__1106);
-      _index.propsManager.set($props__1107, $compid__1107);
-      _index.propsManager.set($props__1108, $compid__1108);
-      _index.propsManager.set($props__1109, $compid__1109);
+      _index.propsManager.set($props__1343, $compid__1343);
+      _index.propsManager.set($props__1344, $compid__1344);
+      _index.propsManager.set($props__1345, $compid__1345);
+      _index.propsManager.set($props__1346, $compid__1346);
       Object.assign(this.__state, {
-        $compid__1106: $compid__1106,
-        $compid__1107: $compid__1107,
-        $compid__1108: $compid__1108,
-        $compid__1109: $compid__1109
+        $compid__1343: $compid__1343,
+        $compid__1344: $compid__1344,
+        $compid__1345: $compid__1345,
+        $compid__1346: $compid__1346,
+        isAutoScrollItem: isAutoScrollItem
       });
       return this.__state;
     }

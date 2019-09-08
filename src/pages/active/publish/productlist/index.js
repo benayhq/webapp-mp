@@ -1,13 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text,ScrollView } from '@tarojs/components'
 import ProductItem from '../../../../components/product/index';
 import './index.scss'
-import { AtInput, AtForm } from 'taro-ui'
+import { AtInput } from 'taro-ui';
+
 
 export default class ProductList extends Component{
 
-
-    
 
     handleChange(){
         console.log('handleChange');
@@ -15,9 +14,7 @@ export default class ProductList extends Component{
 
     render(){
         return (
-            <View>
-                    <View>
-                        <View className="product">
+           <View className="product">
                                 {
                                 this.props.products!=null && this.props.products.map(item=>(
                                         <View className="list">
@@ -53,8 +50,6 @@ export default class ProductList extends Component{
                                     ))
                                 }
                         </View>
-                    </View>
-            </View>
         );
     }
 }
