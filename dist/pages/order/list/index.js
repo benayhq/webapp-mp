@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -34,11 +36,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var empty = "/components/empty/assets/empty2.svg";
-
 var OrderItem = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(OrderItem, _BaseComponent);
 
   function OrderItem() {
@@ -52,7 +52,7 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray16", "OrderList", "empty", "OrderState", "ProductImg", "isOpended", "text", "dispatchCreateOrderDownLoadUrl", "dispatchPrePay", "list"], _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["OrderList", "OrderState", "ProductImg", "isOpended", "text"], _this.state = {
       OrderState: '待付款',
       ProductImg: '',
       OrderList: [],
@@ -67,15 +67,13 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
       _index2.default.navigateTo({
         url: '/pages/order/refund/index?orderId=' + orderId
       });
-    }, _this.customComponents = ["Title", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderItem, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(OrderItem.prototype.__proto__ || Object.getPrototypeOf(OrderItem.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "getImgUrl",
@@ -175,73 +173,28 @@ var OrderItem = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
-      var _this4 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var loopArray16 = void 0;
 
       var OrderList = this.__state.OrderList;
 
 
       var template = null;
 
-      if (OrderList.length > 0) {
-        loopArray16 = OrderList.map(function (item, _anonIdx) {
-          item = {
-            $original: (0, _index.internal_get_original)(item)
-          };
-          var $compid__61 = (0, _index.genCompid)(__prefix + "cRuptHekJw" + _anonIdx);
-          _index.propsManager.set({
-            "OrderId": item.$original.id,
-            "displayStatusDes": item.$original.displayStatusDes,
-            "AgentName": item.$original.customerName
-          }, $compid__61);
-          var $compid__62 = (0, _index.genCompid)(__prefix + "SyHMpyyrBZ" + _anonIdx);
-          item.$original.status == "UNPAY" && _index.propsManager.set({
-            "type": "primary",
-            "onClick": _this4.handleWeChatPay.bind(_this4, item.$original.id),
-            "size": "small"
-          }, $compid__62);
-          var $compid__63 = (0, _index.genCompid)(__prefix + "QkrWNtTHLW" + _anonIdx);
-          item.$original.status == "PAID" && _index.propsManager.set({
-            "type": "primary",
-            "size": "small",
-            "onClick": _this4.jumpUrl.bind(_this4, item.$original.id)
-          }, $compid__63);
-          var $compid__64 = (0, _index.genCompid)(__prefix + "XlEtOuHALn" + _anonIdx);
-          item.$original.status == "COMMENTING" && _index.propsManager.set({
-            "type": "primary",
-            "size": "small"
-          }, $compid__64);
-          var $compid__65 = (0, _index.genCompid)(__prefix + "krtglkBSeq" + _anonIdx);
-          item.$original.status == "CONSUMPTION" && _index.propsManager.set({
-            "type": "primary",
-            "size": "small"
-          }, $compid__65);
-          return {
-            $compid__61: $compid__61,
-            $compid__62: $compid__62,
-            $compid__63: $compid__63,
-            $compid__64: $compid__64,
-            $compid__65: $compid__65,
-            $original: item.$original
-          };
-        });
-      } else {}
-      Object.assign(this.__state, {
-        loopArray16: loopArray16,
-        empty: empty
-      });
+      if (OrderList.length > 0) {} else {}
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return OrderItem;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/list/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+OrderItem.properties = {
+  "dispatchCreateOrderDownLoadUrl": null,
+  "dispatchPrePay": null,
+  "list": null
+};
+OrderItem.$$events = ["handleWeChatPay", "jumpUrl"];
 exports.default = OrderItem;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderItem));

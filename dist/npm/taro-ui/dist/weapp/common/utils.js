@@ -114,8 +114,8 @@ function getEventDetail(event) {
       break;
     case _index2.default.ENV_TYPE.WEAPP:
       detail = {
-        pageX: event.target.pageX,
-        pageY: event.target.pageY,
+        pageX: event.touches[0].pageX,
+        pageY: event.touches[0].pageY,
         clientX: event.touches[0].clientX,
         clientY: event.touches[0].clientY,
         offsetX: event.target.offsetLeft,
@@ -164,7 +164,11 @@ function getEventDetail(event) {
   }
   return detail;
 }
-function initTestEnv() {}
+function initTestEnv() {
+  if (false) {
+    _index2.default.initPxTransform({ designWidth: 750 });
+  }
+}
 function isTest() {
   return false;
 }

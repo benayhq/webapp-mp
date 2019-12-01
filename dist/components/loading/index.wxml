@@ -1,5 +1,6 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="comp-loading">
-        <image src="{{loading}}" class="comp-loading__img"></image>
+        <image src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/loading.gif"
+        class="comp-loading__img" />
     </view>
 </block>

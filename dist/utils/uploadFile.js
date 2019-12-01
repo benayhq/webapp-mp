@@ -1,7 +1,6 @@
 'use strict';
 
 var env = require('./config.js'); //配置文件，在这文件里配置你的OSS keyId和KeySecret,timeout:87600;
-
 var base64 = require('./base64.js'); //Base64,hmac,sha1,crypto相关算法
 require('./hmac.js');
 require('./sha1.js');

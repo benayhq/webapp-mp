@@ -3,12 +3,9 @@ import { AtTabs, AtTabsPane,AtLoadMore } from 'taro-ui';
 import {ScrollView,View,Text} from '@tarojs/components';
 import './index.scss';
 import OrderItem from './list';
-import Order from './common/order';
 import * as actions from './store/actionCreators';
 import {connect} from '@tarojs/redux';
 import {getWindowHeight} from './../../utils/style'
-import Empty from './../../components/empty';
-import empty from './../../components/empty/assets/empty2.svg'
 
 @connect(state=>state.user,actions)
 export default class OrderList extends Component{
@@ -22,11 +19,14 @@ export default class OrderList extends Component{
         totalPage:1,
         orderStatus:''
     }
+    
     componentWillMount(){
         var selectTabIndex = Number(this.$router.params.index);
+        console.log('selectTabIndex',selectTabIndex);
+        selectTabIndex = this.$router.params.status === "null" ? 0 : selectTabIndex;
         this.setState({
             orderStatus:this.$router.params.status,
-            current:selectTabIndex
+            current: selectTabIndex
         });
     }
 
@@ -45,12 +45,13 @@ export default class OrderList extends Component{
             list:response.content
         });
     }
-    
+
     handleClick(value){
         this.setState({
             current:value,
             list:[]
         });
+
         switch(value){
             case 0:
                 this.getAllOrderList('',0,10)
@@ -66,6 +67,9 @@ export default class OrderList extends Component{
                 break;
             case 4:
                 this.getAllOrderList('COMMENTING',0,10);
+                break;
+            case 5:
+                this.getAllOrderList('REFUND',0,10);
                 break;
         }
     }
@@ -86,12 +90,15 @@ export default class OrderList extends Component{
     loadOrderList = () => {
         console.log('loadOrderList');
     }
-    
+
     render(){
-        const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' }, { title: '待评价',status:'COMMENTING' }]
+        const tabList = [{ title: '全部',status:'' }, { title: '待付款',status:'UNPAY' }, { title: '待成团',status:'BATING' }, { title: '待消费',status:'CONSUMPTION' },
+        { title: '待评价',status:'COMMENTING' },{ title: '退款',status:'COMMENTING' }];
+
         const {list,current} = this.state;
+
         return (
-            <AtTabs current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+            <AtTabs scroll current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
               <AtTabsPane current={current} index={0} >
                     <ScrollView
                             scrollY
@@ -106,8 +113,7 @@ export default class OrderList extends Component{
                 <ScrollView
                     scrollY
                     onScrollToUpper={this.loadOrderList}
-                    style={{height:getWindowHeight()}}
-                > 
+                    style={{height:getWindowHeight()}}> 
                     {
                         <OrderItem list={list}/>
                     }
@@ -139,6 +145,16 @@ export default class OrderList extends Component{
                             scrollY
                             onScrollToUpper={this.loadOrderList}
                             style={{height:getWindowHeight()}}>{
+                        <OrderItem list={list}/>
+                    }
+                 </ScrollView>
+              </AtTabsPane> 
+              <AtTabsPane current={current} index={5}>
+                <ScrollView
+                            scrollY
+                            onScrollToUpper={this.loadOrderList}
+                            style={{height:getWindowHeight()}}>
+                    {
                         <OrderItem list={list}/>
                     }
                  </ScrollView>

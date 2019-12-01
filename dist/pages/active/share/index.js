@@ -8,9 +8,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
 // 拷贝文件到component的引入方式
 
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -23,8 +25,6 @@ var _actionCreators = require("../store/actionCreators.js");
 var actions = _interopRequireWildcard(_actionCreators);
 
 var _storage = require("../../../utils/storage.js");
-
-var _base64src = require("../../../utils/base64src.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -40,7 +40,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -54,9 +54,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1993", "imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId", "dispatchQueryQrCode", "dispatchAdvertQuery", "dispatchDownLoadUrl"], _this.config = {
-      navigationBarTitleText: '生成海报'
-    }, _this.canvasDrawFunc = function (id, event) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["imgList", "config", "qrCode", "data", "shareImage", "canvasStatus", "bannerConfig", "activeId"], _this.canvasDrawFunc = function (id, event) {
       _this.getCanvas(id);
       _this.showMask(id);
     }, _this.onCreateSuccess = function (result) {
@@ -102,14 +100,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         icon: 'success',
         duration: 1000
       });
-    }, _this.customComponents = ["TaroCanvasDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-
       this.state = {
         config: null,
         qrCode: '',
@@ -120,7 +117,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         imgList: [],
         activeId: 0
       };
-      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
@@ -146,16 +142,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }).catch(function (err) {
           console.log(err);
           reject(err);
-        });
-      });
-    }
-  }, {
-    key: "getBase64Src",
-    value: function getBase64Src(base64) {
-      return new Promise(function (resolve, reject) {
-        (0, _base64src.base64src)('data:image/png;base64,' + base64, function (res) {
-          console.log('getBase64Src', res);
-          resolve(res);
         });
       });
     }
@@ -218,7 +204,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
                 this.getQrCode(payload).then(function (response) {
                   console.log('response', response);
-                  // this.getBase64Src(response).then((imgUrl)=>{
                   _this3.getActivityData().then(function (data) {
                     var config = _this3.buildConfig(templateId, {
                       data: data.content,
@@ -236,7 +221,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       });
                     }, 1000);
                   });
-                  // });
                 });
 
               case 5:
@@ -875,31 +859,25 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__1993 = (0, _index.genCompid)(__prefix + "$compid__1993");
 
       var _state = this.__state,
           imgList = _state.imgList,
           qrCode = _state.qrCode;
 
 
-      var $props__1993 = {
-        "config": this.__state.bannerConfig,
-        "onCreateSuccess": this.onCreateSuccess,
-        "onCreateFail": this.onCreateFail
-      };
-      this.__state.canvasStatus && _index.propsManager.set($props__1993, $compid__1993);
-      Object.assign(this.__state, {
-        $compid__1993: $compid__1993
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["canvasDrawFunc", "saveToAlbum"], _class2.$$componentPath = "pages/active/share/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Index.properties = {
+  "dispatchQueryQrCode": null,
+  "dispatchAdvertQuery": null,
+  "dispatchDownLoadUrl": null
+};
+Index.$$events = ["onCreateSuccess", "onCreateFail", "canvasDrawFunc", "saveToAlbum"];
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

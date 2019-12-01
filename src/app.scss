@@ -1,7 +1,6 @@
-$color-brand: #7DD6D0;
 /* 引入 Taro UI 默认样式 */
-@import "~taro-ui/dist/style/index.scss";
-
+// @import "~/style/index.scss";
+$color-brand: #7DD6D0;
 page {
     cursor:default;
     -webkit-user-select:none;
@@ -9,18 +8,11 @@ page {
     width:100%;
     overflow-x:hidden;
     // background:rgba(245,245,249,1);
-    background: #f4f4f4;
+    background: #f5f6f8;
 }
 .at-list__item .item-extra__icon-arrow {
     color:#7dd6d0;
     font-size:48rpx;
-}
-.product-appointer{
-    float: right;
-    margin-top: 47rpx;
-    margin-right: 11px;
-    font-size: 46px;
-    color: #7dd6d0;
 }
 .home__loading {
     display: flex;
@@ -35,3 +27,4 @@ page {
       font-size: 32px;
     }
 }
+  

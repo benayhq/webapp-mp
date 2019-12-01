@@ -1,15 +1,21 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="mp-advert">
-        <image class="shareImage" src="{{shareImage}}" mode="widthFix" lazy-load="{{true}}"></image>
+        <image class="shareImage" src="{{shareImage}}" mode="widthFix" lazy-load="{{true}}"
+        />
         <block wx:if="{{canvasStatus}}">
-            <taro-canvas-drawer compid="{{$compid__1993}}"></taro-canvas-drawer>
+            <taro-canvas-drawer config="{{bannerConfig}}" __triggerObserer="{{ _triggerObserer }}"
+            bindoncreatesuccess="onCreateSuccess" bindoncreatefail="onCreateFail" __fn_onCreateSuccess="{{true}}"
+            __fn_onCreateFail="{{true}}"></taro-canvas-drawer>
         </block>
         <view class="thumbnail-wrapper">
             <view class="thumbnail">
-                <view bindtap="canvasDrawFunc" wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item.id}}">
-                    <image wx:key="index" src="{{item.url}}"></image>
+                <view bindtap="canvasDrawFunc" wx:for="{{imgList}}" wx:for-item="item"
+                wx:for-index="index" data-e-canvasDrawFunc-so="this" data-e-canvasDrawFunc-a-a="{{item.id}}">
+                    <image wx:key="{{index}}" __triggerObserer="{{ _triggerObserer }}" src="{{item.url}}"
+                    />
                     <block wx:if="{{item.isShow}}">
-                        <view class="mask"><text class="mp-icon mp-icon-checkeditem"></text>
+                        <view class="mask">
+                            <text class="mp-icon mp-icon-checkeditem"></text>
                         </view>
                     </block>
                 </view>

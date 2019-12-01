@@ -1,28 +1,41 @@
-<block wx:if="{{$taroCompReady}}">
-    <at-tabs compid="{{$compid__2001}}">
-        <at-tabs-pane compid="{{$compid__2002}}">
+<block>
+    <at-tabs scroll="{{true}}" __triggerObserer="{{ _triggerObserer }}" current="{{current}}"
+    tabList="{{tabList}}" bindonclick="handleClick" __fn_onClick="{{true}}"
+    data-e-handleClick-so="this">
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{0}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp}}">
-                <order-item compid="{{$compid__2003}}"></order-item>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__2004}}">
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{1}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp2}}">
-                <order-item compid="{{$compid__2005}}"></order-item>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__2006}}">
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{2}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp3}}">
-                <order-item compid="{{$compid__2007}}"></order-item>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__2008}}">
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{3}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp4}}">
-                <order-item compid="{{$compid__2009}}"></order-item>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </scroll-view>
         </at-tabs-pane>
-        <at-tabs-pane compid="{{$compid__2010}}">
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{4}}">
             <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp5}}">
-                <order-item compid="{{$compid__2011}}"></order-item>
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
+            </scroll-view>
+        </at-tabs-pane>
+        <at-tabs-pane current="{{current}}" __triggerObserer="{{ _triggerObserer }}"
+        index="{{5}}">
+            <scroll-view scroll-y="{{true}}" bindscrolltoupper="loadOrderList" style="{{anonymousState__temp6}}">
+                <order-item list="{{list}}" __triggerObserer="{{ _triggerObserer }}"></order-item>
             </scroll-view>
         </at-tabs-pane>
     </at-tabs>

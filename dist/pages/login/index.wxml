@@ -1,12 +1,16 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view>
         <view class="login-logo">
             <view class="login-font">
-                <image style="width:130px;height:130px;margin:0 auto;padding:0px;margin-top:80px;" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/logo@2x.png"></image>
+                <image style="width:130px;height:130px;margin:0 auto;padding:0px;margin-top:80px;"
+                __triggerObserer="{{ _triggerObserer }}" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/logo@2x.png"
+                />
             </view>
         </view>
         <view class="login-action">
-            <at-button compid="{{$compid__2036}}">微信登录</at-button>
+            <at-button text="微信登录" __triggerObserer="{{ _triggerObserer }}" openType="getUserInfo"
+            bindongetuserinfo="HandleAutoLogin" type="primary" size="small" __fn_onGetUserInfo="{{true}}"
+            data-e-HandleAutoLogin-so="this">微信登录</at-button>
         </view>
     </view>
 </block>

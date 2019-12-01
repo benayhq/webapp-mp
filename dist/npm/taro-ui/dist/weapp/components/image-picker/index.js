@@ -8,9 +8,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2; /* eslint-disable no-nested-ternary */
-
-
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -35,9 +32,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable no-nested-ternary */
+
 
 // 生成 jsx 二维矩阵
+
 var generateMatrix = function generateMatrix(files, col, showAddBtn) {
   var matrix = [];
   var length = showAddBtn ? files.length + 1 : files.length;
@@ -65,7 +64,7 @@ var generateMatrix = function generateMatrix(files, col, showAddBtn) {
 
 var ENV = _index2.default.getEnv();
 
-var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
+var AtImagePicker = function (_AtComponent) {
   _inherits(AtImagePicker, _AtComponent);
 
   function AtImagePicker() {
@@ -79,16 +78,31 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray12", "rootCls", "matrix", "mode", "files", "multiple", "onFail", "className", "customStyle", "length", "showAddBtn"], _this.chooseFile = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtImagePicker.__proto__ || Object.getPrototypeOf(AtImagePicker)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray0", "rootCls", "matrix", "mode"], _this.chooseFile = function () {
       var _this$props = _this.props,
           _this$props$files = _this$props.files,
           files = _this$props$files === undefined ? [] : _this$props$files,
-          multiple = _this$props.multiple;
+          multiple = _this$props.multiple,
+          count = _this$props.count,
+          sizeType = _this$props.sizeType,
+          sourceType = _this$props.sourceType;
 
       var filePathName = ENV === _index2.default.ENV_TYPE.ALIPAY ? 'apFilePaths' : 'tempFiles';
-      var count = multiple ? 99 : 1;
-
-      _index2.default.chooseImage({ count: count }).then(function (res) {
+      // const count = multiple ? 99 : 1
+      var params = {};
+      if (multiple) {
+        params.count = 99;
+      }
+      if (count) {
+        params.count = count;
+      }
+      if (sizeType) {
+        params.sizeType = sizeType;
+      }
+      if (sourceType) {
+        params.sourceType = sourceType;
+      }
+      _index2.default.chooseImage(params).then(function (res) {
         var targetFiles = res.tempFilePaths.map(function (path, i) {
           return {
             url: path,
@@ -96,10 +110,10 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
           };
         });
         var newFiles = files.concat(targetFiles);
-        _this.props.onChange(newFiles, 'add');
+        _this.__triggerPropsFn("onChange", [null].concat([newFiles, 'add']));
       }).catch(_this.props.onFail);
     }, _this.handleImageClick = function (idx) {
-      return _this.props.onImageClick(idx, _this.props.files[idx]);
+      return _this.__triggerPropsFn("onImageClick", [null].concat([idx, _this.props.files[idx]]));
     }, _this.handleRemoveImg = function (idx) {
       var _this$props$files2 = _this.props.files,
           files = _this$props$files2 === undefined ? [] : _this$props$files2;
@@ -110,25 +124,20 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       var newFiles = files.filter(function (file, i) {
         return i !== idx;
       });
-      _this.props.onChange(newFiles, 'remove', idx);
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+      _this.__triggerPropsFn("onChange", [null].concat([newFiles, 'remove', idx]));
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtImagePicker, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtImagePicker.prototype.__proto__ || Object.getPrototypeOf(AtImagePicker.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       var _props = this.__props,
           className = _props.className,
@@ -143,30 +152,32 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
       var rootCls = (0, _index6.default)('at-image-picker', className);
 
       var anonymousState__temp = (0, _index.internal_inline_style)(customStyle);
-      var loopArray12 = matrix.map(function (row, i) {
+      var loopArray0 = matrix.map(function (row, i) {
         row = {
-          $original: (0, _index.internal_get_original)(row)
+          $$original: (0, _index.internal_get_original)(row)
         };
-        var $anonymousCallee__1 = row.$original.map(function (item, j) {
+        var $loopState__temp3 = i + 1;
+        var $anonymousCallee__2 = row.$$original.map(function (item, j) {
           item = {
-            $original: (0, _index.internal_get_original)(item)
+            $$original: (0, _index.internal_get_original)(item)
           };
-          var $loopState__temp3 = item.$original.url ? i * length + j : null;
-          var $loopState__temp5 = i * length + j;
+          var $loopState__temp5 = item.$$original.url ? i * length + j : null;
+          var $loopState__temp7 = i * length + j;
           return {
-            $loopState__temp3: $loopState__temp3,
             $loopState__temp5: $loopState__temp5,
-            $original: item.$original
+            $loopState__temp7: $loopState__temp7,
+            $$original: item.$$original
           };
         });
         return {
-          $anonymousCallee__1: $anonymousCallee__1,
-          $original: row.$original
+          $loopState__temp3: $loopState__temp3,
+          $anonymousCallee__2: $anonymousCallee__2,
+          $$original: row.$$original
         };
       });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray12: loopArray12,
+        loopArray0: loopArray0,
         rootCls: rootCls,
         matrix: matrix,
         mode: mode
@@ -176,7 +187,24 @@ var AtImagePicker = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtImagePicker;
-}(_component2.default), _class.$$events = ["handleRemoveImg", "handleImageClick", "chooseFile"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/image-picker/index", _temp2);
+}(_component2.default);
+
+AtImagePicker.properties = {
+  "files": null,
+  "multiple": null,
+  "count": null,
+  "sizeType": null,
+  "sourceType": null,
+  "__fn_onChange": null,
+  "onFail": null,
+  "__fn_onImageClick": null,
+  "className": null,
+  "customStyle": null,
+  "mode": null,
+  "length": null,
+  "showAddBtn": null
+};
+AtImagePicker.$$events = ["handleRemoveImg", "handleImageClick", "chooseFile"];
 
 
 AtImagePicker.defaultProps = {
@@ -204,7 +232,10 @@ AtImagePicker.propTypes = {
   length: _index4.default.number,
   onChange: _index4.default.func,
   onImageClick: _index4.default.func,
-  onFail: _index4.default.func
+  onFail: _index4.default.func,
+  count: _index4.default.number,
+  sizeType: _index4.default.array,
+  sourceType: _index4.default.array
 };
 exports.default = AtImagePicker;
 

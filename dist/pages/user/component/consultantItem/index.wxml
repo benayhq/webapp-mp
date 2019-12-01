@@ -1,0 +1,26 @@
+<block>
+    <view class="mp-history">
+        <view class="list-wrapper" bindtap="handleListItem" data-e-handleListItem-so="this"
+        data-e-handleListItem-a-a="{{active.id}}">
+            <view>
+                <image className="icon-header" __triggerObserer="{{ _triggerObserer }}"
+                src="{{active.profileUrl}}" />
+            </view>
+            <view>
+                <view>{{active.name}}</view>
+                <view>
+                    <at-rate value="{{active.commentScore}}" __triggerObserer="{{ _triggerObserer }}"></at-rate>
+                    <text class="rateItem">{{active.commentScore}}分（{{active.commentPeople}}人评）</text>
+                </view>
+                <view class="address">
+                    <text>地址：{{active.address === "" ? "暂无" : active.address}}</text>
+                </view>
+            </view>
+            <view class="mp-history-zixun">
+                <text class="mp-icon mp-icon-wechat-zixun zixun-wechat"></text>
+                <text class="mp-icon mp-icon-mobilephone zixun-number" catchtap="handleMakeCall"
+                data-e-handleMakeCall-so="this" data-e-handleMakeCall-a-a="{{active.cellphone}}"></text>
+            </view>
+        </view>
+    </view>
+</block>

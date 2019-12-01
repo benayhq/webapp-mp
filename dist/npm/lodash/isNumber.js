@@ -1,5 +1,5 @@
-var baseGetTag = require("./_baseGetTag.js"),
-    isObjectLike = require("./isObjectLike.js");
+var baseGetTag = require('./_baseGetTag'),
+    isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
 var numberTag = '[object Number]';

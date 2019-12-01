@@ -3,9 +3,9 @@ import { View,ScrollView,Text } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
-import { AtList, AtListItem } from "taro-ui"
 import {Empty,Loading} from './../../../components/';
 import {getWindowHeight} from './../../../utils/style';
+import {ActiveItem} from './../component/activeItem';
 var RECOMMEND_SIZE = 0,globalLastItem = 0;
 
 @connect(state=>state,actions)
@@ -41,7 +41,7 @@ class Index extends Component{
 
   handleClick(item){
     Taro.navigateTo({
-      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
+      url:`../../../packageA/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
     });
   }
 
@@ -50,6 +50,7 @@ class Index extends Component{
   }
 
   componentWillMount(){
+    
     globalLastItem = 0;
     RECOMMEND_SIZE = 0;
     if(this.$router.params.agentId){
@@ -96,7 +97,8 @@ class Index extends Component{
             endD:item.endD,
             url:'',
             agentId:item.agentId,
-            id:item.id
+            id:item.id,
+            status:item.status
           })
         });
         Promise.all(promises).then((result)=>{
@@ -123,6 +125,14 @@ class Index extends Component{
 
   }
 
+ async handleCloseActive(id){
+    console.log('handleCloseActive id',id);
+     let payload ={id:id};
+     const result = await this.props.CloseAction(payload);
+     this.loadMore();
+     console.log('result',result);
+  }
+
   render(){
     const {activeList,pageLoaded} = this.state;
     let renderTemplate = null;
@@ -131,24 +141,15 @@ class Index extends Component{
     }
     else if(activeList.length>0){
       renderTemplate =  (
-        <AtList>
+        <View>
          {
               activeList && activeList.map((item)=>{
                 return (
-               
-                  <AtListItem
-                    onClick={this.handleClick.bind(this,item)}
-                    title={item.name}
-                    note={`${item.people}人成团`}
-                    thumb={item.url}
-                    arrow='right'
-                  />
-                  // isSwitch
-                  // onSwitchChange={this.handleSwithActive.bind(this,item)}
+                  <ActiveItem handleCloseActive={this.handleCloseActive.bind(this)} item={item}/>
                 )
             })
          }
-        </AtList>
+        </View>
         )
     }
     else{
@@ -161,8 +162,9 @@ class Index extends Component{
                   scrollY
                   onScrollToLower={this.loadMore}
                   style={{ height: getWindowHeight() }}>
-            {renderTemplate}
-
+            
+             {renderTemplate}
+       
              { pageLoaded && this.state.loading &&
               <View className='home__loading'>
                 <Text className='home__loading-txt'>正在加载中...</Text>
@@ -173,7 +175,6 @@ class Index extends Component{
                 <Text className='home__loading-txt'>没有更多了</Text>
               </View>
             }
-
           </ScrollView>
       </View>
     )

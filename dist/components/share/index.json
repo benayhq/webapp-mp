@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "at-float-layout": "../../npm/taro-ui/dist/weapp/components/float-layout/index"
+    "at-float-layout": "../../../npm/taro-ui/dist/weapp/components/float-layout/index"
   }
 }

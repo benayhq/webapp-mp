@@ -26,45 +26,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var mtjwxsdk = require('./utils/mtj-wx-sdk.js');
-
-
 var store = (0, _index5.default)();
 
 (0, _index3.setStore)(store);
-
-if (_index3.ReduxContext.Provider) {
-  _index3.ReduxContext.Provider({
-    store: store
-  });
-  _index3.ReduxContext.Provider({
-    store: store
-  });
-}
 
 var _App = function (_BaseComponent) {
   _inherits(_App, _BaseComponent);
 
   function _App() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, _App);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index', 'pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/order/index', 'pages/order/detail/index', 'pages/order/refund/index', 'pages/product/detail', 'pages/order/submit/index', 'pages/p2p/index', 'pages/pay/detail/index', 'pages/order/comment/index', 'pages/user/customer/index', 'pages/user/history/index', 'pages/user/consultant/index', 'pages/user/product/index', 'pages/user/active/index', 'pages/login/index'],
-      window: {
-        backgroundTextStyle: 'light',
-        navigationBarBackgroundColor: '#fff',
-        navigationBarTitleText: 'WeChat',
-        navigationBarTextStyle: 'black'
-      }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    return _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
   }
 
   _createClass(_App, [{

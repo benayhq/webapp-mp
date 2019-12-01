@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -8,15 +8,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
 
-var _index = require('../../../npm/@tarojs/taro-weapp/index.js');
+require("../../../npm/@tarojs/async-await/index.js");
+
+var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _index3 = require('../../../npm/@tarojs/redux/index.js');
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
-var _actionCreators = require('../store/actionCreators.js');
+var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
@@ -35,11 +37,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 
+
 var imgArraySrc = [];
 
 var Comment = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_Taro$Component) {
+}, actions), _dec(_class = function (_Taro$Component) {
   _inherits(Comment, _Taro$Component);
 
   function Comment() {
@@ -53,15 +56,13 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__2026", "$compid__2027", "$compid__2028", "$compid__2029", "$compid__2030", "$compid__2031", "$compid__2032", "commentValue", "envValue", "serveValue", "profValue", "effectValue", "files", "location", "dispatchUploadConfig", "dispatchCreateOrderDownLoadUrl", "dispatchCreateComment"], _this.config = {
-      navigationBarTitleText: '发表评价'
-    }, _this.customComponents = ["AtMessage", "AtRate", "AtTextarea", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["envValue", "serveValue", "profValue", "effectValue", "commentValue", "files", "location"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Comment, [{
-    key: '_constructor',
+    key: "_constructor",
     value: function _constructor() {
-      _get(Comment.prototype.__proto__ || Object.getPrototypeOf(Comment.prototype), '_constructor', this).apply(this, arguments);
+      _get(Comment.prototype.__proto__ || Object.getPrototypeOf(Comment.prototype), "_constructor", this).apply(this, arguments);
       this.state = {
         commentValue: '',
         envValue: 0,
@@ -71,10 +72,9 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
         files: [],
         location: []
       };
-      this.$$refs = [];
     }
   }, {
-    key: 'handleAlert',
+    key: "handleAlert",
     value: function handleAlert(type, message) {
       _index2.default.atMessage({
         'message': message,
@@ -82,7 +82,7 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: 'onChange',
+    key: "onChange",
     value: function onChange(files) {
       var _this2 = this;
 
@@ -129,52 +129,52 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       }
     }
   }, {
-    key: 'onFail',
+    key: "onFail",
     value: function onFail(mes) {
       console.log(mes);
     }
   }, {
-    key: 'onImageClick',
+    key: "onImageClick",
     value: function onImageClick(index, file) {
       console.log(index, file);
     }
   }, {
-    key: 'handleChange',
+    key: "handleChange",
     value: function handleChange(event) {
       this.setState({
         commentValue: event.target.value
       });
     }
   }, {
-    key: 'handleEnvChange',
+    key: "handleEnvChange",
     value: function handleEnvChange(value) {
       this.setState({
         envValue: value
       });
     }
   }, {
-    key: 'handleServeChange',
+    key: "handleServeChange",
     value: function handleServeChange(value) {
       this.setState({
         serveValue: value
       });
     }
   }, {
-    key: 'handleProfChange',
+    key: "handleProfChange",
     value: function handleProfChange(value) {
       this.setState({
         profValue: value
       });
     }
   }, {
-    key: 'handleEffectChange',
+    key: "handleEffectChange",
     value: function handleEffectChange(value) {
       this.setState({
         effectValue: value
       });
     }
   }, {
-    key: 'getImgUrl',
+    key: "getImgUrl",
     value: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(location) {
         var payload, result;
@@ -190,10 +190,10 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
 
               case 3:
                 result = _context.sent;
-                return _context.abrupt('return', result.content);
+                return _context.abrupt("return", result.content);
 
               case 5:
-              case 'end':
+              case "end":
                 return _context.stop();
             }
           }
@@ -207,7 +207,7 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
-    key: 'handleComment',
+    key: "handleComment",
     value: function handleComment() {
       var _state = this.state,
           commentValue = _state.commentValue,
@@ -253,7 +253,7 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: 'uploadImage',
+    key: "uploadImage",
     value: function uploadImage() {
 
       var that = this;
@@ -314,20 +314,10 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__2026 = (0, _index.genCompid)(__prefix + "$compid__2026");
-      var $compid__2027 = (0, _index.genCompid)(__prefix + "$compid__2027");
-      var $compid__2028 = (0, _index.genCompid)(__prefix + "$compid__2028");
-      var $compid__2029 = (0, _index.genCompid)(__prefix + "$compid__2029");
-      var $compid__2030 = (0, _index.genCompid)(__prefix + "$compid__2030");
-      var $compid__2031 = (0, _index.genCompid)(__prefix + "$compid__2031");
-      var $compid__2032 = (0, _index.genCompid)(__prefix + "$compid__2032");
 
       var _state2 = this.__state,
           envValue = _state2.envValue,
@@ -337,67 +327,19 @@ var Comment = (_dec = (0, _index3.connect)(function (state) {
           profValue = _state2.profValue;
 
 
-      var $props__2026 = {
-        "max": "5",
-        "value": envValue,
-        "onChange": this.handleEnvChange.bind(this)
-      };
-      var $props__2027 = {
-        "max": "5",
-        "value": serveValue,
-        "onChange": this.handleServeChange.bind(this)
-      };
-      var $props__2028 = {
-        "max": "5",
-        "value": profValue,
-        "onChange": this.handleProfChange.bind(this)
-      };
-      var $props__2029 = {
-        "max": "5",
-        "value": effectValue,
-        "onChange": this.handleEffectChange.bind(this)
-      };
-      var $props__2030 = {
-        "height": 400,
-        "value": commentValue,
-        "onChange": this.handleChange.bind(this),
-        "maxLength": 300,
-        "placeholder": '\u4EB2\uFF0C\u60A8\u5BF9\u6B64\u6B21\u670D\u52A1\u6EE1\u610F\u5417\uFF1F\u60A8\u7684\u8BC4\u4EF7\u4F1A\u5E2E\u52A9\u6211\u4EEC\u9009\u62E9\u66F4\u597D\u7684\u670D\u52A1\uFF01'
-      };
-      var $props__2031 = {
-        "multiple": true,
-        "mode": "top",
-        "onFail": this.onFail.bind(this),
-        "onImageClick": this.onImageClick.bind(this),
-        "files": this.__state.files,
-        "onChange": this.onChange.bind(this)
-      };
-      var $props__2032 = {
-        "type": "primary",
-        "onClick": this.handleComment.bind(this)
-      };
-      _index.propsManager.set($props__2026, $compid__2026);
-      _index.propsManager.set($props__2027, $compid__2027);
-      _index.propsManager.set($props__2028, $compid__2028);
-      _index.propsManager.set($props__2029, $compid__2029);
-      _index.propsManager.set($props__2030, $compid__2030);
-      _index.propsManager.set($props__2031, $compid__2031);
-      _index.propsManager.set($props__2032, $compid__2032);
-      Object.assign(this.__state, {
-        $compid__2026: $compid__2026,
-        $compid__2027: $compid__2027,
-        $compid__2028: $compid__2028,
-        $compid__2029: $compid__2029,
-        $compid__2030: $compid__2030,
-        $compid__2031: $compid__2031,
-        $compid__2032: $compid__2032
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Comment;
-}(_index2.default.Component), _class2.$$events = [], _class2.$$componentPath = "pages/order/comment/index", _temp2)) || _class);
+}(_index2.default.Component)) || _class);
+Comment.properties = {
+  "dispatchUploadConfig": null,
+  "dispatchCreateOrderDownLoadUrl": null,
+  "dispatchCreateComment": null
+};
+Comment.$$events = ["handleEnvChange", "handleServeChange", "handleProfChange", "handleEffectChange", "handleChange", "onFail", "onImageClick", "onChange", "handleComment"];
 exports.default = Comment;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Comment, true));

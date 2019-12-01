@@ -1,8 +1,7 @@
 {
   "usingComponents": {
     "loading": "../../../components/loading/index",
-    "at-list": "../../../npm/taro-ui/dist/weapp/components/list/index",
-    "at-list-item": "../../../npm/taro-ui/dist/weapp/components/list/item/index",
+    "active-item": "../component/activeItem/index",
     "empty": "../../../components/empty/index"
   },
   "navigationBarTitleText": "我的活动"

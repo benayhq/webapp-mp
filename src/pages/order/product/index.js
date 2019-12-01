@@ -48,14 +48,23 @@ export default class OrderProduct extends Component{
         },1000)
     }
 
+    handleMakeCall(cellphone,e){
+        e.stopPropagation();
+        var params ={
+          phoneNumber:cellphone
+        };
+        Taro.makePhoneCall(params).then((res)=>{
+          console.log('res',res);
+        })
+      }
+
     render(){
         const {profileUrl} = this.state;
-        console.log('profileUrl',profileUrl);
-
+        
         return (
                 <View className="product">
-                <Title displayStatusDes={this.props.content ? this.props.content.displayStatusDes : ""} AgentName={this.props.content ? this.props.content.agentName : ""}/>
-                <ProductItem/>
+                {/* <Title displayStatusDes={this.props.content ? this.props.content.displayStatusDes : ""} AgentName={this.props.content ? this.props.content.agentName : ""}/> */}
+                {/* <ProductItem/> */}
                 <View className="item">
                      <View className="item-image"> 
                                  <image style="height:100%;width:100%;margin:0 auto;padding:5px;"
@@ -80,9 +89,9 @@ export default class OrderProduct extends Component{
                         <Text className="mp-icon mp-icon-wechat margin8"></Text>
                         <Text>微信联系</Text>
                     </View>
-                    <View className="tel">
+                    <View className="tel" onClick={this.handleMakeCall.bind(this,this.props.content.customerPhone)}>
                         <Text className="mp-icon mp-icon-tel margin8"></Text>
-                        <Text className="tel">电话咨询</Text>
+                        <Text className="tel" >电话咨询</Text>
                     </View>
                 </View>
             </View>

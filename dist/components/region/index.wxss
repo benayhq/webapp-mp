@@ -1,0 +1,13 @@
+
+.taro-region-picker {
+    text-align: right;
+    font-size: 28rpx;
+}
+.taro-region-picker-gray {
+    width: 530rpx;
+    text-align: left;
+}
+.taro-region-picker-black {
+    width: 530rpx;
+    text-align: left;
+}

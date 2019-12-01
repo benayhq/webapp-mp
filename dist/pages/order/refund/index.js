@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -36,7 +38,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(SubmitOrder, _BaseComponent);
 
   function SubmitOrder() {
@@ -50,9 +52,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__2017", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "text", "isOpended", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl"], _this.config = {
-      navigationBarTitleText: '发起退款'
-    }, _this.handleAlert = function (type, message) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpended", "text", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId"], _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
         'type': type
@@ -61,7 +61,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       _this.setState({
         appointmentDate: e.detail.value
       });
-    }, _this.customComponents = ["AtMessage"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SubmitOrder, [{
@@ -76,7 +76,6 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         text: '',
         isOpended: false
       };
-      this.$$refs = [];
     }
   }, {
     key: "handleSubmitOrder",
@@ -207,10 +206,6 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__2017 = (0, _index.genCompid)(__prefix + "$compid__2017");
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -220,14 +215,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           text = _state2.text;
 
 
-      var $props__2017 = {
-        "isOpened": isOpended,
-        "text": text,
-        "duration": 1000
-      };
-      _index.propsManager.set($props__2017, $compid__2017);
       Object.assign(this.__state, {
-        $compid__2017: $compid__2017,
         activityName: activityName
       });
       return this.__state;
@@ -235,7 +223,14 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return SubmitOrder;
-}(_index.Component), _class2.$$events = ["handleSubmitOrder"], _class2.$$componentPath = "pages/order/refund/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+SubmitOrder.properties = {
+  "dispatchCreateOrder": null,
+  "dispatchPrePay": null,
+  "dispatchQueryProductInfo": null,
+  "dispatchCreateOrderDownLoadUrl": null
+};
+SubmitOrder.$$events = ["handleSubmitOrder"];
 exports.default = SubmitOrder;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(SubmitOrder, true));

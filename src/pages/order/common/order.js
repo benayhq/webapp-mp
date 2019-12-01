@@ -28,7 +28,6 @@ export default class Order{
                 }
         }
     }
-
     handleCancelOrder(){
         console.log('handleCancelOrder');
     }

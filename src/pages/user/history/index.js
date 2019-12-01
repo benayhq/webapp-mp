@@ -3,7 +3,6 @@ import { View,ScrollView,Text } from '@tarojs/components'
 import './index.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
-import formatTime from '../../../utils/util';
 import {Empty,Loading} from './../../../components';
 import {getWindowHeight} from './../../../utils/style'
 var RECOMMEND_SIZE = 0,globalLastItem = 0;
@@ -39,8 +38,11 @@ class Index extends Component{
   }
 
   HandleActiveClick(item){
+
+    console.log('item',item);
+
     Taro.navigateTo({
-      url:`/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
+      url:`../../../packageA/pages/product/detail?activeId=${item.id}&referId=${item.agentId}`
     });
   }
 
@@ -96,6 +98,7 @@ class Index extends Component{
         loaded:true
       });
     });
+    
   }
   
   render(){

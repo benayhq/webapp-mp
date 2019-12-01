@@ -1,4 +1,8 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="order-title" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/order/detail/index" data-e-tap-a-b="{{OrderId}}"><text>{{AgentName}}</text><text class="mp-icon mp-icon-arrow-balck"></text><text>{{displayStatusDes}}</text>
+<block>
+    <view class="order-title" bindtap="jumpUrl" data-e-jumpUrl-so="this" data-e-jumpUrl-a-a="/pages/order/detail/index"
+    data-e-jumpUrl-a-b="{{OrderId}}">
+        <text>{{AgentName}}</text>
+        <text class="mp-icon mp-icon-arrow-balck"></text>
+        <text>{{displayStatusDes}}</text>
     </view>
 </block>

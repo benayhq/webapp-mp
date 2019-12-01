@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "at-rate": "../../../../../npm/taro-ui/dist/weapp/components/rate/index"
+  }
+}

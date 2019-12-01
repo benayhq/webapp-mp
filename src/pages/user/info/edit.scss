@@ -2,7 +2,7 @@
 @import '../../../style/layout.scss';
 
 .mp-edit-user{
-    height: 750rpx;
+    height: 960px;
     background: #ffffff;
 
     .qrCode{
@@ -25,4 +25,26 @@
         margin: 0 auto;
         margin-top: 64px;
     }
+
+    .address{
+        display: block;
+    }
+
+    .region{
+        position: relative;
+        top: -36px;
+        left: 215px;
+        height: 67px;
+        width: 78%;
+        line-height: 67px;
+    }
+
+    .activelabel{
+        position: relative;
+        left: 28px;
+        top: 14px;
+        display: inline-block;
+    }
 }
+
+

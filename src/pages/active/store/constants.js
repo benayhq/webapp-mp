@@ -33,6 +33,9 @@ export const ACTION_START_TIME = 'action/ACTION_START_TIME';
 // 结束时间
 export const ACTION_END_TIME = 'action/ACTION_END_TIME';
 
+// 服务地址
+export const ACTION_SERVICE_ADDRESS = 'action/ACTION_SERVICE_ADDRESS';
+
 // 活动价
 export const ACTION_PRODUCT_PRICE = 'action/ACTION_PRODUCT_PRICE';
 

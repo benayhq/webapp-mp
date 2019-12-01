@@ -29,26 +29,32 @@ var User = function () {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
         text: '待付款',
         status: 'UNPAY',
-        count: 0
+        count: 0,
+        index: 1
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-waittuan',
         text: '待成团',
         status: 'BATING',
-        count: 0
+        count: 0,
+        index: 2
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-consumption',
         text: '待消费',
         status: 'CONSUMPTION',
-        count: 0
+        count: 0,
+        index: 3
       }, {
         icon: 'mp-user__ordernav-icon mp-icon mp-icon-comment',
         text: '待评价',
         status: 'COMMENTING',
-        count: 0
-        // {
-        //     icon:'mp-user__ordernav-icon mp-icon mp-icon-refund',
-        //     text:'退款'
-        // }
+        count: 0,
+        index: 4
+      }, {
+        icon: 'mp-user__ordernav-icon mp-icon mp-icon-refund',
+        text: '退款/售后',
+        status: 'REFUND',
+        count: 0,
+        index: 5
       }];
     }
   }, {

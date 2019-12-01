@@ -99,33 +99,36 @@ exports.default = function () {
                     switch (_context2.prev = _context2.next) {
                       case 0:
                         if (!(url !== _api.API_GET_USER_INFO)) {
-                          _context2.next = 4;
+                          _context2.next = 5;
                           break;
                         }
 
                         if (!(res.data && res.data.error === "LOGIN")) {
-                          _context2.next = 4;
+                          _context2.next = 5;
                           break;
                         }
 
-                        _index2.default.navigateTo({
-                          url: '/pages/user/index'
-                        });
+                        _index2.default.showLoading({ title: '超时重连中...' });
+                        setTimeout(function () {
+                          _index2.default.navigateTo({
+                            url: '/pages/user/index'
+                          });
+                        }, 2000);
                         return _context2.abrupt("return");
 
-                      case 4:
+                      case 5:
                         if (!(url === _api.API_USER_LOGIN)) {
-                          _context2.next = 7;
+                          _context2.next = 8;
                           break;
                         }
 
-                        _context2.next = 7;
+                        _context2.next = 8;
                         return updateStorage(res.data);
 
-                      case 7:
+                      case 8:
                         return _context2.abrupt("return", res.data);
 
-                      case 8:
+                      case 9:
                       case "end":
                         return _context2.stop();
                     }

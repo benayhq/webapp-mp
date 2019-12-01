@@ -177,7 +177,6 @@ function _drawSingleText(drawData, drawOptions) {
   } else {
     textArr.push(text);
   }
-
   textArr.forEach(function (item, index) {
     ctx.fillText(item, toPx(x), toPx(y + (lineHeight || fontSize) * index));
   });

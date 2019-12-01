@@ -1,8 +1,7 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="footer">
-        <block wx:if="{{qrCode}}">
-            <code compid="{{$compid__67}}"></code>
+        <block wx:if="{{qrCode}}"><code content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></code>
         </block>
-        <info compid="{{$compid__68}}"></info>
+        <info content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></info>
     </view>
 </block>

@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -39,7 +41,7 @@ var RECOMMEND_SIZE = 0,
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -53,23 +55,19 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "loopArray427", "pageLoaded", "activeList", "agentId", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchOwnerActiveHistory"], _this.config = {
-      navigationBarTitleText: '我的活动'
-    }, _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "pageLoaded", "activeList", "agentId", "hasMore", "loading"], _this.state = {
       activeList: [],
       agentId: 0,
       hasMore: true,
       loading: false,
       pageLoaded: false
-    }, _this.customComponents = ["Loading", "AtList", "AtListItem", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "getAuthInfo",
@@ -141,7 +139,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "handleClick",
     value: function handleClick(item) {
       _index2.default.navigateTo({
-        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
+        url: "../../../packageA/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
       });
     }
   }, {
@@ -152,6 +150,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
+
       globalLastItem = 0;
       RECOMMEND_SIZE = 0;
       if (this.$router.params.agentId) {
@@ -223,7 +222,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                       endD: item.endD,
                       url: '',
                       agentId: item.agentId,
-                      id: item.id
+                      id: item.id,
+                      status: item.status
                     });
                   });
                   Promise.all(promises).then(function (result) {
@@ -263,58 +263,68 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       return loadMore;
     }()
   }, {
+    key: "handleCloseActive",
+    value: function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(id) {
+        var payload, result;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                console.log('handleCloseActive id', id);
+                payload = { id: id };
+                _context4.next = 4;
+                return this.props.CloseAction(payload);
+
+              case 4:
+                result = _context4.sent;
+
+                this.loadMore();
+                console.log('result', result);
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function handleCloseActive(_x2) {
+        return _ref5.apply(this, arguments);
+      }
+
+      return handleCloseActive;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
-      var _this3 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var loopArray427 = void 0;
 
       var _state = this.__state,
           activeList = _state.activeList,
           pageLoaded = _state.pageLoaded;
 
       var renderTemplate = null;
-      if (!pageLoaded) {} else if (activeList.length > 0) {
-        loopArray427 = activeList ? activeList.map(function (item, _anonIdx) {
-          item = {
-            $original: (0, _index.internal_get_original)(item)
-          };
-          var $loopState__temp2 = activeList ? item.$original.people + "\u4EBA\u6210\u56E2" : null;
-          var $compid__2035 = (0, _index.genCompid)(__prefix + "cUUNNWSiaX" + _anonIdx);
-          _index.propsManager.set({
-            "onClick": _this3.handleClick.bind(_this3, item.$original),
-            "title": item.$original.name,
-            "note": $loopState__temp2,
-            "thumb": item.$original.url,
-            "arrow": "right"
-          }, $compid__2035);
-          return {
-            $loopState__temp2: $loopState__temp2,
-            $compid__2035: $compid__2035,
-            $original: item.$original
-          };
-        }
-        // isSwitch
-        // onSwitchChange={this.handleSwithActive.bind(this,item)}
-        ) : [];
-      } else {}
+      if (!pageLoaded) {} else if (activeList.length > 0) {} else {}
 
-      var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
+      var anonymousState__temp = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
-        anonymousState__temp3: anonymousState__temp3,
-        loopArray427: loopArray427
+        anonymousState__temp: anonymousState__temp
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["loadMore"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/active/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Index.properties = {
+  "dispatchDownLoadUrl": null,
+  "dispatchOwnerActiveHistory": null,
+  "CloseAction": null
+};
+Index.$$events = ["loadMore"];
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

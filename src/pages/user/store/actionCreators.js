@@ -1,15 +1,14 @@
 import {UPDATE_USER_INFO,WX_USER_LOGIN,USER_AGENT_TRUE,ACTION_UPLOAD_CONFIG,ACTION_USER_AMOUNT,ORDER_COUNT
     ,LOAN_INFO,ACTION_CUSTOMER_INFO,ACTION_HISTORY_INFO,ACTION_OWNER_INFO,ACTION_WATER_HISTORY,
-    ACTION_UPLOAD_DOWN,ACTION_WEIXIN_DECRYPT,ACTION_TO_CUSTOMER,ACTION_GET_USER_INFO,ACTION_CREATE_NEW_INFO} from './constants';
+    ACTION_UPLOAD_DOWN,ACTION_WEIXIN_DECRYPT,ACTION_TO_CUSTOMER,ACTION_GET_USER_INFO,
+    ACTION_CREATE_NEW_INFO,ACTION_GET_AGREEMENT,ACTION_CLOASE_ACTIVE} from './constants';
 import {createAction} from './../../../utils/redux';
 
 import {API_USER_INFO,API_USER_LOGIN,API_USER_AGENT,API_UPLOAD_CONFIG,API_INIT_AMOUNT
 ,API_ORDER_LIST,API_ORDER_COUNT,API_LOAN_INFO,API_CUSTOMER_INFO,API_ACTIVE_HISTORY,
 API_ACTIVE_OWNER,API_WATER_HISTORY,API_UPLOAD_FILE,API_WEIXIN_DECRYPT,API_USER_CUSTOMER,API_GET_USER_INFO,
-API_CREATE_NEW_USER
+API_CREATE_NEW_USER,API_GET_AGREE_MENT,API_ACTIVE_CLOSE
 } from './../../../constants/api';
-
-
 
 
 export const WeChatLogin = payload => createAction({
@@ -168,6 +167,30 @@ export const CreateNewUser = payload => createAction({
     },
     payload
 })
+
+export const GetAgreeMent = payload => createAction({
+    type:ACTION_GET_AGREEMENT,
+    url:API_GET_AGREE_MENT,
+    fetchOptions:{
+        method:'GET'
+    },
+    payload
+});
+
+export const CloseAction = payload => createAction({
+    type:ACTION_CLOASE_ACTIVE,
+    url:API_ACTIVE_CLOSE,
+    fetchOptions:{
+        method:'POST',
+        contentType:'application/x-www-form-urlencoded'
+    },
+    payload
+});
+
+
+
+
+
 
 
 

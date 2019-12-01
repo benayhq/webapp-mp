@@ -8,13 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
-
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,7 +22,7 @@ function getLocalTime(timestamp) {
   return date;
 }
 
-var Info = (_temp2 = _class = function (_BaseComponent) {
+var Info = function (_BaseComponent) {
   _inherits(Info, _BaseComponent);
 
   function Info() {
@@ -42,23 +36,19 @@ var Info = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Info.__proto__ || Object.getPrototypeOf(Info)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "content"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Info.__proto__ || Object.getPrototypeOf(Info)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Info, [{
     key: "_constructor",
     value: function _constructor() {
       _get(Info.prototype.__proto__ || Object.getPrototypeOf(Info.prototype), "_constructor", this).apply(this, arguments);
-      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       console.log("content", this.__props.content);
 
@@ -73,7 +63,12 @@ var Info = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Info;
-}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/order/footer/info", _temp2);
+}(_index.Component);
+
+Info.properties = {
+  "content": null
+};
+Info.$$events = [];
 exports.default = Info;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Info));

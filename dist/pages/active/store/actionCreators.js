@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchCacheTempFiles = exports.dispatchSaveImg = exports.dispatchActivePrice = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
+exports.GetUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchCacheTempFiles = exports.dispatchSaveImg = exports.dispatchActivePrice = exports.disptachServiceAddress = exports.dispatchEndTime = exports.dispatchStartTime = exports.dispatchGroupCount = exports.disptachActiveName = exports.dispatchAdvertQuery = exports.dispatchQueryQrCode = exports.dispatchDownLoadUrl = exports.dispatchUploadConfig = exports.dispatchUploadFile = exports.dispatchQueryProductInfo = exports.dispatchCreateActive = exports.UpdateUserInfo = exports.dispatchPublishProduct = undefined;
 
 var _redux = require("../../../utils/redux.js");
 
@@ -131,6 +131,12 @@ var dispatchStartTime = exports.dispatchStartTime = function dispatchStartTime(p
 var dispatchEndTime = exports.dispatchEndTime = function dispatchEndTime(payload) {
   return function (dispatch) {
     dispatch({ type: _constants.ACTION_END_TIME, value: payload });
+  };
+};
+
+var disptachServiceAddress = exports.disptachServiceAddress = function disptachServiceAddress(payload) {
+  return function (dispatch) {
+    dispatch({ type: _constants.ACTION_SERVICE_ADDRESS, value: payload });
   };
 };
 

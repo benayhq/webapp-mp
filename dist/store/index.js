@@ -24,18 +24,11 @@ var _index6 = require("../pages/active/store/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-  // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-}) : _redux.compose;
+var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : _redux.compose;
 
 var middlewares = [_index2.default];
-// if (process.env.NODE_ENV === 'development') {
-//       middlewares.push(require('redux-logger').createLogger())
-// }
 
-var enhancer = composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)
-// other store enhancers if any
-);
+var enhancer = composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares));
 
 var reducer = (0, _redux.combineReducers)({
   user: _index3.reducer,

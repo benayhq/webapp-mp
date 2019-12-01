@@ -9,8 +9,8 @@
 
 var printWarning = function () {};
 
-{
-  var ReactPropTypesSecret = require("./lib/ReactPropTypesSecret.js");
+if (true) {
+  var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
   var loggedTypeFailures = {};
   var has = Function.call.bind(Object.prototype.hasOwnProperty);
 
@@ -40,7 +40,7 @@ var printWarning = function () {};
  * @private
  */
 function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  {
+  if (true) {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
@@ -82,7 +82,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
  * @private
  */
 checkPropTypes.resetWarningCache = function () {
-  {
+  if (true) {
     loggedTypeFailures = {};
   }
 };

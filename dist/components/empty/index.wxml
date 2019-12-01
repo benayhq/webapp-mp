@@ -1,9 +1,10 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="mp-empty">
         <view>
             <view class="mp-empty-blank"></view>
             <view class="mp-empty-blank-icon">
-                <image class="mp-empty-blank-image" src="{{empty}}"></image>
+                <image class="mp-empty-blank-image" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/empty2.svg"
+                />
                 <view class="mp-empty-blank-text">暂无相关数据</view>
             </view>
         </view>

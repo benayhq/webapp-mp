@@ -12,6 +12,8 @@ export default class Login extends Component{
     }
     
     async HandleAutoLogin(){
+        console.log('HandleAutoLogin');
+
         var global = this;
         var result = await Taro.getUserInfo();
         const { errMsg,userInfo } = result;
@@ -68,7 +70,7 @@ export default class Login extends Component{
             })
         }
     }
-
+    // className="wechat-login"
     render(){
         return (
             <View>
@@ -78,8 +80,9 @@ export default class Login extends Component{
                     </View>
                 </View>
                 <View className="login-action">
+                {/* <AtButton onClick={this.HandleAutoLogin.bind(this)} type='primary'>按钮文案</AtButton>     */}
                     <AtButton
-                        className="wechat-login"
+                    
                         text='微信登录'
                         openType='getUserInfo' onGetUserInfo={this.HandleAutoLogin.bind(this)}
                         type='primary' size='small'>微信登录</AtButton>

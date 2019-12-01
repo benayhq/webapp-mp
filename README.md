@@ -18,7 +18,6 @@ npm run dev:weapp
 
 ## 项目结构
 ```
-.
 ├── config                                      // 配置文件
 ├── dist                                        // 项目打包路径
 ├── src                                         // 源码目录

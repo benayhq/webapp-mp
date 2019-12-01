@@ -91,3 +91,9 @@ export const API_GET_USER_INFO = `${HOST}/api/v1/user/info`;
 
 // 创建新用户
 export const API_CREATE_NEW_USER = `${HOST}/v1/user/create`;
+
+// 读取协议
+export const API_GET_AGREE_MENT = `https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/协议.txt`;
+
+// 关闭活动
+export const API_CLOSE_ACTIVE = `${HOST}/api/v1/activity/close`;

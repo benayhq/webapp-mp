@@ -34,31 +34,23 @@ export default class SubmitOrder extends Component{
             this.handleAlert('error','请选择预约时间!');
             return;
         };
-
         var that = this;
-
         var payload ={
             activityProductId:activityProductId,
             appointmentDate:appointmentDate
         };
-
         this.props.dispatchCreateOrder(payload).then((response)=>{
-            if(response.content &&response.content!=null){
+            if(response.content && response.result === "success"){
                 // 微信支付.
                 that.handlePay(response.content);
-
             }
             else{
-                that.handleAlert('error',response.error);
+                that.handleAlert('error',response.content);
             }
         })
     }
 
     handlePay(orderId){
-        // Taro.navigateTo({
-        //     url: '/pages/pay/detail/index?activeId='+this.state.activeId
-        // });
-        // return;
         var payload ={
             id:orderId
         };

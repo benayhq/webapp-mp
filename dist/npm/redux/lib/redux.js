@@ -392,7 +392,7 @@ function combineReducers(reducers) {
   for (var i = 0; i < reducerKeys.length; i++) {
     var key = reducerKeys[i];
 
-    {
+    if (true) {
       if (typeof reducers[key] === 'undefined') {
         warning("No reducer provided for key \"" + key + "\"");
       }
@@ -406,7 +406,7 @@ function combineReducers(reducers) {
   var finalReducerKeys = Object.keys(finalReducers);
   var unexpectedKeyCache;
 
-  {
+  if (true) {
     unexpectedKeyCache = {};
   }
 
@@ -427,7 +427,7 @@ function combineReducers(reducers) {
       throw shapeAssertionError;
     }
 
-    {
+    if (true) {
       var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
 
       if (warningMessage) {
@@ -628,7 +628,7 @@ function applyMiddleware() {
 
 function isCrushed() {}
 
-if (typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+if (true && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
   warning("You are currently using minified code outside of NODE_ENV === \"production\". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.");
 }
 

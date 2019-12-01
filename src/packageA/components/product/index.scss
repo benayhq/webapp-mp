@@ -1,0 +1,111 @@
+@import '../../style/layout.scss';
+@import '../../style/icon.scss';
+@import '../../style/base.scss';
+@import '../../style/element.scss';
+
+.product{
+    width: 100%;    
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+    background: #ffffff;
+    
+    > view:nth-child(1){
+
+        > text:nth-child(1){
+            float: left;
+            margin-left: 21px;
+        }
+
+        > text:nth-child(2){
+            float: right;
+            margin-right: 21px;
+            height: 84px;
+            font-size:34px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(125,214,208,1);
+            line-height:84px;
+            -webkit-text-stroke:1px rgba(125,214,208,1);
+        }
+    }
+
+    .list-top{
+        @include flex(row);
+        height: 227px;
+
+        > view:nth-child(1){
+            width: 30px;
+            text-align: center;
+            vertical-align: middle;
+            padding:  0px;
+            margin-top: 109px;
+        }
+
+        > view:nth-child(2){
+            width: 167px;
+        }
+
+        > view:nth-child(3){
+            .product-item{
+                width: 447px;
+                text-align: left;
+                overflow-wrap: normal;
+                word-wrap:break-word; 
+                padding-left: 38px;
+            }
+
+            .margin20{
+                margin-top: 20px;
+                overflow-wrap: normal;
+                word-break: break-word;
+            }
+
+            .font{
+                color: #7DD6D0;
+            }
+
+            .textfont{
+                color: #919191;
+            }
+
+            .amount{
+                color: #EB2F96;
+            }
+        }
+    }
+
+    .list-bottom{
+        line-height: 90px;
+        height: 90px;
+        
+        > text:nth-child(1){
+            float: left;
+            text-align: left;
+            margin-left: 72px;
+        }
+
+        > input{
+            text-align:left;
+            padding-left: 20px;
+            padding-top: 19px;
+        }
+    }
+
+    .create-item{
+        height: 90px;
+        line-height: 90px;
+        text-align:left;
+
+       .margin{
+            margin-top: 27px;
+            margin-left: 17px;
+        }
+
+        > text:nth-child(2){
+            color: #7DD6D0;
+            margin-top: 27px;
+            margin-left: 17px;
+        }
+    }
+}

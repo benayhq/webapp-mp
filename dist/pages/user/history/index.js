@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -39,7 +41,7 @@ var RECOMMEND_SIZE = 0,
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -53,22 +55,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loaded", "actives", "hasMore", "loading", "dispatchDownLoadUrl", "dispatchActiveHistory"], _this.config = {
-      navigationBarTitleText: '浏览历史'
-    }, _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loaded", "actives", "hasMore", "loading"], _this.state = {
       actives: [],
       hasMore: true,
       loading: false,
       loaded: false
-    }, _this.customComponents = ["Loading", "Empty"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "getImgUrl",
@@ -117,8 +115,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "HandleActiveClick",
     value: function HandleActiveClick(item) {
+
+      console.log('item', item);
+
       _index2.default.navigateTo({
-        url: "/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
+        url: "../../../packageA/pages/product/detail?activeId=" + item.id + "&referId=" + item.agentId
       });
     }
   }, {
@@ -219,9 +220,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       var _state = this.__state,
           actives = _state.actives,
@@ -238,7 +236,12 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["HandleActiveClick", "loadMore"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/history/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Index.properties = {
+  "dispatchDownLoadUrl": null,
+  "dispatchActiveHistory": null
+};
+Index.$$events = ["HandleActiveClick", "loadMore"];
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

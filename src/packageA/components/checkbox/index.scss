@@ -1,0 +1,110 @@
+@import './../../style/index.scss';
+
+$component: '.mp-checkbox';
+
+#{$component} {
+
+    &__option-cnt{
+        display: flex;
+        height: 120%;
+    }
+
+    &__icon-cnt{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $border-radius-circle;
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        margin-top: 80px;
+        margin-left:10px;
+        margin-right: 10px;
+        color: transparent;
+        border: 2px solid rgba($color: $mp-checkbox-icon-color, $alpha: 0.2);
+        background-color: $color-bg;
+        box-sizing: border-box;
+        transition: all 0.2s;
+    }
+
+    &__desc {
+        display: block;
+        padding-left: $mp-checkbox-circle-size + $spacing-h-lg;
+        color: $mp-checkobx-desc-color;
+        font-size: $mp-checkbox-title-font-size;
+        text-align: left;
+        line-height: $line-height-zh;
+        letter-spacing: 0;
+    }
+
+    &__title{
+        display: inline-flex;
+        flex-direction:row;
+        color: $mp-checkbox-title-color;
+        font-size: $mp-checkbox-title-font-size;
+        line-height: $line-height-zh;
+        text-align: left;
+        width: 200px;
+        margin-top: 20px;
+    }
+
+    &__action{
+        width: 100px;
+        height: 150px;
+        margin-top: 20px;
+        margin-left: 180px;
+
+        &>Text:nth-child(1){
+            display: block;
+        }
+
+        &>Text:nth-child(2){
+            display: block;
+            margin-top: 50px;
+        }
+    }
+
+    &__img{
+        display: inline-flex;
+        width:181px;
+        height:168px;
+    }
+
+    &__price{
+        margin-left: 14px;
+        color: #7DD6D0;
+        font-size: 36px;
+    }
+
+    &__price-wrapper{
+        float: left;
+        width: 200px;
+    }
+
+    &__marketprice{
+        display: inline-block;
+        margin-left: 15px;
+        font-size: 36px;
+        color: #BFBFBF;
+        text-decoration: line-through;
+    }
+
+    &__preprice{
+        margin-left: 20px;
+        color: #919191;
+    }
+
+    &__option{
+        background: $color-bg;
+        border-radius: $border-radius-md;
+        margin: 18px;
+
+        &--selected{
+            #{$component}__icon-cnt{
+                color: $mp-checkbox-icon-color-checked;
+                border: none;
+                background-color: $mp-checkbox-icon-color;
+            }
+        }
+    }
+}

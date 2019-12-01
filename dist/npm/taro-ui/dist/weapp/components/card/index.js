@@ -8,8 +8,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2, _initialiseProps;
-
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -40,7 +38,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AtCard = (_temp2 = _class = function (_AtComponent) {
+var AtCard = function (_AtComponent) {
   _inherits(AtCard, _AtComponent);
 
   function AtCard() {
@@ -61,8 +59,6 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtCard.prototype.__proto__ || Object.getPrototypeOf(AtCard.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "_createData",
@@ -71,9 +67,6 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       var _props = this.__props,
           title = _props.title,
@@ -112,22 +105,38 @@ var AtCard = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtCard;
-}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/card/index", _initialiseProps = function _initialiseProps() {
+}(_component2.default);
+
+AtCard.properties = {
+  "onClick": null,
+  "__fn_onClick": null,
+  "title": null,
+  "note": null,
+  "extra": null,
+  "thumb": null,
+  "isFull": null,
+  "icon": null,
+  "className": null
+};
+AtCard.$$events = ["handleClick"];
+
+var _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
-  this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "icon", "iconClass", "extra", "note", "title", "isFull", "className", "children"];
+  this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "icon", "iconClass", "extra", "note", "title", "children"];
 
   this.handleClick = function () {
-    if ((0, _isFunction3.default)(_this2.props.onClick)) {
-      var _props2;
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
 
-      (_props2 = _this2.props).onClick.apply(_props2, arguments);
+    if ((0, _isFunction3.default)(_this2.props.onClick)) {
+      _this2.__triggerPropsFn("onClick", [null].concat([].concat(args)));
     }
   };
 
-  this.customComponents = [];
-}, _temp2);
-
+  this.$$refs = [];
+};
 
 AtCard.defaultProps = {
   note: '',

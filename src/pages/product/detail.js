@@ -1,5 +1,5 @@
 import Taro,{Component} from '@tarojs/taro';
-import {View,Text,Swiper,SwiperItem,ScrollView} from '@tarojs/components';
+import {View,Text,ScrollView} from '@tarojs/components';
 import './detail.scss';
 import {Popup,Loading,Share} from './../../components'
 import Spec from './spec/index';
@@ -9,6 +9,8 @@ import TuanList from './tuan/index';
 import {connect} from '@tarojs/redux';
 import * as actions from './store/actionCreators';
 import Gallery from './gallery';
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui";
+import CountDown from './component/index';
 
 var commentArray=[],totalCommentCount=0,pageNumberCount=0;
 
@@ -152,6 +154,12 @@ export default class Detail extends Component{
         });
     }
 
+    handleModelClose(){
+        this.setState({
+            showOrderDialog:false
+        })
+    }
+
     openDialog(){
         this.setState({
             visible: true,
@@ -266,11 +274,17 @@ export default class Detail extends Component{
     }
 
     render(){
-        const {data,commentList,bannerList,activeId,comments,commentText,isShare,img} = this.state;
+        const {data,commentList,bannerList,activeId,comments,commentText,isShare,img,showOrderDialog} = this.state;
         const height = getWindowHeight(false);
         const { bSpec,bContact,loaded} = this.state;
         let renderTemplate = null;
-
+        let renderProps = null;
+        if(bContact){
+            renderProps = <Contact cellphone={data.cellphone} weChatId={data.weChatId} weChatQrCode={data.weChatQrCode}/>
+        }
+        else if(bSpec){
+            renderProps = <Spec activityName={data.activityName} products={data.activityProducts}/>
+        }
         if(!loaded){
             renderTemplate = <Loading/>
         }
@@ -279,7 +293,8 @@ export default class Detail extends Component{
             <ScrollView
             scrollY
             style={{ height }}>
-                 <Gallery list={bannerList} />
+                <Gallery list={bannerList}/>
+               
                 <View className="mp-activedetail__user">
                     <Text>好友 </Text>
                     <Text> {data.nickname} </Text>
@@ -331,12 +346,12 @@ export default class Detail extends Component{
                     </View>
                 </View>
                 {
-                    data.batchPeople > 0 && (
+                    data.activityBatchVos.length > 0 && (
                         <View className="mp-activedetail__join">
                             <View className="mp-activedetail__first">
-                                <Text className="mp-activedetail__etitle">{data.batchPeople}人在拼单，可直接参与</Text>
+                                <Text className="mp-activedetail__etitle">{data.activityBatchVos.length}人在拼单，可直接参与</Text>
                                 <Text className="mp-activedetail__all" onClick={this.showMpDialog.bind(this)} > 
-                                    {/* 查看全部 */}
+                                    查看全部
                                     <Text className="mp-icon mp-icon-arrow1"></Text>
                                 </Text>
                             </View>
@@ -353,7 +368,8 @@ export default class Detail extends Component{
                                         <View>{batch.publishName}</View>
                                         <View className="mp-activedetail__joinperson">
                                             <View className="mp-activedetail__counter">还差 {batch.remainPeople} 人拼成</View>
-                                            <View className="mp-activedetail__time">剩余20:50:14</View>
+                                            {/* <View className="mp-activedetail__time">剩余20:50:14</View> */}
+                                            <CountDown endTime={batch.end}/>
                                         </View>
                                         <View>
                                             <View className="mp-activedetail__second__buyAction" onClick={this.openCategoryDialog.bind(this)}>
@@ -375,14 +391,12 @@ export default class Detail extends Component{
                     {
                         comments.length === 0 && data.commentVo && (
                                 <View className="mp-activedetail__comment-content">
-
                                 <View className="mp-activedetail__comment-content-left">
                                         <image
                                                 mode="scaleToFill"
                                                 src={data.commentVo.profileUrl}>
                                         </image>
                                 </View>
-                            
                                 <View className="mp-activedetail__comment-content-right">
                                     <View className="mp-activedetail__comment-username">{data.commentVo.name}</View>
                                         <View className="mp-activedetail__comment-tag">
@@ -391,9 +405,13 @@ export default class Detail extends Component{
                                             <Text> 服务：{`${data.commentVo.serviceStar}.0`} </Text>
                                             <Text> 效果：{`${data.commentVo.effectStar}.0`} </Text>
                                         </View>
-                                        {/* <View className="mp-activedetail__comment-desc">
-                                            【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
-                                        </View> */}
+                                        {
+                                            /*
+                                                <View className="mp-activedetail__comment-desc">
+                                                    【玻尿酸瘦脸针】瑞典进口 可打嘟嘟唇塑造心形脸
+                                                </View>
+                                            */
+                                        }
                                         <View className="mp-activedetail__comment-description">
                                         {data.commentVo.message}
                                             {/* <View className="mp-activedetail__comment-time">
@@ -494,16 +512,20 @@ export default class Detail extends Component{
             <Popup
             visible={this.state.visible}
             onClose={this.toggleVisible}>
-                {
+                {renderProps}
+                {/* {
                     bContact && <Contact cellphone={data.cellphone} weChatId={data.weChatId} weChatQrCode={data.weChatQrCode}/>
                 }
                 {
                     bSpec && <Spec activityName={data.activityName} products={data.activityProducts}/>
-                }
+                } */}
             </Popup>
-            {/* <Modal isOpened={showOrderDialog}>
-                <TuanList/>
-            </Modal> */}
+            <AtModal title='正在拼团' isOpened={showOrderDialog}>
+                <AtModalContent>
+                    <TuanList list={data.activityBatchVos}/>
+                </AtModalContent>
+                <AtModalAction> <Button onClick={this.handleModelClose.bind(this)}>关闭</Button></AtModalAction>
+            </AtModal>
          </View>
         }
 

@@ -1,0 +1,32 @@
+@import './../../../style/index.scss';
+
+.order-title{
+    line-height: 80px;
+    height: 80px;
+
+    >text:nth-child(1){
+        width:248px;
+        height:40px;
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:40px;
+        padding-left: 30px;
+    }
+    
+    >text:nth-child(2){
+        width: 13px;
+        height: 22px;
+        padding-left: 40px;
+    }
+
+    >text:nth-child(3){
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        float: right;
+        color: #F70202;
+        padding-right: 40px;
+    }
+}

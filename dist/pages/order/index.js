@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -36,7 +38,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var OrderList = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(OrderList, _BaseComponent);
 
   function OrderList() {
@@ -50,9 +52,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "$compid__2001", "$compid__2002", "$compid__2003", "$compid__2004", "$compid__2005", "$compid__2006", "$compid__2007", "$compid__2008", "$compid__2009", "$compid__2010", "$compid__2011", "current", "list", "status", "totalPage", "orderStatus", "dispatchOrderList"], _this.config = {
-      navigationBarTitleText: '我的订单'
-    }, _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderList.__proto__ || Object.getPrototypeOf(OrderList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "anonymousState__temp6", "current", "tabList", "list", "status", "totalPage", "orderStatus"], _this.state = {
       current: 1,
       list: [],
       status: 'more',
@@ -60,20 +60,20 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
       orderStatus: ''
     }, _this.loadOrderList = function () {
       console.log('loadOrderList');
-    }, _this.customComponents = ["AtTabs", "AtTabsPane", "OrderItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderList, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(OrderList.prototype.__proto__ || Object.getPrototypeOf(OrderList.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
       var selectTabIndex = Number(this.$router.params.index);
+      console.log('selectTabIndex', selectTabIndex);
+      selectTabIndex = this.$router.params.status === "null" ? 0 : selectTabIndex;
       this.setState({
         orderStatus: this.$router.params.status,
         current: selectTabIndex
@@ -129,6 +129,7 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
         current: value,
         list: []
       });
+
       switch (value) {
         case 0:
           this.getAllOrderList('', 0, 10);
@@ -144,6 +145,9 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
           break;
         case 4:
           this.getAllOrderList('COMMENTING', 0, 10);
+          break;
+        case 5:
+          this.getAllOrderList('REFUND', 0, 10);
           break;
       }
     }
@@ -170,106 +174,39 @@ var OrderList = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__2001 = (0, _index.genCompid)(__prefix + "$compid__2001");
-      var $compid__2002 = (0, _index.genCompid)(__prefix + "$compid__2002");
-      var $compid__2003 = (0, _index.genCompid)(__prefix + "$compid__2003");
-      var $compid__2004 = (0, _index.genCompid)(__prefix + "$compid__2004");
-      var $compid__2005 = (0, _index.genCompid)(__prefix + "$compid__2005");
-      var $compid__2006 = (0, _index.genCompid)(__prefix + "$compid__2006");
-      var $compid__2007 = (0, _index.genCompid)(__prefix + "$compid__2007");
-      var $compid__2008 = (0, _index.genCompid)(__prefix + "$compid__2008");
-      var $compid__2009 = (0, _index.genCompid)(__prefix + "$compid__2009");
-      var $compid__2010 = (0, _index.genCompid)(__prefix + "$compid__2010");
-      var $compid__2011 = (0, _index.genCompid)(__prefix + "$compid__2011");
 
-      var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }];
+      var tabList = [{ title: '全部', status: '' }, { title: '待付款', status: 'UNPAY' }, { title: '待成团', status: 'BATING' }, { title: '待消费', status: 'CONSUMPTION' }, { title: '待评价', status: 'COMMENTING' }, { title: '退款', status: 'COMMENTING' }];
+
       var _state = this.__state,
           list = _state.list,
           current = _state.current;
+
 
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       var anonymousState__temp2 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       var anonymousState__temp3 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       var anonymousState__temp4 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       var anonymousState__temp5 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
-      var $props__2001 = {
-        "current": current,
-        "tabList": tabList,
-        "onClick": this.handleClick.bind(this)
-      };
-      var $props__2002 = {
-        "current": current,
-        "index": 0
-      };
-      var $props__2003 = {
-        "list": list
-      };
-      var $props__2004 = {
-        "current": current,
-        "index": 1
-      };
-      var $props__2005 = {
-        "list": list
-      };
-      var $props__2006 = {
-        "current": current,
-        "index": 2
-      };
-      var $props__2007 = {
-        "list": list
-      };
-      var $props__2008 = {
-        "current": current,
-        "index": 3
-      };
-      var $props__2009 = {
-        "list": list
-      };
-      var $props__2010 = {
-        "current": current,
-        "index": 4
-      };
-      var $props__2011 = {
-        "list": list
-      };
-      _index.propsManager.set($props__2001, $compid__2001);
-      _index.propsManager.set($props__2002, $compid__2002);
-      _index.propsManager.set($props__2003, $compid__2003);
-      _index.propsManager.set($props__2004, $compid__2004);
-      _index.propsManager.set($props__2005, $compid__2005);
-      _index.propsManager.set($props__2006, $compid__2006);
-      _index.propsManager.set($props__2007, $compid__2007);
-      _index.propsManager.set($props__2008, $compid__2008);
-      _index.propsManager.set($props__2009, $compid__2009);
-      _index.propsManager.set($props__2010, $compid__2010);
-      _index.propsManager.set($props__2011, $compid__2011);
+      var anonymousState__temp6 = (0, _index.internal_inline_style)({ height: (0, _style.getWindowHeight)() });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
-        $compid__2001: $compid__2001,
-        $compid__2002: $compid__2002,
-        $compid__2003: $compid__2003,
-        $compid__2004: $compid__2004,
-        $compid__2005: $compid__2005,
-        $compid__2006: $compid__2006,
-        $compid__2007: $compid__2007,
-        $compid__2008: $compid__2008,
-        $compid__2009: $compid__2009,
-        $compid__2010: $compid__2010,
-        $compid__2011: $compid__2011
+        anonymousState__temp6: anonymousState__temp6,
+        tabList: tabList
       });
       return this.__state;
     }
   }]);
 
   return OrderList;
-}(_index.Component), _class2.$$events = ["loadOrderList"], _class2.$$componentPath = "pages/order/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+OrderList.properties = {
+  "dispatchOrderList": null
+};
+OrderList.$$events = ["handleClick", "loadOrderList"];
 exports.default = OrderList;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderList, true));

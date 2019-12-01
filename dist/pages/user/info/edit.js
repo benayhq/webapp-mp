@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -38,7 +40,7 @@ var uploadImage = require('./../../../utils/uploadFile.js');
 
 var Edit = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Edit, _BaseComponent);
 
   function Edit() {
@@ -53,21 +55,19 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1984", "$compid__1985", "$compid__1986", "$compid__1987", "$compid__1988", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "userName", "cellPhone", "weixin", "serviceAddress", "address", "qrCode", "dispatchUploadConfig", "dispatchDownLoadUrl", "UpdateUserInfo"], _this.config = {
-      navigationBarTitleText: '个人信息'
-    }, _this.handleAlert = function (type, message) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Edit.__proto__ || Object.getPrototypeOf(Edit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["userName", "cellPhone", "weixin", "region", "selector", "selectorChecked", "timeSel", "dateSel", "files", "nickName", "serviceAddress", "address", "qrCode"], _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
         'type': type
       });
     }, _this.handleSaveUserInfo = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var _this$state, cellPhone, weixin, userName, address, userinfo, payload, result;
+      var _this$state, cellPhone, weixin, userName, region, userinfo, payload;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this$state = _this.state, cellPhone = _this$state.cellPhone, weixin = _this$state.weixin, userName = _this$state.userName, address = _this$state.address;
+              _this$state = _this.state, cellPhone = _this$state.cellPhone, weixin = _this$state.weixin, userName = _this$state.userName, region = _this$state.region;
 
               if (!(cellPhone === "")) {
                 _context.next = 4;
@@ -104,23 +104,21 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
                 openId: userinfo.openId,
                 wechatId: weixin,
                 cellphone: cellPhone,
-                address: address,
+                address: '',
                 wechatQrcode: imgArraySrc[0],
-                areaCode: '',
+                areaCode: region,
                 id: userinfo.id
               };
               _context.next = 16;
               return _this.props.UpdateUserInfo(payload);
 
             case 16:
-              result = _context.sent;
-
               imgArraySrc.length = 0;
               _index2.default.navigateTo({
                 url: '/pages/user/index'
               });
 
-            case 19:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -130,7 +128,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       console.log('imgArraySrc', imgArraySrc);
       imgArraySrc.length = 0;
       imgArraySrc = [];
-    }, _this.customComponents = ["AtMessage", "AtForm", "AtInput", "AtImagePicker", "AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Edit, [{
@@ -149,15 +147,13 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
         weixin: '',
         serviceAddress: '',
         address: '',
-        qrCode: ''
+        qrCode: '',
+        region: '请选择省市区'
       };
-
-      this.init();
-      this.$$refs = [];
     }
   }, {
-    key: "init",
-    value: function init() {
+    key: "componentWillMount",
+    value: function componentWillMount() {
       this.initData();
     }
   }, {
@@ -182,21 +178,18 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
                   userName: response.name,
                   cellPhone: response.cellphone,
                   weixin: response.wechatId,
-                  address: response.address
+                  region: response.address
                 });
-                console.log('response.wechatQrcode', response.wechatQrcode);
-
                 if (response.wechatQrcode) {
                   this.getImgUrl(response.wechatQrcode).then(function (res) {
                     _this3.setState({
                       files: [{ url: res }]
                     });
-                    console.log('res', res);
                     imgArraySrc.push(response.wechatQrcode);
                   });
                 }
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -221,6 +214,7 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       this.setState({
         files: files
       });
+
       var that = this;
       var tempFilePaths = files;
       var nowTime = util.formatTime(new Date());
@@ -384,18 +378,20 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
       return getImgUrl;
     }()
   }, {
+    key: "onGetRegion",
+    value: function onGetRegion(region) {
+      // 参数region为选择的省市区
+      console.log("region", region);
+      this.setState({
+        region: region
+      });
+      return region;
+    }
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__1984 = (0, _index.genCompid)(__prefix + "$compid__1984");
-      var $compid__1985 = (0, _index.genCompid)(__prefix + "$compid__1985");
-      var $compid__1986 = (0, _index.genCompid)(__prefix + "$compid__1986");
-      var $compid__1987 = (0, _index.genCompid)(__prefix + "$compid__1987");
-      var $compid__1988 = (0, _index.genCompid)(__prefix + "$compid__1988");
 
       var _state = this.__state,
           userName = _state.userName,
@@ -403,61 +399,27 @@ var Edit = (_dec = (0, _index3.connect)(function (state) {
           weixin = _state.weixin,
           serviceAddress = _state.serviceAddress,
           address = _state.address,
-          qrCode = _state.qrCode;
+          qrCode = _state.qrCode,
+          region = _state.region;
 
-      var $props__1984 = {
-        "name": "value1",
-        "title": "\u59D3\u540D",
-        "type": "text",
-        "placeholder": "(\u9009\u586B)",
-        "value": userName,
-        "onChange": this.handleUserNameChange.bind(this)
-      };
-      var $props__1985 = {
-        "name": "value6",
-        "title": "\u624B\u673A\u53F7\u7801",
-        "type": "phone",
-        "placeholder": "\u8BF7\u8F93\u5165\u5E38\u7528\u624B\u673A\u53F7",
-        "value": cellPhone,
-        "onChange": this.handleMobileChange.bind(this)
-      };
-      var $props__1986 = {
-        "name": "value1",
-        "title": "\u5FAE\u4FE1",
-        "type": "text",
-        "placeholder": "\u5BA2\u6237\u901A\u8FC7\u5FAE\u4FE1\u4E0E\u60A8\u8054\u7CFB",
-        "value": weixin,
-        "onChange": this.handleWeChatChange.bind(this)
-      };
-      var $props__1987 = {
-        "className": "uploadPicker",
-        "files": this.__state.files,
-        "onChange": this.handleUploadChange.bind(this)
-      };
-      var $props__1988 = {
-        "type": "primary",
-        "onClick": this.handleSaveUserInfo.bind(this)
-      };
-      _index.propsManager.set($props__1984, $compid__1984);
-      _index.propsManager.set($props__1985, $compid__1985);
-      _index.propsManager.set($props__1986, $compid__1986);
-      _index.propsManager.set($props__1987, $compid__1987);
-      _index.propsManager.set($props__1988, $compid__1988);
-      Object.assign(this.__state, {
-        $compid__1984: $compid__1984,
-        $compid__1985: $compid__1985,
-        $compid__1986: $compid__1986,
-        $compid__1987: $compid__1987,
-        $compid__1988: $compid__1988
-      });
+
+      console.log('region', region);
+
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Edit;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/info/edit", _temp2)) || _class);
+}(_index.Component)) || _class);
 // onImageClick={this.handleImageClick.bind(this)}
 
+Edit.properties = {
+  "dispatchUploadConfig": null,
+  "dispatchDownLoadUrl": null,
+  "UpdateUserInfo": null
+};
+Edit.$$events = ["handleUserNameChange", "handleMobileChange", "handleWeChatChange", "onGetRegion", "handleUploadChange", "handleSaveUserInfo"];
 exports.default = Edit;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Edit, true));

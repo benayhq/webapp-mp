@@ -1,4 +1,4 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="mp-user__income">
         <view class="mp-user__income-left">
             <view class="mp-user__income-text">{{profit ? profit.verifyingEarnest : 0}}</view>

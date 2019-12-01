@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -34,7 +36,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Login = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Login, _BaseComponent);
 
   function Login() {
@@ -48,17 +50,13 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__2036", "GetUserInfo", "UpdateUserInfo"], _this.config = {
-      navigationBarTitleText: '登录'
-    }, _this.customComponents = ["AtButton"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Login, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Login.prototype.__proto__ || Object.getPrototypeOf(Login.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "HandleAutoLogin",
@@ -69,11 +67,13 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log('HandleAutoLogin');
+
                 global = this;
-                _context2.next = 3;
+                _context2.next = 4;
                 return _index2.default.getUserInfo();
 
-              case 3:
+              case 4:
                 result = _context2.sent;
                 errMsg = result.errMsg, userInfo = result.userInfo;
 
@@ -159,7 +159,7 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -236,33 +236,25 @@ var Login = (_dec = (0, _index3.connect)(function (state) {
 
       return WeChatLogin;
     }()
+    // className="wechat-login"
+
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__2036 = (0, _index.genCompid)(__prefix + "$compid__2036");
-      var $props__2036 = {
-        "className": "wechat-login",
-        "text": "\u5FAE\u4FE1\u767B\u5F55",
-        "openType": "getUserInfo",
-        "onGetUserInfo": this.HandleAutoLogin.bind(this),
-        "type": "primary",
-        "size": "small"
-      };
-      _index.propsManager.set($props__2036, $compid__2036);
-      Object.assign(this.__state, {
-        $compid__2036: $compid__2036
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Login;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/login/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Login.properties = {
+  "GetUserInfo": null,
+  "UpdateUserInfo": null
+};
+Login.$$events = ["HandleAutoLogin"];
 exports.default = Login;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Login, true));

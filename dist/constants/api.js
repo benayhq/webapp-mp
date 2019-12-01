@@ -96,3 +96,9 @@ var API_GET_USER_INFO = exports.API_GET_USER_INFO = HOST + '/api/v1/user/info';
 
 // 创建新用户
 var API_CREATE_NEW_USER = exports.API_CREATE_NEW_USER = HOST + '/v1/user/create';
+
+// 读取协议
+var API_GET_AGREE_MENT = exports.API_GET_AGREE_MENT = 'https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/\u534F\u8BAE.txt';
+
+// 关闭活动
+var API_CLOSE_ACTIVE = exports.API_CLOSE_ACTIVE = HOST + '/api/v1/activity/close';

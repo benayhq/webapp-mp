@@ -1,9 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="mp-product">
-        <at-message></at-message>
-        <check-box compid="{{$compid__1994}}"></check-box>
-        <view class="mp-product__save">
-            <view bindtap="handleSaveItem">保 存</view>
-        </view>
-    </view>
-</block>

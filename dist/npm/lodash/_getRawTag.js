@@ -1,4 +1,4 @@
-var Symbol = require("./_Symbol.js");
+var Symbol = require('./_Symbol');
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;

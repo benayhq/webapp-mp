@@ -1,10 +1,12 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="{{rootClass}}" catchtouchmove="handleTouchMove">
         <view class="mp-modal__overlay" bindtap="onClose"></view>
         <view class="{{popUpClass}}">
             <block wx:if="{{title}}">
                 <view class="mp-modal__title">{{title}}</view>
-            </block><text class="mp-icon mp-icon-closemodal" style="position:absolute;top:-11px;right:-9px;" bindtap="onClose"></text>
+            </block>
+            <text class="mp-icon mp-icon-closemodal" style="position:absolute;top:-11px;right:-9px;"
+            bindtap="onClose"></text>
             <view class="mp-modal__content" style="{{anonymousState__temp}}">
                 <scroll-view scroll-y="{{true}}">
                     <slot></slot>

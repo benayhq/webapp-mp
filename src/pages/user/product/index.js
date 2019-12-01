@@ -75,7 +75,7 @@ export default class Index extends Component{
 
     handleProductEdit(id,event){
       Taro.navigateTo({
-          url:'/pages/product/edit?productId='+id
+          url:'../../../packageA/pages/product/edit?productId='+id
       });
   }
 
@@ -88,7 +88,6 @@ export default class Index extends Component{
         else{
           renderTemplate = (
             newFilterList && newFilterList.map((item)=>{
-              console.log('item',item);
                 return (<View className="mp-user__product" onClick={this.handleProductEdit.bind(this,item.value)}> 
                 <View>
                     <image className="icon-header" src={item.imgUrl} ></image>
@@ -97,12 +96,14 @@ export default class Index extends Component{
                     <View className="mp-user__product-desc">{item.desc}</View>
                     <View className="mp-user__product-price">￥{item.price} <Text className="mp-user__product-marketprice">￥{item.marketPrice}</Text></View>
                     <View className="mp-user__product-prePrice">预定金:  {item.prePrice}</View>
-                    
                 </View>
                 <view class="item-extra__icon item-extra__icon">
                   <View className="product-edit"> 编 辑 </View>
                   <text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right product-appointer">
                   </text>
+                </view>
+                <view>
+                   往期产品
                 </view>
             </View>)
             })

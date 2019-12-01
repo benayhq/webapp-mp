@@ -4,6 +4,8 @@ import { AtInput, AtForm ,AtImagePicker,AtButton,AtMessage} from 'taro-ui';
 import './edit.scss';
 import * as actions from '../store/actionCreators';
 import {connect} from '@tarojs/redux';
+import {Region} from './../../../components/'
+
 var imgArraySrc = [];
 var util = require('../../../utils/util.js');
 var uploadImage = require('./../../../utils/uploadFile.js');
@@ -29,13 +31,12 @@ class Edit extends Component{
             weixin:'',
             serviceAddress:'',
             address:'',
-            qrCode:''
+            qrCode:'',
+            region:'请选择省市区'
         };
-
-        this.init();
     }
 
-    init(){
+    componentWillMount(){
         this.initData();
     }
 
@@ -46,10 +47,8 @@ class Edit extends Component{
             userName:response.name,
             cellPhone:response.cellphone,
             weixin:response.wechatId,
-            address:response.address
+            region:response.address
         });
-        console.log('response.wechatQrcode',response.wechatQrcode);
-
         if(response.wechatQrcode){
             this.getImgUrl(response.wechatQrcode).then((res)=>{
                 this.setState({
@@ -57,7 +56,6 @@ class Edit extends Component{
                     {url:res}
                   ]
                 });
-                console.log('res',res);
                 imgArraySrc.push(response.wechatQrcode);
             });
         }
@@ -66,11 +64,12 @@ class Edit extends Component{
     componentDidMount(){
     }
 
-    handleUploadChange(files) {
+    handleUploadChange(files){
 
         this.setState({
             files
         });
+
         var that = this;
         var tempFilePaths = files;
         var nowTime = util.formatTime(new Date());
@@ -177,7 +176,7 @@ class Edit extends Component{
     }
 
     handleSaveUserInfo = async () =>{
-        const {cellPhone,weixin,userName,address} = this.state;
+        const {cellPhone,weixin,userName,region} = this.state;
 
         if(cellPhone==="") {
             this.handleAlert('error','手机号不能为空');
@@ -198,12 +197,12 @@ class Edit extends Component{
             openId:userinfo.openId,
             wechatId:weixin,
             cellphone:cellPhone,
-            address:address,
+            address:'',
             wechatQrcode:imgArraySrc[0],
-            areaCode:'',
+            areaCode:region,
             id:userinfo.id
         };
-        const result = await this.props.UpdateUserInfo(payload)
+        await this.props.UpdateUserInfo(payload)
         imgArraySrc.length = 0;
         Taro.navigateTo({
             url:'/pages/user/index'
@@ -216,8 +215,20 @@ class Edit extends Component{
         imgArraySrc = [];
     }
 
+    onGetRegion(region) {
+        // 参数region为选择的省市区
+        console.log("region",region);
+        this.setState({
+          region
+        });
+        return region;
+    }
+
     render(){
-        const {userName,cellPhone,weixin,serviceAddress,address,qrCode} = this.state;
+        const {userName,cellPhone,weixin,serviceAddress,address,qrCode,region} = this.state;
+
+        console.log('region',region);
+
         return (
             <View className="mp-edit-user">
                     <AtMessage/>
@@ -246,6 +257,14 @@ class Edit extends Component{
                         value={weixin}
                         onChange={this.handleWeChatChange.bind(this)}
                     />
+
+                    <View className="address">
+                        <Text className="activelabel">服务地址</Text>
+                        <Text className="time"></Text> 
+                        <View className="region">
+                            <Region region={region} onGetRegion={this.onGetRegion.bind(this)} />
+                        </View> 
+                    </View>
                     {/* <AtInput
                         name='value1'
                         title='服务地址'
@@ -254,7 +273,7 @@ class Edit extends Component{
                         value={serviceAddress}
                         onChange={this.handleServiceAddressChange.bind(this)}
                     /> */}
-                    {/* <AtInput 
+                    {/* <AtInput
                         name='value1'
                         title='地址'
                         type='text'
@@ -266,14 +285,14 @@ class Edit extends Component{
                         <Text className="label">微信二维码</Text>
                     </View>
                     <AtImagePicker
+                            showAddBtn={this.state.files.length>=1?false:true}
                             className="uploadPicker"
                             files={this.state.files}
                             onChange={this.handleUploadChange.bind(this)}
                     />
-                   
                 </AtForm>
                 <View className="user-submit">
-                            <AtButton type='primary' onClick={this.handleSaveUserInfo.bind(this)}>保存</AtButton>
+                        <AtButton type='primary' onClick={this.handleSaveUserInfo.bind(this)}>保存</AtButton>
                  </View>
             </View>
         );

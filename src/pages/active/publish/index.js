@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Picker } from '@tarojs/components'
-import { AtImagePicker,AtInput,AtMessage,AtModal,
-   AtModalHeader, AtModalContent, AtModalAction, AtToast } from 'taro-ui'
+import { AtImagePicker,AtInput,AtMessage } from 'taro-ui'
 import ProductList from './productlist/index';
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
@@ -12,6 +11,7 @@ var util = require('../../../utils/util.js');
 var imgArraySrc = [];
 import './index.scss';
 import './productlist/index.scss';
+import {Region} from './../../../components/'
 
 @connect(state=>state.active,actions)
 export default class Index extends Component {
@@ -33,9 +33,12 @@ export default class Index extends Component {
       products:[],
       activeAllName: '',
       weChatNumber:'',
+      productIds:[],
       isOpened:false,
       docLocations:[],
-      activeAllPrice:''
+      activeAllPrice:'',
+      isShowPublic:false,
+      region:'请选择省市区'
     };
     this.init();
   }
@@ -50,9 +53,11 @@ export default class Index extends Component {
 
   componentWillMount () {
     var productList = [];
-    // console.log('this.$router.params.ids',this.$router.params.ids);
     if(this.$router.params.ids != undefined){
        productIds = this.$router.params.ids.split(',');
+       this.setState({
+          productIds:productIds
+       })
     }
     if(productIds.length>0){
         productIds.map((item,index)=>{
@@ -62,7 +67,6 @@ export default class Index extends Component {
           };
           this.props.dispatchQueryProductInfo(payload).then((res)=>{
             if(res.result === "success"){
-
               this.getImgUrl(res.content.location)
               .then(response=>{
                   res.content.location = response;
@@ -75,6 +79,8 @@ export default class Index extends Component {
           })
         });
     }
+
+    this.init();
   }
 
   componentDidMount(){
@@ -114,6 +120,12 @@ export default class Index extends Component {
       });
     }
 
+    if(this.props.address !== ''){
+      this.setState({
+        region:this.props.address
+      });
+    }
+
     if(this.props.imgs.length > 0){
       var docLocations = [];
       this.props.imgs.map((item,key)=>{
@@ -130,7 +142,7 @@ export default class Index extends Component {
     this.initGroup();
   }
 
-  initGroup(){
+  async initGroup(){
     var groups = [];
     for(var i =1; i<15; i++){
       groups.push(i);
@@ -138,6 +150,21 @@ export default class Index extends Component {
     this.setState({
       groupItem: groups
     });
+
+    const result = await this.getAuthInfo();
+    this.setState({
+      region:result.areaCode === "" ? "请选择省市区" : result.areaCode,
+    });
+    if(result.cellphone === null || result.cellphone === ""){
+      this.setState({
+        isShowPublic:false
+      });
+    }
+    else{
+      this.setState({
+        isShowPublic:true
+      });
+    }
   }
 
   HandlePickerChange (files){
@@ -191,14 +218,11 @@ export default class Index extends Component {
       fileName:'name'
     };
 
-    this.props.dispatchUploadFile(payload).then((res)=>{
-      console.log('res',res);
-    })
+    this.props.dispatchUploadFile(payload);
   }
 
   handlePickerViewChange(e){
     const val = e.detail.value;
-    console.log("val",val);
   }
 
   handlePickerChange(e){
@@ -215,12 +239,12 @@ export default class Index extends Component {
     });
   }
 
-  handlePickerColumnChange(e){
-    console.log('e',e);
-  }
-
-  handleToUpload(){
-    console.log('handleToUpload');
+  onGetRegion(region) {
+    console.log('region',region);
+    this.props.disptachServiceAddress(region);
+    // 参数region为选择的省市区
+    this.setState({region});
+    return region;
   }
 
   onDateStartChange = e =>{
@@ -243,10 +267,11 @@ export default class Index extends Component {
       'type': type
     });
   }
-  
-  async onPublish(e){
-    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber} = this.state;
-    if(activeName === ''){
+
+  async onPublish(){
+    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber,region} = this.state;
+    console.log('region',region);
+    if(activeName === '' || activeName === undefined){
       this.handleAlert('error','请填写活动名称')
       return;
     }
@@ -262,6 +287,10 @@ export default class Index extends Component {
       this.handleAlert('error','请选择结束时间')
       return;
     }
+    if(region === '请选择省市区'){
+      this.handleAlert('error','请选择省市区')
+      return;
+    }
     if(docLocations.length <= 0){
       this.handleAlert('error','请选择上传主图')
       return;
@@ -272,7 +301,7 @@ export default class Index extends Component {
     // }
     const result = await getAuthInfo();
     let payload = {
-      "areaCode": "string",
+      "areaCode": region,
       "docLocations": docLocations,
       "id": 0,
       "name": activeName,
@@ -283,16 +312,7 @@ export default class Index extends Component {
       "userId": result.id,
       "wechatId": weChatNumber
     };
-    if(result.cellphone === null || result.cellphone === ""){
-      this.setState({
-        isOpened:true
-      });
-      return;
-    }else{
-      this.setState({
-        isOpened:false
-      });
-    }
+
     try{
       this.props.dispatchCreateActive(payload).then((res)=>{
         if(res && res.result === "success" && res.content !=null){
@@ -302,7 +322,7 @@ export default class Index extends Component {
         }else{
           this.handleAlert('error',res.error);
         }
-      });
+      })
     }
     catch(e){
       console.log('e',e);
@@ -310,63 +330,70 @@ export default class Index extends Component {
   }
 
   async getPhoneNumber(e) {
-      if (e.detail.encryptedData && e.detail.iv) {
-          let payload = {
-            iv: e.detail.iv,
-            phone: e.detail.encryptedData
-          };
-          const result = await this.props.dispatchWeixinDecrypt(payload);
-          var object = JSON.parse(result.content);
-          if(object.phoneNumber){
-            let params = {
-                cellphone:object.phoneNumber
-            };
-            const update =  await this.props.UpdateUserInfo(params);
-            const data = await this.props.GetUserInfo({});
-            console.log('data',data);
-            const result = data.content;
-            console.log('getPhoneNumber',result);
-            Taro.setStorage({key:'userinfo',data:result});
-            console.log('getPhoneNumber',result);
-            if(data.result === "success"){
-                this.setState({
-                  isOpened:false
-                })
-             }else{
-               this.setState({
-                 isOpened:true
-               })
-             }
-          }
-          else{
-            Taro.showToast({
-              title: '网络异常',
-              icon: 'none',
-              duration: 3000,
-              mask: true
-            });
-          }
-      } else {
-        Taro.showToast({
-          title: '取消授权成功',
-          icon: 'success',
-          duration: 3000,
-          mask: true
-        });
+    if(e.detail.errMsg==="getPhoneNumber:ok"){
+      var that = this;
+      const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,region} = this.state;
+      if(activeName === '' || activeName === undefined){
+        this.handleAlert('error','请填写活动名称')
+        return;
       }
-    // }catch (error) {
-    //   console.log('error',error);
-    //   Taro.showToast({
-    //     title: '系统错误',
-    //     icon: 'none',
-    //     duration: 3000,
-    //     mask: true
-    //   });
-    // }
+      if(groupItemChecked === '请选择'){
+          this.handleAlert('error','请选择成团人数')
+          return;
+      }
+      if(dateStart == '请选择'){
+        this.handleAlert('error','请选择开始时间')
+        return;
+      }
+      if(dateEnd == '请选择'){
+        this.handleAlert('error','请选择结束时间')
+        return;
+      }
+      if(region === '请选择省市区'){
+        this.handleAlert('error','请选择省市区')
+        return;
+      }
+      if(docLocations.length <= 0){
+        this.handleAlert('error','请选择上传主图')
+        return;
+      }
+      if (e.detail.encryptedData && e.detail.iv) {
+            let payload = {
+              iv: e.detail.iv,
+              phone: e.detail.encryptedData
+            };
+            const result = await this.props.dispatchWeixinDecrypt(payload);
+            var object = JSON.parse(result.content);
+            if(object.phoneNumber){
+              let params = {
+                  cellphone:object.phoneNumber
+              };
+              await this.props.UpdateUserInfo(params);
+              const data = await this.props.GetUserInfo({});
+              const result = data.content;
+              Taro.setStorage({key:'userinfo',data:result});
+              that.onPublish();
+            }
+            else{
+              Taro.showToast({
+                title: '网络异常',
+                icon: 'none',
+                duration: 3000,
+                mask: true
+              });
+            }
+        } else {
+          Taro.showToast({
+            title: '取消授权成功',
+            icon: 'success',
+            duration: 3000,
+            mask: true
+          });
+        }
+    }
   }
 
   handleActiveChange(activeName){
-    console.log('activeName',activeName);
     this.props.disptachActiveName(activeName);
     this.setState({
       activeName
@@ -383,7 +410,7 @@ export default class Index extends Component {
   
   createProduct(){
     Taro.navigateTo({
-      url:'/pages/product/edit'
+      url:'../../../packageA/pages/product/edit'
     })
   }
 
@@ -407,10 +434,9 @@ export default class Index extends Component {
 
   selectProduct(){
     Taro.navigateTo({
-        url:'/pages/product/index'
+        url:'../../../packageA/pages/product/index?productIds='+this.state.productIds
       })
   }
-
 
   handleConfirm(){
     this.setState({
@@ -423,7 +449,6 @@ export default class Index extends Component {
           wechatId:this.state.weChatNumber,
           id:userinfo.id
       };
-
       this.props.UpdateUserInfo(payload).then(res=>{
           console.log('response',res);
       });
@@ -438,98 +463,92 @@ export default class Index extends Component {
  }
 
   render () {
-    const {activeName,dateEnd,dateStart,products,isOpened} = this.state;
+
+    const {activeName,dateEnd,dateStart,products,isOpened,isShowPublic} = this.state;
+    console.log('isShowPublic',isShowPublic);
     const isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
     return (
       <View className="mp-active">
-         <ScrollView scrollY style={{ height: this.getWindowHeight(true,products) }}>
- 
+        <ScrollView scrollY style={{ height: this.getWindowHeight(true,products) }}>
         <AtMessage/>
+          <View className="item" style="border:none;">
+              <Text>活动名称</Text>
+              <AtInput border={false} 
+              value={activeName}
+              onChange={this.handleActiveChange.bind(this)}
+              placeholder="请输入活动名称" />
+          </View> 
 
-        <View className="item">
-            <Text>活动名称</Text>
-            <AtInput border={false} 
-            value={activeName}
-            onChange={this.handleActiveChange.bind(this)}
-            placeholder="请输入活动名称" />
-        </View> 
+          <View className="item">
+              <Picker range={this.state.groupItem} 
+              onChange={this.handlePickerSelectGroupChange}>
+                    <View className='picker'>
+                          <Text>成团人数</Text> 
+                          <Text className="time-tuan"> {this.state.groupItemChecked} </Text>  
+                          <Text className='at-icon at-icon-chevron-right group-count'></Text>
+                    </View>
+              </Picker>
+          </View>
 
-        <View className="item">
-            <Picker mode='selector' range={this.state.groupItem} 
-            onChange={this.handlePickerSelectGroupChange}>
+          <View className="item">
+              <Picker mode='date' onChange={this.onDateStartChange}>
                   <View className='picker'>
-                    <Text className="mp-publish mp-icon-arrow" ></Text> <Text>成团人数</Text> 
-                    <Text className="time"> {this.state.groupItemChecked} </Text>  
+                    <Text>开始时间</Text> 
+                    <Text className="time">{dateStart}</Text>  
+                    <Text className='at-icon at-icon-chevron-right group-count'></Text>
                   </View>
-            </Picker>
+              </Picker>
+          </View>
+
+        <View className="item" style="border:none;">
+              <Picker mode='date' onChange={this.onDateEndChange}>
+                  <View className='picker'>
+                  <Text>结束时间</Text>  
+                  <Text className="time">{dateEnd}</Text>  
+                  <Text className='at-icon at-icon-chevron-right group-count'></Text>
+                  </View>
+              </Picker>
         </View>
 
         <View className="item">
-            <Picker mode='date' onChange={this.onDateStartChange}>
-                <View className='picker'>
-                  <Text className="mp-publish mp-icon-arrow" ></Text> <Text>开始时间</Text> 
-                  <Text className="time">{dateStart}</Text>  
-                </View>
-            </Picker>
+            <Text>活动地点</Text>
+            <Text className="time"></Text>  
+            <Region onGetRegion={this.onGetRegion.bind(this)} />
+            <Text className='at-icon at-icon-chevron-right group-address'></Text>
         </View>
-
-        <View className="item">
-            <Picker mode='date' onChange={this.onDateEndChange}>
-                <View className='picker'>
-                 <Text className="mp-publish mp-icon-arrow" ></Text> <Text>结束时间</Text>  
-                 <Text className="time">  {dateEnd}</Text>  
-                </View>
-            </Picker>
-        </View>
-
-        <AtImagePicker
-           multiple
-           className="uploadImage"
-           files={this.state.files}
-           onChange={this.HandlePickerChange.bind(this)}
-        />
 
         <View className="mp-publish-product">
            <View className="publish-item">
-                        <Text>活动产品</Text>
-                        <Text onClick={this.selectProduct}>选择我的产品</Text>
+                  <Text>活动图片</Text>
            </View>
-            <View className="pulbish-create" onClick={this.createProduct}>
-                      <Text className="mp-icon mp-icon-plus"></Text>
-                      <Text>新增产品</Text>
-            </View>
+           <AtImagePicker
+            multiple
+            className="uploadImage"
+            files={this.state.files}
+            onChange={this.HandlePickerChange.bind(this)}
+          />
+        </View>
+
+        <View className="mp-publish-product">
+           <View className="publish-item">
+                  <Text>活动产品</Text>
+                  <Text onClick={this.selectProduct}>选择我的产品</Text>
+           </View>
+           <View className="pulbish-create" onClick={this.createProduct}>
+                  <Text className="mp-icon mp-icon-plus"></Text>
+                  <Text>新增产品</Text>
+           </View>
            <ProductList products={products}/>
-          
-                     {/* <View className="publish-active">
-                            <Text>活动价</Text>
-                              <AtInput border={false} 
-                                          value={activePrice}
-                                          onChange={this.onChangeActivePrice.bind(this)}
-                                          placeholder="请输入活动优惠价" />
-                      </View> */}
         </View>
 
-
-
-        <AtModal isOpened={isOpened}>
-        <AtModalHeader>授权获取手机号</AtModalHeader>
-        <AtModalContent>
-           <View className="mp-user__authinfo">申请获取以下权限</View>
-           获取你的手机号
-        </AtModalContent>
-        <View className="wechat-login">
-          <Button className="getPhone" formType='submit' openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>获取手机号</Button>
-          {/* <AtButton
-             className="mp-user__login"
-             text='微信登录'
-             openType='getUserInfo' onGetUserInfo={this.handleAuthClick.bind(this)}
-             type='primary' size='small'>授权登录</AtButton> */}
-        </View>
-      </AtModal>
       </ScrollView>
         <View className="publish">
-            <View onClick={this.onPublish}>立即发布</View>
-        </View> 
+          {
+            isShowPublic?(<View onClick={this.onPublish}>立即发布</View>) : (<Button className="getPhone" formType='submit' openType='getPhoneNumber' 
+            onGetPhoneNumber={this.getPhoneNumber.bind(this)}>
+            立即发布 </Button>)
+          }
+        </View>
       </View>
     )
   }

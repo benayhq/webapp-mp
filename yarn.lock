@@ -102,19 +102,6 @@
     promise-polyfill "^7.1.2"
     regenerator-runtime "^0.11.1"
 
-"@tarojs/components@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/components/download/@tarojs/components-1.2.23.tgz#58bd8cf0a761c3b3c5d8e029118203c64d34dc4f"
-  integrity sha1-WL2M8Kdhw7PF2OApEYIDxk003E8=
-  dependencies:
-    better-scroll "^1.14.1"
-    classnames "^2.2.5"
-    nervjs "^1.3.0"
-    omit.js "^1.0.0"
-    resolve-pathname "^3.0.0"
-    swiper "^4.4.2"
-    weui "^1.1.2"
-
 "@tarojs/components@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/components/download/@tarojs/components-1.3.10.tgz#283392c56b83ae0def98022caaeb9adffbae7d00"
@@ -174,18 +161,6 @@
     "@tarojs/taro" "1.3.10"
     "@tarojs/utils" "1.3.10"
 
-"@tarojs/router@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/router/download/@tarojs/router-1.2.23.tgz#5821ef22f7803bf06e3258d023d0f5d97a38825c"
-  integrity sha1-WCHvIveAO/BuMljQI9D12Xo4glw=
-  dependencies:
-    invariant "2.2.4"
-    lodash "4.17.11"
-    resolve-pathname "2.2.0"
-    rollup-plugin-alias "1.4.0"
-    value-equal "0.4.0"
-    warning "4.0.2"
-
 "@tarojs/router@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/router/download/@tarojs/router-1.3.10.tgz#34c86e5dd048b3fd06ea543c41cc0c8b02a3ece6"
@@ -198,16 +173,6 @@
     value-equal "0.4.0"
     warning "4.0.2"
 
-"@tarojs/taro-alipay@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro-alipay/download/@tarojs/taro-alipay-1.2.23.tgz#bc9de10ef40cb96ebc1fcd5ad899178770df0667"
-  integrity sha1-vJ3hDvQMuW68H81a2JkXh3DfBmc=
-  dependencies:
-    "@tarojs/taro" "1.2.23"
-    "@tarojs/utils" "1.2.23"
-    lodash "^4.17.10"
-    prop-types "^15.6.1"
-
 "@tarojs/taro-alipay@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/taro-alipay/download/@tarojs/taro-alipay-1.3.10.tgz#3cb92275703db0e7d90db2a189f757b7ffbe63c6"
@@ -217,16 +182,6 @@
     "@tarojs/utils" "1.3.10"
     lodash "^4.17.10"
     prop-types "^15.6.1"
-
-"@tarojs/taro-h5@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro-h5/download/@tarojs/taro-h5-1.2.23.tgz#d7e91df470a8d844e868b7e62f5afc9a545d06aa"
-  integrity sha1-1+kd9HCo2EToaLfmL1r8mlRdBqo=
-  dependencies:
-    base64-js "^1.3.0"
-    jsonp-retry "^1.0.3"
-    mobile-detect "^1.4.2"
-    whatwg-fetch "^2.0.4"
 
 "@tarojs/taro-h5@1.3.10":
   version "1.3.10"
@@ -239,16 +194,6 @@
     raf "^3.4.1"
     whatwg-fetch "^2.0.4"
 
-"@tarojs/taro-swan@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro-swan/download/@tarojs/taro-swan-1.2.23.tgz#8bf8520974855ba919c60431524269e87b5628aa"
-  integrity sha1-i/hSCXSFW6kZxgQxUkJp6HtWKKo=
-  dependencies:
-    "@tarojs/taro" "1.2.23"
-    "@tarojs/utils" "1.2.23"
-    lodash "^4.17.10"
-    prop-types "^15.6.1"
-
 "@tarojs/taro-swan@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/taro-swan/download/@tarojs/taro-swan-1.3.10.tgz#ca2b30c64f05c74f94ddb40a3c958d1846971c68"
@@ -256,16 +201,6 @@
   dependencies:
     "@tarojs/taro" "1.3.10"
     "@tarojs/utils" "1.3.10"
-    lodash "^4.17.10"
-    prop-types "^15.6.1"
-
-"@tarojs/taro-tt@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro-tt/download/@tarojs/taro-tt-1.2.23.tgz#6180b3f6df6d5a26bcdc14c0974653e7b4f63772"
-  integrity sha1-YYCz9t9tWia83BTAl0ZT57T2N3I=
-  dependencies:
-    "@tarojs/taro" "1.2.23"
-    "@tarojs/utils" "1.2.23"
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
@@ -279,16 +214,6 @@
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-"@tarojs/taro-weapp@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro-weapp/download/@tarojs/taro-weapp-1.2.23.tgz#7b1a888d97d068faa5a144d7639441a6e167f0fa"
-  integrity sha1-exqIjZfQaPqloUTXY5RBpuFn8Po=
-  dependencies:
-    "@tarojs/taro" "1.2.23"
-    "@tarojs/utils" "1.2.23"
-    lodash "^4.17.10"
-    prop-types "^15.6.1"
-
 "@tarojs/taro-weapp@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/taro-weapp/download/@tarojs/taro-weapp-1.3.10.tgz#fc939d296e96bd169362d258c22c503945b1a35f"
@@ -299,20 +224,10 @@
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-"@tarojs/taro@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/taro/download/@tarojs/taro-1.2.23.tgz#6fea8e5553a21efba450543417fb91da6c241c86"
-  integrity sha1-b+qOVVOiHvukUFQ0F/uR2mwkHIY=
-
 "@tarojs/taro@1.3.10":
   version "1.3.10"
   resolved "http://r.cnpmjs.org/@tarojs/taro/download/@tarojs/taro-1.3.10.tgz#687dead4a737bbcdc22c1e97deb10e294381f0dc"
   integrity sha1-aH3q1Kc3u83CLB6X3rEOKUOB8Nw=
-
-"@tarojs/utils@1.2.23":
-  version "1.2.23"
-  resolved "http://r.cnpmjs.org/@tarojs/utils/download/@tarojs/utils-1.2.23.tgz#dd89f6894358718021252e2873eeef84920f4359"
-  integrity sha1-3Yn2iUNYcYAhJS4oc+7vhJIPQ1k=
 
 "@tarojs/utils@1.3.10":
   version "1.3.10"
@@ -1847,11 +1762,6 @@ caller-path@^0.1.0:
   dependencies:
     callsites "^0.2.0"
 
-callsite@latest:
-  version "1.0.0"
-  resolved "http://r.cnpmjs.org/callsite/download/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
-  integrity sha1-KAOY5dZkvXQDi28JBRU+borxvCA=
-
 callsites@^0.2.0:
   version "0.2.0"
   resolved "http://r.cnpmjs.org/callsites/download/callsites-0.2.0.tgz#afab96262910a7f33c19a5775825c69f34e350ca"
@@ -2184,13 +2094,6 @@ concat-stream@^1.5.0, concat-stream@^1.6.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-config.js@^0.1.0:
-  version "0.1.0"
-  resolved "http://r.cnpmjs.org/config.js/download/config.js-0.1.0.tgz#b8c1080ba26f309835a4796e20b3624be760bc0d"
-  integrity sha1-uMEIC6JvMJg1pHluILNiS+dgvA0=
-  dependencies:
-    callsite latest
-
 connect-history-api-fallback@^1.3.0:
   version "1.6.0"
   resolved "http://r.cnpmjs.org/connect-history-api-fallback/download/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
@@ -2380,16 +2283,6 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
-
-crypto-random-string@^1.0.0:
-  version "1.0.0"
-  resolved "http://r.cnpmjs.org/crypto-random-string/download/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
-  integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
-
-crypto.js@^1.2.1:
-  version "1.2.1"
-  resolved "http://r.cnpmjs.org/crypto.js/download/crypto.js-1.2.1.tgz#6e6ea7c066a3a38627a812ccd16c9dc309aa08f0"
-  integrity sha1-bm6nwGajo4YnqBLM0WydwwmqCPA=
 
 css-loader@1.0.0:
   version "1.0.0"
@@ -4765,6 +4658,11 @@ lodash@4.17.11, lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3,
   resolved "http://r.cnpmjs.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
 
+lodash@latest:
+  version "4.17.15"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 log-symbols@^2.1.0, log-symbols@^2.2.0:
   version "2.2.0"
   resolved "http://r.cnpmjs.org/log-symbols/download/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -5146,11 +5044,6 @@ nan@^2.9.2:
   resolved "http://r.cnpmjs.org/nan/download/nan-2.13.1.tgz#a15bee3790bde247e8f38f1d446edcdaeb05f2dd"
   integrity sha1-oVvuN5C94kfo848dRG7c2usF8t0=
 
-nanoid@^2.0.1:
-  version "2.0.3"
-  resolved "http://r.cnpmjs.org/nanoid/download/nanoid-2.0.3.tgz#dde999e173bc9d7bd2ee2746b89909ade98e075e"
-  integrity sha1-3emZ4XO8nXvS7idGuJkJremOB14=
-
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "http://r.cnpmjs.org/nanomatch/download/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -5192,15 +5085,6 @@ neo-async@^2.5.0:
   resolved "http://r.cnpmjs.org/neo-async/download/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha1-udFeTXHGdikIZUtRg+04t1M0CDU=
 
-nerv-devtools@^1.3.9:
-  version "1.3.13"
-  resolved "http://r.cnpmjs.org/nerv-devtools/download/nerv-devtools-1.3.13.tgz#600717e7652bdc163fe81123afd364719caf0468"
-  integrity sha1-YAcX52Ur3BY/6BEjr9NkcZyvBGg=
-  dependencies:
-    nerv-shared "1.3.7"
-    nerv-utils "1.3.12"
-    nervjs "1.3.13"
-
 nerv-devtools@^1.4.3:
   version "1.4.3"
   resolved "http://r.cnpmjs.org/nerv-devtools/download/nerv-devtools-1.4.3.tgz#b05cf54a9d9313c0831b10cf9db04254d60d9c3b"
@@ -5210,33 +5094,15 @@ nerv-devtools@^1.4.3:
     nerv-utils "1.4.3"
     nervjs "1.4.3"
 
-nerv-shared@1.3.7:
-  version "1.3.7"
-  resolved "http://r.cnpmjs.org/nerv-shared/download/nerv-shared-1.3.7.tgz#7db2265d5428081c153592f8d8afd18812f40d76"
-  integrity sha1-fbImXVQoCBwVNZL42K/RiBL0DXY=
-
 nerv-shared@1.4.0:
   version "1.4.0"
   resolved "http://r.cnpmjs.org/nerv-shared/download/nerv-shared-1.4.0.tgz#4ae903f215888ab886b3d04ae3b95d5327e67f43"
   integrity sha1-SukD8hWIiriGs9BK47ldUyfmf0M=
 
-nerv-utils@1.3.12:
-  version "1.3.12"
-  resolved "http://r.cnpmjs.org/nerv-utils/download/nerv-utils-1.3.12.tgz#f08d26e46dfe84f4159654941e37392fc6ee2768"
-  integrity sha1-8I0m5G3+hPQVllSUHjc5L8buJ2g=
-
 nerv-utils@1.4.3:
   version "1.4.3"
   resolved "http://r.cnpmjs.org/nerv-utils/download/nerv-utils-1.4.3.tgz#5a23d109147f56f478beed24794ff942fe4e4927"
   integrity sha1-WiPRCRR/VvR4vu0keU/5Qv5OSSc=
-
-nervjs@1.3.13, nervjs@^1.3.0, nervjs@^1.3.9:
-  version "1.3.13"
-  resolved "http://r.cnpmjs.org/nervjs/download/nervjs-1.3.13.tgz#0f3d5d5d09ced9c9a2329c4172cd707b32a1cc42"
-  integrity sha1-Dz1dXQnO2cmiMpxBcs1wezKhzEI=
-  dependencies:
-    nerv-shared "1.3.7"
-    nerv-utils "1.3.12"
 
 nervjs@1.4.3, nervjs@^1.4.3:
   version "1.4.3"
@@ -6862,11 +6728,6 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-sha1.js@^0.1.1:
-  version "0.1.1"
-  resolved "http://r.cnpmjs.org/sha1.js/download/sha1.js-0.1.1.tgz#863fff0f11eaa4c6911faec18ebd2cb2cdd5a57c"
-  integrity sha1-hj//DxHqpMaRH67Bjr0sss3VpXw=
-
 shallow-clone@^1.0.0:
   version "1.0.0"
   resolved "http://r.cnpmjs.org/shallow-clone/download/shallow-clone-1.0.0.tgz#4480cd06e882ef68b2ad88a3ea54832e2c48b571"
@@ -7367,28 +7228,17 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
-taro-plugin-canvas@^1.0.5:
-  version "1.0.5"
-  resolved "http://r.cnpmjs.org/taro-plugin-canvas/download/taro-plugin-canvas-1.0.5.tgz#852074beaedd1d05d0bd73fe0c2593e5a76400ef"
-  integrity sha1-hSB0vq7dHQXQvXP+DCWT5adkAO8=
+taro-navigationbar@^1.2.1:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/taro-navigationbar/-/taro-navigationbar-1.3.0.tgz#e753905d743a2b78d1b3b651bb7b23d6e79f53ba"
+  integrity sha512-coR+pegnsRv3C1v7gFqxFQlbWL+s2RzfmmcU1T0xUwGpfs+cTMpDgto7Bk42vyvwJEzmUkl7hXegaXkYXZGDHA==
   dependencies:
-    "@tarojs/components" "1.2.23"
-    "@tarojs/router" "1.2.23"
-    "@tarojs/taro" "1.2.23"
-    "@tarojs/taro-alipay" "1.2.23"
-    "@tarojs/taro-h5" "1.2.23"
-    "@tarojs/taro-swan" "1.2.23"
-    "@tarojs/taro-tt" "1.2.23"
-    "@tarojs/taro-weapp" "1.2.23"
-    crypto-random-string "^1.0.0"
-    nanoid "^2.0.1"
-    nerv-devtools "^1.3.9"
-    nervjs "^1.3.9"
+    lodash latest
 
-taro-ui@^2.0.2:
-  version "2.0.2"
-  resolved "http://r.cnpmjs.org/taro-ui/download/taro-ui-2.0.2.tgz#178112e81066a77135d7b0da6d68137cff5ddb5c"
-  integrity sha1-F4ES6BBmp3E117DabWgTfP9d21w=
+taro-ui@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/taro-ui/-/taro-ui-2.2.2.tgz#485847ed2ac2343c394477b25bbea439e0adc03d"
+  integrity sha512-r6UDdmJ24T4pLTjQ7cxkn63uiZ2YXEHKFAdjDL8NvbJc8WreyJUymHs/zHqCE4gWktWYkv6L2O9x8G+s94vyfw==
   dependencies:
     "@types/react" "^16.7.3"
     bind-decorator "^1.0.11"

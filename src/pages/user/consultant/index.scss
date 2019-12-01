@@ -3,7 +3,7 @@ image {
     height: 240px;
     display: inline-block;
     overflow: hidden;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 .mp-history{
     .list-title{
@@ -36,24 +36,30 @@ image {
         flex-direction: row;
         height: 180px;
         border-bottom:1px solid #F5F5F9;
+        background: #FFFFFF;
     }
 
     .list-wrapper>view:nth-child(1){
-        width: 30%;
-
         &>image{
             width: 160px;
             height: 160px;
-            margin: 10px;
+            margin: 0 20px 0 20px;
         }
     }
  
     .list-wrapper>view:nth-child(2){
         width: 65%;
-        height: 50px;
+        height: 55px;
+        line-height: 55px;
         font-size:32px;
         font-family:PingFangSC-Regular;
         font-weight:400;
         color:rgba(187,187,187,1);
     }
+}
+
+.rateItem{
+    position: relative;
+    top: -45px;
+    left: 228px;
 }

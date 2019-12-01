@@ -8,7 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
+
+require("../../npm/@tarojs/async-await/index.js");
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -38,7 +40,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -52,13 +54,11 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loopArray433", "$compid__2159", "$compid__2160", "$compid__2161", "$compid__2162", "loaded", "userName", "isAgent", "profit", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
-      navigationBarTitleText: '个人中心'
-    }, _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loaded", "isAgree", "avatarUrl", "isAgent", "profit", "orders", "list", "isShowLoanApp", "agreement", "userName", "showUserText", "flag", "current", "context1", "context2", "context3", "context4", "isOpened"], _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.customComponents = ["Loading", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction", "InCome", "UserOrder", "AtList", "AtListItem", "AtCard"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -81,9 +81,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         showUserText: '',
         avatarUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559209366699&di=07cc06c3fdf4cbac5d814dca9cd680b5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa12f24e688c1cda3ff4cc453f3486a88adaf08cc2cdb-tQvJqX_fw658',
         isAgree: false,
-        loaded: false
+        loaded: false,
+        agreement: null
       };
-      this.$$refs = [];
     }
   }, {
     key: "componentDidMount",
@@ -94,6 +94,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     key: "init",
     value: function init() {
       this.autoLogin();
+      this.initAgreeMent();
     }
   }, {
     key: "initOrderNotice",
@@ -173,7 +174,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "getAuthInfo",
+    key: "initAgreeMent",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var result;
@@ -181,12 +182,17 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
-                  return res.data;
-                });
-                return _context2.abrupt("return", result);
+                _context2.next = 2;
+                return this.props.GetAgreeMent();
 
               case 2:
+                result = _context2.sent;
+
+                this.setState({
+                  agreement: result
+                });
+
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -194,8 +200,36 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         }, _callee2, this);
       }));
 
-      function getAuthInfo() {
+      function initAgreeMent() {
         return _ref3.apply(this, arguments);
+      }
+
+      return initAgreeMent;
+    }()
+  }, {
+    key: "getAuthInfo",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = _index2.default.getStorage({ key: 'userinfo' }).then(function (res) {
+                  return res.data;
+                });
+                return _context3.abrupt("return", result);
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getAuthInfo() {
+        return _ref4.apply(this, arguments);
       }
 
       return getAuthInfo;
@@ -203,57 +237,57 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "autoLogin",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         var currentObj;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 currentObj = this;
 
                 wx.login({
                   success: function () {
-                    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(res) {
+                    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(res) {
                       var payload, response, result, rstUserInfo, data, isAgent, creatorInstance;
-                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                      return regeneratorRuntime.wrap(function _callee4$(_context4) {
                         while (1) {
-                          switch (_context3.prev = _context3.next) {
+                          switch (_context4.prev = _context4.next) {
                             case 0:
                               payload = { code: res.code };
-                              _context3.next = 3;
+                              _context4.next = 3;
                               return currentObj.props.WeChatLogin(payload);
 
                             case 3:
-                              response = _context3.sent;
+                              response = _context4.sent;
 
                               if (!(response.result === "success")) {
-                                _context3.next = 22;
+                                _context4.next = 22;
                                 break;
                               }
 
-                              _context3.next = 7;
+                              _context4.next = 7;
                               return _index2.default.setStorage({ key: 'sessionId', data: response.content });
 
                             case 7:
-                              result = _context3.sent;
+                              result = _context4.sent;
 
                               if (!(result.errMsg === "setStorage:ok")) {
-                                _context3.next = 20;
+                                _context4.next = 20;
                                 break;
                               }
 
-                              _context3.next = 11;
+                              _context4.next = 11;
                               return currentObj.props.GetUserInfo({});
 
                             case 11:
-                              rstUserInfo = _context3.sent;
+                              rstUserInfo = _context4.sent;
                               data = rstUserInfo.content, isAgent = data.role === "AGENT" ? true : false, creatorInstance = new _create2.default();
 
                               _index2.default.setStorage({ key: 'userinfo', data: data });
                               currentObj.checkAuth(data);
                               currentObj.initReservationPlan();
                               currentObj.initLoanFlag();
-                              _context3.next = 19;
+                              _context4.next = 19;
                               return currentObj.initOrderNotice(creatorInstance, isAgent);
 
                             case 19:
@@ -268,7 +302,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                               });
 
                             case 20:
-                              _context3.next = 23;
+                              _context4.next = 23;
                               break;
 
                             case 22:
@@ -279,14 +313,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
                             case 23:
                             case "end":
-                              return _context3.stop();
+                              return _context4.stop();
                           }
                         }
-                      }, _callee3, this);
+                      }, _callee4, this);
                     }));
 
                     function success(_x3) {
-                      return _ref5.apply(this, arguments);
+                      return _ref6.apply(this, arguments);
                     }
 
                     return success;
@@ -295,14 +329,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
 
               case 2:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee5, this);
       }));
 
       function autoLogin() {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       }
 
       return autoLogin;
@@ -325,36 +359,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         });
       }
     }
-  }, {
-    key: "getJpushAuthInfo",
-    value: function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-        var result;
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                result = _index2.default.getStorage({ key: 'jpushAuth' }).then(function (res) {
-                  return res.data;
-                }).catch(function () {
-                  return '';
-                });
-                return _context5.abrupt("return", result);
-
-              case 2:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-
-      function getJpushAuthInfo() {
-        return _ref6.apply(this, arguments);
-      }
-
-      return getJpushAuthInfo;
-    }()
   }, {
     key: "handleAuthClick",
     value: function () {
@@ -567,20 +571,10 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
-      var _this4 = this;
-
       var _$anonymousState__temp, _$anonymousState__temp2;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var $compid__2159 = (0, _index.genCompid)(__prefix + "$compid__2159");
-      var $compid__2160 = (0, _index.genCompid)(__prefix + "$compid__2160");
-      var $compid__2161 = (0, _index.genCompid)(__prefix + "$compid__2161");
-      var $compid__2162 = (0, _index.genCompid)(__prefix + "$compid__2162");
-      var loopArray433 = void 0;
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -593,60 +587,20 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           isOpened = _state.isOpened,
           showUserText = _state.showUserText,
           list = _state.list,
-          isAgree = _state.isAgree;
+          isAgree = _state.isAgree,
+          agreement = _state.agreement;
 
       var isShowLoanApp = !isAgent && flag;
-
       var renderTemplate = null;
-
-      console.log('isAgent', isAgent);
 
       if (!loaded) {} else {
         _$anonymousState__temp = isAgent ? "position:relative;display:" + (isAgent === true ? 'block' : 'none') + ";top:-48px;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" : null;
         _$anonymousState__temp2 = "position:relative;display:" + (isAgent === true ? 'none' : 'block') + ";top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;";
-        var $props__2159 = {
-          "isOpened": isAgree,
-          "closeOnClickOverlay": false
-        };
-        var $props__2160 = {
-          "profit": profit
-        };
-        var $props__2161 = {
-          "list": orders
-        };
-        var $props__2162 = {
-          "title": this.__state.context1
-        };
-        loopArray433 = list.length > 0 ? list.map(function (item, _anonIdx) {
-          item = {
-            $original: (0, _index.internal_get_original)(item)
-          };
-          var $compid__2158 = (0, _index.genCompid)(__prefix + "jhbxfFdoKJ" + _anonIdx);
-          _index.propsManager.set({
-            "title": item.$original.text,
-            "arrow": "right",
-            "thumb": item.$original.url,
-            "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
-          }, $compid__2158);
-          return {
-            $compid__2158: $compid__2158,
-            $original: item.$original
-          };
-        }) : [];
-        _index.propsManager.set($props__2159, $compid__2159);
-        isAgent && _index.propsManager.set($props__2160, $compid__2160);
-        _index.propsManager.set($props__2161, $compid__2161);
-        isShowLoanApp === true && _index.propsManager.set($props__2162, $compid__2162);
       }
 
       Object.assign(this.__state, {
         _$anonymousState__temp: _$anonymousState__temp,
         _$anonymousState__temp2: _$anonymousState__temp2,
-        loopArray433: loopArray433,
-        $compid__2159: $compid__2159,
-        $compid__2160: $compid__2160,
-        $compid__2161: $compid__2161,
-        $compid__2162: $compid__2162,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
@@ -654,7 +608,18 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = ["handleCloseAgree", "handleConfirmAgree", "handleUpdateInfo", "handlePublish", "handleAppLoan", "handleChangeState"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Index.properties = {
+  "dispatchReservationCount": null,
+  "dispatchReservationPlan": null,
+  "dispatchLoanInfo": null,
+  "GetAgreeMent": null,
+  "UpdateUserInfo": null,
+  "ChangeToAgent": null,
+  "ChangeToCustomer": null,
+  "GetUserInfo": null
+};
+Index.$$events = ["handleCloseAgree", "handleConfirmAgree", "handleUpdateInfo", "handlePublish", "handleJumpUrl", "handleAppLoan", "handleChangeState"];
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

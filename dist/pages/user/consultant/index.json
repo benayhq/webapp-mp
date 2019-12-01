@@ -1,7 +1,6 @@
 {
   "usingComponents": {
-    "at-list": "../../../npm/taro-ui/dist/weapp/components/list/index",
-    "at-list-item": "../../../npm/taro-ui/dist/weapp/components/list/item/index"
+    "item": "../component/consultantItem/index"
   },
   "navigationBarTitleText": "历史咨询师"
 }

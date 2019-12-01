@@ -8,7 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class, _class2, _temp2;
+var _dec, _class;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -32,7 +32,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
+}, actions), _dec(_class = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -46,9 +46,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray425", "actives", "dispatchOwnerServiceHistory"], _this.config = {
-      navigationBarTitleText: '历史咨询师'
-    }, _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["actives"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -58,7 +56,6 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       this.state = {
         actives: []
       };
-      this.$$refs = [];
     }
   }, {
     key: "componentDidMount",
@@ -72,63 +69,25 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       });
     }
   }, {
-    key: "handleListItem",
-    value: function handleListItem(id) {
-      _index2.default.navigateTo({
-        url: '../../../pages/user/active/index?agentId=' + id
-      });
-    }
-  }, {
     key: "_createData",
     value: function _createData() {
-      var _this3 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       var actives = this.__state.actives;
 
 
-      var loopArray425 = actives ? actives.map(function (item, _anonIdx) {
-        item = {
-          $original: (0, _index.internal_get_original)(item)
-        };
-        var $compid__2034 = (0, _index.genCompid)(__prefix + "RmzwKadpjm" + _anonIdx);
-        _index.propsManager.set({
-          "onClick": _this3.handleListItem.bind(_this3, item.$original.id),
-          "title": item.$original.name,
-          "note": item.$original.address,
-          "arrow": "right",
-          "thumb": item.$original.profileUrl
-        }, $compid__2034);
-        return {
-          $compid__2034: $compid__2034,
-          $original: item.$original
-        };
-      }
-      // <View className="list-wrapper">
-      //   <View>
-      //       <image className="icon-header" src={item.profileUrl} ></image>
-      //   </View>
-      //   <View>
-      //       <View>{item.name}</View>
-      //       {/* <View>5.0分（2000人评）| ￥29999</View> */}
-      //       <View>地址：{item.address}</View>
-      //   </View>
-      // </View>
-      ) : [];
-      Object.assign(this.__state, {
-        loopArray425: loopArray425
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class2.$$events = [], _class2.$$componentPath = "pages/user/consultant/index", _temp2)) || _class);
+}(_index.Component)) || _class);
+Index.properties = {
+  "dispatchOwnerServiceHistory": null
+};
+Index.$$events = [];
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

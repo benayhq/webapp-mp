@@ -27,6 +27,7 @@ function jump(options) {
 function urlStringify(url, payload) {
   var encode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
+
   var arr = Object.keys(payload).map(function (key) {
     return key + '=' + (encode ? encodeURIComponent(payload[key]) : payload[key]);
   });

@@ -8,8 +8,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
-
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -22,9 +20,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var loading = "/components/loading/assets/loading.gif";
-
-var Loading = (_temp2 = _class = function (_BaseComponent) {
+var Loading = function (_BaseComponent) {
   _inherits(Loading, _BaseComponent);
 
   function Loading() {
@@ -38,33 +34,29 @@ var Loading = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loading.__proto__ || Object.getPrototypeOf(Loading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loading"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loading.__proto__ || Object.getPrototypeOf(Loading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Loading, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Loading.prototype.__proto__ || Object.getPrototypeOf(Loading.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      Object.assign(this.__state, {
-        loading: loading
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Loading;
-}(_index.Component), _class.$$events = [], _class.$$componentPath = "components/loading/index", _temp2);
+}(_index.Component);
+
+Loading.properties = {};
+Loading.$$events = [];
 exports.default = Loading;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Loading));

@@ -186,9 +186,9 @@ class EditProduct extends Component{
               toastText:'保存成功',
               status: 'success'
             });
-            Taro.navigateTo({
-              url:'/pages/product/index'
-            })
+            // Taro.navigateTo({
+            //   url:'/pages/product/index'
+            // })
           }
         });
       }
@@ -200,9 +200,9 @@ class EditProduct extends Component{
               toastText:'保存成功',
               status: 'success'
             });
-            Taro.navigateTo({
-              url:'/pages/product/index'
-            })
+            // Taro.navigateTo({
+            //   url:'/pages/product/index'
+            // })
           }
           else{
             this.handleAlert('error',res.content);

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateNewUser = exports.GetUserInfo = exports.UpdateUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToCustomer = exports.ChangeToAgent = exports.WeChatLogin = undefined;
+exports.CloseAction = exports.GetAgreeMent = exports.CreateNewUser = exports.GetUserInfo = exports.UpdateUserInfo = exports.dispatchWeixinDecrypt = exports.dispatchOwnerActiveHistory = exports.dispatchOwnerServiceHistory = exports.dispatchDownLoadUrl = exports.dispatchActiveHistory = exports.dispatchCustomerList = exports.dispatchLoanInfo = exports.dispatchReservationCount = exports.dispatchOrderList = exports.dispatchReservationPlan = exports.dispatchUploadConfig = exports.ChangeToCustomer = exports.ChangeToAgent = exports.WeChatLogin = undefined;
 
 var _constants = require("./constants.js");
 
@@ -191,6 +191,29 @@ var CreateNewUser = exports.CreateNewUser = function CreateNewUser(payload) {
   return (0, _redux.createAction)({
     type: _constants.ACTION_CREATE_NEW_INFO,
     url: _api.API_CREATE_NEW_USER,
+    fetchOptions: {
+      method: 'POST',
+      contentType: 'application/x-www-form-urlencoded'
+    },
+    payload: payload
+  });
+};
+
+var GetAgreeMent = exports.GetAgreeMent = function GetAgreeMent(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_GET_AGREEMENT,
+    url: _api.API_GET_AGREE_MENT,
+    fetchOptions: {
+      method: 'GET'
+    },
+    payload: payload
+  });
+};
+
+var CloseAction = exports.CloseAction = function CloseAction(payload) {
+  return (0, _redux.createAction)({
+    type: _constants.ACTION_CLOASE_ACTIVE,
+    url: _api.API_ACTIVE_CLOSE,
     fetchOptions: {
       method: 'POST',
       contentType: 'application/x-www-form-urlencoded'

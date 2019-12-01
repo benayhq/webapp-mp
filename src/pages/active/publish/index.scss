@@ -14,6 +14,8 @@ $panelBgColor:rgba(255,255,255,1);
         line-height: 90px;
         height: 90px;
         background: $panelBgColor;
+        border-bottom: 1px solid #ddd;
+
 
         > text{
             padding-left: 16px;
@@ -47,6 +49,20 @@ $panelBgColor:rgba(255,255,255,1);
         .time{
             padding-left: 18px;
         }
+
+        .time-tuan{
+            padding-left:7px !important;
+        }
+    }
+    .item:nth-child(1){
+        border: none;
+    }
+    .item:nth-child(3){
+        border: none;
+    }
+
+    .base{
+
     }
 
     .uploadImage{
@@ -88,7 +104,7 @@ $panelBgColor:rgba(255,255,255,1);
         width: 80%;
         height: 90px;
         margin-bottom: 20px;
-        font-size:36px;
+        font-size:34px;
         font-family:PingFangSC;
         font-weight:400;
         color:rgba(125,214,208,1);
@@ -97,13 +113,14 @@ $panelBgColor:rgba(255,255,255,1);
 }
 
 .getPhone{
-    border: initial;
-    background: #7DD6D0;
-    color: #ffff;
+    @include btn($size:36px,$color:#fff,$bgcolor:#7DD6D0,$padding:5px,$radius:5px);
+    height: 96px;
+    margin: 30px;
+    width: 91%;
+    margin-top: 20px;
+    line-height: 96px;
+    text-align: center;
     border: none;
-    margin-bottom: 30px;
-    margin-right: 20px;
-    margin-left: 20px;
 }
 
 .scroll-product{
@@ -113,3 +130,26 @@ $panelBgColor:rgba(255,255,255,1);
 .scroll-product-hidden{
     overflow: hidden;
 }
+
+.group-count{
+    display: inline-block;
+    float: right;
+    font-size: 50px;
+    color: #7DD6D0;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+.group-address{
+    display: block;
+    font-size: 50px;
+    color: #7DD6D0;
+    padding-top: 20px;
+    padding-right: 10px;
+    text-align: right;
+}
+picker {
+    display: block;
+    width: 100%;
+}
+    

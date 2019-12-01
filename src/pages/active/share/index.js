@@ -4,9 +4,7 @@ import './index.scss'
 import TaroCanvasDrawer from './../../../components/taro-plugin-canvas'; // 拷贝文件到component的引入方式
 import {connect} from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
-import {API_QRCODE} from './../../../constants/api';
 import {getAuthInfo} from './../../../utils/storage';
-import { base64src } from './../../../utils/base64src'; 
 
 @connect(state=>state,actions)
 export default class Index extends Component{
@@ -16,7 +14,6 @@ export default class Index extends Component{
 
   constructor(props) {
     super(props);
-
     this.state = {
       config: null,
       qrCode:'',
@@ -55,14 +52,6 @@ export default class Index extends Component{
     })
   }
 
-  getBase64Src(base64){
-    return new Promise((resolve,reject)=>{
-      base64src('data:image/png;base64,'+base64,res=>{
-        console.log('getBase64Src',res);
-        resolve(res);
-      })
-    });
-  }
 
   async getAuthInfo(){
     const result = Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
@@ -84,7 +73,6 @@ export default class Index extends Component{
 
       this.getQrCode(payload).then(response=>{
         console.log('response',response);
-        // this.getBase64Src(response).then((imgUrl)=>{
           this.getActivityData().then(data=>{
             const config = this.buildConfig(templateId,{
               data:data.content,
@@ -102,7 +90,6 @@ export default class Index extends Component{
               });
             },1000);
           });
-        // });
       });
   }
   

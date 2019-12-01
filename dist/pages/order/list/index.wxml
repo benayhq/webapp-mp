@@ -1,51 +1,56 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view>
         <block>
             <block wx:if="{{OrderList.length > 0}}">
-                <view class="mp-order-list" wx:for="{{loopArray16}}" wx:for-item="item" wx:for-index="_anonIdx2">
-                    <title compid="{{item.$compid__61}}"></title>
+                <view class="mp-order-list" wx:for="{{OrderList}}" wx:for-item="item">
+                    <title OrderId="{{item.id}}" __triggerObserer="{{ _triggerObserer }}"
+                    displayStatusDes="{{item.displayStatusDes}}" AgentName="{{item.customerName}}"></title>
                     <view class="product">
                         <view class="left">
-                            <image style="height:100%;width:100%;margin:0 auto;padding:5px;" mode="scaleToFill" src="{{item.$original.imgUrl}}"></image>
+                            <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}"
+                            mode="scaleToFill" src="{{item.imgUrl}}" />
                         </view>
                         <view class="right">
-                            <view>{{item.$original.activityName}}</view>
-                            <view>{{item.$original.activityProductName}}</view>
-                            <view>{{item.$original.productDiscountPrice}}</view>
+                            <view>{{item.activityName}}</view>
+                            <view>{{item.activityProductName}}</view>
+                            <view>{{item.productDiscountPrice}}</view>
                         </view>
                     </view>
                     <view class="order-action">
                         <view class="action">
-                            <block wx:if="{{item.$original.status == 'UNPAY'}}">
-                                <at-button compid="{{item.$compid__62}}">支付订单</at-button>
+                            <block wx:if="{{item.status == 'UNPAY'}}">
+                                <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="handleWeChatPay"
+                                size="small" __fn_onClick="{{true}}" data-e-handleWeChatPay-so="this" data-e-handleWeChatPay-a-a="{{item.id}}">支付订单</at-button>
                             </block>
-                            <block wx:if="{{item.$original.status == 'PAID'}}">
+                            <block wx:if="{{item.status == 'PAID'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__63}}">我要评价</at-button>
+                                    <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small"
+                                    bindonclick="jumpUrl" __fn_onClick="{{true}}" data-e-jumpUrl-so="this"
+                                    data-e-jumpUrl-a-a="{{item.id}}">我要评价</at-button>
                                 </view>
                             </block>
-                            <block wx:if="{{item.$original.status == 'COMMENTING'}}">
+                            <block wx:if="{{item.status == 'COMMENTING'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__64}}">我要评价</at-button>
+                                    <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">我要评价</at-button>
                                 </view>
                             </block>
-                            <block wx:if="{{item.$original.status == 'CONSUMPTION'}}">
+                            <block wx:if="{{item.status == 'CONSUMPTION'}}">
                                 <view>
-                                    <at-button compid="{{item.$compid__65}}">重新购买</at-button>
+                                    <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" size="small">重新购买</at-button>
                                 </view>
                             </block>
-                        </view><text></text> 
+                        </view>
+                        <text></text>
                     </view>
                 </view>
             </block>
-            <block wx:else>
-                <view class="mp-empty-blank-icon">
-                    <view class="mp-order__empty">
-                        <image class="mp-empty-blank-image" src="{{empty}}"></image>
-                        <view class="mp-empty-blank-text">暂无订单数据</view>
-                    </view>
+            <view class="mp-empty-blank-icon" wx:else>
+                <view class="mp-order__empty">
+                    <image class="mp-empty-blank-image" src="https://lovemeipin.oss-cn-shanghai.aliyuncs.com/common/empty2.svg"
+                    />
+                    <view class="mp-empty-blank-text">暂无订单数据</view>
                 </view>
-            </block>
+            </view>
         </block>
     </view>
 </block>

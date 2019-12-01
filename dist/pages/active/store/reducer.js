@@ -16,7 +16,8 @@ var defaultState = {
   endTime: '',
   activePrice: '',
   imgs: [],
-  tempfiles: []
+  tempfiles: [],
+  address: ''
 };
 
 exports.default = function () {
@@ -56,6 +57,11 @@ exports.default = function () {
     case _constants.ACTION_SAVE_TEMPFILES:
       return _extends({}, state, {
         tempfiles: action.value
+      });
+    case _constants.ACTION_SERVICE_ADDRESS:
+      console.log('action.value ACTION_SERVICE_ADDRESS', action.value);
+      return _extends({}, state, {
+        address: action.value
       });
     default:
       return state;

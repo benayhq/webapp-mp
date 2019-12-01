@@ -1,6 +1,7 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="code">
-        <view class="wrap"></view><text class="sequence">验证码 2018 1010 5183 4518</text>
+        <view class="wrap"></view>
+        <text class="sequence">验证码 2018 1010 5183 4518</text>
         <view class="qrCode"></view>
     </view>
 </block>

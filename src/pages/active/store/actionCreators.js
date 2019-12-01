@@ -13,7 +13,8 @@ import {PRODUCT_PUBLISH_INFO,ACTIVE_CREATE_ACTION,PRODUCT_QUERY_INFO,UPLOAD_FILE
     ACTION_SAVE_UPLOADIMG,
     ACTION_SAVE_TEMPFILES,
     ACTION_WEIXIN_DECRYPT,
-    ACTION_GET_USER_INFO
+    ACTION_GET_USER_INFO,
+    ACTION_SERVICE_ADDRESS
     } from './constants';
 
 import {API_PORDUCT_CREATE,API_ACTIVE_CREATE,API_PRODUCT_INFO,API_UPLOAD_FILE,
@@ -127,6 +128,12 @@ export const dispatchStartTime = payload => {
 export const dispatchEndTime = payload => {
     return (dispatch) => {
         dispatch({type:ACTION_END_TIME,value:payload})
+    }
+}
+
+export const disptachServiceAddress = payload => {
+    return (dispatch) => {
+        dispatch({type:ACTION_SERVICE_ADDRESS,value:payload})
     }
 }
 

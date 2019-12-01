@@ -1,0 +1,117 @@
+@import './../../../style/base.scss';
+@import './../../../style/element.scss';
+@import './../../../style/icon.scss';
+
+.mp-order-list{
+    @include panel(18px,400px);
+
+    .order-title{
+        line-height: 80px;
+        height: 80px;
+
+        >text:nth-child(1){
+            width:248px;
+            height:40px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(60,60,60,1);
+            line-height:40px;
+            padding-left: 30px;
+        }
+        
+        >text:nth-child(2){
+            width: 13px;
+            height: 22px;
+            padding-left: 40px;
+        }
+
+        >text:nth-child(3){
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            float: right;
+            color: #F70202;
+            padding-right: 40px;
+        }
+    }
+
+    .order-action{
+        .action{
+            line-height: 80px;
+            height: 80px;
+            float: right;
+            padding-right: 25px;
+        }
+    }
+
+    .margin8{
+        margin-left: 32px;
+    }
+
+    .product{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        .left{
+            width: 30%;
+            height: 220px;
+        }
+        .right{
+            width: 70%;
+            height: 220px;
+            margin-left: 20px;
+
+            &>view:nth-child(1){
+                width: 100%;
+                padding-left: 15px;
+                height: 90px;
+                line-height: 90px;
+                font-size:28px;
+                font-family:PingFangSC-Regular;
+                font-weight:400;
+                color:rgba(0,0,0,1);
+            }
+
+            &>view:nth-child(2){
+                width: 100%;
+                padding-left: 15px;
+                font-size:24px;
+                height: 40px;
+                line-height: 40px;
+                font-family:PingFangSC-Regular;
+                font-weight:400;
+                color:rgba(187,187,187,1);
+                line-height:33px;
+            }
+
+            &>view:nth-child(3){
+                font-size:36px;
+                font-family:PingFangSC-Regular;
+                font-weight:400;
+                color:rgba(125,214,208,1);
+                line-height:50px;
+                height: 50px;
+                padding-left: 15px;
+            }
+        }
+    }
+}
+
+    
+.mp-order__empty{
+    width: 100%;
+    height: 1300px;
+    background: #FFFFFF;
+    padding-top: 360px;
+    text-align: center;
+    color: #dddddd;
+}
+
+.mp-empty-blank-image{
+    height: 240px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50px;
+    margin-left:110px;
+}

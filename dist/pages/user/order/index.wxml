@@ -1,21 +1,26 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="mp-user__order">
-        <view class="mp-user__order-title"><text>客户订单</text><text class="mp-user__order-queryall" bindtap="jumpUrl" data-e-tap-so="this" data-e-tap-a-a="/pages/order/index?status=&index=0">查看全部订单</text>
+        <view class="mp-user__order-title">
+            <text>客户订单</text>
+            <text class="mp-user__order-queryall" bindtap="jumpUrl" data-e-jumpUrl-so="this"
+            data-e-jumpUrl-a-a="/pages/order/index?status=&index=0">查看全部订单</text>
         </view>
         <view class="mp-user__ordernav">
             <block wx:if="{{list && list != undefined}}">
-                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{loopArray11}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{'/pages/order/index?status=' + item.$original.status + '&index=' + (index + 1)}}">
+                <view class="mp-user__ordernav-tuan" bindtap="jumpUrl" wx:for="{{list}}"
+                wx:for-item="item" wx:for-index="index" data-e-jumpUrl-so="this" data-e-jumpUrl-a-a="{{anonymousState__temp}}">
                     <block>
-                        <block wx:if="{{item.$original.count > 0}}">
-                            <at-badge compid="{{item.$compid__58}}">
-                                <view class="{{item.$original.icon}}"></view>
+                        <block wx:if="{{item.count > 0}}">
+                            <at-badge value="{{item.count}}" __triggerObserer="{{ _triggerObserer }}"
+                            maxValue="{{99}}">
+                                <view class="{{item.icon}}"></view>
                             </at-badge>
                         </block>
                         <block wx:else>
-                            <view class="{{item.$original.icon}}"></view>
+                            <view class="{{item.icon}}"></view>
                         </block>
                     </block>
-                    <view class="mp-user__ordernav-text">{{item.$original.text}}</view>
+                    <view class="mp-user__ordernav-text">{{item.text}}</view>
                 </view>
             </block>
         </view>

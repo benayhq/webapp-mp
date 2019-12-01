@@ -8,9 +8,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2; /* eslint-disable react/jsx-no-duplicate-props */
-
-
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -35,7 +32,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable react/jsx-no-duplicate-props */
+
 
 function getMaxLength(maxLength, textOverflowForbidden) {
   if (!textOverflowForbidden) {
@@ -47,7 +45,7 @@ function getMaxLength(maxLength, textOverflowForbidden) {
 var ENV = _index2.default.getEnv();
 (0, _utils.initTestEnv)();
 
-var AtTextarea = (_temp2 = _class = function (_AtComponent) {
+var AtTextarea = function (_AtComponent) {
   _inherits(AtTextarea, _AtComponent);
 
   function AtTextarea() {
@@ -61,44 +59,49 @@ var AtTextarea = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTextarea.__proto__ || Object.getPrototypeOf(AtTextarea)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "rootCls", "placeholderStyle", "placeholderCls", "cursorSpacing", "value", "actualMaxLength", "placeholder", "disabled", "autoFocus", "focus", "showConfirmBar", "selectionStart", "selectionEnd", "fixed", "count", "_maxLength", "customStyle", "className", "placeholderClass", "maxLength", "textOverflowForbidden", "height"], _this.handleInput = function () {
-      var _this$props;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtTextarea.__proto__ || Object.getPrototypeOf(AtTextarea)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "rootCls", "placeholderStyle", "placeholderCls", "cursorSpacing", "value", "actualMaxLength", "placeholder", "disabled", "autoFocus", "focus", "showConfirmBar", "selectionStart", "selectionEnd", "fixed", "count", "_maxLength"], _this.handleInput = function () {
+      for (var _len2 = arguments.length, arg = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        arg[_key2] = arguments[_key2];
+      }
 
-      return (_this$props = _this.props).onChange.apply(_this$props, arguments);
+      return _this.__triggerPropsFn("onChange", [null].concat([].concat(arg)));
     }, _this.handleFocus = function () {
-      var _this$props2;
+      for (var _len3 = arguments.length, arg = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        arg[_key3] = arguments[_key3];
+      }
 
-      return (_this$props2 = _this.props).onFocus.apply(_this$props2, arguments);
+      return _this.__triggerPropsFn("onFocus", [null].concat([].concat(arg)));
     }, _this.handleBlur = function () {
-      var _this$props3;
+      for (var _len4 = arguments.length, arg = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        arg[_key4] = arguments[_key4];
+      }
 
-      return (_this$props3 = _this.props).onBlur.apply(_this$props3, arguments);
+      return _this.__triggerPropsFn("onBlur", [null].concat([].concat(arg)));
     }, _this.handleConfirm = function () {
-      var _this$props4;
+      for (var _len5 = arguments.length, arg = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        arg[_key5] = arguments[_key5];
+      }
 
-      return (_this$props4 = _this.props).onConfirm.apply(_this$props4, arguments);
+      return _this.__triggerPropsFn("onConfirm", [null].concat([].concat(arg)));
     }, _this.handleLinechange = function () {
-      var _this$props5;
+      for (var _len6 = arguments.length, arg = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+        arg[_key6] = arguments[_key6];
+      }
 
-      return (_this$props5 = _this.props).onLinechange.apply(_this$props5, arguments);
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+      return _this.__triggerPropsFn("onLinechange", [null].concat([].concat(arg)));
+    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtTextarea, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtTextarea.prototype.__proto__ || Object.getPrototypeOf(AtTextarea.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = [];
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
 
       var _props = this.__props,
           customStyle = _props.customStyle,
@@ -156,7 +159,34 @@ var AtTextarea = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtTextarea;
-}(_component2.default), _class.$$events = ["handleInput", "handleFocus", "handleBlur", "handleConfirm", "handleLinechange"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/textarea/index", _temp2);
+}(_component2.default);
+
+AtTextarea.properties = {
+  "__fn_onChange": null,
+  "__fn_onFocus": null,
+  "__fn_onBlur": null,
+  "__fn_onConfirm": null,
+  "__fn_onLinechange": null,
+  "customStyle": null,
+  "className": null,
+  "value": null,
+  "cursorSpacing": null,
+  "placeholder": null,
+  "placeholderStyle": null,
+  "placeholderClass": null,
+  "maxLength": null,
+  "count": null,
+  "disabled": null,
+  "autoFocus": null,
+  "focus": null,
+  "showConfirmBar": null,
+  "selectionStart": null,
+  "selectionEnd": null,
+  "fixed": null,
+  "textOverflowForbidden": null,
+  "height": null
+};
+AtTextarea.$$events = ["handleInput", "handleFocus", "handleBlur", "handleConfirm", "handleLinechange"];
 
 
 AtTextarea.defaultProps = {

@@ -18,7 +18,7 @@ export default class CanvasDrawer extends Component {
     onCreateSuccess: PropTypes.func.isRequired,
     onCreateFail: PropTypes.func.isRequired,
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ export default class CanvasDrawer extends Component {
       pxHeight: 0,
       debug: false,
       factor: 0,
-    }
+    };
     this.canvasId = randomString(10);
     this.ctx = null;
     this.cache = {};
@@ -47,7 +47,7 @@ export default class CanvasDrawer extends Component {
     });
     this.onCreate();
   }
-  
+
   componentWillUnmount() { }
 
   /**
@@ -63,6 +63,7 @@ export default class CanvasDrawer extends Component {
     }
     return rpx * factor;
   }
+
   /**
    * @description px => rpx
    * @param { number } px - 需要转换的数值
@@ -95,17 +96,16 @@ export default class CanvasDrawer extends Component {
         console.log(err);
         reject(err)
       });
-    })
+    });
   }
+
   /**
    * @param  {} images=[]
    */
-  downloadResource = (images = []) => {
+  downloadResource = (images = []) =>{
     const drawList = [];
     let imagesTemp = images;
-
-    imagesTemp.forEach((image, index) => drawList.push(this._downloadImageAndInfo(image, index)));
-
+    imagesTemp.forEach((image,index) => drawList.push(this._downloadImageAndInfo(image, index)));
     return Promise.all(drawList);
   }
 
@@ -144,10 +144,11 @@ export default class CanvasDrawer extends Component {
       this.setState({
         pxWidth: this.toPx(w),
         pxHeight: this.toPx(h),
-        debug,
-      }, resolve);
-    });
+        debug
+      },resolve);
+    })
   }
+
   /**
    * @param  { boolean }
    */
@@ -162,7 +163,7 @@ export default class CanvasDrawer extends Component {
         Taro.hideLoading();
         Taro.showToast({ icon: 'none', title: err.errMsg || '下载图片失败' });
         console.error(err);
-        if (!onCreateFail) {
+        if (!onCreateFail){
           console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateFail 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#fail');
         }
         onCreateFail && onCreateFail(err);
@@ -177,19 +178,22 @@ export default class CanvasDrawer extends Component {
     const height = getHeight(config);
     this.initCanvas(config.width, height, config.debug)
       .then(() => {
+
         // 设置画布底色
-        if (config.backgroundColor) {
+        if (config.backgroundColor){
           this.ctx.save();
           this.ctx.setFillStyle(config.backgroundColor);
           this.ctx.fillRect(0, 0, this.toPx(config.width), this.toPx(height));
           this.ctx.restore();
         }
+
         const {
           texts = [],
           // images = [],
           blocks = [],
           lines = [],
         } = config;
+
         const queue = this.drawArr
           .concat(texts.map((item) => {
             item.type = 'text';
@@ -206,16 +210,19 @@ export default class CanvasDrawer extends Component {
             item.zIndex = item.zIndex || 0;
             return item;
           }));
+
         // 按照顺序排序
         queue.sort((a, b) => a.zIndex - b.zIndex);
+
+        console.log('queue',queue);
 
         queue.forEach((item) => {
           let drawOptions = {
             ctx: this.ctx,
             toPx: this.toPx,
             toRpx: this.toRpx,
-          }
-          if (item.type === 'image') {
+          };
+          if (item.type === 'image'){
             drawImage(item,drawOptions)
           } else if (item.type === 'text') {
             drawText(item,drawOptions)
@@ -250,7 +257,7 @@ export default class CanvasDrawer extends Component {
     Taro.canvasToTempFilePath({
       canvasId: this.canvasId,
       success: (result) => {
-        if (!onCreateSuccess) {
+        if (!onCreateSuccess){
           console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateSuccess 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#success');
         }
         onCreateSuccess && onCreateSuccess(result);

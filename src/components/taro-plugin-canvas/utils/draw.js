@@ -12,7 +12,7 @@
   * @param { function } drawOptions.toPx - toPx方法
   * @param { function } drawOptions.toRpx - toRpx方法
   */
-export function _drawRadiusRect(drawData, drawOptions) {
+export function _drawRadiusRect(drawData, drawOptions){
   const { x, y, w, h, r } = drawData;
   const {
     ctx,
@@ -54,10 +54,9 @@ export function _getTextWidth(text, drawOptions) {
   texts.forEach(({ fontSize, text, marginLeft = 0, marginRight = 0 }) => {
     ctx.setFontSize(toPx(fontSize));
     width += ctx.measureText(text).width + marginLeft + marginRight;
-  })
+  });
   return toRpx(width);
 }
-
 
 /**
   * @description 渲染一段文字
@@ -83,7 +82,7 @@ export function _getTextWidth(text, drawOptions) {
   * @param { function } drawOptions.toPx - toPx方法
   * @param { function } drawOptions.toRpx - toRpx方法
   */
-  export function _drawSingleText(drawData, drawOptions) {
+  export function _drawSingleText(drawData, drawOptions){
     const { x, y, fontSize, color, baseLine, textAlign = 'left', text, opacity = 1, textDecoration = 'none',
       width, lineNum = 1, lineHeight = 0, fontWeight = 'normal', fontStyle = 'normal', fontFamily = "sans-serif" } = drawData;
     const { ctx, toPx, toRpx } = drawOptions;
@@ -126,8 +125,7 @@ export function _getTextWidth(text, drawOptions) {
     } else {
       textArr.push(text);
     }
-
-    textArr.forEach((item, index) => {
+    textArr.forEach((item, index)=>{
       ctx.fillText(item, toPx(x), toPx(y + (lineHeight || fontSize) * index));
     })
     ctx.restore();
@@ -146,7 +144,7 @@ export function _getTextWidth(text, drawOptions) {
       ctx.restore();
     }
     return textWidth;
-  }
+}
 
 /**
  * 渲染文字
@@ -172,7 +170,7 @@ export function _getTextWidth(text, drawOptions) {
  * @param { function } drawOptions.toPx - toPx方法
  * @param { function } drawOptions.toRpx - toRpx方法
  */
-export function drawText(params, drawOptions) {
+export function drawText(params, drawOptions){
   // const { ctx, toPx, toRpx } = drawOptions;
   const {
     x,
@@ -312,7 +310,7 @@ export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, padd
     if (textAlign === 'left') {
       // 如果是右对齐，那x轴在块的最左边
       textX = x + paddingLeft;
-    } else if (textAlign === 'center') {
+    } else if (textAlign === 'center'){
       textX = blockWidth / 2 + x;
     } else {
       textX = x + blockWidth - paddingRight;
@@ -321,7 +319,7 @@ export function drawBlock({ text, width = 0, height, x, y, paddingLeft = 0, padd
     blockWidth = width;
   }
 
-  if (backgroundColor) {
+  if (backgroundColor){
     // 画面
     ctx.save();
     ctx.setGlobalAlpha(opacity);

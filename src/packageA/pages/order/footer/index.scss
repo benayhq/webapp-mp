@@ -1,0 +1,67 @@
+.footer{
+    margin-top: 18px;
+    width:749px;
+    height:840px;
+    background:rgba(255,255,255,1);
+}
+
+.code{
+    border-bottom: 1px solid #ddd;
+    height: 446px;
+
+    .wrap{
+        height: 16px;
+        line-height: 16px;
+        width: 90px;
+        border-radius: 10px;
+    }
+
+    .sequence{
+        border-radius:4px;
+        text-align: center;
+        padding: 0px;
+        width: 494px;
+        height: 80px;
+        line-height: 80px;
+        margin: 0 auto;
+        background: #FFF7E6;
+        display: block;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+    }
+
+    .qrCode{
+        width: 306px;
+        height: 306px;
+        background: gainsboro;
+        margin: 0 auto;
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
+}
+
+.info{
+    
+    >view{
+        margin-left: 49px;
+        line-height: 70px;
+        height: 70px;
+        font-size:22px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(191,191,191,1);
+    }
+
+    .copy{
+        position: relative;
+        color: #7DD6D0;
+        margin-left: 20px;
+        padding: 0 7px 0 7px;
+        font-size:22px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        border-radius: 5px;
+        border: 1px solid #7DD6D0;
+    }
+}

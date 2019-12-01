@@ -6,7 +6,6 @@ export default class Header extends Component{
     constructor(){
         super(...arguments);
     }
-
     render(){
         return (
             <View className="tips">

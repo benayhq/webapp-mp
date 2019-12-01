@@ -1,7 +1,9 @@
 import {PRODUCT_PUBLISH_INFO,ACTION_ACTIVE_NAME,ACTION_GROUP_COUNT, 
     ACTION_START_TIME,ACTION_END_TIME, ACTION_PRODUCT_PRICE,
     ACTION_SAVE_UPLOADIMG,
-    ACTION_SAVE_TEMPFILES} from './constants';
+    ACTION_SAVE_TEMPFILES,
+    ACTION_SERVICE_ADDRESS
+} from './constants';
 
 const defaultState = {
     product:[],
@@ -11,7 +13,8 @@ const defaultState = {
     endTime:'',
     activePrice:'',
     imgs:[],
-    tempfiles:[]
+    tempfiles:[],
+    address:''
 };
 
 export default (state = defaultState,action) => {
@@ -56,6 +59,12 @@ export default (state = defaultState,action) => {
                 return {
                     ...state,
                     tempfiles:action.value
+                }
+        case ACTION_SERVICE_ADDRESS:
+            console.log('action.value ACTION_SERVICE_ADDRESS',action.value);
+                return {
+                    ...state,
+                    address:action.value
                 }
         default:
             return state;

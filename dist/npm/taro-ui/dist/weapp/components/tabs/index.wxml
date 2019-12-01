@@ -1,23 +1,31 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{rootCls}}" style="{{anonymousState__temp}}">
+<block>
+    <view class="{{rootCls}}" style="{{anonymousState__temp3}}">
         <block>
             <block wx:if="{{scroll}}">
-                <scroll-view id="{{_tabId}}" class="at-tabs__header" style="{{anonymousState__temp2}}" scroll-x="{{scrollX}}" scroll-y="{{scrollY}}" scroll-with-animation="{{true}}" scroll-left="{{_scrollLeft}}" scroll-top="{{_scrollTop}}" scroll-into-view="{{_scrollIntoView}}">
-                    <view class="{{item.itemCls}}" id="{{'tab' + idx}}" wx:key="$original.title" bindtap="handleClick" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="idx" data-e-tap-so="this" data-e-tap-a-a="{{idx}}">{{item.$original.title}}
+                <scroll-view id="{{_tabId}}" class="at-tabs__header" style="{{anonymousState__temp4}}"
+                scroll-x="{{scrollX}}" scroll-y="{{scrollY}}" scroll-with-animation="{{true}}"
+                scroll-left="{{_scrollLeft}}" scroll-top="{{_scrollTop}}" scroll-into-view="{{_scrollIntoView}}">
+                    <view class="{{item.itemCls}}" id="{{item.$loopState__temp2}}" wx:key="{{item.$$original.title}}"
+                    bindtap="handleClick" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="idx"
+                    data-e-handleClick-so="this" data-e-handleClick-a-a="{{idx}}">{{item.$$original.title}}
                         <view class="at-tabs__item-underline"></view>
                     </view>
                 </scroll-view>
             </block>
             <block wx:else>
                 <view id="{{_tabId}}" class="at-tabs__header">
-                    <view class="{{item.itemCls}}" id="{{'tab' + idx}}" wx:key="$original.title" bindtap="handleClick" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="idx" data-e-tap-so="this" data-e-tap-a-a="{{idx}}">{{item.$original.title}}
+                    <view class="{{item.itemCls}}" id="{{item.$loopState__temp2}}" wx:key="{{item.$$original.title}}"
+                    bindtap="handleClick" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="idx"
+                    data-e-handleClick-so="this" data-e-handleClick-a-a="{{idx}}">{{item.$$original.title}}
                         <view class="at-tabs__item-underline"></view>
                     </view>
                 </view>
             </block>
         </block>
-        <view class="at-tabs__body" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindtouchmove="handleTouchMove" style="{{anonymousState__temp3}}" data-e-touchstart-so="this" data-e-touchend-so="this" data-e-touchmove-so="this">
-            <view class="at-tabs__underline" style="{{anonymousState__temp4}}"></view>
+        <view class="at-tabs__body" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd"
+        bindtouchmove="handleTouchMove" style="{{anonymousState__temp5}}" data-e-handleTouchStart-so="this"
+        data-e-handleTouchEnd-so="this" data-e-handleTouchMove-so="this">
+            <view class="at-tabs__underline" style="{{anonymousState__temp6}}"></view>
             <slot></slot>
         </view>
     </view>

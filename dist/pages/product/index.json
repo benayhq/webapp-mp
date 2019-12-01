@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "at-message": "../../npm/taro-ui/dist/weapp/components/message/index",
-    "check-box": "../../components/checkbox/index"
-  },
-  "navigationBarTitleText": "产品列表"
-}

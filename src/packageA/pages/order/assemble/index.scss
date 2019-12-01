@@ -1,0 +1,44 @@
+@import './../../../style/index.scss';
+
+.ping{
+    width:749px;
+    height:160px;
+    margin-top: 18px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(255,255,255,1);
+
+    >text:nth-child(1){
+        float:left;
+        margin-top:25rpx;
+        margin-left:13rpx;
+        margin-right: 18px;
+    }
+
+    .text{
+        margin-top: 25px;
+        font-size:32px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(60,60,60,1);
+        line-height:45px;
+    }
+
+    .group{
+        @include flex(row);
+
+        .person{
+            margin-top: 12px;
+            margin-left: 20px;
+            border: 0px solid rgba(151,151,151,1);
+            border-radius: 40px;
+            text-align: center;
+            width: 64px;
+            height: 64px;
+            background: rgba(125,214,208,1);
+        }
+
+        .person:nth-child(1){
+            margin-left: 0px;
+        }
+    }
+}

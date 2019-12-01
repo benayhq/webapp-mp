@@ -1,47 +1,77 @@
-<block wx:if="{{$taroCompReady}}">
+<block>
     <view class="mp-active">
         <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
-            <at-message></at-message>
-            <view class="item"><text>活动名称</text>
-                <at-input compid="{{$compid__2239}}"></at-input>
+            <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
+            <view class="item" style="border:none;">
+                <text>活动名称</text>
+                <at-input border="{{false}}" __triggerObserer="{{ _triggerObserer }}"
+                value="{{activeName}}" bindonchange="handleActiveChange" placeholder="请输入活动名称"
+                __fn_onChange="{{true}}" data-e-handleActiveChange-so="this"></at-input>
             </view>
             <view class="item">
-                <picker mode="selector" range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
-                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>成团人数</text>  <text class="time"> {{groupItemChecked}} </text> 
+                <picker range="{{groupItem}}" bindchange="handlePickerSelectGroupChange">
+                    <view class="picker">
+                        <text>成团人数</text>
+                        <text class="time-tuan">{{groupItemChecked}}</text>
+                        <text class="at-icon at-icon-chevron-right group-count"></text>
                     </view>
                 </picker>
             </view>
             <view class="item">
                 <picker mode="date" bindchange="onDateStartChange">
-                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>开始时间</text>  <text class="time">{{dateStart}}</text> 
+                    <view class="picker">
+                        <text>开始时间</text>
+                        <text class="time">{{dateStart}}</text>
+                        <text class="at-icon at-icon-chevron-right group-count"></text>
+                    </view>
+                </picker>
+            </view>
+            <view class="item" style="border:none;">
+                <picker mode="date" bindchange="onDateEndChange">
+                    <view class="picker">
+                        <text>结束时间</text>
+                        <text class="time">{{dateEnd}}</text>
+                        <text class="at-icon at-icon-chevron-right group-count"></text>
                     </view>
                 </picker>
             </view>
             <view class="item">
-                <picker mode="date" bindchange="onDateEndChange">
-                    <view class="picker"><text class="mp-publish mp-icon-arrow"></text>  <text>结束时间</text>  <text class="time">  {{dateEnd}}</text> 
-                    </view>
-                </picker>
+                <text>活动地点</text>
+                <text class="time"></text>
+                <region bindongetregion="onGetRegion" __triggerObserer="{{ _triggerObserer }}"
+                __fn_onGetRegion="{{true}}" data-e-onGetRegion-so="this"></region>
+                <text class="at-icon at-icon-chevron-right group-address"></text>
             </view>
-            <at-image-picker compid="{{$compid__2240}}"></at-image-picker>
             <view class="mp-publish-product">
-                <view class="publish-item"><text>活动产品</text><text bindtap="selectProduct">选择我的产品</text>
+                <view class="publish-item">
+                    <text>活动图片</text>
                 </view>
-                <view class="pulbish-create" bindtap="createProduct"><text class="mp-icon mp-icon-plus"></text><text>新增产品</text>
-                </view>
-                <product-list compid="{{$compid__2241}}"></product-list>
+                <at-image-picker multiple="{{true}}" __triggerObserer="{{ _triggerObserer }}"
+                className="uploadImage" files="{{files}}" bindonchange="HandlePickerChange"
+                __fn_onChange="{{true}}" data-e-HandlePickerChange-so="this"></at-image-picker>
             </view>
-            <at-modal compid="{{$compid__2242}}">
-                <at-modal-header>授权获取手机号</at-modal-header>
-                <at-modal-content>
-                    <view class="mp-user__authinfo">申请获取以下权限</view>获取你的手机号</at-modal-content>
-                <view class="wechat-login">
-                    <button class="getPhone" form-type="submit" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-e-getphonenumber-so="this">获取手机号</button>
+            <view class="mp-publish-product">
+                <view class="publish-item">
+                    <text>活动产品</text>
+                    <text bindtap="selectProduct">选择我的产品</text>
                 </view>
-            </at-modal>
+                <view class="pulbish-create" bindtap="createProduct">
+                    <text class="mp-icon mp-icon-plus"></text>
+                    <text>新增产品</text>
+                </view>
+                <product-list products="{{products}}" __triggerObserer="{{ _triggerObserer }}"></product-list>
+            </view>
         </scroll-view>
         <view class="publish">
-            <view bindtap="onPublish">立即发布</view>
+            <block>
+                <block wx:if="{{isShowPublic}}">
+                    <view bindtap="onPublish">立即发布</view>
+                </block>
+                <block wx:else>
+                    <button class="getPhone" form-type="submit" open-type="getPhoneNumber"
+                    bindgetphonenumber="getPhoneNumber" data-e-getPhoneNumber-so="this">立即发布</button>
+                </block>
+            </block>
         </view>
     </view>
 </block>

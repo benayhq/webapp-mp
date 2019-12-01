@@ -6,6 +6,7 @@ import * as actions from './store/actionCreators';
 import {getAuthInfo} from './../../utils/storage';
 import {connect} from '@tarojs/redux';
 import { AtMessage } from "taro-ui"
+import {getWindowHeight} from './../../utils/style'
 
 @connect(state=>state.product,actions)
 class Index extends Component{
@@ -18,11 +19,21 @@ class Index extends Component{
       this.state = {
         checkedList: [],
         productList:[],
-        newFilterList:[]
+        newFilterList:[],
+        productIds:[]
       };
   }
 
+  componentWillMount(){
+    const productIds = this.$router.params.productIds;
+    console.log('productIds',productIds);
+    this.setState({
+      checkedList:productIds
+    })
+  }
+
   handleChange (value) {
+    console.log('value',value);
     this.setState({
       checkedList: value
     })
@@ -52,38 +63,47 @@ class Index extends Component{
       pageSize:1000
     };
     var responseList = [];
-    const resultProductList = await this.props.dispatchProductList(payload);
+    const {productIds} = this.state;
+    console.log('productIds',productIds);
+    var historys = [],that = this,promises=[];
+    const response = await this.props.dispatchProductList(payload);
 
-    console.log('resultProductList',resultProductList);
-    resultProductList.content.map((item)=>{
-      this.getImgUrl(item.location)
-      .then(response=>{
-        responseList.push({
+    if(response.content){
+      response.content.map((item,index)=>{
+        const promise = that.getImgUrl(item.location)
+        promises.push(promise);
+        historys.push(item);
+      });
+    }
+    Promise.all(promises).then((imageResponse)=>{
+      console.log('imageResponse',imageResponse);
+        historys.map((item,key)=>{
+          responseList.push({
             value: item.id,
             label: item.projectName,
             data:{
               price:item.price,
               marketPrice:item.discountPrice,
               prePrice:item.advance,
-              imgUrl:response,
+              imgUrl:imageResponse[key],
               desc: item.name,
             },
             disabled: false
-        });
-        if(responseList.length === resultProductList.content.length){
-          that.setState({
-            newFilterList:responseList
-          })
-        }
-      });
-    });
+          });
+        })
+    }).then((response)=>{
+        that.setState({
+           newFilterList:responseList
+        })
+    })
   }
   
   handleSaveItem(){
     var params = this.state.checkedList;
+    console.log('this.state.checkedList',this.state.checkedList);
     if(params.length>0){
       Taro.navigateTo({
-        url:'/pages/active/publish/index?ids='+params.join(',')
+        url:'/pages/active/publish/index?ids='+params
       });
     }
     else{
@@ -103,25 +123,33 @@ class Index extends Component{
     });
   }
 
+  getWindowHeight(showTabBar = true,newFilterList){
+    const info = Taro.getSystemInfoSync();
+    const { windowHeight}  = info;
+    return `${windowHeight-90}px`
+  }
+
   render () {
-    const {newFilterList} = this.state;
+    const {newFilterList,productIds} = this.state;
     
     return (
-      <View className="mp-product">
-            <AtMessage/>
-            <CheckBox
-              onDelete={this.handleDelItem.bind(this)}
-              options={newFilterList}
-              selectedList={this.state.checkedList}
-              onChange={this.handleChange.bind(this)}
-            />
-            <View className="mp-product__save">
-                <View onClick={this.handleSaveItem}>保  存</View>
-            </View>
+      <View>
+        <ScrollView scrollY style={{ height: this.getWindowHeight(true),'margin-bottom':'190px'}}> 
+              <AtMessage/>
+              <CheckBox
+                productIds={productIds}
+                onDelete={this.handleDelItem.bind(this)}
+                options={newFilterList}
+                selectedList={this.state.checkedList}
+                onChange={this.handleChange.bind(this)}
+              />
+        </ScrollView>
+        <View className="mp-product__save">
+          <View onClick={this.handleSaveItem}>保  存</View>
+        </View>
       </View>
     )
   }
-
 }
 
 export default Index;
