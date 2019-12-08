@@ -1,7 +1,4 @@
-<block>
-    <view class="tips">
-        <text>{{content && content.displayStatusDes}}</text>
-        <text></text>
-        <text class="mp-icon mp-icon-order-waitpay success"></text>
+<block wx:if="{{$taroCompReady}}">
+    <view class="tips"><text>{{content && content.displayStatusDes}}</text><text></text><text class="mp-icon mp-icon-order-waitpay success"></text>
     </view>
 </block>

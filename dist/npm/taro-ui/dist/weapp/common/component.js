@@ -7,6 +7,8 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _class, _temp;
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _index = require('../../../../@tarojs/taro-weapp/index.js');
@@ -35,7 +37,7 @@ var objectToString = function objectToString(style) {
   return '';
 };
 
-var AtComponent = function (_Component) {
+var AtComponent = (_temp = _class = function (_Component) {
   _inherits(AtComponent, _Component);
 
   function AtComponent() {
@@ -55,9 +57,7 @@ var AtComponent = function (_Component) {
   }]);
 
   return AtComponent;
-}(_index.Component);
-
-AtComponent.options = {
+}(_index.Component), _class.options = {
   addGlobalClass: true
 
   /**
@@ -66,5 +66,5 @@ AtComponent.options = {
    * @param {Object|String} style2
    * @returns {String}
    */
-};
+}, _temp);
 exports.default = AtComponent;

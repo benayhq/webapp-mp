@@ -1,5 +1,5 @@
-var baseGetTag = require('./_baseGetTag'),
-    isObject = require('./isObject');
+var baseGetTag = require("./_baseGetTag.js"),
+    isObject = require("./isObject.js");
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',

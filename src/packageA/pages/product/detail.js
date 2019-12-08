@@ -76,19 +76,18 @@ export default class Detail extends Component{
     }
 
    async loadData(){
-        console.log('loadData');
         var payload ={
             activityId:this.state.activeId
         };
 
         const reuslt = await this.props.dispatchActiveInfo(payload);
 
+        console.log('reuslt',reuslt);
         //   this.props.dispatchActiveInfo(payload).then(res=>{
             // console.log('res.content',res.content);
             this.setState({
                 data:reuslt.content
             });
-
             var commentItemList =[];
 
             //  获取评论图片.
@@ -126,7 +125,6 @@ export default class Detail extends Component{
     }
 
     componentDidMount(){
-        console.log('componentDidMount');
         this.initLogin();
         this.loadData();
     }
@@ -288,6 +286,7 @@ export default class Detail extends Component{
 
         let renderProps = null,renderTips=null;
 
+        console.log('data',data);
 
         if(data.remainPeople>0){
             renderTips =  <View className="mp-activedetail__user">

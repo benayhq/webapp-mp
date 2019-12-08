@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class;
-
-require("../../../npm/@tarojs/async-await/index.js");
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -38,7 +38,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = function (_BaseComponent) {
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(SubmitOrder, _BaseComponent);
 
   function SubmitOrder() {
@@ -52,7 +52,9 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "isOpended", "text", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "activeId", "cellPhone", "name", "chooseDate"], _this.handleAlert = function (type, message) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubmitOrder.__proto__ || Object.getPrototypeOf(SubmitOrder)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__36", "$compid__37", "imgUrl", "activityName", "product", "appointmentDate", "activityProductId", "activeId", "text", "isOpended", "cellPhone", "name", "chooseDate", "dispatchCreateOrder", "dispatchPrePay", "dispatchQueryProductInfo", "dispatchCreateOrderDownLoadUrl", "GetUserInfo"], _this.config = {
+      navigationBarTitleText: '发起订单'
+    }, _this.handleAlert = function (type, message) {
       _index2.default.atMessage({
         'message': message,
         'type': type
@@ -65,7 +67,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
       _index2.default.navigateTo({
         url: '/pages/user/info/edit'
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SubmitOrder, [{
@@ -84,6 +86,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
         name: '',
         chooseDate: '请选择预约时间'
       };
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "handleSubmitOrder",
@@ -262,6 +265,19 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _index.genCompid)(__prefix + "$compid__36"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__36 = _genCompid2[0],
+          $compid__36 = _genCompid2[1];
+
+      var _genCompid3 = (0, _index.genCompid)(__prefix + "$compid__37"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__37 = _genCompid4[0],
+          $compid__37 = _genCompid4[1];
 
       var _state2 = this.__state,
           product = _state2.product,
@@ -275,11 +291,21 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
           appointmentDate = _state2.appointmentDate;
 
 
-      var anonymousState__temp = cellPhone === '' ? "" : "\u5BA2\u6237:" + name;
-      var anonymousState__temp2 = cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone;
+      _index.propsManager.set({
+        "isOpened": isOpended,
+        "text": text,
+        "duration": 1000
+      }, $compid__36, $prevCompid__36);
+      _index.propsManager.set({
+        "hasBorder": false,
+        "onClick": this.handleItemClick.bind(this),
+        "title": cellPhone === '' ? "" : "\u5BA2\u6237:" + name,
+        "note": cellPhone === '' ? "" : "\u7535\u8BDD:" + cellPhone,
+        "arrow": "right"
+      }, $compid__37, $prevCompid__37);
       Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp,
-        anonymousState__temp2: anonymousState__temp2,
+        $compid__36: $compid__36,
+        $compid__37: $compid__37,
         activityName: activityName
       });
       return this.__state;
@@ -287,15 +313,7 @@ var SubmitOrder = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return SubmitOrder;
-}(_index.Component)) || _class);
-SubmitOrder.properties = {
-  "dispatchCreateOrder": null,
-  "dispatchPrePay": null,
-  "dispatchQueryProductInfo": null,
-  "dispatchCreateOrderDownLoadUrl": null,
-  "GetUserInfo": null
-};
-SubmitOrder.$$events = ["handleItemClick", "onDateChange", "handleSubmitOrder"];
+}(_index.Component), _class2.$$events = ["onDateChange", "handleSubmitOrder"], _class2.$$componentPath = "pages/order/submit/index", _temp2)) || _class);
 exports.default = SubmitOrder;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(SubmitOrder, true));

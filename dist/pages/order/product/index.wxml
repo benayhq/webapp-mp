@@ -1,9 +1,8 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="product">
         <view class="item">
             <view class="item-image">
-                <image style="height:100%;width:100%;margin:0 auto;padding:5px;" __triggerObserer="{{ _triggerObserer }}"
-                mode="scaleToFill" src="{{profileUrl}}" />
+                <image style="height:100%;width:100%;margin:0 auto;padding:5px;" mode="scaleToFill" src="{{profileUrl}}"></image>
             </view>
             <view class="item-desc">
                 <view>{{content.activityName}}</view>
@@ -11,21 +10,12 @@
                 <view>{{content.productDiscountPrice}}</view>
             </view>
         </view>
-        <view class="appoint">
-            <text>预约时间: {{anonymousState__temp}}</text>
-            <text>预定金:
-                <text class="amount">￥{{content.productAdvance}}</text>
-            </text>
+        <view class="appoint"><text>预约时间: {{anonymousState__temp}}</text><text>预定金: <text class="amount">￥{{content.productAdvance}}</text></text>
         </view>
         <view class="service">
-            <view class="wechat">
-                <text class="mp-icon mp-icon-wechat margin8"></text>
-                <text>微信联系</text>
+            <view class="wechat"><text class="mp-icon mp-icon-wechat margin8"></text><text>微信联系</text>
             </view>
-            <view class="tel" catchtap="handleMakeCall" data-e-handleMakeCall-so="this"
-            data-e-handleMakeCall-a-a="{{content.customerPhone}}">
-                <text class="mp-icon mp-icon-tel margin8"></text>
-                <text class="tel">电话咨询</text>
+            <view class="tel" catchtap="handleMakeCall" data-e-tap-so="this" data-e-tap-a-a="{{content.customerPhone}}"><text class="mp-icon mp-icon-tel margin8"></text><text class="tel">电话咨询</text>
             </view>
         </view>
     </view>

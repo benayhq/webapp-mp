@@ -33,7 +33,7 @@ class App extends Component {
       'pages/user/active/index',
       'pages/login/index',
     ],
-    "subpackages":[
+    "subPackages":[
       {
         root: "packageA",
         pages: [

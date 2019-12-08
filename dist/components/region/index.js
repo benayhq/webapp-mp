@@ -8,7 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-require("../../npm/@tarojs/async-await/index.js");
+var _class, _temp2;
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -28,7 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Region = function (_BaseComponent) {
+var Region = (_temp2 = _class = function (_BaseComponent) {
   _inherits(Region, _BaseComponent);
 
   function Region() {
@@ -80,7 +80,7 @@ var Region = function (_BaseComponent) {
         range: rangeTemp,
         value: valueTemp
       }, function () {
-        _this.__triggerPropsFn("onGetRegion", [null].concat([_this.state.region]));
+        _this.props.onGetRegion(_this.state.region);
       });
     }, _this.onColumnChange = function (e) {
 
@@ -133,18 +133,20 @@ var Region = function (_BaseComponent) {
             _this.setState({
               region: temp
             }, function () {
-              _this.__triggerPropsFn("onGetRegion", [null].concat([_this.state.region]));
+              _this.props.onGetRegion(_this.state.region);
             });
           }
         }
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Region, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Region.prototype.__proto__ || Object.getPrototypeOf(Region.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "componentWillMount",
@@ -276,18 +278,16 @@ var Region = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
       Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return Region;
-}(_index.Component);
-
-Region.properties = {
-  "__fn_onGetRegion": null
-};
-Region.$$events = ["onChange", "onColumnChange"];
+}(_index.Component), _class.$$events = ["onChange", "onColumnChange"], _class.$$componentPath = "components/region/index", _temp2);
 exports.default = Region;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Region));

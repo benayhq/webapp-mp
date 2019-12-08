@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
 
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
@@ -38,7 +42,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AtModal = function (_AtComponent) {
+var AtModal = (_temp2 = _class = function (_AtComponent) {
   _inherits(AtModal, _AtComponent);
 
   function AtModal() {
@@ -52,7 +56,7 @@ var AtModal = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["title", "content", "rootClass", "_$isRenderAction", "cancelText", "confirmText", "_isOpened", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__66", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -60,19 +64,19 @@ var AtModal = function (_AtComponent) {
       }
     }, _this.handleClose = function () {
       if ((0, _isFunction3.default)(_this.props.onClose)) {
-        _this.__triggerPropsFn("onClose", [null].concat([]));
+        _this.props.onClose();
       }
     }, _this.handleCancel = function () {
       if ((0, _isFunction3.default)(_this.props.onCancel)) {
-        _this.__triggerPropsFn("onCancel", [null].concat([]));
+        _this.props.onCancel();
       }
     }, _this.handleConfirm = function () {
       if ((0, _isFunction3.default)(_this.props.onConfirm)) {
-        _this.__triggerPropsFn("onConfirm", [null].concat([]));
+        _this.props.onConfirm();
       }
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtModal, [{
@@ -83,8 +87,10 @@ var AtModal = function (_AtComponent) {
       var isOpened = props.isOpened;
 
       this.state = {
-        _isOpened: isOpened
+        _isOpened: isOpened,
+        isWEB: _index2.default.getEnv() === _index2.default.ENV_TYPE.WEB
       };
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "componentWillReceiveProps",
@@ -105,18 +111,27 @@ var AtModal = function (_AtComponent) {
   }, {
     key: "_createData",
     value: function _createData() {
-      var _$isRenderAction;
+      var _$isRenderAction, _$anonymousState__temp;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
 
-      var _isOpened = this.__state._isOpened;
+      var _genCompid = (0, _index.genCompid)(__prefix + "$compid__66"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__66 = _genCompid2[0],
+          $compid__66 = _genCompid2[1];
+
+      var _state = this.__state,
+          _isOpened = _state._isOpened,
+          isWEB = _state.isWEB;
       var _props = this.__props,
           title = _props.title,
           content = _props.content,
           cancelText = _props.cancelText,
           confirmText = _props.confirmText;
-
 
       var rootClass = (0, _index6.default)('at-modal', {
         'at-modal--active': _isOpened
@@ -124,39 +139,28 @@ var AtModal = function (_AtComponent) {
 
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
+        _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
+        _$isRenderAction && _index.propsManager.set({
+          "isSimple": true
+        }, $compid__66, $prevCompid__66);
       }
 
       Object.assign(this.__state, {
+        _$isRenderAction: _$isRenderAction,
+        _$anonymousState__temp: _$anonymousState__temp,
+        $compid__66: $compid__66,
         title: title,
         content: content,
-        rootClass: rootClass,
-        _$isRenderAction: _$isRenderAction,
         cancelText: cancelText,
-        confirmText: confirmText
+        confirmText: confirmText,
+        rootClass: rootClass
       });
       return this.__state;
     }
   }]);
 
   return AtModal;
-}(_component2.default);
-
-AtModal.properties = {
-  "isOpened": null,
-  "closeOnClickOverlay": null,
-  "onClose": null,
-  "__fn_onClose": null,
-  "onCancel": null,
-  "__fn_onCancel": null,
-  "onConfirm": null,
-  "__fn_onConfirm": null,
-  "title": null,
-  "content": null,
-  "cancelText": null,
-  "confirmText": null,
-  "className": null
-};
-AtModal.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"];
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
 
 
 AtModal.defaultProps = {

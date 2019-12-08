@@ -1,45 +1,41 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-history">
         <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style="{{anonymousState__temp}}">
             <block>
                 <block wx:if="{{!loaded}}">
-                    <loading __triggerObserer="{{ _triggerObserer }}"></loading>
+                    <loading></loading>
                 </block>
                 <block wx:elif="{{actives.length === 0}}">
-                    <empty __triggerObserer="{{ _triggerObserer }}"></empty>
+                    <empty></empty>
                 </block>
-                <block wx:if="{{actives}}" wx:else>
-                    <view class="list-wrapper" bindtap="HandleActiveClick" wx:for="{{actives}}"
-                    wx:for-item="item" data-e-HandleActiveClick-so="this" data-e-HandleActiveClick-a-a="{{item}}">
-                        <view class="list-wrapper-header">
-                            <view>{{item.agentName}}
-                                <text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right history-appointer"
-                                __triggerObserer="{{ _triggerObserer }}"></text>
+                <block wx:else>
+                    <block wx:if="{{actives}}">
+                        <view class="list-wrapper" bindtap="HandleActiveClick" wx:for="{{actives}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item}}">
+                            <view class="list-wrapper-header">
+                                <view>{{item.agentName}} <text class="at-icon at-icon item-extra__icon-arrow item-extra__icon-arrow at-icon-chevron-right at-icon-chevron-right history-appointer"></text>
+                                </view>
+                                <view>{{item.status === "NORMAL" ? "活动中" : "已结束"}}</view>
                             </view>
-                            <view>{{item.status === "NORMAL" ? "活动中" : "已结束"}}</view>
-                        </view>
-                        <view class="list-wrapper-content">
-                            <view>
-                                <image className="icon-header" __triggerObserer="{{ _triggerObserer }}"
-                                src="{{item.displayLocation}}" />
-                            </view>
-                            <view>
-                                <view>{{item.name}}</view>
-                                <view>{{item.people}}人成团</view>
-                                <view>活动有效期: {{item.endD}}</view>
+                            <view class="list-wrapper-content">
+                                <view>
+                                    <image className="icon-header" src="{{item.displayLocation}}"></image>
+                                </view>
+                                <view>
+                                    <view>{{item.name}}</view>
+                                    <view>{{item.people}}人成团</view>
+                                    <view>活动有效期: {{item.endD}}</view>
+                                </view>
                             </view>
                         </view>
-                    </view>
+                    </block>
                 </block>
             </block>
             <block wx:if="{{loaded && loading}}">
-                <view class="home__loading">
-                    <text class="home__loading-txt">正在加载中...</text>
+                <view class="home__loading"><text class="home__loading-txt">正在加载中...</text>
                 </view>
             </block>
             <block wx:if="{{!hasMore}}">
-                <view class="home__loading home__loading--not-more">
-                    <text class="home__loading-txt">没有更多了</text>
+                <view class="home__loading home__loading--not-more"><text class="home__loading-txt">没有更多了</text>
                 </view>
             </block>
         </scroll-view>

@@ -14,8 +14,6 @@ export default class UserOrder extends Component {
 
     render() {
         const { list } = this.props;
-        console.log('this.props',this.props);
-
         let orderIndex = this.props.isAgent ? 2 : 1;
         return (
             <View className="mp-user__order">

@@ -1,0 +1,4 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="time"><text> {{day}}天 {{hour}}:{{minute}}:{{second}}</text>
+    </view>
+</block>

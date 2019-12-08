@@ -1,16 +1,14 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-order-detail">
-        <header content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></header>
+        <header compid="{{$compid__29}}"></header>
         <block wx:if="{{content.customerName}}">
-            <customer content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></customer>
+            <customer compid="{{$compid__30}}"></customer>
         </block>
         <block wx:if="{{content.batchUsers}}">
-            <assemble content="{{content}}" __triggerObserer="{{ _triggerObserer }}"></assemble>
+            <assemble compid="{{$compid__31}}"></assemble>
         </block>
-        <order-product order="{{order}}" __triggerObserer="{{ _triggerObserer }}"
-        content="{{content}}"></order-product>
-        <footer content="{{content}}" __triggerObserer="{{ _triggerObserer }}"
-        qrCode="{{content ? content.qrCode : ''}}"></footer>
-        <tool-bar toolBar="{{content ? content.toolBar : ''}}" __triggerObserer="{{ _triggerObserer }}"></tool-bar>
+        <order-product compid="{{$compid__32}}"></order-product>
+        <footer compid="{{$compid__33}}"></footer>
+        <tool-bar compid="{{$compid__34}}"></tool-bar>
     </view>
 </block>

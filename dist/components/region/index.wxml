@@ -1,10 +1,8 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view>
         <view class="{{region == '请选择省市区' ? 'taro-region-picker taro-region-picker-gray' : 'taro-region-picker taro-region-picker-black'}}">
-            <picker mode="multiSelector" bindchange="onChange" bindcolumnchange="onColumnChange"
-            range="{{range}}" value="{{value}}">
-                <view>
-                    <text>{{region}}</text>
+            <picker mode="multiSelector" bindchange="onChange" bindcolumnchange="onColumnChange" range="{{range}}" value="{{value}}">
+                <view><text>{{region}}</text>
                 </view>
             </picker>
         </view>

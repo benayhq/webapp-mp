@@ -164,11 +164,7 @@ function getEventDetail(event) {
   }
   return detail;
 }
-function initTestEnv() {
-  if (false) {
-    _index2.default.initPxTransform({ designWidth: 750 });
-  }
-}
+function initTestEnv() {}
 function isTest() {
   return false;
 }

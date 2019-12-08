@@ -1,6 +1,6 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <block wx:if="{{pxWidth && pxHeight}}">
-        <canvas canvas-id="{{canvasId}}" style="{{_$anonymousState__temp}}" class="{{_$anonymousState__temp2}}"></canvas>
+        <canvas canvas-id="{{canvasId}}" style="{{'width:' + pxWidth * 2 + 'rpx; height:' + pxHeight * 2 + 'rpx;'}}" class="{{(debug ? 'debug' : 'pro') + ' canvas'}}"></canvas>
     </block>
     <view wx:else></view>
 </block>

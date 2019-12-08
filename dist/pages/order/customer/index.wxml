@@ -1,6 +1,5 @@
-<block>
-    <view class="customer">
-        <text class="mp-icon mp-icon-order-group card"></text>
+<block wx:if="{{$taroCompReady}}">
+    <view class="customer"><text class="mp-icon mp-icon-order-group card"></text>
         <view>
             <view>客户: {{content && content.customerName}}</view>
             <view class="tel">电话: {{content && content.customerPhone}}</view>

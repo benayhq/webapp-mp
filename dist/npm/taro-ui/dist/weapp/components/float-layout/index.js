@@ -8,6 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+var _class, _temp2; /* eslint-disable taro/function-naming */
+
+
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -36,10 +39,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable taro/function-naming */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-
-var AtFloatLayout = function (_AtComponent) {
+var AtFloatLayout = (_temp2 = _class = function (_AtComponent) {
   _inherits(AtFloatLayout, _AtComponent);
 
   function AtFloatLayout() {
@@ -53,9 +55,9 @@ var AtFloatLayout = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtFloatLayout.__proto__ || Object.getPrototypeOf(AtFloatLayout)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "title", "scrollY", "scrollX", "scrollTop", "scrollLeft", "upperThreshold", "lowerThreshold", "scrollWithAnimation", "_isOpened", "children"], _this.handleClose = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtFloatLayout.__proto__ || Object.getPrototypeOf(AtFloatLayout)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["rootClass", "title", "scrollY", "scrollX", "scrollTop", "scrollLeft", "upperThreshold", "lowerThreshold", "scrollWithAnimation", "_isOpened", "isOpened", "className", "children"], _this.handleClose = function () {
       if ((0, _isFunction3.default)(_this.props.onClose)) {
-        _this.__triggerPropsFn("onClose", [null].concat([]));
+        _this.props.onClose();
       }
     }, _this.close = function () {
       _this.setState({
@@ -63,7 +65,7 @@ var AtFloatLayout = function (_AtComponent) {
       }, _this.handleClose);
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtFloatLayout, [{
@@ -76,6 +78,7 @@ var AtFloatLayout = function (_AtComponent) {
       this.state = {
         _isOpened: isOpened
       };
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "componentWillReceiveProps",
@@ -98,6 +101,9 @@ var AtFloatLayout = function (_AtComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
 
       var _isOpened = this.__state._isOpened;
       var _props = this.__props,
@@ -129,46 +135,24 @@ var AtFloatLayout = function (_AtComponent) {
       return this.__state;
     }
   }, {
-    key: "func__yiyze",
-    value: function func__yiyze() {
-      this.__triggerPropsFn("onScroll", [].concat(Array.prototype.slice.call(arguments)));
+    key: "funPrivatebdzzz",
+    value: function funPrivatebdzzz() {
+      return this.props.onScroll.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }, {
-    key: "func__aCVWo",
-    value: function func__aCVWo() {
-      this.__triggerPropsFn("onScrollToLower", [].concat(Array.prototype.slice.call(arguments)));
+    key: "funPrivatebezzz",
+    value: function funPrivatebezzz() {
+      return this.props.onScrollToLower.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }, {
-    key: "func__FqtWl",
-    value: function func__FqtWl() {
-      this.__triggerPropsFn("onScrollToUpper", [].concat(Array.prototype.slice.call(arguments)));
+    key: "funPrivatebfzzz",
+    value: function funPrivatebfzzz() {
+      return this.props.onScrollToUpper.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }]);
 
   return AtFloatLayout;
-}(_component2.default);
-
-AtFloatLayout.properties = {
-  "isOpened": null,
-  "onClose": null,
-  "__fn_onClose": null,
-  "title": null,
-  "scrollY": null,
-  "scrollX": null,
-  "scrollTop": null,
-  "scrollLeft": null,
-  "upperThreshold": null,
-  "lowerThreshold": null,
-  "scrollWithAnimation": null,
-  "className": null,
-  "onScroll": null,
-  "__fn_onScroll": null,
-  "onScrollToLower": null,
-  "__fn_onScrollToLower": null,
-  "onScrollToUpper": null,
-  "__fn_onScrollToUpper": null
-};
-AtFloatLayout.$$events = ["handleTouchMove", "close", "func__yiyze", "func__aCVWo", "func__FqtWl"];
+}(_component2.default), _class.$$events = ["handleTouchMove", "close", "funPrivatebdzzz", "funPrivatebezzz", "funPrivatebfzzz"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/float-layout/index", _temp2);
 
 
 AtFloatLayout.defaultProps = {

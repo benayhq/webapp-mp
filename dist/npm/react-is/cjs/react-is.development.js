@@ -9,7 +9,7 @@
 
 'use strict';
 
-if (true) {
+{
   (function () {
     'use strict';
 

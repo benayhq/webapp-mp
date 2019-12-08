@@ -30,13 +30,52 @@ var store = (0, _index5.default)();
 
 (0, _index3.setStore)(store);
 
+if (_index3.ReduxContext.Provider) {
+  _index3.ReduxContext.Provider({
+    store: store
+  });
+  _index3.ReduxContext.Provider({
+    store: store
+  });
+}
+
 var _App = function (_BaseComponent) {
   _inherits(_App, _BaseComponent);
 
   function _App() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, _App);
 
-    return _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      pages: ['pages/user/index', 'pages/user/info/edit', 'pages/active/publish/index', 'pages/active/share/index',
+      // 'pages/product/index',
+      // 'pages/product/add',
+      // 'pages/product/edit',
+      // 'pages/product/detail',
+      'pages/order/index', 'pages/order/detail/index', 'pages/order/refund/index', 'pages/order/submit/index', 'pages/p2p/index', 'pages/pay/detail/index', 'pages/order/comment/index', 'pages/user/customer/index', 'pages/user/history/index', 'pages/user/consultant/index', 'pages/user/product/index', 'pages/user/active/index', 'pages/login/index'],
+      "subPackages": [{
+        root: "packageA",
+        pages: ['pages/product/index', 'pages/product/add', 'pages/product/edit', 'pages/product/detail']
+      }],
+      window: {
+        backgroundTextStyle: 'light',
+        navigationBarBackgroundColor: '#fff',
+        navigationBarTitleText: 'WeChat',
+        navigationBarTextStyle: 'black'
+      },
+      permission: {
+        "scope.userLocation": {
+          "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(_App, [{

@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "at-message": "../../../../npm/taro-ui/dist/weapp/components/message/index",
-    "at-list": "../../../../npm/taro-ui/dist/weapp/components/list/index",
-    "at-list-item": "../../../../npm/taro-ui/dist/weapp/components/list/item/index"
+    "at-message": "../../../npm/taro-ui/dist/weapp/components/message/index",
+    "at-list": "../../../npm/taro-ui/dist/weapp/components/list/index",
+    "at-list-item": "../../../npm/taro-ui/dist/weapp/components/list/item/index"
   },
   "navigationBarTitleText": "发起订单"
 }

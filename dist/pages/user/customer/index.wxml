@@ -1,17 +1,18 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view>
         <block>
             <block wx:if="{{customer.length === 0}}">
-                <empty __triggerObserer="{{ _triggerObserer }}"></empty>
+                <empty></empty>
             </block>
-            <at-list wx:else __triggerObserer="{{ _triggerObserer }}">
-                <block wx:if="{{customer}}">
-                    <block wx:if="{{item.$$original.name}}" wx:for="{{loopArray0}}" wx:for-item="item">
-                        <at-list-item title="{{item.$loopState__temp2}}" __triggerObserer="{{ _triggerObserer }}"
-                        note="{{item.$loopState__temp4}}" thumb="{{item.$$original.profileUrl}}"></at-list-item>
+            <block wx:else>
+                <at-list>
+                    <block wx:if="{{customer}}">
+                        <block wx:if="{{item.$original.name}}" wx:for="{{loopArray2}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                            <at-list-item compid="{{item.$compid__46}}"></at-list-item>
+                        </block>
                     </block>
-                </block>
-            </at-list>
+                </at-list>
+            </block>
         </block>
     </view>
 </block>

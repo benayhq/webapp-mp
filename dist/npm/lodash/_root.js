@@ -1,4 +1,4 @@
-var freeGlobal = require('./_freeGlobal');
+var freeGlobal = require("./_freeGlobal.js");
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;

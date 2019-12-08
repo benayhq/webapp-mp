@@ -1,9 +1,9 @@
 {
   "usingComponents": {
-    "at-message": "../../../../npm/taro-ui/dist/weapp/components/message/index",
-    "at-input": "../../../../npm/taro-ui/dist/weapp/components/input/index",
+    "at-message": "../../../npm/taro-ui/dist/weapp/components/message/index",
+    "at-input": "../../../npm/taro-ui/dist/weapp/components/input/index",
     "region": "../../../components/region/index",
-    "at-image-picker": "../../../../npm/taro-ui/dist/weapp/components/image-picker/index",
+    "at-image-picker": "../../../npm/taro-ui/dist/weapp/components/image-picker/index",
     "product-list": "./productlist/index"
   },
   "navigationBarTitleText": "新增活动"

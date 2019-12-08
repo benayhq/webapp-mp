@@ -1,0 +1,16 @@
+<block wx:if="{{$taroCompReady}}">
+    <scroll-view scroll-y="{{true}}">
+        <view class="mp-tuan">
+            <view class="mp-tuan__second" wx:for="{{loopArray21}}" wx:for-item="item" wx:for-index="index">
+                <image style="width:46px;height:31px;border-radius: 100px;margin: 11px;" mode="scaleToFill" src="{{item.$original.profileUrl}}"></image><text class="mp-tuan__username">{{item.$original.publishName}}</text>
+                <view class="mp-tuan__joinperson">
+                    <view class="mp-tuan__counter">还差 {{item.$original.people}} 人拼成</view>
+                    <count-down compid="{{item.$compid__84}}"></count-down>
+                </view>
+                <view class="mp-tuan__joinaction">
+                    <view class="mp-tuan__action" bindtap="showMpDialog" data-e-tap-so="this">去拼团</view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</block>

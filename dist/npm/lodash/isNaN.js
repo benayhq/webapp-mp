@@ -1,4 +1,4 @@
-var isNumber = require('./isNumber');
+var isNumber = require("./isNumber.js");
 
 /**
  * Checks if `value` is `NaN`.

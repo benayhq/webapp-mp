@@ -1,6 +1,7 @@
 /* 引入 Taro UI 默认样式 */
-// @import "~/style/index.scss";
 $color-brand: #7DD6D0;
+@import "~taro-ui/dist/style/index.scss";
+
 page {
     cursor:default;
     -webkit-user-select:none;

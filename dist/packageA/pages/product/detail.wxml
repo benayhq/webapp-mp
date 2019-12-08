@@ -1,2 +1,155 @@
-<!--packageA/pages/product/detail.wxml-->
-<text>packageA/pages/product/detail.wxml</text>
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <block>
+            <block wx:if="{{!loaded}}">
+                <loading></loading>
+            </block>
+            <block wx:else>
+                <view class="mp-activedetail">
+                    <scroll-view scroll-y="{{true}}" style="{{_$anonymousState__temp}}">
+                        <gallery compid="{{$compid__124}}"></gallery>
+                        <block>
+                            <block wx:if="{{data.remainPeople > 0}}">
+                                <view class="mp-activedetail__user"><text>好友 </text><text> {{data.nickname}} </text><text> 发起的拼团,还差 </text><text> {{data.remainPeople}} </text><text>人成团</text>
+                                </view>
+                            </block>
+                        </block>
+                        <view class="mp-activedetail__price">
+                            <view><text class="mp-activedetail__title">￥{{data.displayPrice}}</text><text class="mp-activedetail__subtitle">￥{{data.displayDiscountPrice}}</text>
+                            </view>
+                            <view class="mp-activedetail__desc">{{data.activityName}}</view>
+                            <view><text class="mp-activedetail__address"> {{data && data.areaCode}}</text><text class="mp-activedetail__tel">已咨询：{{data.consultPeople}}</text>
+                            </view>
+                        </view>
+                        <view class="mp-activedetail__service">
+                            <view>服务承诺</view>
+                            <view>正品保证 ·</view>
+                            <view>预付款可退 ·</view>
+                            <view>预付款可退</view>
+                        </view>
+                        <view class="mp-activedetail__person">
+                            <view class="mp-activedetail__header">
+                                <image mode="scaleToFill" src="{{data.profileUrl}}"></image>
+                            </view>
+                            <view class="mp-activedetail__content">
+                                <view>{{data.username}}</view>
+                                <view class="mp-activedetail__content-score">
+                                    <view>
+                                        <at-rate compid="{{$compid__125}}"></at-rate>
+                                    </view>
+                                    <view>{{data.commentScore}}分（{{data && data.commentPeople != null ? data.commentPeople : 0}}人评）</view>
+                                </view>
+                                <view>服务区域: {{data && data.areaCode}}</view>
+                            </view>
+                        </view>
+                        <block wx:if="{{data.activityBatchVos && data.activityBatchVos.length > 0}}">
+                            <view class="mp-activedetail__join">
+                                <view class="mp-activedetail__first"><text class="mp-activedetail__etitle">{{data.activityBatchVos.length}}人在拼单，可直接参与</text><text class="mp-activedetail__all" bindtap="showMpDialog" data-e-tap-so="this"> 查看全部<text class="mp-icon mp-icon-arrow1"></text></text>
+                                </view>
+                                <block wx:if="{{data.activityBatchVos}}">
+                                    <view class="mp-activedetail__second" wx:for="{{loopArray34}}" wx:for-item="batch" wx:for-index="_anonIdx2">
+                                        <view>
+                                            <image className="mp-activedetail__second-image" mode="scaleToFill" src="{{batch.$original.profileUrl}}"></image>
+                                        </view>
+                                        <view>{{batch.$original.publishName}}</view>
+                                        <view class="mp-activedetail__joinperson">
+                                            <view class="mp-activedetail__counter">还差 {{batch.$original.remainPeople}} 人拼成</view>
+                                            <count-down compid="{{batch.$compid__121}}"></count-down>
+                                        </view>
+                                        <view>
+                                            <view class="mp-activedetail__second__buyAction" bindtap="openCategoryDialog" data-e-tap-so="this">参与拼团</view>
+                                        </view>
+                                    </view>
+                                </block>
+                            </view>
+                        </block>
+                        <view class="mp-activedetail__comment">
+                            <view class="mp-activedetail__comment-title"><text style="width:10px; height:35px; line-height:35px;left:-14px; top:4px;position:relative;background:#7DD6D0; display:inline-block;"></text><text style="width:150px; height:35px; line-height:35px;left:-7px; top:-5px; position:relative;display:inline-block;">评价 ({{data.commentSize === null ? 0 : data.commentSize}})</text>
+                            </view>
+                            <block wx:if="{{comments.length === 0 && data.commentVo}}">
+                                <view class="mp-activedetail__comment-content">
+                                    <view class="mp-activedetail__comment-content-left">
+                                        <image mode="scaleToFill" src="{{data.commentVo.profileUrl}}"></image>
+                                    </view>
+                                    <view class="mp-activedetail__comment-content-right">
+                                        <view class="mp-activedetail__comment-username">{{data.commentVo.name}}</view>
+                                        <view class="mp-activedetail__comment-tag"><text> 环境：{{data.commentVo.environmentStar + '.0'}}  </text><text> 专业度：{{data.commentVo.professionStar + '.0'}} </text><text> 服务：{{data.commentVo.serviceStar + '.0'}} </text><text> 效果：{{data.commentVo.effectStar + '.0'}} </text>
+                                        </view>
+                                        <view class="mp-activedetail__comment-description">{{data.commentVo.message}}
+                                            <view>
+                                                <block wx:if="{{commentList}}">
+                                                    <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="_anonIdx4"></image>
+                                                </block>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </block>
+                            <block wx:if="{{comments.length > 0}}">
+                                <view class="mp-activedetail__comment-content" wx:for="{{comments}}" wx:for-item="item" wx:for-index="_anonIdx8">
+                                    <view class="mp-activedetail__comment-content-left">
+                                        <image mode="scaleToFill" src="{{item.profileUrl}}"></image>
+                                    </view>
+                                    <view class="mp-activedetail__comment-content-right">
+                                        <view class="mp-activedetail__comment-username">{{item.name}}</view>
+                                        <view class="mp-activedetail__comment-tag"><text> 环境：{{item.environmentStar + '.0'}}  </text><text> 专业度：{{item.professionStar + '.0'}} </text><text> 服务：{{item.serviceStar + '.0'}} </text><text> 效果：{{item.effectStar + '.0'}} </text>
+                                        </view>
+                                        <view class="mp-activedetail__comment-description">{{item.message}}
+                                            <view>
+                                                <block wx:if="{{item.docLocations}}">
+                                                    <image style="width:80px;height:80px;margin:10px 20px 10px 0px;border-radius:5px;" mode="scaleToFill" src="{{comment}}" wx:for="{{item.docLocations}}" wx:for-item="comment" wx:for-index="_anonIdx6"></image>
+                                                </block>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.commentVo}}">
+                                <view class="mp-activedetail__query-all-comment" bindtap="handleAllComment" data-e-tap-so="this" data-e-tap-a-a="{{data}}">{{commentText}}</view>
+                            </block>
+                        </view>
+                        <view class="mp-activedetail__consultation"></view>
+                        <view class="mp-activedetail__footer">
+                            <view>
+                                <view class="mp-activedetail__orderpay_footer">预定金: <text style="color:rgba(235,47,150,1);">￥{{data.advance}}</text>
+                                </view>
+                                <view class="mp-activedetail__orderpay_face_footer">当面付: ￥{{data.cashAdvance}}</view>
+                            </view>
+                            <view class="mp-activedetail__home_footer" bindtap="handleJumpHome" data-e-tap-so="this">
+                                <view class="mp-icon mp-icon-home"></view>
+                            </view>
+                            <view class="mp-activedetail__zixun_footer" bindtap="openDialog" data-e-tap-so="this">
+                                <view class="mp-icon mp-icon-telphone"></view>
+                            </view>
+                            <view class="{{data.status === 'CLOSE' ? 'mp-activedetail__action__footer_disable' : 'mp-activedetail__action__footer'}}" bindtap="openCategoryDialog" data-e-tap-so="this" data-e-tap-a-a="{{data.status}}">{{data.status === 'CLOSE' ? '拼团已结束' : '参与拼团'}}</view>
+                        </view>
+                        <view class="mp-share" bindtap="handleInvertFirend" data-e-tap-so="this">
+                            <view>
+                                <view class="mp-icon mp-icon-share"></view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                    <share compid="{{$compid__126}}"></share>
+                    <popup compid="{{$compid__127}}">
+                        <block>
+                            <block wx:if="{{bContact}}">
+                                <contact compid="{{$compid__122}}"></contact>
+                            </block>
+                            <block wx:elif="{{bSpec}}">
+                                <spec compid="{{$compid__123}}"></spec>
+                            </block>
+                        </block>
+                    </popup>
+                    <at-modal compid="{{$compid__128}}">
+                        <at-modal-content>
+                            <tuan-list compid="{{$compid__129}}"></tuan-list>
+                        </at-modal-content>
+                        <at-modal-action>
+                            <button bindtap="handleModelClose" data-e-tap-so="this">关闭</button>
+                        </at-modal-action>
+                    </at-modal>
+                </view>
+            </block>
+        </block>
+    </view>
+</block>

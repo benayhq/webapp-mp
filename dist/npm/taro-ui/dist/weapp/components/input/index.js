@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+var _class, _temp2;
+
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -57,7 +59,7 @@ function getInputProps(props) {
   return actualProps;
 }
 
-var AtInput = function (_AtComponent) {
+var AtInput = (_temp2 = _class = function (_AtComponent) {
   _inherits(AtInput, _AtComponent);
 
   function AtInput() {
@@ -71,35 +73,40 @@ var AtInput = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "children"], _this.onInput = function (event) {
-      return _this.__triggerPropsFn("onChange", [null].concat([event.target.value, event]));
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "editable", "className", "customStyle", "border", "placeholderClass", "children"], _this.onInput = function (event) {
+      return _this.props.onChange(event.target.value, event);
     }, _this.onFocus = function (event) {
-      return _this.__triggerPropsFn("onFocus", [null].concat([event.target.value, event]));
+      return _this.props.onFocus(event.target.value, event);
     }, _this.onBlur = function (event) {
-      _this.__triggerPropsFn("onBlur", [null].concat([event.target.value, event]));
+      _this.props.onBlur(event.target.value, event);
       // fix # 583 AtInput 不触发 onChange 的问题
-      _this.__triggerPropsFn("onChange", [null].concat([event.target.value, event]));
+      _this.props.onChange(event.target.value, event);
     }, _this.onConfirm = function (event) {
-      return _this.__triggerPropsFn("onConfirm", [null].concat([event.target.value, event]));
+      return _this.props.onConfirm(event.target.value, event);
     }, _this.onClick = function () {
-      return !_this.props.editable && _this.__triggerPropsFn("onClick", [null].concat([]));
+      return !_this.props.editable && _this.props.onClick();
     }, _this.clearValue = function () {
-      return _this.__triggerPropsFn("onChange", [null].concat(['']));
+      return _this.props.onChange('');
     }, _this.onErrorClick = function () {
-      return _this.__triggerPropsFn("onErrorClick", [null].concat([]));
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+      return _this.props.onErrorClick();
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtInput, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
 
       var _props = this.__props,
           className = _props.className,
@@ -171,37 +178,7 @@ var AtInput = function (_AtComponent) {
   }]);
 
   return AtInput;
-}(_component2.default);
-
-AtInput.properties = {
-  "__fn_onChange": null,
-  "__fn_onFocus": null,
-  "__fn_onBlur": null,
-  "__fn_onConfirm": null,
-  "editable": null,
-  "__fn_onClick": null,
-  "__fn_onErrorClick": null,
-  "className": null,
-  "customStyle": null,
-  "name": null,
-  "cursorSpacing": null,
-  "confirmType": null,
-  "cursor": null,
-  "selectionStart": null,
-  "selectionEnd": null,
-  "adjustPosition": null,
-  "border": null,
-  "title": null,
-  "error": null,
-  "clear": null,
-  "placeholder": null,
-  "placeholderStyle": null,
-  "placeholderClass": null,
-  "autoFocus": null,
-  "focus": null,
-  "value": null
-};
-AtInput.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"];
+}(_component2.default), _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/input/index", _temp2);
 
 
 AtInput.defaultProps = {

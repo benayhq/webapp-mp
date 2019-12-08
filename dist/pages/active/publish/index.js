@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class;
-
-require("../../../npm/@tarojs/async-await/index.js");
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
@@ -43,7 +43,7 @@ var imgArraySrc = [];
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.active;
-}, actions), _dec(_class = function (_BaseComponent) {
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -57,7 +57,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "activeName", "products", "isShowPublic", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "activeAllName", "weChatNumber", "productIds", "isOpened", "docLocations", "activeAllPrice", "region"], _this.handleUploadLoader = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__198", "$compid__199", "$compid__200", "$compid__201", "isShowPublic", "dateStart", "dateEnd", "files", "selector", "selectorChecked", "groupItemChecked", "groupItem", "products", "activeAllName", "weChatNumber", "productIds", "isOpened", "docLocations", "activeAllPrice", "region", "dispatchDownLoadUrl", "dispatchQueryProductInfo", "groupCount", "activeName", "startTime", "endTime", "activePrice", "tempfiles", "address", "imgs", "dispatchCacheTempFiles", "dispatchUploadConfig", "dispatchUploadFile", "dispatchGroupCount", "disptachServiceAddress", "dispatchStartTime", "dispatchActivePrice", "dispatchCreateActive", "dispatchWeixinDecrypt", "UpdateUserInfo", "GetUserInfo", "disptachActiveName", "dispatchEndTime"], _this.config = {
+      navigationBarTitleText: '新增活动'
+    }, _this.handleUploadLoader = function () {
 
       var payload = {
         documentType: 'PRODUCT',
@@ -80,7 +82,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         dateEnd: e.detail.value
       });
       _this.props.dispatchEndTime(e.detail.value);
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["AtMessage", "AtInput", "Region", "AtImagePicker", "ProductList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -105,7 +107,9 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         isShowPublic: false,
         region: '请选择省市区'
       };
+
       this.init();
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "getImgUrl",
@@ -217,6 +221,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         this.setState({
           region: this.props.address
         });
+        this.onGetRegion(this.props.address);
       }
 
       if (this.props.imgs.length > 0) {
@@ -228,6 +233,8 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
           docLocations: docLocations
         });
       }
+
+      console.log('console this.props', this.props);
     }
   }, {
     key: "init",
@@ -251,13 +258,14 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                 this.setState({
                   groupItem: groups
                 });
-
                 _context2.next = 5;
                 return this.getAuthInfo();
 
               case 5:
                 result = _context2.sent;
 
+
+                console.log('result getAuthInfo', result);
                 this.setState({
                   region: result.areaCode === "" ? "请选择省市区" : result.areaCode
                 });
@@ -271,7 +279,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   });
                 }
 
-              case 8:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -390,66 +398,64 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
               case 0:
                 _state = this.state, activeName = _state.activeName, groupItemChecked = _state.groupItemChecked, dateStart = _state.dateStart, dateEnd = _state.dateEnd, docLocations = _state.docLocations, weChatNumber = _state.weChatNumber, region = _state.region;
 
-                console.log('region', region);
-
                 if (!(activeName === '' || activeName === undefined)) {
-                  _context3.next = 5;
+                  _context3.next = 4;
                   break;
                 }
 
                 this.handleAlert('error', '请填写活动名称');
                 return _context3.abrupt("return");
 
-              case 5:
+              case 4:
                 if (!(groupItemChecked === '请选择')) {
-                  _context3.next = 8;
+                  _context3.next = 7;
                   break;
                 }
 
                 this.handleAlert('error', '请选择成团人数');
                 return _context3.abrupt("return");
 
-              case 8:
+              case 7:
                 if (!(dateStart == '请选择')) {
-                  _context3.next = 11;
+                  _context3.next = 10;
                   break;
                 }
 
                 this.handleAlert('error', '请选择开始时间');
                 return _context3.abrupt("return");
 
-              case 11:
+              case 10:
                 if (!(dateEnd == '请选择')) {
-                  _context3.next = 14;
+                  _context3.next = 13;
                   break;
                 }
 
                 this.handleAlert('error', '请选择结束时间');
                 return _context3.abrupt("return");
 
-              case 14:
+              case 13:
                 if (!(region === '请选择省市区')) {
-                  _context3.next = 17;
+                  _context3.next = 16;
                   break;
                 }
 
                 this.handleAlert('error', '请选择省市区');
                 return _context3.abrupt("return");
 
-              case 17:
+              case 16:
                 if (!(docLocations.length <= 0)) {
-                  _context3.next = 20;
+                  _context3.next = 19;
                   break;
                 }
 
                 this.handleAlert('error', '请选择上传主图');
                 return _context3.abrupt("return");
 
-              case 20:
-                _context3.next = 22;
+              case 19:
+                _context3.next = 21;
                 return (0, _storage.getAuthInfo)();
 
-              case 22:
+              case 21:
                 result = _context3.sent;
                 payload = {
                   "areaCode": region,
@@ -479,7 +485,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
                   console.log('e', e);
                 }
 
-              case 25:
+              case 24:
               case "end":
                 return _context3.stop();
             }
@@ -746,6 +752,29 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _index.genCompid)(__prefix + "$compid__198"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__198 = _genCompid2[0],
+          $compid__198 = _genCompid2[1];
+
+      var _genCompid3 = (0, _index.genCompid)(__prefix + "$compid__199"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__199 = _genCompid4[0],
+          $compid__199 = _genCompid4[1];
+
+      var _genCompid5 = (0, _index.genCompid)(__prefix + "$compid__200"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__200 = _genCompid6[0],
+          $compid__200 = _genCompid6[1];
+
+      var _genCompid7 = (0, _index.genCompid)(__prefix + "$compid__201"),
+          _genCompid8 = _slicedToArray(_genCompid7, 2),
+          $prevCompid__201 = _genCompid8[0],
+          $compid__201 = _genCompid8[1];
 
       var _state3 = this.__state,
           activeName = _state3.activeName,
@@ -758,42 +787,37 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       console.log('isShowPublic', isShowPublic);
       var isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
       var anonymousState__temp = (0, _index.internal_inline_style)({ height: this.getWindowHeight(true, products) });
+      _index.propsManager.set({
+        "border": false,
+        "value": activeName,
+        "onChange": this.handleActiveChange.bind(this),
+        "placeholder": "\u8BF7\u8F93\u5165\u6D3B\u52A8\u540D\u79F0"
+      }, $compid__198, $prevCompid__198);
+      _index.propsManager.set({
+        "onGetRegion": this.onGetRegion.bind(this)
+      }, $compid__199, $prevCompid__199);
+      _index.propsManager.set({
+        "multiple": true,
+        "className": "uploadImage",
+        "files": this.__state.files,
+        "onChange": this.HandlePickerChange.bind(this)
+      }, $compid__200, $prevCompid__200);
+      _index.propsManager.set({
+        "products": products
+      }, $compid__201, $prevCompid__201);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        activeName: activeName
+        $compid__198: $compid__198,
+        $compid__199: $compid__199,
+        $compid__200: $compid__200,
+        $compid__201: $compid__201
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component)) || _class);
-Index.properties = {
-  "dispatchDownLoadUrl": null,
-  "dispatchQueryProductInfo": null,
-  "groupCount": null,
-  "activeName": null,
-  "startTime": null,
-  "endTime": null,
-  "activePrice": null,
-  "tempfiles": null,
-  "address": null,
-  "imgs": null,
-  "dispatchCacheTempFiles": null,
-  "dispatchUploadConfig": null,
-  "dispatchUploadFile": null,
-  "dispatchGroupCount": null,
-  "disptachServiceAddress": null,
-  "dispatchStartTime": null,
-  "dispatchActivePrice": null,
-  "dispatchCreateActive": null,
-  "dispatchWeixinDecrypt": null,
-  "UpdateUserInfo": null,
-  "GetUserInfo": null,
-  "disptachActiveName": null,
-  "dispatchEndTime": null
-};
-Index.$$events = ["handleActiveChange", "handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "onGetRegion", "HandlePickerChange", "selectProduct", "createProduct", "onPublish", "getPhoneNumber"];
+}(_index.Component), _class2.$$events = ["handlePickerSelectGroupChange", "onDateStartChange", "onDateEndChange", "selectProduct", "createProduct", "onPublish", "getPhoneNumber"], _class2.$$componentPath = "pages/active/publish/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

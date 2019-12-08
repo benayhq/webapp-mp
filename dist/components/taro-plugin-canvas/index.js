@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+var _class, _temp2;
+
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
@@ -30,7 +32,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var count = 1;
 
-var CanvasDrawer = function (_BaseComponent) {
+var CanvasDrawer = (_temp2 = _class = function (_BaseComponent) {
   _inherits(CanvasDrawer, _BaseComponent);
 
   function CanvasDrawer() {
@@ -44,7 +46,7 @@ var CanvasDrawer = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CanvasDrawer.__proto__ || Object.getPrototypeOf(CanvasDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "pxWidth", "pxHeight", "debug", "factor"], _this.toPx = function (rpx, int) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CanvasDrawer.__proto__ || Object.getPrototypeOf(CanvasDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["pxWidth", "pxHeight", "canvasId", "debug", "factor", "config"], _this.toPx = function (rpx, int) {
       var factor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _this.state.factor;
 
       if (int) {
@@ -119,7 +121,7 @@ var CanvasDrawer = function (_BaseComponent) {
         if (!onCreateFail) {
           console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateFail 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#fail');
         }
-        onCreateFail && _this.__triggerPropsFn("onCreateFail", [null].concat([err]));
+        onCreateFail && _this.props.onCreateFail(err);
       });
     }, _this.create = function (config) {
       _this.ctx = _index2.default.createCanvasContext(_this.canvasId, _this.$scope);
@@ -207,7 +209,7 @@ var CanvasDrawer = function (_BaseComponent) {
           if (!onCreateSuccess) {
             console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateSuccess 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#success');
           }
-          onCreateSuccess && _this.__triggerPropsFn("onCreateSuccess", [null].concat([result]));
+          onCreateSuccess && _this.props.onCreateSuccess(result);
         },
         fail: function fail(error) {
           var errMsg = error.errMsg;
@@ -221,12 +223,12 @@ var CanvasDrawer = function (_BaseComponent) {
               if (!onCreateFail) {
                 console.warn('您必须实现 taro-plugin-canvas 组件的 onCreateFail 方法，详见文档 https://github.com/chuyun/taro-plugin-canvas#fail');
               }
-              onCreateFail && _this.__triggerPropsFn("onCreateFail", [null].concat([error]));
+              onCreateFail && _this.props.onCreateFail(error);
             }
           }
         }
       }, _this.$scope);
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CanvasDrawer, [{
@@ -243,6 +245,7 @@ var CanvasDrawer = function (_BaseComponent) {
       this.ctx = null;
       this.cache = {};
       this.drawArr = [];
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "componentWillMount",
@@ -320,45 +323,30 @@ var CanvasDrawer = function (_BaseComponent) {
   }, {
     key: "_createData",
     value: function _createData() {
-      var _$anonymousState__temp, _$anonymousState__temp2;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
-
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      var canvasId = this.canvasId;
       var _state = this.__state,
           pxWidth = _state.pxWidth,
           pxHeight = _state.pxHeight,
           debug = _state.debug;
 
-      if (pxWidth && pxHeight) {
-        _$anonymousState__temp = "width:" + pxWidth * 2 + "rpx; height:" + pxHeight * 2 + "rpx;";
-        _$anonymousState__temp2 = (debug ? 'debug' : 'pro') + " canvas";
-      }
+      if (pxWidth && pxHeight) {}
       Object.assign(this.__state, {
-        _$anonymousState__temp: _$anonymousState__temp,
-        _$anonymousState__temp2: _$anonymousState__temp2
+        canvasId: canvasId
       });
       return this.__state;
     }
   }]);
 
   return CanvasDrawer;
-}(_index.Component);
-
-CanvasDrawer.properties = {
-  "config": null,
-  "onCreateFail": null,
-  "__fn_onCreateFail": null,
-  "onCreateSuccess": null,
-  "__fn_onCreateSuccess": null
-};
-CanvasDrawer.$$events = [];
-CanvasDrawer.defaultProps = {};
-CanvasDrawer.propTypes = {
+}(_index.Component), _class.$$events = [], _class.defaultProps = {}, _class.propTypes = {
   config: _index4.default.object.isRequired,
   onCreateSuccess: _index4.default.func.isRequired,
   onCreateFail: _index4.default.func.isRequired
-};
+}, _class.$$componentPath = "components/taro-plugin-canvas/index", _temp2);
 exports.default = CanvasDrawer;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(CanvasDrawer));

@@ -20,20 +20,18 @@ class ActiveItem extends Component{
 
   HandleCloseActive(item,e){
     e.stopPropagation();
-    console.log('item',item.id);
     this.props.handleCloseActive(item.id);
   }
 
   HandleShareActive(item,e){
     e.stopPropagation();
-    console.log('item',item.id);
   }
 
   render(){
     const {item} = this.props;
 
     return (
-      <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
+      item && <View className="list-wrapper" onClick={this.HandleActiveClick.bind(this,item)}>
                <View className="list-wrapper-header">
                    <View>{item.name} </View>
                    {/* <View className='at-icon at-icon-chevron-right'></View> */}

@@ -37,7 +37,7 @@ class Item extends Component{
                 <View>
                     <View>{active.name}</View>
                     <View> 
-                        <AtRate value={active.commentScore} /> <Text className="rateItem">{active.commentScore}分（{active.commentPeople}人评）</Text>
+                        <AtRate value={active && active.commentScore} /> <Text className="rateItem">{active.commentScore}分（{active.commentPeople}人评）</Text>
                     </View>
                     <View className="address">
                       <Text>地址：{active.address === "" ? "暂无" : active.address}</Text>

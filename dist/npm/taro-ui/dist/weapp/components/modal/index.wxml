@@ -1,22 +1,26 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <block wx:if="{{title || content}}">
         <view class="{{rootClass}}">
             <view bindtap="handleClickOverlay" class="at-modal__overlay"></view>
             <view class="at-modal__container">
                 <block wx:if="{{title}}">
-                    <at-modal-header __triggerObserer="{{ _triggerObserer }}">
-                        <text>{{title}}</text>
+                    <at-modal-header><text>{{title}}</text>
                     </at-modal-header>
                 </block>
                 <block wx:if="{{content}}">
-                    <at-modal-content __triggerObserer="{{ _triggerObserer }}">
+                    <at-modal-content>
                         <view class="content-simple">
-                            <text>{{content}}</text>
+                            <block>
+                                <block wx:if="{{isWEB}}"><text dangerously-set-inner-html="{{_$anonymousState__temp}}"></text>
+                                </block>
+                                <block wx:else><text>{{content}}</text>
+                                </block>
+                            </block>
                         </view>
                     </at-modal-content>
                 </block>
                 <block wx:if="{{_$isRenderAction}}">
-                    <at-modal-action isSimple="{{true}}" __triggerObserer="{{ _triggerObserer }}">
+                    <at-modal-action compid="{{$compid__66}}">
                         <block wx:if="{{cancelText}}">
                             <button bindtap="handleCancel">{{cancelText}}</button>
                         </block>

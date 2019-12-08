@@ -1,2 +1,21 @@
-<!--packageA/pages/product/add.wxml-->
-<text>packageA/pages/product/add.wxml</text>
+<block wx:if="{{$taroCompReady}}">
+    <view class="mp-own-product">
+        <view class="mp-own-product__item" wx:for="{{productList}}" wx:for-item="product" wx:for-index="_anonIdx2">
+            <view class="mp-own-product__product">
+                <view>
+                    <image style="width:101px; height:101px;margin-top:6px; margin-left:9px; margin-right:9px;" mode="scaleToFill" src="{{product.imgUrl}}"></image>
+                </view>
+                <view><text class="mp-own-product__title">{{product.desc}}</text>
+                    <view class="mp-own-product__content"><text class="mp-own-product__price">￥{{product.price}}</text><text class="mp-own-product__marketPrice">￥{{product.marketPrice}}</text>
+                    </view>
+                    <view><text class="mp-own-product__preprice">预定金: </text><text class="mp-own-product__pureText">￥{{product.prePrice}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="mp-own-product__action">
+                <button bindtap="handleEditProduct" data-e-tap-so="this">编辑</button>
+                <button>删除</button>
+            </view>
+        </view>
+    </view>
+</block>

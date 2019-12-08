@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "title": "../title/index",
-    "at-button": "../../../../npm/taro-ui/dist/weapp/components/button/index"
+    "at-button": "../../../npm/taro-ui/dist/weapp/components/button/index"
   }
 }

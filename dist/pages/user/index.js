@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class;
-
-require("../../npm/@tarojs/async-await/index.js");
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -40,7 +40,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Index = (_dec = (0, _index3.connect)(function (state) {
   return state.user;
-}, actions), _dec(_class = function (_BaseComponent) {
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(Index, _BaseComponent);
 
   function Index() {
@@ -54,11 +54,13 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loaded", "isAgree", "avatarUrl", "isAgent", "profit", "orders", "list", "isShowLoanApp", "agreement", "userName", "showUserText", "flag", "current", "context1", "context2", "context3", "context4", "isOpened"], _this.jumpUrl = function (url) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$anonymousState__temp", "_$anonymousState__temp2", "loopArray0", "$compid__1", "$compid__2", "$compid__3", "$compid__4", "loaded", "agreement", "userName", "isAgent", "profit", "list", "isShowLoanApp", "showUserText", "avatarUrl", "orders", "flag", "current", "context1", "context2", "context3", "context4", "isOpened", "isAgree", "dispatchReservationCount", "dispatchReservationPlan", "dispatchLoanInfo", "GetAgreeMent", "UpdateUserInfo", "ChangeToAgent", "ChangeToCustomer", "GetUserInfo"], _this.config = {
+      navigationBarTitleText: '个人中心'
+    }, _this.jumpUrl = function (url) {
       _index2.default.navigateTo({
         url: url
       });
-    }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Loading", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction", "InCome", "UserOrder", "AtList", "AtListItem", "AtCard"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -84,6 +86,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
         loaded: false,
         agreement: null
       };
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "componentDidMount",
@@ -571,10 +574,37 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this4 = this;
+
       var _$anonymousState__temp, _$anonymousState__temp2;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _index.genCompid)(__prefix + "$compid__1"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__1 = _genCompid2[0],
+          $compid__1 = _genCompid2[1];
+
+      var _genCompid3 = (0, _index.genCompid)(__prefix + "$compid__2"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__2 = _genCompid4[0],
+          $compid__2 = _genCompid4[1];
+
+      var _genCompid5 = (0, _index.genCompid)(__prefix + "$compid__3"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__3 = _genCompid6[0],
+          $compid__3 = _genCompid6[1];
+
+      var _genCompid7 = (0, _index.genCompid)(__prefix + "$compid__4"),
+          _genCompid8 = _slicedToArray(_genCompid7, 2),
+          $prevCompid__4 = _genCompid8[0],
+          $compid__4 = _genCompid8[1];
+
+      var loopArray0 = void 0;
 
       var _state = this.__state,
           isAgent = _state.isAgent,
@@ -596,11 +626,51 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
       if (!loaded) {} else {
         _$anonymousState__temp = isAgent ? "position:relative;display:" + (isAgent === true ? 'block' : 'none') + ";top:-48px;height:30px;width:564rpx;left:20rpx;text-align:left;opacity: 0.8;padding-left:3px;padding-right:14px;margin-left:auto;margin-right:auto;box-sizing:border-box;font-size:32rpx;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;" : null;
         _$anonymousState__temp2 = "position:relative;display:" + (isAgent === true ? 'none' : 'block') + ";top:-90rpx;left:6rpx;height:40px;width:520rpx;opacity: 0.8; margin-left:auto;margin-right:auto;padding-left:0px;padding-right:14px;box-sizing:border-box;font-size:32rpx;text-align:left;text-decoration:none;line-height:2.55555556;border-radius:5px;border:none;border:initial;-webkit-tap-highlight-color:transparent;overflow:hidden;color:#000000;background-color:#FFFFFF;";
+        loopArray0 = list.length > 0 ? list.map(function (item, _anonIdx) {
+          item = {
+            $original: (0, _index.internal_get_original)(item)
+          };
+
+          var _genCompid9 = (0, _index.genCompid)(__prefix + "azzzzzzzzz" + _anonIdx, true),
+              _genCompid10 = _slicedToArray(_genCompid9, 2),
+              $prevCompid__0 = _genCompid10[0],
+              $compid__0 = _genCompid10[1];
+
+          _index.propsManager.set({
+            "title": item.$original.text,
+            "arrow": "right",
+            "thumb": item.$original.url,
+            "onClick": _this4.handleJumpUrl.bind(_this4, item.$original.pageUrl)
+          }, $compid__0, $prevCompid__0);
+          return {
+            $compid__0: $compid__0,
+            $original: item.$original
+          };
+        }) : [];
+        _index.propsManager.set({
+          "isOpened": isAgree,
+          "closeOnClickOverlay": false
+        }, $compid__1, $prevCompid__1);
+        isAgent && _index.propsManager.set({
+          "profit": profit
+        }, $compid__2, $prevCompid__2);
+        _index.propsManager.set({
+          "list": orders,
+          "isAgent": isAgent
+        }, $compid__3, $prevCompid__3);
+        isShowLoanApp === true && _index.propsManager.set({
+          "title": this.__state.context1
+        }, $compid__4, $prevCompid__4);
       }
 
       Object.assign(this.__state, {
         _$anonymousState__temp: _$anonymousState__temp,
         _$anonymousState__temp2: _$anonymousState__temp2,
+        loopArray0: loopArray0,
+        $compid__1: $compid__1,
+        $compid__2: $compid__2,
+        $compid__3: $compid__3,
+        $compid__4: $compid__4,
         isShowLoanApp: isShowLoanApp
       });
       return this.__state;
@@ -608,18 +678,7 @@ var Index = (_dec = (0, _index3.connect)(function (state) {
   }]);
 
   return Index;
-}(_index.Component)) || _class);
-Index.properties = {
-  "dispatchReservationCount": null,
-  "dispatchReservationPlan": null,
-  "dispatchLoanInfo": null,
-  "GetAgreeMent": null,
-  "UpdateUserInfo": null,
-  "ChangeToAgent": null,
-  "ChangeToCustomer": null,
-  "GetUserInfo": null
-};
-Index.$$events = ["handleCloseAgree", "handleConfirmAgree", "handleUpdateInfo", "handlePublish", "handleJumpUrl", "handleAppLoan", "handleChangeState"];
+}(_index.Component), _class2.$$events = ["handleCloseAgree", "handleConfirmAgree", "handleUpdateInfo", "handlePublish", "handleAppLoan", "handleChangeState"], _class2.multipleSlots = true, _class2.$$componentPath = "pages/user/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));

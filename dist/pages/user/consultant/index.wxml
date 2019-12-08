@@ -1,6 +1,5 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-history">
-        <item wx:key="{{index}}" __triggerObserer="{{ _triggerObserer }}" active="{{item}}"
-        wx:for="{{actives}}" wx:for-item="item" wx:for-index="index"></item>
+        <item wx:key="index" wx:for="{{loopArray4}}" wx:for-item="item" wx:for-index="index" compid="{{item.$compid__47}}"></item>
     </view>
 </block>

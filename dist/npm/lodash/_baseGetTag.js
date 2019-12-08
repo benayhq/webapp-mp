@@ -1,6 +1,6 @@
-var Symbol = require('./_Symbol'),
-    getRawTag = require('./_getRawTag'),
-    objectToString = require('./_objectToString');
+var Symbol = require("./_Symbol.js"),
+    getRawTag = require("./_getRawTag.js"),
+    objectToString = require("./_objectToString.js");
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',

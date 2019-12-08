@@ -1,2 +1,11 @@
-<!--packageA/pages/product/index.wxml-->
-<text>packageA/pages/product/index.wxml</text>
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
+            <at-message></at-message>
+            <check-box compid="{{$compid__50}}"></check-box>
+        </scroll-view>
+        <view class="mp-product__save">
+            <view bindtap="handleSaveItem">保 存</view>
+        </view>
+    </view>
+</block>

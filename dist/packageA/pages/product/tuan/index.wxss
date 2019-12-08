@@ -1,0 +1,344 @@
+
+@charset "UTF-8";
+@font-face {
+  font-family: 'iconfont';
+  /* project id 1110655 */
+  src: url("//at.alicdn.com/t/font_1110655_6eyy9vts555.eot");
+  src: url("//at.alicdn.com/t/font_1110655_6eyy9vts555.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1110655_6eyy9vts555.woff2") format("woff2"), url("//at.alicdn.com/t/font_1110655_6eyy9vts555.woff") format("woff"), url("//at.alicdn.com/t/font_1110655_6eyy9vts555.ttf") format("truetype"), url("//at.alicdn.com/t/font_1110655_6eyy9vts555.svg#iconfont") format("svg"); }
+
+.mp-icon {
+  font-family: "iconfont" !important;
+  font-size: 16rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.mp-icon-avatar:before {
+  font-size: 96rpx;
+  content: "\e6b0"; }
+
+.mp-icon-account:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e685"; }
+
+.mp-icon-waittuan:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61e"; }
+
+.mp-icon-nulldata:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e869"; }
+
+.mp-icon-consumption:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e610"; }
+
+.mp-icon-comment:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61b"; }
+
+.mp-icon-refund:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e64c"; }
+
+.mp-icon-active:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e600"; }
+
+.mp-icon-product:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61d"; }
+
+.mp-icon-customer:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e632"; }
+
+.mp-icon-invite:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e682"; }
+
+.mp-icon-close:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e66d"; }
+
+.mp-icon-appoint:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e621"; }
+
+.mp-icon-arrow:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow-history:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
+.mp-icon-arrow1:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e637"; }
+
+.mp-icon-arrow-balck:before {
+  font-size: 30rpx;
+  font-weight: 100;
+  color: #000000;
+  content: "\e637"; }
+
+.mp-icon-delete:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e636"; }
+
+.mp-icon-add:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e616"; }
+
+.mp-icon-success:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e631"; }
+
+.mp-icon-checkeditem:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e679"; }
+
+.mp-icon-trash:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e636"; }
+
+.mp-icon-plus:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e602"; }
+
+.mp-icon-people:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e622"; }
+
+.mp-icon-collect:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e613"; }
+
+.mp-icon-coupon:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+.mp-icon-service:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e614"; }
+
+.mp-icon-footer:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e87e"; }
+
+.mp-icon-about:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e655"; }
+
+.mp-icon-order-detail:before {
+  font-size: 96rpx;
+  content: "\e618"; }
+
+.mp-icon-order-waitpay:before {
+  font-size: 96rpx;
+  content: "\e61e"; }
+
+.mp-icon-order-group:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e850"; }
+
+.mp-icon-order-card:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e623"; }
+
+.mp-icon-wechat:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #84D945;
+  content: "\e603"; }
+
+.mp-icon-tel:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e633"; }
+
+.mp-icon-pay:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e617"; }
+
+.mp-icon-check:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #FFFFFF;
+  content: "\e626"; }
+
+.mp-icon-telphone:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e652"; }
+
+.mp-icon-closemodal:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e7be"; }
+
+.mp-icon-edit:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e61a"; }
+
+.mp-icon-share:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e67d"; }
+
+.mp-icon-module:before {
+  font-size: 45rpx;
+  color: #7DD6D0;
+  content: "\e67d"; }
+
+.mp-icon-wechat:before {
+  font-size: 80rpx;
+  color: #7DD6D0;
+  content: "\e628"; }
+
+.mp-icon-haibao:before {
+  font-size: 80rpx;
+  color: #7DD6D0;
+  content: "\e63b"; }
+
+.mp-icon-home:before {
+  font-size: 70rpx;
+  color: #7DD6D0;
+  content: "\e667"; }
+
+.mp-icon-friend:before {
+  font-size: 90rpx;
+  content: "\e635"; }
+
+.mp-icon-wechat-zixun:before {
+  font-size: 60rpx;
+  color: #7DD6D0;
+  content: "\e629"; }
+
+.mp-icon-mobilephone:before {
+  font-size: 45rpx;
+  font-weight: 100;
+  color: #7DD6D0;
+  content: "\e71f"; }
+
+/* 
+ Text Color
+*/
+/* z-index*/
+/* Color */
+/* Text Color */
+/* Color Palette*/
+/* 背景色 */
+/* Font */
+/* Line Height */
+/* 水平间距 */
+/* 垂直间距 */
+/* Checkbox */
+/* Button */
+/* Border Radius */
+.mp-tuan__second {
+  line-height: 98rpx;
+  height: 98rpx;
+  border-bottom: 1rpx solid #ddd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+
+.mp-tuan__joinperson {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 300rpx;
+  text-align: center;
+  margin-top: 9rpx; }
+
+.mp-tuan__joinaction {
+  text-align: right;
+  margin-right: 22rpx;
+  width: 100rpx;
+  height: 50rpx; }
+
+.mp-tuan__username {
+  width: 100rpx;
+  height: 30rpx; }
+
+.mp-tuan__time {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #919191;
+  line-height: 40rpx; }
+
+.mp-tuan__counter {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #3c3c3c;
+  line-height: 40rpx; }
+
+.mp-tuan__action {
+  height: 80rpx;
+  width: 100rpx;
+  line-height: 80rpx;
+  background: #7dd6d0;
+  text-align: center;
+  margin: 10rpx;
+  border-radius: 5rpx;
+  color: #FFFFFF; }

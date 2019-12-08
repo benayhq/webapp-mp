@@ -8,19 +8,21 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dec, _class;
-
-require("../../../npm/@tarojs/async-await/index.js");
+var _dec, _class, _class2, _temp2;
 
 var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
+
+var _index2 = _interopRequireDefault(_index);
 
 var _actionCreators = require("../store/actionCreators.js");
 
 var actions = _interopRequireWildcard(_actionCreators);
 
-var _index2 = require("../../../npm/@tarojs/redux/index.js");
+var _index3 = require("../../../npm/@tarojs/redux/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -36,9 +38,9 @@ function getLocalTime(timestamp) {
   return date;
 }
 
-var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
+var OrderProduct = (_dec = (0, _index3.connect)(function (state) {
   return state;
-}, actions), _dec(_class = function (_BaseComponent) {
+}, actions), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
   _inherits(OrderProduct, _BaseComponent);
 
   function OrderProduct() {
@@ -52,7 +54,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "profileUrl", "content"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderProduct.__proto__ || Object.getPrototypeOf(OrderProduct)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "profileUrl", "dispatchCreateOrderDownLoadUrl", "content"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderProduct, [{
@@ -62,6 +64,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
       this.state = {
         profileUrl: ''
       };
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "getImgUrl",
@@ -120,7 +123,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
       var params = {
         phoneNumber: cellphone
       };
-      Taro.makePhoneCall(params).then(function (res) {
+      _index2.default.makePhoneCall(params).then(function (res) {
         console.log('res', res);
       });
     }
@@ -129,6 +132,9 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
 
       var profileUrl = this.__state.profileUrl;
 
@@ -142,12 +148,7 @@ var OrderProduct = (_dec = (0, _index2.connect)(function (state) {
   }]);
 
   return OrderProduct;
-}(_index.Component)) || _class);
-OrderProduct.properties = {
-  "dispatchCreateOrderDownLoadUrl": null,
-  "content": null
-};
-OrderProduct.$$events = ["handleMakeCall"];
+}(_index.Component), _class2.$$events = ["handleMakeCall"], _class2.$$componentPath = "pages/order/product/index", _temp2)) || _class);
 exports.default = OrderProduct;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderProduct));

@@ -1,298 +1,302 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Text,Picker } from '@tarojs/components'
-import { AtImagePicker,AtInput,AtMessage } from 'taro-ui'
+import { View, Text, Picker } from '@tarojs/components'
+import { AtImagePicker, AtInput, AtMessage } from 'taro-ui'
 import ProductList from './productlist/index';
-import {connect} from '@tarojs/redux';
+import { connect } from '@tarojs/redux';
 import * as actions from '../store/actionCreators';
-import {getAuthInfo} from './../../../utils/storage';
+import { getAuthInfo } from './../../../utils/storage';
 var productIds = [];
 var uploadImage = require('./../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 var imgArraySrc = [];
 import './index.scss';
 import './productlist/index.scss';
-import {Region} from './../../../components/'
+import { Region } from './../../../components/'
 
-@connect(state=>state.active,actions)
+@connect(state => state.active, actions)
 export default class Index extends Component {
 
   config = {
     navigationBarTitleText: '新增活动'
   }
 
-  constructor(){
+  constructor() {
     super(...arguments);
     this.state = {
-      files:[],
+      files: [],
       selector: [['请选择', '美国', '中国', '巴西', '日本'], ['请选择', '美国', '中国', '巴西', '日本       ']],
       selectorChecked: '请选择',
-      groupItemChecked:'请选择',
-      groupItem:[],
+      groupItemChecked: '请选择',
+      groupItem: [],
       dateStart: '请选择',
       dateEnd: '请选择',
-      products:[],
+      products: [],
       activeAllName: '',
-      weChatNumber:'',
-      productIds:[],
-      isOpened:false,
-      docLocations:[],
-      activeAllPrice:'',
-      isShowPublic:false,
-      region:'请选择省市区'
+      weChatNumber: '',
+      productIds: [],
+      isOpened: false,
+      docLocations: [],
+      activeAllPrice: '',
+      isShowPublic: false,
+      region: '请选择省市区'
     };
+
     this.init();
   }
 
-  async getImgUrl(location){
+  async getImgUrl(location) {
     var payload = {
-      location:location
+      location: location
     };
     const result = await this.props.dispatchDownLoadUrl(payload);
     return result.content;
   }
 
-  componentWillMount () {
+  componentWillMount() {
     var productList = [];
-    if(this.$router.params.ids != undefined){
-       productIds = this.$router.params.ids.split(',');
-       this.setState({
-          productIds:productIds
-       })
+    if (this.$router.params.ids != undefined) {
+      productIds = this.$router.params.ids.split(',');
+      this.setState({
+        productIds: productIds
+      })
     }
-    if(productIds.length>0){
-        productIds.map((item,index)=>{
-          console.log('item',item);
-          var payload = {
-            productId:item
-          };
-          this.props.dispatchQueryProductInfo(payload).then((res)=>{
-            if(res.result === "success"){
-              this.getImgUrl(res.content.location)
-              .then(response=>{
-                  res.content.location = response;
-                  productList.push(res.content);
-                  this.setState({
-                    products:productList
-                  });
+    if (productIds.length > 0) {
+      productIds.map((item, index) => {
+        console.log('item', item);
+        var payload = {
+          productId: item
+        };
+        this.props.dispatchQueryProductInfo(payload).then((res) => {
+          if (res.result === "success") {
+            this.getImgUrl(res.content.location)
+              .then(response => {
+                res.content.location = response;
+                productList.push(res.content);
+                this.setState({
+                  products: productList
+                });
               });
-            }
-          })
-        });
+          }
+        })
+      });
     }
 
     this.init();
   }
 
-  componentDidMount(){
-    if(this.props.groupCount !== ''){
+  componentDidMount() {
+    if (this.props.groupCount !== '') {
       this.setState({
-        groupItemChecked:this.props.groupCount
+        groupItemChecked: this.props.groupCount
       });
     }
 
-    if(this.props.activeName !== ''){
+    if (this.props.activeName !== '') {
       this.setState({
-        activeName:this.props.activeName
+        activeName: this.props.activeName
       });
     }
 
-    if(this.props.startTime !== ''){
+    if (this.props.startTime !== '') {
       this.setState({
-        dateStart:this.props.startTime
+        dateStart: this.props.startTime
       });
     }
 
-    if(this.props.endTime !== ''){
+    if (this.props.endTime !== '') {
       this.setState({
-        dateEnd:this.props.endTime
+        dateEnd: this.props.endTime
       });
     }
 
-    if(this.props.activePrice !== ''){
+    if (this.props.activePrice !== '') {
       this.setState({
-        activePrice:this.props.activePrice
+        activePrice: this.props.activePrice
       });
     }
 
-    if(this.props.tempfiles.length>0){
+    if (this.props.tempfiles.length > 0) {
       this.setState({
-        files:this.props.tempfiles
+        files: this.props.tempfiles
       });
     }
 
-    if(this.props.address !== ''){
+    if (this.props.address !== '') {
       this.setState({
-        region:this.props.address
+        region: this.props.address
       });
+      this.onGetRegion(this.props.address);
     }
 
-    if(this.props.imgs.length > 0){
+    if (this.props.imgs.length > 0) {
       var docLocations = [];
-      this.props.imgs.map((item,key)=>{
+      this.props.imgs.map((item, key) => {
         docLocations.push(item);
       })
       this.setState({
-        docLocations:docLocations
+        docLocations: docLocations
       });
     }
 
+    console.log('console this.props', this.props);
   }
 
-  init(){
+  init() {
     this.initGroup();
   }
 
-  async initGroup(){
+  async initGroup() {
     var groups = [];
-    for(var i =1; i<15; i++){
+    for (var i = 1; i < 15; i++) {
       groups.push(i);
     }
     this.setState({
       groupItem: groups
     });
-
     const result = await this.getAuthInfo();
+
+    console.log('result getAuthInfo', result);
     this.setState({
-      region:result.areaCode === "" ? "请选择省市区" : result.areaCode,
+      region: result.areaCode === "" ? "请选择省市区" : result.areaCode,
     });
-    if(result.cellphone === null || result.cellphone === ""){
+    if (result.cellphone === null || result.cellphone === "") {
       this.setState({
-        isShowPublic:false
+        isShowPublic: false
       });
     }
-    else{
+    else {
       this.setState({
-        isShowPublic:true
+        isShowPublic: true
       });
     }
   }
 
-  HandlePickerChange (files){
-      this.setState({ files });
-      this.props.dispatchCacheTempFiles(files);
+  HandlePickerChange(files) {
+    this.setState({ files });
+    this.props.dispatchCacheTempFiles(files);
+
+    var that = this;
+    var tempFilePaths = files;
+    var nowTime = util.formatTime(new Date());
+    //支持多图上传
+    for (var i = 0; i < tempFilePaths.length; i++) {
+      //显示消息提示框
+      // TODO: bug 修复.
+      // wx.showLoading({
+      //   title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
+      //   mask: true
+      // });
+      let file = tempFilePaths[i].url;
+
+      var payload = {
+        documentType: 'ACTIVITY',
+        fileName: 'ACTIVITY.png'
+      };
 
       var that = this;
-      var tempFilePaths = files;
-      var nowTime = util.formatTime(new Date());
-        //支持多图上传
-        for (var i = 0; i < tempFilePaths.length; i++) {
-            //显示消息提示框
-            // TODO: bug 修复.
-            // wx.showLoading({
-            //   title: '上传中' + (i + 1) + '/' +tempFilePaths.length,
-            //   mask: true
-            // });
-            let file = tempFilePaths[i].url;
 
-            var payload ={
-              documentType:'ACTIVITY',
-              fileName:'ACTIVITY.png'
-            };
-
-            var that = this;
-
-            this.props.dispatchUploadConfig(payload).then((response)=>{
-                uploadImage(file, response.content.location,
-                  function (result) {
-                    imgArraySrc.push(result);
-                    that.setState({
-                      docLocations:imgArraySrc
-                    });
-                    that.props.dispatchSaveImg(imgArraySrc);
-                    console.log("======上传成功图片地址为：", result);
-                    wx.hideLoading();
-                  }, function (result) {
-                    imgArraySrc = [];
-                    console.log("======上传失败======", result);
-                    wx.hideLoading()
-                  }
-                )
+      this.props.dispatchUploadConfig(payload).then((response) => {
+        uploadImage(file, response.content.location,
+          function (result) {
+            imgArraySrc.push(result);
+            that.setState({
+              docLocations: imgArraySrc
             });
-      }
+            that.props.dispatchSaveImg(imgArraySrc);
+            console.log("======上传成功图片地址为：", result);
+            wx.hideLoading();
+          }, function (result) {
+            imgArraySrc = [];
+            console.log("======上传失败======", result);
+            wx.hideLoading()
+          }
+        )
+      });
+    }
   }
 
-  handleUploadLoader = () =>{
+  handleUploadLoader = () => {
 
     var payload = {
-      documentType:'PRODUCT',
-      fileName:'name'
+      documentType: 'PRODUCT',
+      fileName: 'name'
     };
 
     this.props.dispatchUploadFile(payload);
   }
 
-  handlePickerViewChange(e){
+  handlePickerViewChange(e) {
     const val = e.detail.value;
   }
 
-  handlePickerChange(e){
-    let selectedValue = `${this.state.selector[0][e.detail.value[0]] } / ${this.state.selector[0][e.detail.value[1]]}`;
+  handlePickerChange(e) {
+    let selectedValue = `${this.state.selector[0][e.detail.value[0]]} / ${this.state.selector[0][e.detail.value[1]]}`;
     this.setState({
-      selectorChecked:selectedValue
+      selectorChecked: selectedValue
     });
   }
 
-  handlePickerSelectGroupChange(e){
-    this.props.dispatchGroupCount(parseInt(e.detail.value)+1);
+  handlePickerSelectGroupChange(e) {
+    this.props.dispatchGroupCount(parseInt(e.detail.value) + 1);
     this.setState({
-      groupItemChecked:parseInt(e.detail.value)+1
+      groupItemChecked: parseInt(e.detail.value) + 1
     });
   }
 
   onGetRegion(region) {
-    console.log('region',region);
+    console.log('region', region);
     this.props.disptachServiceAddress(region);
     // 参数region为选择的省市区
-    this.setState({region});
+    this.setState({ region });
     return region;
   }
 
-  onDateStartChange = e =>{
+  onDateStartChange = e => {
     this.setState({
-      dateStart:e.detail.value
+      dateStart: e.detail.value
     });
     this.props.dispatchStartTime(e.detail.value);
   }
 
-  onChangeActivePrice = val =>{
+  onChangeActivePrice = val => {
     this.setState({
-      activePrice:val
+      activePrice: val
     });
     this.props.dispatchActivePrice(val);
   }
 
-  handleAlert(type,message){
+  handleAlert(type, message) {
     Taro.atMessage({
       'message': message,
       'type': type
     });
   }
 
-  async onPublish(){
-    const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,weChatNumber,region} = this.state;
-    console.log('region',region);
-    if(activeName === '' || activeName === undefined){
-      this.handleAlert('error','请填写活动名称')
+  async onPublish() {
+    const { activeName, groupItemChecked, dateStart, dateEnd, docLocations, weChatNumber, region } = this.state;
+
+    if (activeName === '' || activeName === undefined) {
+      this.handleAlert('error', '请填写活动名称')
       return;
     }
-    if(groupItemChecked === '请选择'){
-        this.handleAlert('error','请选择成团人数')
-        return;
-    }
-    if(dateStart == '请选择'){
-      this.handleAlert('error','请选择开始时间')
+    if (groupItemChecked === '请选择') {
+      this.handleAlert('error', '请选择成团人数')
       return;
     }
-    if(dateEnd == '请选择'){
-      this.handleAlert('error','请选择结束时间')
+    if (dateStart == '请选择') {
+      this.handleAlert('error', '请选择开始时间')
       return;
     }
-    if(region === '请选择省市区'){
-      this.handleAlert('error','请选择省市区')
+    if (dateEnd == '请选择') {
+      this.handleAlert('error', '请选择结束时间')
       return;
     }
-    if(docLocations.length <= 0){
-      this.handleAlert('error','请选择上传主图')
+    if (region === '请选择省市区') {
+      this.handleAlert('error', '请选择省市区')
+      return;
+    }
+    if (docLocations.length <= 0) {
+      this.handleAlert('error', '请选择上传主图')
       return;
     }
     // if(docLocations.length>9){
@@ -300,6 +304,7 @@ export default class Index extends Component {
     //   return;
     // }
     const result = await getAuthInfo();
+
     let payload = {
       "areaCode": region,
       "docLocations": docLocations,
@@ -308,92 +313,92 @@ export default class Index extends Component {
       "people": groupItemChecked,
       "productIds": productIds,
       "startD": dateStart + " 00:00:00",
-      "endD":dateEnd + " 59:59:59",
+      "endD": dateEnd + " 59:59:59",
       "userId": result.id,
       "wechatId": weChatNumber
     };
 
-    try{
-      this.props.dispatchCreateActive(payload).then((res)=>{
-        if(res && res.result === "success" && res.content !=null){
+    try {
+      this.props.dispatchCreateActive(payload).then((res) => {
+        if (res && res.result === "success" && res.content != null) {
           Taro.navigateTo({
-            url:`/pages/active/share/index?activeId=${res.content}`
+            url: `/pages/active/share/index?activeId=${res.content}`
           })
-        }else{
-          this.handleAlert('error',res.error);
+        } else {
+          this.handleAlert('error', res.error);
         }
       })
     }
-    catch(e){
-      console.log('e',e);
+    catch (e) {
+      console.log('e', e);
     }
   }
 
   async getPhoneNumber(e) {
-    if(e.detail.errMsg==="getPhoneNumber:ok"){
+    if (e.detail.errMsg === "getPhoneNumber:ok") {
       var that = this;
-      const {activeName,groupItemChecked,dateStart,dateEnd,docLocations,region} = this.state;
-      if(activeName === '' || activeName === undefined){
-        this.handleAlert('error','请填写活动名称')
+      const { activeName, groupItemChecked, dateStart, dateEnd, docLocations, region } = this.state;
+      if (activeName === '' || activeName === undefined) {
+        this.handleAlert('error', '请填写活动名称')
         return;
       }
-      if(groupItemChecked === '请选择'){
-          this.handleAlert('error','请选择成团人数')
-          return;
-      }
-      if(dateStart == '请选择'){
-        this.handleAlert('error','请选择开始时间')
+      if (groupItemChecked === '请选择') {
+        this.handleAlert('error', '请选择成团人数')
         return;
       }
-      if(dateEnd == '请选择'){
-        this.handleAlert('error','请选择结束时间')
+      if (dateStart == '请选择') {
+        this.handleAlert('error', '请选择开始时间')
         return;
       }
-      if(region === '请选择省市区'){
-        this.handleAlert('error','请选择省市区')
+      if (dateEnd == '请选择') {
+        this.handleAlert('error', '请选择结束时间')
         return;
       }
-      if(docLocations.length <= 0){
-        this.handleAlert('error','请选择上传主图')
+      if (region === '请选择省市区') {
+        this.handleAlert('error', '请选择省市区')
+        return;
+      }
+      if (docLocations.length <= 0) {
+        this.handleAlert('error', '请选择上传主图')
         return;
       }
       if (e.detail.encryptedData && e.detail.iv) {
-            let payload = {
-              iv: e.detail.iv,
-              phone: e.detail.encryptedData
-            };
-            const result = await this.props.dispatchWeixinDecrypt(payload);
-            var object = JSON.parse(result.content);
-            if(object.phoneNumber){
-              let params = {
-                  cellphone:object.phoneNumber
-              };
-              await this.props.UpdateUserInfo(params);
-              const data = await this.props.GetUserInfo({});
-              const result = data.content;
-              Taro.setStorage({key:'userinfo',data:result});
-              that.onPublish();
-            }
-            else{
-              Taro.showToast({
-                title: '网络异常',
-                icon: 'none',
-                duration: 3000,
-                mask: true
-              });
-            }
-        } else {
+        let payload = {
+          iv: e.detail.iv,
+          phone: e.detail.encryptedData
+        };
+        const result = await this.props.dispatchWeixinDecrypt(payload);
+        var object = JSON.parse(result.content);
+        if (object.phoneNumber) {
+          let params = {
+            cellphone: object.phoneNumber
+          };
+          await this.props.UpdateUserInfo(params);
+          const data = await this.props.GetUserInfo({});
+          const result = data.content;
+          Taro.setStorage({ key: 'userinfo', data: result });
+          that.onPublish();
+        }
+        else {
           Taro.showToast({
-            title: '取消授权成功',
-            icon: 'success',
+            title: '网络异常',
+            icon: 'none',
             duration: 3000,
             mask: true
           });
         }
+      } else {
+        Taro.showToast({
+          title: '取消授权成功',
+          icon: 'success',
+          duration: 3000,
+          mask: true
+        });
+      }
     }
   }
 
-  handleActiveChange(activeName){
+  handleActiveChange(activeName) {
     this.props.disptachActiveName(activeName);
     this.setState({
       activeName
@@ -407,146 +412,146 @@ export default class Index extends Component {
     });
     this.props.dispatchEndTime(e.detail.value);
   }
-  
-  createProduct(){
+
+  createProduct() {
     Taro.navigateTo({
-      url:'../../../packageA/pages/product/edit'
+      url: '../../../packageA/pages/product/edit'
     })
   }
 
-  handleWeChatChange(weChatNumber){
+  handleWeChatChange(weChatNumber) {
     this.setState({
       weChatNumber
     });
     return weChatNumber
   }
 
-  handleCancel(){
+  handleCancel() {
     this.setState({
-      isOpened:false
+      isOpened: false
     })
   }
 
-  async getAuthInfo(){
-    const result = await Taro.getStorage({key:'userinfo'}).then(res => {return res.data});
+  async getAuthInfo() {
+    const result = await Taro.getStorage({ key: 'userinfo' }).then(res => { return res.data });
     return result;
   }
 
-  selectProduct(){
+  selectProduct() {
     Taro.navigateTo({
-        url:'../../../packageA/pages/product/index?productIds='+this.state.productIds
-      })
+      url: '../../../packageA/pages/product/index?productIds=' + this.state.productIds
+    })
   }
 
-  handleConfirm(){
+  handleConfirm() {
     this.setState({
-      isOpened:false
+      isOpened: false
     });
 
-    this.getAuthInfo().then(userinfo=>{
+    this.getAuthInfo().then(userinfo => {
       var payload = {
-          openId:userinfo.openId,
-          wechatId:this.state.weChatNumber,
-          id:userinfo.id
+        openId: userinfo.openId,
+        wechatId: this.state.weChatNumber,
+        id: userinfo.id
       };
-      this.props.UpdateUserInfo(payload).then(res=>{
-          console.log('response',res);
+      this.props.UpdateUserInfo(payload).then(res => {
+        console.log('response', res);
       });
     });
   }
 
- getWindowHeight(showTabBar = true,products){
+  getWindowHeight(showTabBar = true, products) {
     const info = Taro.getSystemInfoSync();
-    const { windowHeight}  = info;
+    const { windowHeight } = info;
 
-    return `${windowHeight+(products.length * 89)}px`
- }
+    return `${windowHeight + (products.length * 89)}px`
+  }
 
-  render () {
+  render() {
 
-    const {activeName,dateEnd,dateStart,products,isOpened,isShowPublic} = this.state;
-    console.log('isShowPublic',isShowPublic);
+    const { activeName, dateEnd, dateStart, products, isOpened, isShowPublic } = this.state;
+    console.log('isShowPublic', isShowPublic);
     const isAutoScrollItem = products.length === 0 ? "scroll-product-hidden" : "scroll-product";
     return (
       <View className="mp-active">
-        <ScrollView scrollY style={{ height: this.getWindowHeight(true,products) }}>
-        <AtMessage/>
+        <ScrollView scrollY style={{ height: this.getWindowHeight(true, products) }}>
+          <AtMessage />
           <View className="item" style="border:none;">
-              <Text>活动名称</Text>
-              <AtInput border={false} 
+            <Text>活动名称</Text>
+            <AtInput border={false}
               value={activeName}
               onChange={this.handleActiveChange.bind(this)}
               placeholder="请输入活动名称" />
-          </View> 
+          </View>
 
           <View className="item">
-              <Picker range={this.state.groupItem} 
+            <Picker range={this.state.groupItem}
               onChange={this.handlePickerSelectGroupChange}>
-                    <View className='picker'>
-                          <Text>成团人数</Text> 
-                          <Text className="time-tuan"> {this.state.groupItemChecked} </Text>  
-                          <Text className='at-icon at-icon-chevron-right group-count'></Text>
-                    </View>
-              </Picker>
+              <View className='picker'>
+                <Text>成团人数</Text>
+                <Text className="time-tuan"> {this.state.groupItemChecked} </Text>
+                <Text className='at-icon at-icon-chevron-right group-count'></Text>
+              </View>
+            </Picker>
           </View>
 
           <View className="item">
-              <Picker mode='date' onChange={this.onDateStartChange}>
-                  <View className='picker'>
-                    <Text>开始时间</Text> 
-                    <Text className="time">{dateStart}</Text>  
-                    <Text className='at-icon at-icon-chevron-right group-count'></Text>
-                  </View>
-              </Picker>
+            <Picker mode='date' onChange={this.onDateStartChange}>
+              <View className='picker'>
+                <Text>开始时间</Text>
+                <Text className="time">{dateStart}</Text>
+                <Text className='at-icon at-icon-chevron-right group-count'></Text>
+              </View>
+            </Picker>
           </View>
 
-        <View className="item" style="border:none;">
-              <Picker mode='date' onChange={this.onDateEndChange}>
-                  <View className='picker'>
-                  <Text>结束时间</Text>  
-                  <Text className="time">{dateEnd}</Text>  
-                  <Text className='at-icon at-icon-chevron-right group-count'></Text>
-                  </View>
-              </Picker>
-        </View>
+          <View className="item" style="border:none;">
+            <Picker mode='date' onChange={this.onDateEndChange}>
+              <View className='picker'>
+                <Text>结束时间</Text>
+                <Text className="time">{dateEnd}</Text>
+                <Text className='at-icon at-icon-chevron-right group-count'></Text>
+              </View>
+            </Picker>
+          </View>
 
-        <View className="item">
+          <View className="item">
             <Text>活动地点</Text>
-            <Text className="time"></Text>  
+            <Text className="time"></Text>
             <Region onGetRegion={this.onGetRegion.bind(this)} />
             <Text className='at-icon at-icon-chevron-right group-address'></Text>
-        </View>
+          </View>
 
-        <View className="mp-publish-product">
-           <View className="publish-item">
-                  <Text>活动图片</Text>
-           </View>
-           <AtImagePicker
-            multiple
-            className="uploadImage"
-            files={this.state.files}
-            onChange={this.HandlePickerChange.bind(this)}
-          />
-        </View>
+          <View className="mp-publish-product">
+            <View className="publish-item">
+              <Text>活动图片</Text>
+            </View>
+            <AtImagePicker
+              multiple
+              className="uploadImage"
+              files={this.state.files}
+              onChange={this.HandlePickerChange.bind(this)}
+            />
+          </View>
 
-        <View className="mp-publish-product">
-           <View className="publish-item">
-                  <Text>活动产品</Text>
-                  <Text onClick={this.selectProduct}>选择我的产品</Text>
-           </View>
-           <View className="pulbish-create" onClick={this.createProduct}>
-                  <Text className="mp-icon mp-icon-plus"></Text>
-                  <Text>新增产品</Text>
-           </View>
-           <ProductList products={products}/>
-        </View>
+          <View className="mp-publish-product">
+            <View className="publish-item">
+              <Text>活动产品</Text>
+              <Text onClick={this.selectProduct}>选择我的产品</Text>
+            </View>
+            <View className="pulbish-create" onClick={this.createProduct}>
+              <Text className="mp-icon mp-icon-plus"></Text>
+              <Text>新增产品</Text>
+            </View>
+            <ProductList products={products} />
+          </View>
 
-      </ScrollView>
+        </ScrollView>
         <View className="publish">
           {
-            isShowPublic?(<View onClick={this.onPublish}>立即发布</View>) : (<Button className="getPhone" formType='submit' openType='getPhoneNumber' 
-            onGetPhoneNumber={this.getPhoneNumber.bind(this)}>
-            立即发布 </Button>)
+            isShowPublic ? (<View onClick={this.onPublish}>立即发布</View>) : (<Button className="getPhone" formType='submit' openType='getPhoneNumber'
+              onGetPhoneNumber={this.getPhoneNumber.bind(this)}>
+              立即发布 </Button>)
           }
         </View>
       </View>

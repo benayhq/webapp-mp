@@ -1,44 +1,29 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="mp-order-comment">
-        <at-message __triggerObserer="{{ _triggerObserer }}"></at-message>
+        <at-message></at-message>
         <view class="serve">
-            <view class="environ">
-                <text>环境:</text>
-                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{envValue}}"
-                bindonchange="handleEnvChange" __fn_onChange="{{true}}" data-e-handleEnvChange-so="this"></at-rate>
+            <view class="environ"><text>环境:</text>
+                <at-rate compid="{{$compid__39}}"></at-rate>
             </view>
-            <view class="environ">
-                <text>服务:</text>
-                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{serveValue}}"
-                bindonchange="handleServeChange" __fn_onChange="{{true}}" data-e-handleServeChange-so="this"></at-rate>
+            <view class="environ"><text>服务:</text>
+                <at-rate compid="{{$compid__40}}"></at-rate>
             </view>
-            <view class="environ">
-                <text class="profession">专业:</text>
-                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{profValue}}"
-                bindonchange="handleProfChange" __fn_onChange="{{true}}" data-e-handleProfChange-so="this"></at-rate>
+            <view class="environ"><text class="profession">专业:</text>
+                <at-rate compid="{{$compid__41}}"></at-rate>
             </view>
-            <view class="environ">
-                <text>效果:</text>
-                <at-rate max="5" __triggerObserer="{{ _triggerObserer }}" value="{{effectValue}}"
-                bindonchange="handleEffectChange" __fn_onChange="{{true}}" data-e-handleEffectChange-so="this"></at-rate>
+            <view class="environ"><text>效果:</text>
+                <at-rate compid="{{$compid__42}}"></at-rate>
             </view>
         </view>
         <view class="space"></view>
         <view class="comment">
-            <at-textarea height="{{400}}" __triggerObserer="{{ _triggerObserer }}"
-            value="{{commentValue}}" bindonchange="handleChange" maxLength="{{300}}"
-            placeholder="亲，您对此次服务满意吗？您的评价会帮助我们选择更好的服务！" __fn_onChange="{{true}}" data-e-handleChange-so="this"></at-textarea>
+            <at-textarea compid="{{$compid__43}}"></at-textarea>
         </view>
         <view class="upload-map">
-            <at-image-picker multiple="{{true}}" __triggerObserer="{{ _triggerObserer }}"
-            mode="top" bindonfail="onFail" bindonimageclick="onImageClick" files="{{files}}"
-            bindonchange="onChange" __fn_onFail="{{true}}" data-e-onFail-so="this"
-            __fn_onImageClick="{{true}}" data-e-onImageClick-so="this" __fn_onChange="{{true}}"
-            data-e-onChange-so="this"></at-image-picker>
+            <at-image-picker compid="{{$compid__44}}"></at-image-picker>
         </view>
         <view class="submit">
-            <at-button type="primary" __triggerObserer="{{ _triggerObserer }}" bindonclick="handleComment"
-            __fn_onClick="{{true}}" data-e-handleComment-so="this">发表评论</at-button>
+            <at-button compid="{{$compid__45}}">发表评论</at-button>
         </view>
     </view>
 </block>

@@ -1,2 +1,30 @@
-<!--packageA/pages/product/edit.wxml-->
-<text>packageA/pages/product/edit.wxml</text>
+<block wx:if="{{$taroCompReady}}">
+    <view class="mp-edit-product">
+        <at-message></at-message>
+        <at-toast compid="{{$compid__51}}"></at-toast>
+        <at-form>
+            <view class="panel">
+                <view class="panel__content">
+                    <view class="example-item">
+                        <picker mode="multiSelector" range="{{multiSelector}}" bindcolumnchange="handleColumnChange" value="{{mulitSelectorValues}}" bindchange="handleMulitChange">
+                            <view class="demo-list-item">
+                                <view class="demo-list-item__label">分类</view>
+                                <view class="demo-list-item__value">{{initSeletedValue}}</view>
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+            <at-input compid="{{$compid__52}}"></at-input>
+            <at-input compid="{{$compid__53}}"></at-input>
+            <at-input compid="{{$compid__54}}"></at-input>
+            <at-image-picker compid="{{$compid__55}}"></at-image-picker>
+            <at-input compid="{{$compid__56}}"></at-input>
+        </at-form>
+        <view class="mp-edit-product__warn-tips">温馨提醒：</view>
+        <view class="mp-edit-product__warn-info">预定金优先由平台代为收取,客户当面核销后转入您的微信余额。</view>
+        <view class="mp-edit-product__save">
+            <view bindtap="handleSaveProduct">保 存</view>
+        </view>
+    </view>
+</block>

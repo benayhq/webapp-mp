@@ -12,7 +12,6 @@ export default class Login extends Component{
     }
     
     async HandleAutoLogin(){
-        console.log('HandleAutoLogin');
 
         var global = this;
         var result = await Taro.getUserInfo();

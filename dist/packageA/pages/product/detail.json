@@ -1,3 +1,17 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "contact": "./contact/index",
+    "spec": "./spec/index",
+    "loading": "../../components/loading/index",
+    "gallery": "./gallery/index",
+    "at-rate": "../../../npm/taro-ui/dist/weapp/components/rate/index",
+    "count-down": "./component/index",
+    "share": "../../components/share/index",
+    "popup": "../../components/popup/index",
+    "at-modal": "../../../npm/taro-ui/dist/weapp/components/modal/index",
+    "at-modal-content": "../../../npm/taro-ui/dist/weapp/components/modal/content/index",
+    "tuan-list": "./tuan/index",
+    "at-modal-action": "../../../npm/taro-ui/dist/weapp/components/modal/action/index"
+  },
+  "navigationBarTitleText": "活动详情"
 }

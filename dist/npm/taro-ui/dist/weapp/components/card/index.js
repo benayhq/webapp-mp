@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2, _initialiseProps;
 
 var _index = require("../../../../../@tarojs/taro-weapp/index.js");
 
@@ -38,7 +42,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AtCard = function (_AtComponent) {
+var AtCard = (_temp2 = _class = function (_AtComponent) {
   _inherits(AtCard, _AtComponent);
 
   function AtCard() {
@@ -59,6 +63,8 @@ var AtCard = function (_AtComponent) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(AtCard.prototype.__proto__ || Object.getPrototypeOf(AtCard.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -67,11 +73,15 @@ var AtCard = function (_AtComponent) {
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
 
       var _props = this.__props,
           title = _props.title,
           note = _props.note,
           extra = _props.extra,
+          extraStyle = _props.extraStyle,
           thumb = _props.thumb,
           isFull = _props.isFull,
           icon = _props.icon;
@@ -90,8 +100,10 @@ var AtCard = function (_AtComponent) {
       };
 
       var anonymousState__temp = !thumb && icon && icon.value ? (0, _index.internal_inline_style)(iconStyle) : null;
+      var anonymousState__temp2 = extra ? (0, _index.internal_inline_style)(_extends({}, extraStyle)) : null;
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
         rootClass: rootClass,
         thumb: thumb,
         icon: icon,
@@ -105,38 +117,22 @@ var AtCard = function (_AtComponent) {
   }]);
 
   return AtCard;
-}(_component2.default);
-
-AtCard.properties = {
-  "onClick": null,
-  "__fn_onClick": null,
-  "title": null,
-  "note": null,
-  "extra": null,
-  "thumb": null,
-  "isFull": null,
-  "icon": null,
-  "className": null
-};
-AtCard.$$events = ["handleClick"];
-
-var _initialiseProps = function _initialiseProps() {
+}(_component2.default), _class.$$events = ["handleClick"], _class.multipleSlots = true, _class.$$componentPath = "Users/shawn/entrepreneurship/webapp-mp/node_modules/taro-ui/dist/weapp/components/card/index", _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
-  this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "icon", "iconClass", "extra", "note", "title", "children"];
+  this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "rootClass", "thumb", "icon", "iconClass", "extra", "note", "title", "extraStyle", "isFull", "className", "renderIcon", "children"];
 
   this.handleClick = function () {
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
     if ((0, _isFunction3.default)(_this2.props.onClick)) {
-      _this2.__triggerPropsFn("onClick", [null].concat([].concat(args)));
+      var _props2;
+
+      (_props2 = _this2.props).onClick.apply(_props2, arguments);
     }
   };
 
-  this.$$refs = [];
-};
+  this.customComponents = [];
+}, _temp2);
+
 
 AtCard.defaultProps = {
   note: '',
@@ -145,7 +141,10 @@ AtCard.defaultProps = {
   title: '',
   extra: '',
   icon: {},
-  onClick: function onClick() {}
+  onClick: function onClick() {},
+
+  renderIcon: '',
+  extraStyle: {}
 };
 
 AtCard.propTypes = {
@@ -155,16 +154,20 @@ AtCard.propTypes = {
   title: _index4.default.string,
   extra: _index4.default.string,
   icon: _index4.default.object,
-  onClick: _index4.default.func
-};
+  onClick: _index4.default.func,
+  renderIcon: _index4.default.oneOfType([_index4.default.string, _index4.default.element]),
+  extraStyle: _index4.default.object // 自定义extra样式
 
-AtCard.defaultProps = {
-  note: '',
-  isFull: false,
-  thumb: '',
-  title: '',
-  extra: '',
-  onClick: function onClick() {}
+
+  // AtCard.defaultProps = {
+  //   note: '',
+  //   isFull: false,
+  //   thumb: '',
+  //   title: '',
+  //   extra: '',
+  //   onClick: () => {},
+  // }
+
 };
 exports.default = AtCard;
 

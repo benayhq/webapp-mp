@@ -1,4 +1,4 @@
-var root = require('./_root');
+var root = require("./_root.js");
 
 /** Built-in value references. */
 var Symbol = root.Symbol;

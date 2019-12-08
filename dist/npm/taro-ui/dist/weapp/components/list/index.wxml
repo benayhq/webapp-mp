@@ -1,4 +1,4 @@
-<block>
+<block wx:if="{{$taroCompReady}}">
     <view class="{{rootClass}}">
         <slot></slot>
     </view>

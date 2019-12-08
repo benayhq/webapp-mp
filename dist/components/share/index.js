@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
@@ -24,7 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Share = function (_BaseComponent) {
+var Share = (_temp2 = _class = function (_BaseComponent) {
   _inherits(Share, _BaseComponent);
 
   function Share() {
@@ -38,19 +42,20 @@ var Share = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Share.__proto__ || Object.getPrototypeOf(Share)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["isOpened"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Share.__proto__ || Object.getPrototypeOf(Share)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__81", "activeId", "isOpened"], _this.customComponents = ["AtFloatLayout"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Share, [{
     key: "_constructor",
     value: function _constructor() {
       _get(Share.prototype.__proto__ || Object.getPrototypeOf(Share.prototype), "_constructor", this).apply(this, arguments);
+      this.$$refs = new _index2.default.RefsArray();
     }
   }, {
     key: "handleClose",
     value: function handleClose() {
       if ((0, _isFunction3.default)(this.props.onClose)) {
-        this.__triggerPropsFn("onClose", [null].concat([]));
+        this.props.onClose();
       }
     }
   }, {
@@ -119,27 +124,32 @@ var Share = function (_BaseComponent) {
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _index.genCompid)(__prefix + "$compid__81"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__81 = _genCompid2[0],
+          $compid__81 = _genCompid2[1];
 
       var isOpened = this.__props.isOpened;
 
 
+      _index.propsManager.set({
+        "isOpened": isOpened,
+        "title": "\u5206  \u4EAB",
+        "onClose": this.handleClose.bind(this)
+      }, $compid__81, $prevCompid__81);
       Object.assign(this.__state, {
-        isOpened: isOpened
+        $compid__81: $compid__81
       });
       return this.__state;
     }
   }]);
 
   return Share;
-}(_index.Component);
-
-Share.properties = {
-  "onClose": null,
-  "__fn_onClose": null,
-  "activeId": null,
-  "isOpened": null
-};
-Share.$$events = ["handleClose", "handleCreatePosters"];
+}(_index.Component), _class.$$events = ["handleCreatePosters"], _class.$$componentPath = "components/share/index", _temp2);
 exports.default = Share;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Share));
